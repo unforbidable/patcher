@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+	<!-- A rule like this will search the available forms and perform predefined opertions (override/copy/create)  based on each form found. -->
+	<rule>
+		<name>Normal form query rule</name>
+		<!-- REQUIRED: The form kind to query. ALCH, ARMO, etc.  -->
+		<from>FLST</from>
+		<!-- OPRIONAL: Additional condition each form must meet. "Source" refers to each form of the kind specified above. Example: Source.EditorId == "SilverWeapons" -->
+		<where>
+		<![CDATA[ ]]>
+		</where>
+		<!-- OPTIONAL: Action that will neither override each quieried form nor create a new one. -->
+		<select>
+		<![CDATA[ ]]>
+		</select>
+		<!-- OPTIONAL: Action that will override each queried form. -->
+		<udpate>
+		<![CDATA[ ]]>
+		</udpate>
+		<!-- OPTIONAL: Action that will create a new form based per each queried form. The kind of the new form has to be specified. -->
+		<insert into="KYWD">
+		<![CDATA[ ]]>
+		</insert>
+		<!-- OPTIONAL: Any number of insert actions can be defined -->
+		<insert into="ARMO">
+		<![CDATA[ ]]>
+		</insert>
+	</rule>
+	<!-- A rule like this will run each action it defines exactly once. Not forms are queried and forms cannot be overridden with such a rule. -->
+	<rule>
+		<name>Non-query rule</name>
+		<!-- OPTIONAL: Action that will be performed once and which related to no form in particular and will not create a new form. -->
+		<select>
+		<![CDATA[ ]]>
+		</select>
+		<!-- OPTIONAL: Action that will be performed once and which related to no form in particular and will insert a single new form as the result. The kind of the new form has to be specified. -->
+		<insert into="KYWD">
+		<![CDATA[ ]]>
+		</insert>
+		<!-- OPTIONAL: Any number of insert actions can be defined -->
+		<insert into="ARMO">
+		<![CDATA[ ]]>
+		</insert>
+	</rule>
+</rules>
