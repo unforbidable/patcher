@@ -106,6 +106,27 @@ namespace Patcher
                 return;
             }
 
+            // Mod Ogranizer
+            if (!string.IsNullOrEmpty(options.ModOrganizerProfile))
+            {
+                try
+                {
+                    // After verifying data folder with DefaultDataFolderProvider
+                    // replace it with MO data file provider
+                    fileProvider = new ModOrganizerDataFileProvider(options.DataFolder, options.ModOrganizerProfile, options.ModOrganizerModsPath);
+                }
+                catch (Exception ex)
+                {
+                    // Program will exit on error
+                    // Appropriate hint is displayed
+                    Console.WriteLine("Incorrect Mod Organizer configuration: {0}", ex.Message);
+                    Console.WriteLine();
+                    Console.WriteLine("Use option -h or --help for more help.");
+                    terminal.Pause();
+                    return;
+                }
+            }
+
             // Determine output plugin file name, use filename from options if provided
             string targetPluginFileName = options.OutputFilename ?? string.Format("Patcher-{0}.esp", options.RulesFolder);
 
