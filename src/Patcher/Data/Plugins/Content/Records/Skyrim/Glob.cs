@@ -25,6 +25,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
     [Record(Names.GLOB)]
     public sealed class Glob : GenericFormRecord
     {
+        public bool IsConstant { get { return HasFlag(Flags.Constant); } set { SetFlag(Flags.Constant, value); } }
+
         [Member(Names.FNAM)]
         public char Type { get { return type; } set { char old = type; type = value; OnTypeChanged(old); } }
         char type;
@@ -103,6 +105,11 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 return string.Format("{0}:{1}", Value);
             else
                 return "(uninitialized)";
+        }
+
+        enum Flags : uint
+        {
+            Constant = 0x40
         }
     }
 }
