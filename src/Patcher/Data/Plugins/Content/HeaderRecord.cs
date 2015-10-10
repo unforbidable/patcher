@@ -20,6 +20,11 @@ namespace Patcher.Data.Plugins.Content
 {
     public abstract class HeaderRecord : Record
     {
+        /// <summary>
+        /// Gets or sets the plugin file flags.
+        /// </summary>
+        public PluginFlags Flags { get { return (PluginFlags)RawFlags; } set { RawFlags = (uint)value; } }
+
         public abstract string Author { get; set; }
         public abstract string Description { get; set; }
         public abstract uint NextFormId { get; set; }

@@ -189,7 +189,7 @@ namespace Patcher.Data.Plugins
                     // Create new reader of the same plugin file
                     Stream stream = sharedData.Plugin.Context.DataFileProvider.GetDataFile(FileMode.Open, sharedData.Plugin.FileName).Open();
                     reader = sharedData.Plugin.Context.CreateReader(stream);
-                    reader.Flags = sharedData.StockReader.Flags;
+                    reader.PluginFlags = sharedData.StockReader.PluginFlags;
                     reader.ReferenceMapper = sharedData.StockReader.ReferenceMapper;
                     reader.StringLocator = sharedData.StockReader.StringLocator;
                 }

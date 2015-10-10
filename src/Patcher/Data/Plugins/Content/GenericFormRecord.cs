@@ -24,8 +24,6 @@ namespace Patcher.Data.Plugins.Content
 {
     public abstract class GenericFormRecord : Record, IEquatable<GenericFormRecord>
     {
-        private string editorId;
-
         [Member(Names.EDID)]
         [Order(-1)]
         [Lazy]
@@ -42,11 +40,12 @@ namespace Patcher.Data.Plugins.Content
                 }
             }
         }
+        private string editorId;
 
         internal event EventHandler<EditorIdChangingEventArgs> EditorIdChanging;
         internal event EventHandler<EditorIdChangedEventArgs> EditorIdChanged;
 
-        internal RecordFlags Flags { get; set; }
+        internal bool IsRecordCompressed { get { return HasFlag(RecordFlags.Compressed); } }
 
         public override string ToString()
         {
@@ -58,13 +57,21 @@ namespace Patcher.Data.Plugins.Content
             var recinfo = InfoProvider.GetRecordInfo(GetType());
             var other = recinfo.CreateInstance();
 
+            // Copy raw flags
+            other.RawFlags = RawFlags;
+
             var compinfo = InfoProvider.GetCompoundInfo(GetType());
             compinfo.Copy(this, other);
+
             return other;
         }
 
         public bool Equals(GenericFormRecord other)
         {
+            // Compare raw flags
+            if (RawFlags != other.RawFlags)
+                return false;
+
             var compinfo = InfoProvider.GetCompoundInfo(GetType());
             return compinfo.Equate(this, other);
         }

@@ -41,7 +41,6 @@ namespace Patcher.Data.Plugins.Content
         internal IReferenceMapper ReferenceMapper { get; set; }
 
         HeaderRecord header = null;
-        PluginFlags flags = PluginFlags.None;
 
         int numRecords = 0;
         FormKind currentGroupFormKind = FormKind.None;
@@ -53,18 +52,17 @@ namespace Patcher.Data.Plugins.Content
             segmentStream = stream;
         }
 
-        internal void WriteHeader(HeaderRecord header, PluginFlags flags)
+        internal void WriteHeader(HeaderRecord header)
         {
             if (this.header != null)
                 throw new InvalidOperationException("Header already written");
 
             this.header = header;
-            this.flags = flags;
 
-            DoWriteRecord(header, (uint)flags, 0);
+            DoWriteRecord(header, 0);
         }
 
-        internal void WriteRecord(GenericFormRecord record, RecordFlags flags, uint formId)
+        internal void WriteRecord(GenericFormRecord record, uint formId)
         {
             if (header == null)
                 throw new InvalidOperationException("Header not yet written");
@@ -83,14 +81,14 @@ namespace Patcher.Data.Plugins.Content
                 numRecords++;
             }
 
-            DoWriteRecord(record, (uint)flags, formId);
+            DoWriteRecord(record, formId);
             numRecords++;
         }
 
-        private void DoWriteRecord(Record record, uint flags, uint formId)
+        private void DoWriteRecord(Record record, uint formId)
         {
             var recinfo = InfoProvider.GetRecordInfo(record.GetType());
-            BeginRecordSegment(recinfo.Attribute.Signature, flags, formId);
+            BeginRecordSegment(recinfo.Attribute.Signature, record.RawFlags, formId);
 
             record.WriteRecord(this);
 
@@ -368,7 +366,7 @@ namespace Patcher.Data.Plugins.Content
             // Set number of records and write header again
             header.NumRecords = numRecords;
             mainStream.Position = 0;
-            DoWriteRecord(header, (uint)flags, 0);
+            DoWriteRecord(header, 0);
 
             mainStream.Dispose();
             while (segmentStack.Count > 0)

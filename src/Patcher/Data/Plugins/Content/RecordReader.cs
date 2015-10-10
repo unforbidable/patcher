@@ -44,7 +44,7 @@ namespace Patcher.Data.Plugins.Content
 
         internal States CurrentState { get; private set; }
 
-        public PluginFlags Flags { get; set; }
+        internal PluginFlags PluginFlags { get; set; }
 
         // DataContext creates instances
         internal RecordReader(Stream stream, DataContext context)
@@ -70,11 +70,13 @@ namespace Patcher.Data.Plugins.Content
             RecordMetadata recordMetaData = context.CreateRecordMetaData();
             NextSegment(recordMetaData);
 
-            Flags = (PluginFlags)recordMetaData.Flags;
-
+            // Create header, set flags and read the header
             var pluginHeader = context.CreateHeader();
-
+            pluginHeader.RawFlags = recordMetaData.Flags;
             pluginHeader.ReadRecord(this);
+
+            // Keep plugin flags for internal use by the reader
+            PluginFlags = (PluginFlags)recordMetaData.Flags;
 
             EndSegment();
 
@@ -210,14 +212,14 @@ namespace Patcher.Data.Plugins.Content
             }
         }
 
-        internal void ReadRecord(GenericFormRecord record, bool lazyLoading)
-        {
-            ChangeState(States.Reading, s => s == States.Indexing);
+        //internal void ReadRecord(GenericFormRecord record, bool lazyLoading)
+        //{
+        //    ChangeState(States.Reading, s => s == States.Indexing);
 
-            DoReadRecord(record, lazyLoading);
+        //    DoReadRecord(record, lazyLoading);
 
-            ChangeState(States.Indexing);
-        }
+        //    ChangeState(States.Indexing);
+        //}
 
         internal void ReadRecordAt(long position, GenericFormRecord record, bool lazyLoading)
         {
@@ -233,6 +235,8 @@ namespace Patcher.Data.Plugins.Content
 
             RecordMetadata recordMetaData = context.CreateRecordMetaData();
             NextSegment(recordMetaData);
+
+            record.RawFlags = recordMetaData.Flags;
 
             DoReadRecord(record, lazyLoading);
 
@@ -252,9 +256,7 @@ namespace Patcher.Data.Plugins.Content
             if (record.GetType() != typeof(DummyRecord) && recinf.Attribute.Signature != CurrentSegment.Signature)
                 throw new InvalidOperationException("Record signature mismatch.");
 
-            record.Flags = (RecordFlags)((RecordMetadata)CurrentSegment.MetaData).Flags;
-
-            if (record.Flags.HasFlag(RecordFlags.Compressed))
+            if (record.IsRecordCompressed)
             {
                 // TODO: Intermediate MomeryStream may not be needed here 
                 long decompressedSize = ReadUInt32();
@@ -266,7 +268,7 @@ namespace Patcher.Data.Plugins.Content
                     deflateReader.CurrentState = States.Reading;
 
                     // Copy flags etc to the deflate reader
-                    deflateReader.Flags = Flags;
+                    deflateReader.PluginFlags = PluginFlags;
                     deflateReader.ReferenceMapper = ReferenceMapper;
                     deflateReader.StringLocator = StringLocator;
 
@@ -554,7 +556,7 @@ namespace Patcher.Data.Plugins.Content
             }
             else if (memberInfo.FieldType == typeof(string))
             {
-                if (memberInfo.LocalizedStringGroup != LocalizedStringGroups.None && Flags.HasFlag(PluginFlags.Localized))
+                if (memberInfo.LocalizedStringGroup != LocalizedStringGroups.None && PluginFlags.HasFlag(PluginFlags.Localized))
                 {
                     uint index = ReadUInt32();
                     return GetLocalizedString(memberInfo.LocalizedStringGroup, (index));

@@ -102,7 +102,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         protected override void AfterRead(RecordReader reader)
         {
             // Pull localized string if needed and replace data
-            if (Type == 's' && reader.Flags.HasFlag(PluginFlags.Localized))
+            if (Type == 's' && reader.PluginFlags.HasFlag(PluginFlags.Localized))
             {
                 uint index = BitConverter.ToUInt32(Data.Bytes, 0);
                 string localized = reader.GetLocalizedString(LocalizedStringGroups.Strings, index);
