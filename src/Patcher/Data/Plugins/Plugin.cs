@@ -170,7 +170,7 @@ namespace Patcher.Data.Plugins
                 throw new InvalidOperationException("AsyncFromLoadingMaxWorkers cannot be less than 1");
 
             // Prepare string locator (if plugin strings are localized)
-            if (reader.Flags.HasFlag(PluginFlags.Localized))
+            if (reader.PluginFlags.HasFlag(PluginFlags.Localized))
                 reader.StringLocator = new PluginStringLocator(this);
 
             // Apply predicate to the enumeration, if any
@@ -379,6 +379,7 @@ namespace Patcher.Data.Plugins
                 {
                     //Log.Warning("Unable to determine the master of unresolved reference [0x{0:X8}].", id);
                     // Skip unresolved references, a warning will be issued while writing
+                    // TODO: To handle unresolved references as bes as possible, derive plugin number from formId and add it as a master
                     continue;
                 }
                 var form = context.Forms[id];
@@ -435,7 +436,8 @@ namespace Patcher.Data.Plugins
 
                         // Write header
                         header.Version = context.GetLatestPluginVersion();
-                        writer.WriteHeader(header, PluginFlags.None);
+                        header.Flags = PluginFlags.None;
+                        writer.WriteHeader(header);
                         Log.Fine("Written header record");
 
                         // Write forms by type
@@ -447,7 +449,7 @@ namespace Patcher.Data.Plugins
 
                             foreach (var form in formOfType)
                             {
-                                writer.WriteRecord(form.Record, RecordFlags.None, form.FormId);
+                                writer.WriteRecord(form.Record, form.FormId);
                                 count++;
 
                                 progress.Update(count, total, "{0}:{1}", file.Name, type);
