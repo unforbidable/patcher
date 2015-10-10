@@ -73,6 +73,18 @@ namespace Patcher
             // Set terminal log level, 0-4
             terminal.ConsoleLogLevel = (LogLevel)Math.Min(4, Math.Max(0, options.ConsoleLogLevel));
 
+            // Validate rules folder
+            if (string.IsNullOrWhiteSpace(options.RulesFolder) || options.RulesFolder.IndexOfAny(new char[] { '"', '\'', '\\', '/', ':' }) >= 0)
+            {
+                Console.WriteLine("Specified rule folder name does not seems to be valid: ");
+                Console.WriteLine();
+                Console.WriteLine(options.RulesFolder);
+                Console.WriteLine();
+                Console.WriteLine("Ensure the value is a single folder name (not a full path) without special characters: \", ', \\, / and :.");
+                terminal.Pause();
+                return;
+            }
+
             // Initialize data file provider
             IDataFileProvider fileProvider;
             try
