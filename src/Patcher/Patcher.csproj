@@ -52,6 +52,7 @@
     <Compile Include="Data\Archives\ArchiveSubstream.cs" />
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
+    <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\ActorValue.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\ArmorSkillUsage.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\BodyParts.cs" />

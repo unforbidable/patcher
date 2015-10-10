@@ -52,6 +52,14 @@ namespace Patcher
         [Description("Path to plugins.txt file to load.\nDefault: The game default location")]
         public string PluginListFile { get; private set; }
 
+        [Option("mo-profile")]
+        [Description("Path to Mod Organizer profile.")]
+        public string ModOrganizerProfile { get; set; }
+
+        [Option("mo-mods")]
+        [Description("Path to Mod Organizer mods folder.\nThere is no need to specify this path unless\na non-default path has been configured.")]
+        public string ModOrganizerModsPath { get; set; }
+
         [Option("keepdirtyedits")]
         [Description("Do not purge overriding forms that are\nidentical to the original form.\nDefault: false")]
         public bool KeepDirtyEdits { get; private set; }
