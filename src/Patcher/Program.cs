@@ -77,16 +77,19 @@ namespace Patcher
             IDataFileProvider fileProvider;
             try
             {
-                // Use data folder path from options which will default Data folder in current direcotry unless another path is specified
+                // Use data folder path from options which will default the parent direcotry unless another path is specified
                 // Pass custom plugins.txt file path if provided via options
                 fileProvider = new DefaultDataFileProvider(options.DataFolder, options.PluginListFile);
             }
-            catch (InvalidDataException ex)
+            catch (Exception ex)
             {
                 // Program will exit on error
                 // Appropriate hint is displayed
-                Console.WriteLine("Data folder error: " + ex.Message);
-                Console.WriteLine("Use option -d or --data to specify path to the data folder or use option -h or --help for more help.");
+                Console.WriteLine("Data folder path does not seems to be valid: {0}", ex.Message);
+                Console.WriteLine();
+                Console.WriteLine(options.DataFolder);
+                Console.WriteLine();
+                Console.WriteLine("Use option -d or --data to specify correct path to the data folder or use option -h or --help for more help.");
                 terminal.Pause();
                 return;
             }
