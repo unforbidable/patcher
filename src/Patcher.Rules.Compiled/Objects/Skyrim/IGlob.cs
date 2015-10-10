@@ -18,6 +18,7 @@ namespace Patcher.Rules.Compiled.Objects.Skyrim
 {
     public interface IGlob : IForm
     {
+        bool IsConstant { get; set; }
         char Type { get; set; }
         dynamic Value { get; set; }
     }
