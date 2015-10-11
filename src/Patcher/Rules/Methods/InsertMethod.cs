@@ -34,6 +34,11 @@ namespace Patcher.Rules.Methods
         /// </summary>
         public FormKind InsertedFormKind { get; set; }
 
+        /// <summary>
+        /// Gets or sets the value that indicates whether compatible form content is copied from the original form when a new form is created.
+        /// </summary>
+        public bool Copy { get; set; }
+
         public string Description { get; set; }
         public Func<object, object, bool> Method { get; set; }
     }

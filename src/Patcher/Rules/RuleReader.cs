@@ -61,7 +61,7 @@ namespace Patcher.Rules
                     entry.Description = element.Elements("description").First().Value;
 
                 if (element.Elements("from").Any())
-                    entry.From = new RuleEntry.RuleEntryFrom() { FormKind = element.Elements("from").First().Value };
+                    entry.From = new RuleEntry.RuleEntryFrom() { FormKind = element.Elements("from").First().Value.ToUpper() };
 
                 var whereElements = element.Elements("where").Take(2).ToArray();
                 if (whereElements.Length > 0)
@@ -103,11 +103,29 @@ namespace Patcher.Rules
 
                     foreach (var insertElement in insertElements)
                     {
-                        var formType = insertElement.Attribute("into");
-                        if (formType == null)
+                        var intoAttribute = insertElement.Attribute("into");
+                        if (intoAttribute == null)
                             throw new InvalidDataException("Insert is missing mandatory attribute: into");
 
-                        inserts.Add(new RuleEntry.RuleEntryInsert() { InsertedFormKind = formType.Value, Code = insertElement.Value });
+                        string insertFormKind = intoAttribute.Value;
+
+                        var copy = false;
+                        var copyAttribute = insertElement.Attribute("copy");
+                        if (copyAttribute != null)
+                        {
+                            if (!bool.TryParse(copyAttribute.Value.ToLower(), out copy))
+                            {
+                                Log.Warning("Attribute 'copy' present on insert but the value could not be parsed. Expected 'true' or 'false'.");
+                            }
+
+                            // Warn when copy attribute will be ignored - non-query and incompatible inserts
+                            if (entry.From == null || !entry.From.FormKind.Equals(insertFormKind))
+                            {
+                                Log.Warning("Attribute 'copy' present on a non-query incompatible insert will be ignored.");
+                            }
+                        }
+
+                        inserts.Add(new RuleEntry.RuleEntryInsert() { InsertedFormKind = insertFormKind, Copy = copy, Code = insertElement.Value });
                     }
 
                     entry.Inserts = inserts;
