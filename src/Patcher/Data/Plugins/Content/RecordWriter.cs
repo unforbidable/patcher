@@ -98,41 +98,47 @@ namespace Patcher.Data.Plugins.Content
         internal void WriteField(object target, MemberInfo meminfo)
         {
             var value = meminfo.GetValue(target);
-            if (value != null)
+
+            // Skip null fields right away (covers nullable primitive types)
+            if (value == null)
+                return;
+
+            // Skip null form references (that are not a list of references)
+            if (meminfo.IsReference && !meminfo.IsListType && (uint)value == 0)
+                return;
+
+            string fieldName = meminfo.FieldNames.First();
+            if (meminfo.IsPrimitiveType)
             {
-                string fieldName = meminfo.FieldNames.First();
-                if (meminfo.IsPrimitiveType)
+                // Primitive types have only one propery name
+                if (meminfo.IsListType)
                 {
-                    // Primitive types have only one propery name
-                    if (meminfo.IsListType)
-                    {
-                        foreach (var item in (IEnumerable)value)
-                        {
-                            BeginPropertySegment(fieldName);
-                            WritePrimitiveField(meminfo, item);
-                            EndSegment();
-                        }
-                    }
-                    else
+                    foreach (var item in (IEnumerable)value)
                     {
                         BeginPropertySegment(fieldName);
-                        WritePrimitiveField(meminfo, value);
+                        WritePrimitiveField(meminfo, item);
                         EndSegment();
                     }
                 }
                 else
                 {
-                    if (meminfo.FieldType.IsSubclassOf(typeof(Compound)))
-                    {
-                        // Compund property will begin segment for each of its fields
-                        WriteComplexField(meminfo, value);
-                    }
-                    else
-                    {
-                        BeginPropertySegment(fieldName);
-                        WriteComplexField(meminfo, value);
-                        EndSegment();
-                    }
+                    BeginPropertySegment(fieldName);
+                    WritePrimitiveField(meminfo, value);
+                    EndSegment();
+                }
+            }
+            else
+            {
+                if (meminfo.FieldType.IsSubclassOf(typeof(Compound)))
+                {
+                    // Compund property will begin segment for each of its fields
+                    WriteComplexField(meminfo, value);
+                }
+                else
+                {
+                    BeginPropertySegment(fieldName);
+                    WriteComplexField(meminfo, value);
+                    EndSegment();
                 }
             }
         }
@@ -197,7 +203,11 @@ namespace Patcher.Data.Plugins.Content
         public void WriteReference(uint formId, FormKind referencedFormKind)
         {
             // All fields should write references via this method so problems can be detected
-            if (!context.Forms.Contains(formId))
+            if (formId == 0)
+            {
+                Log.Warning("Writting null reference 0x{0:X8}.", formId);
+            }
+            else if (!context.Forms.Contains(formId))
             {
                 Log.Warning("Writting unresolved form reference 0x{0:X8}.", formId);
             }
