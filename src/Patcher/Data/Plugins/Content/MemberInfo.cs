@@ -269,6 +269,16 @@ namespace Patcher.Data.Plugins.Content
                 {
                     var oneField = (Field)GetValue(one);
                     var otherField = (Field)GetValue(other);
+
+                    // Both fields do not exists means equal
+                    if (oneField == null && otherField == null)
+                        return true;
+
+                    // One of the fiels does not exist means not equal
+                    if (oneField == null || otherField == null)
+                        return false;
+
+                    // Both fields exist, consider the content
                     if (!oneField.Equals(otherField))
                         return false;
                 }
