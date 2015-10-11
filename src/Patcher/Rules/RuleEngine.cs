@@ -158,6 +158,8 @@ namespace Patcher.Rules
                         {
                             runner.Run();
                         }
+#if !DEBUG
+                        // Catch any unhandled exception in a Release build only
                         catch (Exception ex)
                         {
                             if (ex is CompiledRuleAssertException)
@@ -182,6 +184,7 @@ namespace Patcher.Rules
                                 continue;
                             }
                         }
+#endif
                         finally
                         {
                         }

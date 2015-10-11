@@ -216,8 +216,11 @@ namespace Patcher.Data.Plugins.Content
             }
             else
             {
-                // Let complex properies copy themselves
-                return ((Field)GetValue(from)).CopyField();
+                // Let complex properies copy themselves, unless they are null
+                if (GetValue(from) == null)
+                    return null;
+                else
+                    return ((Field)GetValue(from)).CopyField();
             }
         }
 
