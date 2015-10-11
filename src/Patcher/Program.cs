@@ -205,11 +205,14 @@ namespace Patcher
                     Console.WriteLine();
                     Console.WriteLine("Program aborted: " + ex.Message);
                 }
+#if !DEBUG
+                // Catch any unhandled exception in a Release build only
                 catch (Exception ex)
                 {
                     Log.Error("Program error: " + ex.Message);
                     Log.Fine(ex.ToString());
                 }
+#endif
                 finally
                 {
                     terminal.Pause();
