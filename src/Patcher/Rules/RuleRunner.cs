@@ -117,7 +117,7 @@ namespace Patcher.Rules
             if (rule.Update != null)
             {
                 // Copy of the source form will be chnaged
-                var targetForm = sourceProxy.Form.CopyForm();
+                var targetForm = sourceProxy.Form.CopyForm(false);
                 updateProxy.WithForm(targetForm);
                 if (rule.Update.Method(sourceProxy, updateProxy))
                 {
@@ -142,7 +142,18 @@ namespace Patcher.Rules
             {
                 foreach (var insert in rule.Inserts)
                 {
-                    var targetForm = engine.Context.CreateForm(insert.InsertedFormKind);
+                    Form targetForm;
+                    if (insert.Copy && sourceProxy != null && sourceProxy.Form.FormKind == insert.InsertedFormKind)
+                    {
+                        // Copy form data if  source is the same as target (and source is not null)
+                        targetForm = sourceProxy.Form.CopyForm(true);
+                    }
+                    else
+                    {
+                        // Create new otherwise
+                        targetForm = engine.Context.CreateForm(insert.InsertedFormKind);
+                    }
+
                     var targetProxy = engine.ProxyProvider.CreateFormProxy(targetForm, ProxyMode.Target);
                     if (insert.Method(sourceProxy, targetProxy))
                     {

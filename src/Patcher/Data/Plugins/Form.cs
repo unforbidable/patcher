@@ -73,15 +73,20 @@ namespace Patcher.Data.Plugins
 
         public string EditorId { get { return Record != null ? Record.EditorId : null; } }
 
-        public Form CopyForm()
+        /// <summary>
+        /// Creates a deep copy of the current form, optionally resetting the FormId so that it is treated as a new form.
+        /// </summary>
+        /// <param name="asNew">Indicates whether the copy will be a new form or an override.</param>
+        /// <returns>Returns a deep copy of the current form.</returns>
+        public Form CopyForm(bool asNew)
         {
             return new Form()
             {
                 PluginNumber = PluginIndex.InvalidPluginNumber,
                 FilePosition = -1,
-                FormId = FormId,
+                FormId = asNew ? 0 : FormId,
                 ParentFormId = ParentFormId,
-                OverridesForm = OverridesForm,
+                OverridesForm = null,
                 FormKind = FormKind,
                 Record = Record.CopyRecord()
             };
