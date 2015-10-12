@@ -81,7 +81,7 @@ namespace Patcher.Rules
             else
             {
                 Log.Fine("Querying all {0} forms", rule.From);
-                var forms = engine.Context.Forms.OfKind(rule.From).Where(f => f.IsLoaded).ToArray();
+                var forms = engine.Context.Forms.OfKind(rule.From).Where(f => f.IsLoaded && !f.IsOverriden).ToArray();
                 Log.Fine("Found {0} forms of type {1}", forms.Length, rule.From);
 
                 // Prepare readonly source proxy
