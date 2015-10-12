@@ -262,6 +262,16 @@ namespace Patcher.Data.Plugins.Content
                 {
                     object oneValue = GetValue(one);
                     object otherValue = GetValue(other);
+
+                    // Both values are null means equal
+                    if (oneValue == null && otherValue == null)
+                        return true;
+
+                    // One of the values is null means not equal
+                    if (oneValue == null || otherValue == null)
+                        return false;
+
+                    // Both not null, consider each value
                     if (!oneValue.Equals(otherValue))
                         return false;
                 }
