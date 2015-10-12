@@ -21,5 +21,7 @@ namespace Patcher.Rules.Compiled.Helpers
         void Break();
         void Assert(bool condition, string text);
         void Message(string text);
+        void Dump(object value);
+        void Dump(object value, string name);
     }
 }

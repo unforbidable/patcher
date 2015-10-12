@@ -255,7 +255,7 @@ namespace Patcher.Rules.Proxies
             }
 
             // Enumerate as if a collection of Proxies of type T
-            return willEnumerate.Select(f => Provider.CreateFormProxy<TForm>(Provider.Engine.Context.Forms[f], Mode)).GetEnumerator();
+            return willEnumerate.Select(f => Provider.CreateFormProxy<TForm>(f, Mode)).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
