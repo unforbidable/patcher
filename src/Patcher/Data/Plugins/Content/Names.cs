@@ -31,6 +31,7 @@ namespace Patcher.Data.Plugins.Content
         public const string ARMA = "ARMA";
         public const string ARMO = "ARMO";
         public const string CELL = "CELL";
+        public const string ENCH = "ENCH";
         public const string EQUP = "EQUP";
         public const string FLST = "FLST";
         public const string GLOB = "GLOB";
