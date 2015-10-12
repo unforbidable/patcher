@@ -40,9 +40,9 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
             return form as IArmo;
         }
 
-        public static IFormCollection<IStat> OfArmo(this IFormCollection<IForm> collection)
+        public static IFormCollection<IArmo> OfArmo(this IFormCollection<IForm> collection)
         {
-            return collection.Of<IStat>();
+            return collection.Of<IArmo>();
         }
 
         public static IFlst AsFlst(this IForm form)
