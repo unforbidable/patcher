@@ -402,7 +402,7 @@ namespace Patcher.Data.Plugins
             }
 
             // Add headers (will be sorted by pluginNumber)
-            foreach (var number in collectedMasters)
+            foreach (var number in collectedMasters.OrderBy(i => i))
             {
                 header.AddMasterFile(context.Plugins[number].FileName);
             }
