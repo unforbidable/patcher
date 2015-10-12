@@ -435,7 +435,7 @@ namespace Patcher.Data.Plugins
                         writer.ReferenceMapper = new PluginReferenceMapper(this);
 
                         // Write header
-                        header.Version = context.GetLatestPluginVersion();
+                        header.PluginVersion = context.GetLatestPluginVersion();
                         header.Flags = PluginFlags.None;
                         writer.WriteHeader(header);
                         Log.Fine("Written header record");

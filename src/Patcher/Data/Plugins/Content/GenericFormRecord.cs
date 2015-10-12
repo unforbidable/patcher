@@ -57,8 +57,9 @@ namespace Patcher.Data.Plugins.Content
             var recinfo = InfoProvider.GetRecordInfo(GetType());
             var other = recinfo.CreateInstance();
 
-            // Copy raw flags
+            // Copy raw flags and version
             other.RawFlags = RawFlags;
+            other.Version = Version;
 
             var compinfo = InfoProvider.GetCompoundInfo(GetType());
             compinfo.Copy(this, other);

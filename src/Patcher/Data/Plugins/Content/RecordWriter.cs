@@ -88,7 +88,7 @@ namespace Patcher.Data.Plugins.Content
         private void DoWriteRecord(Record record, uint formId)
         {
             var recinfo = InfoProvider.GetRecordInfo(record.GetType());
-            BeginRecordSegment(recinfo.Attribute.Signature, record.RawFlags, formId);
+            BeginRecordSegment(recinfo.Attribute.Signature, record.RawFlags, record.Version, formId);
 
             record.WriteRecord(this);
 
@@ -234,12 +234,13 @@ namespace Patcher.Data.Plugins.Content
             });
         }
 
-        private void BeginRecordSegment(string signature, uint flags, uint formId)
+        private void BeginRecordSegment(string signature, uint flags, ushort version, uint formId)
         {
             BeginSegment(new RecordMetadata()
             {
                 Signature = signature,
                 Flags = flags,
+                Version = version,
                 FormId = formId
             });
         }

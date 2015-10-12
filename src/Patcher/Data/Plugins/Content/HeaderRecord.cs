@@ -29,7 +29,7 @@ namespace Patcher.Data.Plugins.Content
         public abstract string Description { get; set; }
         public abstract uint NextFormId { get; set; }
         public abstract int NumRecords { get; set; }
-        public abstract float Version { get; set; }
+        public abstract float PluginVersion { get; set; }
 
         internal abstract void AddMasterFile(string filename);
         public abstract IEnumerable<string> GetMasterFiles();

@@ -131,6 +131,11 @@ namespace Patcher.Data.Plugins.Content
         }
 
         /// <summary>
+        /// Represents record version.
+        /// </summary>
+        internal ushort Version { get; set; }
+
+        /// <summary>
         /// Represents record flags in the raw format, i.e. not projected as an Enum.
         /// </summary>
         internal uint RawFlags { get; set; }

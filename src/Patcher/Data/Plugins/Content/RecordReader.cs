@@ -237,6 +237,7 @@ namespace Patcher.Data.Plugins.Content
             NextSegment(recordMetaData);
 
             record.RawFlags = recordMetaData.Flags;
+            record.Version = recordMetaData.Version;
 
             DoReadRecord(record, lazyLoading);
 
