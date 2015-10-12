@@ -42,11 +42,15 @@ namespace Patcher.Data.Plugins.Content
 
         internal override void WriteField(RecordWriter writer)
         {
+            BeforeWrite(writer);
+
             var compinfo = InfoProvider.GetCompoundInfo(GetType());
             foreach (var meminfo in compinfo.Members.Values.Distinct())
             {
                 writer.WriteField(this, meminfo);
             }
+
+            AfterWrite(writer);
         }
 
         public override Field CopyField()
@@ -97,6 +101,14 @@ namespace Patcher.Data.Plugins.Content
         }
 
         protected virtual void AfterRead(RecordReader reader)
+        {
+        }
+
+        protected virtual void BeforeWrite(RecordWriter writer)
+        {
+        }
+
+        protected virtual void AfterWrite(RecordWriter writer)
         {
         }
     }
