@@ -80,9 +80,9 @@ namespace Patcher.Data
                     formsById.Remove(previous.FormId);
                     form.OverridesForm = previous;
 
-                    // Unlink Editor ID of the previous form
-                    if (previous.EditorId != null)
-                        UnlinkEditorId(previous, previous.EditorId);
+                    // Do not unlink Editor ID of previous form
+                    // It will be unlinked automatically if new form uses the same Editor ID (which it should)
+                    // If overriding form has a different Editor ID both Editor IDs can be used to look up the overrdiding form
                 }
 
                 formsById.Add(form.FormId, form);
@@ -113,7 +113,7 @@ namespace Patcher.Data
 
                 formsById.Remove(form.FormId);
 
-                // Unlink Editor ID
+                // Unlink Editor ID (and link previous form using this Editor ID if available)
                 if (form.EditorId != null)
                     UnlinkEditorId(form, form.EditorId);
 
@@ -134,18 +134,21 @@ namespace Patcher.Data
 
         private void FormEditorIdChanged(object sender, EditorIdChangedEventArgs e)
         {
-            lock (formsByEditorId)
+            if (e.NewEditorId != e.PreviousEditorId)
             {
-                // Unlink previous Editor ID first
-                if (e.PreviousEditorId != null)
+                lock (formsByEditorId)
                 {
-                    UnlinkEditorId((Form)sender, e.PreviousEditorId);
-                }
+                    // Link new Editor ID
+                    if (e.NewEditorId != null)
+                    {
+                        LinkEditorId((Form)sender, e.NewEditorId);
+                    }
 
-                // Link new Editor ID
-                if (e.NewEditorId != null)
-                {
-                    LinkEditorId((Form)sender, e.NewEditorId);
+                    // Unlink previous Editor ID
+                    if (e.PreviousEditorId != null)
+                    {
+                        UnlinkEditorId((Form)sender, e.PreviousEditorId);
+                    }
                 }
             }
         }
@@ -169,7 +172,9 @@ namespace Patcher.Data
                     formsWithEditorIdOverriden.Add(existingForm);
                     formsByEditorId.Remove(editorId);
 
-                    Log.Warning("Form " + form + " uses EditorID that has already been used by form " + existingForm + ". The Editor ID will reference the most recently added form.");
+                    // Warn only when not overriding
+                    if (existingForm.FormId != form.FormId)
+                        Log.Warning("Form " + form + " uses EditorID that has already been used by form " + existingForm + ". The Editor ID will reference the most recently added form.");
                 }
 
                 formsByEditorId.Add(editorId, form);
