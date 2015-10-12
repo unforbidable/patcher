@@ -43,7 +43,12 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
         internal override void WriteField(RecordWriter writer)
         {
-            throw new NotImplementedException();
+            writer.Write(X1);
+            writer.Write(Y1);
+            writer.Write(Z1);
+            writer.Write(X2);
+            writer.Write(Y2);
+            writer.Write(Z2);
         }
 
         public override Field CopyField()
@@ -61,7 +66,8 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
         public override bool Equals(Field other)
         {
-            throw new NotImplementedException();
+            var cast = (ObjectBounds)other;
+            return X1 == cast.X1 && Y1 == cast.Y1 && Z1 == cast.Z1 && X2 == cast.X2 && Y2 == cast.Y2 && Z2 == cast.Z2;
         }
 
         public override string ToString()
