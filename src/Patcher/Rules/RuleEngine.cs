@@ -16,6 +16,7 @@
 
 using Patcher.Data;
 using Patcher.Data.Plugins;
+using Patcher.Rules.Compiled;
 using Patcher.Rules.Proxies;
 using Patcher.UI;
 using System;
