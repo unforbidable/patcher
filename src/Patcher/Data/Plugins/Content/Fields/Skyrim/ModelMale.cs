@@ -27,10 +27,10 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
         [Member(Names.MOD2)]
         public string Path { get; set; }
 
-        [Member(Names.MO2S)]
+        [Member(Names.MO2T)]
         private ByteArray AlternateTextures { get; set; }
 
-        [Member(Names.MO2T)]
+        [Member(Names.MO2S)]
         private ByteArray AlternateTextures2 { get; set; }
 
         public override string ToString()

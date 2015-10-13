@@ -18,24 +18,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Patcher.Data.Plugins.Content.Fields.Skyrim
+namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
-    public sealed class Model : Compound
+    
+    public enum Skill : int
     {
-        [Member(Names.MODL)]
-        public string Path { get; set; }
-
-        [Member(Names.MODT)]
-        private ByteArray AlternateTextures { get; set; }
-
-        [Member(Names.MODS)]
-        private ByteArray AlternateTextures2 { get; set; }
-
-        public override string ToString()
-        {
-            return Path;
-        }
+        None,
+        OneHanded,
+        TwoHanded,
+        Marksman,
+        Block,
+        Smithing,
+        HeavyArmor,
+        LightArmor,
+        Pickpocket,
+        Lockpicking,
+        Sneak,
+        Alchemy,
+        Speechcraft,
+        Alteration,
+        Conjuration,
+        Destruction,
+        Illusion,
+        Restoration,
+        Enchanting
     }
 }

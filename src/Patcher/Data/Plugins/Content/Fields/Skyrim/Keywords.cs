@@ -22,48 +22,99 @@ using System.Threading.Tasks;
 
 namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 {
-    public sealed class Keywords : Field
+    public sealed class Keywords : Compound
     {
-        public List<uint> List { get { return list; } }
+        [Member(Names.KSIZ)]
+        private int? Size { get; set; }
 
-        List<uint> list = new List<uint>();
+        [Member(Names.KWDA)]
+        private KeywordData Data { get; set; }
 
-        internal override void ReadField(RecordReader reader)
+        public List<uint> Items { get { EnsureDataCreated(); return Data.List; } set { EnsureDataCreated(); Data.List = value; } }
+
+        private void EnsureDataCreated()
         {
-            while (!reader.IsEndOfSegment)
+            // Data are created only on demand
+            // Will be destroyed if empty
+            if (Data == null)
             {
-                list.Add(reader.ReadReference(FormKind.None));
+                Data = new KeywordData();
             }
         }
 
-        internal override void WriteField(RecordWriter writer)
+        protected override void BeforeWrite(RecordWriter writer)
         {
-            throw new NotImplementedException();
-        }
-
-        public override Field CopyField()
-        {
-            return new Keywords()
+            // Sync KISZ before saving
+            if (Data == null || Data.List.Count == 0)
             {
-                list = new List<uint>(list)
-            };
-        }
+                Size = null;
 
-        public override bool Equals(Field other)
-        {
-            throw new NotImplementedException();
+                // Also unset empty Data if instantiated and empty
+                // to prevent the creation of an empty KWDA segment
+                Data = null;
+            }
+            else
+            {
+                Size = Data.List.Count;
+            }
         }
 
         public override string ToString()
         {
-            return string.Format("Count={0}{1}", list.Count,
-                list.Count > 0 ? string.Format(" {0}", string.Join(" ", list)) : string.Empty);
+            return Data == null ? string.Empty : Data.ToString();
         }
 
-        public override IEnumerable<uint> GetReferencedFormIds()
+        public class KeywordData : Field
         {
-            // Each keyword is a referenced form
-            return list;
+            public List<uint> List { get; set; }
+
+            public KeywordData()
+            {
+                List = new List<uint>();
+            }
+
+            internal override void ReadField(RecordReader reader)
+            {
+                while (!reader.IsEndOfSegment)
+                {
+                    List.Add(reader.ReadReference(FormKind.None));
+                }
+            }
+
+            internal override void WriteField(RecordWriter writer)
+            {
+                foreach (var formId in List)
+                {
+                    writer.WriteReference(formId, FormKind.None);
+                }
+            }
+
+            public override Field CopyField()
+            {
+                return new KeywordData()
+                {
+                    List = new List<uint>(List)
+                };
+            }
+
+            public override bool Equals(Field other)
+            {
+                var cast = (KeywordData)other;
+                return cast.List.SequenceEqual(cast.List);
+            }
+
+            public override IEnumerable<uint> GetReferencedFormIds()
+            {
+                // Each keyword is a referenced form
+                return List.Select(i => i);
+            }
+
+            public override string ToString()
+            {
+                return string.Format("Count={0}{1}", List.Count,
+                    List.Count > 0 ? string.Format(" {0}", string.Join(" ", List)) : string.Empty);
+            }
         }
+
     }
 }

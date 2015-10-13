@@ -18,24 +18,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Patcher.Data.Plugins.Content.Fields.Skyrim
+namespace Patcher.Rules.Compiled.Objects.Skyrim
 {
-    public sealed class Model : Compound
+    public interface IObjectBounds
     {
-        [Member(Names.MODL)]
-        public string Path { get; set; }
-
-        [Member(Names.MODT)]
-        private ByteArray AlternateTextures { get; set; }
-
-        [Member(Names.MODS)]
-        private ByteArray AlternateTextures2 { get; set; }
-
-        public override string ToString()
-        {
-            return Path;
-        }
+        short X1 { get; set; }
+        short Y1 { get; set; }
+        short Z1 { get; set; }
+        short X2 { get; set; }
+        short Y2 { get; set; }
+        short Z2 { get; set; }
     }
 }

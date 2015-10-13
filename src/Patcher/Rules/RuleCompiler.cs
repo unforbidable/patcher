@@ -99,6 +99,7 @@ namespace Patcher.Rules
 
             builder.Usings.Add("Patcher.Rules.Compiled.Helpers.Static");
             builder.Usings.Add("Patcher.Rules.Compiled.Extensions." + engine.Context.GameTitle);
+            builder.Usings.Add("Patcher.Rules.Compiled.Constants." + engine.Context.GameTitle);
 
             Type sourceProxyType = entry.From != null ? engine.ProxyProvider.GetInterface((FormKind)entry.From.FormKind) : typeof(object);
 

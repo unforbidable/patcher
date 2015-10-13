@@ -34,10 +34,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         [LocalizedString(LocalizedStringGroups.Strings)]
         public string Name { get; set; }
 
-        [Member(Names.KSIZ)]
-        private uint NumberOfKeywords { get; set; }
-
-        [Member(Names.KWDA)]
+        [Member(Names.KSIZ, Names.KWDA)]
         public Keywords Keywords { get; internal set; }
 
         [Member(Names.DESC)]

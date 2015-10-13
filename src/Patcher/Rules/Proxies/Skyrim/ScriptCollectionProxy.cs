@@ -14,28 +14,20 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Rules.Compiled.Objects.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Patcher.Data.Plugins.Content.Fields.Skyrim
+namespace Patcher.Rules.Proxies.Skyrim
 {
-    public sealed class Model : Compound
+    [Proxy(typeof(IScriptCollection))]
+    public class ScriptCollectionProxy : Proxy, IScriptCollection
     {
-        [Member(Names.MODL)]
-        public string Path { get; set; }
+        internal VirtualMachineAdapter VirtualMachineAdapter { get; set; }
 
-        [Member(Names.MODT)]
-        private ByteArray AlternateTextures { get; set; }
-
-        [Member(Names.MODS)]
-        private ByteArray AlternateTextures2 { get; set; }
-
-        public override string ToString()
-        {
-            return Path;
-        }
+        public int Count { get { return VirtualMachineAdapter == null ? 0 : VirtualMachineAdapter.Scripts.Count; } }
     }
 }

@@ -30,6 +30,7 @@ namespace Patcher.Rules.Proxies
     {
         IDictionary<string, ProxyInfo> proxies = new SortedDictionary<string, ProxyInfo>();
         IDictionary<FormKind, string> formKindMap = new SortedDictionary<FormKind, string>();
+        IDictionary<string, string> interfaceMap = new SortedDictionary<string, string>();
 
         IDictionary<string, Stack<Proxy>> disposed = new SortedDictionary<string, Stack<Proxy>>();
 
@@ -49,23 +50,33 @@ namespace Patcher.Rules.Proxies
                 if (a == null)
                     throw new InvalidProgramException("Proxy type " + type.FullName + " is missing a ProxyAttribute");
 
-                Type localType = type.BaseType.GetGenericArguments()[0];
-                bool isForm = typeof(Record).IsAssignableFrom(localType);
-                FormKind formKind = isForm ? engine.Context.GetRecordFormKind(localType) : FormKind.None;
+                bool isForm = type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(FormProxy<>);
+                Type backingFormType = isForm ? type.BaseType.GetGenericArguments()[0] : null;
+                FormKind formKind = isForm ? engine.Context.GetRecordFormKind(backingFormType) : FormKind.None;
+                Type localType = type;// isForm ? backingFormType : type;
 
                 proxies.Add(localType.FullName, new ProxyInfo()
                 {
-                    LocalObjectType = localType,
                     ImplementationType = type,
                     InterfaceType = a.Interface,
                     IsFormProxy = isForm,
-                    FormKind = formKind
+                    FormKind = formKind,
+                    BackingFormType = backingFormType,
                 });
 
-                formKindMap.Add(formKind, localType.FullName);
+                interfaceMap.Add(a.Interface.FullName, localType.FullName);
+
+                if (isForm)
+                    formKindMap.Add(formKind, localType.FullName);
             }
         }
 
+        public T CreateProxy<T>(ProxyMode mode) where T : Proxy
+        {
+            if (!proxies.ContainsKey(typeof(T).FullName))
+                throw new NotImplementedException("Proxy implementation not found: " + typeof(T).FullName);
+            return (T)CreateProxy(proxies[typeof(T).FullName], mode);
+        }
 
         public FormCollectionProxy<T> CreateFormCollectionProxy<T>(ProxyMode mode, IEnumerable<uint> items) where T : IForm
         {
@@ -75,6 +86,21 @@ namespace Patcher.Rules.Proxies
                 Mode = mode,
                 Items = items
             };
+        }
+
+        public T CreateFormProxy<T>(uint formId, ProxyMode mode) where T : IForm
+        {
+            if (formId == 0 || !engine.Context.Forms.Contains(formId))
+            {
+                // Create dummy proxy, setting formID 
+                var proxy = CreateFormProxy<T>(FormKind.None, mode);
+                ((FormProxy)(object)proxy).WithForm(formId);
+                return proxy;
+            }
+            else
+            {
+                return CreateFormProxy<T>(engine.Context.Forms[formId], mode);
+            }
         }
 
         /// <summary>
@@ -126,7 +152,7 @@ namespace Patcher.Rules.Proxies
         /// <returns></returns>
         public T CreateFormProxy<T>(FormKind kind, ProxyMode mode) where T : IForm
         {
-            var proxy = CreateProxy<T>(GetProxyInfo(kind), mode);
+            var proxy = CreateProxy<T>(GetFormProxyInfo(kind), mode);
             return proxy;
         }
 
@@ -152,17 +178,17 @@ namespace Patcher.Rules.Proxies
         /// <returns></returns>
         public FormProxy CreateFormProxy(FormKind kind, ProxyMode mode)
         {
-            return CreateProxy<FormProxy>(GetProxyInfo(kind), mode);
+            return CreateProxy<FormProxy>(GetFormProxyInfo(kind), mode);
         }
 
-        private ProxyInfo GetProxyInfo(FormKind kind)
+        private ProxyInfo GetFormProxyInfo(FormKind kind)
         {
             if (formKindMap.ContainsKey(kind))
                 return proxies[formKindMap[kind]];
 
             //throw new InvalidProgramException("Proxy not found for form type " + formType);
             // Form proxy not found - not supported. Return DummyProxy info
-            return proxies[typeof(DummyRecord).FullName];
+            return proxies[typeof(DummyFormProxy).FullName];
         }
 
         private T CreateProxy<T>(ProxyInfo info, ProxyMode mode)
@@ -177,7 +203,7 @@ namespace Patcher.Rules.Proxies
 
         private object CreateProxy(ProxyInfo info, ProxyMode mode)
         {
-           var proxy = (Proxy)Activator.CreateInstance(info.ImplementationType);
+            var proxy = (Proxy)Activator.CreateInstance(info.ImplementationType);
             proxy.Provider = this;
             proxy.Mode = mode;
             return proxy;
@@ -191,7 +217,7 @@ namespace Patcher.Rules.Proxies
             }
             else
             {
-                return GetProxyInfo(kind).InterfaceType;
+                return GetFormProxyInfo(kind).InterfaceType;
             }
         }
 
@@ -202,7 +228,7 @@ namespace Patcher.Rules.Proxies
 
         class ProxyInfo
         {
-            public Type LocalObjectType { get; set; }
+            public Type BackingFormType { get; set; }
             public Type InterfaceType { get; set; }
             public Type ImplementationType { get; set; }
             public bool IsFormProxy { get; set; }

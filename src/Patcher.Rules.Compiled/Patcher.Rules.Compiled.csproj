@@ -38,11 +38,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Skyrim\BodyNodes.cs" />
+    <Compile Include="Constants\Skyrim\Skill.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />
     <Compile Include="Helpers\Static\Math.cs" />
     <Compile Include="Objects\IDummyForm.cs" />
+    <Compile Include="Objects\Skyrim\IObjectBounds.cs" />
+    <Compile Include="Objects\Skyrim\IScriptCollection.cs" />
     <Compile Include="Objects\Skyrim\IStat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\IFormCollection.cs" />

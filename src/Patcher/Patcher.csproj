@@ -60,7 +60,6 @@
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\ConditionTarget.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\ConditionOperator.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\GenderType.cs" />
-    <Compile Include="Data\Plugins\Content\Enums\Skyrim\GeneralFlags.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\IngestionFlags.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\ScriptPropertyFlags.cs" />
     <Compile Include="Data\Plugins\Content\Enums\Skyrim\ScriptPropertyType.cs" />
@@ -131,11 +130,14 @@
     <Compile Include="Rules\Compiled\CompiledRuleAssertException.cs" />
     <Compile Include="Rules\Compiled\Helpers\DebugHelper.cs" />
     <Compile Include="Rules\Compiled\Helpers\FormsHelper.cs" />
+    <Compile Include="Rules\Proxies\EnumConverter.cs" />
     <Compile Include="Rules\Proxies\FormCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Proxy.cs" />
     <Compile Include="Rules\Proxies\DummyFormProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyAttribute.cs" />
     <Compile Include="Rules\Proxies\Skyrim\FlstProxy.cs" />
+    <Compile Include="Rules\Proxies\Skyrim\ObjectBoundsProxy.cs" />
+    <Compile Include="Rules\Proxies\Skyrim\ScriptCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Skyrim\StatProxy.cs" />
     <Compile Include="Rules\CodeBuilder.cs" />
     <Compile Include="Rules\Methods\InsertMethod.cs" />
