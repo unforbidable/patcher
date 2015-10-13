@@ -77,7 +77,7 @@ namespace Patcher.Rules.Proxies.Forms
 
         public override string ToString()
         {
-            return string.Format("{0}", form != null ? form.ToString() : string.Format("{0} [0x{1:X8}]", formId != 0 ? "UNRESOLVED" : "NULL", formId));
+            return string.Format("{0}", form != null ? form.ToString() : (formId == 0 ? Form.NullFormString : Form.GetUnresolvedFormString(formId)));
         }
 
         public bool HasTag(string text)

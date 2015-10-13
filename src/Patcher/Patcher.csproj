@@ -61,9 +61,9 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ConditionOperator.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\GenderType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\IngestionFlags.cs" />
-    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptPropertyFlags.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptPropertyType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptType.cs" />
+    <Compile Include="Data\Plugins\Content\Records\IHasScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Flst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
     <Compile Include="Data\Plugins\Content\ReferenceAttribute.cs" />
@@ -130,7 +130,9 @@
     <Compile Include="Rules\Compiled\CompiledRuleAssertException.cs" />
     <Compile Include="Rules\Compiled\Helpers\DebugHelper.cs" />
     <Compile Include="Rules\Compiled\Helpers\FormsHelper.cs" />
+    <Compile Include="Rules\ObjectDumper.cs" />
     <Compile Include="Rules\Proxies\EnumConverter.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ScriptProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\FormCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Proxy.cs" />
     <Compile Include="Rules\Proxies\Forms\DummyFormProxy.cs" />

@@ -94,7 +94,14 @@ namespace Patcher.Data.Plugins
 
         public override string ToString()
         {
-            return string.Format("{0} [0x{1:X8}]{2}", FormKind, FormId, EditorId != null ? string.Format(" '{0}'", EditorId) : string.Empty);
+            return string.Format("{0} {1:X8}{2}", FormKind, FormId, EditorId != null ? string.Format(" '{0}'", EditorId) : string.Empty);
+        }
+
+        public const string NullFormString = "NULL 00000000";
+
+        public static string GetUnresolvedFormString(uint formId)
+        {
+            return string.Format("UNRESOLVED {0:X8}", formId);
         }
 
         private void RaiseLoadedEvent()

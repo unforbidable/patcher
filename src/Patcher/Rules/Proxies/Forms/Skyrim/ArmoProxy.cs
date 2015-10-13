@@ -26,13 +26,14 @@ using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Rules.Compiled.Constants.Skyrim;
 using Patcher.Rules.Proxies.Fields.Skyrim;
 using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Data.Plugins.Content.Records;
 
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
     [Proxy(typeof(IArmo))]
     public sealed class ArmoProxy : FormProxy<Armo>, IArmo
     {
-        public IScriptCollection Scripts { get { return ScriptsToProxy(record.VirtualMachineAdapter); } set { record.VirtualMachineAdapter = ProxyToScripts(value); } }
+        public IScriptCollection Scripts { get { return ScriptsToProxy(record); } set { record.VirtualMachineAdapter = ProxyToScripts(value); } }
         public IObjectBounds ObjectBounds { get { return ObjectBoundsToProxy(record.ObjectBounds); } set { record.ObjectBounds = ProxyToObjectBounds(value); } }
         public string FullName { get { EnsureReadable(); return record.FullName; } set { EnsureWritable(); record.FullName = value; } }
         public IForm Enchantment { get { return ReferenceToProxy<IForm>(record.Enchantment); } set { record.Enchantment = ProxyToReference(value); } }
@@ -56,18 +57,27 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
         public float ArmorRating { get { EnsureReadable(); return record.ArmorRating; } set { EnsureWritable(); record.ArmorRating = value; } }
         public IArmo TemplateArmor { get { return ReferenceToProxy<IArmo>(record.TemplateArmor); } set { record.TemplateArmor = ProxyToReference(value); } }
 
-        IScriptCollection ScriptsToProxy(VirtualMachineAdapter objectBounds)
+        IScriptCollection ScriptsToProxy(IHasScripts record)
         {
             EnsureReadable();
             ScriptCollectionProxy proxy = Provider.CreateProxy<ScriptCollectionProxy>(Mode);
-            proxy.VirtualMachineAdapter = objectBounds;
+            proxy.Record = record;
             return proxy;
         }
 
         VirtualMachineAdapter ProxyToScripts(IScriptCollection value)
         {
             EnsureWritable();
-            return ((ScriptCollectionProxy)value).VirtualMachineAdapter;
+            if (value == null || ((ScriptCollectionProxy)value).Record.VirtualMachineAdapter == null)
+            {
+                // Assigned null or a script collection proxy of record that has no scripts
+                return null;
+            }
+            else
+            {
+                // Assign scripts of another record are assigned, make a copy
+                return (VirtualMachineAdapter)((ScriptCollectionProxy)value).Record.VirtualMachineAdapter.CopyField();
+            }
         }
 
         IObjectBounds ObjectBoundsToProxy(ObjectBounds objectBounds)

@@ -32,6 +32,8 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
         public VirtualMachineAdapter()
         {
+            Version = 5;
+            Format = 2;
             Scripts = new List<Script>();
         }
 
@@ -177,31 +179,145 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 { ScriptPropertyType.String, typeof(string) },
                 { ScriptPropertyType.Int, typeof(int) },
                 { ScriptPropertyType.Float, typeof(float) },
-                { ScriptPropertyType.Bool, typeof(byte) },
+                { ScriptPropertyType.Bool, typeof(bool) },
                 { ScriptPropertyType.ArrayOfObject, typeof(ObjectProperty[]) },
                 { ScriptPropertyType.ArrayOfString, typeof(string[]) },
                 { ScriptPropertyType.ArrayOfInt, typeof(int[]) },
                 { ScriptPropertyType.ArrayOfFloat, typeof(float[]) },
-                { ScriptPropertyType.ArrayOfBool, typeof(byte[]) },
+                { ScriptPropertyType.ArrayOfBool, typeof(bool[]) },
             };
+
+            ScriptPropertyState state = ScriptPropertyState.Removed;
+            object value;
 
             public string Name { get; set; }
             public ScriptPropertyType Type { get; set; }
-            public ScriptPropertyFlags Flags { get; set; }
-            public object Value { get; set; }
+
+            public bool IsSet { get { return state == ScriptPropertyState.Edited; } }
+            public bool IsArray { get { return value is Array; } }
+
+            public IEnumerable<object> GetValues()
+            {
+                var array = value as Array;
+                if (array != null)
+                {
+                    foreach (var val in array)
+                        yield return val;
+                }
+                else
+                {
+                    yield return value;
+                }
+            }
+
+            public void SetValue(int value, int? index)
+            {
+                // Allow int to be set to a Float property type as well
+                if (Type == ScriptPropertyType.Int || Type == ScriptPropertyType.ArrayOfInt)
+                    DoSetValue(value, index);
+                else if (Type == ScriptPropertyType.Float || Type == ScriptPropertyType.ArrayOfFloat)
+                    DoSetValue(Convert.ToSingle(value), index);
+                else
+                    RaiseTypeMismatchException(value);
+            }
+
+            public void SetValue(string value, int? index)
+            {
+                // String can only be set to a String property type
+                if (Type == ScriptPropertyType.String || Type == ScriptPropertyType.ArrayOfString)
+                    DoSetValue(value, index);
+                else
+                    RaiseTypeMismatchException(value);
+            }
+
+            public void SetValue(float value, int? index)
+            {
+                // Allow float to be set to an Int property type as well after flooring
+                if (Type == ScriptPropertyType.Float || Type == ScriptPropertyType.ArrayOfFloat)
+                    DoSetValue(value, index);
+                else if (Type == ScriptPropertyType.Int || Type == ScriptPropertyType.ArrayOfInt)
+                    DoSetValue(Convert.ToInt32(Math.Floor(value)), index);
+                else
+                    RaiseTypeMismatchException(value);
+            }
+
+            public void SetValue(bool value, int? index)
+            {
+                // Bool can only be set to a Bool property type
+                if (Type == ScriptPropertyType.Bool || Type == ScriptPropertyType.ArrayOfBool)
+                    DoSetValue(value, index);
+                else
+                    RaiseTypeMismatchException(value);
+            }
+
+            public void SetValue(short aliasId, uint formId, int? index)
+            {
+                // aliasId and formId can only be set to a Object property type
+                if (Type == ScriptPropertyType.Object || Type == ScriptPropertyType.ArrayOfObject)
+                    DoSetValue(new ObjectProperty() { AliasId = aliasId, FormId = formId }, index);
+                else
+                    throw new ArgumentException("Form reference (or form reference and alias) can only be assigned to script property of type Object and ArrayOfObject, not " + Type + ".");
+            }
+
+            private void DoSetValue(object value, int? index)
+            {
+                var array = value as Array;
+                if (index.HasValue)
+                {
+                    // Make sure value is an array
+                    if (array == null)
+                        throw new ArgumentException("Index must not be specified when assigning value to a script property that is not an array (ArrayOf).");
+
+                    if (index.Value == -1)
+                    {
+                        // Append at the end
+                        // New array is created and the old array is copied into the new array
+                        var newArray = Array.CreateInstance(array.GetType().GetElementType(), array.Length + 1);
+                        Array.Copy(array, newArray, array.Length);
+                        newArray.SetValue(value, array.Length);
+                        value = newArray;
+                    }
+                    else
+                    {
+                        // Set existing array property
+                        array.SetValue(value, index.Value);
+                    }
+                }
+                else
+                {
+                    // Make sure value is not an array
+                    if (array != null)
+                        throw new ArgumentException("To assign value to a script property that is an array (ArrayOf) the index must be specified.");
+
+                    // Scalar property
+                    this.value = value;
+                }
+
+                state = ScriptPropertyState.Edited;
+            }
+
+            private void RaiseTypeMismatchException(object value)
+            {
+                throw new ArgumentException("Value '" + value + "' (of type " + value.GetType().Name + ") is not valid for script property of type " + Type + ".");
+            }
+
+            public void ResetValue()
+            {
+                state = ScriptPropertyState.Removed;
+            }
 
             internal void ReadProperty(RecordReader reader)
             {
                 ushort propertyNameLength = reader.ReadUInt16();
                 Name = reader.ReadStringFixedLength(propertyNameLength);
                 Type = (ScriptPropertyType)reader.ReadByte();
-                Flags = (ScriptPropertyFlags)reader.ReadByte();
+                state = (ScriptPropertyState)reader.ReadByte();
 
                 if (!propertyTypeMap.ContainsKey(Type))
                     throw new InvalidDataException("Unexpected script property type: " + Type);
 
                 var instanceType = propertyTypeMap[Type];
-                Value = ReadValue(reader, instanceType);
+                value = ReadValue(reader, instanceType);
             }
 
             private object ReadValue(RecordReader reader, Type type)
@@ -211,7 +327,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                     return new ObjectProperty()
                     {
                         Unknown = reader.ReadUInt16(),
-                        AliasId = reader.ReadUInt16(),
+                        AliasId = reader.ReadInt16(),
                         FormId = reader.ReadReference(FormKind.None)
                     };
                 }
@@ -228,9 +344,9 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 {
                     return reader.ReadSingle();
                 }
-                else if (type == typeof(byte))
+                else if (type == typeof(bool))
                 {
-                    return reader.ReadByte();
+                    return reader.ReadByte() == 0 ? false : true;
                 }
                 else if (type.IsArray)
                 {
@@ -256,14 +372,14 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 if (!propertyTypeMap.ContainsKey(Type))
                     throw new InvalidDataException("Unexpected script property type: " + Type);
 
-                if (propertyTypeMap[Type] != Value.GetType())
-                    throw new InvalidDataException("Unexpected script property value instance type: " + Value.GetType().FullName);
+                if (propertyTypeMap[Type] != value.GetType())
+                    throw new InvalidDataException("Unexpected script property value instance type: " + value.GetType().FullName);
 
                 writer.Write((ushort)Name.Length);
                 writer.WriteStringFixedLength(Name);
                 writer.Write((byte)Type);
-                writer.Write((byte)Flags);
-                WriteValue(writer, Value.GetType(), Value);
+                writer.Write((byte)state);
+                WriteValue(writer, value.GetType(), value);
             }
 
             private void WriteValue(RecordWriter writer, Type type, object value)
@@ -289,14 +405,14 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 {
                     writer.Write((float)value);
                 }
-                else if (type == typeof(byte))
+                else if (type == typeof(bool))
                 {
-                    writer.Write((byte)value);
+                    writer.Write((byte)((bool)value ? 1 : 0));
                 }
                 else if (type.IsArray)
                 {
                     Type elementType = type.GetElementType();
-                    var array = (Array)Value;
+                    var array = (Array)value;
                     writer.Write((ushort)array.Length);
                     for (int i = 0; i < array.Length; i++)
                     {
@@ -315,40 +431,41 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 {
                     Name = Name,
                     Type = Type,
-                    Flags = Flags,
-                    Value = CopyValue()
+                    state = state,
+                    value = CopyValue()
                 };
             }
 
             private object CopyValue()
             {
-                var type = Value.GetType();
+                var type = value.GetType();
                 if (type.IsArray)
                 {
                     // Clone array
-                    return ((Array)Value).Clone();
+                    return ((Array)value).Clone();
                 }
                 else
                 {
                     // Simply copy value if not array
-                    return Value;
+                    return value;
                 }
             }
 
+            // Implements equals so that a collection of properties can be conveniently compared using Enumeration.SequenceEquals()
             public bool Equals(ScriptProperty other)
             {
-                return Name == other.Name && Type == other.Type && Flags == other.Flags && ValueEquals(other);
+                return Name == other.Name && Type == other.Type && state == other.state && ValueEquals(other);
             }
 
             private bool ValueEquals(ScriptProperty other)
             {
-                var type = Value.GetType();
+                var type = value.GetType();
                 if (type.IsArray)
                 {
                     // Compare array length first
                     // and then each element
-                    var thisArray = (Array)Value;
-                    var otherArray = (Array)other.Value;
+                    var thisArray = (Array)value;
+                    var otherArray = (Array)other.value;
                     if (thisArray.Length != otherArray.Length)
                         return false;
 
@@ -363,7 +480,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 else
                 {
                     // Simply compare value if not array
-                    return Value == other.Value;
+                    return value == other.value;
                 }
             }
 
@@ -372,24 +489,63 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 // Only Object and ArrayOfObjects have Form IDs
                 if (Type == ScriptPropertyType.Object)
                 {
-                    yield return ((ObjectProperty)Value).FormId;
+                    yield return ((ObjectProperty)value).FormId;
                 }
                 else if (Type == ScriptPropertyType.ArrayOfObject)
                 {
-                    var array = (Array)Value;
+                    var array = (Array)value;
                     for (int i = 0; i < array.Length; i++)
                     {
                         yield return ((ObjectProperty)array.GetValue(i)).FormId;
                     }
                 }
             }
+
+            public override string ToString()
+            {
+                if (IsSet)
+                    return string.Format("Name={0} Type={1} {2}", Name, Type, ValueToString(value));
+                else
+                    return string.Format("Name={0} Type={1}", Name, Type);
+            }
+
+            private string ValueToString(object value)
+            {
+                var array = value as Array;
+                if (array != null)
+                {
+                    return string.Format("[ {0} ]", string.Join(",", array));
+                }
+                else
+                {
+                    if (value.GetType() == typeof(string))
+                        return string.Format("\"{0}\"", value);
+                    else
+                        return value.ToString();
+                }
+            }
         }
 
         public struct ObjectProperty
         {
-            public ushort Unknown { get; set; }
-            public ushort AliasId { get; set; }
-            public uint FormId { get; set; }
+            internal ushort Unknown { get; set; }
+            public short AliasId { get; internal set; }
+            public uint FormId { get; internal set; }
+
+            public override string ToString()
+            {
+                if (AliasId != -1)
+                    return string.Format("AliasId={0} FormId={1}", AliasId, FormId);
+                else
+                    return string.Format("FormId={0}", FormId);
+            }
         }
+
+        enum ScriptPropertyState : byte
+        {
+            Edited = 1,
+            Removed = 3
+        }
+
     }
 }

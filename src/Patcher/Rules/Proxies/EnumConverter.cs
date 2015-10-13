@@ -25,6 +25,16 @@ namespace Patcher.Rules.Proxies
 {
     static class EnumConverter
     {
+        public static Skill ToSkill(this ArmorSkillUsage value)
+        {
+            return (Skill)ConvertUsing(usageToSkillMap, value);
+        }
+
+        public static ArmorSkillUsage ToArmorSkillUsage(this Skill value)
+        {
+            return (ArmorSkillUsage)ConvertUsing(skillToUsageMap, value);
+        }
+
         static IDictionary<Enum, Enum> skillToUsageMap = new SortedDictionary<Enum, Enum>()
         {
             { Skill.LightArmor, ArmorSkillUsage.LightArmor },
@@ -39,16 +49,6 @@ namespace Patcher.Rules.Proxies
             { ArmorSkillUsage.None, Skill.None }
         };
 
-        public static Skill ToSkill(this ArmorSkillUsage value)
-        {
-            return (Skill)ConvertUsing(usageToSkillMap, value);
-        }
-
-        public static ArmorSkillUsage ToArmorSkillUsage(this Skill value)
-        {
-            return (ArmorSkillUsage)ConvertUsing(skillToUsageMap, value);
-        }
-
         public static BodyNodes ToBodyNodes(this BodyParts value)
         {
             // Body node and body part are 1:1
@@ -59,6 +59,25 @@ namespace Patcher.Rules.Proxies
         {
             // Body node and body part are 1:1
             return (BodyParts)value;
+        }
+
+        static IDictionary<Enum, Enum> typeToScriptPropertyTypeMap = new SortedDictionary<Enum, Enum>()
+        {
+            { Compiled.Constants.Type.Object, ScriptPropertyType.Object },
+            { Compiled.Constants.Type.String, ScriptPropertyType.String },
+            { Compiled.Constants.Type.Int, ScriptPropertyType.Int },
+            { Compiled.Constants.Type.Float, ScriptPropertyType.Float },
+            { Compiled.Constants.Type.Bool, ScriptPropertyType.Bool },
+            { Compiled.Constants.Type.ArrayOfObject, ScriptPropertyType.ArrayOfObject },
+            { Compiled.Constants.Type.ArrayOfString, ScriptPropertyType.ArrayOfString },
+            { Compiled.Constants.Type.ArrayOfInt, ScriptPropertyType.ArrayOfInt },
+            { Compiled.Constants.Type.ArrayOfFloat, ScriptPropertyType.ArrayOfFloat },
+            { Compiled.Constants.Type.ArrayOfBool, ScriptPropertyType.ArrayOfBool },
+        };
+
+        public static ScriptPropertyType ToScriptPropertType(this Compiled.Constants.Type value)
+        {
+            return (ScriptPropertyType)ConvertUsing(typeToScriptPropertyTypeMap, value);
         }
 
         private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)

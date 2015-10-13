@@ -14,10 +14,19 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using System.Collections.Generic;
+
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
-    public interface IScriptCollection
+    public interface IScriptCollection : IEnumerable<IScript>
     {
         int Count { get; }
+        IScript this[string name] { get; }
+
+        void Add(IScript script);
+        void Add(string name);
+        void Remove(string name);
+        bool Contains(string name);
+        void Clear();
     }
 }
