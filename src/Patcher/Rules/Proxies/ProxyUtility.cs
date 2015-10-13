@@ -40,7 +40,7 @@ namespace Patcher.Rules.Proxies
         }
 
         /// <summary>
-        /// Gets the list of Form IDs that are contained in this form collection.
+        /// Gets a copy of the list of Form IDs that are contained in this form collection.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
