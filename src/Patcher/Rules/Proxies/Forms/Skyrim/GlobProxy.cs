@@ -26,14 +26,46 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IGlob))]
     public sealed class GlobProxy : FormProxy<Glob>, IGlob
     {
-        public bool IsConstant { get { return record.IsConstant; } set { EnsureWritable(); record.IsConstant = value; } }
-        public char Type { get { return record.Type; } set { EnsureWritable(); record.Type = value; } }
-        public dynamic Value { get { return record.Value; } set { EnsureWritable(); WarnIfConstant(); record.Value = value; } }
-
-        private void WarnIfConstant()
+        public bool IsConstant
         {
-            if (record.IsConstant)
-                Log.Warning("Value of a constant Global Variable has been changed: {0}", this);
+            get
+            {
+                return record.IsConstant;
+            }
+            set
+            {
+                EnsureWritable();
+                record.IsConstant = value;
+            }
+        }
+
+        public char Type
+        {
+            get
+            {
+                return record.Type;
+            }
+            set
+            {
+                EnsureWritable();
+                record.Type = value;
+            }
+        }
+
+        public dynamic Value
+        {
+            get
+            {
+                return record.Value;
+            }
+            set
+            {
+                EnsureWritable();
+                record.Value = value;
+
+                if (record.IsConstant)
+                    Log.Warning("Value of a constant Global Variable has been changed: {0}", this);
+            }
         }
     }
 }

@@ -27,27 +27,17 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IFlst))]
     public sealed class FlstProxy : FormProxy<Flst>, IFlst
     {
-        FormCollectionProxy<IForm> forms = null;
-
-        public IFormCollection<IForm> Items { get { return GetForms(); } set { EnsureWritable(); SetForms(value); } }
-
-        private void SetForms(IFormCollection<IForm> value)
+        public IFormCollection<IForm> Items
         {
-            record.Items = value.Select(f => f.FormId).ToList();
-
-            // Reset cached proxy
-            forms = null;
-        }
-
-        private IFormCollection<IForm> GetForms()
-        {
-            if (forms == null)
+            get
             {
-                forms = Provider.CreateFormCollectionProxy<IForm>(Mode, record.Items);
+                return Provider.CreateFormCollectionProxy<IForm>(Mode, record.Items);
             }
-            return forms;
+            set
+            {
+                EnsureWritable();
+                record.Items = value.ToFormIdList();
+            }
         }
-
-
     }
 }

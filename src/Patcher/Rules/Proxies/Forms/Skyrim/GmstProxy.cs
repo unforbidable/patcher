@@ -26,6 +26,17 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IGmst))]
     public sealed class GmstProxy : FormProxy<Gmst>, IGmst
     {
-        public dynamic Value { get { return record.Value; } set { EnsureWritable(); record.Value = value; } }
+        public dynamic Value
+        {
+            get
+            {
+                return record.Value;
+            }
+            set
+            {
+                EnsureWritable();
+                record.Value = value;
+            }
+        }
     }
 }
