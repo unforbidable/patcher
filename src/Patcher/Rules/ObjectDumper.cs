@@ -102,10 +102,6 @@ namespace Patcher.Rules
                         {
                             // Print the content of the root form only
                             yield return DoDumpText(depth++, name, "{0} {{", formProxy);
-
-                            // Print inherited property Editor ID only if form is loaded and the form record contains (supports) Editor ID
-                            if (formProxy.Form != null && formProxy.Form.EditorId != null)
-                                yield return DoDumpText(depth, "EditorId", formProxy.Form.EditorId);
                         }
                         else
                         {
