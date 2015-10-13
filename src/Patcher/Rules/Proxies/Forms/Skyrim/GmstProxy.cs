@@ -14,16 +14,18 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Forms;
+using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Rules.Compiled.Forms.Skyrim;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
-    public interface IFormsHelper
+    [Proxy(typeof(IGmst))]
+    public sealed class GmstProxy : FormProxy<Gmst>, IGmst
     {
-        IForm Find(uint formId);
-        IForm Find(string editorId);
-        IForm Find(string plugin, uint formId);
-        IFormCollection<IForm> FindAll();
-        IFormCollection<IForm> FindAllHavingTag(string text);
+        public dynamic Value { get { EnsureReadable(); return record.Value; } set { EnsureWritable(); record.Value = value; } }
     }
 }

@@ -14,16 +14,24 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Forms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
-    public interface IFormsHelper
+    public enum ScriptPropertyType : byte
     {
-        IForm Find(uint formId);
-        IForm Find(string editorId);
-        IForm Find(string plugin, uint formId);
-        IFormCollection<IForm> FindAll();
-        IFormCollection<IForm> FindAllHavingTag(string text);
+        Object = 1,
+        String = 2,
+        Int = 3,
+        Float = 4,
+        Bool = 5,
+        ArrayOfObject = 11,
+        ArrayOfString = 12,
+        ArrayOfInt = 13,
+        ArrayOfFloat = 14,
+        ArrayOfBool = 15
     }
 }

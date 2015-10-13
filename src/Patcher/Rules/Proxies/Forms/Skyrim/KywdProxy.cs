@@ -14,16 +14,19 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Forms;
+using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Rules.Compiled.Forms.Skyrim;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
-    public interface IFormsHelper
+    [Proxy(typeof(IKywd))]
+    public sealed class KywdProxy : FormProxy<Kywd>, IKywd
     {
-        IForm Find(uint formId);
-        IForm Find(string editorId);
-        IForm Find(string plugin, uint formId);
-        IFormCollection<IForm> FindAll();
-        IFormCollection<IForm> FindAllHavingTag(string text);
+        public uint Color { get { EnsureReadable(); return record.Color; } set { EnsureWritable(); record.Color = value; } }
     }
 }

@@ -16,6 +16,7 @@
 
 using Patcher.Data.Plugins;
 using Patcher.Rules.Proxies;
+using Patcher.Rules.Proxies.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;

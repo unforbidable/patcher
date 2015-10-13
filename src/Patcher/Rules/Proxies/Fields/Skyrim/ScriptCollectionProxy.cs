@@ -14,16 +14,20 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Forms;
+using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Rules.Compiled.Fields.Skyrim;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
-    public interface IFormsHelper
+    [Proxy(typeof(IScriptCollection))]
+    public class ScriptCollectionProxy : Proxy, IScriptCollection
     {
-        IForm Find(uint formId);
-        IForm Find(string editorId);
-        IForm Find(string plugin, uint formId);
-        IFormCollection<IForm> FindAll();
-        IFormCollection<IForm> FindAllHavingTag(string text);
+        internal VirtualMachineAdapter VirtualMachineAdapter { get; set; }
+
+        public int Count { get { return VirtualMachineAdapter == null ? 0 : VirtualMachineAdapter.Scripts.Count; } }
     }
 }

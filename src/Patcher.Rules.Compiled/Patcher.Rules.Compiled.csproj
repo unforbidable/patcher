@@ -44,19 +44,19 @@
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />
     <Compile Include="Helpers\Static\Math.cs" />
-    <Compile Include="Objects\IDummyForm.cs" />
-    <Compile Include="Objects\Skyrim\IObjectBounds.cs" />
-    <Compile Include="Objects\Skyrim\IScriptCollection.cs" />
-    <Compile Include="Objects\Skyrim\IStat.cs" />
+    <Compile Include="Forms\IDummyForm.cs" />
+    <Compile Include="Fields\Skyrim\IObjectBounds.cs" />
+    <Compile Include="Fields\Skyrim\IScriptCollection.cs" />
+    <Compile Include="Forms\Skyrim\IStat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Objects\IFormCollection.cs" />
-    <Compile Include="Objects\IForm.cs" />
-    <Compile Include="Objects\Skyrim\IAlch.cs" />
-    <Compile Include="Objects\Skyrim\IArmo.cs" />
-    <Compile Include="Objects\Skyrim\IFlst.cs" />
-    <Compile Include="Objects\Skyrim\IGlob.cs" />
-    <Compile Include="Objects\Skyrim\IGmst.cs" />
-    <Compile Include="Objects\Skyrim\IKywd.cs" />
+    <Compile Include="Forms\IFormCollection.cs" />
+    <Compile Include="Forms\IForm.cs" />
+    <Compile Include="Forms\Skyrim\IAlch.cs" />
+    <Compile Include="Forms\Skyrim\IArmo.cs" />
+    <Compile Include="Forms\Skyrim\IFlst.cs" />
+    <Compile Include="Forms\Skyrim\IGlob.cs" />
+    <Compile Include="Forms\Skyrim\IGmst.cs" />
+    <Compile Include="Forms\Skyrim\IKywd.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

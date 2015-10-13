@@ -14,16 +14,32 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Forms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
-    public interface IFormsHelper
+    public enum ConditionFunction
     {
-        IForm Find(uint formId);
-        IForm Find(string editorId);
-        IForm Find(string plugin, uint formId);
-        IFormCollection<IForm> FindAll();
-        IFormCollection<IForm> FindAllHavingTag(string text);
+        GetWantBlocking = 0,
+        GetDistance = 1,
+        GetLocked = 5,
+        GetPos = 6,
+        GetAngle = 8,
+        GetStartingPos = 10,
+        GetStartingAngle = 11,
+        GetSecondsPassed = 12,
+        GetActorValue = 14,
+        GetCurrentTime = 18,
+        GetScale = 24,
+        IsMoving = 25,
+        IsTurning = 26,
+        GetLineOfSight = 27,
+        GetInSameCell = 32,
+        GetDisabled = 35,
+
+        // TODO Complete script funtion enum definition
     }
 }

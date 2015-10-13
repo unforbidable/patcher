@@ -14,16 +14,17 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Plugins.Content;
 using Patcher.Rules.Compiled.Forms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Patcher.Rules.Proxies.Forms
 {
-    public interface IFormsHelper
+    [Proxy(typeof(IDummyForm))]
+    public sealed class DummyFormProxy : FormProxy<DummyRecord>, IDummyForm
     {
-        IForm Find(uint formId);
-        IForm Find(string editorId);
-        IForm Find(string plugin, uint formId);
-        IFormCollection<IForm> FindAll();
-        IFormCollection<IForm> FindAllHavingTag(string text);
     }
 }

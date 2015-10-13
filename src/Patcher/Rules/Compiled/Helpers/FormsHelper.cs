@@ -15,7 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data;
-using Patcher.Rules.Compiled.Objects;
+using Patcher.Rules.Compiled.Forms;
 using Patcher.Rules.Proxies;
 using System;
 using System.Collections.Generic;
