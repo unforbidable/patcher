@@ -27,6 +27,6 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IKywd))]
     public sealed class KywdProxy : FormProxy<Kywd>, IKywd
     {
-        public uint Color { get { EnsureReadable(); return record.Color; } set { EnsureWritable(); record.Color = value; } }
+        public uint Color { get { return record.Color; } set { EnsureWritable(); record.Color = value; } }
     }
 }

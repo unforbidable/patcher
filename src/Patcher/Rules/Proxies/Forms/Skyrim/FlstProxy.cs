@@ -29,7 +29,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     {
         FormCollectionProxy<IForm> forms = null;
 
-        public IFormCollection<IForm> Items { get { EnsureReadable(); return GetForms(); } set { EnsureWritable(); SetForms(value); } }
+        public IFormCollection<IForm> Items { get { return GetForms(); } set { EnsureWritable(); SetForms(value); } }
 
         private void SetForms(IFormCollection<IForm> value)
         {

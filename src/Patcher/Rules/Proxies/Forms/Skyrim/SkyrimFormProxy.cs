@@ -34,7 +34,6 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     {
         protected IScriptCollection GetVirtualMachineAdapterProxy(IHasScripts record)
         {
-            EnsureReadable();
             ScriptCollectionProxy proxy = Provider.CreateProxy<ScriptCollectionProxy>(Mode);
             proxy.Record = record;
             return proxy;

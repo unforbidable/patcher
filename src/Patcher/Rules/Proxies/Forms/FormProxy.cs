@@ -120,9 +120,6 @@ namespace Patcher.Rules.Proxies.Forms
 
         private void EnsureEditorIdReadable()
         {
-            // Validate Proxy mode readibility first to get an appropriate message
-            EnsureReadable();
-
             // Check only if dummy form proxy
             if (GetType() == typeof(DummyFormProxy))
             {

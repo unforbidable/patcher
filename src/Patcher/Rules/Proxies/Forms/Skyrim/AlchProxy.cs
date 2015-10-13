@@ -27,9 +27,9 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IAlch))]
     public sealed class AlchProxy : FormProxy<Alch>, IAlch
     {
-        public string Name { get { EnsureReadable(); return record.Name; } set { EnsureWritable(); record.Name = value; } }
-        public int Value { get { EnsureReadable(); return record.Consumption.Value; } set { EnsureWritable(); record.Consumption.Value = value; } }
-        public float Weight { get { EnsureReadable(); return record.Misc.Weight; } set { EnsureWritable(); record.Misc.Weight = value; } }
+        public string Name { get { return record.Name; } set { EnsureWritable(); record.Name = value; } }
+        public int Value { get { return record.Consumption.Value; } set { EnsureWritable(); record.Consumption.Value = value; } }
+        public float Weight { get { return record.Misc.Weight; } set { EnsureWritable(); record.Misc.Weight = value; } }
 
 
         // TODO: Not finished

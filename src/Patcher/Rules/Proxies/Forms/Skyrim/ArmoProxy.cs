@@ -35,26 +35,26 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     {
         public IScriptCollection Scripts { get { return GetVirtualMachineAdapterProxy(record); } set { SetVirtualMachineAdapterProxy(record, value); } }
         public IObjectBounds ObjectBounds { get { return GetObjectBoundsProxy(record); } set { SetObjectBoundsProxy(record, value); } }
-        public string FullName { get { EnsureReadable(); return record.FullName; } set { EnsureWritable(); record.FullName = value; } }
-        public IForm Enchantment { get { return Provider.CreateReferenceProxy<IForm>(record.Enchantment); } set { record.Enchantment = value.ToFormId(); } }
-        public string MaleWorldModel { get { EnsureReadable(); return record.MaleWorldModel; } set { EnsureWritable(); record.MaleWorldModel = value; } }
-        public string FemaleWorldModel { get { EnsureReadable(); return record.FemaleWorldModel; } set { EnsureWritable(); record.FemaleWorldModel = value; } }
+        public string FullName { get { return record.FullName; } set { EnsureWritable(); record.FullName = value; } }
+        public IForm Enchantment { get { return Provider.CreateReferenceProxy<IForm>(record.Enchantment); } set { EnsureWritable(); record.Enchantment = value.ToFormId(); } }
+        public string MaleWorldModel { get { return record.MaleWorldModel; } set { EnsureWritable(); record.MaleWorldModel = value; } }
+        public string FemaleWorldModel { get { return record.FemaleWorldModel; } set { EnsureWritable(); record.FemaleWorldModel = value; } }
         public Skill Skill { get { return record.SkillUsage.ToSkill(); } set { record.SkillUsage = value.ToArmorSkillUsage(); } }
         public BodyNodes BodyNodes { get { return record.BodyParts.ToBodyNodes(); } set { EnsureWritable(); record.BodyParts = value.ToBodyParts(); } }
-        public bool IsPlayable { get { EnsureReadable(); return record.IsPlayable; } set { EnsureWritable(); record.IsPlayable = value; } }
-        public bool IsShield { get { EnsureReadable(); return record.IsShield; } set { EnsureWritable(); record.IsShield = value; } }
+        public bool IsPlayable { get { return record.IsPlayable; } set { EnsureWritable(); record.IsPlayable = value; } }
+        public bool IsShield { get { return record.IsShield; } set { EnsureWritable(); record.IsShield = value; } }
         public IForm PickUpSound { get { return Provider.CreateReferenceProxy<IForm>(record.PickUpSound); } set { EnsureWritable(); record.PickUpSound = value.ToFormId(); } }
-        public IForm PutDownSound { get { return Provider.CreateReferenceProxy<IForm>(record.PutDownSound); } set { record.PutDownSound = value.ToFormId(); } }
-        public IForm EquipType { get { return Provider.CreateReferenceProxy<IForm>(record.EquipType); } set { record.EquipType = value.ToFormId(); } }
-        public IForm BlockImpactDataSet { get { return Provider.CreateReferenceProxy<IForm>(record.BlockImpactDataSet); } set { record.BlockImpactDataSet = value.ToFormId(); } }
-        public IForm AlternateBlockMaterial { get { return Provider.CreateReferenceProxy<IForm>(record.AlternateBlockMaterial); } set { record.AlternateBlockMaterial = value.ToFormId(); } }
-        public IForm Race { get { return Provider.CreateReferenceProxy<IForm>(record.EquipType); } set { record.EquipType = value.ToFormId(); } }
-        public IFormCollection<IKywd> Keywords { get { return Provider.CreateFormCollectionProxy<IKywd>(Mode, record.Keywords.Items); } set { record.Keywords.Items = value.ToFormIdList(); } }
-        public string Description { get { EnsureReadable(); return record.Description; } set { EnsureWritable(); record.Description = value; } }
-        public IFormCollection<IForm> Models { get { return Provider.CreateFormCollectionProxy<IForm>(Mode, record.Models); } set { record.Models = value.ToFormIdList(); } }
-        public int Value { get { EnsureReadable(); return record.Value; } set { EnsureWritable(); record.Value = value; } }
-        public float Weight { get { EnsureReadable(); return record.Weight; } set { EnsureWritable(); record.Weight = value; } }
-        public float ArmorRating { get { EnsureReadable(); return record.ArmorRating; } set { EnsureWritable(); record.ArmorRating = value; } }
-        public IArmo TemplateArmor { get { return Provider.CreateReferenceProxy<IArmo>(record.TemplateArmor); } set { record.TemplateArmor = value.ToFormId(); } }
+        public IForm PutDownSound { get { return Provider.CreateReferenceProxy<IForm>(record.PutDownSound); } set { EnsureWritable(); record.PutDownSound = value.ToFormId(); } }
+        public IForm EquipType { get { return Provider.CreateReferenceProxy<IForm>(record.EquipType); } set { EnsureWritable(); record.EquipType = value.ToFormId(); } }
+        public IForm BlockImpactDataSet { get { return Provider.CreateReferenceProxy<IForm>(record.BlockImpactDataSet); } set { EnsureWritable(); record.BlockImpactDataSet = value.ToFormId(); } }
+        public IForm AlternateBlockMaterial { get { return Provider.CreateReferenceProxy<IForm>(record.AlternateBlockMaterial); } set { EnsureWritable(); record.AlternateBlockMaterial = value.ToFormId(); } }
+        public IForm Race { get { return Provider.CreateReferenceProxy<IForm>(record.EquipType); } set { EnsureWritable(); record.EquipType = value.ToFormId(); } }
+        public IFormCollection<IKywd> Keywords { get { return Provider.CreateFormCollectionProxy<IKywd>(Mode, record.Keywords.Items); } set { EnsureWritable(); record.Keywords.Items = value.ToFormIdList(); } }
+        public string Description { get { return record.Description; } set { EnsureWritable(); record.Description = value; } }
+        public IFormCollection<IForm> Models { get { return Provider.CreateFormCollectionProxy<IForm>(Mode, record.Models); } set { EnsureWritable(); record.Models = value.ToFormIdList(); } }
+        public int Value { get { return record.Value; } set { EnsureWritable(); record.Value = value; } }
+        public float Weight { get { return record.Weight; } set { EnsureWritable(); record.Weight = value; } }
+        public float ArmorRating { get { return record.ArmorRating; } set { EnsureWritable(); record.ArmorRating = value; } }
+        public IArmo TemplateArmor { get { return Provider.CreateReferenceProxy<IArmo>(record.TemplateArmor); } set { EnsureWritable(); record.TemplateArmor = value.ToFormId(); } }
     }
 }

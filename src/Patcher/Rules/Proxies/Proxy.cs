@@ -27,12 +27,6 @@ namespace Patcher.Rules.Proxies
         internal ProxyProvider Provider { get; set; }
         internal ProxyMode Mode { get; set; }
 
-        protected void EnsureReadable()
-        {
-            // Proxies are readable by default now
-            // DummyProxies may not be readable but they use their own mechanic
-        }
-
         protected void EnsureWritable()
         {
             // Only Target form is writable
