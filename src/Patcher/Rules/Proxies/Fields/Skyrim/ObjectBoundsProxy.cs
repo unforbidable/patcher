@@ -28,11 +28,82 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     {
         internal IHasObjectBounds Record { get; set; }
 
-        public short X1 { get { return Record.ObjectBounds.X1; } set { EnsureWritable(); Record.ObjectBounds.X1 = value; } }
-        public short Y1 { get { return Record.ObjectBounds.Y1; } set { EnsureWritable(); Record.ObjectBounds.Y1 = value; } }
-        public short Z1 { get { return Record.ObjectBounds.Z1; } set { EnsureWritable(); Record.ObjectBounds.Z1 = value; } }
-        public short X2 { get { return Record.ObjectBounds.X2; } set { EnsureWritable(); Record.ObjectBounds.X2 = value; } }
-        public short Y2 { get { return Record.ObjectBounds.Y2; } set { EnsureWritable(); Record.ObjectBounds.Y2 = value; } }
-        public short Z2 { get { return Record.ObjectBounds.Z2; } set { EnsureWritable(); Record.ObjectBounds.Z2 = value; } }
+        public short X1
+        {
+            get
+            {
+                return Record.ObjectBounds.X1;
+            }
+            set
+            {
+                EnsureWritable();
+                Record.ObjectBounds.X1 = value;
+            }
+        }
+
+        public short Y1
+        {
+            get
+            {
+                return Record.ObjectBounds.Y1;
+            }
+            set
+            {
+                EnsureWritable();
+                Record.ObjectBounds.Y1 = value;
+            }
+        }
+
+        public short Z1
+        {
+            get
+            {
+                return Record.ObjectBounds.Z1;
+            }
+            set
+            {
+                EnsureWritable();
+                Record.ObjectBounds.Z1 = value;
+            }
+        }
+
+        public short X2
+        {
+            get
+            {
+                return Record.ObjectBounds.X2;
+            }
+            set
+            {
+                EnsureWritable();
+                Record.ObjectBounds.X2 = value;
+            }
+        }
+
+        public short Y2
+        {
+            get
+            {
+                return Record.ObjectBounds.Y2;
+            }
+            set
+            {
+                EnsureWritable();
+                Record.ObjectBounds.Y2 = value;
+            }
+        }
+
+        public short Z2
+        {
+            get
+            {
+                return Record.ObjectBounds.Z2;
+            }
+            set
+            {
+                EnsureWritable();
+                Record.ObjectBounds.Z2 = value;
+            }
+        }
     }
 }
