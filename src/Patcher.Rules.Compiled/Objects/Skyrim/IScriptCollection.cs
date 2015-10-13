@@ -14,14 +14,10 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Patcher.Rules.Compiled.Objects.Skyrim
 {
-    public interface IDebugHelper
+    public interface IScriptCollection
     {
-        void Break();
-        void Assert(bool condition, string text);
-        void Message(string text);
-        void Dump(object value);
-        void Dump(object value, string name);
+        int Count { get; }
     }
 }

@@ -24,6 +24,7 @@ namespace Patcher.Data.Plugins.Content.Enums.Skyrim
     [Flags]
     public enum BodyParts : uint
     {
+        None = 0,
         Head = 0x1,
         Hair = 0x2,
         Body = 0x4,

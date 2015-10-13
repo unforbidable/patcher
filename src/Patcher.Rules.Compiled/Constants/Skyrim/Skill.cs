@@ -14,14 +14,34 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-namespace Patcher.Rules.Compiled.Helpers
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
-    public interface IDebugHelper
+    
+    public enum Skill : int
     {
-        void Break();
-        void Assert(bool condition, string text);
-        void Message(string text);
-        void Dump(object value);
-        void Dump(object value, string name);
+        None,
+        OneHanded,
+        TwoHanded,
+        Marksman,
+        Block,
+        Smithing,
+        HeavyArmor,
+        LightArmor,
+        Pickpocket,
+        Lockpicking,
+        Sneak,
+        Alchemy,
+        Speechcraft,
+        Alteration,
+        Conjuration,
+        Destruction,
+        Illusion,
+        Restoration,
+        Enchanting
     }
 }

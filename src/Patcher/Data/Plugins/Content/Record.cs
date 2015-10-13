@@ -131,6 +131,11 @@ namespace Patcher.Data.Plugins.Content
         }
 
         /// <summary>
+        /// Represents record version.
+        /// </summary>
+        internal ushort Version { get; set; }
+
+        /// <summary>
         /// Represents record flags in the raw format, i.e. not projected as an Enum.
         /// </summary>
         internal uint RawFlags { get; set; }
@@ -141,7 +146,7 @@ namespace Patcher.Data.Plugins.Content
         /// <typeparam name="T">The try of Enum.</typeparam>
         /// <param name="value">The flag to determine.</param>
         /// <returns></returns>
-        protected bool HasFlag<T>(T value) where T : struct
+        protected bool HasFlag(Enum value)
         {
             return (RawFlags & Convert.ToUInt32(value)) != 0;
         }
@@ -149,10 +154,9 @@ namespace Patcher.Data.Plugins.Content
         /// <summary>
         /// Sets or clears a flag to or from the record.
         /// </summary>
-        /// <typeparam name="T">The type of Enum.</typeparam>
         /// <param name="value">The flag to set or clear.</param>
         /// <param name="set">Indicates whether the flag should be set or cleared.</param>
-        protected void SetFlag<T>(T value, bool set) where T : struct
+        protected void SetFlag(Enum value, bool set) 
         {
             if (set)
                 RawFlags = RawFlags | Convert.ToUInt32(value);

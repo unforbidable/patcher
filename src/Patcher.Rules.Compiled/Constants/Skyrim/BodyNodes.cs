@@ -19,33 +19,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Enums.Skyrim
+namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
     [Flags]
-    public enum GeneralFlags : uint
+    public enum BodyNodes : uint
     {
-        ModulatesVoice = 0x1,
-        Unnamed1 = 0x2,
-        Unnamed2 = 0x4,
-        Unnamed3 = 0x8,
-        NonPlayable = 0x10,
-        Unnamed5 = 0x20,
-        Unnamed6 = 0x40,
-        Unnamed7 = 0x80,
-        Unnamed8 = 0x100,
-        Unnamed9 = 0x200,
-        Unnamed10 = 0x400,
-        Unnamed11 = 0x800,
-        Unnamed12 = 0x1000,
-        Unnamed13 = 0x2000,
+        None = 0,
+        Head = 0x1,
+        Hair = 0x2,
+        Body = 0x4,
+        Hands = 0x8,
+        Forearms = 0x10,
+        Amulet = 0x20,
+        Ring = 0x40,
+        Feet = 0x80,
+        Calves = 0x100,
+        Shield = 0x200,
+        Tail = 0x400,
+        LongHair = 0x800,
+        Circlet = 0x1000,
+        Ears = 0x2000,
         Unnamed14 = 0x4000,
         Unnamed15 = 0x8000,
         Unnamed16 = 0x10000,
         Unnamed17 = 0x20000,
         Unnamed18 = 0x40000,
         Unnamed19 = 0x80000,
-        Unnamed20 = 0x100000,
-        Unnamed21 = 0x200000,
+        DecapitatedHead = 0x100000,
+        Decapitated = 0x200000,
         Unnamed22 = 0x400000,
         Unnamed23 = 0x800000,
         Unnamed24 = 0x1000000,
@@ -55,6 +56,6 @@ namespace Patcher.Data.Plugins.Content.Enums.Skyrim
         Unnamed28 = 0x10000000,
         Unnamed29 = 0x20000000,
         Unnamed30 = 0x40000000,
-        Unnamed31 = 0x80000000
+        FX01 = 0x80000000
     }
 }

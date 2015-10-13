@@ -14,14 +14,20 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-namespace Patcher.Rules.Compiled.Helpers
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Patcher.Rules.Compiled.Objects.Skyrim
 {
-    public interface IDebugHelper
+    public interface IObjectBounds
     {
-        void Break();
-        void Assert(bool condition, string text);
-        void Message(string text);
-        void Dump(object value);
-        void Dump(object value, string name);
+        short X1 { get; set; }
+        short Y1 { get; set; }
+        short Z1 { get; set; }
+        short X2 { get; set; }
+        short Y2 { get; set; }
+        short Z2 { get; set; }
     }
 }

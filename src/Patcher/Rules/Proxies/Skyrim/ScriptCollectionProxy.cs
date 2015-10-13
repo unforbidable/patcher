@@ -14,14 +14,20 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-namespace Patcher.Rules.Compiled.Helpers
+using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Rules.Compiled.Objects.Skyrim;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Patcher.Rules.Proxies.Skyrim
 {
-    public interface IDebugHelper
+    [Proxy(typeof(IScriptCollection))]
+    public class ScriptCollectionProxy : Proxy, IScriptCollection
     {
-        void Break();
-        void Assert(bool condition, string text);
-        void Message(string text);
-        void Dump(object value);
-        void Dump(object value, string name);
+        internal VirtualMachineAdapter VirtualMachineAdapter { get; set; }
+
+        public int Count { get { return VirtualMachineAdapter == null ? 0 : VirtualMachineAdapter.Scripts.Count; } }
     }
 }

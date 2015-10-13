@@ -28,9 +28,12 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
     {
         internal short Version { get; private set; }
         internal short Format { get; private set; }
+        public List<Script> Scripts { get; set; }
 
-        List<Script> scripts = new List<Script>();
-        public List<Script> Scripts { get { return scripts; } }
+        public VirtualMachineAdapter()
+        {
+            Scripts = new List<Script>();
+        }
 
         internal override void ReadField(RecordReader reader)
         {
@@ -47,13 +50,20 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             {
                 Script script = new Script();
                 script.ReadScript(reader);
-                scripts.Add(script);
+                Scripts.Add(script);
             }
         }
 
         internal override void WriteField(RecordWriter writer)
         {
-            throw new NotImplementedException();
+            writer.Write(Version);
+            writer.Write(Format);
+            writer.Write((short)Scripts.Count);
+
+            foreach (var script in Scripts)
+            {
+                script.WriteScript(writer);
+            }
         }
 
         public override Field CopyField()
@@ -62,35 +72,41 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             {
                 Version = Version,
                 Format = Format,
-                scripts = new List<Script>(scripts.Select(s => s.CopyScript())) // Create list containing copies of each script in original list
+                Scripts = new List<Script>(Scripts.Select(s => s.CopyScript())) // Create list containing copies of each script in original list
             };
         }
 
         public override bool Equals(Field other)
         {
-            throw new NotImplementedException();
+            var cast = (VirtualMachineAdapter)other;
+            return Version == cast.Version && Format == cast.Format && Scripts.SequenceEqual(cast.Scripts);
         }
 
         public override string ToString()
         {
-            return string.Format("Scripts={0}", scripts.Count);
+            return string.Format("Scripts={0}", Scripts.Count);
         }
 
         public override IEnumerable<uint> GetReferencedFormIds()
         {
-            throw new NotImplementedException();
+            // Get references from each script
+            return Scripts.SelectMany(s => s.GetReferencedFormIds());
         }
 
-        public sealed class Script
+        public sealed class Script : IEquatable<Script>
         {
             public string Name { get; set; }
             public ScriptType Type { get; set; }
+            public List<ScriptProperty> Properties { get; set; }
 
-            public List<ScriptProperty> Properties { get { return properties; } }
-            List<ScriptProperty> properties = new List<ScriptProperty>();
-
-            public void ReadScript(RecordReader reader)
+            public Script()
             {
+                Properties = new List<ScriptProperty>();
+            }
+
+            internal void ReadScript(RecordReader reader)
+            {
+                // UESP - Contrary to UESP script name IS null terminated in addition to size recorded 
                 ushort scriptNameLength = reader.ReadUInt16();
                 Name = reader.ReadStringZeroTerminated();
                 byte numberOfProperties = reader.ReadByte();
@@ -98,15 +114,38 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
                 while (numberOfProperties-- > 0)
                 {
-                    ScriptProperty property = new ScriptProperty();
+                    var property = new ScriptProperty();
                     property.ReadProperty(reader);
-                    properties.Add(property);
+                    Properties.Add(property);
+                }
+            }
+
+            internal void WriteScript(RecordWriter writer)
+            {
+                // UESP - contrary to UESP write length (excluding null termination) and also null terminated string
+                if (string.IsNullOrEmpty(Name))
+                {
+                    Log.Warning("Writting null or blank script name.");
+                    writer.Write((ushort)0);
+                    writer.WriteStringZeroTerminated(string.Empty);
+                }
+                else
+                {
+                    writer.Write((ushort)Name.Length);
+                    writer.WriteStringZeroTerminated(Name);
+                }
+                writer.Write((byte)Properties.Count);
+                writer.Write((byte)Type);
+
+                foreach (var property in Properties)
+                {
+                    property.WriteProperty(writer);
                 }
             }
 
             public override string ToString()
             {
-                return string.Format("Script=\"{0}\"", Name);
+                return string.Format("Name=\"{0}\"", Name);
             }
 
             public Script CopyScript()
@@ -115,243 +154,242 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 {
                     Name = Name,
                     Type = Type,
-                    properties = new List<ScriptProperty>(properties.Select(p => p.CopyScriptProperty()))
+                    Properties = new List<ScriptProperty>(Properties.Select(p => p.CopyProperty()))
                 };
+            }
+
+            internal IEnumerable<uint> GetReferencedFormIds()
+            {
+                return Properties.SelectMany(p => p.GetReferencedFormIds());
+            }
+
+            public bool Equals(Script other)
+            {
+                return Name == other.Name && Type == other.Type && Properties.SequenceEqual(other.Properties);
             }
         }
 
-        public sealed class ScriptProperty
+        public sealed class ScriptProperty : IEquatable<ScriptProperty>
         {
+            static Dictionary<ScriptPropertyType, Type> propertyTypeMap = new Dictionary<ScriptPropertyType, Type>()
+            {
+                { ScriptPropertyType.Object, typeof(ObjectProperty) },
+                { ScriptPropertyType.String, typeof(string) },
+                { ScriptPropertyType.Int, typeof(int) },
+                { ScriptPropertyType.Float, typeof(float) },
+                { ScriptPropertyType.Bool, typeof(byte) },
+                { ScriptPropertyType.ArrayOfObject, typeof(ObjectProperty[]) },
+                { ScriptPropertyType.ArrayOfString, typeof(string[]) },
+                { ScriptPropertyType.ArrayOfInt, typeof(int[]) },
+                { ScriptPropertyType.ArrayOfFloat, typeof(float[]) },
+                { ScriptPropertyType.ArrayOfBool, typeof(byte[]) },
+            };
+
             public string Name { get; set; }
             public ScriptPropertyType Type { get; set; }
             public ScriptPropertyFlags Flags { get; set; }
+            public object Value { get; set; }
 
-            public ScriptPropertyValue Value { get; private set; }
-
-            public void ReadProperty(RecordReader reader)
+            internal void ReadProperty(RecordReader reader)
             {
                 ushort propertyNameLength = reader.ReadUInt16();
                 Name = reader.ReadStringFixedLength(propertyNameLength);
                 Type = (ScriptPropertyType)reader.ReadByte();
                 Flags = (ScriptPropertyFlags)reader.ReadByte();
 
-                Value = CreateValueInstance(Type);
-                Value.ReadValue(reader);
+                if (!propertyTypeMap.ContainsKey(Type))
+                    throw new InvalidDataException("Unexpected script property type: " + Type);
+
+                var instanceType = propertyTypeMap[Type];
+                Value = ReadValue(reader, instanceType);
             }
 
-            private ScriptPropertyValue CreateValueInstance(ScriptPropertyType type)
+            private object ReadValue(RecordReader reader, Type type)
             {
-                switch (type)
+                if (type == typeof(ObjectProperty))
                 {
-                    case ScriptPropertyType.Object:
-                        return new ScriptPropertyValueObject();
-
-                    case ScriptPropertyType.String:
-                        return new ScriptPropertyValueString();
-
-                    case ScriptPropertyType.Int:
-                        return new ScriptPropertyValueInt();
-
-                    case ScriptPropertyType.Float:
-                        return new ScriptPropertyValueFloat();
-
-                    case ScriptPropertyType.Bool:
-                        return new ScriptPropertyValueBool();
-
-                    case ScriptPropertyType.ArrayOfObject:
-                        return new ScriptPropertyValueArrayOf<ScriptPropertyValueObject>();
-
-                    case ScriptPropertyType.ArrayOfString:
-                        return new ScriptPropertyValueArrayOf<ScriptPropertyValueString>();
-
-                    case ScriptPropertyType.ArrayOfInt:
-                        return new ScriptPropertyValueArrayOf<ScriptPropertyValueInt>();
-
-                    case ScriptPropertyType.ArrayOfFloat:
-                        return new ScriptPropertyValueArrayOf<ScriptPropertyValueFloat>();
-
-                    case ScriptPropertyType.ArrayOfBool:
-                        return new ScriptPropertyValueArrayOf<ScriptPropertyValueBool>();
-
-                    default:
-                        throw new InvalidDataException("Encountered unknown script property type: " + type);
+                    return new ObjectProperty()
+                    {
+                        Unknown = reader.ReadUInt16(),
+                        AliasId = reader.ReadUInt16(),
+                        FormId = reader.ReadReference(FormKind.None)
+                    };
+                }
+                else if (type == typeof(string))
+                {
+                    ushort len = reader.ReadUInt16();
+                    return reader.ReadStringFixedLength(len);
+                }
+                else if (type == typeof(int))
+                {
+                    return reader.ReadInt32();
+                }
+                else if (type == typeof(float))
+                {
+                    return reader.ReadSingle();
+                }
+                else if (type == typeof(byte))
+                {
+                    return reader.ReadByte();
+                }
+                else if (type.IsArray)
+                {
+                    var elementType = type.GetElementType();
+                    int count = reader.ReadInt32();
+                    var array = Array.CreateInstance(elementType, count);
+                    for (int i = 0; i < count; i++)
+                    {
+                        var value = ReadValue(reader, elementType);
+                        array.SetValue(value, i);
+                    }
+                    return array;
+                }
+                else
+                {
+                    throw new InvalidDataException("Unexpected script property value instance type: " + type.FullName);
                 }
             }
 
-            public override string ToString()
+            internal void WriteProperty(RecordWriter writer)
             {
-                return string.Format("{0} {1}", Name, Value);
+                // Verify Type is compatible with Value.GetType()
+                if (!propertyTypeMap.ContainsKey(Type))
+                    throw new InvalidDataException("Unexpected script property type: " + Type);
+
+                if (propertyTypeMap[Type] != Value.GetType())
+                    throw new InvalidDataException("Unexpected script property value instance type: " + Value.GetType().FullName);
+
+                writer.Write((ushort)Name.Length);
+                writer.WriteStringFixedLength(Name);
+                writer.Write((byte)Type);
+                writer.Write((byte)Flags);
+                WriteValue(writer, Value.GetType(), Value);
             }
 
-            public ScriptProperty CopyScriptProperty()
+            private void WriteValue(RecordWriter writer, Type type, object value)
+            {
+                if (type == typeof(ObjectProperty))
+                {
+                    var obj = (ObjectProperty)value;
+                    writer.Write(obj.Unknown);
+                    writer.Write(obj.AliasId);
+                    writer.WriteReference(obj.FormId, FormKind.None);
+                }
+                else if (type == typeof(string))
+                {
+                    var str = (string)value;
+                    writer.Write((ushort)str.Length);
+                    writer.WriteStringFixedLength(str);
+                }
+                else if (type == typeof(int))
+                {
+                    writer.Write((int)value);
+                }
+                else if (type == typeof(float))
+                {
+                    writer.Write((float)value);
+                }
+                else if (type == typeof(byte))
+                {
+                    writer.Write((byte)value);
+                }
+                else if (type.IsArray)
+                {
+                    Type elementType = type.GetElementType();
+                    var array = (Array)Value;
+                    writer.Write((ushort)array.Length);
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        WriteValue(writer, elementType, array.GetValue(i));
+                    }
+                }
+                else
+                {
+                    throw new InvalidDataException("Unexpected script property value instance type: " + type.FullName);
+                }
+            }
+
+            public ScriptProperty CopyProperty()
             {
                 return new ScriptProperty()
                 {
                     Name = Name,
                     Type = Type,
                     Flags = Flags,
-                    Value = Value.CopyValue()
+                    Value = CopyValue()
                 };
             }
-        }
 
-        public abstract class ScriptPropertyValue
-        {
-            public abstract void ReadValue(RecordReader reader);
-            public abstract ScriptPropertyValue CopyValue();
-        }
-
-        public sealed class ScriptPropertyValueArrayOf<T> : ScriptPropertyValue where T: ScriptPropertyValue, new()
-        {
-            List<T> list = new List<T>();
-            public List<T> List { get { return list; } }
-
-            public override void ReadValue(RecordReader reader)
+            private object CopyValue()
             {
-                int count = reader.ReadInt32();
-                while (count-- > 0)
+                var type = Value.GetType();
+                if (type.IsArray)
                 {
-                    T value = new T();
-                    value.ReadValue(reader);
-                    list.Add(value);
+                    // Clone array
+                    return ((Array)Value).Clone();
+                }
+                else
+                {
+                    // Simply copy value if not array
+                    return Value;
                 }
             }
 
-            public override ScriptPropertyValue CopyValue()
+            public bool Equals(ScriptProperty other)
             {
-                return new ScriptPropertyValueArrayOf<T>()
-                {
-                    list = new List<T>(list.Select(i => (T)i.CopyValue()))
-                };
+                return Name == other.Name && Type == other.Type && Flags == other.Flags && ValueEquals(other);
             }
 
-            public override string ToString()
+            private bool ValueEquals(ScriptProperty other)
             {
-                return string.Format("Count={0}{1}", list.Count,
-                    list.Count > 0 ? string.Format(" {0}", string.Join(" ", list)) : "");
+                var type = Value.GetType();
+                if (type.IsArray)
+                {
+                    // Compare array length first
+                    // and then each element
+                    var thisArray = (Array)Value;
+                    var otherArray = (Array)other.Value;
+                    if (thisArray.Length != otherArray.Length)
+                        return false;
+
+                    for (int i = 0; i < thisArray.Length; i++)
+                    {
+                        if (thisArray.GetValue(i) != otherArray.GetValue(i))
+                            return false;
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    // Simply compare value if not array
+                    return Value == other.Value;
+                }
+            }
+
+            internal IEnumerable<uint> GetReferencedFormIds()
+            {
+                // Only Object and ArrayOfObjects have Form IDs
+                if (Type == ScriptPropertyType.Object)
+                {
+                    yield return ((ObjectProperty)Value).FormId;
+                }
+                else if (Type == ScriptPropertyType.ArrayOfObject)
+                {
+                    var array = (Array)Value;
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        yield return ((ObjectProperty)array.GetValue(i)).FormId;
+                    }
+                }
             }
         }
 
-        public sealed class ScriptPropertyValueInt : ScriptPropertyValue
+        public struct ObjectProperty
         {
-            public int Value { get; set; }
-
-            public override void ReadValue(RecordReader reader)
-            {
-                Value = reader.ReadInt32();
-            }
-
-            public override ScriptPropertyValue CopyValue()
-            {
-                return new ScriptPropertyValueInt()
-                {
-                    Value = Value
-                };
-            }
-
-            public override string ToString()
-            {
-                return Value.ToString();
-            }
-        }
-
-        public sealed class ScriptPropertyValueFloat : ScriptPropertyValue
-        {
-            public float Value { get; set; }
-
-            public override void ReadValue(RecordReader reader)
-            {
-                Value = reader.ReadSingle();
-            }
-
-            public override ScriptPropertyValue CopyValue()
-            {
-                return new ScriptPropertyValueFloat()
-                {
-                    Value = Value
-                };
-            }
-
-            public override string ToString()
-            {
-                return Value.ToString();
-            }
-        }
-
-        public sealed class ScriptPropertyValueBool : ScriptPropertyValue
-        {
-            public bool Value { get; set; }
-
-            public override void ReadValue(RecordReader reader)
-            {
-                Value = reader.ReadByte() == 1;
-            }
-
-            public override ScriptPropertyValue CopyValue()
-            {
-                return new ScriptPropertyValueBool()
-                {
-                    Value = Value
-                };
-            }
-
-            public override string ToString()
-            {
-                return Value.ToString();
-            }
-        }
-
-        public sealed class ScriptPropertyValueString : ScriptPropertyValue
-        {
-            public string Value { get; set; }
-
-            public override void ReadValue(RecordReader reader)
-            {
-                ushort length = reader.ReadUInt16();
-                Value = reader.ReadStringFixedLength(length);
-            }
-
-            public override ScriptPropertyValue CopyValue()
-            {
-                return new ScriptPropertyValueString()
-                {
-                    Value = Value
-                };
-            }
-
-            public override string ToString()
-            {
-                return Value;
-            }
-        }
-
-        public sealed class ScriptPropertyValueObject : ScriptPropertyValue
-        {
-            public short Unknown { get; set; }
-            public short Alias { get; set; }
-            public uint Object { get; set; }
-
-            public override void ReadValue(RecordReader reader)
-            {
-                Unknown = reader.ReadInt16();
-                Alias = reader.ReadInt16();
-                Object = reader.ReadReference(FormKind.None);
-            }
-
-            public override ScriptPropertyValue CopyValue()
-            {
-                return new ScriptPropertyValueObject()
-                {
-                    Unknown = Unknown,
-                    Alias = Alias,
-                    Object = Object
-                };
-            }
-
-            public override string ToString()
-            {
-                return string.Format("Alias={0} {1}", Alias, Object);
-            }
+            public ushort Unknown { get; set; }
+            public ushort AliasId { get; set; }
+            public uint FormId { get; set; }
         }
     }
 }

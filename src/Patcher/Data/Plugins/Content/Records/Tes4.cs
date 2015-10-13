@@ -57,7 +57,7 @@ namespace Patcher.Data.Plugins.Content.Records
         [Member(Names.ONAM)]
         public ByteArray OverridenForms { get; set; }
 
-        public override float Version { get { return Subheader.Version; } set { Subheader.Version = value; } }
+        public override float PluginVersion { get { return Subheader.Version; } set { Subheader.Version = value; } }
         public override int NumRecords { get { return Subheader.NumRecords; } set { Subheader.NumRecords = value; } }
         public override uint NextFormId { get { return Subheader.NextFormId; } set { Subheader.NextFormId = value; } }
 

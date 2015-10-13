@@ -14,12 +14,34 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Rules.Compiled.Constants.Skyrim;
+
 namespace Patcher.Rules.Compiled.Objects.Skyrim
 {
     public interface IArmo : IForm
     {
-        int ItemValue { get; set; }
-        string Name { get; set; }
+        IScriptCollection Scripts { get; set; }
+        IObjectBounds ObjectBounds { get; set; }
+        string FullName { get; set; }
+        IForm Enchantment { get; set; }
+        string MaleWorldModel { get; set; }
+        string FemaleWorldModel { get; set; }
+        Skill Skill { get; set; }
+        BodyNodes BodyNodes { get; set; }
+        bool IsPlayable { get; set; }
+        bool IsShield { get; set; }
+        IForm PickUpSound { get; set; }
+        IForm PutDownSound { get; set; }
+        IForm EquipType { get; set; }
+        IForm BlockImpactDataSet { get; set; }
+        IForm AlternateBlockMaterial { get; set; }
+        IForm Race { get; set; }
+        IFormCollection<IKywd> Keywords { get; set; }
+        string Description { get; set; }
+        IFormCollection<IForm> Models { get; set; }
+        int Value { get; set; }
         float Weight { get; set; }
+        float ArmorRating { get; set; }
+        IArmo TemplateArmor { get; set; }
     }
 }
