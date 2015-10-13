@@ -56,11 +56,6 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
 
         protected IObjectBounds GetObjectBoundsProxy(IHasObjectBounds record)
         {
-            // Ensure ObjectBounds exist
-            // If they are requested, they will be used
-            if (record.ObjectBounds == null)
-                record.ObjectBounds = new ObjectBounds();
-
             ObjectBoundsProxy proxy = Provider.CreateProxy<ObjectBoundsProxy>(Mode);
             proxy.Record = record;
             return proxy;
