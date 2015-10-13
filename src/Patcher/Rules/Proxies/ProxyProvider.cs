@@ -71,6 +71,24 @@ namespace Patcher.Rules.Proxies
             }
         }
 
+        /// <summary>
+        /// Creates form proxy from a reference or returns null if specified Form ID is 0.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="formId"></param>
+        /// <returns></returns>
+        public T CreateReferenceProxy<T>(uint formId) where T : IForm
+        {
+            if (formId == 0)
+            {
+                return default(T);
+            }
+            else
+            {
+                return CreateFormProxy<T>(formId, ProxyMode.Referenced);
+            }
+        }
+
         public T CreateProxy<T>(ProxyMode mode) where T : Proxy
         {
             if (!proxies.ContainsKey(typeof(T).FullName))
