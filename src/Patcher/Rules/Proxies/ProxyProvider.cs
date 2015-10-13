@@ -50,24 +50,34 @@ namespace Patcher.Rules.Proxies
                 if (a == null)
                     throw new InvalidProgramException("Proxy type " + type.FullName + " is missing a ProxyAttribute");
 
-                bool isForm = type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(FormProxy<>);
-                Type backingFormType = isForm ? type.BaseType.GetGenericArguments()[0] : null;
-                FormKind formKind = isForm ? engine.Context.GetRecordFormKind(backingFormType) : FormKind.None;
+                Type backingRecordType = null;
+                Type searchType = type.BaseType;
+                while (searchType != null)
+                {
+                    if (searchType.IsGenericType && searchType.GetGenericTypeDefinition() == typeof(FormProxy<>))
+                    {
+                        backingRecordType = type.BaseType.GetGenericArguments().Single();
+                        break;
+                    }
+
+                    searchType = searchType.BaseType;
+                }
+
+                FormKind backingFormKind = backingRecordType != null ? engine.Context.GetRecordFormKind(backingRecordType) : FormKind.None;
                 Type localType = type;// isForm ? backingFormType : type;
 
                 proxies.Add(localType.FullName, new ProxyInfo()
                 {
-                    ImplementationType = type,
+                    ImplementationType = localType,
                     InterfaceType = a.Interface,
-                    IsFormProxy = isForm,
-                    FormKind = formKind,
-                    BackingFormType = backingFormType,
+                    BackingFormKind = backingFormKind,
+                    BackingRecordType = backingRecordType,
                 });
 
                 interfaceMap.Add(a.Interface.FullName, localType.FullName);
 
-                if (isForm)
-                    formKindMap.Add(formKind, localType.FullName);
+                if (backingRecordType != null)
+                    formKindMap.Add(backingFormKind, localType.FullName);
             }
         }
 
@@ -241,16 +251,15 @@ namespace Patcher.Rules.Proxies
 
         public FormKind GetFormKindOfInterface(Type type)
         {
-            return proxies.Values.Where(p => p.InterfaceType == type).Single().FormKind;
+            return proxies.Values.Where(p => p.InterfaceType == type).Single().BackingFormKind;
         }
 
         class ProxyInfo
         {
-            public Type BackingFormType { get; set; }
             public Type InterfaceType { get; set; }
             public Type ImplementationType { get; set; }
-            public bool IsFormProxy { get; set; }
-            public FormKind FormKind { get; set; }
+            public Type BackingRecordType { get; set; }
+            public FormKind BackingFormKind { get; set; }
         }
     }
 }
