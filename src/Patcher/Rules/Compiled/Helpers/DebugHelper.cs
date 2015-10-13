@@ -68,8 +68,8 @@ namespace Patcher.Rules.Compiled.Helpers
 
         private IEnumerable<string> DoDumpObject(int depth, string name, object value)
         {
-            // Max delpt allowed is 3
-            if (depth > 3)
+            // Max delpt allowed is maxDepth
+            if (depth > maxDepth)
                 yield return "...";
 
             if (value == null)
@@ -80,7 +80,7 @@ namespace Patcher.Rules.Compiled.Helpers
             else
             {
                 Type type = value.GetType();
-                if (type.IsPrimitive)
+                if (type.IsPrimitive || type.IsEnum)
                 {
                     // Primitive value - single line
                     yield return DoDumpText(depth, name, value.ToString());
@@ -154,6 +154,7 @@ namespace Patcher.Rules.Compiled.Helpers
             return string.Format("{0}: [DUMP] {1}{2}{3}", context.Rule, indents[indent], prefix, text);
         }
 
+        const int maxDepth = 3;
         const int idenentStep = 4;
         static string[] indents =
         {
