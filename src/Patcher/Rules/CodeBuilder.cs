@@ -47,7 +47,7 @@ namespace Patcher.Rules
 
         public void WriteCodeAsReturn(string code)
         {
-            builder.AppendFormat("return\n{0};\n\n", code);
+            builder.AppendFormat("return\n{0}\n;\n\n", code);
         }
 
         public void BeginMethod(string name, Type sourceProxyType)
