@@ -14,7 +14,7 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Data.Plugins.Content.Records;
 using Patcher.Rules.Compiled.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
@@ -26,13 +26,13 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     [Proxy(typeof(IObjectBounds))]
     public sealed class ObjectBoundsProxy : Proxy, IObjectBounds
     {
-        internal ObjectBounds ObjectBounds { get; set; }
+        internal IHasObjectBounds Record { get; set; }
 
-        public short X1 { get { return ObjectBounds.X1; } set { ObjectBounds.X1 = value; } }
-        public short Y1 { get { return ObjectBounds.Y1; } set { ObjectBounds.Y1 = value; } }
-        public short Z1 { get { return ObjectBounds.Z1; } set { ObjectBounds.Z1 = value; } }
-        public short X2 { get { return ObjectBounds.X2; } set { ObjectBounds.X2 = value; } }
-        public short Y2 { get { return ObjectBounds.Y2; } set { ObjectBounds.Y2 = value; } }
-        public short Z2 { get { return ObjectBounds.Z2; } set { ObjectBounds.Z2 = value; } }
+        public short X1 { get { return Record.ObjectBounds.X1; } set { EnsureWritable(); Record.ObjectBounds.X1 = value; } }
+        public short Y1 { get { return Record.ObjectBounds.Y1; } set { EnsureWritable(); Record.ObjectBounds.Y1 = value; } }
+        public short Z1 { get { return Record.ObjectBounds.Z1; } set { EnsureWritable(); Record.ObjectBounds.Z1 = value; } }
+        public short X2 { get { return Record.ObjectBounds.X2; } set { EnsureWritable(); Record.ObjectBounds.X2 = value; } }
+        public short Y2 { get { return Record.ObjectBounds.Y2; } set { EnsureWritable(); Record.ObjectBounds.Y2 = value; } }
+        public short Z2 { get { return Record.ObjectBounds.Z2; } set { EnsureWritable(); Record.ObjectBounds.Z2 = value; } }
     }
 }

@@ -25,13 +25,12 @@ using System.Threading.Tasks;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.ARMO)]
-    public sealed class Armo : GenericFormRecord, IHasScripts
+    public sealed class Armo : GenericFormRecord, IHasScripts, IHasObjectBounds
     {
         [Member(Names.VMAD)]
         public VirtualMachineAdapter VirtualMachineAdapter { get; set; }
 
         [Member(Names.OBND)]
-        [Initialize]
         public ObjectBounds ObjectBounds { get; set; }
 
         [Member(Names.FULL)]
