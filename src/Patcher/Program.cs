@@ -137,7 +137,7 @@ namespace Patcher
                 Log.AddLogger(logger);
 
                 // Put some handy info at the beginning of the log file
-                Log.Fine(GetProgramVersionInfo());
+                Log.Info(GetProgramVersionInfo());
                 Log.Fine("Options: " + options);
 
                 try
@@ -149,6 +149,7 @@ namespace Patcher
 
                         // Context tweaks
                         context.AsyncFormIndexing = true;
+                        context.AsyncFormLoading = true;
                         context.AsyncFormLoading = true;
                         context.AsyncFormLoadingWorkerThreshold = 100;
                         context.AsyncFromLoadingMaxWorkers = Math.Max(1, options.MaxLoadingThreads);
@@ -183,9 +184,13 @@ namespace Patcher
                             // Load rules
                             engine.Load();
 
-                            // Load supported forms
+#if DEBUG
+                            // Load supported forms in debug mode
                             context.LoadForms(f => context.IsSupportedFormKind(f.FormKind));
-                            //context.LoadForms();
+#else
+                            // Load all indexed forms in release mode
+                            context.LoadForms();
+#endif
 
                             engine.ActivePlugin = context.CreatePlugin(targetPluginFileName);
                             engine.ActivePlugin.Author = options.Author ?? GetProgramVersionInfo();
