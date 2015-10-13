@@ -31,6 +31,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         public VirtualMachineAdapter VirtualMachineAdapter { get; set; }
 
         [Member(Names.OBND)]
+        [Initialize]
         public ObjectBounds ObjectBounds { get; set; }
 
         [Member(Names.FULL)]
