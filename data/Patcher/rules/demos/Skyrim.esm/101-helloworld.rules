@@ -4,7 +4,7 @@
 		<name>Hello World</name>
 		<select>
 			// Print message on console 
-			// (Make sure tool is run with option --debug)
+			// (Make sure tool is run with option --debug=* or similar)
 			Debug.Message("Hello World!");
 		</select>
 	</rule>
