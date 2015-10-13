@@ -24,6 +24,26 @@ namespace Patcher.Data.Plugins.Content
 {
     public abstract class Compound : Field
     {
+        public Compound()
+        {
+            // Initialize fields that should not be null
+            var members = InfoProvider.GetCompoundInfo(GetType()).Members;
+            foreach (var meminfo in members.Values.Distinct().Where(m => m.Initialize))
+            {
+                if (meminfo.IsListType)
+                {
+                    // Instantiate list field
+                    meminfo.EnsureListCreated(this);
+                }
+                else if (!meminfo.IsPrimitiveType)
+                {
+                    // Instantiate complex fields
+                    var fieldinfo = InfoProvider.GetFieldInfo(meminfo.FieldType);
+                    meminfo.SetValue(this, fieldinfo.CreateInstance());
+                }
+            }
+        }
+
         internal sealed override void ReadField(RecordReader reader)
         {
             // Method replaced with one that provides the Field name that is being read and the depth as well
