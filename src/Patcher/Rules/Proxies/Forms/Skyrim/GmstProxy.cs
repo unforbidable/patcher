@@ -20,12 +20,39 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Patcher.Rules.Compiled.Constants;
 
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
     [Proxy(typeof(IGmst))]
     public sealed class GmstProxy : FormProxy<Gmst>, IGmst
     {
+        public Compiled.Constants.Type Type
+        {
+            get
+            {
+                char c = string.IsNullOrEmpty(record.EditorId) ? '\0' : record.EditorId[0];
+                switch (c)
+                {
+                    case 's':
+                        return Compiled.Constants.Type.String;
+
+                    case 'b':
+                        return Compiled.Constants.Type.Bool;
+
+                    case 'i':
+                        return Compiled.Constants.Type.Int;
+
+                    case 'f':
+                        return Compiled.Constants.Type.Float;
+
+                    default:
+                        return Compiled.Constants.Type.None;
+                }
+            
+            }
+        }
+
         public dynamic Value
         {
             get
