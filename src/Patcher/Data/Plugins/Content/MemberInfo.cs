@@ -101,6 +101,12 @@ namespace Patcher.Data.Plugins.Content
             }
 
             IsPrimitiveType = !typeof(Field).IsAssignableFrom(fieldType);
+
+            //Enums treat enums as if the where the underlaying primitive type.
+            if (fieldType.IsEnum)
+            {
+                fieldType = fieldType.GetEnumUnderlyingType();
+            }
         }
 
         public IEnumerable<uint> GetReferencedFormIds(object target)
