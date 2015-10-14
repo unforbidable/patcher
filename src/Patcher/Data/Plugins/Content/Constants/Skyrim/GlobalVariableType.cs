@@ -14,21 +14,18 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-namespace Patcher.Rules.Compiled.Constants
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
-    public enum Type
+    public enum GlobalVariableType : byte
     {
-        Object,
-        String,
-        Int,
-        Float,
-        Bool,
-        Short,
-        ArrayOfObject,
-        ArrayOfString,
-        ArrayOfInt,
-        ArrayOfFloat,
-        ArrayOfBool,
-        ArrayOfShort
+        None = 0,
+        Short = (byte)'s',
+        Integer = (byte)'l',
+        Float = (byte)'f'
     }
 }

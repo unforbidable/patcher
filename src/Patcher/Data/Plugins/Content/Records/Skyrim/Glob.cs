@@ -14,6 +14,7 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Plugins.Content.Constants.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,11 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
     [Record(Names.GLOB)]
     public sealed class Glob : GenericFormRecord
     {
-        public bool IsConstant { get { return HasFlag(Flags.Constant); } set { SetFlag(Flags.Constant, value); } }
+        public bool IsConstant { get { return HasFlag(GlobalVariableRecordFlags.Constant); } set { SetFlag(GlobalVariableRecordFlags.Constant, value); } }
 
         [Member(Names.FNAM)]
-        public char Type { get { return type; } set { char old = type; type = value; OnTypeChanged(old); } }
-        char type;
+        public GlobalVariableType Type { get { return type; } set { GlobalVariableType old = type; type = value; OnTypeChanged(old); } }
+        GlobalVariableType type;
 
         [Member(Names.FLTV)]
         private float InternalValue { get; set; }
@@ -40,13 +41,13 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             {
                 switch (Type)
                 {
-                    case 's':
+                    case GlobalVariableType.Short:
                         return Convert.ToInt16(InternalValue);
 
-                    case 'l':
+                    case GlobalVariableType.Integer:
                         return Convert.ToInt32(InternalValue);
 
-                    case 'f':
+                    case GlobalVariableType.Float:
                         return InternalValue;
 
                     default:
@@ -58,15 +59,15 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             {
                 switch (Type)
                 {
-                    case 's':
+                    case GlobalVariableType.Short:
                         InternalValue = Convert.ToSingle(Convert.ToInt16(value));
                         break;
 
-                    case 'l':
+                    case GlobalVariableType.Integer:
                         InternalValue = Convert.ToSingle(Convert.ToInt32(value));
                         break;
 
-                    case 'f':
+                    case GlobalVariableType.Float:
                         InternalValue = (float)value;
                         break;
 
@@ -76,7 +77,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             }
         }
 
-        private void OnTypeChanged(char oldType)
+        private void OnTypeChanged(GlobalVariableType oldType)
         {
             if (oldType != Type)
             {
@@ -84,30 +85,28 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 // Initialize value
                 switch (Type)
                 {
-                    case 's':
-                    case 'l':
-                    case 'f':
+                    case GlobalVariableType.Short:
+                    case GlobalVariableType.Integer:
+                    case GlobalVariableType.Float:
                         Value = 0;
                         break;
 
                     default:
                         // Unknown type enconutered
-                        Log.Warning("Global type must be either 's', 'l' or 'f'");
-                        type = oldType;
-                        break;
+                        throw new ArgumentException("Illegal Global Variable type: " + Type);
                 }
             }
         }
 
         public override string ToString()
         {
-            if (Type != '\0')
+            if (Type != GlobalVariableType.None)
                 return string.Format("{0}:{1}", Value);
             else
                 return "(uninitialized)";
         }
 
-        enum Flags : uint
+        enum GlobalVariableRecordFlags : uint
         {
             Constant = 0x40
         }

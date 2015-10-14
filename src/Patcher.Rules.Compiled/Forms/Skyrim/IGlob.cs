@@ -14,12 +14,14 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Rules.Compiled.Constants;
+
 namespace Patcher.Rules.Compiled.Forms.Skyrim
 {
     public interface IGlob : IForm
     {
         bool IsConstant { get; set; }
-        char Type { get; set; }
+        Type Type { get; set; }
         dynamic Value { get; set; }
     }
 }

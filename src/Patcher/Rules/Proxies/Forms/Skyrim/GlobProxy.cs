@@ -39,16 +39,16 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public char Type
+        public Compiled.Constants.Type Type
         {
             get
             {
-                return record.Type;
+                return record.Type.ToType();
             }
             set
             {
                 EnsureWritable();
-                record.Type = value;
+                record.Type = value.ToGlobalVariableType();
             }
         }
 

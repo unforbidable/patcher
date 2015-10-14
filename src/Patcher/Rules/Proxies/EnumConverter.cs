@@ -25,14 +25,28 @@ namespace Patcher.Rules.Proxies
 {
     static class EnumConverter
     {
-        public static Skill ToSkill(this ArmorSkillUsage value)
+        static IDictionary<Enum, Enum> typeToGlobalVariableTypeMap = new SortedDictionary<Enum, Enum>()
         {
-            return (Skill)ConvertUsing(usageToSkillMap, value);
+            { Compiled.Constants.Type.Int, GlobalVariableType.Integer },
+            { Compiled.Constants.Type.Short, GlobalVariableType.Short },
+            { Compiled.Constants.Type.Float, GlobalVariableType.Float },
+        };
+
+        static IDictionary<Enum, Enum> globalVariableTypeToTypeMap = new SortedDictionary<Enum, Enum>()
+        {
+             { GlobalVariableType.Integer, Compiled.Constants.Type.Int },
+             { GlobalVariableType.Short, Compiled.Constants.Type.Short },
+             { GlobalVariableType.Float, Compiled.Constants.Type.Float },
+        };
+
+        public static GlobalVariableType ToGlobalVariableType(this Compiled.Constants.Type value)
+        {
+            return (GlobalVariableType)ConvertUsing(typeToGlobalVariableTypeMap, value);
         }
 
-        public static ArmorSkillUsage ToArmorSkillUsage(this Skill value)
+        public static Compiled.Constants.Type ToType(this GlobalVariableType value)
         {
-            return (ArmorSkillUsage)ConvertUsing(skillToUsageMap, value);
+            return (Compiled.Constants.Type)ConvertUsing(globalVariableTypeToTypeMap, value);
         }
 
         static IDictionary<Enum, Enum> skillToUsageMap = new SortedDictionary<Enum, Enum>()
@@ -48,6 +62,16 @@ namespace Patcher.Rules.Proxies
             { ArmorSkillUsage.HeavyArmor, Skill.HeavyArmor },
             { ArmorSkillUsage.None, Skill.None }
         };
+
+        public static Skill ToSkill(this ArmorSkillUsage value)
+        {
+            return (Skill)ConvertUsing(usageToSkillMap, value);
+        }
+
+        public static ArmorSkillUsage ToArmorSkillUsage(this Skill value)
+        {
+            return (ArmorSkillUsage)ConvertUsing(skillToUsageMap, value);
+        }
 
         public static BodyNodes ToBodyNodes(this BodyParts value)
         {
