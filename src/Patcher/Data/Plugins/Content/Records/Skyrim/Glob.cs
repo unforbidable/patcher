@@ -35,6 +35,12 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         [Member(Names.FLTV)]
         private float InternalValue { get; set; }
 
+        public Glob()
+        {
+            // Default to float for new forms
+            Type = GlobalVariableType.Float;
+        }
+
         public dynamic Value
         {
             get
