@@ -578,13 +578,29 @@ namespace Patcher.Data.Plugins.Content
                 else
                     return ReadUInt32();
             }
+            else if (memberInfo.FieldType == typeof(long))
+            {
+                return ReadInt64();
+            }
             else if (memberInfo.FieldType == typeof(ulong))
             {
                 return ReadUInt64();
             }
+            else if (memberInfo.FieldType == typeof(short))
+            {
+                return ReadInt16();
+            }
+            else if (memberInfo.FieldType == typeof(ushort))
+            {
+                return ReadUInt16();
+            }
             else if (memberInfo.FieldType == typeof(char))
             {
                 return (char)ReadByte();
+            }
+            else if (memberInfo.FieldType == typeof(byte))
+            {
+                return ReadByte();
             }
             else if (memberInfo.FieldType == typeof(float))
             {

@@ -175,13 +175,29 @@ namespace Patcher.Data.Plugins.Content
                 else
                     Write((uint)value);
             }
+            else if (meminf.FieldType == typeof(long))
+            {
+                Write((long)value);
+            }
             else if (meminf.FieldType == typeof(ulong))
             {
                 Write((ulong)value);
             }
+            else if (meminf.FieldType == typeof(short))
+            {
+                Write((short)value);
+            }
+            else if (meminf.FieldType == typeof(ushort))
+            {
+                Write((ushort)value);
+            }
             else if (meminf.FieldType == typeof(char))
             {
                 segmentStream.WriteByte(Convert.ToByte((char)value));
+            }
+            else if (meminf.FieldType == typeof(byte))
+            {
+                segmentStream.WriteByte((byte)value);
             }
             else if (meminf.FieldType == typeof(float))
             {
