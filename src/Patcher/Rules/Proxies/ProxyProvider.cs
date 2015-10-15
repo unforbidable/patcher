@@ -63,7 +63,7 @@ namespace Patcher.Rules.Proxies
                     searchType = searchType.BaseType;
                 }
 
-                FormKind backingFormKind = backingRecordType != null ? engine.Context.GetRecordFormKind(backingRecordType) : FormKind.None;
+                FormKind backingFormKind = backingRecordType != null ? engine.Context.GetRecordFormKind(backingRecordType) : FormKind.Any;
                 Type localType = type;// isForm ? backingFormType : type;
 
                 proxies.Add(localType.FullName, new ProxyInfo()
@@ -121,7 +121,7 @@ namespace Patcher.Rules.Proxies
             if (formId == 0 || !engine.Context.Forms.Contains(formId))
             {
                 // Create dummy proxy, setting formID 
-                var proxy = CreateFormProxy<T>(FormKind.None, mode);
+                var proxy = CreateFormProxy<T>(FormKind.Any, mode);
                 ((FormProxy)(object)proxy).WithForm(formId);
                 return proxy;
             }
@@ -144,7 +144,7 @@ namespace Patcher.Rules.Proxies
             if (formId == 0 || !engine.Context.Forms.Contains(formId))
             {
                 // Create dummy proxy, setting formID 
-                return CreateFormProxy(FormKind.None, mode).WithForm(formId);
+                return CreateFormProxy(FormKind.Any, mode).WithForm(formId);
             }
             else
             {
@@ -239,7 +239,7 @@ namespace Patcher.Rules.Proxies
 
         public Type GetInterface(FormKind kind)
         {
-            if (kind == FormKind.None)
+            if (kind == FormKind.Any)
             {
                 return typeof(object);
             }

@@ -90,7 +90,7 @@ namespace Patcher.Rules
                 IsDebugModeEnabled = debug,
                 Rule = new CompiledRule(engine, metadata)
                 {
-                    From = entry.From == null ? FormKind.None : (FormKind)entry.From.FormKind
+                    From = entry.From == null ? FormKind.Any : (FormKind)entry.From.FormKind
                 },
             };
 

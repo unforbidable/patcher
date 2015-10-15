@@ -65,13 +65,13 @@ namespace Patcher.Data.Plugins.Content
                 if (names.Length == 4)
                 {
                     // Single element array if single kind
-                    kinds = new FormKind[] { FormKind.FromString(names) };
+                    kinds = new FormKind[] { FormKind.FromName(names) };
                 }
                 else
                 {
                     // Sorted set if multiple kinds, also sort names to prevent duplicates
                     var split = Enumerable.Range(0, names.Length / 4).Select(i => names.Substring(i * 4, 4)).OrderBy(n => n);
-                    kinds = new SortedSet<FormKind>(split.Select(s => FormKind.FromString(s)));
+                    kinds = new SortedSet<FormKind>(split.Select(s => FormKind.FromName(s)));
                 }
             }
         }

@@ -43,7 +43,7 @@ namespace Patcher.Data.Plugins.Content
         HeaderRecord header = null;
 
         int numRecords = 0;
-        FormKind currentGroupFormKind = FormKind.None;
+        FormKind currentGroupFormKind = FormKind.Any;
 
         internal RecordWriter(Stream stream, DataContext context)
         {
@@ -71,7 +71,7 @@ namespace Patcher.Data.Plugins.Content
             if (formKind != currentGroupFormKind)
             {
                 // End existing group if one has begun
-                if (currentGroupFormKind != FormKind.None)
+                if (currentGroupFormKind != FormKind.Any)
                 {
                     EndSegment();
                 }
@@ -378,7 +378,7 @@ namespace Patcher.Data.Plugins.Content
         public void Dispose()
         {
             // End last group if one has begun
-            if (currentGroupFormKind != FormKind.None)
+            if (currentGroupFormKind != FormKind.Any)
             {
                 EndSegment();
             }
