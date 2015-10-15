@@ -34,7 +34,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public int Count { get { return Record.VirtualMachineAdapter != null ? Record.VirtualMachineAdapter.Scripts.Count : 0; } }
 
-        public IScript this[string name] { get { return GetScript(name); } }
+        public IScript this[string name] { get { return GetScriptProxy(name); } }
 
         public bool Contains(string name)
         {
@@ -104,7 +104,8 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             if (Record.VirtualMachineAdapter == null)
                 yield break;
 
-            foreach (var script in Record.VirtualMachineAdapter.Scripts)
+            // Iterate a copy of script names to allow modification of the collection during iteration
+            foreach (var script in Record.VirtualMachineAdapter.Scripts.Select(s => s.Name).ToArray())
             {
                 yield return GetScriptProxy(script);
             }
@@ -124,7 +125,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             }
         }
 
-        private IScript GetScript(string name)
+        private IScript GetScriptProxy(string name)
         {
             if (Record.VirtualMachineAdapter == null)
                 throw new InvalidOperationException("There are no scripts attached to this object.");
