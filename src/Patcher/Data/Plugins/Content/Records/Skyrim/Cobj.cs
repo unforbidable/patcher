@@ -24,13 +24,13 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.COBJ)]
-    public class Cobj : GenericFormRecord
+    public sealed class Cobj : GenericFormRecord
     {
         [Member(Names.COCT)]
-        private uint IngredientCount { get; set; }
+        private uint? MaterialCount { get; set; }
 
         [Member(Names.CNTO)]
-        public List<IngredientData> Ingredients { get; set; }
+        public List<MaterialData> Materials { get; set; }
 
         [Member(Names.COED)]
         private ByteArray Unknown { get; set; }
@@ -44,51 +44,60 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.BNAM)]
         [Reference(Names.KYWD)]
-        public uint CraftingStation { get; set; }
+        public uint Workbench { get; set; }
 
         [Member(Names.NAM1)]
         public ushort ResultQuantity { get; set; }
 
-        public class IngredientData : Field
+        protected override void BeforeWrite(RecordWriter writer)
         {
-            public uint Ingredient { get; set; }
+            // Sync material count
+            if (Materials.Count > 0)
+                MaterialCount = (uint)Materials.Count;
+            else
+                MaterialCount = null;
+        }
+
+        public class MaterialData : Field
+        {
+            public uint Item { get; set; }
             public uint Quantity { get; set; }
 
             internal override void ReadField(RecordReader reader)
             {
-                Ingredient = reader.ReadReference(FormKindSet.Any);
+                Item = reader.ReadReference(FormKindSet.Any);
                 Quantity = reader.ReadUInt32();
             }
 
             internal override void WriteField(RecordWriter writer)
             {
-                writer.WriteReference(Ingredient, FormKindSet.Any);
+                writer.WriteReference(Item, FormKindSet.Any);
                 writer.Write(Quantity);
             }
 
             public override Field CopyField()
             {
-                return new IngredientData()
+                return new MaterialData()
                 {
-                    Ingredient = Ingredient,
+                    Item = Item,
                     Quantity = Quantity
                 };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("{0:X8}, Count={1}", Item, Quantity);
             }
 
             public override bool Equals(Field other)
             {
-                var cast = (IngredientData)other;
-                return Ingredient == cast.Ingredient && Quantity == cast.Quantity;
+                var cast = (MaterialData)other;
+                return Item == cast.Item && Quantity == cast.Quantity;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                yield return Ingredient;
+                yield return Item;
             }
         }
     }

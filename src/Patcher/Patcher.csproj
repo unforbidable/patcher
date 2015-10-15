@@ -140,6 +140,9 @@
     <Compile Include="Rules\Compiled\Helpers\FuncHelper.cs" />
     <Compile Include="Rules\ObjectDumper.cs" />
     <Compile Include="Rules\Proxies\EnumConverter.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\MaterialCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\MaterialProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\CobjProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyUtility.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\ScriptProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\FormCollectionProxy.cs" />
