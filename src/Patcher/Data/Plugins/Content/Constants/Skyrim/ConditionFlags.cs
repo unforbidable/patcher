@@ -22,7 +22,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
     [Flags]
-    public enum ConditionOperator : uint
+    public enum ConditionFlags : byte
     {
         NotEquals = 0x00,
         Equals = 0x01,

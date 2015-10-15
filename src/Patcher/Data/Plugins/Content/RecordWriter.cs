@@ -171,7 +171,7 @@ namespace Patcher.Data.Plugins.Content
             else if (meminf.FieldType == typeof(uint))
             {
                 if (meminf.IsReference)
-                    WriteReference((uint)value, meminf.ReferencedFormKind);
+                    WriteReference((uint)value, meminf.ReferencedFormKinds);
                 else
                     Write((uint)value);
             }
@@ -216,7 +216,7 @@ namespace Patcher.Data.Plugins.Content
             }
         }
 
-        public void WriteReference(uint formId, FormKind referencedFormKind)
+        public void WriteReference(uint formId, FormKindSet referencedFormKinds)
         {
             // All fields should write references via this method so problems can be detected
             if (formId == 0)
@@ -227,14 +227,14 @@ namespace Patcher.Data.Plugins.Content
             {
                 Log.Warning("Writting unresolved form reference 0x{0:X8}.", formId);
             }
-            else if (referencedFormKind != FormKind.None)
+            else if (!referencedFormKinds.IsAny)
             {
                 // Verify correct reference type
                 // if specified reference type is not FormType.None
                 var form = context.Forms[formId];
-                if (form.FormKind != referencedFormKind)
+                if (!referencedFormKinds.Contains(form.FormKind))
                 {
-                    Log.Warning("Writting reference to {0} used where olny references to forms of type {1} should be.", form, referencedFormKind);
+                    Log.Warning("Writting reference to {0} used where olny references to forms of following types should be: {1}", form, referencedFormKinds);
                 }
             }
 

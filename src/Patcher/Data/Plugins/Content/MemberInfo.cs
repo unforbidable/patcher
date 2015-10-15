@@ -44,7 +44,7 @@ namespace Patcher.Data.Plugins.Content
         public bool IsListType { get; private set; }
         public bool IsNullableType { get; private set; }
         public bool IsReference { get; private set; }
-        public FormKind ReferencedFormKind { get; private set; }
+        public FormKindSet ReferencedFormKinds { get; private set; }
 
         readonly MethodInfo addValueToListMethod;
         readonly ConstructorInfo createListCtor;
@@ -78,7 +78,7 @@ namespace Patcher.Data.Plugins.Content
             if (referenceAttribute != null)
             {
                 IsReference = true;
-                ReferencedFormKind = referenceAttribute.ReferenceFormKind;
+                ReferencedFormKinds = referenceAttribute.ReferenceFormKinds;
             }
 
             if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
