@@ -27,33 +27,81 @@ namespace Patcher.Data.Plugins.Content
     /// </summary>
     public static class Names
     {
+        public const string ACHR = "ACHR";
+        public const string ACTI = "ACTI";
         public const string ALCH = "ALCH";
+        public const string AMMO = "AMMO";
         public const string ARMA = "ARMA";
         public const string ARMO = "ARMO";
+        public const string ASPC = "ASPC";
+        public const string BOOK = "BOOK";
         public const string CELL = "CELL";
+        public const string CLAS = "CLAS";
+        public const string COBJ = "COBJ";
+        public const string CONT = "CONT";
+        public const string DOOR = "DOOR";
         public const string ENCH = "ENCH";
         public const string EQUP = "EQUP";
+        public const string FACT = "FACT";
         public const string FLST = "FLST";
+        public const string FURN = "FURN";
         public const string GLOB = "GLOB";
         public const string GMST = "GMST";
+        public const string GRAS = "GRAS";
+        public const string IDLM = "IDLM";
+        public const string INGR = "INGR";
         public const string IPDS = "IPDS";
+        public const string KEYM = "KEYM";
         public const string KYWD = "KYWD";
+        public const string LCTN = "LCTN";
+        public const string LIGH = "LIGH";
+        public const string LVLI = "LVLI";
+        public const string LVSP = "LVSP";
         public const string MATT = "MATT";
+        public const string MISC = "MISC";
         public const string MGEF = "MGEF";
+        public const string MSTT = "MSTT";
+        public const string NPC_ = "NPC_";
+        public const string PACK = "PACK";
+        public const string PARW = "PARW";
+        public const string PBEA = "PBEA";
+        public const string PCON = "PCON";
+        public const string PERK = "PERK";
+        public const string PFLA = "PFLA";
+        public const string PGRE = "PGRE";
+        public const string PHZD = "PHZD";
+        public const string PLYR = "PLYR";
+        public const string PMIS = "PMIS";
+        public const string PROJ = "PROJ";
+        public const string QUST = "QUST";
         public const string RACE = "RACE";
+        public const string REFR = "REFR";
+        public const string REGN = "REGN";
+        public const string SCRL = "SCRL";
+        public const string SHOU = "SHOU";
+        public const string SLGM = "SLGM";
         public const string SNDR = "SNDR";
+        public const string SOUN = "SOUN";
         public const string SPEL = "SPEL";
         public const string STAT = "STAT";
+        public const string TACT = "TACT";
         public const string TES4 = "TES4";
+        public const string TREE = "TREE";
+        public const string WEAP = "WEAP";
         public const string WRLD = "WRLD";
+        public const string WTHR = "WTHR";
 
         public const string BAMT = "BAMT";
         public const string BIDS = "BIDS";
+        public const string BNAM = "BNAM";
         public const string BODT = "BODT";
         public const string BOD2 = "BOD2";
         public const string CIS1 = "CIS1";
         public const string CIS2 = "CIS2";
+        public const string COCT = "COCT";
         public const string CNAM = "CNAM";
+        public const string CNTO = "CNTO";
+        public const string COED = "COED";
         public const string CTDA = "CTDA";
         public const string DATA = "DATA";
         public const string DELE = "DELE";
@@ -85,6 +133,7 @@ namespace Patcher.Data.Plugins.Content
         public const string MOD4 = "MOD4";
         public const string MO4S = "MO4S";
         public const string MO4T = "MO4T";
+        public const string NAM1 = "NAM1";
         public const string OBND = "OBND";
         public const string OFST = "OFST";
         public const string ONAM = "ONAM";
@@ -95,6 +144,5 @@ namespace Patcher.Data.Plugins.Content
         public const string VMAD = "VMAD";
         public const string YNAM = "YNAM";
         public const string ZNAM = "ZNAM";
-
     }
 }
