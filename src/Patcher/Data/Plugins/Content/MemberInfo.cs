@@ -127,12 +127,29 @@ namespace Patcher.Data.Plugins.Content
             }
             else if (!IsPrimitiveType)
             {
-                var field = (Field)GetValue(target);
-                if (field != null)
+                if (IsListType)
                 {
-                    foreach (var formId in field.GetReferencedFormIds())
+                    foreach (object item in (IEnumerable)GetValue(target))
                     {
-                        yield return formId;
+                        var field = (Field)item;
+                        if (field != null)
+                        {
+                            foreach (var formId in field.GetReferencedFormIds())
+                            {
+                                yield return formId;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var field = (Field)GetValue(target);
+                    if (field != null)
+                    {
+                        foreach (var formId in field.GetReferencedFormIds())
+                        {
+                            yield return formId;
+                        }
                     }
                 }
             }
