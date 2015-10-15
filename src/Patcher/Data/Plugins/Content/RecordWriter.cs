@@ -132,29 +132,37 @@ namespace Patcher.Data.Plugins.Content
                 if (meminfo.FieldType.IsSubclassOf(typeof(Compound)))
                 {
                     // Compund property will begin segment for each of its fields
-                    WriteComplexField(meminfo, value);
+                    if (meminfo.IsListType)
+                    {
+                        foreach (var item in (IEnumerable)value)
+                        {
+                            ((Field)item).WriteField(this);
+                        }
+                    }
+                    else
+                    {
+                        ((Field)value).WriteField(this);
+                    }
                 }
                 else
                 {
-                    BeginPropertySegment(fieldName);
-                    WriteComplexField(meminfo, value);
-                    EndSegment();
+                    // Each field in it's own segment
+                    if (meminfo.IsListType)
+                    {
+                        foreach (var item in (IEnumerable)value)
+                        {
+                            BeginPropertySegment(fieldName);
+                            ((Field)item).WriteField(this);
+                            EndSegment();
+                        }
+                    }
+                    else
+                    {
+                        BeginPropertySegment(fieldName);
+                        ((Field)value).WriteField(this);
+                        EndSegment();
+                    }
                 }
-            }
-        }
-
-        private void WriteComplexField(MemberInfo meminfo, object value)
-        {
-            if (meminfo.IsListType)
-            {
-                foreach (var item in (IEnumerable)value)
-                {
-                    ((Field)item).WriteField(this);
-                }
-            }
-            else
-            {
-                ((Field)value).WriteField(this);
             }
         }
 
