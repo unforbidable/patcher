@@ -27,20 +27,6 @@ namespace Patcher.Rules.Proxies.Fields
     {
         internal List<TField> Fields { get; set; }
 
-        public int Count
-        {
-            get
-            {
-                return Fields.Count;
-            }
-        }
-
-        public void Clear()
-        {
-            EnsureWritable();
-            Fields.Clear();
-        }
-
         internal List<TField> CopyFields()
         {
             return Fields.Select(f => f.CopyField()).Cast<TField>().ToList();

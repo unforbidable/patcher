@@ -29,6 +29,20 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     [Proxy(typeof(IMaterialCollection))]
     public sealed class MaterialCollectionProxy : FieldCollectionProxy<Cobj.MaterialData>, IMaterialCollection
     {
+        public int Count
+        {
+            get
+            {
+                return Fields.Count;
+            }
+        }
+
+        public void Clear()
+        {
+            EnsureWritable();
+            Fields.Clear();
+        }
+
         public void Add(IForm item, int count)
         {
             EnsureWritable();
