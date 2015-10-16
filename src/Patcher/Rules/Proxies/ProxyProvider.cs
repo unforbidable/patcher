@@ -23,6 +23,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Patcher.Data.Plugins.Content;
+using Patcher.Rules.Compiled.Fields;
+using Patcher.Rules.Proxies.Fields;
+using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Rules.Compiled.Fields.Skyrim;
 
 namespace Patcher.Rules.Proxies
 {
@@ -31,10 +36,13 @@ namespace Patcher.Rules.Proxies
         IDictionary<string, ProxyInfo> proxies = new SortedDictionary<string, ProxyInfo>();
         IDictionary<FormKind, string> formKindMap = new SortedDictionary<FormKind, string>();
         IDictionary<string, string> interfaceMap = new SortedDictionary<string, string>();
+        IDictionary<string, string> backingRecordMap = new SortedDictionary<string, string>();
+        IDictionary<string, string> backingFieldMap = new SortedDictionary<string, string>();
 
         IDictionary<string, Stack<Proxy>> disposed = new SortedDictionary<string, Stack<Proxy>>();
 
         readonly RuleEngine engine;
+
         public RuleEngine Engine { get { return engine; } }
 
         // Created by engine
@@ -63,22 +71,61 @@ namespace Patcher.Rules.Proxies
                     searchType = searchType.BaseType;
                 }
 
-                FormKind backingFormKind = backingRecordType != null ? engine.Context.GetRecordFormKind(backingRecordType) : FormKind.Any;
-                Type localType = type;// isForm ? backingFormType : type;
-
-                proxies.Add(localType.FullName, new ProxyInfo()
+                Type backingFieldType = null;
+                searchType = type.BaseType;
+                while (searchType != null)
                 {
-                    ImplementationType = localType,
+                    if (searchType.IsGenericType && searchType.GetGenericTypeDefinition() == typeof(FieldProxy<>))
+                    {
+                        backingFieldType = type.BaseType.GetGenericArguments().Single();
+                        break;
+                    }
+
+                    searchType = searchType.BaseType;
+                }
+
+
+                FormKind backingFormKind = backingRecordType != null ? engine.Context.GetRecordFormKind(backingRecordType) : FormKind.Any;
+                Type implementationType = type;
+
+                proxies.Add(implementationType.FullName, new ProxyInfo()
+                {
+                    ImplementationType = implementationType,
                     InterfaceType = a.Interface,
                     BackingFormKind = backingFormKind,
                     BackingRecordType = backingRecordType,
+                    BackingFieldType = backingFieldType
                 });
 
-                interfaceMap.Add(a.Interface.FullName, localType.FullName);
+                interfaceMap.Add(a.Interface.FullName, implementationType.FullName);
 
                 if (backingRecordType != null)
-                    formKindMap.Add(backingFormKind, localType.FullName);
+                {
+                    formKindMap.Add(backingFormKind, implementationType.FullName);
+                    backingRecordMap.Add(backingRecordType.FullName, implementationType.FullName);
+                }
+                else if (backingFieldType != null)
+                {
+                    backingFieldMap.Add(backingFieldType.FullName, implementationType.FullName);
+                }
             }
+        }
+        
+        public FieldProxy<T> CreateFieldProxy<T>(ProxyMode mode) where T : Field
+        {
+            string typeFullName = typeof(T).FullName;
+            if (!backingFieldMap.ContainsKey(typeFullName))
+                throw new InvalidProgramException("Could not find proxy implmentation for field " + typeFullName + ".");
+
+            var info = proxies[backingFieldMap[typeFullName]];
+            return CreateProxy<FieldProxy<T>>(info, mode);
+        }
+
+        public FieldProxy<T> CreateFieldProxy<T>(T field, ProxyMode mode) where T : Field
+        {
+            var proxy = CreateFieldProxy<T>(mode);
+            proxy.Field = field;
+            return proxy;
         }
 
         /// <summary>
@@ -101,9 +148,10 @@ namespace Patcher.Rules.Proxies
 
         public T CreateProxy<T>(ProxyMode mode) where T : Proxy
         {
-            if (!proxies.ContainsKey(typeof(T).FullName))
-                throw new NotImplementedException("Proxy implementation not found: " + typeof(T).FullName);
-            return (T)CreateProxy(proxies[typeof(T).FullName], mode);
+            string typeFullName = typeof(T).FullName;
+            if (!proxies.ContainsKey(typeFullName))
+                throw new NotImplementedException("Proxy implementation not found: " + typeFullName);
+            return (T)CreateProxy(proxies[typeFullName], mode);
         }
 
         public FormCollectionProxy<T> CreateFormCollectionProxy<T>(ProxyMode mode, IEnumerable<uint> items) where T : IForm
@@ -122,7 +170,7 @@ namespace Patcher.Rules.Proxies
             {
                 // Create dummy proxy, setting formID 
                 var proxy = CreateFormProxy<T>(FormKind.Any, mode);
-                ((FormProxy)(object)proxy).WithForm(formId);
+                ((FormProxy)(IForm)proxy).WithForm(formId);
                 return proxy;
             }
             else
@@ -259,6 +307,7 @@ namespace Patcher.Rules.Proxies
             public Type InterfaceType { get; set; }
             public Type ImplementationType { get; set; }
             public Type BackingRecordType { get; set; }
+            public Type BackingFieldType { get; set; }
             public FormKind BackingFormKind { get; set; }
         }
     }
