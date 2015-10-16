@@ -14,45 +14,17 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Data.Plugins.Content;
+using Patcher.Rules.Compiled.Fields;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Patcher.Rules.Compiled.Forms;
-using Patcher.Data.Plugins.Content.Records.Skyrim;
 
-namespace Patcher.Rules.Proxies.Fields.Skyrim
+namespace Patcher.Rules.Proxies.Fields
 {
-    [Proxy(typeof(IMaterial))]
-    public sealed class MaterialProxy : FieldProxy<Cobj.MaterialData>, IMaterial
+    public abstract class FieldProxy<TField> : Proxy where TField : Field
     {
-        public int Count
-        {
-            get
-            {
-                return (int)Field.Quantity;
-            }
-
-            set
-            {
-                EnsureWritable();
-                Field.Quantity = (uint)value;
-            }
-        }
-
-        public IForm Item
-        {
-            get
-            {
-                return Provider.CreateReferenceProxy<IForm>(Field.Item);
-            }
-
-            set
-            {
-                EnsureWritable();
-                Field.Item = value.ToFormId();
-            }
-        }
+        internal TField Field { get; set; }
     }
 }

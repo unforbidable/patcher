@@ -29,49 +29,32 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(ICobj))]
     public sealed class CobjProxy : SkyrimFormProxy<Cobj>, ICobj
     {
-        MaterialCollectionProxy materials = null;
-
         public IMaterialCollection Materials
         {
             get
             {
-                if (materials == null)
-                {
-                    materials = Provider.CreateProxy<MaterialCollectionProxy>(Mode);
-                    materials.Record = record;
-                }
-                return materials;
+                var proxy = Provider.CreateProxy<MaterialCollectionProxy>(Mode);
+                proxy.Fields = record.Materials;
+                return proxy;
             }
             set
             {
                 EnsureWritable();
 
                 if (value == null)
+                    throw new ArgumentNullException("value", "Cannot set material collection to false.");
+
+                var otherCollection = (MaterialCollectionProxy)value;
+
+                // Same collection?
+                if (record.Materials == otherCollection.Fields)
                 {
-                    record.Materials = null;
+                    Log.Warning("Cannot copy a collection into itself - nothing to do.");
                 }
                 else
                 {
-                    // Create list or clear
-                    if (record.Materials == null)
-                        record.Materials = new List<Cobj.MaterialData>();
-
-                    var otherCollection = (MaterialCollectionProxy)value;
-
-                    // Same collection?
-                    if (record == otherCollection.Record)
-                    {
-                        Log.Warning("Cannot assign a material collection into itself - nothing to do.");
-                    }
-                    else
-                    {
-                        // Copy materials one by one
-                        record.Materials.Clear();
-                        foreach (var material in otherCollection.Record.Materials)
-                        {
-                            record.Materials.Add((Cobj.MaterialData)material.CopyField());
-                        }
-                    }
+                    // Copy materials
+                    record.Materials = otherCollection.CopyFields();
                 }
             }
         }
@@ -80,18 +63,12 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
         {
             get
             {
-                if (record.Result == 0)
-                    return null;
-                else
-                    return Provider.CreateFormProxy(record.Result, ProxyMode.Referenced);
+                return Provider.CreateReferenceProxy<IForm>(record.Result);
             }
             set
             {
                 EnsureWritable();
-                if (value == null)
-                    record.Result = 0;
-                else
-                    record.Result = value.FormId;
+                record.Result = value.ToFormId();
             }
         }
 
@@ -112,31 +89,13 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
         {
             get
             {
-                if (record.Workbench == 0)
-                    return null;
-                else
-                    return Provider.CreateFormProxy<IKywd>(record.Workbench, ProxyMode.Referenced);
+                return Provider.CreateReferenceProxy<IKywd>(record.Workbench);
             }
             set
             {
                 EnsureWritable();
-                if (value == null)
-                    record.Workbench = 0;
-                else
-                    record.Workbench = value.FormId;
+                record.Workbench = value.ToFormId();
             }
-        }
-
-        protected override void OnRecordChanged()
-        {
-            // When record has been changed (the proxy has been recycled)
-            // Update cached material proxy
-            if (materials != null)
-            {
-                materials.Record = record;
-            }
-
-            base.OnRecordChanged();
         }
     }
 }

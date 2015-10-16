@@ -22,109 +22,62 @@ using System.Text;
 using Patcher.Rules.Compiled.Forms;
 using System.Collections;
 using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Data.Plugins.Content;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(IMaterialCollection))]
-    public sealed class MaterialCollectionProxy : Proxy, IMaterialCollection
+    public sealed class MaterialCollectionProxy : FieldCollectionProxy<Cobj.MaterialData>, IMaterialCollection
     {
-        internal Cobj Record { get; set; }
-
-        public int Count
-        {
-            get
-            {
-                return Record.Materials == null ? 0 : Record.Materials.Count;
-            }
-        }
-
-        public void Add(IMaterial material)
-        {
-            EnsureWritable();
-
-            if (material == null)
-            {
-                throw new ArgumentNullException("material", "Cannot add NULL to material collection.");
-            }
-
-            EnsureMaterialsCreated();
-
-            var proxy = (MaterialProxy)material;
-            Record.Materials.Add((Cobj.MaterialData)proxy.MaterialData.CopyField());
-        }
-
         public void Add(IForm item, int count)
         {
             EnsureWritable();
 
             if (item == null || item.FormId == 0)
             {
-                throw new ArgumentNullException("item", "Cannot add NULL to material collection.");
+                throw new ArgumentNullException("item", "Cannot add NULL or NULL form to material collection.");
             }
 
-            EnsureMaterialsCreated();
-
-            Record.Materials.Add(new Cobj.MaterialData()
+            Fields.Add(new Cobj.MaterialData()
             {
-                Item = item.FormId,
-                Quantity = (uint)count
+                Item = item.ToFormId(),
+                Quantity = (ushort)count
             });
         }
 
-        public void Remove(IMaterial material)
+        public void Add(IMaterial item)
         {
             EnsureWritable();
 
-            if (material == null)
-            {
-                throw new ArgumentNullException("material", "Cannot add NULL to material collection.");
-            }
+            if (item == null)
+                throw new ArgumentNullException("item", "Cannot add NULL to the collection.");
 
-            var proxy = (MaterialProxy)material;
-            if (Record.Materials == null || !Record.Materials.Contains(proxy.MaterialData))
-            {
-                Log.Warning("Item not found in material collection - nothing to remove.");
-            }
-            else
-            {
-                Record.Materials.Remove(proxy.MaterialData);
-            }
+            // Add a copy
+            Fields.Add((Cobj.MaterialData)ProxyToField(item).CopyField());
         }
 
-        public void Clear()
+        public void Remove(IMaterial item)
         {
             EnsureWritable();
 
-            if (Record.Materials != null)
+            if (item == null)
+                throw new ArgumentNullException("item", "Cannot remove NULL from the collection.");
+
+            // Remove by object reference - retrived during an iteration
+            if (!Fields.Remove(ProxyToField(item)))
             {
-                Record.Materials.Clear();
+                Log.Warning("Item {0} was not found in the collection and could not be removed.", item);
             }
         }
 
         public IEnumerator<IMaterial> GetEnumerator()
         {
-            if (Record.Materials != null && Record.Materials.Count > 0)
-            {
-                // Iterate a copy of the collection so that materials can be removed during the iteration
-                // Shallow copy is fine
-                foreach (var materialData in Record.Materials.ToArray())
-                {
-                    var proxy = Provider.CreateProxy<MaterialProxy>(Mode);
-                    proxy.MaterialData = materialData;
-                    yield return proxy;
-                }
-            }
+            return GetFieldEnumerator<IMaterial>();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
-        }
-
-        private void EnsureMaterialsCreated()
-        {
-            if (Record.Materials == null)
-                Record.Materials = new List<Cobj.MaterialData>();
         }
     }
 }
