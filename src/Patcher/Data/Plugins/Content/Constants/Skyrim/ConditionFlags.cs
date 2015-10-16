@@ -24,14 +24,18 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
     [Flags]
     public enum ConditionFlags : byte
     {
-        NotEquals = 0x00,
-        Equals = 0x01,
-        GreaterThan = 0x02,
-        LesserThen = 0x04,
-        Or = 0x08,
-        UseAliases = 0x10,
-        UseGlobal = 0x20,
-        UsePackData = 0x40,
-        SwapSubjectAndTarget = 0x80
+        Equal = 0x00,
+        NotEqual = 0x20,
+        GreaterThan = 0x40,
+        GreaterThanOrEqual = 0x60,
+        LessThen = 0x80,
+        LessThenOrEqual = 0xA0,
+        Or = 0x01,
+        UseAliases = 0x02,
+        UseGlobal = 0x04,
+        UsePackData = 0x08,
+        SwapSubjectAndTarget = 0x10,
+        OperatorMask = 0xE0,
+        FlagsMask = 0x1F
     }
 }
