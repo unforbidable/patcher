@@ -116,12 +116,16 @@ namespace Patcher.Rules
                         yield return DoDumpText(depth++, name, "{");
                     }
 
+                    bool anyOutput = false;
+
                     // Get all public instance properties (skip inherited and indexers)
                     foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => p.DeclaringType == type && p.GetIndexParameters().Length == 0))
                     {
                         object val = property.GetValue(value, null);
                         foreach (var text in DumpObject(depth, property.Name, val))
                             yield return text;
+
+                        anyOutput = true;
                     }
 
                     // Print enumerable items
@@ -135,7 +139,12 @@ namespace Patcher.Rules
                                 yield return text;
                         }
                         yield return DoDumpText(--depth, null, "]");
+
+                        anyOutput = true;
                     }
+
+                    if (!anyOutput)
+                        yield return DoDumpText(depth, null, "...");
 
                     yield return DoDumpText(--depth, null, "}");
                 }
