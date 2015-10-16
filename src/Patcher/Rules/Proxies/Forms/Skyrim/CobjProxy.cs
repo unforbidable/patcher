@@ -59,6 +59,19 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
+        public IConditionCollection Conditions
+        {
+            get
+            {
+                return record.CreateConditionCollectionProxy(Provider, Mode);
+            }
+
+            set
+            {
+                record.UpdateFromConditionCollectionProxy(value);
+            }
+        }
+
         public IForm Result
         {
             get

@@ -24,7 +24,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.COBJ)]
-    public sealed class Cobj : GenericFormRecord
+    public sealed class Cobj : GenericFormRecord, IHasConditions
     {
         [Member(Names.COCT)]
         private uint? MaterialCount { get; set; }
@@ -37,6 +37,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         private ByteArray Unknown { get; set; }
 
         [Member(Names.CTDA, Names.CIS1, Names.CIS2)]
+        [Initialize]
         public List<Condition> Conditions { get; set; }
 
         [Member(Names.CNAM)]

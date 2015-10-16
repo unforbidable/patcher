@@ -14,20 +14,31 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Plugins.Content;
 using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Rules.Proxies.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Rules.Proxies
 {
-    public interface ICobj : IForm
+    public static class ProxyFeatureFactory
     {
-        IMaterialCollection Materials { get; set; }
-        IConditionCollection Conditions { get; set; }
-        IForm Result { get; set; }
-        int ResultCount { get; set; }
-        IKywd Workbench { get; set; }
+        public static ConditionCollectionProxy CreateConditionCollectionProxy(this IHasConditions target, ProxyProvider provider, ProxyMode mode)
+        {
+            var proxy = provider.CreateProxy<ConditionCollectionProxy>(mode);
+            proxy.Fields = target.Conditions;
+            return proxy;
+        }
+
+        public static void UpdateFromConditionCollectionProxy(this IHasConditions target, IConditionCollection proxy)
+        {
+            if (proxy == null)
+                throw new ArgumentNullException("value", "Cannot assign a NULL to a collection.");
+
+            target.Conditions = ((ConditionCollectionProxy)proxy).CopyFields();
+        }
     }
 }

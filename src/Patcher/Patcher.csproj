@@ -68,6 +68,7 @@
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
+    <Compile Include="Data\Plugins\Content\Records\IHasConditions.cs" />
     <Compile Include="Data\Plugins\Content\Records\IHasObjectBounds.cs" />
     <Compile Include="Data\Plugins\Content\Records\IHasScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
@@ -140,8 +141,11 @@
     <Compile Include="Rules\Compiled\Helpers\FuncHelper.cs" />
     <Compile Include="Rules\ObjectDumper.cs" />
     <Compile Include="Rules\Proxies\EnumConverter.cs" />
+    <Compile Include="Rules\Proxies\ProxyFeatureFactory.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ConditionCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ConditionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\MaterialCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\MaterialProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\CobjProxy.cs" />

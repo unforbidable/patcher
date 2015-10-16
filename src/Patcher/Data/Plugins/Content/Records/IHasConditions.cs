@@ -14,20 +14,16 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Data.Plugins.Content
 {
-    public interface ICobj : IForm
+    public interface IHasConditions
     {
-        IMaterialCollection Materials { get; set; }
-        IConditionCollection Conditions { get; set; }
-        IForm Result { get; set; }
-        int ResultCount { get; set; }
-        IKywd Workbench { get; set; }
+        List<Condition> Conditions { get; set; }
     }
 }

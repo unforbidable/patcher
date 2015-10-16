@@ -14,20 +14,17 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
-    public interface ICobj : IForm
+    public enum RunOn
     {
-        IMaterialCollection Materials { get; set; }
-        IConditionCollection Conditions { get; set; }
-        IForm Result { get; set; }
-        int ResultCount { get; set; }
-        IKywd Workbench { get; set; }
+        Subject,
+        Target,
+        CombatTarget
     }
 }

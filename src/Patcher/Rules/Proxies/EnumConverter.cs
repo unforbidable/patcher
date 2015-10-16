@@ -34,9 +34,9 @@ namespace Patcher.Rules.Proxies
 
         static IDictionary<Enum, Enum> globalVariableTypeToTypeMap = new SortedDictionary<Enum, Enum>()
         {
-             { GlobalVariableType.Integer, Compiled.Constants.Type.Int },
-             { GlobalVariableType.Short, Compiled.Constants.Type.Short },
-             { GlobalVariableType.Float, Compiled.Constants.Type.Float },
+            { GlobalVariableType.Integer, Compiled.Constants.Type.Int },
+            { GlobalVariableType.Short, Compiled.Constants.Type.Short },
+            { GlobalVariableType.Float, Compiled.Constants.Type.Float },
         };
 
         public static GlobalVariableType ToGlobalVariableType(this Compiled.Constants.Type value)
@@ -102,6 +102,18 @@ namespace Patcher.Rules.Proxies
         public static ScriptPropertyType ToScriptPropertType(this Compiled.Constants.Type value)
         {
             return (ScriptPropertyType)ConvertUsing(typeToScriptPropertyTypeMap, value);
+        }
+
+        static IDictionary<Enum, Enum> runOnToTarget = new SortedDictionary<Enum, Enum>()
+        {
+            { RunOn.Subject, FunctionTarget.Subject },
+            { RunOn.Target, FunctionTarget.Target },
+            { RunOn.CombatTarget, FunctionTarget.CombatTarget }
+        };
+
+        public static FunctionTarget ToTarget(this RunOn value)
+        {
+            return (FunctionTarget)ConvertUsing(runOnToTarget, value);
         }
 
         private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)
