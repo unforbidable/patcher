@@ -30,6 +30,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         private uint? MaterialCount { get; set; }
 
         [Member(Names.CNTO)]
+        [Initialize]
         public List<MaterialData> Materials { get; set; }
 
         [Member(Names.COED)]
