@@ -16,6 +16,7 @@
 
 using Patcher.Rules.Compiled.Fields.Skyrim;
 using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,16 @@ namespace Patcher.Rules.Compiled.Helpers
         ICondition GenericFunction(int number);
         ICondition GenericFunction(int number, object paramA);
         ICondition GenericFunction(int number, object paramA, object paramB);
+
+        ICondition EPTemperingItemIsEnchanted();
+        ICondition GetGlobalValue(IForm global);
+        ICondition GetInCurrentLoc(IForm location);
+        ICondition GetItemCount(IForm item);
+        ICondition GetQuestCompleted(IForm quest);
+        ICondition GetStageDone(IForm quest, int stage);
+        ICondition GetVMQuestVariable(IForm quest, string variable);
+        ICondition HasKeyword(IForm keyword);
+        ICondition HasPerk(IForm perk);
+
     }
 }

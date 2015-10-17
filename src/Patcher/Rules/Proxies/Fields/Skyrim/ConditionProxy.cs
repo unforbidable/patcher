@@ -41,7 +41,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        public ICondition IsEqualTo(IGlob glob)
+        public ICondition IsEqualTo(IForm glob)
         {
             UseGlobal(glob);
             UseOperator(ConditionFlags.Equal);
@@ -60,7 +60,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return IsNotEqualTo(1);
         }
 
-        public ICondition IsGreaterThan(IGlob glob)
+        public ICondition IsGreaterThan(IForm glob)
         {
             UseGlobal(glob);
             UseOperator(ConditionFlags.GreaterThan);
@@ -74,7 +74,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        public ICondition IsGreaterThanOrEqualTo(IGlob glob)
+        public ICondition IsGreaterThanOrEqualTo(IForm glob)
         {
             UseGlobal(glob);
             UseOperator(ConditionFlags.GreaterThanOrEqual);
@@ -88,7 +88,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        public ICondition IsLessThen(IGlob glob)
+        public ICondition IsLessThen(IForm glob)
         {
             UseGlobal(glob);
             UseOperator(ConditionFlags.LessThen);
@@ -102,7 +102,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        public ICondition IsLessThenOrEqualTo(IGlob glob)
+        public ICondition IsLessThenOrEqualTo(IForm glob)
         {
             UseGlobal(glob);
             UseOperator(ConditionFlags.LessThenOrEqual);
@@ -116,7 +116,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        public ICondition IsNotEqualTo(IGlob glob)
+        public ICondition IsNotEqualTo(IForm glob)
         {
             UseGlobal(glob);
             UseOperator(ConditionFlags.NotEqual);
@@ -182,10 +182,17 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        private void UseGlobal(IGlob glob)
+        private void UseGlobal(IForm glob)
         {
-            Field.GlobalVariableOperand = glob.ToFormId();
-            SetFlag(ConditionFlags.UseGlobal);
+            if (glob is IGlob)
+            {
+                Field.GlobalVariableOperand = glob.ToFormId();
+                SetFlag(ConditionFlags.UseGlobal);
+            }
+            else
+            {
+                Log.Warning("Expected global variable form kind, form {0} cannot be used.", glob);
+            }
         }
 
         private void UseFloat(float value)
@@ -411,7 +418,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             {
                 if (sig[i].IsReference)
                 {
-                    output.Add(Provider.CreateReferenceProxy<FormProxy>(Field.GetReferenceParam(i)));
+                    output.Add(Provider.CreateFormProxy<FormProxy>(Field.GetReferenceParam(i), ProxyMode.Referenced));
                 }
                 else if (sig[i].PlainType == typeof(string))
                 {

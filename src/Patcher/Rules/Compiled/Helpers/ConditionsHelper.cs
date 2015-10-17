@@ -25,6 +25,8 @@ using Patcher.Rules.Proxies;
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
 using Patcher.Rules.Proxies.Forms;
 using Patcher.Data.Plugins.Content.Functions.Skyrim;
+using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 
 namespace Patcher.Rules.Compiled.Helpers
 {
@@ -35,6 +37,11 @@ namespace Patcher.Rules.Compiled.Helpers
         public ConditionsHelper(CompiledRuleContext context)
         {
             this.context = context;
+        }
+
+        public ICondition EPTemperingItemIsEnchanted()
+        {
+            return CreateConditionProxy(Function.EPTemperingItemIsEnchanted);
         }
 
         public ICondition GenericFunction(int number)
@@ -50,6 +57,46 @@ namespace Patcher.Rules.Compiled.Helpers
         public ICondition GenericFunction(int number, object paramA, object paramB)
         {
             return CreateConditionProxy((Function)number).SetParam(0, paramA).SetParam(1, paramB).CheckParams();
+        }
+
+        public ICondition GetGlobalValue(IForm global)
+        {
+            return CreateConditionProxy(Function.GetGlobalValue).SetParam(0, global);
+        }
+
+        public ICondition GetInCurrentLoc(IForm location)
+        {
+            return CreateConditionProxy(Function.GetInCurrentLoc).SetParam(0, location);
+        }
+
+        public ICondition GetItemCount(IForm item)
+        {
+            return CreateConditionProxy(Function.GetItemCount).SetParam(0, item);
+        }
+
+        public ICondition GetQuestCompleted(IForm quest)
+        {
+            return CreateConditionProxy(Function.GetQuestCompleted).SetParam(0, quest);
+        }
+
+        public ICondition GetStageDone(IForm quest, int stage)
+        {
+            return CreateConditionProxy(Function.GetStageDone).SetParam(0, quest).SetParam(1, stage);
+        }
+
+        public ICondition GetVMQuestVariable(IForm quest, string variable)
+        {
+            return CreateConditionProxy(Function.GetVMQuestVariable).SetParam(0, quest).SetParam(1, variable);
+        }
+
+        public ICondition HasKeyword(IForm keyword)
+        {
+            return CreateConditionProxy(Function.HasKeyword).SetParam(0, keyword);
+        }
+
+        public ICondition HasPerk(IForm perk)
+        {
+            return CreateConditionProxy(Function.HasPerk).SetParam(0, perk);
         }
 
         private ConditionProxy CreateConditionProxy(Function number)
