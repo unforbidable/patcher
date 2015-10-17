@@ -60,6 +60,15 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             return string.Format("Function={0}{1}", Function, SignatureProvider.Default.GetSignature(Function).ToString(this));
         }
 
+        protected override void AfterRead(RecordReader reader)
+        {
+            if (Flags != ConditionFlags.Equal)
+            {
+
+            }
+
+        }
+
         sealed class ConditionData : Field
         {
             public ConditionFlags Flags { get; set; }
@@ -150,7 +159,10 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                     writer.Write(Params.Int32_1);
 
                 writer.Write((uint)Target);
-                writer.WriteReference(TargetReference, FormKindSet.Any);
+                if (Target == FunctionTarget.Subject || Target == FunctionTarget.Subject || Target == FunctionTarget.CombatTarget)
+                    writer.Write((uint)0);
+                else
+                    writer.WriteReference(TargetReference, FormKindSet.Any);
 
                 // Third parameter
                 writer.Write(IntParam3);
