@@ -130,6 +130,37 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
         HasSameEditorLocAsRef = 180,
         HasSameEditorLocAsRefAlias = 181,
         GetEquipped = 182,
+        IsSwimming = 185,
+        GetAmountSoldStolen = 190,
+        GetIgnoreCrime = 192,
+        GetPCExpelled = 193,
+        GetPCFactionMurder = 195,
+        GetPCEnemyofFaction = 197,
+        GetPCFactionAttack = 199,
+        GetDestroyed = 203,
+        HasMagicEffect = 214,
+        GetDefaultOpen = 215,
+        GetAnimAction = 219,
+        IsSpellTarget = 223,
+        GetVATSMode = 224,
+        GetPersuasionNumber = 225,
+        GetVampireFeed = 226,
+        GetCannibal = 227,
+        GetIsClassDefault = 228,
+        GetClassDefaultMatch = 229,
+        GetInCellParam = 230,
+        GetVatsTargetHeight = 235,
+        GetIsGhost = 237,
+        GetUnconscious = 242,
+        GetRestrained = 244,
+        GetIsUsedItem = 246,
+        GetIsUsedItemType = 247,
+        IsScenePlaying = 248,
+        IsInDialogueWithPlayer = 249,
+        GetLocationCleared = 250,
+        GetIsPlayableRace = 254,
+        GetOffersServicesNow = 255,
+        HasAssociationType = 258,
 
 
         HasSpell = 264,
@@ -140,7 +171,7 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
         GetVMQuestVariable = 629,
         EPTemperingItemIsEnchanted = 659,
 
-        // TODO Complete script funtion enum definition and specify fucntion signatures if necessary
+        // TODO Complete script funtion enum definition and specify function signatures if necessary
 
     }
 }

@@ -34,6 +34,7 @@ namespace Patcher.Data.Plugins.Content
         public const string ARMA = "ARMA";
         public const string ARMO = "ARMO";
         public const string ASPC = "ASPC";
+        public const string ASTP = "ASTP";
         public const string BOOK = "BOOK";
         public const string CELL = "CELL";
         public const string CLAS = "CLAS";
@@ -77,6 +78,7 @@ namespace Patcher.Data.Plugins.Content
         public const string RACE = "RACE";
         public const string REFR = "REFR";
         public const string REGN = "REGN";
+        public const string SCEN = "SCEN";
         public const string SCRL = "SCRL";
         public const string SHOU = "SHOU";
         public const string SLGM = "SLGM";

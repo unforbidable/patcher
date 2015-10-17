@@ -27,6 +27,7 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
     {
         internal static readonly Signature Empty = new Signature();
         internal static readonly Signature Actor = new Signature(FormKindSet.ActorReferences);
+        internal static readonly Signature Actor_AssocType = new Signature(FormKindSet.ActorReferences, FormKindSet.AstpOnly);
         internal static readonly Signature ActorValue = new Signature(typeof(ActorValue));
         internal static readonly Signature Any = new Signature(FormKindSet.Any);
         internal static readonly Signature Axis = new Signature(typeof(Axis));
@@ -35,9 +36,11 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
         internal static readonly Signature Effect = new Signature(FormKindSet.Effects);
         internal static readonly Signature Faction = new Signature(FormKindSet.FactOnly);
         internal static readonly Signature Faction_Actor = new Signature(FormKindSet.FactOnly, FormKindSet.ActorReferences);
+        internal static readonly Signature FormType = new Signature(typeof(FormType));
         internal static readonly Signature Furniture = new Signature(FormKindSet.FurnOnly);
-        internal static readonly Signature Gender = new Signature(typeof(GenderType));
+        internal static readonly Signature GenderType = new Signature(typeof(GenderType));
         internal static readonly Signature Glob = new Signature(FormKindSet.GlobOnly);
+        internal static readonly Signature Mgef = new Signature(FormKindSet.MgefOnly);
         internal static readonly Signature Npc = new Signature(FormKindSet.NpcOnly);
         internal static readonly Signature Int = new Signature(typeof(int));
         internal static readonly Signature Int_Int = new Signature(typeof(int), typeof(int));
@@ -56,6 +59,7 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
         internal static readonly Signature Reference = new Signature(FormKindSet.References);
         internal static readonly Signature Reference_Kywd = new Signature(FormKindSet.References, FormKindSet.KywdOnly);
         internal static readonly Signature Reference_String = new Signature(FormKindSet.References, typeof(string));
+        internal static readonly Signature Scene = new Signature(FormKindSet.ScenOnly);
         internal static readonly Signature Weather = new Signature(FormKindSet.WthrOnly);
 
         public const int MaxParams = 2;

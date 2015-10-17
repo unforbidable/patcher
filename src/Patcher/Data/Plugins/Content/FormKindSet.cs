@@ -92,6 +92,7 @@ namespace Patcher.Data.Plugins.Content
         // Each set is ummutable so we can offer reusable predefiner sets
         // And cache any newly created
         public static readonly FormKindSet Any = new FormKindSet(null);
+        public static readonly FormKindSet AstpOnly = FromNames(Names.ASTP);
         public static readonly FormKindSet CellOnly = FromNames(Names.CELL);
         public static readonly FormKindSet ClasOnly = FromNames(Names.CLAS);
         public static readonly FormKindSet FactOnly = FromNames(Names.FACT);
@@ -99,6 +100,7 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet GlobOnly = FromNames(Names.GLOB);
         public static readonly FormKindSet KywdOnly = FromNames(Names.KYWD);
         public static readonly FormKindSet LctnOnly = FromNames(Names.LCTN);
+        public static readonly FormKindSet MgefOnly = FromNames(Names.MGEF);
         public static readonly FormKindSet NpcOnly = FromNames(Names.NPC_);
         public static readonly FormKindSet PackOnly = FromNames(Names.PACK);
         public static readonly FormKindSet PerkOnly = FromNames(Names.PERK);
@@ -106,6 +108,7 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet RaceOnly = FromNames(Names.RACE);
         public static readonly FormKindSet RegnOnly = FromNames(Names.REGN);
         public static readonly FormKindSet SndrOnly = FromNames(Names.SNDR);
+        public static readonly FormKindSet ScenOnly = FromNames(Names.SCEN);
         public static readonly FormKindSet WthrOnly = FromNames(Names.WTHR);
 
         // More multiple kind sets will be cached too
