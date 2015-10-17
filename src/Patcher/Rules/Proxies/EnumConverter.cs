@@ -103,19 +103,7 @@ namespace Patcher.Rules.Proxies
         {
             return (ScriptPropertyType)ConvertUsing(typeToScriptPropertyTypeMap, value);
         }
-
-        static IDictionary<Enum, Enum> runOnToTarget = new SortedDictionary<Enum, Enum>()
-        {
-            { RunOn.Subject, FunctionTarget.Subject },
-            { RunOn.Target, FunctionTarget.Target },
-            { RunOn.CombatTarget, FunctionTarget.CombatTarget }
-        };
-
-        public static FunctionTarget ToTarget(this RunOn value)
-        {
-            return (FunctionTarget)ConvertUsing(runOnToTarget, value);
-        }
-
+        
         private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)
         {
             if (!map.ContainsKey(value))

@@ -52,6 +52,12 @@ namespace Patcher.Rules
                 Name = "Forms",
                 InterfaceType = typeof(IFormsHelper),
                 Constructor = typeof(FormsHelper).GetConstructor(helperCtorTypes)
+            },
+            new CompiledRuleHelperInfo()
+            {
+                Name = "Conditions",
+                InterfaceType = typeof(IConditionsHelper),
+                Constructor = typeof(ConditionsHelper).GetConstructor(helperCtorTypes)
             }
         };
 

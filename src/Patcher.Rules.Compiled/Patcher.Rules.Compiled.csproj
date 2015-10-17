@@ -39,7 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Skyrim\BodyNodes.cs" />
-    <Compile Include="Constants\Skyrim\RunOn.cs" />
     <Compile Include="Constants\Skyrim\Skill.cs" />
     <Compile Include="Constants\Type.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
@@ -49,6 +48,7 @@
     <Compile Include="Fields\Skyrim\IMaterialCollection.cs" />
     <Compile Include="Fields\Skyrim\IScript.cs" />
     <Compile Include="Forms\Skyrim\ICobj.cs" />
+    <Compile Include="Helpers\IConditionsHelper.cs" />
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />
     <Compile Include="Helpers\Static\Math.cs" />

@@ -32,6 +32,8 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     [Proxy(typeof(ICondition))]
     public sealed class ConditionProxy : FieldProxy<Condition>, ICondition, IDumpabled
     {
+        const uint PlayerFormId = 0x00000014;
+
         public ICondition AndNext()
         {
             ClearFlag(ConditionFlags.Or);
@@ -54,76 +56,76 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsFalse()
         {
-            return IsEqualTo(0);
+            return IsNotEqualTo(1);
         }
 
         public ICondition IsGreaterThan(IGlob glob)
         {
             UseGlobal(glob);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.GreaterThan);
             return this;
         }
 
         public ICondition IsGreaterThan(float value)
         {
             UseFloat(value);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.GreaterThan);
             return this;
         }
 
         public ICondition IsGreaterThanOrEqualTo(IGlob glob)
         {
             UseGlobal(glob);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.GreaterThanOrEqual);
             return this;
         }
 
         public ICondition IsGreaterThanOrEqualTo(float value)
         {
             UseFloat(value);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.GreaterThanOrEqual);
             return this;
         }
 
         public ICondition IsLessThen(IGlob glob)
         {
             UseGlobal(glob);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.LessThen);
             return this;
         }
 
         public ICondition IsLessThen(float value)
         {
             UseFloat(value);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.LessThen);
             return this;
         }
 
         public ICondition IsLessThenOrEqualTo(IGlob glob)
         {
             UseGlobal(glob);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.LessThenOrEqual);
             return this;
         }
 
         public ICondition IsLessThenOrEqualTo(float value)
         {
             UseFloat(value);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.LessThenOrEqual);
             return this;
         }
 
         public ICondition IsNotEqualTo(IGlob glob)
         {
             UseGlobal(glob);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.NotEqual);
             return this;
         }
 
         public ICondition IsNotEqualTo(float value)
         {
             UseFloat(value);
-            UseOperator(ConditionFlags.Equal);
+            UseOperator(ConditionFlags.NotEqual);
             return this;
         }
 
@@ -145,10 +147,31 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        public ICondition RunOn(RunOn runOn)
+        public ICondition RunOnCombatTarget()
         {
-            Field.FunctionTarget = runOn.ToTarget();
+            Field.FunctionTarget = FunctionTarget.CombatTarget;
             Field.FunctionTargetReference = 0;
+            return this;
+        }
+
+        public ICondition RunOnSubject()
+        {
+            Field.FunctionTarget = FunctionTarget.Subject;
+            Field.FunctionTargetReference = 0;
+            return this;
+        }
+
+        public ICondition RunOnTarget()
+        {
+            Field.FunctionTarget = FunctionTarget.Target;
+            Field.FunctionTargetReference = 0;
+            return this;
+        }
+
+        public ICondition RunOnPlayer()
+        {
+            Field.FunctionTarget = FunctionTarget.Reference;
+            Field.FunctionTargetReference = PlayerFormId;
             return this;
         }
 
@@ -194,13 +217,29 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         void IDumpabled.Dump(ObjectDumper dumper)
         {
             dumper.DumpText("Function", FunctionToString());
+
             if (Field.Flags.HasFlag(ConditionFlags.UseGlobal))
+            {
                 dumper.DumpObject("Operand", Provider.CreateReferenceProxy<GlobProxy>(Field.GlobalVariableOperand));
+            }
             else
+            {
                 dumper.DumpObject("Operand", Field.FloatOperand);
-            dumper.DumpObject("RunOn", Field.FunctionTarget);
-            if (Field.FunctionTarget == FunctionTarget.Reference || Field.FunctionTarget == FunctionTarget.LinkedReference)
-                dumper.DumpObject("RunOnReference", Provider.CreateReferenceProxy<FormProxy>(Field.FunctionTargetReference));
+            }
+
+            if (Field.FunctionTarget == FunctionTarget.Reference && Field.FunctionTargetReference == PlayerFormId)
+            {
+                dumper.DumpText("RunOn", "Player");
+            }
+            else
+            {
+                dumper.DumpObject("RunOn", Field.FunctionTarget);
+                if (Field.FunctionTarget == FunctionTarget.Reference || Field.FunctionTarget == FunctionTarget.LinkedReference)
+                {
+                    dumper.DumpObject("RunOnReference", Provider.CreateReferenceProxy<FormProxy>(Field.FunctionTargetReference));
+                }
+            }
+
             dumper.DumpObject("Flags", Field.Flags);
         }
 

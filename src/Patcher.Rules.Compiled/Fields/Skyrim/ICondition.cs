@@ -14,7 +14,6 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Constants.Skyrim;
 using Patcher.Rules.Compiled.Forms;
 using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
@@ -26,8 +25,6 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
     public interface ICondition
     {
-        ICondition RunOn(RunOn runOn);
-        ICondition RunOn(IForm reference);
         ICondition IsTrue();
         ICondition IsFalse();
         ICondition IsEqualTo(float value);
@@ -42,8 +39,13 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
         ICondition IsLessThenOrEqualTo(IGlob glob);
         ICondition IsGreaterThanOrEqualTo(float value);
         ICondition IsGreaterThanOrEqualTo(IGlob glob);
+        ICondition RunOn(IForm reference);
+        ICondition RunOnCombatTarget();
+        ICondition RunOnPlayer();
+        ICondition RunOnSubject();
+        ICondition RunOnTarget();
+        ICondition SwapSubjectAndTarget();
         ICondition OrNext();
         ICondition AndNext();
-        ICondition SwapSubjectAndTarget();
     }
 }
