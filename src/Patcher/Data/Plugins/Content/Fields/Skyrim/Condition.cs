@@ -57,7 +57,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
         public override string ToString()
         {
-            return Data.ToString();
+            return string.Format("Function={0}{1}", Function, SignatureProvider.Default.GetSignature(Function).ToString(this));
         }
 
         sealed class ConditionData : Field
@@ -182,10 +182,9 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
             public override string ToString()
             {
-                var signature = SignatureProvider.Default.GetSignature(Function);
                 return string.Format("Code={0}{1}, Params={2:X16}", 
-                    Function, 
-                    signature, 
+                    Function,
+                    SignatureProvider.Default.GetSignature(Function), 
                     Params.UInt64_0);
             }
 

@@ -84,7 +84,7 @@ namespace Patcher.Data.Plugins.Content
         public override string ToString()
         {
             if (IsAny)
-                return "(Any)";
+                return "Any";
             else
                 return string.Join("|", kinds);
         }

@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
+using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -118,6 +119,27 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
                 parameters.Add(TypeB.Name);
 
             return string.Format("({0})", string.Join(",", parameters));
+        }
+
+        public string ToString(Condition condition)
+        {
+            List<string> args = new List<string>(2);
+
+            if (IsReferenceA)
+                args.Add(string.Format("{0:X8}", condition.ReferenceParam1));
+            else if (TypeA == typeof(string))
+                args.Add(string.Format("'{0}'", condition.StringParameter1));
+            else if (TypeA != null)
+                args.Add(condition.IntParam1.ToString());
+
+            if (IsReferenceB)
+                args.Add(string.Format("{0:X8}", condition.ReferenceParam2));
+            else if (TypeB == typeof(string))
+                args.Add(string.Format("'{0}'", condition.StringParameter2));
+            else if (TypeB != null)
+                args.Add(condition.IntParam2.ToString());
+
+            return string.Format("({0})", string.Join(",", args));
         }
     }
 }

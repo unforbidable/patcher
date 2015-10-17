@@ -24,11 +24,13 @@ using Patcher.Rules.Compiled.Forms;
 using Patcher.Rules.Compiled.Forms.Skyrim;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
+using Patcher.Rules.Proxies.Forms.Skyrim;
+using Patcher.Rules.Proxies.Forms;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(ICondition))]
-    public sealed class ConditionProxy : FieldProxy<Condition>, ICondition
+    public sealed class ConditionProxy : FieldProxy<Condition>, ICondition, IDumpabled
     {
         public ICondition AndNext()
         {
@@ -187,6 +189,42 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         public override string ToString()
         {
             return Field.ToString();
+        }
+
+        void IDumpabled.Dump(ObjectDumper dumper)
+        {
+            dumper.DumpText("Function", FunctionToString());
+            if (Field.Flags.HasFlag(ConditionFlags.UseGlobal))
+                dumper.DumpObject("Operand", Provider.CreateReferenceProxy<GlobProxy>(Field.GlobalVariableOperand));
+            else
+                dumper.DumpObject("Operand", Field.FloatOperand);
+            dumper.DumpObject("RunOn", Field.FunctionTarget);
+            if (Field.FunctionTarget == FunctionTarget.Reference || Field.FunctionTarget == FunctionTarget.LinkedReference)
+                dumper.DumpObject("RunOnReference", Provider.CreateReferenceProxy<FormProxy>(Field.FunctionTargetReference));
+            dumper.DumpObject("Flags", Field.Flags);
+        }
+
+        private string FunctionToString()
+        {
+            var args = new List<object>(2);
+
+            var sig = Field.FunctionSignature;
+
+            if (sig.IsReferenceA)
+                args.Add(Provider.CreateReferenceProxy<FormProxy>(Field.ReferenceParam1));
+            else if (sig.TypeA == typeof(string))
+                args.Add(string.Format("'{0}'", Field.StringParameter1));
+            else if (sig.TypeA != null)
+                args.Add(Field.IntParam1);
+
+            if (sig.IsReferenceB)
+                args.Add(Provider.CreateReferenceProxy<FormProxy>(Field.ReferenceParam2));
+            else if (sig.TypeB == typeof(string))
+                args.Add(string.Format("'{0}'", Field.StringParameter2));
+            else if (sig.TypeB != null)
+                args.Add(Field.IntParam2);
+
+            return string.Format("{0}({1})", Field.Function, string.Join(",", args));
         }
     }
 }
