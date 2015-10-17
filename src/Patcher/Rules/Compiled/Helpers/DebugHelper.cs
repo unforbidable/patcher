@@ -50,18 +50,14 @@ namespace Patcher.Rules.Compiled.Helpers
 
         public void Dump(object value)
         {
-            foreach (var text in context.Rule.Engine.Dumper.DumpObject(0, string.Empty, value))
-            {
-                Log.Fine("[DUMP] {0}", text);
-            }
+            var dumper = new ObjectDumper("[DUMP]");
+            dumper.DumpObject(value);
         }
 
         public void Dump(object value, string name)
         {
-            foreach (var text in context.Rule.Engine.Dumper.DumpObject(0, name, value))
-            {
-                Log.Fine("[DUMP] {0}", text);
-            }
+            var dumper = new ObjectDumper("[DUMP]");
+            dumper.DumpObject(name, value);
         }
 
     }
