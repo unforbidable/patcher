@@ -32,10 +32,10 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
         private ConditionData Data { get; set; }
 
         [Member(Names.CIS1)]
-        public string StringParameter1 { get; set; }
+        private string StringParameter1 { get; set; }
 
         [Member(Names.CIS2)]
-        public string StringParameter2 { get; set; }
+        private string StringParameter2 { get; set; }
 
         public ConditionFlags Flags { get { return Data.Flags; } set { Data.Flags = value; } }
         public Function Function { get { return Data.Function; } set { Data.Function = value; } }
@@ -46,27 +46,75 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
         public FunctionTarget FunctionTarget { get { return Data.Target; } set { Data.Target = value; } }
         public uint FunctionTargetReference { get { return Data.TargetReference; } set { Data.TargetReference = value; } }
 
-        public uint ReferenceParam1 { get { return Data.Params.UInt32_0; } set { Data.Params.UInt32_0 = value; } }
-        public uint ReferenceParam2 { get { return Data.Params.UInt32_1; } set { Data.Params.UInt32_1 = value; } }
+        public void SetStringParam(int index, string value)
+        {
+            if (index == 0)
+                StringParameter1 = value;
+            else if (index == 1)
+                StringParameter2 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
 
-        public int IntParam1 { get { return Data.Params.Int32_0; } set { Data.Params.Int32_0 = value; } }
-        public int IntParam2 { get { return Data.Params.Int32_1; } set { Data.Params.Int32_1 = value; } }
-        public int IntParam3 { get { return Data.IntParam3; } set { Data.IntParam3 = value; } }
+        public void SetReferenceParam(int index, uint value)
+        {
+            if (index == 0)
+                Data.Params.UInt32_0 = value;
+            else if (index == 1)
+                Data.Params.UInt32_1 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public void SetIntParam(int index, int value)
+        {
+            if (index == 0)
+                Data.Params.Int32_0 = value;
+            else if (index == 1)
+                Data.Params.Int32_1 = value;
+            else if (index == 2)
+                Data.IntParam3 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0, 1 or 2.");
+        }
+
+        public uint GetReferenceParam(int index)
+        {
+            if (index == 0)
+                return Data.Params.UInt32_0;
+            else if (index == 1)
+                return Data.Params.UInt32_1;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public string GetStringParam(int index)
+        {
+            if (index == 0)
+                return StringParameter1;
+            else if (index == 1)
+                return StringParameter2;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public int GetIntParam(int index)
+        {
+            if (index == 0)
+                return Data.Params.Int32_0;
+            else if (index == 1)
+                return Data.Params.Int32_1;
+            else if (index == 2)
+                return Data.IntParam3;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0, 1 or 2.");
+        }
 
         public Signature FunctionSignature { get { return SignatureProvider.Default.GetSignature(Data.Function); } }
 
         public override string ToString()
         {
             return string.Format("Function={0}{1}", Function, SignatureProvider.Default.GetSignature(Function).ToString(this));
-        }
-
-        protected override void AfterRead(RecordReader reader)
-        {
-            if (Flags != ConditionFlags.Equal)
-            {
-
-            }
-
         }
 
         sealed class ConditionData : Field
@@ -112,13 +160,13 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
                 // Read function params
                 // References must be read with ReadReference function
-                if (signature.IsReferenceA)
-                    Params.UInt32_0 = reader.ReadReference(signature.ReferenceA);
+                if (signature[0].IsReference)
+                    Params.UInt32_0 = reader.ReadReference(signature[0].Reference);
                 else
                     Params.Int32_0 = reader.ReadInt32();
 
-                if (signature.IsReferenceB)
-                    Params.UInt32_1 = reader.ReadReference(signature.ReferenceB);
+                if (signature[1].IsReference)
+                    Params.UInt32_1 = reader.ReadReference(signature[1].Reference);
                 else
                     Params.Int32_1 = reader.ReadInt32();
 
@@ -148,13 +196,13 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
                 // Read function params
                 // References must be read with ReadReference function
-                if (signature.IsReferenceA)
-                    writer.WriteReference(Params.UInt32_0, signature.ReferenceA);
+                if (signature[0].IsReference)
+                    writer.WriteReference(Params.UInt32_0, signature[0].Reference);
                 else
                     writer.Write(Params.Int32_0);
 
-                if (signature.IsReferenceB)
-                    writer.WriteReference(Params.UInt32_1, signature.ReferenceA);
+                if (signature[1].IsReference)
+                    writer.WriteReference(Params.UInt32_1, signature[1].Reference);
                 else
                     writer.Write(Params.Int32_1);
 
@@ -206,10 +254,10 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                     yield return Operand.GlobalVariable;
 
                 var signature = SignatureProvider.Default.GetSignature(Function);
-                if (signature.IsReferenceA)
+                if (signature[0].IsReference)
                     yield return Params.UInt32_0;
 
-                if (signature.IsReferenceB)
+                if (signature[1].IsReference)
                     yield return Params.UInt32_1;
             }
 

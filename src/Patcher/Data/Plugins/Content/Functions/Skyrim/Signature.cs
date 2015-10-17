@@ -58,13 +58,10 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
         internal static readonly Signature Reference_String = new Signature(FormKindSet.References, typeof(string));
         internal static readonly Signature Weather = new Signature(FormKindSet.WthrOnly);
 
-        public FormKindSet ReferenceA { get; private set; }
-        public FormKindSet ReferenceB { get; private set; }
-        public Type TypeA { get; private set; }
-        public Type TypeB { get; private set; }
+        public const int MaxParams = 2;
 
-        public bool IsReferenceA { get { return ReferenceA != null; } }
-        public bool IsReferenceB { get { return ReferenceB != null; } }
+        ParamInfo[] formal = new ParamInfo[2];
+        public ParamInfo this[int index] { get { return formal[index]; } }
 
         private Signature()
         {
@@ -72,74 +69,87 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
 
         private Signature(FormKindSet reference)
         {
-            ReferenceA = reference;
+            formal[0].Reference = reference;
         }
 
         private Signature(FormKindSet referenceA, FormKindSet referenceB)
         {
-            ReferenceA = referenceA;
-            ReferenceB = referenceB;
+            formal[0].Reference = referenceA;
+            formal[1].Reference = referenceB;
         }
 
         private Signature(Type type)
         {
-            TypeA = type;
+            formal[0].PlainType = type;
         }
 
         private Signature(Type typeA, Type typeB)
         {
-            TypeA = typeA;
-            TypeB = typeB;
+            formal[0].PlainType = typeA;
+            formal[1].PlainType = typeB;
         }
 
         private Signature(FormKindSet reference, Type type)
         {
-            ReferenceA = reference;
-            TypeB = type;
+            formal[0].Reference = reference;
+            formal[1].PlainType = type;
         }
 
         private Signature(Type type, FormKindSet reference)
         {
-            TypeA = type;
-            ReferenceB = reference;
+            formal[0].PlainType = type;
+            formal[1].Reference = reference;
         }
 
         public override string ToString()
         {
-            List<string> parameters = new List<string>(2);
+            List<string> output = new List<string>(MaxParams);
 
-            if (IsReferenceA)
-                parameters.Add(ReferenceA.ToString());
-            else if (TypeA != null)
-                parameters.Add(TypeA.Name);
+            for (int i = 0; i < MaxParams; i++)
+            {
+                if (formal[i].IsReference)
+                {
+                    output.Add(formal[i].Reference.ToString());
+                }
+                else if (formal[i].IsPlainType)
+                {
+                    output.Add(formal[i].PlainType.Name);
+                }
+            }
 
-            if (IsReferenceB)
-                parameters.Add(ReferenceB.ToString());
-            else if (TypeA != null)
-                parameters.Add(TypeB.Name);
-
-            return string.Format("({0})", string.Join(",", parameters));
+            return string.Format("({0})", string.Join(",", output));
         }
 
         public string ToString(Condition condition)
         {
-            List<string> args = new List<string>(2);
+            List<object> output = new List<object>(MaxParams);
 
-            if (IsReferenceA)
-                args.Add(string.Format("{0:X8}", condition.ReferenceParam1));
-            else if (TypeA == typeof(string))
-                args.Add(string.Format("'{0}'", condition.StringParameter1));
-            else if (TypeA != null)
-                args.Add(condition.IntParam1.ToString());
+            for (int i = 0; i < MaxParams; i++)
+            {
+                if (formal[i].IsReference)
+                {
+                    output.Add(string.Format("{0:X8}", condition.GetReferenceParam(i)));
+                }
+                else if (formal[i].PlainType == typeof(string))
+                {
+                    output.Add(string.Format("'{0}'", condition.GetStringParam(i)));
+                }
+                else if (formal[i].IsPlainType)
+                {
+                    output.Add(condition.GetIntParam(i));
+                }
+            }
 
-            if (IsReferenceB)
-                args.Add(string.Format("{0:X8}", condition.ReferenceParam2));
-            else if (TypeB == typeof(string))
-                args.Add(string.Format("'{0}'", condition.StringParameter2));
-            else if (TypeB != null)
-                args.Add(condition.IntParam2.ToString());
+            return string.Format("({0})", string.Join(",", output));
+        }
 
-            return string.Format("({0})", string.Join(",", args));
+        public struct ParamInfo
+        {
+            public bool IsDefined { get { return IsReference || IsPlainType; } }
+            public bool IsPlainType { get { return PlainType != null; } }
+            public bool IsReference { get { return Reference != null; } }
+            public FormKindSet Reference { get; internal set; }
+            public Type PlainType { get; internal set; }
         }
     }
 }

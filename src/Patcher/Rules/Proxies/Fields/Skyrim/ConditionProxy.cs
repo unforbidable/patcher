@@ -26,6 +26,7 @@ using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
 using Patcher.Rules.Proxies.Forms.Skyrim;
 using Patcher.Rules.Proxies.Forms;
+using Patcher.Data.Plugins.Content.Functions.Skyrim;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
@@ -209,9 +210,166 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             Field.Flags &= (~flag) | ConditionFlags.OperatorMask;
         }
 
-        public override string ToString()
+        bool[] parameterSet = new bool[] { false, false };
+
+        /// <summary>
+        /// Issues a warning when not all formal parameters required by the current function have been set.
+        /// </summary>
+        /// <returns></returns>
+        internal ConditionProxy CheckParams()
         {
-            return Field.ToString();
+            var signature = Field.FunctionSignature;
+            for (int i = 0; i < 2; i++)
+            {
+                if (signature[i].IsDefined && !parameterSet[i])
+                    Log.Warning("The {0} parameter of function {1}() has never been set.", (i == 0 ? "first" : "second"), Field.Function);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Assigns a string to one of the function parameters.
+        /// </summary>
+        /// <param name="index">Index of the parameter to set</param>
+        /// <param name="value">Value to set</param>
+        /// <returns></returns>
+        internal ConditionProxy SetParam(int index, string value)
+        {
+            parameterSet[index] = true;
+            Field.SetStringParam(index, value);
+            return this;
+        }
+
+        /// <summary>
+        /// Assigns an integer value to one of the function parameters.
+        /// </summary>
+        /// <param name="index">Index of the parameter to set</param>
+        /// <param name="value">Value to set</param>
+        /// <returns></returns>
+        internal ConditionProxy SetParam(int index, int value)
+        {
+            parameterSet[index] = true;
+            Field.SetIntParam(index, value);
+            return this;
+        }
+
+        /// <summary>
+        /// Assigns a form reference to one of the function parameters.
+        /// </summary>
+        /// <param name="index">Index of the parameter to set</param>
+        /// <param name="value">Value to set</param>
+        /// <returns></returns>
+        internal ConditionProxy SetParam(int index, IForm value)
+        {
+            parameterSet[index] = true;
+            Field.SetReferenceParam(index, value.ToFormId());
+            return this;
+        }
+
+        /// <summary>
+        /// Attempts to assign a value of unknown type to one of the function parameters.
+        /// </summary>
+        /// <param name="index">Index of the parameter to set</param>
+        /// <param name="value">Value to set</param>
+        /// <returns></returns>
+        internal ConditionProxy SetParam(int index, object value)
+        {
+            var signature = Field.FunctionSignature;
+
+            string par = index == 0 ? "first" : "second";
+
+            var valueAsformProxy = value as FormProxy;
+            var valueAstext = value as string;
+
+            bool success = false;
+
+            if (signature[index].IsDefined)
+            {
+                if (signature[index].IsReference)
+                {
+                    if (valueAsformProxy != null)
+                    {
+                        // TODO: Verify form kind
+                        SetParam(index, valueAsformProxy);
+                        success = true;
+                    }
+                    else
+                    {
+                        Log.Warning("Expected a form references as the {0} argument of function {1}().", par, Field.Function);
+                    }
+                }
+                else if (signature[index].PlainType == typeof(string))
+                {
+                    if (valueAstext != null)
+                    {
+                        SetParam(index, valueAstext);
+                        success = true;
+                    }
+                    else
+                    {
+                        Log.Warning("Expected a string as the {0} argument of function {1}().", par, Field.Function);
+                    }
+                }
+                else if (signature[index].PlainType == typeof(int))
+                {
+                    try
+                    {
+                        // Try to convert float and string even to int
+                        int integer = Convert.ToInt32(value);
+                        SetParam(index, integer);
+                        success = true;
+                    }
+                    catch (Exception)
+                    {
+                        Log.Warning("Expected an integer value as the {0} argument of function {1}().", par, Field.Function);
+                    }
+                }
+                else
+                {
+                    throw new InvalidProgramException("Unsupported " + par + " formal parameter in function signature " + Field.Function + "().");
+                }
+            }
+            else
+            {
+                Log.Warning("Unexpected {0} arguemnt of function {1}().", par, Field.Function);
+            }
+
+            if (!success)
+            {
+                // Value did not patch the formal parameter type
+                // this may be the case when the function signature has not been defined
+                // In this case a warning has been issued and the value will be forced to the appropriate slot
+                // as long as it is that of an expected type.
+
+                if (valueAsformProxy != null)
+                {
+                    // Assume form reference
+                    SetParam(index, valueAsformProxy);
+                    Log.Warning("The {0} argument of function {1}() assumed to be a form reference.", par, Field.Function);
+                }
+                else if (valueAstext != null)
+                {
+                    // Assume string
+                    SetParam(index, valueAstext);
+                    Log.Warning("The {0} argument of function {1}() assumed to be a string.", par, Field.Function);
+                }
+                else
+                {
+                    // Try convert anything to int
+                    try
+                    {
+                        int integer = Convert.ToInt32(value);
+                        SetParam(index, integer);
+                        Log.Warning("The {0} argument of function {1}() assumed to be an integer.", par, Field.Function);
+                    }
+                    catch (Exception)
+                    {
+                        throw new ArgumentException("The type of the {0} argument could not be inferred from the value " + value + ".", par);
+                    }
+                }
+            }
+
+            return this;
         }
 
         void IDumpabled.Dump(ObjectDumper dumper)
@@ -245,25 +403,27 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         private string FunctionToString()
         {
-            var args = new List<object>(2);
+            var output = new List<object>(2);
 
             var sig = Field.FunctionSignature;
 
-            if (sig.IsReferenceA)
-                args.Add(Provider.CreateReferenceProxy<FormProxy>(Field.ReferenceParam1));
-            else if (sig.TypeA == typeof(string))
-                args.Add(string.Format("'{0}'", Field.StringParameter1));
-            else if (sig.TypeA != null)
-                args.Add(Field.IntParam1);
+            for (int i = 0; i < Signature.MaxParams; i++)
+            {
+                if (sig[i].IsReference)
+                {
+                    output.Add(Provider.CreateReferenceProxy<FormProxy>(Field.GetReferenceParam(i)));
+                }
+                else if (sig[i].PlainType == typeof(string))
+                {
+                    output.Add(string.Format("'{0}'", Field.GetStringParam(i)));
+                }
+                else if (sig[i].IsPlainType)
+                {
+                    output.Add(Field.GetIntParam(i));
+                }
+            }
 
-            if (sig.IsReferenceB)
-                args.Add(Provider.CreateReferenceProxy<FormProxy>(Field.ReferenceParam2));
-            else if (sig.TypeB == typeof(string))
-                args.Add(string.Format("'{0}'", Field.StringParameter2));
-            else if (sig.TypeB != null)
-                args.Add(Field.IntParam2);
-
-            return string.Format("{0}({1})", Field.Function, string.Join(",", args));
+            return string.Format("{0}({1})", Field.Function, string.Join(",", output));
         }
     }
 }
