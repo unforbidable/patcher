@@ -83,8 +83,21 @@ namespace Patcher.Rules
                 else
                 {
                     var formProxy = value as FormProxy;
+                    var dumpable = value as IDumpabled;
 
-                    if (formProxy != null && currentDepth > 0)
+                    if (dumpable != null)
+                    {
+                        // Call custom method of custom dumpable objects
+                        // Print the content of an arbitrary object
+                        DumpText(name, "{");
+                        if (Enter())
+                        {
+                            dumpable.Dump(this);
+                            Leave();
+                        }
+                        DumpText(name, "}");
+                    }
+                    else if (formProxy != null && currentDepth > 0)
                     {
                         // Print just the form if reference
                         DumpText(name, "{0}", formProxy);
