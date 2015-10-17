@@ -103,9 +103,9 @@ namespace Patcher.Data.Plugins.Content
             if (value == null)
                 return;
 
-            // Skip null form references (that are not a list of references)
-            if (meminfo.IsReference && !meminfo.IsListType && (uint)value == 0)
-                return;
+            //// Skip null form references (that are not a list of references)
+            //if (meminfo.IsReference && !meminfo.IsListType && (uint)value == 0)
+            //    return;
 
             string fieldName = meminfo.FieldNames.First();
             if (meminfo.IsPrimitiveType)
@@ -229,7 +229,8 @@ namespace Patcher.Data.Plugins.Content
             // All fields should write references via this method so problems can be detected
             if (formId == 0)
             {
-                Log.Warning("Writting null reference 0x{0:X8}.", formId);
+                // Null references are normal, do not warn
+                //Log.Warning("Writting null reference 0x{0:X8}.", formId);
             }
             else if (!context.Forms.Contains(formId))
             {
