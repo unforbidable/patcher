@@ -27,6 +27,7 @@ using Patcher.Data.Plugins.Content.Constants.Skyrim;
 using Patcher.Rules.Proxies.Forms.Skyrim;
 using Patcher.Rules.Proxies.Forms;
 using Patcher.Data.Plugins.Content.Functions.Skyrim;
+using Patcher.Data.Plugins;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
@@ -237,8 +238,8 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         /// <summary>
         /// Assigns a string to one of the function parameters.
         /// </summary>
-        /// <param name="index">Index of the parameter to set</param>
-        /// <param name="value">Value to set</param>
+        /// <param name="index">Index of the parameter to set.</param>
+        /// <param name="value">Value to set.</param>
         /// <returns></returns>
         internal ConditionProxy SetParam(int index, string value)
         {
@@ -250,8 +251,8 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         /// <summary>
         /// Assigns an integer value to one of the function parameters.
         /// </summary>
-        /// <param name="index">Index of the parameter to set</param>
-        /// <param name="value">Value to set</param>
+        /// <param name="index">Index of the parameter to set.</param>
+        /// <param name="value">Value to set.</param>
         /// <returns></returns>
         internal ConditionProxy SetParam(int index, int value)
         {
@@ -263,11 +264,45 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         /// <summary>
         /// Assigns a form reference to one of the function parameters.
         /// </summary>
-        /// <param name="index">Index of the parameter to set</param>
-        /// <param name="value">Value to set</param>
+        /// <param name="index">Index of the parameter to set.</param>
+        /// <param name="value">Value to set.</param>
         /// <returns></returns>
         internal ConditionProxy SetParam(int index, IForm value)
         {
+            if (value == null)
+            {
+                Log.Warning("NULL form is being used as an argument in function {0}().", Field.Function);
+            }
+            else
+            {
+                // Verify form kind
+                var sig = Field.FunctionSignature;
+                if (sig[index].IsReference)
+                {
+                    var formKindSet = sig[index].Reference;
+                    if (!formKindSet.IsAny)
+                    {
+                        bool found = false;
+
+                        // Parameter requires a specific kind (or kinds) of form
+                        // Determine which kind of form the argument is
+                        // See if any of its interfaces implements any of the required kinds of forms
+                        foreach (var iface in value.GetType().GetInterfaces().Where(t => t != typeof(IForm)))
+                        {
+                            var kind = Provider.GetFormKindOfInterface(iface);
+                            if (kind != FormKind.Any && formKindSet.Contains(kind))
+                            {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found)
+                            Log.Warning("Form {0} is being used as argument where only the following kinds are valid: {1}", value, formKindSet);
+                    }
+                }
+            }
+
             parameterSet[index] = true;
             Field.SetReferenceParam(index, value.ToFormId());
             return this;
@@ -276,8 +311,8 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         /// <summary>
         /// Attempts to assign a value of unknown type to one of the function parameters.
         /// </summary>
-        /// <param name="index">Index of the parameter to set</param>
-        /// <param name="value">Value to set</param>
+        /// <param name="index">Index of the parameter to set.</param>
+        /// <param name="value">Value to set.</param>
         /// <returns></returns>
         internal ConditionProxy SetParam(int index, object value)
         {
@@ -296,7 +331,6 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
                 {
                     if (valueAsformProxy != null)
                     {
-                        // TODO: Verify form kind
                         SetParam(index, valueAsformProxy);
                         success = true;
                     }

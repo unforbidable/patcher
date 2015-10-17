@@ -299,7 +299,7 @@ namespace Patcher.Rules.Proxies
 
         public FormKind GetFormKindOfInterface(Type type)
         {
-            return proxies.Values.Where(p => p.InterfaceType == type).Single().BackingFormKind;
+            return proxies.Values.Where(p => p.InterfaceType == type).Select(p => p.BackingFormKind).SingleOrDefault();
         }
 
         class ProxyInfo
