@@ -63,7 +63,7 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
             { Function.GetIsRace, Signature.Race },
             { Function.GetIsReference, Signature.Referencable },
             { Function.GetIsSex, Signature.Gender },
-            { Function.GetItemCount, Signature.Any },
+            { Function.GetItemCount, Signature.Inventory },
             { Function.GetLineOfSight, Signature.Reference },
             { Function.GetPCInFaction, Signature.Faction },
             { Function.GetPCIsClass, Signature.Class },
