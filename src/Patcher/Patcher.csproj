@@ -67,6 +67,7 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\MiscStat.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptPropertyType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\VatsFunction.cs" />
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
