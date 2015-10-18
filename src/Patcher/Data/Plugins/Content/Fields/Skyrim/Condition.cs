@@ -78,6 +78,16 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 throw new IndexOutOfRangeException("Parameter index must be 0, 1 or 2.");
         }
 
+        public void SetFloatParam(int index, float value)
+        {
+            if (index == 0)
+                Data.Params.Single_0 = value;
+            else if (index == 1)
+                Data.Params.Single_1 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
         public uint GetReferenceParam(int index)
         {
             if (index == 0)
@@ -108,6 +118,16 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 return Data.IntParam3;
             else
                 throw new IndexOutOfRangeException("Parameter index must be 0, 1 or 2.");
+        }
+
+        public float GetFloatParam(int index)
+        {
+            if (index == 0)
+                return Data.Params.Single_0;
+            else if (index == 1)
+                return Data.Params.Single_1;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
         }
 
         public Signature FunctionSignature { get { return SignatureProvider.Default.GetSignature(Data.Function); } }
@@ -300,6 +320,12 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
                 [FieldOffset(6)]
                 public ushort UInt16_3;
+
+                [FieldOffset(0)]
+                public float Single_0;
+
+                [FieldOffset(4)]
+                public float Single_1;
             }
 
         }

@@ -165,13 +165,17 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
                 {
                     output.Add(string.Format("{0:X8}", condition.GetReferenceParam(i)));
                 }
-                else if (formal[i].PlainType == typeof(string))
+                else if (formal[i].IsString)
                 {
                     output.Add(string.Format("'{0}'", condition.GetStringParam(i)));
                 }
-                else if (formal[i].IsPlainType)
+                else if (formal[i].IsInt)
                 {
                     output.Add(condition.GetIntParam(i));
+                }
+                else if (formal[i].IsFloat)
+                {
+                    output.Add(condition.GetFloatParam(i));
                 }
             }
 
@@ -183,6 +187,9 @@ namespace Patcher.Data.Plugins.Content.Functions.Skyrim
             public bool IsDefined { get { return IsReference || IsPlainType; } }
             public bool IsPlainType { get { return PlainType != null; } }
             public bool IsReference { get { return Reference != null; } }
+            public bool IsString { get { return PlainType == typeof(string); } }
+            public bool IsInt { get { return PlainType == typeof(int); } }
+            public bool IsFloat { get { return PlainType == typeof(float); } }
             public FormKindSet Reference { get; internal set; }
             public Type PlainType { get; internal set; }
         }

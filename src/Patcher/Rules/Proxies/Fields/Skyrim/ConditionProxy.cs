@@ -262,6 +262,19 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         }
 
         /// <summary>
+        /// Assigns a float value to one of the function parameters.
+        /// </summary>
+        /// <param name="index">Index of the parameter to set.</param>
+        /// <param name="value">Value to set.</param>
+        /// <returns></returns>
+        internal ConditionProxy SetParam(int index, float value)
+        {
+            parameterSet[index] = true;
+            Field.SetFloatParam(index, value);
+            return this;
+        }
+
+        /// <summary>
         /// Assigns a form reference to one of the function parameters.
         /// </summary>
         /// <param name="index">Index of the parameter to set.</param>
@@ -271,7 +284,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         {
             if (value == null)
             {
-                Log.Warning("NULL form is being used as an argument in function {0}().", Field.Function);
+                Log.Warning("A null form is being used as argument {0} in function {1}().", index, Field.Function);
             }
             else
             {
@@ -318,8 +331,6 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         {
             var signature = Field.FunctionSignature;
 
-            string par = index == 0 ? "first" : "second";
-
             var valueAsformProxy = value as FormProxy;
             var valueAstext = value as string;
 
@@ -329,14 +340,15 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             {
                 if (signature[index].IsReference)
                 {
-                    if (valueAsformProxy != null)
+                    // If value is null, take it as a null reference
+                    if (value == null || valueAsformProxy != null)
                     {
                         SetParam(index, valueAsformProxy);
                         success = true;
                     }
                     else
                     {
-                        Log.Warning("Expected a form references as the {0} argument of function {1}().", par, Field.Function);
+                        Log.Warning("Expected a form references as the argument {0} of function {1}().", index, Field.Function);
                     }
                 }
                 else if (signature[index].PlainType == typeof(string))
@@ -348,31 +360,45 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
                     }
                     else
                     {
-                        Log.Warning("Expected a string as the {0} argument of function {1}().", par, Field.Function);
+                        Log.Warning("Expected a string as the argument {0} of function {1}().", index, Field.Function);
                     }
                 }
-                else if (signature[index].PlainType == typeof(int))
+                else if (signature[index].PlainType == typeof(float))
                 {
                     try
                     {
-                        // Try to convert float and string even to int
+                        // Try to convert int and string even to int
+                        float number = Convert.ToSingle(value);
+                        SetParam(index, number);
+                        success = true;
+                    }
+                    catch (Exception)
+                    {
+                        Log.Warning("Expected a float value as the argument {0} of function {1}().", index, Field.Function);
+                    }
+                }
+                else if (signature[index].PlainType == typeof(int) || signature[index].PlainType.IsEnum && signature[index].PlainType.GetEnumUnderlyingType() == typeof(int))
+                {
+                    try
+                    {
+                        // Try to convert enums (based on int), float and string even to int
                         int integer = Convert.ToInt32(value);
                         SetParam(index, integer);
                         success = true;
                     }
                     catch (Exception)
                     {
-                        Log.Warning("Expected an integer value as the {0} argument of function {1}().", par, Field.Function);
+                        Log.Warning("Expected an integer value as the argument {0} of function {1}().", index, Field.Function);
                     }
                 }
                 else
                 {
-                    throw new InvalidProgramException("Unsupported " + par + " formal parameter in function signature " + Field.Function + "().");
+                    throw new InvalidProgramException("Unsupported " + index + " formal parameter type in function definition " + Field.Function + "(): " + signature[index].PlainType.Name);
                 }
             }
             else
             {
-                Log.Warning("Unexpected {0} arguemnt of function {1}().", par, Field.Function);
+                Log.Warning("Unexpected arguemnt {0} of function {1}().", index, Field.Function);
             }
 
             if (!success)
@@ -386,26 +412,35 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
                 {
                     // Assume form reference
                     SetParam(index, valueAsformProxy);
-                    Log.Warning("The {0} argument of function {1}() assumed to be a form reference.", par, Field.Function);
+                    Log.Warning("The rgument {0} of function {1}() assumed to be a form reference.", index, Field.Function);
                 }
                 else if (valueAstext != null)
                 {
                     // Assume string
                     SetParam(index, valueAstext);
-                    Log.Warning("The {0} argument of function {1}() assumed to be a string.", par, Field.Function);
+                    Log.Warning("The argument {0} of function {1}() assumed to be a string.", index, Field.Function);
                 }
                 else
                 {
-                    // Try convert anything to int
-                    try
+                    if (value != null && value.GetType() == typeof(float))
                     {
-                        int integer = Convert.ToInt32(value);
-                        SetParam(index, integer);
-                        Log.Warning("The {0} argument of function {1}() assumed to be an integer.", par, Field.Function);
+                        // Assume float
+                        SetParam(index, (float)value);
+                        Log.Warning("The argument {0} of function {1}() assumed to be a float.", index, Field.Function);
                     }
-                    catch (Exception)
+                    else
                     {
-                        throw new ArgumentException("The type of the {0} argument could not be inferred from the value " + value + ".", par);
+                        // Try convert anything to int
+                        try
+                        {
+                            int integer = Convert.ToInt32(value);
+                            SetParam(index, integer);
+                            Log.Warning("The argument {0} of function {1}() assumed to be an integer.", index, Field.Function);
+                        }
+                        catch (Exception)
+                        {
+                            throw new ArgumentException("The type of the argument " + index + " of function " + Field.Function + " could not be inferred from the value " + value + ".");
+                        }
                     }
                 }
             }
@@ -454,13 +489,17 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
                 {
                     output.Add(Provider.CreateFormProxy<FormProxy>(Field.GetReferenceParam(i), ProxyMode.Referenced));
                 }
-                else if (sig[i].PlainType == typeof(string))
+                else if (sig[i].IsString)
                 {
                     output.Add(string.Format("'{0}'", Field.GetStringParam(i)));
                 }
-                else if (sig[i].IsPlainType)
+                else if (sig[i].IsInt)
                 {
                     output.Add(Field.GetIntParam(i));
+                }
+                else if (sig[i].IsFloat)
+                {
+                    output.Add(Field.GetFloatParam(i));
                 }
             }
 
