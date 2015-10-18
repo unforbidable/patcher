@@ -95,10 +95,15 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet AstpOnly = FromNames(Names.ASTP);
         public static readonly FormKindSet CellOnly = FromNames(Names.CELL);
         public static readonly FormKindSet ClasOnly = FromNames(Names.CLAS);
+        public static readonly FormKindSet EcznOnly = FromNames(Names.ECZN);
+        public static readonly FormKindSet EqupOnly = FromNames(Names.EQUP);
         public static readonly FormKindSet FactOnly = FromNames(Names.FACT);
+        public static readonly FormKindSet FlstOnly = FromNames(Names.FLST);
         public static readonly FormKindSet FurnOnly = FromNames(Names.FURN);
         public static readonly FormKindSet GlobOnly = FromNames(Names.GLOB);
+        public static readonly FormKindSet IdleOnly = FromNames(Names.IDLE);
         public static readonly FormKindSet KywdOnly = FromNames(Names.KYWD);
+        public static readonly FormKindSet LcrtOnly = FromNames(Names.LCRT);
         public static readonly FormKindSet LctnOnly = FromNames(Names.LCTN);
         public static readonly FormKindSet MgefOnly = FromNames(Names.MGEF);
         public static readonly FormKindSet NpcOnly = FromNames(Names.NPC_);
@@ -109,7 +114,10 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet RegnOnly = FromNames(Names.REGN);
         public static readonly FormKindSet SndrOnly = FromNames(Names.SNDR);
         public static readonly FormKindSet ScenOnly = FromNames(Names.SCEN);
+        public static readonly FormKindSet ShouOnly = FromNames(Names.SHOU);
+        public static readonly FormKindSet WrldOnly = FromNames(Names.WRLD);
         public static readonly FormKindSet WthrOnly = FromNames(Names.WTHR);
+
 
         // More multiple kind sets will be cached too
         public static readonly FormKindSet ActorReferences = FromNames(Names.ACHR + Names.PLYR + Names.REFR);
@@ -122,5 +130,7 @@ namespace Patcher.Data.Plugins.Content
             Names.TACT + Names.TREE + Names.WEAP);
         public static readonly FormKindSet InventoryObjects = FromNames(Names.ALCH + Names.AMMO + Names.ARMO + Names.BOOK + Names.COBJ + Names.FLST +
             Names.INGR + Names.KEYM + Names.LIGH + Names.LVLI + Names.MISC + Names.SCRL + Names.SLGM + Names.WEAP);
+        public static readonly FormKindSet Owner = FromNames(Names.FACT + Names.NPC_);
+        public static readonly FormKindSet VoiceTypeOrList = FromNames(Names.FLST + Names.VTYP);
     }
 }
