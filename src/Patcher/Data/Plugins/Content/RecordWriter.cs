@@ -106,9 +106,9 @@ namespace Patcher.Data.Plugins.Content
             if (value == null)
                 return;
 
-            //// Skip null form references (that are not a list of references)
-            //if (meminfo.IsReference && !meminfo.IsListType && (uint)value == 0)
-            //    return;
+            // Skip null form references (that are not a list of references)
+            if (meminfo.IsReference && !meminfo.IsListType && (uint)value == 0)
+                return;
 
             string fieldName = meminfo.FieldNames.First();
             if (meminfo.IsPrimitiveType)
