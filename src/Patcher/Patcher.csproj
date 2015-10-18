@@ -54,6 +54,7 @@
     <Compile Include="Data\DefaultDataFileProvider.cs" />
     <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ActorValue.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\Alignment.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ArmorSkillUsage.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\Axis.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\BodyParts.cs" />
