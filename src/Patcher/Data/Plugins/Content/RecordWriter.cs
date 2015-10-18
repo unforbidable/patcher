@@ -81,7 +81,10 @@ namespace Patcher.Data.Plugins.Content
                 numRecords++;
             }
 
-            DoWriteRecord(record, formId);
+            // Convert global context Form ID to local relative Form ID
+            uint localFormId = ReferenceMapper.ContexToLocal(formId);
+
+            DoWriteRecord(record, localFormId);
             numRecords++;
         }
 
