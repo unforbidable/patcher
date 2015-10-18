@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+	<rule>
+		<name>Create a broom from firewood</name>
+		<insert into="COBJ">
+			// Assign Editor ID
+			Target.EditorId = "PD_CraftBroom";
+			
+			// Specify materials consumed
+			Target.Materials.Add(Forms.Find("Firewood01"), 2);
+			
+			Debug.Message("Because MISC forms are not supported using Firewood in a condition function produces a warning.");
+			Debug.Message("Everything should work as expected regardless.");
+			
+			// Specify condition - only if the player has any firewood
+			Target.Conditions.Add(Conditions.GetItemCount(Forms.Find("Firewood01"))
+				.IsNotEqualTo(0)
+			);
+			
+			// Specify the workbench (cast to Keyword form)
+			Target.Workbench = Forms.Find("CraftingSmithingForge").AsKywd();
+			
+			// Specify the produced result
+			Target.Result = Forms.Find("Broom01");
+			Target.ResultCount = 1;
+			
+			// Show the created form
+			Debug.Dump(Target);
+		</insert>
+	</rule>
+</rules>
