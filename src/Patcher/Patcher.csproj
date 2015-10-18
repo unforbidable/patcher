@@ -58,6 +58,7 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ArmorSkillUsage.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\Axis.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\BodyParts.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\CriticalStage.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\FormType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\Function.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\FunctionTarget.cs" />
