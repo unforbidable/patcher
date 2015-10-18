@@ -1,3 +1,6 @@
+##### v2.0.0 (2015/10/18)
+* New supported forms: COBJ
+
 ##### v1.1.1 (2015/10/14)
 * Changed GLOB property Type from char to the Type enumeration.
 * Added readonly GMST property Type.
