@@ -35,6 +35,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
             return collection.Of<IAlch>();
         }
 
+
         public static IArmo AsArmo(this IForm form)
         {
             return form as IArmo;
@@ -44,6 +45,18 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         {
             return collection.Of<IArmo>();
         }
+
+
+        public static ICobj AsCobj(this IForm form)
+        {
+            return form as ICobj;
+        }
+
+        public static IFormCollection<ICobj> OfCobj(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<ICobj>();
+        }
+
 
         public static IFlst AsFlst(this IForm form)
         {
@@ -55,6 +68,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
             return collection.Of<IFlst>();
         }
 
+
         public static IGlob AsGlob(this IForm form)
         {
             return form as IGlob;
@@ -64,6 +78,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         {
             return collection.Of<IGlob>();
         }
+
 
         public static IGmst AsGmst(this IForm form)
         {
@@ -75,6 +90,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
             return collection.Of<IGmst>();
         }
 
+
         public static IKywd AsKywd(this IForm form)
         {
             return form as IKywd;
@@ -84,6 +100,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         {
             return collection.Of<IKywd>();
         }
+
 
         public static IStat AsStat(this IForm form)
         {
