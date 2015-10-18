@@ -64,6 +64,7 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\GenderType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\GlobalVariableType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\IngestionFlags.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\MiscStat.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptPropertyType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptType.cs" />
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
