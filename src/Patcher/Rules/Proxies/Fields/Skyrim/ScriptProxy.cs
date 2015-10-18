@@ -27,12 +27,11 @@ using Patcher.Data.Plugins.Content.Constants.Skyrim;
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(IScript))]
-    public class ScriptProxy : Proxy, IScript
+    public class ScriptProxy : Proxy, IScript, IDumpabled
     {
         internal VirtualMachineAdapter.Script Script { get; set; }
 
         public string Name { get { return Script.Name; } }
-        public ScriptPropertyCollection Properties { get { return new ScriptPropertyCollection(Script); } }
 
         public void AddProperty(string name, Compiled.Constants.Type type)
         {
@@ -120,57 +119,73 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return prop;
         }
 
-        /// <summary>
-        /// Represets enumerable list of script properties used for debugging.
-        /// </summary>
-        public class ScriptPropertyCollection : IEnumerable<ScriptProperty>
+        void IDumpabled.Dump(ObjectDumper dumper)
         {
-            readonly VirtualMachineAdapter.Script script;
-
-            public int Count { get { return script.Properties.Count; } }
-
-            public ScriptPropertyCollection(VirtualMachineAdapter.Script script)
+            // Dump script properties
+            dumper.DumpText("Properties", "{");
+            if (dumper.Enter())
             {
-                this.script = script;
-            }
-
-            public IEnumerator<ScriptProperty> GetEnumerator()
-            {
-                foreach (var prop in script.Properties)
+                dumper.DumpText("Count", Script.Properties.Count.ToString());
+                dumper.DumpText("[");
+                if (dumper.Enter())
                 {
-                    yield return new ScriptProperty(prop);
-                }
-            }
+                    foreach (var prop in Script.Properties)
+                    {
+                        // Dump property
+                        dumper.DumpText(prop.Name, "{");
+                        if (dumper.Enter())
+                        {
+                            dumper.DumpText("Type", prop.Type.ToString());
+                            dumper.DumpText("Values", ScriptPropertyValuesToString(prop));
 
-            IEnumerator IEnumerable.GetEnumerator()
+                            dumper.Leave();
+                        }
+                        dumper.DumpText("}");
+                    }
+                    dumper.Leave();
+                }
+                dumper.DumpText("]");
+                dumper.Leave();
+            }
+            dumper.DumpText("}");
+        }
+
+        private string ScriptPropertyValuesToString(VirtualMachineAdapter.ScriptProperty prop)
+        {
+            if (!prop.IsSet)
             {
-                return GetEnumerator();
+                return "(not assigned)";
+            }
+            else if (!prop.IsArray)
+            {
+                return SingleScriptPropertyValueToString(prop.GetValues().First());
+            }
+            else
+            {
+                return string.Format("[ {0} ]", string.Join(",", prop.GetValues().Select(v => SingleScriptPropertyValueToString(v))));
             }
         }
 
-        /// <summary>
-        /// Represents a script property with enumerable values used for debugging.
-        /// </summary>
-        public class ScriptProperty : IEnumerable<object>
+        private string SingleScriptPropertyValueToString(object value)
         {
-            readonly VirtualMachineAdapter.ScriptProperty property;
-
-            public string Name { get { return property.Name; } }
-            public ScriptPropertyType Type { get { return property.Type; } }
-
-            public ScriptProperty(VirtualMachineAdapter.ScriptProperty property)
+            if (value.GetType() == typeof(VirtualMachineAdapter.ObjectProperty))
             {
-                this.property = property;
+                var prop = (VirtualMachineAdapter.ObjectProperty)value;
+
+                var formProxy = Provider.CreateReferenceProxy<IForm>(prop.FormId);
+
+                if (prop.AliasId != -1)
+                {
+                    return string.Format("{{ AliasId = {0}, Reference = {1} }}", prop.AliasId, formProxy);
+                }
+                else
+                {
+                    return string.Format("{{ Reference = {0} }}", formProxy);
+                }
             }
-
-            public IEnumerator<object> GetEnumerator()
+            else
             {
-                return property.GetValues().GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return GetEnumerator();
+                return value.ToString();
             }
         }
     }

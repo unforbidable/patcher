@@ -27,16 +27,16 @@ namespace Patcher.Data.Plugins.Content
     [AttributeUsage(AttributeTargets.Property)]
     sealed class ReferenceAttribute : Attribute
     {
-        public FormKind ReferenceFormKind { get; private set; }
+        public FormKindSet ReferenceFormKinds { get; private set; }
 
         public ReferenceAttribute()
         {
-            ReferenceFormKind = FormKind.None;
+            ReferenceFormKinds = FormKindSet.Any;
         }
 
-        public ReferenceAttribute(string referencedFormKind)
+        public ReferenceAttribute(string kinds)
         {
-            ReferenceFormKind = (FormKind)referencedFormKind;
+            ReferenceFormKinds = FormKindSet.FromNames(kinds);
         }
     }
 }

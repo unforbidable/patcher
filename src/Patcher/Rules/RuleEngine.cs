@@ -38,9 +38,6 @@ namespace Patcher.Rules
         readonly TagManager tagManager;
         public TagManager Tags { get { return tagManager; } }
 
-        readonly ObjectDumper dupmper;
-        internal ObjectDumper Dumper { get { return dupmper; } }
-
         public string RulesFolder { get; set; }
 
         IDictionary<string, List<IRule>> rules = new Dictionary<string, List<IRule>>();
@@ -63,7 +60,6 @@ namespace Patcher.Rules
 
             proxyProvider = new ProxyProvider(this);
             tagManager = new TagManager(this);
-            dupmper = new ObjectDumper(this);
 
             ExtractCompiledAssemblyFile();
         }

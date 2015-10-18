@@ -103,6 +103,12 @@ namespace Patcher.Rules.Proxies.Forms
                 throw new ArgumentException("Record " + record.GetType().FullName + " is not compatible with proxy " + GetType().FullName);
 
             this.record = (T)record;
+
+            OnRecordChanged();
+        }
+
+        protected virtual void OnRecordChanged()
+        {
         }
 
         private void EnsureEditorIdWritable()

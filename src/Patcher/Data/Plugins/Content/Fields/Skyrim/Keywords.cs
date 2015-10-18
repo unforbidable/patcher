@@ -77,7 +77,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             {
                 while (!reader.IsEndOfSegment)
                 {
-                    List.Add(reader.ReadReference(FormKind.None));
+                    List.Add(reader.ReadReference(FormKindSet.KywdOnly));
                 }
             }
 
@@ -85,7 +85,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             {
                 foreach (var formId in List)
                 {
-                    writer.WriteReference(formId, FormKind.None);
+                    writer.WriteReference(formId, FormKindSet.KywdOnly);
                 }
             }
 

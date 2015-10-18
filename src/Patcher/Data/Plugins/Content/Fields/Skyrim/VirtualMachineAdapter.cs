@@ -328,7 +328,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                     {
                         Unknown = reader.ReadUInt16(),
                         AliasId = reader.ReadInt16(),
-                        FormId = reader.ReadReference(FormKind.None)
+                        FormId = reader.ReadReference(FormKindSet.Any)
                     };
                 }
                 else if (type == typeof(string))
@@ -389,7 +389,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                     var obj = (ObjectProperty)value;
                     writer.Write(obj.Unknown);
                     writer.Write(obj.AliasId);
-                    writer.WriteReference(obj.FormId, FormKind.None);
+                    writer.WriteReference(obj.FormId, FormKindSet.Any);
                 }
                 else if (type == typeof(string))
                 {

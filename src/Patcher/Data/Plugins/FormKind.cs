@@ -27,12 +27,12 @@ namespace Patcher.Data.Plugins
     /// </summary>
     public struct FormKind : IComparable<FormKind>, IEquatable<FormKind>
     {
-        public static readonly FormKind None = new FormKind() { value = 0 };
+        public static readonly FormKind Any = new FormKind() { value = 0 };
 
         static IList<string> index = new List<string>() { string.Empty };
         static IDictionary<string, ushort> map = new SortedDictionary<string, ushort>() { { string.Empty, 0 } };
 
-        public static FormKind FromString(string name)
+        public static FormKind FromName(string name)
         {
             lock (map)
             {
@@ -67,7 +67,7 @@ namespace Patcher.Data.Plugins
         // Conversion from string is explixit to prevent creation of instances any time when compared with a string
         public static explicit operator FormKind(string name)
         {
-            return FromString(name);
+            return FromName(name);
         }
 
         public override bool Equals(object obj)

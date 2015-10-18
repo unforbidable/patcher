@@ -39,8 +39,10 @@ namespace Patcher.Rules.Compiled.Helpers
             uint actualFormId = formId & 0xffffff;
             if (!context.Rule.Engine.Context.Forms.Contains(actualFormId))
             {
-                Log.Warning("Form with Form ID {0} not found in the main plugin.", formId);
-                return null;
+                Log.Warning("Form with Form ID {0:X8} not found in the main plugin.", formId);
+
+                // Warning is issued but an unresovled reference form proxy will be created
+                //return null;
             }
 
             return context.Rule.Engine.ProxyProvider.CreateFormProxy(actualFormId, ProxyMode.Discovered);

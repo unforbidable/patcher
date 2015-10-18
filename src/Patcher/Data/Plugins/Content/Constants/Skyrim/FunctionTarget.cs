@@ -21,25 +21,15 @@ using System.Text;
 
 namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
-    public enum ConditionFunction
+    public enum FunctionTarget : uint
     {
-        GetWantBlocking = 0,
-        GetDistance = 1,
-        GetLocked = 5,
-        GetPos = 6,
-        GetAngle = 8,
-        GetStartingPos = 10,
-        GetStartingAngle = 11,
-        GetSecondsPassed = 12,
-        GetActorValue = 14,
-        GetCurrentTime = 18,
-        GetScale = 24,
-        IsMoving = 25,
-        IsTurning = 26,
-        GetLineOfSight = 27,
-        GetInSameCell = 32,
-        GetDisabled = 35,
-
-        // TODO Complete script funtion enum definition
+        Subject = 0,
+        Target = 1,
+        Reference = 2,
+        CombatTarget = 3,
+        LinkedReference = 4,
+        QuestAlias = 5,
+        PackageData = 6,
+        EventData = 7
     }
 }

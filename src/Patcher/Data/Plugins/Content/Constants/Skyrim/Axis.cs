@@ -21,15 +21,10 @@ using System.Text;
 
 namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
-    public enum ConditionTarget : uint
+    public enum Axis
     {
-        Subject = 0,
-        Target = 1,
-        Reference = 2,
-        CombatTarget = 3,
-        LinkedReference = 4,
-        QuestAlias = 5,
-        PackageData = 6,
-        EventData = 7
+        X,
+        Y,
+        Z
     }
 }

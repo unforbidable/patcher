@@ -44,7 +44,7 @@ namespace Patcher.Rules
         public void Run()
         {
             // No source form
-            if (rule.From == FormKind.None)
+            if (rule.From == FormKind.Any)
             {
                 Log.Fine("Non-query rule without source form");
 

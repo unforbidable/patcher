@@ -15,9 +15,11 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
+using Patcher.Data.Plugins.Content.Functions.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,108 +28,306 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
     public sealed class Condition : Compound
     {
         [Member(Names.CTDA)]
-        public ConditionData Data { get; set; }
+        [Initialize]
+        private ConditionData Data { get; set; }
 
         [Member(Names.CIS1)]
-        public string Parameter1 { get; set; }
+        private string StringParameter1 { get; set; }
 
         [Member(Names.CIS2)]
-        public string Parameter2 { get; set; }
+        private string StringParameter2 { get; set; }
 
-        public override IEnumerable<uint> GetReferencedFormIds()
+        public ConditionFlags Flags { get { return Data.Flags; } set { Data.Flags = value; } }
+        public Function Function { get { return Data.Function; } set { Data.Function = value; } }
+
+        public uint GlobalVariableOperand { get { return Data.Operand.GlobalVariable; } set { Data.Operand.GlobalVariable = value; } }
+        public float FloatOperand { get { return Data.Operand.FloatValue; } set { Data.Operand.FloatValue = value; } }
+
+        public FunctionTarget FunctionTarget { get { return Data.Target; } set { Data.Target = value; } }
+        public uint FunctionTargetReference { get { return Data.TargetReference; } set { Data.TargetReference = value; } }
+
+        public void SetStringParam(int index, string value)
         {
-            throw new NotImplementedException();
+            if (index == 0)
+                StringParameter1 = value;
+            else if (index == 1)
+                StringParameter2 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
         }
+
+        public void SetReferenceParam(int index, uint value)
+        {
+            if (index == 0)
+                Data.Params.UInt32_0 = value;
+            else if (index == 1)
+                Data.Params.UInt32_1 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public void SetIntParam(int index, int value)
+        {
+            if (index == 0)
+                Data.Params.Int32_0 = value;
+            else if (index == 1)
+                Data.Params.Int32_1 = value;
+            else if (index == 2)
+                Data.IntParam3 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0, 1 or 2.");
+        }
+
+        public void SetFloatParam(int index, float value)
+        {
+            if (index == 0)
+                Data.Params.Single_0 = value;
+            else if (index == 1)
+                Data.Params.Single_1 = value;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public uint GetReferenceParam(int index)
+        {
+            if (index == 0)
+                return Data.Params.UInt32_0;
+            else if (index == 1)
+                return Data.Params.UInt32_1;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public string GetStringParam(int index)
+        {
+            if (index == 0)
+                return StringParameter1;
+            else if (index == 1)
+                return StringParameter2;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public int GetIntParam(int index)
+        {
+            if (index == 0)
+                return Data.Params.Int32_0;
+            else if (index == 1)
+                return Data.Params.Int32_1;
+            else if (index == 2)
+                return Data.IntParam3;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0, 1 or 2.");
+        }
+
+        public float GetFloatParam(int index)
+        {
+            if (index == 0)
+                return Data.Params.Single_0;
+            else if (index == 1)
+                return Data.Params.Single_1;
+            else
+                throw new IndexOutOfRangeException("Parameter index must be 0 or 1.");
+        }
+
+        public Signature FunctionSignature { get { return SignatureProvider.Default.GetSignature(Data.Function); } }
 
         public override string ToString()
         {
-            return Data.ToString();
+            return string.Format("Function={0}{1}", Function, SignatureProvider.Default.GetSignature(Function).ToString(this));
         }
 
-        public sealed class ConditionData : Field
+        sealed class ConditionData : Field
         {
-            public ConditionOperator Operators { get; set; }
-            public FloatOrGlobal ComparisonValue { get; set; }
-            public ConditionFunction Function { get; set; }
-            public ulong Params { get; set; }
-            public ConditionTarget RunOn { get; set; }
-            public uint Reference { get; set; }
-            public int Parameter1 { get; set; }
-            
+            public ConditionFlags Flags { get; set; }
+            public Function Function { get; set; }
+            public FunctionTarget Target { get; set; }
+            public uint TargetReference { get; set; }
+
+            public ConditionOperand Operand;
+            public FunctionParams Params;
+
+            public int IntParam3 { get; set; }
+
+            public ConditionData()
+            {
+                // Default value for third parameter
+                IntParam3 = -1;
+            }
+
             internal override void ReadField(RecordReader reader)
             {
-                Operators = (ConditionOperator)reader.ReadUInt32();
-                ComparisonValue = reader.ReadUInt32();
-                Function = (ConditionFunction)reader.ReadUInt32();
-                Params = reader.ReadUInt64();
-                RunOn = (ConditionTarget)reader.ReadUInt32();
-                Reference = reader.ReadUInt32();
-                Parameter1 = reader.ReadInt32();
+                // Read flags and skip 3 bytes
+                Flags = (ConditionFlags)reader.ReadByte();
+                reader.Seek(3);
+
+                // Read either global variable reference or float
+                if (Flags.HasFlag(ConditionFlags.UseGlobal))
+                    Operand.GlobalVariable = reader.ReadReference(FormKindSet.GlobOnly);
+                else
+                    Operand.FloatValue = reader.ReadSingle();
+
+                // Read function code and skip 2 bytes
+                Function = (Function)reader.ReadUInt16();
+                reader.Seek(2);
+
+                // Warn if unknown function - no enum value is defined for it
+                if (!Enum.IsDefined(typeof(Function), Function))
+                    Log.Warning("Function '{0}' was not recorgnised and any of parameter references may have may get scrambled.", Function);
+
+                // Find function signature
+                var signature = SignatureProvider.Default.GetSignature(Function);
+
+                // Read function params
+                // References must be read with ReadReference function
+                if (signature[0].IsReference)
+                    Params.UInt32_0 = reader.ReadReference(signature[0].Reference);
+                else
+                    Params.Int32_0 = reader.ReadInt32();
+
+                if (signature[1].IsReference)
+                    Params.UInt32_1 = reader.ReadReference(signature[1].Reference);
+                else
+                    Params.Int32_1 = reader.ReadInt32();
+
+                Target = (FunctionTarget)reader.ReadUInt32();
+                TargetReference = reader.ReadReference(FormKindSet.Any);
+
+                // Third parameter
+                IntParam3 = reader.ReadInt32();
             }
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write((byte)Flags);
+                writer.Write((byte)0);
+                writer.Write((short)0);
+
+                if (Flags.HasFlag(ConditionFlags.UseGlobal))
+                    writer.WriteReference(Operand.GlobalVariable, FormKindSet.GlobOnly);
+                else
+                    writer.Write(Operand.FloatValue);
+
+                writer.Write((ushort)Function);
+                writer.Write((short)0);
+
+                // Find function signature
+                var signature = SignatureProvider.Default.GetSignature(Function);
+
+                // Read function params
+                // References must be read with ReadReference function
+                if (signature[0].IsReference)
+                    writer.WriteReference(Params.UInt32_0, signature[0].Reference);
+                else
+                    writer.Write(Params.Int32_0);
+
+                if (signature[1].IsReference)
+                    writer.WriteReference(Params.UInt32_1, signature[1].Reference);
+                else
+                    writer.Write(Params.Int32_1);
+
+                writer.Write((uint)Target);
+                if (Target == FunctionTarget.Subject || Target == FunctionTarget.Subject || Target == FunctionTarget.CombatTarget)
+                    writer.Write((uint)0);
+                else
+                    writer.WriteReference(TargetReference, FormKindSet.Any);
+
+                // Third parameter
+                writer.Write(IntParam3);
             }
 
             public override Field CopyField()
             {
                 return new ConditionData()
                 {
-                    Operators = Operators,
-                    ComparisonValue = ComparisonValue,
+                    Flags = Flags,
+                    Operand = Operand,
                     Function = Function,
-                    Params = Params,
-                    RunOn = RunOn,
-                    Reference = Reference,
-                    Parameter1 = Parameter1
+                    Params = new FunctionParams()
+                    {
+                        UInt64_0 = Params.UInt64_0
+                    },
+                    Target = Target,
+                    TargetReference = TargetReference,
+                    IntParam3 = IntParam3
                 };
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (ConditionData)other;
+                return Flags == cast.Flags && Operand.FloatValue == cast.Operand.FloatValue && Function == cast.Function &&
+                    Params.UInt64_0 == cast.Params.UInt64_0 && Target == cast.Target && TargetReference == cast.TargetReference && IntParam3 == cast.IntParam3;
             }
 
             public override string ToString()
             {
-                return string.Format("Function='{0}'", Function);
+                return string.Format("Code={0}{1}, Params={2:X16}", 
+                    Function,
+                    SignatureProvider.Default.GetSignature(Function), 
+                    Params.UInt64_0);
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                if (Flags.HasFlag(ConditionFlags.UseGlobal))
+                    yield return Operand.GlobalVariable;
+
+                var signature = SignatureProvider.Default.GetSignature(Function);
+                if (signature[0].IsReference)
+                    yield return Params.UInt32_0;
+
+                if (signature[1].IsReference)
+                    yield return Params.UInt32_1;
             }
 
-            public struct FloatOrGlobal
+            [StructLayout(LayoutKind.Explicit)]
+            public struct ConditionOperand
             {
-                uint value;
+                [FieldOffset(0)]
+                public uint GlobalVariable;
 
-                public uint Value { get { return value; } set { this.value = value; } }
-                public float ValueAsFloat { get { return BitConverter.ToSingle(BitConverter.GetBytes(value), 0); } set { this.value = BitConverter.ToUInt32(BitConverter.GetBytes(value), 0); } }
-
-                public static implicit operator FloatOrGlobal(uint value)
-                {
-                    return new FloatOrGlobal()
-                    {
-                        Value = value
-                    };
-                }
-
-                public static implicit operator FloatOrGlobal(float value)
-                {
-                    return new FloatOrGlobal()
-                    {
-                        ValueAsFloat = value
-                    };
-                }
-
-                public override string ToString()
-                {
-                    char c = (char)value;
-                    return string.Format("0x{0:X8} / {1:F6} / '{2}'", value, ValueAsFloat, char.IsLetterOrDigit(c) ? c : '?');
-                }
+                [FieldOffset(0)]
+                public float FloatValue;
             }
+
+            [StructLayout(LayoutKind.Explicit)]
+            public struct FunctionParams
+            {
+                [FieldOffset(0)]
+                public ulong UInt64_0;
+
+                [FieldOffset(0)]
+                public uint UInt32_0;
+
+                [FieldOffset(4)]
+                public uint UInt32_1;
+
+                [FieldOffset(0)]
+                public int Int32_0;
+
+                [FieldOffset(4)]
+                public int Int32_1;
+
+                [FieldOffset(0)]
+                public ushort UInt16_0; // Event function
+
+                [FieldOffset(2)]
+                public ushort UInt16_1; // Event member
+
+                [FieldOffset(4)]
+                public ushort UInt16_2;
+
+                [FieldOffset(6)]
+                public ushort UInt16_3;
+
+                [FieldOffset(0)]
+                public float Single_0;
+
+                [FieldOffset(4)]
+                public float Single_1;
+            }
+
         }
     }
 }

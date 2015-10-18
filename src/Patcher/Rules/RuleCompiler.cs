@@ -52,6 +52,12 @@ namespace Patcher.Rules
                 Name = "Forms",
                 InterfaceType = typeof(IFormsHelper),
                 Constructor = typeof(FormsHelper).GetConstructor(helperCtorTypes)
+            },
+            new CompiledRuleHelperInfo()
+            {
+                Name = "Conditions",
+                InterfaceType = typeof(IConditionsHelper),
+                Constructor = typeof(ConditionsHelper).GetConstructor(helperCtorTypes)
             }
         };
 
@@ -90,7 +96,7 @@ namespace Patcher.Rules
                 IsDebugModeEnabled = debug,
                 Rule = new CompiledRule(engine, metadata)
                 {
-                    From = entry.From == null ? FormKind.None : (FormKind)entry.From.FormKind
+                    From = entry.From == null ? FormKind.Any : (FormKind)entry.From.FormKind
                 },
             };
 
@@ -260,12 +266,15 @@ namespace Patcher.Rules
                          }
                         catch (Exception ex)
                         {
-                            Log.Warning("Cached assembly containing compiled rules for plugin {0} could not be loaded: {1}", pluginFileName, ex.Message);
+                            Log.Error("Something is wrong with cached compiled rules.");
+                            Log.Error("If this problem persists please delete this file: {0}", cachedAssemblyFile.FullPath);
+                            Log.Error("Then run this program again.");
+                            throw new InvalidProgramException("Cached assembly containing compiled rules for plugin " + pluginFileName + " could not be loaded: " + ex.Message);
                         }
                     }
                     else
                     {
-                        Log.Fine("The version of cached assembly containing compiled rules for plugin {0} does not match the current program version.", pluginFileName);
+                        Log.Fine("Cached assembly containing compiled rules for plugin {0} is no longer valid and needs to be recompiled.", pluginFileName);
                     }
                 }
                 else
@@ -366,7 +375,10 @@ namespace Patcher.Rules
 
                 checker.LoadAssembly(path);
                 string version = checker.GetVersion();
-                return version == Program.GetProgramVersionInfo();
+                if (version != Program.GetProgramVersionInfo())
+                    return false;
+
+                return EnsureMethodsExist(checker.GetMethods());
             }
             finally
             {
@@ -396,10 +408,62 @@ namespace Patcher.Rules
                 return versionValue.ToString();
             }
 
+            internal string[] GetMethods()
+            {
+                List<string> methods = new List<string>();
+                foreach (var type in assembly.GetTypes())
+                {
+                    foreach (var method in type.GetMethods(BindingFlags.Static | BindingFlags.Public))
+                    {
+                        methods.Add(string.Format("{0}.{1}", type.Name, method.Name));
+                    }
+                }
+                return methods.ToArray();
+            }
+
             internal void LoadAssembly(string assemblyPath)
             {
                 assembly = Assembly.LoadFrom(assemblyPath);
             }
+        }
+
+        private bool EnsureMethodsExist(string[] methods)
+        {
+            foreach (var unit in units)
+            {
+                if (unit.Rule.Where != null)
+                {
+                    var method = string.Format("{0}.Where", unit.ClassName);
+                    if (!methods.Contains(method))
+                        return false;
+                }
+
+                if (unit.Rule.Select != null)
+                {
+                    var method = string.Format("{0}.Select", unit.ClassName);
+                    if (!methods.Contains(method))
+                        return false;
+                }
+
+                if (unit.Rule.Update != null)
+                {
+                    var method = string.Format("{0}.Update", unit.ClassName);
+                    if (!methods.Contains(method))
+                        return false;
+                }
+
+                if (unit.Rule.Inserts != null)
+                {
+                    for (int i = 0; i < unit.Rule.Inserts.Length; i++)
+                    {
+                        var method = string.Format("{0}.Insert_{1}", unit.ClassName, i);
+                        if (!methods.Contains(method))
+                            return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private void LoadMethodsFromAssembly(Assembly assembly)

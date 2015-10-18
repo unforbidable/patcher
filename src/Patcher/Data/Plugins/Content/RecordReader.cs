@@ -402,7 +402,7 @@ namespace Patcher.Data.Plugins.Content
             return ReadBytes((int)bytesRemaining);
         }
 
-        public uint ReadReference(FormKind referencedFormKind)
+        public uint ReadReference(FormKindSet referencedFormKinds)
         {
             uint formId = ReadUInt32();
             formId = ReferenceMapper.LocalToContext(formId);
@@ -574,7 +574,7 @@ namespace Patcher.Data.Plugins.Content
             else if (memberInfo.FieldType == typeof(uint))
             {
                 if (memberInfo.IsReference)
-                    return ReadReference(memberInfo.ReferencedFormKind);
+                    return ReadReference(memberInfo.ReferencedFormKinds);
                 else
                     return ReadUInt32();
             }

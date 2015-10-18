@@ -26,7 +26,7 @@ using System.Text;
 
 namespace Patcher.Rules
 {
-    class ObjectDumper
+    sealed class ObjectDumper
     {
         const int maxDepth = 12;
         const int idenentStep = 4;
@@ -43,122 +43,157 @@ namespace Patcher.Rules
             }
         }
 
-        readonly RuleEngine engine;
+        string prefix;
 
-        public ObjectDumper(RuleEngine engine)
+        public ObjectDumper(string prefix)
         {
-            this.engine = engine;
+            this.prefix = prefix;
         }
 
-        public IEnumerable<string> DumpObject(int depth, string name, object value)
+        void DoDump(string text)
+        {
+            Log.Fine("{0} {1}", prefix, text);
+        }
+
+        public void DumpObject(object value)
+        {
+            DumpObject(null, value);
+        }
+
+        public void DumpObject(string name, object value)
         {
             if (value == null)
             {
                 // Null values
-                yield return DoDumpText(depth, name, "NULL");
+                DumpText(name, "NULL");
             }
             else
             {
                 Type type = value.GetType();
-                if (type == typeof(VirtualMachineAdapter.ObjectProperty))
-                {
-                    var prop = (VirtualMachineAdapter.ObjectProperty)value;
-
-                    yield return DoDumpText(depth++, name, "{");
-                    // Alias ID
-                    if (prop.AliasId != -1)
-                    {
-                        yield return DoDumpText(depth, "AliasId", prop.AliasId.ToString());
-                    }
-
-                    // Form
-                    if (prop.FormId == 0)
-                    {
-                        yield return DoDumpText(depth, "Form", Form.NullFormString);
-                    }
-                    else if (engine.Context.Forms.Contains(prop.FormId))
-                        yield return DoDumpText(depth, "Form", engine.Context.Forms[prop.FormId].ToString());
-                    else
-                        yield return DoDumpText(depth, "Form", Form.GetUnresolvedFormString(prop.FormId));
-
-                    yield return DoDumpText(--depth, name, "}");
-                }
-                else if (type.IsPrimitive || type.IsEnum)
+                if (type.IsPrimitive || type.IsEnum)
                 {
                     // Primitive value - single line
-                    yield return DoDumpText(depth, name, value.ToString());
+                    DumpText(name, value.ToString());
                 }
                 else if (type == typeof(string))
                 {
                     // String - single line, quotes
-                    yield return DoDumpText(depth, name, "'{0}'", value);
+                    DumpText(name, "'{0}'", value);
                 }
                 else
                 {
-                    if (typeof(FormProxy).IsAssignableFrom(type))
+                    var formProxy = value as FormProxy;
+                    var dumpable = value as IDumpabled;
+
+                    if (dumpable != null)
                     {
-                        var formProxy = (FormProxy)value;
-                        if (depth == 0)
+                        // Call custom method of custom dumpable objects
+                        // Print the content of an arbitrary object
+                        DumpText(name, "{");
+                        if (Enter())
                         {
-                            // Print the content of the root form only
-                            yield return DoDumpText(depth++, name, "{0} {{", formProxy);
+                            dumpable.Dump(this);
+                            Leave();
                         }
-                        else
-                        {
-                            // Print just the form if reference
-                            yield return DoDumpText(depth++, name, "{0}", formProxy);
-                            yield break;
-                        }
+                        DumpText(name, "}");
+                    }
+                    else if (formProxy != null && currentDepth > 0)
+                    {
+                        // Print just the form if reference
+                        DumpText(name, "{0}", formProxy);
                     }
                     else
                     {
-                        // Some arbitrary object
-                        yield return DoDumpText(depth++, name, "{");
-                    }
-
-                    // Get all public instance properties (skip inherited and indexers)
-                    foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => p.DeclaringType == type && p.GetIndexParameters().Length == 0))
-                    {
-                        object val = property.GetValue(value, null);
-                        foreach (var text in DumpObject(depth, property.Name, val))
-                            yield return text;
-                    }
-
-                    // Print enumerable items
-                    var asEnumerable = value as IEnumerable;
-                    if (asEnumerable != null)
-                    {
-                        yield return DoDumpText(depth++, null, "[");
-                        foreach (var obj in (IEnumerable)value)
+                        if (formProxy != null)
                         {
-                            foreach (var text in DumpObject(depth, string.Empty, obj))
-                                yield return text;
+                            // Print the content of the root form only
+                            DumpText(name, "{0} {{", formProxy);
                         }
-                        yield return DoDumpText(--depth, null, "]");
-                    }
+                        else
+                        {
+                            // Print the content of an arbitrary object
+                            DumpText(name, "{");
+                        }
 
-                    yield return DoDumpText(--depth, null, "}");
+                        if (Enter())
+                        {
+                            bool anyOutput = false;
+
+                            // Get all public instance properties (skip inherited and indexers)
+                            foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => p.DeclaringType == type && p.GetIndexParameters().Length == 0))
+                            {
+                                object val = property.GetValue(value, null);
+                                DumpObject(property.Name, val);
+                                anyOutput = true;
+                            }
+
+                            // Print enumerable items
+                            var asEnumerable = value as IEnumerable;
+                            if (asEnumerable != null && asEnumerable.GetEnumerator().MoveNext())
+                            {
+                                DumpText("[");
+                                if (Enter())
+                                {
+                                    foreach (var obj in (IEnumerable)value)
+                                    {
+                                        DumpObject(obj);
+                                    }
+                                    Leave();
+                                }
+                                DumpText("]");
+
+                                anyOutput = true;
+                            }
+
+                            if (!anyOutput)
+                            {
+                                // ToString if no properties and not an enumerable
+                                DumpText(value.ToString());
+                            }
+
+                            Leave();
+                        }
+                        DumpText("}");
+                    }
                 }
             }
         }
 
-        private string DoDumpText(int depth, string name, string format, params object[] args)
+        public void DumpText(string text)
         {
-            return DoDumpText(depth, name, string.Format(format, args));
+            DumpText(null, text);
         }
 
-        private string DoDumpText(int depth, string name, string text)
+        public void DumpText(string name, string format, params object[] args)
         {
-            // Too deep
-            if (depth >= maxDepth - 1)
+            DumpText(name, string.Format(format, args));
+        }
+
+        public void DumpText(string name, string text)
+        {
+            string prefix = !string.IsNullOrEmpty(name) ? string.Format("{0} = ", name) : string.Empty;
+            DoDump(string.Format("{0}{1}{2}", indents[currentDepth], prefix, text));
+        }
+
+        int currentDepth = 0;
+
+        public int CurrentDepth { get { return currentDepth; } }
+
+        public bool Enter()
+        {
+            if (currentDepth >= maxDepth - 1)
             {
-                return string.Format("{0}...", indents[maxDepth - 1]);
+                DoDump(string.Format("{0}...", indents[maxDepth - 1]));
+                return false;
             }
-            else
-            {
-                string prefix = !string.IsNullOrEmpty(name) ? string.Format("{0} = ", name) : string.Empty;
-                return string.Format("{0}{1}{2}", indents[depth], prefix, text);
-            }
+
+            currentDepth++;
+            return true;
+        }
+
+        public void Leave()
+        {
+            currentDepth--;
         }
     }
 }

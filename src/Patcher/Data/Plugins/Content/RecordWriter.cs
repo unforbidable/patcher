@@ -43,7 +43,7 @@ namespace Patcher.Data.Plugins.Content
         HeaderRecord header = null;
 
         int numRecords = 0;
-        FormKind currentGroupFormKind = FormKind.None;
+        FormKind currentGroupFormKind = FormKind.Any;
 
         internal RecordWriter(Stream stream, DataContext context)
         {
@@ -71,7 +71,7 @@ namespace Patcher.Data.Plugins.Content
             if (formKind != currentGroupFormKind)
             {
                 // End existing group if one has begun
-                if (currentGroupFormKind != FormKind.None)
+                if (currentGroupFormKind != FormKind.Any)
                 {
                     EndSegment();
                 }
@@ -103,9 +103,9 @@ namespace Patcher.Data.Plugins.Content
             if (value == null)
                 return;
 
-            // Skip null form references (that are not a list of references)
-            if (meminfo.IsReference && !meminfo.IsListType && (uint)value == 0)
-                return;
+            //// Skip null form references (that are not a list of references)
+            //if (meminfo.IsReference && !meminfo.IsListType && (uint)value == 0)
+            //    return;
 
             string fieldName = meminfo.FieldNames.First();
             if (meminfo.IsPrimitiveType)
@@ -132,29 +132,37 @@ namespace Patcher.Data.Plugins.Content
                 if (meminfo.FieldType.IsSubclassOf(typeof(Compound)))
                 {
                     // Compund property will begin segment for each of its fields
-                    WriteComplexField(meminfo, value);
+                    if (meminfo.IsListType)
+                    {
+                        foreach (var item in (IEnumerable)value)
+                        {
+                            ((Field)item).WriteField(this);
+                        }
+                    }
+                    else
+                    {
+                        ((Field)value).WriteField(this);
+                    }
                 }
                 else
                 {
-                    BeginPropertySegment(fieldName);
-                    WriteComplexField(meminfo, value);
-                    EndSegment();
+                    // Each field in it's own segment
+                    if (meminfo.IsListType)
+                    {
+                        foreach (var item in (IEnumerable)value)
+                        {
+                            BeginPropertySegment(fieldName);
+                            ((Field)item).WriteField(this);
+                            EndSegment();
+                        }
+                    }
+                    else
+                    {
+                        BeginPropertySegment(fieldName);
+                        ((Field)value).WriteField(this);
+                        EndSegment();
+                    }
                 }
-            }
-        }
-
-        private void WriteComplexField(MemberInfo meminfo, object value)
-        {
-            if (meminfo.IsListType)
-            {
-                foreach (var item in (IEnumerable)value)
-                {
-                    ((Field)item).WriteField(this);
-                }
-            }
-            else
-            {
-                ((Field)value).WriteField(this);
             }
         }
 
@@ -171,7 +179,7 @@ namespace Patcher.Data.Plugins.Content
             else if (meminf.FieldType == typeof(uint))
             {
                 if (meminf.IsReference)
-                    WriteReference((uint)value, meminf.ReferencedFormKind);
+                    WriteReference((uint)value, meminf.ReferencedFormKinds);
                 else
                     Write((uint)value);
             }
@@ -216,25 +224,26 @@ namespace Patcher.Data.Plugins.Content
             }
         }
 
-        public void WriteReference(uint formId, FormKind referencedFormKind)
+        public void WriteReference(uint formId, FormKindSet referencedFormKinds)
         {
             // All fields should write references via this method so problems can be detected
             if (formId == 0)
             {
-                Log.Warning("Writting null reference 0x{0:X8}.", formId);
+                // Null references are normal, do not warn
+                //Log.Warning("Writting null reference 0x{0:X8}.", formId);
             }
             else if (!context.Forms.Contains(formId))
             {
                 Log.Warning("Writting unresolved form reference 0x{0:X8}.", formId);
             }
-            else if (referencedFormKind != FormKind.None)
+            else if (!referencedFormKinds.IsAny)
             {
                 // Verify correct reference type
                 // if specified reference type is not FormType.None
                 var form = context.Forms[formId];
-                if (form.FormKind != referencedFormKind)
+                if (!referencedFormKinds.Contains(form.FormKind))
                 {
-                    Log.Warning("Writting reference to {0} used where olny references to forms of type {1} should be.", form, referencedFormKind);
+                    Log.Warning("Writting reference to {0} used where olny references to forms of following types should be: {1}", form, referencedFormKinds);
                 }
             }
 
@@ -378,7 +387,7 @@ namespace Patcher.Data.Plugins.Content
         public void Dispose()
         {
             // End last group if one has begun
-            if (currentGroupFormKind != FormKind.None)
+            if (currentGroupFormKind != FormKind.Any)
             {
                 EndSegment();
             }

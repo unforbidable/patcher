@@ -124,9 +124,9 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             {
                 Value = reader.ReadInt32();
                 Ingestion = (IngestionFlags)reader.ReadUInt32();
-                Addiction = reader.ReadReference(FormKind.None); // TODO: Investigate usage and type of reference
+                Addiction = reader.ReadReference(FormKindSet.Any); // TODO: Investigate usage and type of reference
                 AddictionChance = reader.ReadSingle();
-                ConsumeSound = reader.ReadReference(FormKind.FromString(Names.SNDR));
+                ConsumeSound = reader.ReadReference(FormKindSet.SndrOnly);
             }
 
             internal override void WriteField(RecordWriter writer)
