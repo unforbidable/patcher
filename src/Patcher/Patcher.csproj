@@ -129,6 +129,7 @@
     <Compile Include="Data\Plugins\FormLoader.cs" />
     <Compile Include="Data\IDataFileProvider.cs" />
     <Compile Include="Data\FormRepository.cs" />
+    <Compile Include="Data\Plugins\PluginInspector.cs" />
     <Compile Include="Data\QueryableFormRepository.cs" />
     <Compile Include="IO\CustomBinaryReader.cs" />
     <Compile Include="IO\CustomBinaryWriter.cs" />

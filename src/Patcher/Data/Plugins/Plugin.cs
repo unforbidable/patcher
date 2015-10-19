@@ -43,6 +43,9 @@ namespace Patcher.Data.Plugins
         public string Description { get { return header.Description; } set { header.Description = value; } }
         public IEnumerable<string> MasterFiles { get { return header.GetMasterFiles(); } }
 
+        ISet<uint> reservedFormIds = new SortedSet<uint>();
+        IDictionary<string, uint> reservedEditorIdMap = new SortedDictionary<string, uint>();
+
         // DataContext creates plugins
         internal Plugin(DataContext context, string fileName, PluginMode mode)
         {
@@ -279,6 +282,12 @@ namespace Patcher.Data.Plugins
             }
         }
 
+        public void ReserveFormId(uint formId, string editorId)
+        {      
+            reservedFormIds.Add(formId);
+            reservedEditorIdMap.Add(editorId, formId);
+        }
+
         public void AddForms(IEnumerable<Form> formsToAdd)
         {
             // Retrieve plugin number so that added forms can be linked to it
@@ -289,14 +298,46 @@ namespace Patcher.Data.Plugins
                 if (newForm.FormId == 0)
                 {
                     // Brand new form is being added
-                    // Assign new form ID
-                    uint newFormId = header.NextFormId++;
-                    // Apply plugin index
-                    newFormId |= (uint)((long)pluginNumber) << 24;
-                    newForm.FormId = newFormId;
-
                     newForm.PluginNumber = pluginNumber;
                     newForm.FilePosition = -1;
+
+                    if (!string.IsNullOrEmpty(newForm.EditorId) && reservedEditorIdMap.ContainsKey(newForm.EditorId))
+                    {
+                        // Get reserved Form ID and adjust it to the plugin number
+                        newForm.FormId = reservedEditorIdMap[newForm.EditorId] | (uint)((long)pluginNumber) << 24;
+
+                        // Make sure it has not been claimed somehow
+                        if (context.Forms.Contains(newForm.FormId))
+                        {
+                            Log.Warning("Form ID {0:X8} has been reserved for EditorId {1} but somehow it has already been claimed by form {2}.", newForm.FormId, newForm.EditorId, context.Forms[newForm.FormId]);
+
+                            // Unset the Form ID and allow a new one be claimed below normally
+                            newForm.FormId = 0;
+                        }
+                        else
+                        {
+                            // and remove it from reservation
+                            reservedEditorIdMap.Remove(newForm.EditorId);
+                            reservedFormIds.Remove(newForm.FormId);
+
+                            Log.Fine("New form claims a reserved Form ID.");
+                        }
+                    }
+
+                    // Assign new form ID if not reserved or reservation above failed
+                    // Keep looking in case that Form ID is reserved or already claimed
+                    if (newForm.FormId == 0)
+                    {
+                        do
+                        {
+                            // Grab new form ID and adjust it to the plugin number
+                            newForm.FormId = header.NextFormId++ | (uint)((long)pluginNumber) << 24;
+
+                            // FormIDs are reserved without the plugin number so mask 0xFFFFFF has to be applied when checking if new FormId has been reserved
+                        } while (reservedFormIds.Contains(newForm.FormId & 0xFFFFFF) || context.Forms.Contains(newForm.FormId));
+
+                        Log.Fine("New form claims a new Form ID.");
+                    }
 
                     // Add new form to local and global index
                     context.Forms.Add(newForm);
@@ -335,6 +376,7 @@ namespace Patcher.Data.Plugins
                 }
                 else
                 {
+                    // TODO: Allow injecting
                     // New form has FormId but no form with that FormId exists
                     throw new InvalidOperationException("Cannot update or override form that does not exist");
                 }
