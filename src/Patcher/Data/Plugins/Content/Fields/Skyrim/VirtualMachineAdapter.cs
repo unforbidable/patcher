@@ -37,6 +37,12 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             Scripts = new List<Script>();
         }
 
+        internal override bool CanWriteField()
+        {
+            // Write this field only if there are any scripts.
+            return Scripts.Count > 0;
+        }
+
         internal override void ReadField(RecordReader reader)
         {
             Version = reader.ReadInt16(); // 5

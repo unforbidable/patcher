@@ -29,5 +29,14 @@ namespace Patcher.Data.Plugins.Content
         public abstract override string ToString();
         public abstract bool Equals(Field other);
         public abstract IEnumerable<uint> GetReferencedFormIds();
+
+        /// <summary>
+        /// When overridden by a derived class, determines whether the field will be saved at all, depending on the internal state of the field.
+        /// </summary>
+        /// <returns></returns>
+        internal virtual bool CanWriteField()
+        {
+            return true;
+        }
     }
 }

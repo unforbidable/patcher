@@ -134,38 +134,52 @@ namespace Patcher.Data.Plugins.Content
             {
                 if (meminfo.FieldType.IsSubclassOf(typeof(Compound)))
                 {
-                    // Compund property will begin segment for each of its fields
                     if (meminfo.IsListType)
                     {
                         foreach (var item in (IEnumerable)value)
                         {
-                            ((Field)item).WriteField(this);
+                            WriteCompoundField((Compound)item);
                         }
                     }
                     else
                     {
-                        ((Field)value).WriteField(this);
+                        WriteCompoundField((Compound)value);
                     }
                 }
                 else
                 {
-                    // Each field in it's own segment
                     if (meminfo.IsListType)
                     {
                         foreach (var item in (IEnumerable)value)
                         {
-                            BeginPropertySegment(fieldName);
-                            ((Field)item).WriteField(this);
-                            EndSegment();
+                            WriteStructuredField((Field)item, fieldName);
                         }
                     }
                     else
                     {
-                        BeginPropertySegment(fieldName);
-                        ((Field)value).WriteField(this);
-                        EndSegment();
+                        WriteStructuredField((Field)value, fieldName);
                     }
                 }
+            }
+        }
+
+        private void WriteStructuredField(Field field, string fieldName)
+        {
+            if (field.CanWriteField())
+            {
+                // Each structured field in it's own segment
+                BeginPropertySegment(fieldName);
+                field.WriteField(this);
+                EndSegment();
+            }
+        }
+
+        private void WriteCompoundField(Compound compound)
+        {
+            if (compound.CanWriteField())
+            {
+                // Compund property will begin segment for each of its fields
+                compound.WriteField(this);
             }
         }
 

@@ -27,7 +27,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
     public sealed class Cobj : GenericFormRecord, IFeaturingConditions
     {
         [Member(Names.COCT)]
-        private uint? MaterialCount { get; set; }
+        private uint MaterialCount { get; set; }
 
         [Member(Names.CNTO)]
         [Initialize]
@@ -53,11 +53,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         protected override void BeforeWrite(RecordWriter writer)
         {
-            // Sync material count
-            if (Materials.Count > 0)
-                MaterialCount = (uint)Materials.Count;
-            else
-                MaterialCount = null;
+            // Sync material count before saving
+            MaterialCount = (uint)Materials.Count;
         }
 
         public class MaterialData : Field
