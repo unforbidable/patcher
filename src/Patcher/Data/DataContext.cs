@@ -101,12 +101,13 @@ namespace Patcher.Data
         /// When overrdien by a deviced class, provides the list of types that will not be indexed.
         /// </summary>
         /// <returns>Returns array of FormType representing form types that will not be indexed.</returns>
-        protected abstract FormKind[] GetIgnoredFormKinds();
-        protected abstract string[] GetDefaultArchives();
+        protected abstract IEnumerable<FormKind> GetIgnoredFormKinds();
+        protected abstract IEnumerable<string> GetDefaultArchives();
         protected abstract Assembly GetRecordTypeAssembly();
         protected abstract string GetRecordTypeNamespace();
         protected abstract IPluginListProvider GetPluginListProvider();
         protected abstract string GetGameTitle();
+        protected abstract IEnumerable<Form> GetHardcodedForms(byte plugin);
 
         private void QuerySupportedTypes()
         {
@@ -195,12 +196,25 @@ namespace Patcher.Data
             }
 
             // Add plugin to the index 
-            plugins.AddPlugin(plugin);
+            byte number = plugins.AddPlugin(plugin);
+
+            // Insert hardcoded forms for this plugin
+            // Before normal forms are loaded form the plugin file
+            InsertHardcodedForms(number);
 
             // Finally plugin can be loaded only after all masters have been added and loaded
             plugin.Load();
 
             LoadPluginArchive(pluginFilename);
+        }
+
+        private void InsertHardcodedForms(byte pluginNumber)
+        {
+            foreach (var form in GetHardcodedForms(pluginNumber))
+            {
+                Forms.Add(form);
+                Log.Fine("Hardcoded form inserted: {0}", form);
+            }
         }
 
         private void LoadPluginArchive(string pluginFilename)

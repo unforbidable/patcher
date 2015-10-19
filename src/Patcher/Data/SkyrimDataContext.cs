@@ -15,8 +15,10 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Plugins;
+using Patcher.Data.Plugins.Content;
 using Patcher.Data.Plugins.Content.Records.Skyrim;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -37,12 +39,12 @@ namespace Patcher.Data
         //readonly static string[] defaultArchives = new string[] { "Skyrim - Misc.bsa" , "Skyrim - Shaders.bsa", "Skyrim - Textures.bsa", "Skyrim - Interface.bsa",
         //   "Skyrim - Animations.bsa", "Skyrim - Meshes.bsa", "Skyrim - Sounds.bsa", "Skyrim - Voices.bsa", "Skyrim - VoicesExtra.bsa" };
 
-        protected override string[] GetDefaultArchives()
+        protected override IEnumerable<string> GetDefaultArchives()
         {
             return defaultArchives;
         }
 
-        protected override FormKind[] GetIgnoredFormKinds()
+        protected override IEnumerable<FormKind> GetIgnoredFormKinds()
         {
             // Convert string[] to FormType[] only now when needed as not to allocate FormType values needlessly
             return hiddenFormTypes.Select(t => (FormKind)t).ToArray();
@@ -69,6 +71,23 @@ namespace Patcher.Data
         protected override string GetGameTitle()
         {
             return "Skyrim";
+        }
+
+        protected override IEnumerable<Form> GetHardcodedForms(byte pluginNumber)
+        {
+            if (pluginNumber > 0)
+                yield break;
+
+            // PlayerRef
+            yield return new Form()
+            {
+                FormId = 0x14,
+                FormKind = FormKind.FromName(Names.REFR),
+                Record = new DummyRecord()
+                {
+                    EditorId = "PlayerRef"
+                }
+            };
         }
     }
 }

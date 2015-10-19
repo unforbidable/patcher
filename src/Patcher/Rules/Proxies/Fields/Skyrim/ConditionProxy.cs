@@ -34,7 +34,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     [Proxy(typeof(ICondition))]
     public sealed class ConditionProxy : FieldProxy<Condition>, ICondition, IDumpabled
     {
-        const uint PlayerFormId = 0x00000014;
+        const uint PlayerRefFormId = 0x00000014;
 
         public ICondition AndNext()
         {
@@ -173,7 +173,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         public ICondition RunOnPlayer()
         {
             Field.FunctionTarget = FunctionTarget.Reference;
-            Field.FunctionTargetReference = PlayerFormId;
+            Field.FunctionTargetReference = PlayerRefFormId;
             return this;
         }
 
@@ -295,22 +295,11 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
                     var formKindSet = sig[index].Reference;
                     if (!formKindSet.IsAny)
                     {
-                        bool found = false;
-
                         // Parameter requires a specific kind (or kinds) of form
                         // Determine which kind of form the argument is
-                        // See if any of its interfaces implements any of the required kinds of forms
-                        foreach (var iface in value.GetType().GetInterfaces().Where(t => t != typeof(IForm)))
-                        {
-                            var kind = Provider.GetFormKindOfInterface(iface);
-                            if (kind != FormKind.Any && formKindSet.Contains(kind))
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (!found)
+                        // Cast to proxy to access the FormKind property
+                        var proxy = (FormProxy)value;
+                        if (!formKindSet.Contains(proxy.Form.FormKind))
                             Log.Warning("Form {0} is being used as argument where only the following kinds are valid: {1}", value, formKindSet);
                     }
                 }
@@ -461,7 +450,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
                 dumper.DumpObject("Operand", Field.FloatOperand);
             }
 
-            if (Field.FunctionTarget == FunctionTarget.Reference && Field.FunctionTargetReference == PlayerFormId)
+            if (Field.FunctionTarget == FunctionTarget.Reference && Field.FunctionTargetReference == PlayerRefFormId)
             {
                 dumper.DumpText("RunOn", "Player");
             }
