@@ -21,17 +21,178 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Constants.Skyrim;
+using Patcher.Data.Plugins.Content.Constants.Skyrim;
 
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
     [Proxy(typeof(IAlch))]
     public sealed class AlchProxy : FormProxy<Alch>, IAlch
     {
-        public string Name { get { return record.Name; } set { EnsureWritable(); record.Name = value; } }
-        public int Value { get { return record.Consumption.Value; } set { EnsureWritable(); record.Consumption.Value = value; } }
-        public float Weight { get { return record.Misc.Weight; } set { EnsureWritable(); record.Misc.Weight = value; } }
+        public string Description
+        {
+            get
+            {
+                return record.Description;
+            }
 
+            set
+            {
+                EnsureWritable();
+                record.Description = value;
+            }
+        }
 
-        // TODO: Not finished
+        public IFormCollection<IKywd> Keywords
+        {
+            get
+            {
+                return Provider.CreateFormCollectionProxy<IKywd>(Mode, record.Keywords.Items);
+            }
+            set
+            {
+                EnsureWritable();
+                record.Keywords.Items = value.ToFormIdList();
+            }
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return record.FullName;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FullName = FullName;
+            }
+        }
+
+        public IObjectBounds ObjectBounds
+        {
+            get
+            {
+                return record.CreateObjectBoundsProxy(this);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.UpdateFromObjectBoundsProxy(value);
+            }
+        }
+
+        public IForm PickUpSound
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IForm>(record.PickUpSound);
+            }
+            set
+            {
+                EnsureWritable();
+                record.PickUpSound = value.ToFormId();
+            }
+        }
+
+        public IForm PutDownSound
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IForm>(record.PutDownSound);
+            }
+            set
+            {
+                EnsureWritable();
+                record.PutDownSound = value.ToFormId();
+            }
+        }
+
+        public IForm UseSound
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IForm>(record.UseSound);
+            }
+            set
+            {
+                EnsureWritable();
+                record.UseSound = value.ToFormId();
+            }
+        }
+
+        public int Value
+        {
+            get
+            {
+                return record.Value;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.Value = value;
+            }
+        }
+
+        public float Weight
+        {
+            get
+            {
+                return record.Weight;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.Weight = value;
+            }
+        }
+
+        public string WorldModel
+        {
+            get
+            {
+                return record.WorldModel;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.WorldModel = value;
+            }
+        }
+
+        public PotionType Type
+        {
+            get
+            {
+                return (record.PotionFlags & PotionFlags.FoodMedicinePoisonMask).ToPotionType();
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.PotionFlags = (record.PotionFlags & ~PotionFlags.FoodMedicinePoisonMask) | value.ToPotionFlags();
+            }
+        }
+
+        public IEffectCollection Effects
+        {
+            get
+            {
+                return record.CreateEffectCollectionProxy(this);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.UpdateFromConditionCollectionProxy(value);
+            }
+        }
     }
 }

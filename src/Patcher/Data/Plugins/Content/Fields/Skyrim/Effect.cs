@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 {
-    public sealed class Effect : Compound
+    public sealed class Effect : Compound, IFeaturingConditions
     {
         [Member(Names.EFID)]
         [Reference(Names.MGEF)]
@@ -30,18 +30,22 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
         [Member(Names.EFIT)]
         [Initialize]
-        public EffectParameters Parameters { get; private set; }
+        private EffectData Data { get; set; }
 
         [Member(Names.CTDA, Names.CIS1, Names.CIS2)]
         [Initialize]
-        public List<Condition> Conditions { get; private set; }
+        public List<Condition> Conditions { get; set; }
+
+        public float Magnitude { get { return Data.Magnitude; } set { Data.Magnitude = value; } }
+        public uint Area { get { return Data.Area; } set { Data.Area = value; } }
+        public uint Duration { get { return Data.Duration; } set { Data.Duration = value; } }
 
         public override string ToString()
         {
             return string.Format("{0}", BaseEffect);
         }
 
-        public sealed class EffectParameters : Field
+        public sealed class EffectData : Field
         {
             public float Magnitude { get; set; }
             public uint Area { get; set; }
@@ -56,12 +60,14 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(Magnitude);
+                writer.Write(Area);
+                writer.Write(Duration);
             }
 
             public override Field CopyField()
             {
-                return new EffectParameters()
+                return new EffectData()
                 {
                     Magnitude = Magnitude,
                     Area = Area,
@@ -71,7 +77,8 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (EffectData)other;
+                return Magnitude == cast.Magnitude && Area == cast.Area && Duration == cast.Duration;
             }
 
             public override string ToString()
@@ -81,7 +88,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
     }

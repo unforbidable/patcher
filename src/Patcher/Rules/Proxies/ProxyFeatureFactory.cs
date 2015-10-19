@@ -79,5 +79,20 @@ namespace Patcher.Rules.Proxies
                 target.VirtualMachineAdapter = (VirtualMachineAdapter)cast.Record.VirtualMachineAdapter.CopyField();
             }
         }
+
+        public static EffectCollectionProxy CreateEffectCollectionProxy(this IFeaturingEffects target, Proxy parent)
+        {
+            var proxy = parent.Provider.CreateProxy<EffectCollectionProxy>(parent.Mode);
+            proxy.Fields = target.Effects;
+            return proxy;
+        }
+
+        public static void UpdateFromConditionCollectionProxy(this IFeaturingEffects target, IEffectCollection value)
+        {
+            if (value == null)
+                throw new ArgumentNullException("value", "Cannot assign a NULL to a collection.");
+
+            target.Effects = ((EffectCollectionProxy)value).CopyFieldCollection();
+        }
     }
 }

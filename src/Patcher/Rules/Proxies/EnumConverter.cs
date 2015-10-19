@@ -103,7 +103,33 @@ namespace Patcher.Rules.Proxies
         {
             return (ScriptPropertyType)ConvertUsing(typeToScriptPropertyTypeMap, value);
         }
-        
+
+        static IDictionary<Enum, Enum> potionTypeToFlags = new SortedDictionary<Enum, Enum>()
+        {
+            { PotionType.Auto, PotionFlags.None },
+            { PotionType.Food, PotionFlags.Food },
+            { PotionType.Medicine, PotionFlags.Medicine },
+            { PotionType.Poison, PotionFlags.Poison }
+        };
+
+        static IDictionary<Enum, Enum> potionFlagsToType = new SortedDictionary<Enum, Enum>()
+        {
+            { PotionFlags.None, PotionType.Auto },
+            { PotionFlags.Food, PotionType.Food },
+            { PotionFlags.Medicine, PotionType.Medicine },
+            { PotionFlags.Poison, PotionType.Poison }
+        };
+
+        public static PotionFlags ToPotionFlags(this PotionType value)
+        {
+            return (PotionFlags)ConvertUsing(potionTypeToFlags, value);
+        }
+
+        public static PotionType ToPotionType(this PotionFlags value)
+        {
+            return (PotionType)ConvertUsing(potionFlagsToType, value);
+        }
+
         private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)
         {
             if (!map.ContainsKey(value))

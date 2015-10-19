@@ -14,12 +14,24 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Rules.Compiled.Constants.Skyrim;
+using Patcher.Rules.Compiled.Fields.Skyrim;
+
 namespace Patcher.Rules.Compiled.Forms.Skyrim
 {
     public interface IAlch : IForm
     {
-        int Value { get; set; }
-        string Name { get; set; }
+        IObjectBounds ObjectBounds { get; set; }
+        string FullName { get; set; }
+        IFormCollection<IKywd> Keywords { get; set; }
+        string Description { get; set; }
+        string WorldModel { get; set; }
+        IForm PickUpSound { get; set; }
+        IForm PutDownSound { get; set; }
+        IForm UseSound { get; set; }
         float Weight { get; set; }
+        int Value { get; set; }
+        PotionType Type { get; set; }
+        IEffectCollection Effects { get; set; }
     }
 }

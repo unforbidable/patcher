@@ -25,24 +25,27 @@ using System.Threading.Tasks;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.ALCH)]
-    public sealed class Alch : GenericFormRecord
+    public sealed class Alch : GenericFormRecord, IFeaturingObjectBounds, IFeaturingEffects
     {
         [Member(Names.OBND)]
+        [Initialize]
         public ObjectBounds ObjectBounds { get; set; }
 
         [Member(Names.FULL)]
         [LocalizedString(LocalizedStringGroups.Strings)]
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
         [Member(Names.KSIZ, Names.KWDA)]
-        public Keywords Keywords { get; internal set; }
+        [Initialize]
+        public Keywords Keywords { get; set; }
 
         [Member(Names.DESC)]
         [LocalizedString(LocalizedStringGroups.DLStrings)]
         public string Description { get; set; }
 
         [Member(Names.MODL, Names.MODS, Names.MODT)]
-        public Model Model { get; internal set; }
+        [Initialize]
+        private Model Model { get; set; }
 
         [Member(Names.YNAM)]
         [Reference(Names.SNDR)]
@@ -50,28 +53,28 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.ZNAM)]
         [Reference(Names.SNDR)]
-        public uint DropSound { get; set; }
+        public uint PutDownSound { get; set; }
 
         [Member(Names.ETYP)]
         [Reference(Names.EQUP)]
-        public uint EquipmentType { get; set; }
+        private uint EquipmentType { get; set; }
         
         [Member(Names.DATA)]
-        public MiscData Misc { get; set; }
+        [Initialize]
+        private MiscData Misc { get; set; }
 
         [Member(Names.ENIT)]
-        public ConsumptionData Consumption { get; set; }
+        [Initialize]
+        private ConsumptionData Consumption { get; set; }
 
         [Member(Names.EFID, Names.EFIT, Names.CTDA, Names.CIS1, Names.CIS2)]
-        public List<Effect> ResultEffects { get; set; } 
+        public List<Effect> Effects { get; set; }
 
-        protected override void BeforeRead(RecordReader reader)
-        {
-        }
-
-        protected override void AfterRead(RecordReader reader)
-        {
-        }
+        public string WorldModel { get { return Model.Path; } set { Model.Path = value; } }
+        public float Weight { get { return Misc.Weight; } set { Misc.Weight = value; } }
+        public int Value { get { return Consumption.Value; } set { Consumption.Value = value; } }
+        public uint UseSound { get { return Consumption.ConsumeSound; } set { Consumption.ConsumeSound = value; } }
+        public PotionFlags PotionFlags { get { return Consumption.Flags; } set { Consumption.Flags = value; } }
 
         public class MiscData : Field
         {
@@ -84,7 +87,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(Weight);
             }
 
             public override Field CopyField()
@@ -97,7 +100,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                return Weight == ((MiscData)other).Weight;
             }
 
             public override string ToString()
@@ -107,31 +110,34 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
         public class ConsumptionData : Field
         {
             public int Value { get; set; }
-            public IngestionFlags Ingestion { get; set; }
+            public PotionFlags Flags { get; set; }
             public uint Addiction { get; set; }
             public float AddictionChance { get; set; }
-
             public uint ConsumeSound { get; set; } 
 
             internal override void ReadField(RecordReader reader)
             {
                 Value = reader.ReadInt32();
-                Ingestion = (IngestionFlags)reader.ReadUInt32();
-                Addiction = reader.ReadReference(FormKindSet.Any); // TODO: Investigate usage and type of reference
+                Flags = (PotionFlags)reader.ReadUInt32();
+                Addiction = reader.ReadReference(FormKindSet.Any);
                 AddictionChance = reader.ReadSingle();
                 ConsumeSound = reader.ReadReference(FormKindSet.SndrOnly);
             }
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(Value);
+                writer.Write((uint)Flags);
+                writer.WriteReference(Addiction, FormKindSet.Any);
+                writer.Write(AddictionChance);
+                writer.WriteReference(ConsumeSound, FormKindSet.SndrOnly);
             }
 
             public override Field CopyField()
@@ -139,7 +145,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 return new ConsumptionData()
                 {
                     Value = Value,
-                    Ingestion = Ingestion,
+                    Flags = Flags,
                     Addiction = Addiction,
                     AddictionChance = AddictionChance,
                     ConsumeSound = ConsumeSound
@@ -148,17 +154,21 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (ConsumptionData)other;
+                return Value == cast.Value && Flags == cast.Flags && 
+                    Addiction == cast.Addiction && AddictionChance == cast.AddictionChance && 
+                    ConsumeSound == cast.ConsumeSound;
             }
 
             public override string ToString()
             {
-                return string.Format("{0} Value={1}", Ingestion, Value);
+                return string.Format("{0} Value={1}", Flags, Value);
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield return Addiction;
+                yield return ConsumeSound;
             }
         }
     }

@@ -39,11 +39,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Skyrim\BodyNodes.cs" />
+    <Compile Include="Constants\Skyrim\PotionType.cs" />
     <Compile Include="Constants\Skyrim\Skill.cs" />
     <Compile Include="Constants\Type.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
     <Compile Include="Fields\Skyrim\ICondition.cs" />
     <Compile Include="Fields\Skyrim\IConditionCollection.cs" />
+    <Compile Include="Fields\Skyrim\IEffect.cs" />
+    <Compile Include="Fields\Skyrim\IEffectCollection.cs" />
     <Compile Include="Fields\Skyrim\IMaterial.cs" />
     <Compile Include="Fields\Skyrim\IMaterialCollection.cs" />
     <Compile Include="Fields\Skyrim\IScript.cs" />

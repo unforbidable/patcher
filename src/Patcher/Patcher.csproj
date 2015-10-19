@@ -68,7 +68,7 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\FurnitureEntry.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\GenderType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\GlobalVariableType.cs" />
-    <Compile Include="Data\Plugins\Content\Constants\Skyrim\IngestionFlags.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\PotionFlags.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\MiscStat.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\PlayerAction.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptPropertyType.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingConditions.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingEffects.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingObjectBounds.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
@@ -153,6 +154,8 @@
     <Compile Include="Rules\IDumpabled.cs" />
     <Compile Include="Rules\ObjectDumper.cs" />
     <Compile Include="Rules\Proxies\EnumConverter.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\EffectCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyFeatureFactory.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldProxy.cs" />
