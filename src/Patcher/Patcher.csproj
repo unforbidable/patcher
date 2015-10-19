@@ -78,9 +78,9 @@
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
-    <Compile Include="Data\Plugins\Content\Records\IHasConditions.cs" />
-    <Compile Include="Data\Plugins\Content\Records\IHasObjectBounds.cs" />
-    <Compile Include="Data\Plugins\Content\Records\IHasScripts.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingConditions.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingObjectBounds.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Flst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
@@ -163,7 +163,6 @@
     <Compile Include="Rules\Proxies\ProxyUtility.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\ScriptProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\FormCollectionProxy.cs" />
-    <Compile Include="Rules\Proxies\Forms\Skyrim\SkyrimFormProxy.cs" />
     <Compile Include="Rules\Proxies\Proxy.cs" />
     <Compile Include="Rules\Proxies\Forms\DummyFormProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyAttribute.cs" />

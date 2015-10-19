@@ -27,7 +27,7 @@ using Patcher.Rules.Proxies.Fields.Skyrim;
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
     [Proxy(typeof(ICobj))]
-    public sealed class CobjProxy : SkyrimFormProxy<Cobj>, ICobj
+    public sealed class CobjProxy : FormProxy<Cobj>, ICobj
     {
         public IMaterialCollection Materials
         {
@@ -54,7 +54,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
                 else
                 {
                     // Copy materials
-                    record.Materials = otherCollection.CopyFields();
+                    record.Materials = otherCollection.CopyFieldCollection();
                 }
             }
         }
@@ -63,11 +63,12 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
         {
             get
             {
-                return record.CreateConditionCollectionProxy(Provider, Mode);
+                return record.CreateConditionCollectionProxy(this);
             }
 
             set
             {
+                EnsureWritable();
                 record.UpdateFromConditionCollectionProxy(value);
             }
         }

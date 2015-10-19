@@ -27,9 +27,13 @@ namespace Patcher.Rules.Proxies.Fields
     {
         internal List<TField> Fields { get; set; }
 
-        internal List<TField> CopyFields()
+        internal List<TField> CopyFieldCollection()
         {
-            return Fields.Select(f => f.CopyField()).Cast<TField>().ToList();
+            // If the list of fields is null, return null
+            if (Fields == null)
+                return null;
+            else
+                return Fields.Select(f => f.CopyField()).Cast<TField>().ToList();
         }
 
         protected IEnumerator<TInterface> GetFieldEnumerator<TInterface>()

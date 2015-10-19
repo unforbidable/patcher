@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
-using Patcher.Data.Plugins.Content.Records;
+using Patcher.Data.Plugins.Content;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
@@ -30,7 +30,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     {
         IDictionary<string, ScriptProxy> cache = new SortedDictionary<string, ScriptProxy>();
 
-        internal IHasScripts Record { get; set; }
+        internal IFeaturingScripts Record { get; set; }
 
         public int Count { get { return Record.VirtualMachineAdapter != null ? Record.VirtualMachineAdapter.Scripts.Count : 0; } }
 

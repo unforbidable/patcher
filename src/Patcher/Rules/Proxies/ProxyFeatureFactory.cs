@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Plugins.Content;
+using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Rules.Compiled.Fields.Skyrim;
 using Patcher.Rules.Proxies.Fields.Skyrim;
 using System;
@@ -26,19 +27,57 @@ namespace Patcher.Rules.Proxies
 {
     public static class ProxyFeatureFactory
     {
-        public static ConditionCollectionProxy CreateConditionCollectionProxy(this IHasConditions target, ProxyProvider provider, ProxyMode mode)
+        public static ConditionCollectionProxy CreateConditionCollectionProxy(this IFeaturingConditions target, Proxy parent)
         {
-            var proxy = provider.CreateProxy<ConditionCollectionProxy>(mode);
+            var proxy = parent.Provider.CreateProxy<ConditionCollectionProxy>(parent.Mode);
             proxy.Fields = target.Conditions;
             return proxy;
         }
 
-        public static void UpdateFromConditionCollectionProxy(this IHasConditions target, IConditionCollection proxy)
+        public static void UpdateFromConditionCollectionProxy(this IFeaturingConditions target, IConditionCollection value)
         {
-            if (proxy == null)
+            if (value == null)
                 throw new ArgumentNullException("value", "Cannot assign a NULL to a collection.");
 
-            target.Conditions = ((ConditionCollectionProxy)proxy).CopyFields();
+            target.Conditions = ((ConditionCollectionProxy)value).CopyFieldCollection();
+        }
+
+        public static ObjectBoundsProxy CreateObjectBoundsProxy(this IFeaturingObjectBounds target, Proxy parent)
+        {
+            var proxy = parent.Provider.CreateProxy<ObjectBoundsProxy>(parent.Mode);
+            proxy.Record = target;
+            return proxy;
+        }
+
+        public static void UpdateFromObjectBoundsProxy(this IFeaturingObjectBounds target, IObjectBounds value)
+        {
+            if (value == null)
+                throw new ArgumentNullException("value", "Cannot assign a NULL to object bounds.");
+
+            // Assign copy of bounds of another record
+            target.ObjectBounds = (ObjectBounds)((ObjectBoundsProxy)value).Record.ObjectBounds.CopyField();
+        }
+
+        public static ScriptCollectionProxy CreateVirtualMachineAdapterProxy(this IFeaturingScripts target, Proxy parent)
+        {
+            ScriptCollectionProxy proxy = parent.Provider.CreateProxy<ScriptCollectionProxy>(parent.Mode);
+            proxy.Record = target;
+            return proxy;
+        }
+
+        public static void UpdateFromVirtualMachineAdapterProxy(this IFeaturingScripts target, IScriptCollection value)
+        {
+            var cast = (ScriptCollectionProxy)value;
+            if (value == null || cast.Record.VirtualMachineAdapter == null)
+            {
+                // Assigned null or a script collection proxy of record has no scripts
+                target.VirtualMachineAdapter = null;
+            }
+            else
+            {
+                // Assign scripts of another record are assigned, make a copy
+                target.VirtualMachineAdapter = (VirtualMachineAdapter)cast.Record.VirtualMachineAdapter.CopyField();
+            }
         }
     }
 }

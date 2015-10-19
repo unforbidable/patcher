@@ -24,7 +24,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.COBJ)]
-    public sealed class Cobj : GenericFormRecord, IHasConditions
+    public sealed class Cobj : GenericFormRecord, IFeaturingConditions
     {
         [Member(Names.COCT)]
         private uint? MaterialCount { get; set; }

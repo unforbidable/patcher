@@ -14,7 +14,7 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Data.Plugins.Content.Records;
+using Patcher.Data.Plugins.Content;
 using Patcher.Rules.Compiled.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     [Proxy(typeof(IObjectBounds))]
     public sealed class ObjectBoundsProxy : Proxy, IObjectBounds
     {
-        internal IHasObjectBounds Record { get; set; }
+        internal IFeaturingObjectBounds Record { get; set; }
 
         public short X1
         {

@@ -28,17 +28,18 @@ using Patcher.Rules.Compiled.Fields.Skyrim;
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
     [Proxy(typeof(IArmo))]
-    public sealed class ArmoProxy : SkyrimFormProxy<Armo>, IArmo
+    public sealed class ArmoProxy : FormProxy<Armo>, IArmo
     {
         public IScriptCollection Scripts
         {
             get
             {
-                return GetVirtualMachineAdapterProxy(record);
+                return record.CreateVirtualMachineAdapterProxy(this);
             }
             set
             {
-                SetVirtualMachineAdapterProxy(record, value);
+                EnsureWritable();
+                record.UpdateFromVirtualMachineAdapterProxy(value);
             }
         }
 
@@ -46,11 +47,12 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
         {
             get
             {
-                return GetObjectBoundsProxy(record);
+                return record.CreateObjectBoundsProxy(this);
             }
             set
             {
-                SetObjectBoundsProxy(record, value);
+                EnsureWritable();
+                record.UpdateFromObjectBoundsProxy(value);
             }
         }
 
