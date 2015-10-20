@@ -39,7 +39,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public Compiled.Constants.Type Type
+        public Compiled.Constants.Types Type
         {
             get
             {

@@ -167,7 +167,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public PotionType Type
+        public PotionTypes Type
         {
             get
             {

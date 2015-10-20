@@ -31,7 +31,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         IForm UseSound { get; set; }
         float Weight { get; set; }
         int Value { get; set; }
-        PotionType Type { get; set; }
+        PotionTypes Type { get; set; }
         IEffectCollection Effects { get; set; }
     }
 }

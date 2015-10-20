@@ -30,11 +30,11 @@ using Patcher.Rules.Compiled.Forms.Skyrim;
 
 namespace Patcher.Rules.Compiled.Helpers
 {
-    sealed class ConditionsHelper : IConditionsHelper
+    sealed class FunctionsHelper : IFunctionsHelper
     {
         readonly CompiledRuleContext context;
 
-        public ConditionsHelper(CompiledRuleContext context)
+        public FunctionsHelper(CompiledRuleContext context)
         {
             this.context = context;
         }

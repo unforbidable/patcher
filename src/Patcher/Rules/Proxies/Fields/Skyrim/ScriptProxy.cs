@@ -23,6 +23,7 @@ using System.Text;
 using Patcher.Rules.Compiled.Forms;
 using System.Collections;
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
+using Patcher.Rules.Compiled.Constants;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
@@ -33,7 +34,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public string Name { get { return Script.Name; } }
 
-        public void AddProperty(string name, Compiled.Constants.Type type)
+        public void AddProperty(string name, Types type)
         {
             EnsureWritable();
 

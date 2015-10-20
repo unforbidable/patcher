@@ -23,7 +23,7 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
     {
         string Name { get; }
 
-        void AddProperty(string name, Type type);
+        void AddProperty(string name, Types type);
         void SetProperty(string name, int value);
         void SetProperty(string name, string value);
         void SetProperty(string name, float value);

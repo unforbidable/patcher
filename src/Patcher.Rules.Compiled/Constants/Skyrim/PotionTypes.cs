@@ -21,27 +21,11 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
-    
-    public enum Skill : int
+    public enum PotionTypes
     {
-        None,
-        OneHanded,
-        TwoHanded,
-        Marksman,
-        Block,
-        Smithing,
-        HeavyArmor,
-        LightArmor,
-        Pickpocket,
-        Lockpicking,
-        Sneak,
-        Alchemy,
-        Speechcraft,
-        Alteration,
-        Conjuration,
-        Destruction,
-        Illusion,
-        Restoration,
-        Enchanting
+        Auto,
+        Food,
+        Medicine,
+        Poison,
     }
 }

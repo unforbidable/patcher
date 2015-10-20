@@ -27,7 +27,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         IForm Enchantment { get; set; }
         string MaleWorldModel { get; set; }
         string FemaleWorldModel { get; set; }
-        Skill Skill { get; set; }
+        Skills Skill { get; set; }
         BodyNodes BodyNodes { get; set; }
         bool IsPlayable { get; set; }
         bool IsShield { get; set; }

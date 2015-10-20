@@ -108,7 +108,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public Skill Skill
+        public Skills Skill
         {
             get
             {

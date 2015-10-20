@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
+using Patcher.Rules.Compiled.Constants;
 using Patcher.Rules.Compiled.Constants.Skyrim;
 using System;
 using System.Collections.Generic;
@@ -27,48 +28,48 @@ namespace Patcher.Rules.Proxies
     {
         static IDictionary<Enum, Enum> typeToGlobalVariableTypeMap = new SortedDictionary<Enum, Enum>()
         {
-            { Compiled.Constants.Type.Int, GlobalVariableType.Integer },
-            { Compiled.Constants.Type.Short, GlobalVariableType.Short },
-            { Compiled.Constants.Type.Float, GlobalVariableType.Float },
+            { Types.Int, GlobalVariableType.Integer },
+            { Types.Short, GlobalVariableType.Short },
+            { Types.Float, GlobalVariableType.Float },
         };
 
         static IDictionary<Enum, Enum> globalVariableTypeToTypeMap = new SortedDictionary<Enum, Enum>()
         {
-            { GlobalVariableType.Integer, Compiled.Constants.Type.Int },
-            { GlobalVariableType.Short, Compiled.Constants.Type.Short },
-            { GlobalVariableType.Float, Compiled.Constants.Type.Float },
+            { GlobalVariableType.Integer, Types.Int },
+            { GlobalVariableType.Short, Types.Short },
+            { GlobalVariableType.Float, Types.Float },
         };
 
-        public static GlobalVariableType ToGlobalVariableType(this Compiled.Constants.Type value)
+        public static GlobalVariableType ToGlobalVariableType(this Types value)
         {
             return (GlobalVariableType)ConvertUsing(typeToGlobalVariableTypeMap, value);
         }
 
-        public static Compiled.Constants.Type ToType(this GlobalVariableType value)
+        public static Types ToType(this GlobalVariableType value)
         {
-            return (Compiled.Constants.Type)ConvertUsing(globalVariableTypeToTypeMap, value);
+            return (Types)ConvertUsing(globalVariableTypeToTypeMap, value);
         }
 
         static IDictionary<Enum, Enum> skillToUsageMap = new SortedDictionary<Enum, Enum>()
         {
-            { Skill.LightArmor, ArmorSkillUsage.LightArmor },
-            { Skill.HeavyArmor, ArmorSkillUsage.HeavyArmor },
-            { Skill.None, ArmorSkillUsage.None }
+            { Skills.LightArmor, ArmorSkillUsage.LightArmor },
+            { Skills.HeavyArmor, ArmorSkillUsage.HeavyArmor },
+            { Skills.None, ArmorSkillUsage.None }
         };
 
         static IDictionary<Enum, Enum> usageToSkillMap = new SortedDictionary<Enum, Enum>()
         {
-            { ArmorSkillUsage.LightArmor, Skill.LightArmor },
-            { ArmorSkillUsage.HeavyArmor, Skill.HeavyArmor },
-            { ArmorSkillUsage.None, Skill.None }
+            { ArmorSkillUsage.LightArmor, Skills.LightArmor },
+            { ArmorSkillUsage.HeavyArmor, Skills.HeavyArmor },
+            { ArmorSkillUsage.None, Skills.None }
         };
 
-        public static Skill ToSkill(this ArmorSkillUsage value)
+        public static Skills ToSkill(this ArmorSkillUsage value)
         {
-            return (Skill)ConvertUsing(usageToSkillMap, value);
+            return (Skills)ConvertUsing(usageToSkillMap, value);
         }
 
-        public static ArmorSkillUsage ToArmorSkillUsage(this Skill value)
+        public static ArmorSkillUsage ToArmorSkillUsage(this Skills value)
         {
             return (ArmorSkillUsage)ConvertUsing(skillToUsageMap, value);
         }
@@ -87,47 +88,47 @@ namespace Patcher.Rules.Proxies
 
         static IDictionary<Enum, Enum> typeToScriptPropertyTypeMap = new SortedDictionary<Enum, Enum>()
         {
-            { Compiled.Constants.Type.Object, ScriptPropertyType.Object },
-            { Compiled.Constants.Type.String, ScriptPropertyType.String },
-            { Compiled.Constants.Type.Int, ScriptPropertyType.Int },
-            { Compiled.Constants.Type.Float, ScriptPropertyType.Float },
-            { Compiled.Constants.Type.Bool, ScriptPropertyType.Bool },
-            { Compiled.Constants.Type.ArrayOfObject, ScriptPropertyType.ArrayOfObject },
-            { Compiled.Constants.Type.ArrayOfString, ScriptPropertyType.ArrayOfString },
-            { Compiled.Constants.Type.ArrayOfInt, ScriptPropertyType.ArrayOfInt },
-            { Compiled.Constants.Type.ArrayOfFloat, ScriptPropertyType.ArrayOfFloat },
-            { Compiled.Constants.Type.ArrayOfBool, ScriptPropertyType.ArrayOfBool },
+            { Types.Object, ScriptPropertyType.Object },
+            { Types.String, ScriptPropertyType.String },
+            { Types.Int, ScriptPropertyType.Int },
+            { Types.Float, ScriptPropertyType.Float },
+            { Types.Bool, ScriptPropertyType.Bool },
+            { Types.ArrayOfObject, ScriptPropertyType.ArrayOfObject },
+            { Types.ArrayOfString, ScriptPropertyType.ArrayOfString },
+            { Types.ArrayOfInt, ScriptPropertyType.ArrayOfInt },
+            { Types.ArrayOfFloat, ScriptPropertyType.ArrayOfFloat },
+            { Types.ArrayOfBool, ScriptPropertyType.ArrayOfBool },
         };
 
-        public static ScriptPropertyType ToScriptPropertType(this Compiled.Constants.Type value)
+        public static ScriptPropertyType ToScriptPropertType(this Types value)
         {
             return (ScriptPropertyType)ConvertUsing(typeToScriptPropertyTypeMap, value);
         }
 
         static IDictionary<Enum, Enum> potionTypeToFlags = new SortedDictionary<Enum, Enum>()
         {
-            { PotionType.Auto, PotionFlags.None },
-            { PotionType.Food, PotionFlags.Food },
-            { PotionType.Medicine, PotionFlags.Medicine },
-            { PotionType.Poison, PotionFlags.Poison }
+            { PotionTypes.Auto, PotionFlags.None },
+            { PotionTypes.Food, PotionFlags.Food },
+            { PotionTypes.Medicine, PotionFlags.Medicine },
+            { PotionTypes.Poison, PotionFlags.Poison }
         };
 
         static IDictionary<Enum, Enum> potionFlagsToType = new SortedDictionary<Enum, Enum>()
         {
-            { PotionFlags.None, PotionType.Auto },
-            { PotionFlags.Food, PotionType.Food },
-            { PotionFlags.Medicine, PotionType.Medicine },
-            { PotionFlags.Poison, PotionType.Poison }
+            { PotionFlags.None, PotionTypes.Auto },
+            { PotionFlags.Food, PotionTypes.Food },
+            { PotionFlags.Medicine, PotionTypes.Medicine },
+            { PotionFlags.Poison, PotionTypes.Poison }
         };
 
-        public static PotionFlags ToPotionFlags(this PotionType value)
+        public static PotionFlags ToPotionFlags(this PotionTypes value)
         {
             return (PotionFlags)ConvertUsing(potionTypeToFlags, value);
         }
 
-        public static PotionType ToPotionType(this PotionFlags value)
+        public static PotionTypes ToPotionType(this PotionFlags value)
         {
-            return (PotionType)ConvertUsing(potionFlagsToType, value);
+            return (PotionTypes)ConvertUsing(potionFlagsToType, value);
         }
 
         private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)

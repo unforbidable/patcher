@@ -150,7 +150,7 @@
     <Compile Include="Rules\Compiled\CompiledRuleAssertException.cs" />
     <Compile Include="Rules\Compiled\Helpers\DebugHelper.cs" />
     <Compile Include="Rules\Compiled\Helpers\FormsHelper.cs" />
-    <Compile Include="Rules\Compiled\Helpers\ConditionsHelper.cs" />
+    <Compile Include="Rules\Compiled\Helpers\FunctionsHelper.cs" />
     <Compile Include="Rules\Compiled\Helpers\EngineHelper.cs" />
     <Compile Include="Rules\IDumpabled.cs" />
     <Compile Include="Rules\ObjectDumper.cs" />

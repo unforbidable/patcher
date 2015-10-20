@@ -24,7 +24,7 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Helpers
 {
-    public interface IConditionsHelper
+    public interface IFunctionsHelper
     {
         ICondition GenericFunction(int number);
         ICondition GenericFunction(int number, object paramA);

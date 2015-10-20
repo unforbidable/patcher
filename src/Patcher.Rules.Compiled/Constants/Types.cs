@@ -16,7 +16,7 @@
 
 namespace Patcher.Rules.Compiled.Constants
 {
-    public enum Type
+    public enum Types
     {
         None,
         Object,

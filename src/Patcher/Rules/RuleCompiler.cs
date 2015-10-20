@@ -56,8 +56,8 @@ namespace Patcher.Rules
             new CompiledRuleHelperInfo()
             {
                 Name = "Conditions",
-                InterfaceType = typeof(IConditionsHelper),
-                Constructor = typeof(ConditionsHelper).GetConstructor(helperCtorTypes)
+                InterfaceType = typeof(IFunctionsHelper),
+                Constructor = typeof(FunctionsHelper).GetConstructor(helperCtorTypes)
             },
             new CompiledRuleHelperInfo()
             {

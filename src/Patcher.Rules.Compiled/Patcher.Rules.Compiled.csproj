@@ -39,9 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Skyrim\BodyNodes.cs" />
-    <Compile Include="Constants\Skyrim\PotionType.cs" />
-    <Compile Include="Constants\Skyrim\Skill.cs" />
-    <Compile Include="Constants\Type.cs" />
+    <Compile Include="Constants\Skyrim\PotionTypes.cs" />
+    <Compile Include="Constants\Skyrim\Skills.cs" />
+    <Compile Include="Constants\Types.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
     <Compile Include="Fields\Skyrim\ICondition.cs" />
     <Compile Include="Fields\Skyrim\IConditionCollection.cs" />
@@ -51,7 +51,7 @@
     <Compile Include="Fields\Skyrim\IMaterialCollection.cs" />
     <Compile Include="Fields\Skyrim\IScript.cs" />
     <Compile Include="Forms\Skyrim\ICobj.cs" />
-    <Compile Include="Helpers\IConditionsHelper.cs" />
+    <Compile Include="Helpers\IFunctionsHelper.cs" />
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />
     <Compile Include="Helpers\IEngineHelper.cs" />

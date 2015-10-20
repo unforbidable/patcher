@@ -27,7 +27,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IGmst))]
     public sealed class GmstProxy : FormProxy<Gmst>, IGmst
     {
-        public Compiled.Constants.Type Type
+        public Compiled.Constants.Types Type
         {
             get
             {
@@ -35,19 +35,19 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
                 switch (c)
                 {
                     case 's':
-                        return Compiled.Constants.Type.String;
+                        return Compiled.Constants.Types.String;
 
                     case 'b':
-                        return Compiled.Constants.Type.Bool;
+                        return Compiled.Constants.Types.Bool;
 
                     case 'i':
-                        return Compiled.Constants.Type.Int;
+                        return Compiled.Constants.Types.Int;
 
                     case 'f':
-                        return Compiled.Constants.Type.Float;
+                        return Compiled.Constants.Types.Float;
 
                     default:
-                        return Compiled.Constants.Type.None;
+                        return Compiled.Constants.Types.None;
                 }
             
             }

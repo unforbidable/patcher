@@ -21,7 +21,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
     public interface IGlob : IForm
     {
         bool IsConstant { get; set; }
-        Type Type { get; set; }
+        Types Type { get; set; }
         dynamic Value { get; set; }
     }
 }

@@ -25,6 +25,6 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
     public interface IGmst : IForm
     {
         dynamic Value { get; set; }
-        Constants.Type Type { get; }
+        Constants.Types Type { get; }
     }
 }
