@@ -204,10 +204,20 @@ namespace Patcher
                             {
                                 Log.Info("Target plugin {0} already exists and will be overwriten, however previously used FormIDs will be preserved if possible.", targetPluginFileName);
 
-                                var inspector = new PluginInspector(context, targetPluginFile);
-                                foreach (var record in inspector.NewRecords)
+                                try
                                 {
-                                    engine.ActivePlugin.ReserveFormId(record.FormId, record.EditorId);
+                                    var inspector = new PluginInspector(context, targetPluginFile);
+                                    foreach (var record in inspector.NewRecords)
+                                    {
+                                        engine.ActivePlugin.ReserveFormId(record.FormId, record.EditorId);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Warning("Previously used Form IDs cannot be preserved because target plugin {0} could not be read: {1}", targetPluginFileName, ex.ToString());
+                                }
+                                finally
+                                {
                                 }
                             }
 
