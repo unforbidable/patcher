@@ -413,8 +413,8 @@ namespace Patcher.Data.Plugins
             // Union with form IDs this plugin is overriding
             var allFormIds = referencedFormIds.Union(Forms.Where(f => f.IsOverriding).Select(f => f.FormId));
 
-            // Collect all masters
-            HashSet<byte> collectedMasters = new HashSet<byte>();
+            // Collect all masters (Always add the main plugin as master)
+            HashSet<byte> collectedMasters = new HashSet<byte>() { 0 };
             foreach (var id in allFormIds)
             {
                 if (!context.Forms.Contains(id))

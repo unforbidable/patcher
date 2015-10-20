@@ -59,6 +59,10 @@ namespace Patcher.Data.Plugins
 
         public uint LocalToContext(uint formId)
         {
+            // No need to map main plugin Forms IDs
+            if ((formId & 0xFFFFFF) == 0)
+                return formId;
+
             byte p = (byte)(formId >> 24);
             if (p >= localToContext.Length)
             {
@@ -69,6 +73,10 @@ namespace Patcher.Data.Plugins
 
         public uint ContexToLocal(uint formId)
         {
+            // No need to map main plugin Forms IDs
+            if ((formId & 0xFFFFFF) == 0)
+                return formId;
+
             byte p = (byte)(formId >> 24);
             if (p >= contextToLocal.Length || contextToLocal[p] == byte.MaxValue)
             {
