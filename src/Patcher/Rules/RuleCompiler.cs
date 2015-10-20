@@ -58,6 +58,12 @@ namespace Patcher.Rules
                 Name = "Conditions",
                 InterfaceType = typeof(IConditionsHelper),
                 Constructor = typeof(ConditionsHelper).GetConstructor(helperCtorTypes)
+            },
+            new CompiledRuleHelperInfo()
+            {
+                Name = "Engine",
+                InterfaceType = typeof(IEngineHelper),
+                Constructor = typeof(EngineHelper).GetConstructor(helperCtorTypes)
             }
         };
 

@@ -54,6 +54,7 @@
     <Compile Include="Helpers\IConditionsHelper.cs" />
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />
+    <Compile Include="Helpers\IEngineHelper.cs" />
     <Compile Include="Helpers\Static\Math.cs" />
     <Compile Include="Forms\IDummyForm.cs" />
     <Compile Include="Fields\Skyrim\IObjectBounds.cs" />
