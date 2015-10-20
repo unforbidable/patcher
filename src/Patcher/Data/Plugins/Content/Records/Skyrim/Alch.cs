@@ -68,6 +68,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         private ConsumptionData Consumption { get; set; }
 
         [Member(Names.EFID, Names.EFIT, Names.CTDA, Names.CIS1, Names.CIS2)]
+        [Initialize]
         public List<Effect> Effects { get; set; }
 
         public string WorldModel { get { return Model.Path; } set { Model.Path = value; } }
