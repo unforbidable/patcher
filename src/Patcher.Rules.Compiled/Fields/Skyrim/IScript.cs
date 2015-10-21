@@ -23,17 +23,17 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
     {
         string Name { get; }
 
-        void AddProperty(string name, Types type);
-        void SetProperty(string name, int value);
-        void SetProperty(string name, string value);
-        void SetProperty(string name, float value);
-        void SetProperty(string name, bool value);
-        void SetProperty(string name, IForm value);
-        void SetProperty(string name, int value, int? index);
-        void SetProperty(string name, string value, int? index);
-        void SetProperty(string name, float value, int? index);
-        void SetProperty(string name, bool value, int? index);
-        void SetProperty(string name, IForm value, int? index);
-        void ResetProperty(string name);
+        IScript AddProperty(string name, Types type);
+        IScript SetProperty(string name, int value);
+        IScript SetProperty(string name, string value);
+        IScript SetProperty(string name, float value);
+        IScript SetProperty(string name, bool value);
+        IScript SetProperty(string name, IForm value);
+        IScript SetProperty(string name, int value, int? index);
+        IScript SetProperty(string name, string value, int? index);
+        IScript SetProperty(string name, float value, int? index);
+        IScript SetProperty(string name, bool value, int? index);
+        IScript SetProperty(string name, IForm value, int? index);
+        IScript ResetProperty(string name);
     }
 }
