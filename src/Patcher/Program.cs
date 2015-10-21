@@ -258,5 +258,10 @@ namespace Patcher
             var version = new Version(fvi.FileVersion);
             return string.Format("{0} {1}.{2}.{3}", assembly.GetName().Name, version.Major, version.Minor, version.Build);
         }
+
+        public static string GetProgramFullVersionInfo()
+        {
+            return string.Format("{0} [{1}]", GetProgramVersionInfo(), Assembly.GetEntryAssembly().GetName().Version.ToString());
+        }
     }
 }

@@ -106,7 +106,7 @@ namespace Patcher.Rules
                 },
             };
 
-            string comment = string.Format("//\n// Source file for rule {0}\\{1}@{2} by {3}\n//\n", metadata.PluginFileName, metadata.RuleFileName, entry.Name, Program.GetProgramVersionInfo());
+            string comment = string.Format("//\n// Source file for rule {0}\\{1}@{2} by {3}\n//\n", metadata.PluginFileName, metadata.RuleFileName, entry.Name, Program.GetProgramFullVersionInfo());
             CodeBuilder builder = new CodeBuilder(NamespaceName, className, comment);
 
             builder.Usings.Add("Patcher.Rules.Compiled.Helpers.Static");
@@ -259,7 +259,7 @@ namespace Patcher.Rules
                 var cachedAssemblyFile = engine.Context.DataFileProvider.GetDataFile(FileMode.Open, generatedAssemblyPath);
                 if (cachedAssemblyFile.Exists())
                 {
-                    if (ValidateCachedAssemblyVersion(cachedAssemblyFile.FullPath))
+                    //if (ValidateCachedAssemblyVersion(cachedAssemblyFile.FullPath))
                     {
                         try
                         {
@@ -278,10 +278,10 @@ namespace Patcher.Rules
                             throw new InvalidProgramException("Cached assembly containing compiled rules for plugin " + pluginFileName + " could not be loaded: " + ex.Message);
                         }
                     }
-                    else
-                    {
-                        Log.Fine("Cached assembly containing compiled rules for plugin {0} is no longer valid and needs to be recompiled.", pluginFileName);
-                    }
+                    //else
+                    //{
+                    //    Log.Fine("Cached assembly containing compiled rules for plugin {0} is no longer valid and needs to be recompiled.", pluginFileName);
+                    //}
                 }
                 else
                 {
