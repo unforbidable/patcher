@@ -49,11 +49,9 @@ namespace Patcher.Logging
 
         internal override void WriteLogEntry(LogEntry entry)
         {
-            writer.WriteLine("{0} {1} [{2}.{3}] {4}", 
+            writer.WriteLine("{0} {1} {2}", 
                 DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ffffff"), 
                 logLevelNameMap[entry.Level], 
-                entry.Caller.DeclaringType.FullName, 
-                entry.Caller.Name, 
                 entry.Text);
         }
     }

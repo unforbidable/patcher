@@ -53,49 +53,49 @@ namespace Patcher
         public static void Error(string message)
         {
             if (IsLevelLogged(LogLevel.Error))
-                WriteLogEntry(new LogEntry(LogLevel.Error, new StackFrame(1, false).GetMethod(), message));
+                WriteLogEntry(new LogEntry(LogLevel.Error, null, message));
         }
 
         public static void Error(string message, params object[] args)
         {
             if (IsLevelLogged(LogLevel.Error))
-                WriteLogEntry(new LogEntry(LogLevel.Error, new StackFrame(1, false).GetMethod(), string.Format(message, args)));
+                WriteLogEntry(new LogEntry(LogLevel.Error, null, string.Format(message, args)));
         }
 
         public static void Warning(string message)
         {
             if (IsLevelLogged(LogLevel.Warning))
-                WriteLogEntry(new LogEntry(LogLevel.Warning, new StackFrame(1, false).GetMethod(), message));
+                WriteLogEntry(new LogEntry(LogLevel.Warning, null, message));
         }
 
         public static void Warning(string message, params object[] args)
         {
             if (IsLevelLogged(LogLevel.Warning))
-                WriteLogEntry(new LogEntry(LogLevel.Warning, new StackFrame(1, false).GetMethod(), string.Format(message, args)));
+                WriteLogEntry(new LogEntry(LogLevel.Warning, null, string.Format(message, args)));
         }
 
         public static void Info(string message)
         {
             if (IsLevelLogged(LogLevel.Info))
-                WriteLogEntry(new LogEntry(LogLevel.Info, new StackFrame(1, false).GetMethod(), message));
+                WriteLogEntry(new LogEntry(LogLevel.Info, null, message));
         }
 
         public static void Info(string message, params object[] args)
         {
             if (IsLevelLogged(LogLevel.Info))
-                WriteLogEntry(new LogEntry(LogLevel.Info, new StackFrame(1, false).GetMethod(), string.Format(message, args)));
+                WriteLogEntry(new LogEntry(LogLevel.Info, null, string.Format(message, args)));
         }
 
         public static void Fine(string message)
         {
             if (IsLevelLogged(LogLevel.Fine))
-                WriteLogEntry(new LogEntry(LogLevel.Fine, new StackFrame(1, false).GetMethod(), message));
+                WriteLogEntry(new LogEntry(LogLevel.Fine, null, message));
         }
 
         public static void Fine(string message, params object[] args)
         {
             if (IsLevelLogged(LogLevel.Fine))
-                WriteLogEntry(new LogEntry(LogLevel.Fine, new StackFrame(1, false).GetMethod(), string.Format(message, args)));
+                WriteLogEntry(new LogEntry(LogLevel.Fine, null, string.Format(message, args)));
         }
     }
 }
