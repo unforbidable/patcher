@@ -271,6 +271,11 @@ namespace Patcher.Data
             return 1.7f;
         }
 
+        public virtual ushort GetLatestFormVersion()
+        {
+            return 43;
+        }
+
         internal virtual RecordWriter CreateWriter(Stream stream)
         {
             return new RecordWriter(stream, this);
@@ -318,7 +323,7 @@ namespace Patcher.Data
             var recordType = GetRecordType(kind);
             var recinf = InfoProvider.GetRecordInfo(recordType);
             var record = recinf.CreateInstance();
-            record.Version = (ushort)recinf.Version;
+            record.Version = recinf.Version > 0 ? (ushort)recinf.Version : GetLatestFormVersion();
             return record;
         }
 
