@@ -16,6 +16,7 @@
 
 using Patcher.Data.Plugins.Content;
 using Patcher.Data.Strings;
+using Patcher.IO;
 using Patcher.UI;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Patcher.Data.Plugins
         string fileName = null;
         public string FileName { get { return fileName; } }
 
-        RecordReader reader = null;
+        //RecordReader reader = null;
         HeaderRecord header = null;
 
         public IEnumerable<Form> Forms { get { return context.Forms.OfPlugin(this); } }
@@ -60,8 +61,11 @@ namespace Patcher.Data.Plugins
             else if (mode == PluginMode.Open)
             {
                 // Read only the header mainly to fetch the list of masters
-                reader = context.CreateReader(context.DataFileProvider.GetDataFile(FileMode.Open, fileName).Open());
-                header = reader.ReadHeader();
+                Stream stream = context.DataFileProvider.GetDataFile(FileMode.Open, fileName).Open();
+                using (var reader = context.CreateReader(stream))
+                {
+                    header = reader.ReadHeader();
+                }
             } 
             else
             {
@@ -70,60 +74,67 @@ namespace Patcher.Data.Plugins
         }
 
         public void Load()
-        { 
+        {
             Log.Info("Indexing forms in plugin {0}", fileName);
 
-            // Prepare reference mapper
-            reader.ReferenceMapper = new PluginReferenceMapper(this);
-
-            int before = context.Forms.Count();
-            int overriding = 0;
-            int added = 0;
-
-            using (var progress = Program.Status.StartProgress("Indexing forms"))
+            Stream stream = context.DataFileProvider.GetDataFile(FileMode.Open, fileName).Open();
+            using (var reader = context.CreateReader(stream))
             {
+                // Header needs to be read again
+                header = reader.ReadHeader();
 
-                if (context.AsyncFormIndexing)
+                // Prepare reference mapper
+                reader.ReferenceMapper = new PluginReferenceMapper(this);
+
+                int before = context.Forms.Count();
+                int overriding = 0;
+                int added = 0;
+
+                using (var progress = Program.Status.StartProgress("Indexing forms"))
                 {
-                    // Retrieve plugin number so that loaded forms can be linked to it
-                    byte pluginNumber = context.Plugins.GetPluginNumber(this);
 
-                    foreach (var record in reader.FindRecordsAsync())
+                    if (context.AsyncFormIndexing)
                     {
-                        Form form = new Form()
+                        // Retrieve plugin number so that loaded forms can be linked to it
+                        byte pluginNumber = context.Plugins.GetPluginNumber(this);
+
+                        foreach (var record in reader.FindRecordsAsync())
                         {
-                            PluginNumber = pluginNumber,
-                            FilePosition = record.FilePosition,
-                            FormKind = (FormKind)record.Signature,
-                            FormId = reader.ReferenceMapper.LocalToContext(record.FormId),
-                            ParentFormId = reader.ReferenceMapper.LocalToContext(record.ParentRecordFormId)
-                        };
+                            Form form = new Form()
+                            {
+                                PluginNumber = pluginNumber,
+                                FilePosition = record.FilePosition,
+                                FormKind = (FormKind)record.Signature,
+                                FormId = reader.ReferenceMapper.LocalToContext(record.FormId),
+                                ParentFormId = reader.ReferenceMapper.LocalToContext(record.ParentRecordFormId)
+                            };
 
-                        // Index loaded form
-                        context.Forms.Add(form);
+                            // Index loaded form
+                            context.Forms.Add(form);
 
-                        added++;
-                        if (form.IsOverriding)
-                            overriding++;
+                            added++;
+                            if (form.IsOverriding)
+                                overriding++;
 
-                        progress.Update(reader.TotalRecordsFound, header.NumRecords, "{0}: {1}", fileName, form.FormKind);
+                            progress.Update(reader.TotalRecordsFound, header.NumRecords, "{0}: {1}", fileName, form.FormKind);
+                        }
+                    }
+                    else
+                    {
+                        FindRecordsListener listener = new FindRecordsListener(this, reader, progress);
+                        reader.FindRecords(listener);
+                        added = listener.Added;
+                        overriding = listener.Overriding;
                     }
                 }
-                else
-                {
-                    FindRecordsListener listener = new FindRecordsListener(this, reader, progress);
-                    reader.FindRecords(listener);
-                    added = listener.Added;
-                    overriding = listener.Overriding;
-                }
+
+                Log.Info("Found {0} forms ({1} overrides)", added, overriding);
+
+                //if (header.NumRecords != reader.TotalRecordsFound)
+                //{
+                //    Log.Warning("Number of records specified in header {0} does not match number of records found {1}", header.NumRecords, reader.TotalRecordsFound);
+                //}
             }
-
-            Log.Info("Found {0} forms ({1} overrides)", added, overriding);
-
-            //if (header.NumRecords != reader.TotalRecordsFound)
-            //{
-            //    Log.Warning("Number of records specified in header {0} does not match number of records found {1}", header.NumRecords, reader.TotalRecordsFound);
-            //}
         }
 
         class FindRecordsListener : RecordReader.IFindRecordListener
@@ -172,112 +183,132 @@ namespace Patcher.Data.Plugins
             if (context.AsyncFromLoadingMaxWorkers < 1)
                 throw new InvalidOperationException("AsyncFromLoadingMaxWorkers cannot be less than 1");
 
-            // Prepare string locator (if plugin strings are localized)
-            if (reader.PluginFlags.HasFlag(PluginFlags.Localized))
-                reader.StringLocator = new PluginStringLocator(this);
+            Stream stream = context.DataFileProvider.GetDataFile(FileMode.Open, fileName).Open();
+            
+            // Uncomment this to preload a whole file into memory
+            // The loading time is marginaly shorter (around 4%)
+            // but only when another background worker is employed
+            //Log.Fine("Preloading plugin file {0}.", fileName);
+            //var data = new byte[stream.Length];
+            //stream.Read(data, 0, (int)stream.Length);
+            //stream = new ReadOnlyMemoryStream(data);
 
-            // Apply predicate to the enumeration, if any
-            // this will cause the total number of forms to load be unknown
-            var formsToLoadEnumeration = context.Forms.OfPlugin(this);
-            if (predicate != null)
+            using (var reader = context.CreateReader(stream))
             {
-                formsToLoadEnumeration = formsToLoadEnumeration.Where(predicate);
-            }
+                // Header needs to be read again
+                header = reader.ReadHeader();
+ 
+                // Prepare reference mapper
+                reader.ReferenceMapper = new PluginReferenceMapper(this);
 
-            if (formsToLoadEnumeration.Any())
-            {
-                var formsToLoad = formsToLoadEnumeration;
+                // Prepare string locator (if plugin strings are localized)
+                if (reader.PluginFlags.HasFlag(PluginFlags.Localized))
+                    reader.StringLocator = new PluginStringLocator(this);
+
                 int formsToLoadCount = 0;
-                int formsToLoadCountAtLeast = 0;
 
-                // Fix the list to make the total count known
-                formsToLoad = formsToLoad.ToList();
-
-                // Get count if enumeration is a collection
-                if (formsToLoad is ICollection<Form>)
-                    formsToLoadCount = ((formsToLoad) as ICollection<Form>).Count;
-
-                // Determine number of background jobs, if any
-                int jobs = 0;
-                if (context.AsyncFormLoading)
+                // Apply predicate to the enumeration, if any
+                // this will cause the total number of forms to load be unknown
+                var formsToLoadEnumeration = context.Forms.OfPlugin(this);
+                if (predicate != null)
                 {
-                    // Materialize part of the list
-                    // to determine the count of background jobs at least
-                    if (formsToLoadCount == 0)
-                    {
-                        int take = context.AsyncFormLoadingWorkerThreshold * context.AsyncFromLoadingMaxWorkers;
-                        formsToLoadCountAtLeast = formsToLoad.Take(take).Count();
-                        if (formsToLoadCountAtLeast < take)
-                            formsToLoadCount = formsToLoadCountAtLeast;
-                    }
-
-                    // Determine number of jobs
-                    if (formsToLoadCount > 0)
-                    {
-                        // Use known number of forms to load
-                        jobs = Math.Min(formsToLoadCount / context.AsyncFormLoadingWorkerThreshold + 1, context.AsyncFromLoadingMaxWorkers);
-                    }
-                    else
-                    {
-                        // Use minimal determined number of forms to load
-                        jobs = Math.Min(formsToLoadCountAtLeast / context.AsyncFormLoadingWorkerThreshold + 1, context.AsyncFromLoadingMaxWorkers);
-                    }
+                    // TODO: Fix the list to make the total count known 
+                    formsToLoadEnumeration = formsToLoadEnumeration.Where(predicate);
+                    formsToLoadCount = formsToLoadEnumeration.Count();
+                }
+                else
+                {
+                    // Get count if enumeration is a list or a collection
+                    formsToLoadCount = formsToLoadEnumeration.Count();
                 }
 
-                // Indicate that total number of forms to load will be determined during iteration
-                bool formsToLoadIsUnknown = formsToLoadCount == 0;
-
-                if (formsToLoadIsUnknown)
+                if (formsToLoadEnumeration.Any())
                 {
-                    Log.Fine("Total number of forms to load is not unknown");
+                    var formsToLoad = formsToLoadEnumeration;
+                    int formsToLoadCountAtLeast = 0;
+
+                    // Determine number of background jobs, if any
+                    int jobs = 0;
                     if (context.AsyncFormLoading)
                     {
-                        Log.Fine("Using {0} background jobs to load more than {1} forms", jobs, formsToLoadCountAtLeast);
-                    }
-                }
-                else if (context.AsyncFormLoading)
-                {
-                    Log.Fine("Using {0} background jobs to load {1} forms", jobs, formsToLoadCount);
-                }
-
-                using (var loader = new FormLoader(this, reader, lazyLoading, jobs))
-                {
-                    using (var progress = Program.Status.StartProgress("Loading forms"))
-                    {
-                        foreach (Form form in formsToLoad)
+                        // Materialize part of the list
+                        // to determine the count of background jobs at least
+                        if (formsToLoadCount == 0)
                         {
-                            loader.LoadForm(form);
-
-                            // Unknown total number of forms to load
-                            // has to be determined during iteration
-                            if (formsToLoadIsUnknown)
-                                formsToLoadCount++;
-
-                            progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), FileName);
+                            int take = context.AsyncFormLoadingWorkerThreshold * context.AsyncFromLoadingMaxWorkers;
+                            formsToLoadCountAtLeast = formsToLoad.Take(take).Count();
+                            if (formsToLoadCountAtLeast < take)
+                                formsToLoadCount = formsToLoadCountAtLeast;
                         }
 
+                        // Determine number of jobs
+                        if (formsToLoadCount > 0)
+                        {
+                            // Use known number of forms to load
+                            jobs = Math.Min(formsToLoadCount / context.AsyncFormLoadingWorkerThreshold + 1, context.AsyncFromLoadingMaxWorkers);
+                        }
+                        else
+                        {
+                            // Use minimal determined number of forms to load
+                            jobs = Math.Min(formsToLoadCountAtLeast / context.AsyncFormLoadingWorkerThreshold + 1, context.AsyncFromLoadingMaxWorkers);
+                        }
+                    }
+
+                    // Indicate that total number of forms to load will be determined during iteration
+                    bool formsToLoadIsUnknown = formsToLoadCount == 0;
+
+                    if (formsToLoadIsUnknown)
+                    {
+                        Log.Fine("Total number of forms to load is not unknown");
                         if (context.AsyncFormLoading)
                         {
-                            // Tell loader no more forms will be loaded
-                            loader.Complete();
+                            Log.Fine("Using {0} background jobs to load more than {1} forms", jobs, formsToLoadCountAtLeast);
+                        }
+                    }
+                    else if (context.AsyncFormLoading)
+                    {
+                        Log.Fine("Using {0} background jobs to load {1} forms", jobs, formsToLoadCount);
+                    }
 
-                            // Show progress while loader is still busy
-                            while (loader.IsBusy)
+                    using (var loader = new FormLoader(this, reader, lazyLoading, jobs))
+                    {
+                        using (var progress = Program.Status.StartProgress("Loading forms"))
+                        {
+                            foreach (Form form in formsToLoad)
                             {
-                                System.Threading.Thread.Sleep(50);
+                                loader.LoadForm(form);
+
+                                // Unknown total number of forms to load
+                                // has to be determined during iteration
+                                if (formsToLoadIsUnknown)
+                                    formsToLoadCount++;
+
                                 progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), FileName);
                             }
 
-                            // Wait for loader to finish completely
-                            Log.Fine("Waiting for background jobs to finish");
-                            loader.WaitForCompleted();
+                            if (context.AsyncFormLoading)
+                            {
+                                // Tell loader no more forms will be loaded
+                                loader.Complete();
+
+                                // Show progress while loader is still busy
+                                while (loader.IsBusy)
+                                {
+                                    System.Threading.Thread.Sleep(50);
+                                    progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), FileName);
+                                }
+
+                                // Wait for loader to finish completely
+                                Log.Fine("Waiting for background jobs to finish");
+                                loader.WaitForCompleted();
+                            }
                         }
+
+                        Log.Info("Loaded {0} forms from {1} ({2} supported, {3} unsupported)", loader.Loaded, fileName, loader.Supported, loader.Unsupported);
+
+                        if (loader.Skipped > 0)
+                            Log.Info("Skipped {0} forms that had been already loaded", loader.Skipped);
                     }
-
-                    Log.Info("Loaded {0} forms from {1} ({2} supported, {3} unsupported)", loader.Loaded, fileName, loader.Supported, loader.Unsupported);
-
-                    if (loader.Skipped > 0)
-                        Log.Info("Skipped {0} forms that had been already loaded", loader.Skipped);
                 }
             }
         }
@@ -532,10 +563,10 @@ namespace Patcher.Data.Plugins
 
         public void Dispose()
         {
-            if (reader != null)
-            {
-                reader.Dispose();
-            }
+            //if (reader != null)
+            //{
+            //    reader.Dispose();
+            //}
         }
 
         public override string ToString()
