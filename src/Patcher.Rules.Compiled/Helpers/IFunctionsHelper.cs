@@ -31,6 +31,7 @@ namespace Patcher.Rules.Compiled.Helpers
         ICondition GenericFunction(int number, object paramA, object paramB);
 
         ICondition EPTemperingItemIsEnchanted();
+        ICondition GetCurrentTime();
         ICondition GetGlobalValue(IForm global);
         ICondition GetInCurrentLoc(IForm location);
         ICondition GetItemCount(IForm item);

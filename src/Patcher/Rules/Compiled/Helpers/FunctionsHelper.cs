@@ -59,6 +59,11 @@ namespace Patcher.Rules.Compiled.Helpers
             return CreateConditionProxy((Function)number).SetParam(0, paramA).SetParam(1, paramB).CheckParams();
         }
 
+        public ICondition GetCurrentTime()
+        {
+            return CreateConditionProxy(Function.GetCurrentTime);
+        }
+
         public ICondition GetGlobalValue(IForm global)
         {
             return CreateConditionProxy(Function.GetGlobalValue).SetParam(0, global);
