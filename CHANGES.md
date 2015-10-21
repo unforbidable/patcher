@@ -3,7 +3,7 @@
 * New predefined condition function: GetCurrentTime()
 * Form IDs are preserved while overwriting an existing plugin.
 * Changed Conditions helper to Functions helper.
-* Chnaged Constants from singular to pluar name.
+* Chnaged some constants from singular to pluar name.
 * Form Version 43 set for new forms.
 
 ##### v1.2.0 (2015/10/18)
