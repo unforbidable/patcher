@@ -68,7 +68,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             set
             {
                 EnsureWritable();
-                record.FullName = FullName;
+                record.FullName = value;
             }
         }
 
