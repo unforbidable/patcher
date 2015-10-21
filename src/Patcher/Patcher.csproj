@@ -145,6 +145,8 @@
     <Compile Include="Data\Strings\PluginStringLocator.cs" />
     <Compile Include="Data\Strings\StringTableReader.cs" />
     <Compile Include="Data\DataFile.cs" />
+    <Compile Include="IO\ReadOnlyFileStream.cs" />
+    <Compile Include="IO\ReadOnlyMemoryStream.cs" />
     <Compile Include="IO\StreamComparer.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="ProgramOptions.cs" />

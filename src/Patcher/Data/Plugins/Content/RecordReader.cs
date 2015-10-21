@@ -193,6 +193,28 @@ namespace Patcher.Data.Plugins.Content
             }
         }
 
+        internal RecordReader Clone()
+        {
+            var memoryStream = BaseStream as ReadOnlyMemoryStream;
+            if (memoryStream != null)
+            {
+                // Create new memory stream based on this memory stream
+                return context.CreateReader(new ReadOnlyMemoryStream(memoryStream.OrigialBuffer));
+            }
+            else
+            {
+                var fileStream = BaseStream as FileStream;
+                if (fileStream != null)
+                {
+                    return context.CreateReader(new ReadOnlyFileStream(fileStream.Name, FileMode.Open, FileAccess.Read));
+                }
+                else
+                {
+                    throw new InvalidOperationException("Stream was not recognised and cannot be cloned: " + BaseStream.GetType().FullName);
+                }
+            }
+        }
+
         private void FindInnerGroupsInternal(IFindRecordListener listener, FindRecordSharedData sharedData, uint parentRecordFormId)
         {
             while (PeekNextSegmentSignature() == "GRUP")

@@ -56,7 +56,7 @@ namespace Patcher.Data
             // Returns stream depeding on mode
             if (mode == FileMode.Open)
             {
-                return new FileStream(FullPath, mode, FileAccess.Read);
+                return new ReadOnlyFileStream(FullPath, mode, FileAccess.Read);
             }
             else
             {
