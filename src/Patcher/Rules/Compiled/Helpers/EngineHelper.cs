@@ -6,6 +6,7 @@ using Patcher.Rules.Compiled.Fields.Skyrim;
 using Patcher.Rules.Compiled.Forms;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Rules.Proxies;
+using Patcher.Data.Plugins.Content.Records.Skyrim;
 
 namespace Patcher.Rules.Compiled.Helpers
 {
@@ -26,6 +27,23 @@ namespace Patcher.Rules.Compiled.Helpers
                 Magnitude = magnitude,
                 Area = (uint)area,
                 Duration = (uint)duration
+            }, ProxyMode.Target);
+        }
+
+        public IMaterial CreateMaterial(IForm item, int count)
+        {
+            return (IMaterial)context.Rule.Engine.ProxyProvider.CreateFieldProxy(new Cobj.MaterialData()
+            {
+                Item = item.ToFormId(),
+                Quantity = (uint)count
+            }, ProxyMode.Target);
+        }
+
+        public IScript CreateScript(string name)
+        {
+            return (IScript)context.Rule.Engine.ProxyProvider.CreateFieldProxy(new VirtualMachineAdapter.Script()
+            {
+                Name = name
             }, ProxyMode.Target);
         }
     }

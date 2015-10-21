@@ -26,89 +26,86 @@ using Patcher.Data.Plugins.Content;
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(IScriptCollection))]
-    public class ScriptCollectionProxy : Proxy, IScriptCollection
+    public class ScriptCollectionProxy : FieldCollectionProxy<VirtualMachineAdapter.Script>, IScriptCollection
     {
-        IDictionary<string, ScriptProxy> cache = new SortedDictionary<string, ScriptProxy>();
+        internal IFeaturingScripts Target { get; set; }
 
-        internal IFeaturingScripts Record { get; set; }
+        protected override List<VirtualMachineAdapter.Script> Fields
+        {
+            get
+            {
+                return Target.VirtualMachineAdapter == null ? null : Target.VirtualMachineAdapter.Scripts;
+            }
+        }
 
-        public int Count { get { return Record.VirtualMachineAdapter != null ? Record.VirtualMachineAdapter.Scripts.Count : 0; } }
+        public int Count
+        {
+            get
+            {
+                return GetFieldCount();
+            }
+        }
 
-        public IScript this[string name] { get { return GetScriptProxy(name); } }
+        public IScript this[string name] { get { return GetField<IScript>(f => f.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)); } }
 
         public bool Contains(string name)
         {
-            return Record.VirtualMachineAdapter != null && Record.VirtualMachineAdapter.Scripts.Where(s => s.Name == name).Any();
+            return Fields != null && Fields.Where(f => f.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase)).Any();
         }
 
         public void Add(IScript script)
         {
             EnsureWritable();
-            EnsureVirtualMachineAdapterCreated();
 
             // Ensure script name has not been already added
             if (Contains(script.Name))
-                throw new InvalidOperationException("Script '" + script.Name + "' has been already attached to this object.");
+                throw new InvalidOperationException("Script '" + script.Name + "' has been already added to this object.");
 
             // Make a deep copy of the other existing script and add it to the backing VMA
-            var copy = ((ScriptProxy)script).Script.CopyScript();
-            Record.VirtualMachineAdapter.Scripts.Add(copy);
+            EnsureVirtualMachineAdapterCreated();
+            AddField(script.ToField(), true);
         }
 
         public void Add(string name)
         {
             EnsureWritable();
-            EnsureVirtualMachineAdapterCreated();
 
             // Ensure script name has not been already added
             if (Contains(name))
-                throw new InvalidOperationException("Script '" + name + "' has been already attached to this object.");
+                throw new InvalidOperationException("Script '" + name + "' has been already added to this object.");
 
             // Add new script with specified name
-            Record.VirtualMachineAdapter.Scripts.Add(new VirtualMachineAdapter.Script()
+            EnsureVirtualMachineAdapterCreated();
+            AddField(new VirtualMachineAdapter.Script()
             {
                 Name = name
-            });
+            }, false);
         }
 
         public void Remove(string name)
         {
             EnsureWritable();
-            EnsureVirtualMachineAdapterCreated();
 
             // Ensure script name has not been already added
             if (!Contains(name))
             {
-                Log.Warning("Script '{0}' has not been attached to this object - nothing to remove.");
+                Log.Warning("Script '{0}' not found in script collection - nothing to remove.");
             }
             else
             {
-                Record.VirtualMachineAdapter.Scripts.RemoveAll(s => s.Name == name);
+                Fields.RemoveAll(s => s.Name == name);
             }
         }
 
         public void Clear()
         {
             EnsureWritable();
-
-            // No need to remove scripts if there are no scripts
-            if (Record.VirtualMachineAdapter != null)
-            {
-                Record.VirtualMachineAdapter.Scripts.Clear();
-            }
+            ClearFields();
         }
 
         public IEnumerator<IScript> GetEnumerator()
         {
-            // Nothing to enumerate if there are no scripts
-            if (Record.VirtualMachineAdapter == null)
-                yield break;
-
-            // Iterate a copy of script names to allow modification of the collection during iteration
-            foreach (var script in Record.VirtualMachineAdapter.Scripts.Select(s => s.Name).ToArray())
-            {
-                yield return GetScriptProxy(script);
-            }
+            return GetFieldEnumerator<IScript>();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -119,45 +116,10 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         private void EnsureVirtualMachineAdapterCreated()
         {
             // Create scripts on demand
-            if (Record.VirtualMachineAdapter == null)
+            if (Target.VirtualMachineAdapter == null)
             {
-                Record.VirtualMachineAdapter = new VirtualMachineAdapter();
+                Target.VirtualMachineAdapter = new VirtualMachineAdapter();
             }
-        }
-
-        private IScript GetScriptProxy(string name)
-        {
-            if (Record.VirtualMachineAdapter == null)
-                throw new InvalidOperationException("There are no scripts attached to this object.");
-
-            var script = Record.VirtualMachineAdapter.Scripts.Where(s => s.Name == name).FirstOrDefault();
-            if (script == null)
-                throw new ArgumentException("Script '" + name + "' has not been attached to this object.");
-
-            // Also remove from cache
-            // The script proxy may not be cached but trying is not an error
-            cache.Remove(name);
-
-            return GetScriptProxy(script);
-        }
-
-        private IScript GetScriptProxy(VirtualMachineAdapter.Script script)
-        {
-            if (cache.ContainsKey(script.Name))
-            {
-                // Pull cached proxy
-                return cache[script.Name];
-            }
-            else
-            {
-                var proxy = Provider.CreateProxy<ScriptProxy>(Mode);
-                proxy.Script = script;
-
-                // Cache proxy for each script
-                cache.Add(script.Name, proxy);
-
-                return proxy;
-            }
-        }
+        }      
     }
 }

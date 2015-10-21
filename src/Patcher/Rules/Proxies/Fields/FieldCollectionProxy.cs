@@ -25,7 +25,7 @@ namespace Patcher.Rules.Proxies.Fields
 {
     public abstract class FieldCollectionProxy<TField> : Proxy where TField : Field
     {
-        internal List<TField> Fields { get; set; }
+        protected abstract List<TField> Fields { get; }
 
         internal List<TField> CopyFieldCollection()
         {
@@ -36,14 +36,78 @@ namespace Patcher.Rules.Proxies.Fields
                 return Fields.Select(f => f.CopyField()).Cast<TField>().ToList();
         }
 
+        protected int GetFieldCount()
+        {
+            // If the list of fields is null, return 0
+            if (Fields == null)
+                return 0;
+            else
+                return Fields.Count;
+        }
+
+        protected void ClearFields()
+        {
+            if (Fields == null)
+                Fields.Clear();
+        }
+
+        protected void AddField(TField field, bool copy)
+        {
+            if (field == null)
+                throw new ArgumentNullException("item", "Cannot add NULL to the collection.");
+
+            if (Fields == null)
+            {
+                throw new InvalidOperationException("Backing collection of fields does not exist.");
+            }
+
+            if (copy)
+            {
+                Fields.Add((TField)field.CopyField());
+            }
+            else
+            {
+                Fields.Add(field);
+            }
+        }
+
+        protected void RemoveField(TField field)
+        {
+            if (field == null)
+                throw new ArgumentNullException("item", "Cannot remove NULL to the collection.");
+
+            if (Fields != null)
+            {
+                if (!Fields.Remove(field))
+                {
+                    Log.Warning("Item {0} was not found in the collection and could not be removed.", field);
+                }
+            }
+        }
+
         protected IEnumerator<TInterface> GetFieldEnumerator<TInterface>()
         {
             // Empty enumerator for empty collections
-            if (Fields.Count == 0)
+            if (Fields == null || Fields.Count == 0)
                 return Enumerable.Empty<TInterface>().GetEnumerator();
 
             // Enumerate shallow copy so that the list of fields can be modified during an iteration
             return Fields.Select(f => f).ToArray().Select(f => Provider.CreateFieldProxy(f, Mode)).Cast<TInterface>().GetEnumerator();
+        }
+
+        protected TInterface GetField<TInterface>(Func<TField, bool> predicate)
+        {
+            var field = Fields.Where(predicate).FirstOrDefault();
+            if (field == null)
+            {
+                Log.Warning("Field {0} not found in collection.", predicate.ToString());
+                return default(TInterface);
+            }
+            else
+            {
+                var proxy = Provider.CreateFieldProxy(field, Mode);
+                return (TInterface)(object)proxy;
+            }
         }
 
         protected TField ProxyToField(object item)

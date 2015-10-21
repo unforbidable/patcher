@@ -25,12 +25,12 @@ using System.Text;
 
 namespace Patcher.Rules.Proxies
 {
-    public static class ProxyFeatureFactory
+    static class ProxyFeatureFactory
     {
         public static ConditionCollectionProxy CreateConditionCollectionProxy(this IFeaturingConditions target, Proxy parent)
         {
             var proxy = parent.Provider.CreateProxy<ConditionCollectionProxy>(parent.Mode);
-            proxy.Fields = target.Conditions;
+            proxy.Target = target;
             return proxy;
         }
 
@@ -61,29 +61,29 @@ namespace Patcher.Rules.Proxies
         public static ScriptCollectionProxy CreateVirtualMachineAdapterProxy(this IFeaturingScripts target, Proxy parent)
         {
             ScriptCollectionProxy proxy = parent.Provider.CreateProxy<ScriptCollectionProxy>(parent.Mode);
-            proxy.Record = target;
+            proxy.Target = target;
             return proxy;
         }
 
         public static void UpdateFromVirtualMachineAdapterProxy(this IFeaturingScripts target, IScriptCollection value)
         {
             var cast = (ScriptCollectionProxy)value;
-            if (value == null || cast.Record.VirtualMachineAdapter == null)
+            if (value == null || cast.Target.VirtualMachineAdapter == null)
             {
-                // Assigned null or a script collection proxy of record has no scripts
+                // Assigned null or a script collection proxy or record has no scripts
                 target.VirtualMachineAdapter = null;
             }
             else
             {
                 // Assign scripts of another record are assigned, make a copy
-                target.VirtualMachineAdapter = (VirtualMachineAdapter)cast.Record.VirtualMachineAdapter.CopyField();
+                target.VirtualMachineAdapter = (VirtualMachineAdapter)cast.Target.VirtualMachineAdapter.CopyField();
             }
         }
 
         public static EffectCollectionProxy CreateEffectCollectionProxy(this IFeaturingEffects target, Proxy parent)
         {
             var proxy = parent.Provider.CreateProxy<EffectCollectionProxy>(parent.Mode);
-            proxy.Fields = target.Effects;
+            proxy.Target = target;
             return proxy;
         }
 
@@ -93,6 +93,6 @@ namespace Patcher.Rules.Proxies
                 throw new ArgumentNullException("value", "Cannot assign a NULL to a collection.");
 
             target.Effects = ((EffectCollectionProxy)value).CopyFieldCollection();
-        }
+        }      
     }
 }

@@ -21,49 +21,49 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Data.Plugins.Content;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(IEffectCollection))]
     public class EffectCollectionProxy : FieldCollectionProxy<Effect>, IEffectCollection
     {
+        internal IFeaturingEffects Target { get; set; }
+
+        protected override List<Effect> Fields
+        {
+            get
+            {
+                return Target.Effects;
+            }
+        }
+
         public int Count
         {
             get
             {
-                return Fields.Count;
+                return GetFieldCount();
             }
         }
 
         public void Add(IEffect item)
         {
             EnsureWritable();
-
-            if (item == null)
-                throw new ArgumentNullException("item", "Cannot add NULL to the collection.");
-
-            // Add a copy
-            Fields.Add((Effect)ProxyToField(item).CopyField());
+            AddField(item.ToField(), true);
         }
 
         public void Clear()
         {
             EnsureWritable();
-            Fields.Clear();
+            ClearFields();
         }
 
         public void Remove(IEffect item)
         {
             EnsureWritable();
 
-            if (item == null)
-                throw new ArgumentNullException("item", "Cannot remove NULL from the collection.");
-
             // Remove by object reference - retrived during an iteration
-            if (!Fields.Remove(ProxyToField(item)))
-            {
-                Log.Warning("Item {0} was not found in the collection and could not be removed.", item);
-            }
+            RemoveField(item.ToField());
         }
 
         public IEnumerator<IEffect> GetEnumerator()

@@ -34,7 +34,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             get
             {
                 var proxy = Provider.CreateProxy<MaterialCollectionProxy>(Mode);
-                proxy.Fields = record.Materials;
+                proxy.Target = record;
                 return proxy;
             }
             set
@@ -46,10 +46,14 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
 
                 var otherCollection = (MaterialCollectionProxy)value;
 
-                // Same collection?
-                if (record.Materials == otherCollection.Fields)
+                if (otherCollection == null)
                 {
-                    Log.Warning("Cannot copy a collection into itself - nothing to do.");
+                    // Nothing to copy
+                }
+                else if (record.Materials == otherCollection.Target.Materials)
+                {
+                    // Same collection?
+                    Log.Warning("Cannot copy a collection into itself.");
                 }
                 else
                 {

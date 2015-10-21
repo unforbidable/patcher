@@ -57,7 +57,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             while (numberOfAttchedScripts-- > 0)
             {
                 Script script = new Script();
-                script.ReadScript(reader);
+                script.ReadField(reader);
                 Scripts.Add(script);
             }
         }
@@ -70,7 +70,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
             foreach (var script in Scripts)
             {
-                script.WriteScript(writer);
+                script.WriteField(writer);
             }
         }
 
@@ -80,7 +80,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             {
                 Version = Version,
                 Format = Format,
-                Scripts = new List<Script>(Scripts.Select(s => s.CopyScript())) // Create list containing copies of each script in original list
+                Scripts = new List<Script>(Scripts.Select(s => s.CopyField()).Cast<Script>()) // Create list containing copies of each script in original list
             };
         }
 
@@ -101,7 +101,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             return Scripts.SelectMany(s => s.GetReferencedFormIds());
         }
 
-        public sealed class Script : IEquatable<Script>
+        public sealed class Script : Field, IEquatable<Script>
         {
             public string Name { get; set; }
             public ScriptType Type { get; set; }
@@ -112,7 +112,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 Properties = new List<ScriptProperty>();
             }
 
-            internal void ReadScript(RecordReader reader)
+            internal override void ReadField(RecordReader reader)
             {
                 // UESP - Contrary to UESP script name IS null terminated in addition to size recorded 
                 ushort scriptNameLength = reader.ReadUInt16();
@@ -128,7 +128,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 }
             }
 
-            internal void WriteScript(RecordWriter writer)
+            internal override void WriteField(RecordWriter writer)
             {
                 // UESP - contrary to UESP write length (excluding null termination) and also null terminated string
                 if (string.IsNullOrEmpty(Name))
@@ -156,7 +156,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 return string.Format("Name=\"{0}\"", Name);
             }
 
-            public Script CopyScript()
+            public override Field CopyField()
             {
                 return new Script()
                 {
@@ -166,14 +166,20 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
                 };
             }
 
-            internal IEnumerable<uint> GetReferencedFormIds()
+            public override IEnumerable<uint> GetReferencedFormIds()
             {
                 return Properties.SelectMany(p => p.GetReferencedFormIds());
             }
 
+            public override bool Equals(Field other)
+            {
+                var cast = (Script)other;
+                return Name == cast.Name && Type == cast.Type && Properties.SequenceEqual(cast.Properties);
+            }
+
             public bool Equals(Script other)
             {
-                return Name == other.Name && Type == other.Type && Properties.SequenceEqual(other.Properties);
+                return Equals((Field)other);
             }
         }
 

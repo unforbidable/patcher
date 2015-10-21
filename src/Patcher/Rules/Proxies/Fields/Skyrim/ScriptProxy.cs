@@ -28,17 +28,15 @@ using Patcher.Rules.Compiled.Constants;
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(IScript))]
-    public class ScriptProxy : Proxy, IScript, IDumpabled
+    public class ScriptProxy : FieldProxy<VirtualMachineAdapter.Script>, IScript, IDumpabled
     {
-        internal VirtualMachineAdapter.Script Script { get; set; }
+        public string Name { get { return Field.Name; } }
 
-        public string Name { get { return Script.Name; } }
-
-        public void AddProperty(string name, Types type)
+        public IScript AddProperty(string name, Types type)
         {
             EnsureWritable();
 
-            if (Script.Properties.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            if (Field.Properties.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
                 throw new InvalidOperationException("Property '" + name + "' has been already added.");
 
             var prop = new VirtualMachineAdapter.ScriptProperty()
@@ -47,73 +45,85 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
                 Type = type.ToScriptPropertType()
             };
 
-            Script.Properties.Add(prop);
+            Field.Properties.Add(prop);
+            return this;
         }
 
-        public void SetProperty(string name, int value)
+        public IScript SetProperty(string name, int value)
         {
             SetProperty(name, value, null);
+            return this;
         }
 
-        public void SetProperty(string name, string value)
+        public IScript SetProperty(string name, string value)
         {
             SetProperty(name, value, null);
+            return this;
         }
 
-        public void SetProperty(string name, float value)
+        public IScript SetProperty(string name, float value)
         {
             SetProperty(name, value, null);
+            return this;
         }
 
-        public void SetProperty(string name, bool value)
+        public IScript SetProperty(string name, bool value)
         {
             SetProperty(name, value, null);
+            return this;
         }
 
-        public void SetProperty(string name, IForm value)
+        public IScript SetProperty(string name, IForm value)
         {
             SetProperty(name, value, null);
+            return this;
         }
 
-        public void SetProperty(string name, int value, int? index)
+        public IScript SetProperty(string name, int value, int? index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
+            return this;
         }
 
-        public void SetProperty(string name, string value, int? index)
+        public IScript SetProperty(string name, string value, int? index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
+            return this;
         }
 
-        public void SetProperty(string name, float value, int? index)
+        public IScript SetProperty(string name, float value, int? index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
+            return this;
         }
 
-        public void SetProperty(string name, bool value, int? index)
+        public IScript SetProperty(string name, bool value, int? index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
+            return this;
         }
 
-        public void SetProperty(string name, IForm value, int? index)
+        public IScript SetProperty(string name, IForm value, int? index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(-1, value.FormId, index);
+            return this;
         }
 
-        public void ResetProperty(string name)
+        public IScript ResetProperty(string name)
         {
             EnsureWritable();
             GetProperty(name).ResetValue();
+            return this;
         }
 
         private VirtualMachineAdapter.ScriptProperty GetProperty(string name)
         {
-            var prop = Script.Properties.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            var prop = Field.Properties.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
             if (prop == null)
                 throw new ArgumentException("Property '" + name + "' does not exist.");
 
@@ -126,11 +136,11 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             dumper.DumpText("Properties", "{");
             if (dumper.Enter())
             {
-                dumper.DumpText("Count", Script.Properties.Count.ToString());
+                dumper.DumpText("Count", Field.Properties.Count.ToString());
                 dumper.DumpText("[");
                 if (dumper.Enter())
                 {
-                    foreach (var prop in Script.Properties)
+                    foreach (var prop in Field.Properties)
                     {
                         // Dump property
                         dumper.DumpText(prop.Name, "{");

@@ -29,59 +29,55 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
     [Proxy(typeof(IMaterialCollection))]
     public sealed class MaterialCollectionProxy : FieldCollectionProxy<Cobj.MaterialData>, IMaterialCollection
     {
+        internal Cobj Target { get; set; }
+
         public int Count
         {
             get
             {
-                return Fields.Count;
+                return GetFieldCount();
+            }
+        }
+
+        protected override List<Cobj.MaterialData> Fields
+        {
+            get
+            {
+                return Target.Materials;
             }
         }
 
         public void Clear()
         {
             EnsureWritable();
-            Fields.Clear();
+            ClearFields();
         }
 
         public void Add(IForm item, int count)
         {
             EnsureWritable();
 
-            if (item == null || item.FormId == 0)
-            {
-                throw new ArgumentNullException("item", "Cannot add NULL or NULL form to material collection.");
-            }
-
-            Fields.Add(new Cobj.MaterialData()
+            AddField(new Cobj.MaterialData()
             {
                 Item = item.ToFormId(),
                 Quantity = (ushort)count
-            });
+            }, false);
         }
 
         public void Add(IMaterial item)
         {
             EnsureWritable();
 
-            if (item == null)
-                throw new ArgumentNullException("item", "Cannot add NULL to the collection.");
-
             // Add a copy
-            Fields.Add((Cobj.MaterialData)ProxyToField(item).CopyField());
+            AddField(item.ToField(), true);
         }
 
         public void Remove(IMaterial item)
         {
             EnsureWritable();
 
-            if (item == null)
-                throw new ArgumentNullException("item", "Cannot remove NULL from the collection.");
-
             // Remove by object reference - retrived during an iteration
-            if (!Fields.Remove(ProxyToField(item)))
-            {
-                Log.Warning("Item {0} was not found in the collection and could not be removed.", item);
-            }
+            RemoveField(item.ToField());
         }
 
         public IEnumerator<IMaterial> GetEnumerator()

@@ -26,7 +26,7 @@ namespace Patcher.Rules.Compiled.Helpers
     public interface IEngineHelper
     {
         IEffect CreateEffect(IForm baseEffect, float magnitude, int area, int duration);
-        //IMaterial CreateMaterial(IForm item, int count);
-        //IScript CreateScript(string name);
+        IMaterial CreateMaterial(IForm item, int count);
+        IScript CreateScript(string name);
     }
 }

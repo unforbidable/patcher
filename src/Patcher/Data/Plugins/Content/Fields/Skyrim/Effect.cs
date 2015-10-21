@@ -33,7 +33,6 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
         private EffectData Data { get; set; }
 
         [Member(Names.CTDA, Names.CIS1, Names.CIS2)]
-        [Initialize]
         public List<Condition> Conditions { get; set; }
 
         public float Magnitude { get { return Data.Magnitude; } set { Data.Magnitude = value; } }

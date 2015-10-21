@@ -21,12 +21,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using Patcher.Data.Plugins.Content;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(IConditionCollection))]
     public sealed class ConditionCollectionProxy : FieldCollectionProxy<Condition>, IConditionCollection
     {
+        internal IFeaturingConditions Target { get; set; }
+
         public int Count
         {
             get
@@ -35,35 +38,36 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             }
         }
 
+        protected override List<Condition> Fields
+        {
+            get
+            {
+                return Target.Conditions;
+            }
+        }
+
         public void Clear()
         {
             EnsureWritable();
-            Fields.Clear();
+            ClearFields();
         }
 
         public void Add(ICondition item)
         {
             EnsureWritable();
 
-            if (item == null)
-                throw new ArgumentNullException("item", "Cannot add NULL to the collection.");
+            EnsureConditionsCreated();
 
             // Add a copy
-            Fields.Add((Condition)ProxyToField(item).CopyField());
+            AddField(item.ToField(), true);
         }
 
         public void Remove(ICondition item)
         {
             EnsureWritable();
 
-            if (item == null)
-                throw new ArgumentNullException("item", "Cannot remove NULL from the collection.");
-
             // Remove by object reference - retrived during an iteration
-            if (!Fields.Remove(ProxyToField(item)))
-            {
-                Log.Warning("Item {0} was not found in the collection and could not be removed.", item);
-            }
+            RemoveField(item.ToField());
         }
 
         public IEnumerator<ICondition> GetEnumerator()
@@ -74,6 +78,14 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        private void EnsureConditionsCreated()
+        {
+            if (Target.Conditions == null)
+            {
+                Target.Conditions = new List<Condition>();
+            }
         }
     }
 }
