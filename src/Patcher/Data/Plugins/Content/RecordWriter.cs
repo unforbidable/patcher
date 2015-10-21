@@ -67,7 +67,7 @@ namespace Patcher.Data.Plugins.Content
             if (header == null)
                 throw new InvalidOperationException("Header not yet written");
 
-            FormKind formKind = (FormKind)InfoProvider.GetRecordInfo(record.GetType()).Attribute.Signature;
+            FormKind formKind = (FormKind)InfoProvider.GetRecordInfo(record.GetType()).Signature;
             if (formKind != currentGroupFormKind)
             {
                 // End existing group if one has begun
@@ -91,7 +91,7 @@ namespace Patcher.Data.Plugins.Content
         private void DoWriteRecord(Record record, uint formId)
         {
             var recinfo = InfoProvider.GetRecordInfo(record.GetType());
-            BeginRecordSegment(recinfo.Attribute.Signature, record.RawFlags, record.Version, formId);
+            BeginRecordSegment(recinfo.Signature, record.RawFlags, record.Version, formId);
 
             record.WriteRecord(this);
 

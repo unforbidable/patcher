@@ -254,7 +254,7 @@ namespace Patcher.Data.Plugins.Content
         private void DoReadRecord(GenericFormRecord record, bool lazyLoading)
         {
             RecordInfo recinf = InfoProvider.GetRecordInfo(record.GetType());
-            if (record.GetType() != typeof(DummyRecord) && recinf.Attribute.Signature != CurrentSegment.Signature)
+            if (record.GetType() != typeof(DummyRecord) && recinf.Signature != CurrentSegment.Signature)
                 throw new InvalidOperationException("Record signature mismatch.");
 
             if (record.IsRecordCompressed)

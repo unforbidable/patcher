@@ -123,7 +123,7 @@ namespace Patcher.Data
         private void AddSupportedType(Type type)
         {
             var recinfo = InfoProvider.GetRecordInfo(type);
-            formKindToRecordTypeMap.Add((FormKind)recinfo.Attribute.Signature, type);
+            formKindToRecordTypeMap.Add((FormKind)recinfo.Signature, type);
         }
 
         public Form CreateForm(FormKind kind)
@@ -318,13 +318,14 @@ namespace Patcher.Data
             var recordType = GetRecordType(kind);
             var recinf = InfoProvider.GetRecordInfo(recordType);
             var record = recinf.CreateInstance();
+            record.Version = (ushort)recinf.Version;
             return record;
         }
 
         public FormKind GetRecordFormKind(Type recordType)
         {
             var recinf = InfoProvider.GetRecordInfo(recordType);
-            return (FormKind)recinf.Attribute.Signature;
+            return (FormKind)recinf.Signature;
         }
 
         private Type GetRecordType(FormKind kind)

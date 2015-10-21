@@ -24,8 +24,11 @@ namespace Patcher.Data.Plugins.Content
 {
     sealed class RecordInfo
     {
-        readonly RecordAttribute attribute;
-        public RecordAttribute Attribute { get { return attribute; } }
+        readonly string signature;
+        public string Signature { get { return signature; } }
+
+        readonly int version;
+        public int Version { get { return version; } }
 
         readonly CompoundInfo compound;
         readonly ConstructorInfo ctor;
@@ -40,10 +43,17 @@ namespace Patcher.Data.Plugins.Content
                 throw new ArgumentException("Record type is not derived from Record: " + type.FullName);
             }
 
-            attribute = type.GetCustomAttributes(typeof(RecordAttribute), false).Cast<RecordAttribute>().FirstOrDefault();// .NET 4.5: type.GetCustomAttribute<RecordAttribute>();
+            var attribute = type.GetCustomAttributes(typeof(RecordAttribute), false).Cast<RecordAttribute>().FirstOrDefault();// .NET 4.5: type.GetCustomAttribute<RecordAttribute>();
             if (attribute == null)
             {
                 throw new ArgumentException("Record type is missing required atribute: " + type.FullName);
+            }
+            signature = attribute.Signature;
+
+            var va = type.GetCustomAttributes(typeof(VersionAttribute), false).Cast<VersionAttribute>().FirstOrDefault();// .NET 4.5: type.GetCustomAttribute<RecordAttribute>();
+            if (va != null)
+            {
+                version = va.Version;
             }
 
             ctor = type.GetConstructor(paramlessTypes);
