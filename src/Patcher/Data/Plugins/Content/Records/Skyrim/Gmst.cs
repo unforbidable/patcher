@@ -110,11 +110,11 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             }
         }
 
-        protected override void OnEditorIdChanged(string oldEditorId, string newEditorId)
+        protected override void OnEditorIdChanged(string oldEditorId)
        {
             if (!string.IsNullOrEmpty(EditorId))
             {
-                char oldType = !string.IsNullOrEmpty(oldEditorId) ? newEditorId[0] : '\0';
+                char oldType = !string.IsNullOrEmpty(oldEditorId) ? EditorId[0] : '\0';
                 if (oldType != Type)
                 {
                     // When type changed or set for the first time

@@ -36,14 +36,13 @@ namespace Patcher.Data.Plugins.Content
                 if (RaiseEditorIdChangingEvent(old, value))
                 {
                     editorId = value;
-                    RaiseEditorIdChangedEvent(old, value);
+                    RaiseEditorIdChangedEvent(old);
                 }
             }
         }
         private string editorId;
 
-        internal event EventHandler<EditorIdChangingEventArgs> EditorIdChanging;
-        internal event EventHandler<EditorIdChangedEventArgs> EditorIdChanged;
+        internal event Action<string> EditorIdChanged;
 
         internal bool IsRecordCompressed { get { return HasFlag(RecordFlags.Compressed); } }
 
@@ -83,45 +82,28 @@ namespace Patcher.Data.Plugins.Content
             return compinfo.GetReferencedFormIds(this);
         }
 
-        protected virtual bool OnEditorIdChanging(string oldEditorId, string newEditorId)
+        protected virtual bool OnEditorIdChanging(string previousEditorId, string newEditorId)
         {
             return true;
         }
 
-        protected virtual void OnEditorIdChanged(string oldEditorId, string newEditorId)
+        protected virtual void OnEditorIdChanged(string previousEditorId)
         {
         }
 
-        bool RaiseEditorIdChangingEvent(string oldEditorId, string newEditorId)
+        bool RaiseEditorIdChangingEvent(string previousEditorId, string newEditorId)
         {
-            bool result = OnEditorIdChanging(oldEditorId, newEditorId);
-
-            var handler = EditorIdChanging;
-            if (handler != null)
-            {
-                var args = new EditorIdChangingEventArgs(oldEditorId, newEditorId)
-                {
-                    // Negate accepted to mean cancel
-                    Cancel = !result
-                };
-                handler(this, args);
-
-                // Negate cancel to mean change will accepted
-                result = !args.Cancel;
-            }
-
-            return result;
+            return OnEditorIdChanging(previousEditorId, newEditorId);
         }
 
-        void RaiseEditorIdChangedEvent(string oldEditorId, string newEditorId)
+        void RaiseEditorIdChangedEvent(string previousEditorId)
         {
-            OnEditorIdChanged(oldEditorId, newEditorId);
+            OnEditorIdChanged(previousEditorId);
 
             var handler = EditorIdChanged;
             if (handler != null)
             {
-                var args = new EditorIdChangedEventArgs(oldEditorId, newEditorId);
-                handler(this, args);
+                handler(previousEditorId);
             }
         }
 

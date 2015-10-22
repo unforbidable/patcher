@@ -91,7 +91,7 @@ namespace Patcher.Data
                 if (form.EditorId != null)
                     LinkEditorId(form, form.EditorId);
 
-                form.EditorIdChanged += FormEditorIdChanged;
+                form.EditorIdChanged += OnEditorIdUpdated;
             }
         }
 
@@ -99,7 +99,7 @@ namespace Patcher.Data
         {
             lock (forms)
             {
-                form.EditorIdChanged -= FormEditorIdChanged;
+                form.EditorIdChanged -= OnEditorIdUpdated;
 
                 forms.Remove(form);
 
@@ -132,22 +132,22 @@ namespace Patcher.Data
             }
         }
 
-        private void FormEditorIdChanged(object sender, EditorIdChangedEventArgs e)
+        private void OnEditorIdUpdated(Form form, string previousEditorId)
         {
-            if (e.NewEditorId != e.PreviousEditorId)
+            if (form.EditorId != previousEditorId)
             {
                 lock (formsByEditorId)
                 {
                     // Link new Editor ID
-                    if (e.NewEditorId != null)
+                    if (form.EditorId != null)
                     {
-                        LinkEditorId((Form)sender, e.NewEditorId);
+                        LinkEditorId(form, form.EditorId);
                     }
 
                     // Unlink previous Editor ID
-                    if (e.PreviousEditorId != null)
+                    if (previousEditorId != null)
                     {
-                        UnlinkEditorId((Form)sender, e.PreviousEditorId);
+                        UnlinkEditorId(form, previousEditorId);
                     }
                 }
             }

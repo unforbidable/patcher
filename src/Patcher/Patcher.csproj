@@ -87,8 +87,6 @@
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
     <Compile Include="Data\Plugins\Content\VersionAttribute.cs" />
     <Compile Include="Data\Plugins\Content\ReferenceAttribute.cs" />
-    <Compile Include="Data\Plugins\EditorIdChangedEventArgs.cs" />
-    <Compile Include="Data\Plugins\EditorIdChangingEventArgs.cs" />
     <Compile Include="Data\Plugins\Content\FakeFloatAttribute.cs" />
     <Compile Include="Data\Plugins\Content\GroupType.cs" />
     <Compile Include="Data\Plugins\IStringLocator.cs" />

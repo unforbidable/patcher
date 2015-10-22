@@ -48,19 +48,13 @@ namespace Patcher.Data.Plugins
                 {
                     record = value;
 
-                    // Raise loaded event and also EditorIdChanged event
-                    RaiseLoadedEvent();
-                    RaiseEditorIdChangedEvent(value.EditorId);
-
-                    // Subscribe to record events for forwarding EditorIdChanging and EditorIdChanged
+                    // Subscribe to record events for forwarding EditorIdChanged
                     SubscribeToRecordEvents(value);
                 }
             }
         }
 
-        internal event EventHandler<EventArgs> Loaded;
-        internal event EventHandler<EditorIdChangingEventArgs> EditorIdChanging;
-        internal event EventHandler<EditorIdChangedEventArgs> EditorIdChanged;
+        internal event Action<Form, string> EditorIdChanged;
 
         FormFlags flags;
         internal FormFlags Flags { get { return flags; } set { flags = value; } }
@@ -104,47 +98,17 @@ namespace Patcher.Data.Plugins
             return string.Format("UNRESOLVED {0:X8}", formId);
         }
 
-        private void RaiseLoadedEvent()
-        {
-            var handler = Loaded;
-            if (handler != null)
-            {
-                var args = EventArgs.Empty;
-                handler.Invoke(this, args);
-            }
-        }
-
         private void SubscribeToRecordEvents(GenericFormRecord record)
         {
-            record.EditorIdChanging += ForwardEditorIdChangingEvent;
             record.EditorIdChanged += ForwardEditorIdChangedEvent;
         }
 
-        private void ForwardEditorIdChangingEvent(object sender, EditorIdChangingEventArgs args)
-        {
-            var handler = EditorIdChanging;
-            if (handler != null)
-            {
-                handler.Invoke(this, args);
-            }
-        }
-
-        private void ForwardEditorIdChangedEvent(object sender, EditorIdChangedEventArgs args)
+        private void ForwardEditorIdChangedEvent(string previousEditorId)
         {
             var handler = EditorIdChanged;
             if (handler != null)
             {
-                handler.Invoke(this, args);
-            }
-        }
-
-        private void RaiseEditorIdChangedEvent(string newEditorId)
-        {
-            var handler = EditorIdChanged;
-            if (handler != null)
-            {
-                var args = new EditorIdChangedEventArgs(null, newEditorId);
-                handler.Invoke(this, args);
+                handler.Invoke(this, previousEditorId);
             }
         }
 
