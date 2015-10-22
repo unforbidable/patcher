@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
@@ -24,10 +25,7 @@ namespace Patcher.Data.Plugins.Content
 {
     sealed class FieldInfo
     {
-        readonly ConstructorInfo createInstanceCtor;
-
-        static Type[] paramlessTypes = new Type[] { };
-        static object[] paramlessArgs = new object[] { };
+        readonly Func<Field> creator;
 
         public FieldInfo(Type type)
         {
@@ -36,12 +34,12 @@ namespace Patcher.Data.Plugins.Content
                 throw new ArgumentException("Field type is not derived from Field: " + type.FullName);
             }
 
-            createInstanceCtor = type.GetConstructor(paramlessTypes);
+            creator = Expression.Lambda<Func<Field>>(Expression.New(type.GetConstructor(Type.EmptyTypes))).Compile();
         }
 
         public Field CreateInstance()
         {
-            return (Field)createInstanceCtor.Invoke(paramlessArgs);
+            return creator.Invoke();          
         }
     }
 }
