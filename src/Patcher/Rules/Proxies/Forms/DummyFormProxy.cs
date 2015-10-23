@@ -23,8 +23,8 @@ using System.Text;
 
 namespace Patcher.Rules.Proxies.Forms
 {
-    [Proxy(typeof(IDummyForm))]
-    public sealed class DummyFormProxy : FormProxy<DummyRecord>, IDummyForm
+    [Proxy(typeof(IForm))]
+    public sealed class DummyFormProxy : FormProxy<DummyRecord>, IForm
     {
     }
 }

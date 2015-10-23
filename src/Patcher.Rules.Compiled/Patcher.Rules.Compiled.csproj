@@ -59,7 +59,6 @@
     <Compile Include="Helpers\IFormsHelper.cs" />
     <Compile Include="Helpers\Skyrim\IEngineHelper.cs" />
     <Compile Include="Helpers\Math.cs" />
-    <Compile Include="Forms\IDummyForm.cs" />
     <Compile Include="Fields\Skyrim\IObjectBounds.cs" />
     <Compile Include="Fields\Skyrim\IScriptCollection.cs" />
     <Compile Include="Forms\Skyrim\IStat.cs" />
