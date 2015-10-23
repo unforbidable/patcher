@@ -21,12 +21,32 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Forms
 {
+    /// <summary>
+    /// Represents a form the type of which is either unknown, unsupported or unresolved.
+    /// </summary>
     public interface IForm
     {
+        /// <summary>
+        /// Gets the Form ID associated with this form.
+        /// </summary>
         uint FormId { get; }
+
+        /// <summary>
+        /// Gets or sets the Editor ID associated with this form.
+        /// </summary>
         string EditorId { get; set; }
 
+        /// <summary>
+        /// Tags this form with a text.
+        /// </summary>
+        /// <param name="text">Text used to tag the form with.</param>
         void Tag(string text);
+
+        /// <summary>
+        /// Determines whether a form has been tagged with a text.
+        /// </summary>
+        /// <param name="text">Text of the tag to determine.</param>
+        /// <returns>Returns <c>true</c> if the form has been taged with specified text, otherwise returns <c>false</c>.</returns>
         bool HasTag(string text);
     }
 }
