@@ -1,5 +1,22 @@
-﻿using System;
+﻿/// Copyright(C) 2015 Unforbidable Works
+///
+/// This program is free software; you can redistribute it and/or
+/// modify it under the terms of the GNU General Public License
+/// as published by the Free Software Foundation; either version 2
+/// of the License, or(at your option) any later version.
+///
+/// This program is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+/// GNU General Public License for more details.
+///
+/// You should have received a copy of the GNU General Public License
+/// along with this program; if not, write to the Free Software
+/// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,37 +30,16 @@ namespace Documenter
     {
         public const string RootNamespace = "Patcher.Rules.Compiled";
         public const string RootFolder = "reference";
-        public const string TargetPath = @"..\..\..\..\doc\generated";
+        public const string TargetPath = @"doc";
 
         static void Main(string[] args)
         {
             var assembly = Assembly.GetAssembly(typeof(Patcher.Rules.Compiled.Forms.IForm));
             var xmlFilePath = Path.GetFileNameWithoutExtension(assembly.GetName().CodeBase) + ".xml";
 
-            XDocument doc = XDocument.Load(xmlFilePath);
-            
-
-            foreach (var type in assembly.GetTypes())
-            {
-                string name = type.GetLocalName();
-                string ns = type.GetLocalNamespace();
-
-                // Ignore extensions (extension methods will be added to the respective class they extend)
-                if (ns.StartsWith("Extensions"))
-                    continue;
-
-                Console.WriteLine("Type {0} in {1}", name, ns);
-
-
-
-            }
-
-
-
-
-            Console.WriteLine();
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadKey();
+            XDocument source = XDocument.Load(xmlFilePath);
+            PageGenerator generator = new PageGenerator(source, assembly);
+            generator.GeneratePages();
         }
     }
 }
