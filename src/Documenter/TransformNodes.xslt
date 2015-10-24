@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl">
   <xsl:output method="xml" indent="yes"/>
 
-  <xsl:variable name="fullname" select="html/body/div[@class='div-subtitle']" />
+  <xsl:variable name="fullname" select="html/head/meta[@name='doc-fullname']/@content" />
   <xsl:variable name="depth" select="string-length($fullname) - string-length(translate($fullname,'.',''))" />
   <xsl:variable name="relativePath" select="substring('../../../', 1, $depth * 3)" />
   

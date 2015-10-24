@@ -22,6 +22,11 @@
         <title>
           <xsl:value-of select="@name"/>
         </title>
+        <meta name="doc-fullname">
+          <xsl:attribute name="content">
+            <xsl:value-of select="@fullname"/>
+          </xsl:attribute>
+        </meta>
       </head>
       <body>
 
@@ -125,13 +130,13 @@
             Remarks
           </div>
           <div class="div-summary">
-            <xsl:copy-of select="remarks"/>
+            <p>
+              <xsl:copy-of select="remarks"/>
+            </p>
           </div>
         </xsl:if>
 
-        <div class="div-subtitle">
-          Viewing: <xsl:value-of select="@fullname"/>
-        </div>
+        <hr />
         <div class="div-navigation">
           Return to: <see cref="Index">Index</see>
         </div>

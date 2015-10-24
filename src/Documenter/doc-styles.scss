@@ -14,6 +14,16 @@ a:hover {
     padding: 1px 2px 1px 2px;
     background: rgba(129, 161, 241, 0.2);
 }
+hr {
+	margin:24px 0px 0px 0px;
+    padding:0px;
+	width:1232px;
+	border:1px solid #a0a0b0;
+}
+p {
+	margin:0px 0px 8px 0px;
+    padding:0px;
+}
 code {
     font-family: Courier New, Courier, monospace;
     font-weight: bold;
@@ -28,12 +38,10 @@ div.div-header {
     font-size: large;
 }
 div.div-summary {
+    line-height: 150%;
     padding: 4px 0px 0px 0px;
     font-size: small;
-}
-div.div-subtitle {
-    padding: 4px 0px 0px 0px;
-    font-size: small;
+    width: 1232px;
 }
 div.div-navigation {
     padding: 4px 0px 0px 0px;
