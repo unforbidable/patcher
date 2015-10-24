@@ -1,103 +1,171 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants">
-  <summary>TODO</summary>
+  <summary>
+            Defines body nodes.
+            </summary>
   <field name="Amulet">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Amulet</b> body node.
+            </summary>
   </field>
   <field name="Body">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Body</b> body node.
+            </summary>
   </field>
   <field name="Calves">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Calves</b> body node.
+            </summary>
   </field>
   <field name="Circlet">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Circlet</b> body node.
+            </summary>
   </field>
   <field name="Decapitated">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Decapitated</b> body node.
+            </summary>
   </field>
   <field name="DecapitatedHead">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>DecapitatedHead</b> body node.
+            </summary>
   </field>
   <field name="Ears">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Ears</b> body node.
+            </summary>
   </field>
   <field name="Feet">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Feet</b> body node.
+            </summary>
   </field>
   <field name="Forearms">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Forearms</b> body node.
+            </summary>
   </field>
   <field name="FX01">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>FX01</b> body node.
+            </summary>
   </field>
   <field name="Hair">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Hair</b> body node.
+            </summary>
   </field>
   <field name="Hands">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Hands</b> body node.
+            </summary>
   </field>
   <field name="Head">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Head</b> body node.
+            </summary>
   </field>
   <field name="LongHair">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>LongHair</b> body node.
+            </summary>
   </field>
   <field name="None">
-    <summary>TODO</summary>
+    <summary>
+            Represents no body node.
+            </summary>
   </field>
   <field name="Ring">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Ring</b> body node.
+            </summary>
   </field>
   <field name="Shield">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Shield</b> body node.
+            </summary>
   </field>
   <field name="Tail">
-    <summary>TODO</summary>
+    <summary>
+            Represents the <b>Tail</b> body node.
+            </summary>
   </field>
   <field name="Unnamed14">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed15">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed16">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed17">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed18">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed19">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed22">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed23">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed24">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed25">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed26">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed27">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed28">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed29">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
   <field name="Unnamed30">
-    <summary>TODO</summary>
+    <summary>
+            Represents an unnamed body node.
+            </summary>
   </field>
 </type>

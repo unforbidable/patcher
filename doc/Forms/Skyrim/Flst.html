@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Flst</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Forms.Skyrim.Flst" />
   </head>
   <body>
     <div class="div-title">Flst</div>
@@ -9,7 +10,9 @@
           Summary
         </div>
     <div class="div-summary">
-      <summary>TODO</summary>
+      <summary>
+            Represents a <b>Form List</b> form.
+            </summary>
     </div>
     <div class="div-header">
             Properties
@@ -49,10 +52,12 @@
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/FormCollection.html">FormCollection</a> of <a href="../../Forms/Form.html">Form</a> Items</signature>
+      <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> Items</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the mixed <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> associated with this <b>Form List</b>.
+            </summary>
           </td>
         </tr>
       </table>
@@ -77,7 +82,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Determines whether a form has been tagged with a text.
+            Determines whether this form has been tagged with the specified text.
             </summary>
           </td>
         </tr>
@@ -88,15 +93,25 @@
           </td>
           <td class="td-description">
             <summary>
-            Tags this form with a text.
+            Tags this form with the specified text.
             </summary>
           </td>
         </tr>
       </table>
     </div>
-    <div class="div-subtitle">
-          Viewing: Forms.Skyrim.Flst</div>
+    <div class="div-header">
+            Remarks
+          </div>
+    <div class="div-summary">
+      <remarks>
+    <p>
+            Because property <code>Items</code> represents a mixed <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> each form which is retrieved from 
+            the collection must be cast into its specific types before properties and methods specific to each form can be accessed.
+            </p>
+  </remarks>
+    </div>
+    <hr />
     <div class="div-navigation">
-          Return to: <a href="../../Index.html">Index</a></div>
+          Return to: <a href="../../index.html"><see cref="Index">Index</see></a></div>
   </body>
 </html>

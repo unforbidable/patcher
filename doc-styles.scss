@@ -1,34 +1,49 @@
 ﻿body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: smaller;
     margin: 32px 128px 64px 64px;
 }
 a {
     color: dodgerblue;
-    font-weight: bold;
+    font-weight: normal;
     padding: 1px 2px 1px 2px;
 }
 a:hover {
     color: dodgerblue;
-    font-weight: bold;
+    font-weight: normal;
     padding: 1px 2px 1px 2px;
     background: rgba(129, 161, 241, 0.2);
 }
+hr {
+	margin:24px 0px 0px 0px;
+    padding:0px;
+	width:1232px;
+	border:1px solid #a0a0b0;
+}
+p {
+	margin:0px 0px 8px 0px;
+    padding:0px;
+}
+code {
+    font-family: Courier New, Courier, monospace;
+    font-weight: normal;
+    padding: 1px 2px 1px 2px;
+}
 div.div-title {
     padding: 12px 0px 0px 0px;
+    font-weight: bold;
     font-size: xx-large;
 }
 div.div-header {
     padding: 8px 0px 0px 0px;
+    font-weight: bold;
     font-size: large;
 }
 div.div-summary {
+    line-height: 150%;
     padding: 4px 0px 0px 0px;
     font-size: small;
-}
-div.div-subtitle {
-    padding: 4px 0px 0px 0px;
-    font-size: small;
+    width: 1232px;
 }
 div.div-navigation {
     padding: 4px 0px 0px 0px;
@@ -36,18 +51,18 @@ div.div-navigation {
 }
 span.span-code {
     font-family: Courier New, Courier, monospace;
-    font-weight: bold;
+    font-weight: normal;
     color: blue;
     padding: 1px 2px 1px 2px;
 }
 .div-table a {
     color: dodgerblue;
-    font-weight: bold;
+    font-weight: normal;
     padding: 1px 2px 1px 2px;
 }
 .div-table a:hover {
     color: dodgerblue;
-    font-weight: bold;
+    font-weight: normal;
     padding: 1px 2px 1px 2px;
     background: rgba(129, 161, 241, 0.2);
 }
@@ -66,6 +81,7 @@ span.span-code {
 }
 .div-table td.td-name {
     width: 360px;
+    vertical-align: top;
 }
 .div-table td.td-description {
 
@@ -111,7 +127,7 @@ span.span-code {
 	font-family:Trebuchet MS;
 	font-weight:bold;
 	color:#000000;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 .div-table tr:first-child:hover td{
 	background:-o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);	

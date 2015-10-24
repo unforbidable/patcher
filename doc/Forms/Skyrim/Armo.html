@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Armo</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Forms.Skyrim.Armo" />
   </head>
   <body>
     <div class="div-title">Armo</div>
@@ -9,7 +10,9 @@
           Summary
         </div>
     <div class="div-summary">
-      <summary>TODO</summary>
+      <summary>
+            Represents an <b>Armor</b> form.
+            </summary>
     </div>
     <div class="div-header">
             Properties
@@ -27,10 +30,12 @@
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> AlternateBlockMaterial</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> AlternateBlockMaterial</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the alternate <b>Material</b> used when bashing or blocking (shields only).
+            </summary>
           </td>
         </tr>
         <tr>
@@ -39,25 +44,31 @@
       <span class="span-code">float</span> ArmorRating</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the armor rating of this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> BlockImpactDataSet</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> BlockImpactDataSet</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the shield bash <b>Impact Data Set</b> (shields only).
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Constants/Skyrim/BodyNodes.html">BodyNodes</a> BodyNodes</signature>
+      <a href="../../constants/skyrim/bodynodes.html"><see cref="Constants.Skyrim.BodyNodes" />BodyNodes</a> BodyNodes</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../constants/skyrim/bodynodes.html"><see cref="Constants.Skyrim.BodyNodes" />BodyNodes</a> used to determine which body parts this <b>Armor</b> will use.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -66,7 +77,9 @@
       <span class="span-code">string</span> Description</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the description of this <b>Armor</b> that will override the enchantment description if provided.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -83,19 +96,23 @@
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> Enchantment</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> Enchantment</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Enchantment</b> of this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> EquipType</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> EquipType</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the shield <b>Equip Type</b> (shields only).
+            </summary>
           </td>
         </tr>
         <tr>
@@ -104,7 +121,9 @@
       <span class="span-code">string</span> FemaleWorldModel</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Armor</b> when the player character is a female.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -124,7 +143,9 @@
       <span class="span-code">string</span> FullName</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the in-game name of this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -133,7 +154,9 @@
       <span class="span-code">bool</span> IsPlayable</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the value that indicates whether this <b>Armor</b> can be worn by the player character.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -142,16 +165,20 @@
       <span class="span-code">bool</span> IsShield</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the value that indicates whether this item is a shield.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/FormCollection.html">FormCollection</a> of <a href="../../Forms/Skyrim/Kywd.html">Kywd</a> Keywords</signature>
+      <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a>&lt;<a href="../../forms/skyrim/kywd.html"><see cref="Forms.Skyrim.Kywd" />Kywd</a>&gt; Keywords</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> containing <b>Keywords</b> associated with this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -160,79 +187,97 @@
       <span class="span-code">string</span> MaleWorldModel</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Armor</b> when the player character is a male.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/FormCollection.html">FormCollection</a> of <a href="../../Forms/Form.html">Form</a> Models</signature>
+      <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> Models</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> containing <b>Armor Addons</b> used by this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Fields/Skyrim/ObjectBounds.html">ObjectBounds</a> ObjectBounds</signature>
+      <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> ObjectBounds</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> of this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> PickUpSound</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> PickUpSound</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Armor</b> is picked up.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> PutDownSound</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> PutDownSound</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Armor</b> is put down.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> Race</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> Race</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Race</b> that is allowed to wear this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Fields/Skyrim/ScriptCollection.html">ScriptCollection</a> Scripts</signature>
+      <a href="../../fields/skyrim/scriptcollection.html"><see cref="Fields.Skyrim.ScriptCollection" />ScriptCollection</a> Scripts</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../fields/skyrim/scriptcollection.html"><see cref="Fields.Skyrim.ScriptCollection" />ScriptCollection</a> containing <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script">Scripts</see></a> attached to this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Constants/Skyrim/Skills.html">Skills</a> Skill</signature>
+      <a href="../../constants/skyrim/skills.html"><see cref="Constants.Skyrim.Skills" />Skills</a> Skill</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../constants/skyrim/skills.html"><see cref="Constants.Skyrim.Skills">Skill</see></a> that will be used when this <b>Armor</b> is worn.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Skyrim/Armo.html">Armo</a> TemplateArmor</signature>
+      <a href="../../forms/skyrim/armo.html"><see cref="Forms.Skyrim.Armo" />Armo</a> TemplateArmor</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Armor</b> that will be used as the template.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -241,7 +286,9 @@
       <span class="span-code">int</span> Value</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the value of this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -250,7 +297,9 @@
       <span class="span-code">float</span> Weight</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the weight of this <b>Armor</b>.
+            </summary>
           </td>
         </tr>
       </table>
@@ -275,7 +324,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Determines whether a form has been tagged with a text.
+            Determines whether this form has been tagged with the specified text.
             </summary>
           </td>
         </tr>
@@ -286,15 +335,29 @@
           </td>
           <td class="td-description">
             <summary>
-            Tags this form with a text.
+            Tags this form with the specified text.
             </summary>
           </td>
         </tr>
       </table>
     </div>
-    <div class="div-subtitle">
-          Viewing: Forms.Skyrim.Armo</div>
+    <div class="div-header">
+            Remarks
+          </div>
+    <div class="div-summary">
+      <remarks>
+    <p>
+            Property <code>Skill</code> can be assigned values <code>Skills.LightArmor</code>, <code>Skills.HeavyArmor</code> and <code>Skills.None</code> only. 
+            If no value is assigned the value will default to <code>Skills.LightArmor</code> for any newly created <b>Armor</b> forms.
+            </p>
+    <p>
+            Property <code>BodyNodes</code> can be assigned a set of values combined with <code>|</code> operator. 
+            To determine whether a specific body node has been set (in a if statement or a where clause) method <code>HasFlag()</code> can be used.
+            </p>
+  </remarks>
+    </div>
+    <hr />
     <div class="div-navigation">
-          Return to: <a href="../../Index.html">Index</a></div>
+          Return to: <a href="../../index.html"><see cref="Index">Index</see></a></div>
   </body>
 </html>

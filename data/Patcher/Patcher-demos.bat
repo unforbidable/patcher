@@ -1,1 +1,0 @@
-patcher --data=.. --rules=demos --debug=* --consoleloglevel=4 --consolewidth=160 --consoleheight=40

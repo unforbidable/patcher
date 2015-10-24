@@ -1,16 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants">
-  <summary>TODO</summary>
+  <summary>
+            Defines <b>Potion</b> types.
+            </summary>
   <field name="Auto">
-    <summary>TODO</summary>
+    <summary>
+            Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
+            </summary>
   </field>
   <field name="Food">
-    <summary>TODO</summary>
+    <summary>
+            Indicates the <b>Potion</b> is food or a drink.
+            </summary>
   </field>
   <field name="Medicine">
-    <summary>TODO</summary>
+    <summary>
+            Indicates the <b>Potion</b> is a medicine.
+            </summary>
   </field>
   <field name="Poison">
-    <summary>TODO</summary>
+    <summary>
+            Indicates the <b>Potion</b> is a posion.
+            </summary>
   </field>
 </type>

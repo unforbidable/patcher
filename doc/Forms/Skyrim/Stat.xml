@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms">
-  <summary>TODO</summary>
+  <summary>
+            Represents a <b>Static</b> form. 
+            </summary>
   <property name="EditorId">
     <signature>
       <c>string</c> EditorId</signature>
@@ -19,14 +21,14 @@
     <signature>
       <c>bool</c> HasTag(<c>string</c>)</signature>
     <summary>
-            Determines whether a form has been tagged with a text.
+            Determines whether this form has been tagged with the specified text.
             </summary>
   </method>
   <method name="Tag" extension="false">
     <signature>
       <c>void</c> Tag(<c>string</c>)</signature>
     <summary>
-            Tags this form with a text.
+            Tags this form with the specified text.
             </summary>
   </method>
 </type>

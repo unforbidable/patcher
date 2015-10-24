@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Alch</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Forms.Skyrim.Alch" />
   </head>
   <body>
     <div class="div-title">Alch</div>
@@ -9,7 +10,9 @@
           Summary
         </div>
     <div class="div-summary">
-      <summary>TODO</summary>
+      <summary>
+            Represents a <b>Potion</b> form.
+            </summary>
     </div>
     <div class="div-header">
             Properties
@@ -30,7 +33,9 @@
       <span class="span-code">string</span> Description</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the description of this <b>Potion</b> that will override the enchantment description if provided.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -47,10 +52,12 @@
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Fields/Skyrim/EffectCollection.html">EffectCollection</a> Effects</signature>
+      <a href="../../fields/skyrim/effectcollection.html"><see cref="Fields.Skyrim.EffectCollection" />EffectCollection</a> Effects</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../fields/skyrim/effectcollection.html"><see cref="Fields.Skyrim.EffectCollection" />EffectCollection</a> contaning <a href="../../fields/skyrim/effect.html"><see cref="Fields.Skyrim.Effect">Effects</see></a> of this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -70,61 +77,75 @@
       <span class="span-code">string</span> FullName</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the in-game name of this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/FormCollection.html">FormCollection</a> of <a href="../../Forms/Skyrim/Kywd.html">Kywd</a> Keywords</signature>
+      <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a>&lt;<a href="../../forms/skyrim/kywd.html"><see cref="Forms.Skyrim.Kywd" />Kywd</a>&gt; Keywords</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> containing <b>Keywords</b> associated with this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Fields/Skyrim/ObjectBounds.html">ObjectBounds</a> ObjectBounds</signature>
+      <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> ObjectBounds</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> of this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> PickUpSound</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> PickUpSound</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is picked up.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> PutDownSound</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> PutDownSound</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is put down.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Constants/Skyrim/PotionTypes.html">PotionTypes</a> Type</signature>
+      <a href="../../constants/skyrim/potiontypes.html"><see cref="Constants.Skyrim.PotionTypes" />PotionTypes</a> Type</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the type of this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Forms/Form.html">Form</a> UseSound</signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> UseSound</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is used.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -133,7 +154,9 @@
       <span class="span-code">int</span> Value</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the value of this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -142,7 +165,9 @@
       <span class="span-code">float</span> Weight</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the weight of this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -151,7 +176,9 @@
       <span class="span-code">string</span> WorldModel</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Potion</b>.
+            </summary>
           </td>
         </tr>
       </table>
@@ -176,7 +203,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Determines whether a form has been tagged with a text.
+            Determines whether this form has been tagged with the specified text.
             </summary>
           </td>
         </tr>
@@ -187,15 +214,22 @@
           </td>
           <td class="td-description">
             <summary>
-            Tags this form with a text.
+            Tags this form with the specified text.
             </summary>
           </td>
         </tr>
       </table>
     </div>
-    <div class="div-subtitle">
-          Viewing: Forms.Skyrim.Alch</div>
+    <div class="div-header">
+            Remarks
+          </div>
+    <div class="div-summary">
+      <remarks>
+    <b>Potion</b> forms include drinks and food as well.
+            </remarks>
+    </div>
+    <hr />
     <div class="div-navigation">
-          Return to: <a href="../../Index.html">Index</a></div>
+          Return to: <a href="../../index.html"><see cref="Index">Index</see></a></div>
   </body>
 </html>

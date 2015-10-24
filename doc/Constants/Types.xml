@@ -1,32 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <type name="Types" fullname="Constants.Types" category="Constants">
-  <summary>TODO</summary>
+  <summary>
+            Defines types that may be used in several contexts, e.g. when declaring <b>Script</b> properties and when specifying the type of a <b>Global Variable</b>.
+            </summary>
   <field name="ArrayOfBool">
-    <summary>TODO</summary>
+    <summary>
+            Represents a sequence of boolean values, i.e. <c>true</c> or <c>false</c>.
+            </summary>
   </field>
   <field name="ArrayOfFloat">
-    <summary>TODO</summary>
+    <summary>
+            Represents a sequence of floating point numbers.
+            </summary>
   </field>
   <field name="ArrayOfInt">
-    <summary>TODO</summary>
+    <summary>
+            Represents a sequence of integer numbers.
+            </summary>
   </field>
   <field name="ArrayOfObject">
-    <summary>TODO</summary>
+    <summary>
+            Represents a sequence of arbitrary objects the specific kind of which depends on the context.
+            </summary>
   </field>
   <field name="ArrayOfShort">
-    <summary>TODO</summary>
+    <summary>
+            Represents an array of short integer numbers.
+            </summary>
   </field>
   <field name="ArrayOfString">
-    <summary>TODO</summary>
+    <summary>
+            Represents a sequence of strings of characters, i.e. a sequence of texts.
+            </summary>
   </field>
   <field name="Bool">
-    <summary>TODO</summary>
+    <summary>
+            Represents a boolean value, i.e, <c>true</c> or <c>false</c>.
+            </summary>
   </field>
   <field name="Float">
-    <summary>TODO</summary>
+    <summary>
+            Represents a floating point number.
+            </summary>
   </field>
   <field name="Int">
-    <summary>TODO</summary>
+    <summary>
+            Represents an integer number.
+            </summary>
   </field>
   <field name="None">
     <summary>
@@ -34,12 +54,18 @@
             </summary>
   </field>
   <field name="Object">
-    <summary>TODO</summary>
+    <summary>
+            Represents an arbitrary object the specific kind of which depends on the context.
+            </summary>
   </field>
   <field name="Short">
-    <summary>TODO</summary>
+    <summary>
+            Represents a short integer number.
+            </summary>
   </field>
   <field name="String">
-    <summary>TODO</summary>
+    <summary>
+            Represents a string of characters, i.e. a text.
+            </summary>
   </field>
 </type>

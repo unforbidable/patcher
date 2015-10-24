@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Form</title><link rel="stylesheet" type="text/css" href="../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Forms.Form" />
   </head>
   <body>
     <div class="div-title">Form</div>
@@ -12,6 +13,7 @@
       <summary>
             Represents a form the type of which is either unknown, unsupported or unresolved.
             To convert an unknown form to a specific form use the appropriate extension method.
+            Properties and methods provided by this class are available to all forms.
             </summary>
     </div>
     <div class="div-header">
@@ -71,7 +73,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Determines whether a form has been tagged with a text.
+            Determines whether this form has been tagged with the specified text.
             </summary>
           </td>
         </tr>
@@ -82,7 +84,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Tags this form with a text.
+            Tags this form with the specified text.
             </summary>
           </td>
         </tr>
@@ -104,80 +106,121 @@
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Alch.html">Alch</a> AsAlch()</signature>
+      <a href="../forms/skyrim/alch.html"><see cref="Forms.Skyrim.Alch" />Alch</a> AsAlch()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to a <b>Potion</b> form or returns <span class="span-code">null</span> if this form is not a <b>Potion</b> form.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Armo.html">Armo</a> AsArmo()</signature>
+      <a href="../forms/skyrim/armo.html"><see cref="Forms.Skyrim.Armo" />Armo</a> AsArmo()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to an <b>Armor</b> form or returns <span class="span-code">null</span> if this form is not an <b>Armor</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Cobj.html">Cobj</a> AsCobj()</signature>
+      <a href="../forms/skyrim/cobj.html"><see cref="Forms.Skyrim.Cobj" />Cobj</a> AsCobj()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to a <b>Constructible Object</b> form or returns <span class="span-code">null</span> if this form is not a <b>Constructible Object</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Flst.html">Flst</a> AsFlst()</signature>
+      <a href="../forms/skyrim/flst.html"><see cref="Forms.Skyrim.Flst" />Flst</a> AsFlst()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to a <b>Form List</b> form or returns <span class="span-code">null</span> if this form is not a <b>Form List</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Glob.html">Glob</a> AsGlob()</signature>
+      <a href="../forms/skyrim/glob.html"><see cref="Forms.Skyrim.Glob" />Glob</a> AsGlob()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to a <b>Global Variable</b> form or returns <span class="span-code">null</span> if this form is not a <b>Global Variable</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Gmst.html">Gmst</a> AsGmst()</signature>
+      <a href="../forms/skyrim/gmst.html"><see cref="Forms.Skyrim.Gmst" />Gmst</a> AsGmst()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to a <b>Game Setting</b> form or returns <span class="span-code">null</span> if this form is not a <b>Game Setting</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Kywd.html">Kywd</a> AsKywd()</signature>
+      <a href="../forms/skyrim/kywd.html"><see cref="Forms.Skyrim.Kywd" />Kywd</a> AsKywd()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to a <b>Keyword</b> form or returns <span class="span-code">null</span> if this form is not a <b>Keyword</b>.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../Forms/Skyrim/Stat.html">Stat</a> AsStat()</signature>
+      <a href="../forms/skyrim/stat.html"><see cref="Forms.Skyrim.Stat" />Stat</a> AsStat()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Converts this form to a <b>Static</b> form or returns <span class="span-code">null</span> if this form is not a <b>Static</b>.
+            </summary>
           </td>
         </tr>
       </table>
     </div>
-    <div class="div-subtitle">
-          Viewing: Forms.Form</div>
+    <div class="div-header">
+            Remarks
+          </div>
+    <div class="div-summary">
+      <remarks>
+    <p>
+            When a variable refers to an unknown or generic form it means that only the common form properties and methods are available. 
+            In order to access all properties of the form the variable must be cast to the specific form using the appropriate extension method.
+            </p>
+    <p>
+            Unknow or generic forms can be retrieved via the <a href="../helpers/forms.html"><see cref="Helpers.Forms" />Forms</a> helper method <code>Forms.Find()</code>
+            or by iterating a mixed <a href="../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> such as the collection of forms associated with a <b>Form List</b> form.
+            </p>
+    <p>
+            Unsupported forms are forms that have been loaded but the appliaction does not know anything about such form. 
+            Unsupported forms can be assigned to properties of supported forms or added to mixed <a href="../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a>.
+            Unsupported forms cannot be converted to a specific form.
+            </p>
+    <p>
+            Unresolved forms are threaded the same way unsupported forms are treated, except that their Editor ID is always <span class="span-code">null</span>.
+            Unresolved forms come about from references to forms that do not exist due to an error in a plugin, 
+            or because the tool deliberately skipped these forms while loading plugin.
+            Saving plugin that reference unresolved forms will produce a warning, but will work as intended as long as the form really exists.
+            </p>
+  </remarks>
+    </div>
+    <hr />
     <div class="div-navigation">
-          Return to: <a href="../Index.html">Index</a></div>
+          Return to: <a href="../index.html"><see cref="Index">Index</see></a></div>
   </body>
 </html>

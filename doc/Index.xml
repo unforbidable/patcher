@@ -1,96 +1,149 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <index>
   <type name="Alch" fullname="Forms.Skyrim.Alch" category="Forms">
-    <summary>TODO</summary>
+    <summary>
+            Represents a <b>Potion</b> form.
+            </summary>
   </type>
   <type name="Armo" fullname="Forms.Skyrim.Armo" category="Forms">
-    <summary>TODO</summary>
+    <summary>
+            Represents an <b>Armor</b> form.
+            </summary>
   </type>
   <type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants">
-    <summary>TODO</summary>
+    <summary>
+            Defines body nodes.
+            </summary>
   </type>
   <type name="Cobj" fullname="Forms.Skyrim.Cobj" category="Forms">
-    <summary>TODO</summary>
+    <summary>
+            Represents a <b>Constructible Object</b> form.
+            </summary>
   </type>
   <type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a function with parameters, operand, operator used to compare the result of the function with the specified operand 
+            and information on which object the function will be run.
+            </summary>
   </type>
   <type name="ConditionCollection" fullname="Fields.Skyrim.ConditionCollection" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Condition">Conditions</see>.
+            </summary>
   </type>
   <type name="Debug" fullname="Helpers.Debug" category="Helpers">
-    <summary>TODO</summary>
+    <summary>
+            Provides methods that may assist during development and troubleshooting.
+            </summary>
   </type>
   <type name="Effect" fullname="Fields.Skyrim.Effect" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a custom effect based on a <b>Magic Effect</b>.
+            </summary>
   </type>
   <type name="EffectCollection" fullname="Fields.Skyrim.EffectCollection" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Effect">Effects</see> that can be used to specify effects of items such as <b>Potions</b> or <b>Scrolls</b>.
+            </summary>
   </type>
   <type name="Engine" fullname="Helpers.Skyrim.Engine" category="Helpers">
-    <summary>TODO</summary>
+    <summary>
+            Provides methods that allow new objects be created.
+            </summary>
   </type>
   <type name="Flst" fullname="Forms.Skyrim.Flst" category="Forms">
-    <summary>TODO</summary>
+    <summary>
+            Represents a <b>Form List</b> form.
+            </summary>
   </type>
   <type name="Form" fullname="Forms.Form" category="Forms">
     <summary>
             Represents a form the type of which is either unknown, unsupported or unresolved.
             To convert an unknown form to a specific form use the appropriate extension method.
+            Properties and methods provided by this class are available to all forms.
             </summary>
   </type>
   <type name="FormCollection" fullname="Forms.FormCollection" category="Forms">
     <summary>
-            Represents a collection of <see cref="Forms.Form">forms</see>.
+            Represents a collection of forms.
             A collection may contain mixed form types or only forms of a specific type.
-            To filter and covert a mixed collection to a specific form collection use the appropriate extension method. 
+            To filter and convert a mixed collection to a specific form collection use the appropriate extension method. 
             </summary>
   </type>
   <type name="Forms" fullname="Helpers.Forms" category="Helpers">
-    <summary>TODO</summary>
+    <summary>
+            Provides methods that can be used to look up and retrieve any available forms.
+            </summary>
   </type>
   <type name="Functions" fullname="Helpers.Skyrim.Functions" category="Helpers">
-    <summary>TODO</summary>
+    <summary>
+            Provides methods that can be used to create new <see cref="Fields.Skyrim.Condition" /> based on Papyrus functions. 
+            <see cref="Fields.Skyrim.Condition">Conditions</see> created with these methods can be added to a <see cref="Fields.Skyrim.ConditionCollection" />.
+            </summary>
   </type>
   <type name="Glob" fullname="Forms.Skyrim.Glob" category="Forms">
-    <summary>TODO</summary>
+    <summary>
+            Represents a <b>Global Variable</b> form.
+            </summary>
   </type>
   <type name="Gmst" fullname="Forms.Skyrim.Gmst" category="Forms">
-    <summary>TODO</summary>
+    <summary>
+            Represents a <b>Game Setting</b> form.
+            </summary>
   </type>
   <type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms">
     <summary>
-            Represents a form of type KYWD.
+            Represents a <b>Keyword</b> form.
             </summary>
   </type>
   <type name="Material" fullname="Fields.Skyrim.Material" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a material used by a <b>Constructible Object</b> form.
+            </summary>
   </type>
   <type name="MaterialCollection" fullname="Fields.Skyrim.MaterialCollection" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Material">Materials</see>.
+            </summary>
   </type>
   <type name="Math" fullname="Helpers.Math" category="Helpers">
-    <summary>TODO</summary>
+    <summary>
+            Provides useful mathematical functions.
+            </summary>
   </type>
   <type name="ObjectBounds" fullname="Fields.Skyrim.ObjectBounds" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Specifies the dimensions of an object.
+            </summary>
   </type>
   <type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants">
-    <summary>TODO</summary>
+    <summary>
+            Defines <b>Potion</b> types.
+            </summary>
   </type>
   <type name="Script" fullname="Fields.Skyrim.Script" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a Papyrus script with parameters.
+            </summary>
   </type>
   <type name="ScriptCollection" fullname="Fields.Skyrim.ScriptCollection" category="Fields">
-    <summary>TODO</summary>
+    <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Script">Scripts</see> attached to an object.
+            </summary>
   </type>
   <type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants">
-    <summary>TODO</summary>
+    <summary>
+            Defines skills.
+            </summary>
   </type>
   <type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms">
-    <summary>TODO</summary>
+    <summary>
+            Represents a <b>Static</b> form. 
+            </summary>
   </type>
   <type name="Types" fullname="Constants.Types" category="Constants">
-    <summary>TODO</summary>
+    <summary>
+            Defines types that may be used in several contexts, e.g. when declaring <b>Script</b> properties and when specifying the type of a <b>Global Variable</b>.
+            </summary>
   </type>
 </index>

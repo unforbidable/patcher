@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ScriptCollection</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Fields.Skyrim.ScriptCollection" />
   </head>
   <body>
     <div class="div-title">ScriptCollection</div>
@@ -9,7 +10,9 @@
           Summary
         </div>
     <div class="div-summary">
-      <summary>TODO</summary>
+      <summary>
+            Represents a collection of <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script">Scripts</see></a> attached to an object.
+            </summary>
     </div>
     <div class="div-header">
             Properties
@@ -30,16 +33,21 @@
       <span class="span-code">int</span> Count</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets the number of <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script">Scripts</see></a> in this collection.
+            </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../Fields/Skyrim/Script.html">Script</a> Item</signature>
+      <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a>
+      <span class="span-code">this</span>[<span class="span-code">string</span>]</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Gets the <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a> which has the specified name from this collection or returns <span class="span-code">null</span> if no such script could be found.
+            </summary>
           </td>
         </tr>
       </table>
@@ -60,10 +68,12 @@
         <tr>
           <td class="td-name">
             <signature>
-      <span class="span-code">void</span> Add(<a href="../../Fields/Skyrim/Script.html">Script</a>)</signature>
+      <span class="span-code">void</span> Add(<a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a>)</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Adds an existing <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a> to this collection.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -72,7 +82,9 @@
       <span class="span-code">void</span> Add(<span class="span-code">string</span>)</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Adds a new <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a> with specified name to this collection.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -81,7 +93,9 @@
       <span class="span-code">void</span> Clear()</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Removes all <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script">Scripts</see></a> from this collection.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -90,7 +104,9 @@
       <span class="span-code">bool</span> Contains(<span class="span-code">string</span>)</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Determines whether a <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a> with specified name exists in this collection.
+            </summary>
           </td>
         </tr>
         <tr>
@@ -99,14 +115,28 @@
       <span class="span-code">void</span> Remove(<span class="span-code">string</span>)</signature>
           </td>
           <td class="td-description">
-            <summary>TODO</summary>
+            <summary>
+            Removes the <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a> with the specified name from this collection.
+            </summary>
           </td>
         </tr>
       </table>
     </div>
-    <div class="div-subtitle">
-          Viewing: Fields.Skyrim.ScriptCollection</div>
+    <div class="div-header">
+            Remarks
+          </div>
+    <div class="div-summary">
+      <remarks>
+    <p>
+            A script cannot appear twice in a single script collection.
+            </p>
+    <p>
+            Property <code>this[string]</code> represents an <code>indexer</code> that can be used to retrieve a <a href="../../fields/skyrim/script.html"><see cref="Fields.Skyrim.Script" />Script</a> with a specific name. 
+            </p>
+  </remarks>
+    </div>
+    <hr />
     <div class="div-navigation">
-          Return to: <a href="../../Index.html">Index</a></div>
+          Return to: <a href="../../index.html"><see cref="Index">Index</see></a></div>
   </body>
 </html>
