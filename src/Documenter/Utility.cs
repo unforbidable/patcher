@@ -91,7 +91,36 @@ namespace Documenter
 
         public static string GetMethodSignature(this MethodInfo method)
         {
-            return string.Format("{0}({1})", method.Name, string.Join(",", method.GetParameters().Select(p => p.ParameterType.FullName)));
+            return string.Format("{0}({1})", method.Name, 
+                string.Join(",", method.GetParameters().Select(p => GetParameterSignature(p)))
+            ).Replace("()", string.Empty);
+        }
+
+        private static string GetParameterSignature(ParameterInfo parameter)
+        {
+            var type = parameter.ParameterType;
+            if (!type.IsGenericType)
+            {
+                return type.FullName;
+            }
+            else
+            {
+                string typeName = type.Name;
+
+                // Replace each type argument to the generated XML representation
+                for (int i = 0; i < type.GenericTypeArguments.Length; i++)
+                {
+                    string find = string.Format("`{0}", i + 1);
+
+                    var param = type.GenericTypeArguments[i];
+                    if (param.IsGenericParameter)
+                        typeName = typeName.Replace(find, string.Format("{{`{0}}}", i));
+                    else
+                        typeName = typeName.Replace(find, string.Format("{{{0}}}", param.FullName));
+                }
+
+                return string.Format("{0}.{1}", type.Namespace, typeName);
+            }
         }
 
         public static string GetTypeReference(this Type type)
@@ -103,7 +132,7 @@ namespace Documenter
                 if (type.IsGenericType)
                 {
                     var genericType = type.GetGenericArguments()[0];
-                    if (!genericType.IsGenericParameter)
+                    if (!genericType.IsGenericParameter && !genericType.IsAbstract)
                         generic = " of " + GetTypeReference(genericType);
                 }
                 return string.Format("<see cref='{0}'>{1}</see>{2}", type.GetLocalFullName(), type.GetLocalName(), generic);

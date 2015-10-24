@@ -226,7 +226,8 @@ namespace Documenter
         {
             string returnType = method.ReturnType.GetTypeReference();
             int skip = method.IsDefined(typeof(ExtensionAttribute), true) ? 1 : 0;
-            var signature = string.Format("{0} {1}({2})", returnType, method.Name, string.Join(",", method.GetParameters().Skip(skip).Select(p => p.ParameterType.GetTypeReference())));
+            var signature = string.Format("{0} {1}({2})", returnType, method.Name,
+                string.Join(",", method.GetParameters().Skip(skip).Select(p => p.ParameterType.GetTypeReference())));
             return XElement.Parse(string.Format("<signature>{0}</signature>", signature));
         }
 
