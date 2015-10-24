@@ -51,66 +51,71 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public IScript SetProperty(string name, int value)
         {
-            SetProperty(name, value, null);
+            EnsureWritable();
+            GetProperty(name).SetValue(value, null);
             return this;
         }
 
         public IScript SetProperty(string name, string value)
         {
-            SetProperty(name, value, null);
+            EnsureWritable();
+            GetProperty(name).SetValue(value, null);
             return this;
         }
 
         public IScript SetProperty(string name, float value)
         {
-            SetProperty(name, value, null);
+            EnsureWritable();
+            GetProperty(name).SetValue(value, null);
             return this;
         }
 
         public IScript SetProperty(string name, bool value)
         {
-            SetProperty(name, value, null);
+            EnsureWritable();
+            GetProperty(name).SetValue(value, null);
             return this;
         }
 
         public IScript SetProperty(string name, IForm value)
         {
-            SetProperty(name, value, null);
+            EnsureWritable();
+            GetProperty(name).SetValue(value.ToFormId(), null);
             return this;
         }
 
-        public IScript SetProperty(string name, int value, int? index)
+        public IScript SetProperty(string name, int value, int index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
             return this;
         }
 
-        public IScript SetProperty(string name, string value, int? index)
+        public IScript SetProperty(string name, string value, int index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
             return this;
         }
 
-        public IScript SetProperty(string name, float value, int? index)
+        public IScript SetProperty(string name, float value, int index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
             return this;
         }
 
-        public IScript SetProperty(string name, bool value, int? index)
+        public IScript SetProperty(string name, bool value, int index)
         {
             EnsureWritable();
             GetProperty(name).SetValue(value, index);
             return this;
         }
 
-        public IScript SetProperty(string name, IForm value, int? index)
+        public IScript SetProperty(string name, IForm value, int index)
         {
             EnsureWritable();
-            GetProperty(name).SetValue(-1, value.FormId, index);
+            GetProperty(name).SetValue(-1, value.ToFormId(), index);
             return this;
         }
 
