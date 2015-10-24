@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="FormCollection" fullname="Forms.FormCollection" category="Forms">
+  <summary>
+            Represents a collection of <see cref="Forms.Form">forms</see>.
+            A collection may contain mixed form types or only forms of a specific type.
+            To filter and covert a mixed collection to a specific form collection use the appropriate extension method. 
+            </summary>
+  <property name="Count">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>TODO</summary>
+  </property>
+  <method name="Add" extension="false">
+    <signature>
+      <c>void</c> Add(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Add" extension="false">
+    <signature>
+      <c>void</c> Add(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Contains" extension="false">
+    <signature>
+      <c>bool</c> Contains(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Contains" extension="false">
+    <signature>
+      <c>bool</c> Contains(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="HavingTag" extension="false">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> HavingTag(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Remove" extension="false">
+    <signature>
+      <c>void</c> Remove(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Remove" extension="false">
+    <signature>
+      <c>void</c> Remove(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="TagAll" extension="false">
+    <signature>
+      <c>void</c> TagAll(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Where" extension="false">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> Where(<c>delegate</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfAlch" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Alch">Alch</see> OfAlch()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfArmo" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Armo">Armo</see> OfArmo()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfCobj" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Cobj">Cobj</see> OfCobj()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfFlst" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Flst">Flst</see> OfFlst()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfGlob" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Glob">Glob</see> OfGlob()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfGmst" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Gmst">Gmst</see> OfGmst()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfKywd" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Kywd">Kywd</see> OfKywd()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OfStat" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Stat">Stat</see> OfStat()</signature>
+    <summary>TODO</summary>
+  </method>
+</type>

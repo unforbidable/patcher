@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants">
+  <summary>TODO</summary>
+  <field name="Alchemy">
+    <summary>TODO</summary>
+  </field>
+  <field name="Alteration">
+    <summary>TODO</summary>
+  </field>
+  <field name="Block">
+    <summary>TODO</summary>
+  </field>
+  <field name="Conjuration">
+    <summary>TODO</summary>
+  </field>
+  <field name="Destruction">
+    <summary>TODO</summary>
+  </field>
+  <field name="Enchanting">
+    <summary>TODO</summary>
+  </field>
+  <field name="HeavyArmor">
+    <summary>TODO</summary>
+  </field>
+  <field name="Illusion">
+    <summary>TODO</summary>
+  </field>
+  <field name="LightArmor">
+    <summary>TODO</summary>
+  </field>
+  <field name="Lockpicking">
+    <summary>TODO</summary>
+  </field>
+  <field name="Marksman">
+    <summary>TODO</summary>
+  </field>
+  <field name="None">
+    <summary>TODO</summary>
+  </field>
+  <field name="OneHanded">
+    <summary>TODO</summary>
+  </field>
+  <field name="Pickpocket">
+    <summary>TODO</summary>
+  </field>
+  <field name="Restoration">
+    <summary>TODO</summary>
+  </field>
+  <field name="Smithing">
+    <summary>TODO</summary>
+  </field>
+  <field name="Sneak">
+    <summary>TODO</summary>
+  </field>
+  <field name="Speechcraft">
+    <summary>TODO</summary>
+  </field>
+  <field name="TwoHanded">
+    <summary>TODO</summary>
+  </field>
+</type>

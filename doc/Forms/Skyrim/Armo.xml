@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Armo" fullname="Forms.Skyrim.Armo" category="Forms">
+  <summary>TODO</summary>
+  <property name="AlternateBlockMaterial">
+    <signature>
+      <see cref="Forms.Form">Form</see> AlternateBlockMaterial</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="ArmorRating">
+    <signature>
+      <c>float</c> ArmorRating</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="BlockImpactDataSet">
+    <signature>
+      <see cref="Forms.Form">Form</see> BlockImpactDataSet</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="BodyNodes">
+    <signature>
+      <see cref="Constants.Skyrim.BodyNodes">BodyNodes</see> BodyNodes</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Description">
+    <signature>
+      <c>string</c> Description</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="EditorId">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="Enchantment">
+    <signature>
+      <see cref="Forms.Form">Form</see> Enchantment</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="EquipType">
+    <signature>
+      <see cref="Forms.Form">Form</see> EquipType</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="FemaleWorldModel">
+    <signature>
+      <c>string</c> FemaleWorldModel</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="FormId">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="FullName">
+    <signature>
+      <c>string</c> FullName</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="IsPlayable">
+    <signature>
+      <c>bool</c> IsPlayable</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="IsShield">
+    <signature>
+      <c>bool</c> IsShield</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Keywords">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Skyrim.Kywd">Kywd</see> Keywords</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="MaleWorldModel">
+    <signature>
+      <c>string</c> MaleWorldModel</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Models">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Form">Form</see> Models</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="ObjectBounds">
+    <signature>
+      <see cref="Fields.Skyrim.ObjectBounds">ObjectBounds</see> ObjectBounds</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="PickUpSound">
+    <signature>
+      <see cref="Forms.Form">Form</see> PickUpSound</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="PutDownSound">
+    <signature>
+      <see cref="Forms.Form">Form</see> PutDownSound</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Race">
+    <signature>
+      <see cref="Forms.Form">Form</see> Race</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Scripts">
+    <signature>
+      <see cref="Fields.Skyrim.ScriptCollection">ScriptCollection</see> Scripts</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Skill">
+    <signature>
+      <see cref="Constants.Skyrim.Skills">Skills</see> Skill</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="TemplateArmor">
+    <signature>
+      <see cref="Forms.Skyrim.Armo">Armo</see> TemplateArmor</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Value">
+    <signature>
+      <c>int</c> Value</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Weight">
+    <signature>
+      <c>float</c> Weight</signature>
+    <summary>TODO</summary>
+  </property>
+  <method name="HasTag" extension="false">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether a form has been tagged with a text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with a text.
+            </summary>
+  </method>
+</type>

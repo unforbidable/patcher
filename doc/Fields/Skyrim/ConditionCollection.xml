@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="ConditionCollection" fullname="Fields.Skyrim.ConditionCollection" category="Fields">
+  <summary>TODO</summary>
+  <property name="Count">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>TODO</summary>
+  </property>
+  <method name="Add" extension="false">
+    <signature>
+      <c>void</c> Add(<see cref="Fields.Skyrim.Condition">Condition</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Clear" extension="false">
+    <signature>
+      <c>void</c> Clear()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Remove" extension="false">
+    <signature>
+      <c>void</c> Remove(<see cref="Fields.Skyrim.Condition">Condition</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+</type>

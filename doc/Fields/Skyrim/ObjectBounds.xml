@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="ObjectBounds" fullname="Fields.Skyrim.ObjectBounds" category="Fields">
+  <summary>TODO</summary>
+  <property name="X1">
+    <signature>
+      <c>short</c> X1</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="X2">
+    <signature>
+      <c>short</c> X2</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Y1">
+    <signature>
+      <c>short</c> Y1</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Y2">
+    <signature>
+      <c>short</c> Y2</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Z1">
+    <signature>
+      <c>short</c> Z1</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Z2">
+    <signature>
+      <c>short</c> Z2</signature>
+    <summary>TODO</summary>
+  </property>
+</type>

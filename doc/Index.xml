@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<index>
+  <type name="Alch" fullname="Forms.Skyrim.Alch" category="Forms">
+    <summary>TODO</summary>
+  </type>
+  <type name="Armo" fullname="Forms.Skyrim.Armo" category="Forms">
+    <summary>TODO</summary>
+  </type>
+  <type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants">
+    <summary>TODO</summary>
+  </type>
+  <type name="Cobj" fullname="Forms.Skyrim.Cobj" category="Forms">
+    <summary>TODO</summary>
+  </type>
+  <type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="ConditionCollection" fullname="Fields.Skyrim.ConditionCollection" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="Debug" fullname="Helpers.Debug" category="Helpers">
+    <summary>TODO</summary>
+  </type>
+  <type name="Effect" fullname="Fields.Skyrim.Effect" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="EffectCollection" fullname="Fields.Skyrim.EffectCollection" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="Engine" fullname="Helpers.Skyrim.Engine" category="Helpers">
+    <summary>TODO</summary>
+  </type>
+  <type name="Flst" fullname="Forms.Skyrim.Flst" category="Forms">
+    <summary>TODO</summary>
+  </type>
+  <type name="Form" fullname="Forms.Form" category="Forms">
+    <summary>
+            Represents a form the type of which is either unknown, unsupported or unresolved.
+            To convert an unknown form to a specific form use the appropriate extension method.
+            </summary>
+  </type>
+  <type name="FormCollection" fullname="Forms.FormCollection" category="Forms">
+    <summary>
+            Represents a collection of <see cref="Forms.Form">forms</see>.
+            A collection may contain mixed form types or only forms of a specific type.
+            To filter and covert a mixed collection to a specific form collection use the appropriate extension method. 
+            </summary>
+  </type>
+  <type name="Forms" fullname="Helpers.Forms" category="Helpers">
+    <summary>TODO</summary>
+  </type>
+  <type name="Functions" fullname="Helpers.Skyrim.Functions" category="Helpers">
+    <summary>TODO</summary>
+  </type>
+  <type name="Glob" fullname="Forms.Skyrim.Glob" category="Forms">
+    <summary>TODO</summary>
+  </type>
+  <type name="Gmst" fullname="Forms.Skyrim.Gmst" category="Forms">
+    <summary>TODO</summary>
+  </type>
+  <type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms">
+    <summary>
+            Represents a form of type KYWD.
+            </summary>
+  </type>
+  <type name="Material" fullname="Fields.Skyrim.Material" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="MaterialCollection" fullname="Fields.Skyrim.MaterialCollection" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="Math" fullname="Helpers.Math" category="Helpers">
+    <summary>TODO</summary>
+  </type>
+  <type name="ObjectBounds" fullname="Fields.Skyrim.ObjectBounds" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants">
+    <summary>TODO</summary>
+  </type>
+  <type name="Script" fullname="Fields.Skyrim.Script" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="ScriptCollection" fullname="Fields.Skyrim.ScriptCollection" category="Fields">
+    <summary>TODO</summary>
+  </type>
+  <type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants">
+    <summary>TODO</summary>
+  </type>
+  <type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms">
+    <summary>TODO</summary>
+  </type>
+  <type name="Types" fullname="Constants.Types" category="Constants">
+    <summary>TODO</summary>
+  </type>
+</index>

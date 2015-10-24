@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Material" fullname="Fields.Skyrim.Material" category="Fields">
+  <summary>TODO</summary>
+  <property name="Count">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Item">
+    <signature>
+      <see cref="Forms.Form">Form</see> Item</signature>
+    <summary>TODO</summary>
+  </property>
+</type>

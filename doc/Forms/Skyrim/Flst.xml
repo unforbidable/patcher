@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Flst" fullname="Forms.Skyrim.Flst" category="Forms">
+  <summary>TODO</summary>
+  <property name="EditorId">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="FormId">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="Items">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Form">Form</see> Items</signature>
+    <summary>TODO</summary>
+  </property>
+  <method name="HasTag" extension="false">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether a form has been tagged with a text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with a text.
+            </summary>
+  </method>
+</type>

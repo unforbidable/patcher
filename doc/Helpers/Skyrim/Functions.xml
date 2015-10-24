@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Functions" fullname="Helpers.Skyrim.Functions" category="Helpers">
+  <summary>TODO</summary>
+  <method name="EPTemperingItemIsEnchanted" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> EPTemperingItemIsEnchanted()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GenericFunction" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GenericFunction(<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GenericFunction" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GenericFunction(<c>int</c>,<c>object</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GenericFunction" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GenericFunction(<c>int</c>,<c>object</c>,<c>object</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GetCurrentTime" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GetCurrentTime()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GetGlobalValue" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GetGlobalValue(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GetInCurrentLoc" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GetInCurrentLoc(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GetItemCount" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GetItemCount(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GetQuestCompleted" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GetQuestCompleted(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GetStageDone" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GetStageDone(<see cref="Forms.Form">Form</see>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="GetVMQuestVariable" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> GetVMQuestVariable(<see cref="Forms.Form">Form</see>,<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="HasKeyword" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> HasKeyword(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="HasPerk" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> HasPerk(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+</type>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Debug" fullname="Helpers.Debug" category="Helpers">
+  <summary>TODO</summary>
+  <method name="Assert" extension="false">
+    <signature>
+      <c>void</c> Assert(<c>bool</c>,<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Break" extension="false">
+    <signature>
+      <c>void</c> Break()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Dump" extension="false">
+    <signature>
+      <c>void</c> Dump(<c>object</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Dump" extension="false">
+    <signature>
+      <c>void</c> Dump(<c>object</c>,<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Message" extension="false">
+    <signature>
+      <c>void</c> Message(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+</type>

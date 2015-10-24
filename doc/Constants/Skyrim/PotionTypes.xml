@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants">
+  <summary>TODO</summary>
+  <field name="Auto">
+    <summary>TODO</summary>
+  </field>
+  <field name="Food">
+    <summary>TODO</summary>
+  </field>
+  <field name="Medicine">
+    <summary>TODO</summary>
+  </field>
+  <field name="Poison">
+    <summary>TODO</summary>
+  </field>
+</type>

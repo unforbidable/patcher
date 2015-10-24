@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Effect" fullname="Fields.Skyrim.Effect" category="Fields">
+  <summary>TODO</summary>
+  <property name="Area">
+    <signature>
+      <c>int</c> Area</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="BaseEffect">
+    <signature>
+      <see cref="Forms.Form">Form</see> BaseEffect</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Conditions">
+    <signature>
+      <see cref="Fields.Skyrim.ConditionCollection">ConditionCollection</see> Conditions</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Duration">
+    <signature>
+      <c>int</c> Duration</signature>
+    <summary>TODO</summary>
+  </property>
+  <property name="Magnitude">
+    <signature>
+      <c>float</c> Magnitude</signature>
+    <summary>TODO</summary>
+  </property>
+</type>

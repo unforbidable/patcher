@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Script" fullname="Fields.Skyrim.Script" category="Fields">
+  <summary>TODO</summary>
+  <property name="Name">
+    <signature>
+      <c>string</c> Name</signature>
+    <summary>TODO</summary>
+  </property>
+  <method name="AddProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> AddProperty(<c>string</c>,<see cref="Constants.Types">Types</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="ResetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> ResetProperty(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>bool</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>int</c>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>string</c>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>float</c>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<c>bool</c>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SetProperty" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Script">Script</see> SetProperty(<c>string</c>,<see cref="Forms.Form">Form</see>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+</type>

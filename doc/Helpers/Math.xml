@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Math" fullname="Helpers.Math" category="Helpers">
+  <summary>TODO</summary>
+  <method name="Max" extension="false">
+    <signature>
+      <c>int</c> Max(<c>int</c>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Max" extension="false">
+    <signature>
+      <c>short</c> Max(<c>short</c>,<c>short</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Max" extension="false">
+    <signature>
+      <c>float</c> Max(<c>float</c>,<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Min" extension="false">
+    <signature>
+      <c>int</c> Min(<c>int</c>,<c>int</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Min" extension="false">
+    <signature>
+      <c>short</c> Min(<c>short</c>,<c>short</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Min" extension="false">
+    <signature>
+      <c>float</c> Min(<c>float</c>,<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+</type>

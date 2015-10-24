@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields">
+  <summary>TODO</summary>
+  <method name="AndNext" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> AndNext()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsEqualTo(<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsEqualTo(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsFalse" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsFalse()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsGreaterThan" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsGreaterThan(<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsGreaterThan" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsGreaterThan(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsGreaterThanOrEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsGreaterThanOrEqualTo(<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsGreaterThanOrEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsGreaterThanOrEqualTo(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsLessThen" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsLessThen(<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsLessThen" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsLessThen(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsLessThenOrEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsLessThenOrEqualTo(<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsLessThenOrEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsLessThenOrEqualTo(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsNotEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsNotEqualTo(<c>float</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsNotEqualTo" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsNotEqualTo(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="IsTrue" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> IsTrue()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="OrNext" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> OrNext()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="RunOn" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> RunOn(<see cref="Forms.Form">Form</see>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="RunOnCombatTarget" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> RunOnCombatTarget()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="RunOnPlayer" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> RunOnPlayer()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="RunOnSubject" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> RunOnSubject()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="RunOnTarget" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> RunOnTarget()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="SwapSubjectAndTarget" extension="false">
+    <signature>
+      <see cref="Fields.Skyrim.Condition">Condition</see> SwapSubjectAndTarget()</signature>
+    <summary>TODO</summary>
+  </method>
+</type>

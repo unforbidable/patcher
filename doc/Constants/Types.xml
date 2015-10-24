@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Types" fullname="Constants.Types" category="Constants">
+  <summary>TODO</summary>
+  <field name="ArrayOfBool">
+    <summary>TODO</summary>
+  </field>
+  <field name="ArrayOfFloat">
+    <summary>TODO</summary>
+  </field>
+  <field name="ArrayOfInt">
+    <summary>TODO</summary>
+  </field>
+  <field name="ArrayOfObject">
+    <summary>TODO</summary>
+  </field>
+  <field name="ArrayOfShort">
+    <summary>TODO</summary>
+  </field>
+  <field name="ArrayOfString">
+    <summary>TODO</summary>
+  </field>
+  <field name="Bool">
+    <summary>TODO</summary>
+  </field>
+  <field name="Float">
+    <summary>TODO</summary>
+  </field>
+  <field name="Int">
+    <summary>TODO</summary>
+  </field>
+  <field name="None">
+    <summary>
+            Indicates that the type is undefined.
+            </summary>
+  </field>
+  <field name="Object">
+    <summary>TODO</summary>
+  </field>
+  <field name="Short">
+    <summary>TODO</summary>
+  </field>
+  <field name="String">
+    <summary>TODO</summary>
+  </field>
+</type>

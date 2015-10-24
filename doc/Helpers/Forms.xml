@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Forms" fullname="Helpers.Forms" category="Helpers">
+  <summary>TODO</summary>
+  <method name="Find" extension="false">
+    <signature>
+      <see cref="Forms.Form">Form</see> Find(<c>uint</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Find" extension="false">
+    <signature>
+      <see cref="Forms.Form">Form</see> Find(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="Find" extension="false">
+    <signature>
+      <see cref="Forms.Form">Form</see> Find(<c>string</c>,<c>uint</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="FindAll" extension="false">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Form">Form</see> FindAll()</signature>
+    <summary>TODO</summary>
+  </method>
+  <method name="FindAllHavingTag" extension="false">
+    <signature>
+      <see cref="Forms.FormCollection">FormCollection</see> of <see cref="Forms.Form">Form</see> FindAllHavingTag(<c>string</c>)</signature>
+    <summary>TODO</summary>
+  </method>
+</type>
