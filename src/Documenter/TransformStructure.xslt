@@ -130,9 +130,7 @@
             Remarks
           </div>
           <div class="div-summary">
-            <p>
-              <xsl:copy-of select="remarks"/>
-            </p>
+            <xsl:copy-of select="remarks"/>
           </div>
         </xsl:if>
 
