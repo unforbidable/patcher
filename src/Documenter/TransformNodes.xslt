@@ -5,6 +5,8 @@
   <xsl:variable name="fullname" select="html/head/meta[@name='doc-fullname']/@content" />
   <xsl:variable name="depth" select="string-length($fullname) - string-length(translate($fullname,'.',''))" />
   <xsl:variable name="relativePath" select="substring('../../../', 1, $depth * 3)" />
+  <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+  <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
 
   <xsl:template name="substring-after-last">
     <xsl:param name="string" />
@@ -41,7 +43,7 @@
     <a>
       <xsl:attribute name="href">
         <xsl:variable name="fullName" select="@cref"/>
-        <xsl:value-of select="concat($relativePath, translate($fullName, '.', '/'),'.html')"/>
+        <xsl:value-of select="concat($relativePath, translate(translate($fullName, $uppercase, $lowercase), '.', '/'),'.html')"/>
       </xsl:attribute>
       <xsl:copy-of select="."/>
       <xsl:if test=". = ''">

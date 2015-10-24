@@ -75,9 +75,9 @@ namespace Documenter
                 indexElement.Add(GetTypeXmlElement(type, false));
             }
 
-            string xmlIndexPath = Path.Combine(Program.TargetPath, "Index.xml");
-            string tmpIndexPath = Path.Combine(Program.TargetPath, "Index.tmp");
-            string htmlIndexPath = Path.Combine(Program.TargetPath, "Index.html");
+            string xmlIndexPath = Path.Combine(Program.TargetPath, "index.xml");
+            string tmpIndexPath = Path.Combine(Program.TargetPath, "index.tmp");
+            string htmlIndexPath = Path.Combine(Program.TargetPath, "index.html");
 
             Directory.CreateDirectory(Path.GetDirectoryName(xmlIndexPath));
             index.Save(xmlIndexPath);

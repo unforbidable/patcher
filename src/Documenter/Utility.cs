@@ -87,7 +87,7 @@ namespace Documenter
 
         public static string GetLocalPath(this Type type, string ext)
         {
-            return type.GetLocalFullName().Replace('.', Path.DirectorySeparatorChar) + ext;
+            return type.GetLocalFullName().ToLower().Replace('.', Path.DirectorySeparatorChar) + ext;
         }
 
         public static string GetMethodSignature(this MethodInfo method)
