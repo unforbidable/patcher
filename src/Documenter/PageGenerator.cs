@@ -93,7 +93,7 @@ namespace Documenter
             typeElement.Add(new XAttribute("name", type.GetLocalName()));
             typeElement.Add(new XAttribute("fullname", type.GetLocalFullName()));
             typeElement.Add(new XAttribute("category", type.GetLocalNamespace().Split('.')[0]));
-            typeElement.Add(GetSummaryTextXElement(type));
+            typeElement.Add(GetSummaryTextXElement(GetMemberName(type)));
 
             if (details)
             {
@@ -143,6 +143,10 @@ namespace Documenter
                         typeElement.Add(GetMethodXElement(method));
                     }
                 }
+
+                var remarks = GetRemarksTextXElement(GetMemberName(type));
+                if (remarks != null)
+                    typeElement.Add(remarks);
             }
 
             return typeElement;
@@ -152,7 +156,7 @@ namespace Documenter
         {
             var element = new XElement("field");
             element.Add(new XAttribute("name", field.Name));
-            element.Add(GetSummaryTextXElement(field));
+            element.Add(GetSummaryTextXElement(GetMemberName(field)));
             return element;
         }
 
@@ -161,7 +165,7 @@ namespace Documenter
             var element = new XElement("property");
             element.Add(new XAttribute("name", property.Name));
             element.Add(GetSignatureXmlElement(property));
-            element.Add(GetSummaryTextXElement(property));
+            element.Add(GetSummaryTextXElement(GetMemberName(property)));
             return element;
         }
 
@@ -171,28 +175,55 @@ namespace Documenter
             element.Add(new XAttribute("name", method.Name));
             element.Add(new XAttribute("extension", method.IsDefined(typeof(ExtensionAttribute), true)));
             element.Add(GetSignatureXmlElement(method));
-            element.Add(GetSummaryTextXElement(method));
+            element.Add(GetSummaryTextXElement(GetMemberName(method)));
             return element;
         }
 
-        private XElement GetSummaryTextXElement(Type type)
+        private string GetMemberName(Type type)
         {
-            return GetSummaryTextXElement("T:" + type.FullName);
+            return string.Format("T:{0}", type.FullName);
         }
 
-        private XElement GetSummaryTextXElement(MethodInfo method)
+        private string GetMemberName(MethodInfo method)
         {
-            return GetSummaryTextXElement("M:" + method.DeclaringType.FullName + "." + method.GetMethodSignature());
+            return string.Format("M:{0}.{1}", method.DeclaringType.FullName, method.GetMethodSignature());
         }
 
-        private XElement GetSummaryTextXElement(PropertyInfo property)
+        private string GetMemberName(PropertyInfo property)
         {
-            return GetSummaryTextXElement("P:" + property.DeclaringType.FullName + "." + property.Name);
+            return string.Format("P:{0}.{1}", property.DeclaringType.FullName, property.Name);
         }
 
-        private XElement GetSummaryTextXElement(FieldInfo field)
+        private string GetMemberName(FieldInfo field)
         {
-            return GetSummaryTextXElement("F:" + field.DeclaringType.FullName + "." + field.Name);
+            return string.Format("F:{0}.{1}", field.DeclaringType.FullName, field.Name);
+        }
+
+        private XElement GetRemarksTextXElement(string name)
+        {
+            var remarks = source.Descendants()
+                .Where(e => e.Name == "member" && e.Attribute("name").Value == name)
+                .Select(m => m.Element("remarks"))
+                .FirstOrDefault();
+
+            if (remarks != null)
+            {
+                remarks = XElement.Parse(remarks.ToString());
+
+                // Replace <see> links
+                foreach (var child in remarks.Descendants().Where(c => c.Name == "see"))
+                {
+                    var cref = child.Attribute("cref");
+                    var typeFullName = cref.Value.Substring(2);
+                    var type = Type.GetType(typeFullName) ?? assembly.GetType(typeFullName);
+                    cref.Value = type.GetLocalFullName();
+                }
+                return remarks;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private XElement GetSummaryTextXElement(string name)

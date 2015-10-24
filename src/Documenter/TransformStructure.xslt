@@ -120,6 +120,15 @@
           </div>
         </xsl:if>
 
+        <xsl:if test="remarks">
+          <div class="div-header">
+            Remarks
+          </div>
+          <div class="div-summary">
+            <xsl:copy-of select="remarks"/>
+          </div>
+        </xsl:if>
+
         <div class="div-subtitle">
           Viewing: <xsl:value-of select="@fullname"/>
         </div>
