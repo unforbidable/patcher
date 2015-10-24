@@ -191,7 +191,7 @@ namespace Documenter
 
         private string GetMemberName(PropertyInfo property)
         {
-            return string.Format("P:{0}.{1}", property.DeclaringType.FullName, property.Name);
+            return string.Format("P:{0}.{1}", property.DeclaringType.FullName, property.GetPropertySignature());
         }
 
         private string GetMemberName(FieldInfo field)
@@ -265,7 +265,16 @@ namespace Documenter
         private XElement GetSignatureXmlElement(PropertyInfo property)
         {
             string returnType = property.PropertyType.GetTypeReference();
-            var signature = string.Format("{0} {1}", returnType, property.Name);
+            string signature;
+            if (property.GetIndexParameters().Length > 0)
+            {
+                signature = string.Format("{0} <c>this</c>[{1}]", returnType,
+                    string.Join(",", property.GetIndexParameters().Select(p => p.ParameterType.GetTypeReference())));
+            }
+            else
+            {
+                signature = string.Format("{0} {1}", returnType, property.Name);
+            }
             return XElement.Parse(string.Format("<signature>{0}</signature>", signature));
         }
 

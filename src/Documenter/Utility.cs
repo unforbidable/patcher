@@ -97,6 +97,18 @@ namespace Documenter
             ).Replace("()", string.Empty);
         }
 
+        public static string GetPropertySignature(this PropertyInfo property)
+        {
+            if (property.GetIndexParameters().Length > 0)
+            {
+                return string.Format("Item({0})", string.Join(",", property.GetIndexParameters().Select(p => GetParameterSignature(p))));
+            }
+            else
+            {
+                return property.Name;
+            }
+        }
+
         private static string GetParameterSignature(ParameterInfo parameter)
         {
             var type = parameter.ParameterType;
