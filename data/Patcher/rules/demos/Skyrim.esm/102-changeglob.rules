@@ -1,0 +1,14 @@
+<rules>
+	<rule>
+		<name>Increase cost of fares</name>
+		<from>GLOB</from>
+		<where>Source.EditorId == "CarriageCost"</where>
+		<update>
+			// Increase cost of carriage fares to a realistic value that explains why no one is ever hiring any
+			// Note this changes the cost - not the dialogue text
+			Target.Value = 1000;
+			Debug.Message("Original value: " + Source.Value);
+			Debug.Message("New value: " + Target.Value);
+		</update>
+	</rule>
+</rules>

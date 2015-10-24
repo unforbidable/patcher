@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{34A01F49-04C9-4F19-8498-FDC7138B265E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Patcher</RootNamespace>
+    <AssemblyName>Patcher</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\Archives\ArchiveManager.cs" />
+    <Compile Include="Data\Archives\ArchiveFlags.cs" />
+    <Compile Include="Data\Archives\ArchiveReader.cs" />
+    <Compile Include="Data\Archives\ArchiveSubstream.cs" />
+    <Compile Include="Data\DataContextAttribute.cs" />
+    <Compile Include="Data\DefaultDataFileProvider.cs" />
+    <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ActorValue.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\Alignment.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ArmorSkillUsage.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\Axis.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\BodyParts.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\CastingType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\CriticalStage.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\FormType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\Function.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\FunctionTarget.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ConditionFlags.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\FurnitureAnim.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\FurnitureEntry.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\GenderType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\GlobalVariableType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\PotionFlags.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\MiscStat.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\PlayerAction.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptPropertyType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\VatsFunction.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\WardState.cs" />
+    <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
+    <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
+    <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingConditions.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingEffects.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingObjectBounds.cs" />
+    <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Flst.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
+    <Compile Include="Data\Plugins\Content\VersionAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\ReferenceAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\FakeFloatAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\GroupType.cs" />
+    <Compile Include="Data\Plugins\IStringLocator.cs" />
+    <Compile Include="Data\Plugins\Content\HeaderRecord.cs" />
+    <Compile Include="Data\Plugins\Content\LazyAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\LocalizedStringAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\InitializeAttributes.cs" />
+    <Compile Include="Data\Plugins\Content\OrderAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Gmst.cs" />
+    <Compile Include="Data\Plugins\Content\LocalizedStringGroups.cs" />
+    <Compile Include="Data\Plugins\Content\RecordWriter.cs" />
+    <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\Plugins\Content\AsyncRecordFinder.cs" />
+    <Compile Include="Data\Plugins\Content\GroupMetadata.cs" />
+    <Compile Include="Data\Plugins\IReferenceMapper.cs" />
+    <Compile Include="Data\Plugins\Content\Compound.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\Condition.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\Effect.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\ModelFemale.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\ModelMale.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\Model.cs" />
+    <Compile Include="Data\Plugins\Content\FieldMetadata.cs" />
+    <Compile Include="Data\Plugins\Content\RecordEntry.cs" />
+    <Compile Include="Data\Plugins\Content\CompoundInfo.cs" />
+    <Compile Include="Data\Plugins\Content\FieldInfo.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Alch.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Armo.cs" />
+    <Compile Include="Data\Plugins\Content\DummyRecord.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\ByteArray.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\ObjectBounds.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\VirtualMachineAdapter.cs" />
+    <Compile Include="Data\Plugins\Content\Names.cs" />
+    <Compile Include="Data\Plugins\Content\GenericFormRecord.cs" />
+    <Compile Include="Data\Plugins\Content\Metadata.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Glob.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Kywd.cs" />
+    <Compile Include="Data\Plugins\Form.cs" />
+    <Compile Include="Data\Plugins\PluginFlags.cs" />
+    <Compile Include="Data\Plugins\FormFlags.cs" />
+    <Compile Include="Data\Plugins\FormLoader.cs" />
+    <Compile Include="Data\IDataFileProvider.cs" />
+    <Compile Include="Data\FormRepository.cs" />
+    <Compile Include="Data\Plugins\PluginInspector.cs" />
+    <Compile Include="Data\QueryableFormRepository.cs" />
+    <Compile Include="IO\CustomBinaryReader.cs" />
+    <Compile Include="IO\CustomBinaryWriter.cs" />
+    <Compile Include="Data\Plugins\PluginMode.cs" />
+    <Compile Include="Data\Plugins\PluginReferenceMapper.cs" />
+    <Compile Include="Data\Plugins\Content\RecordFlags.cs" />
+    <Compile Include="Data\Plugins\FormKind.cs" />
+    <Compile Include="Data\PluginIndex.cs" />
+    <Compile Include="Data\Plugins\Plugin.cs" />
+    <Compile Include="Data\SkyrimDataContext.cs" />
+    <Compile Include="Data\Strings\PluginStringLocator.cs" />
+    <Compile Include="Data\Strings\StringTableReader.cs" />
+    <Compile Include="Data\DataFile.cs" />
+    <Compile Include="IO\ReadOnlyFileStream.cs" />
+    <Compile Include="IO\ReadOnlyMemoryStream.cs" />
+    <Compile Include="IO\StreamComparer.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="ProgramOptions.cs" />
+    <Compile Include="Rules\Compiled\CompiledRuleAssertException.cs" />
+    <Compile Include="Rules\Compiled\Helpers\DebugHelper.cs" />
+    <Compile Include="Rules\Compiled\Helpers\FormsHelper.cs" />
+    <Compile Include="Rules\Compiled\Helpers\FunctionsHelper.cs" />
+    <Compile Include="Rules\Compiled\Helpers\EngineHelper.cs" />
+    <Compile Include="Rules\IDumpabled.cs" />
+    <Compile Include="Rules\ObjectDumper.cs" />
+    <Compile Include="Rules\Proxies\EnumConverter.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\EffectCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
+    <Compile Include="Rules\Proxies\ProxyFeatureFactory.cs" />
+    <Compile Include="Rules\Proxies\Fields\FieldCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\FieldProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ConditionCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ConditionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\MaterialCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\MaterialProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\CobjProxy.cs" />
+    <Compile Include="Rules\Proxies\ProxyUtility.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ScriptProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\FormCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Proxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\DummyFormProxy.cs" />
+    <Compile Include="Rules\Proxies\ProxyAttribute.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\FlstProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ObjectBoundsProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\ScriptCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\StatProxy.cs" />
+    <Compile Include="Rules\CodeBuilder.cs" />
+    <Compile Include="Rules\Methods\InsertMethod.cs" />
+    <Compile Include="Rules\Methods\SelectMethod.cs" />
+    <Compile Include="Rules\Methods\UpdateMethod.cs" />
+    <Compile Include="Rules\Methods\WhereMethod.cs" />
+    <Compile Include="Rules\Proxies\ProxyMode.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\GlobProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\GmstProxy.cs" />
+    <Compile Include="Rules\Compiled\CompiledRuleContext.cs" />
+    <Compile Include="Rules\RuleCompiler.cs" />
+    <Compile Include="Rules\RuleEntry.cs" />
+    <Compile Include="Rules\RuleMetadata.cs" />
+    <Compile Include="Rules\RuleReader.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\AlchProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\KywdProxy.cs" />
+    <Compile Include="Rules\Proxies\ProxyProvider.cs" />
+    <Compile Include="Rules\IRule.cs" />
+    <Compile Include="Rules\Compiled\CompiledRule.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\ArmoProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\FormProxy.cs" />
+    <Compile Include="Rules\RuleRunner.cs" />
+    <Compile Include="Rules\TagManager.cs" />
+    <Compile Include="UI\Progress.cs" />
+    <Compile Include="UI\ProgressUpdateInfo.cs" />
+    <Compile Include="UI\Prompt.cs" />
+    <Compile Include="UI\Terminal\LineWrittenEventArgs.cs" />
+    <Compile Include="UI\Terminal\TerminalLogger.cs" />
+    <Compile Include="UI\Terminal\WriteLineMode.cs" />
+    <Compile Include="UI\Terminal\TerminalPrompt.cs" />
+    <Compile Include="UI\Terminal\TerminalStatus.cs" />
+    <Compile Include="UserAbortException.cs" />
+    <Compile Include="UI\CommandLine\DefaultValueAttribute.cs" />
+    <Compile Include="UI\CommandLine\DescriptionAttribute.cs" />
+    <Compile Include="UI\CommandLine\OptionAttribute.cs" />
+    <Compile Include="UI\CommandLine\Options.cs" />
+    <Compile Include="UI\CommandLine\UsageAttribute.cs" />
+    <Compile Include="Logging\StreamLogger.cs" />
+    <Compile Include="UI\Terminal\TerminalChoiceOption.cs" />
+    <Compile Include="Data\IPluginListProvider.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Logging\LogEntry.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="Data\PluginListEntry.cs" />
+    <Compile Include="Data\DefaultPluginListProvider.cs" />
+    <Compile Include="Data\StringArrayPluginListProvider.cs" />
+    <Compile Include="IO\CustomDeflateStream.cs" />
+    <Compile Include="Data\Plugins\Content\RecordAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\MemberInfo.cs" />
+    <Compile Include="Data\Plugins\Content\RecordInfo.cs" />
+    <Compile Include="Data\Plugins\Content\InfoProvider.cs" />
+    <Compile Include="Data\Plugins\Content\Field.cs" />
+    <Compile Include="Data\Plugins\Content\MemberAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\RecordReader.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Tes4.cs" />
+    <Compile Include="Data\Plugins\Content\RecordMetadata.cs" />
+    <Compile Include="Data\Plugins\Content\Record.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\Keywords.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\RuleEngine.cs" />
+    <Compile Include="UI\ChoiceOption.cs" />
+    <Compile Include="UI\Terminal\TerminalDisplay.cs" />
+    <Compile Include="UI\Message.cs" />
+    <Compile Include="UI\Status.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Plugins\Content\Constants\Fallout4\" />
+    <Folder Include="Data\Plugins\Content\Fields\Fallout4\" />
+    <Folder Include="Data\Plugins\Content\Records\Fallout4\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Patcher.Rules.Compiled\Patcher.Rules.Compiled.csproj">
+      <Project>{a46bc13d-b396-4433-9888-41a0bcf4f605}</Project>
+      <Name>Patcher.Rules.Compiled</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

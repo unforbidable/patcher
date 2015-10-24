@@ -1,0 +1,45 @@
+<rules>
+	<rule>
+		<name>High Noon Healing Potion</name>
+		<insert into="ALCH">
+
+			// Set Editor ID, name, description and type
+			Target.EditorId = "PD_HN_Healing_Potion";			
+			Target.FullName = "Potion of High Noon Healing";
+			Target.Description = "Works only around noon.";
+			Target.Type = PotionTypes.Medicine;
+			
+			// Set keywords
+			Target.Keywords.Add("VendorItemPotion");
+			
+			// Set sounds
+			Target.PickUpSound = Forms.Find("ITMPotionUpSD");
+			Target.PutDownSound = Forms.Find("ITMPotionDownSD");
+			Target.UseSound = Forms.Find("ITMPotionUse");
+			
+			// Set the model filename
+			Target.WorldModel = @"Clutter\Potions\PotionHealthExtreme.nif";
+			
+			// Set item weight and value
+			Target.Weight = 0.2f;
+			Target.Value = 500;
+			
+			// Create effect based on healing with magnitude of 1000
+			// Then add conditions that will make the potion work only
+			// between 11AM and 1PM
+			var effect = Engine.CreateEffect(Forms.Find("AlchRestoreHealth"), 1000, 0, 0);
+			effect.Conditions.Add(Functions.GetCurrentTime()
+				.IsGreaterThan(11)
+			);
+			effect.Conditions.Add(Functions.GetCurrentTime()
+				.IsLessThen(13)
+			);
+			
+			// Add the effect to the collection
+			Target.Effects.Add(effect);
+					
+			// Show the new Potion in the console
+			Debug.Dump(Target);
+		</insert>
+	</rule>
+</rules>
