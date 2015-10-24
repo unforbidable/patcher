@@ -14,6 +14,7 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Rules.Compiled.Forms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -132,8 +133,8 @@ namespace Documenter
                 if (type.IsGenericType)
                 {
                     var genericType = type.GetGenericArguments()[0];
-                    if (!genericType.IsGenericParameter && !genericType.IsAbstract)
-                        generic = " of " + GetTypeReference(genericType);
+                    if (!genericType.IsGenericParameter && genericType != typeof(IForm))
+                        generic = string.Format("&lt;{0}&gt;", GetTypeReference(genericType));
                 }
                 return string.Format("<see cref='{0}' />{1}", type.GetLocalFullName(), generic);
             }
