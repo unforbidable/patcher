@@ -14,19 +14,32 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Rules.Compiled.Fields.Skyrim;
-using Patcher.Rules.Compiled.Forms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Patcher.Rules.Compiled.Helpers
+namespace Documenter
 {
-    public interface IEngineHelper
+    class Program
     {
-        IEffect CreateEffect(IForm baseEffect, float magnitude, int area, int duration);
-        IMaterial CreateMaterial(IForm item, int count);
-        IScript CreateScript(string name);
+        public const string RootNamespace = "Patcher.Rules.Compiled";
+        public const string RootFolder = "reference";
+        public const string TargetPath = @"doc";
+
+        static void Main(string[] args)
+        {
+            var assembly = Assembly.GetAssembly(typeof(Patcher.Rules.Compiled.Forms.IForm));
+            var xmlFilePath = Path.GetFileNameWithoutExtension(assembly.GetName().CodeBase) + ".xml";
+
+            XDocument source = XDocument.Load(xmlFilePath);
+            PageGenerator generator = new PageGenerator(source, assembly);
+            generator.GeneratePages();
+        }
     }
 }

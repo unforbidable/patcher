@@ -22,12 +22,41 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
+    /// <summary>
+    /// Represents a collection of <see cref="IMaterial">Materials</see>.
+    /// </summary>
+    /// <remarks>
+    /// Materials in a collection can be edited or removed within a <c>foreach</c> iteration.
+    /// </remarks>
     public interface IMaterialCollection : IEnumerable<IMaterial>
     {
+        /// <summary>
+        /// Gets the number of materials in this collection.
+        /// </summary>
         int Count { get; }
+
+        /// <summary>
+        /// Creates a new <see cref="IMaterial">Material</see> based on the specified form item and count and adds it to this collection.
+        /// </summary>
+        /// <param name="item">Item for the new material.</param>
+        /// <param name="count">Number of items for the new material.</param>
         void Add(IForm item, int count);
+
+        /// <summary>
+        /// Adds an existing <see cref="IMaterial">Material</see> to this collection.
+        /// </summary>
+        /// <param name="material">Material to add.</param>
         void Add(IMaterial material);
+
+        /// <summary>
+        /// Removes a <see cref="IMaterial">Material</see> from this collection.
+        /// </summary>
+        /// <param name="material"></param>
         void Remove(IMaterial material);
+
+        /// <summary>
+        /// Removes all <see cref="IMaterial">Materials</see> from this collection.
+        /// </summary>
         void Clear();
     }
 }

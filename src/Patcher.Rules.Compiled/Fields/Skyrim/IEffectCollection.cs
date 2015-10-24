@@ -22,11 +22,34 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
+    /// <summary>
+    /// Represents a collection of <see cref="IEffect">Effects</see> that can be used to specify effects of items such as <b>Potions</b> or <b>Scrolls</b>.
+    /// </summary>
+    /// <remarks>
+    /// Use the <see cref="Helpers.Skyrim.IEngineHelper"/> helper method <code>Engine.CreateEffect()</code> to create new effects.
+    /// </remarks>
     public interface IEffectCollection : IEnumerable<IEffect>
     {
+        /// <summary>
+        /// Gets the number of effects in this collection.
+        /// </summary>
         int Count { get; }
+
+        /// <summary>
+        /// Adds an <see cref="IEffect"/> to this collection.
+        /// </summary>
+        /// <param name="effect"></param>
         void Add(IEffect effect);
+
+        /// <summary>
+        /// Removes an <see cref="IEffect"/> from this collection.
+        /// </summary>
+        /// <param name="effect"></param>
         void Remove(IEffect effect);
+
+        /// <summary>
+        /// Removes all <see cref="IEffect">Effects</see> from this collection.
+        /// </summary>
         void Clear();
     }
 }

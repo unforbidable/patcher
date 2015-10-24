@@ -22,9 +22,18 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
+    /// <summary>
+    /// Represents a material used by a <b>Constructible Object</b> form.
+    /// </summary>
     public interface IMaterial
     {
+        /// <summary>
+        /// Gets or sets the <see cref="IForm"/> that represents material.
+        /// </summary>
         IForm Item { get; set; }
+        /// <summary>
+        /// Gets or sets the number of items needed.
+        /// </summary>
         int Count { get; set; }
     }
 }

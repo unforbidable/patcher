@@ -21,27 +21,86 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
-    
+    /// <summary>
+    /// Defines skills.
+    /// </summary>
     public enum Skills : int
     {
+        /// <summary>
+        /// Represents no skill.
+        /// </summary>
         None,
+        /// <summary>
+        /// Represents the <b>One-handed weapon</b> skill.
+        /// </summary>
         OneHanded,
+        /// <summary>
+        /// Represents the <b>Two-handed weapon</b> skill.
+        /// </summary>
         TwoHanded,
+        /// <summary>
+        /// Represents the <b>Marksman</b> skill.
+        /// </summary>
         Marksman,
+        /// <summary>
+        /// Represents the <b>Block</b> skill.
+        /// </summary>
         Block,
+        /// <summary>
+        /// Represents the <b>Smithing</b> skill.
+        /// </summary>
         Smithing,
+        /// <summary>
+        /// Represents the <b>Heavy armor</b> skill.
+        /// </summary>
         HeavyArmor,
+        /// <summary>
+        /// Represents the <b>Light armor</b> skill.
+        /// </summary>
         LightArmor,
+        /// <summary>
+        /// Represents the <b>Pickpocket</b> skill.
+        /// </summary>
         Pickpocket,
+        /// <summary>
+        /// Represents the <b>Lockpicking</b> skill.
+        /// </summary>
         Lockpicking,
+        /// <summary>
+        /// Represents the <b>Sneak</b> skill.
+        /// </summary>
         Sneak,
+        /// <summary>
+        /// Represents the <b>Alchemy</b> skill.
+        /// </summary>
         Alchemy,
+        /// <summary>
+        /// Represents the <b>Speechcraft</b> skill.
+        /// </summary>
         Speechcraft,
+        /// <summary>
+        /// Represents the <b>Alteration</b> skill.
+        /// </summary>
         Alteration,
+        /// <summary>
+        /// Represents the <b>Conjuration</b> skill.
+        /// </summary>
         Conjuration,
+        /// <summary>
+        /// Represents the <b>Destruction</b> skill.
+        /// </summary>
         Destruction,
+        /// <summary>
+        /// Represents the <b>Illusion</b> skill.
+        /// </summary>
         Illusion,
+        /// <summary>
+        /// Represents the <b>Restoration</b> skill.
+        /// </summary>
         Restoration,
+        /// <summary>
+        /// Represents the <b>Enchanting</b> skill.
+        /// </summary>
         Enchanting
     }
 }

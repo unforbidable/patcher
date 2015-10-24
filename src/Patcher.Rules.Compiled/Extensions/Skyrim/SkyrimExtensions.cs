@@ -23,90 +23,167 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Extensions.Skyrim
 {
+    /// <summary>
+    /// Extension methods for forms and form collections.
+    /// </summary>
     public static class SkyrimExtensions
     {
+        /// <summary>
+        /// Converts this form to a <b>Potion</b> form or returns <c>null</c> if this form is not a <b>Potion</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static IAlch AsAlch(this IForm form)
         {
             return form as IAlch;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Potion</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<IAlch> OfAlch(this IFormCollection<IForm> collection)
         {
             return collection.Of<IAlch>();
         }
 
-
+        /// <summary>
+        /// Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static IArmo AsArmo(this IForm form)
         {
             return form as IArmo;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Armor</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<IArmo> OfArmo(this IFormCollection<IForm> collection)
         {
             return collection.Of<IArmo>();
         }
 
-
+        /// <summary>
+        /// Converts this form to a <b>Constructible Object</b> form or returns <c>null</c> if this form is not a <b>Constructible Object</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static ICobj AsCobj(this IForm form)
         {
             return form as ICobj;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Constructible Object</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<ICobj> OfCobj(this IFormCollection<IForm> collection)
         {
             return collection.Of<ICobj>();
         }
 
-
+        /// <summary>
+        /// Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static IFlst AsFlst(this IForm form)
         {
             return form as IFlst;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Form List</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<IFlst> OfFlst(this IFormCollection<IForm> collection)
         {
             return collection.Of<IFlst>();
         }
 
-
+        /// <summary>
+        /// Converts this form to a <b>Global Variable</b> form or returns <c>null</c> if this form is not a <b>Global Variable</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static IGlob AsGlob(this IForm form)
         {
             return form as IGlob;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Global Variable</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<IGlob> OfGlob(this IFormCollection<IForm> collection)
         {
             return collection.Of<IGlob>();
         }
 
-
+        /// <summary>
+        /// Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static IGmst AsGmst(this IForm form)
         {
             return form as IGmst;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Game Setting</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<IGmst> OfGmst(this IFormCollection<IForm> collection)
         {
             return collection.Of<IGmst>();
         }
 
 
+        /// <summary>
+        /// Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static IKywd AsKywd(this IForm form)
         {
             return form as IKywd;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Keyword</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<IKywd> OfKywd(this IFormCollection<IForm> collection)
         {
             return collection.Of<IKywd>();
         }
 
-
+        /// <summary>
+        /// Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public static IStat AsStat(this IForm form)
         {
             return form as IStat;
         }
 
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Static</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         public static IFormCollection<IStat> OfStat(this IFormCollection<IForm> collection)
         {
             return collection.Of<IStat>();

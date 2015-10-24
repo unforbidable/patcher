@@ -21,13 +21,34 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
+    /// <summary>
+    /// Specifies the dimensions of an object.
+    /// </summary>
     public interface IObjectBounds
     {
+        /// <summary>
+        /// Gets or sets the negative X-axis dimension.
+        /// </summary>
         short X1 { get; set; }
+        /// <summary>
+        /// Gets or sets the negative Y-axis dimension.
+        /// </summary>
         short Y1 { get; set; }
+        /// <summary>
+        /// Gets or sets the negative Z-axis dimension.
+        /// </summary>
         short Z1 { get; set; }
+        /// <summary>
+        /// Gets or sets the positive X-axis dimension.
+        /// </summary>
         short X2 { get; set; }
+        /// <summary>
+        /// Gets or sets the positive Y-axis dimension.
+        /// </summary>
         short Y2 { get; set; }
+        /// <summary>
+        /// Gets or sets the positive Z-axis dimension.
+        /// </summary>
         short Z2 { get; set; }
     }
 }

@@ -21,6 +21,11 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <DocumentationFile>bin\Debug\Patcher.Rules.Compiled.XML</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>CS1587</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Patcher.Rules.Compiled.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -51,12 +57,11 @@
     <Compile Include="Fields\Skyrim\IMaterialCollection.cs" />
     <Compile Include="Fields\Skyrim\IScript.cs" />
     <Compile Include="Forms\Skyrim\ICobj.cs" />
-    <Compile Include="Helpers\IFunctionsHelper.cs" />
+    <Compile Include="Helpers\Skyrim\IFunctionsHelper.cs" />
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />
-    <Compile Include="Helpers\IEngineHelper.cs" />
-    <Compile Include="Helpers\Static\Math.cs" />
-    <Compile Include="Forms\IDummyForm.cs" />
+    <Compile Include="Helpers\Skyrim\IEngineHelper.cs" />
+    <Compile Include="Helpers\Math.cs" />
     <Compile Include="Fields\Skyrim\IObjectBounds.cs" />
     <Compile Include="Fields\Skyrim\IScriptCollection.cs" />
     <Compile Include="Forms\Skyrim\IStat.cs" />

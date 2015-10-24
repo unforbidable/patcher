@@ -18,10 +18,38 @@ using Patcher.Rules.Compiled.Constants;
 
 namespace Patcher.Rules.Compiled.Forms.Skyrim
 {
+    /// <summary>
+    /// Represents a <b>Global Variable</b> form.
+    /// </summary>
+    /// <remarks>
+    /// <p>
+    /// Valid types of a <b>Global Variable</b> are <code>Types.Short</code>, <code>Types.Int</code> and <code>Types.Float</code>. 
+    /// When creating a new <b>Global Variable</b> form property <code>Type</code> should be set before property <code>Value</code> is be set.
+    /// </p>
+    /// <p>
+    /// Value should be set to a value of the correct type as specified by property <code>Type</code>. 
+    /// The engine will try to convert the value if necessary to avoid run-time errors 
+    /// but large numbers may get truncated or precision may get lost if the type cannot sustain the value.
+    /// </p>
+    /// <p>
+    /// Changing the value of a constant <b>Global Variable</b> value results in a warning.
+    /// </p>
+    /// </remarks>
     public interface IGlob : IForm
     {
+        /// <summary>
+        /// Gets or sets the value which indicates whether this <b>Global Variable</b> is a constant.
+        /// </summary>
         bool IsConstant { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of this <b>Global Variable</b>.
+        /// </summary>
         Types Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value of this <b>Global Variable</b>.
+        /// </summary>
         dynamic Value { get; set; }
     }
 }

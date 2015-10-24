@@ -18,6 +18,7 @@ using Microsoft.CSharp;
 using Patcher.Data.Plugins;
 using Patcher.Rules.Compiled;
 using Patcher.Rules.Compiled.Helpers;
+using Patcher.Rules.Compiled.Helpers.Skyrim;
 using Patcher.Rules.Methods;
 using Patcher.UI;
 using System;
@@ -109,8 +110,8 @@ namespace Patcher.Rules
             string comment = string.Format("//\n// Source file for rule {0}\\{1}@{2} by {3}\n//\n", metadata.PluginFileName, metadata.RuleFileName, entry.Name, Program.GetProgramFullVersionInfo());
             CodeBuilder builder = new CodeBuilder(NamespaceName, className, comment);
 
-            builder.Usings.Add("Patcher.Rules.Compiled.Helpers.Static");
-            //builder.Usings.Add("Patcher.Rules.Compiled.Extensions");
+            builder.Usings.Add("Patcher.Rules.Compiled.Helpers");
+            builder.Usings.Add("Patcher.Rules.Compiled.Helpers." + engine.Context.GameTitle);
             builder.Usings.Add("Patcher.Rules.Compiled.Extensions." + engine.Context.GameTitle);
             builder.Usings.Add("Patcher.Rules.Compiled.Constants");
             builder.Usings.Add("Patcher.Rules.Compiled.Constants." + engine.Context.GameTitle);
