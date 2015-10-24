@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Material" fullname="Fields.Skyrim.Material" category="Fields">
+  <summary>
+            Represents a material used by a <b>Constructible Object</b> form.
+            </summary>
+  <property name="Count">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>
+            Gets or sets the number of items needed.
+            </summary>
+  </property>
+  <property name="Item">
+    <signature>
+      <see cref="Forms.Form" /> Item</signature>
+    <summary>
+            Gets or sets the <see cref="Forms.Form" /> that represents material.
+            </summary>
+  </property>
+</type>

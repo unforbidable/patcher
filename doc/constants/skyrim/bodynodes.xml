@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants">
+  <summary>
+            Defines body nodes.
+            </summary>
+  <field name="Amulet">
+    <summary>
+            Represents the <b>Amulet</b> body node.
+            </summary>
+  </field>
+  <field name="Body">
+    <summary>
+            Represents the <b>Body</b> body node.
+            </summary>
+  </field>
+  <field name="Calves">
+    <summary>
+            Represents the <b>Calves</b> body node.
+            </summary>
+  </field>
+  <field name="Circlet">
+    <summary>
+            Represents the <b>Circlet</b> body node.
+            </summary>
+  </field>
+  <field name="Decapitated">
+    <summary>
+            Represents the <b>Decapitated</b> body node.
+            </summary>
+  </field>
+  <field name="DecapitatedHead">
+    <summary>
+            Represents the <b>DecapitatedHead</b> body node.
+            </summary>
+  </field>
+  <field name="Ears">
+    <summary>
+            Represents the <b>Ears</b> body node.
+            </summary>
+  </field>
+  <field name="Feet">
+    <summary>
+            Represents the <b>Feet</b> body node.
+            </summary>
+  </field>
+  <field name="Forearms">
+    <summary>
+            Represents the <b>Forearms</b> body node.
+            </summary>
+  </field>
+  <field name="FX01">
+    <summary>
+            Represents the <b>FX01</b> body node.
+            </summary>
+  </field>
+  <field name="Hair">
+    <summary>
+            Represents the <b>Hair</b> body node.
+            </summary>
+  </field>
+  <field name="Hands">
+    <summary>
+            Represents the <b>Hands</b> body node.
+            </summary>
+  </field>
+  <field name="Head">
+    <summary>
+            Represents the <b>Head</b> body node.
+            </summary>
+  </field>
+  <field name="LongHair">
+    <summary>
+            Represents the <b>LongHair</b> body node.
+            </summary>
+  </field>
+  <field name="None">
+    <summary>
+            Represents no body node.
+            </summary>
+  </field>
+  <field name="Ring">
+    <summary>
+            Represents the <b>Ring</b> body node.
+            </summary>
+  </field>
+  <field name="Shield">
+    <summary>
+            Represents the <b>Shield</b> body node.
+            </summary>
+  </field>
+  <field name="Tail">
+    <summary>
+            Represents the <b>Tail</b> body node.
+            </summary>
+  </field>
+  <field name="Unnamed14">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed15">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed16">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed17">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed18">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed19">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed22">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed23">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed24">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed25">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed26">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed27">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed28">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed29">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+  <field name="Unnamed30">
+    <summary>
+            Represents an unnamed body node.
+            </summary>
+  </field>
+</type>

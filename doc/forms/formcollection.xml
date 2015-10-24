@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="FormCollection" fullname="Forms.FormCollection" category="Forms">
+  <summary>
+            Represents a collection of forms.
+            A collection may contain mixed form types or only forms of a specific type.
+            To filter and convert a mixed collection to a specific form collection use the appropriate extension method. 
+            </summary>
+  <property name="Count">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>
+            Gets the number of forms in this form collection.
+            </summary>
+  </property>
+  <method name="Add" extension="false">
+    <signature>
+      <c>void</c> Add(<see cref="Forms.Form" />)</signature>
+    <summary>
+            Adds the specified form to this form collection.
+            </summary>
+  </method>
+  <method name="Add" extension="false">
+    <signature>
+      <c>void</c> Add(<c>string</c>)</signature>
+    <summary>
+            Adds the form that has the specified Editor ID to this form collection.
+            </summary>
+  </method>
+  <method name="Contains" extension="false">
+    <signature>
+      <c>bool</c> Contains(<see cref="Forms.Form" />)</signature>
+    <summary>
+            Determines whether the specified form is in this form collection.
+            </summary>
+  </method>
+  <method name="Contains" extension="false">
+    <signature>
+      <c>bool</c> Contains(<c>string</c>)</signature>
+    <summary>
+            Determine whether the form with the specified Editor ID is in this form collection.
+            </summary>
+  </method>
+  <method name="HavingTag" extension="false">
+    <signature>
+      <see cref="Forms.FormCollection" /> HavingTag(<c>string</c>)</signature>
+    <summary>
+            Creates a new form collection based on this form collection that contains only forms that have been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Remove" extension="false">
+    <signature>
+      <c>void</c> Remove(<see cref="Forms.Form" />)</signature>
+    <summary>
+            Remove the specified form from this form collection.
+            </summary>
+  </method>
+  <method name="Remove" extension="false">
+    <signature>
+      <c>void</c> Remove(<c>string</c>)</signature>
+    <summary>
+            Remove the form that has the specified Editor ID from this form collection.
+            </summary>
+  </method>
+  <method name="TagAll" extension="false">
+    <signature>
+      <c>void</c> TagAll(<c>string</c>)</signature>
+    <summary>
+            Tags all forms in this form collection with the specified text.
+            </summary>
+  </method>
+  <method name="Where" extension="false">
+    <signature>
+      <see cref="Forms.FormCollection" /> Where(<c>delegate</c>)</signature>
+    <summary>
+            Creates a new form collection based on this form collection that contains only forms that satisfy the specified predicate.
+            </summary>
+  </method>
+  <method name="OfAlch" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Alch" />&gt; OfAlch()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Potion</b> forms.
+            </summary>
+  </method>
+  <method name="OfArmo" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Armo" />&gt; OfArmo()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Armor</b> forms.
+            </summary>
+  </method>
+  <method name="OfCobj" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Cobj" />&gt; OfCobj()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Constructible Object</b> forms.
+            </summary>
+  </method>
+  <method name="OfFlst" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Flst" />&gt; OfFlst()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Form List</b> forms.
+            </summary>
+  </method>
+  <method name="OfGlob" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Glob" />&gt; OfGlob()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Global Variable</b> forms.
+            </summary>
+  </method>
+  <method name="OfGmst" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Gmst" />&gt; OfGmst()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Game Setting</b> forms.
+            </summary>
+  </method>
+  <method name="OfKywd" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Kywd" />&gt; OfKywd()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Keyword</b> forms.
+            </summary>
+  </method>
+  <method name="OfStat" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Stat" />&gt; OfStat()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Static</b> forms.
+            </summary>
+  </method>
+</type>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="EffectCollection" fullname="Fields.Skyrim.EffectCollection" category="Fields">
+  <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Effect">Effects</see> that can be used to specify effects of items such as <b>Potions</b> or <b>Scrolls</b>.
+            </summary>
+  <property name="Count">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>
+            Gets the number of effects in this collection.
+            </summary>
+  </property>
+  <method name="Add" extension="false">
+    <signature>
+      <c>void</c> Add(<see cref="Fields.Skyrim.Effect" />)</signature>
+    <summary>
+            Adds an <see cref="Fields.Skyrim.Effect" /> to this collection.
+            </summary>
+  </method>
+  <method name="Clear" extension="false">
+    <signature>
+      <c>void</c> Clear()</signature>
+    <summary>
+            Removes all <see cref="Fields.Skyrim.Effect">Effects</see> from this collection.
+            </summary>
+  </method>
+  <method name="Remove" extension="false">
+    <signature>
+      <c>void</c> Remove(<see cref="Fields.Skyrim.Effect" />)</signature>
+    <summary>
+            Removes an <see cref="Fields.Skyrim.Effect" /> from this collection.
+            </summary>
+  </method>
+  <remarks>
+            Use the <see cref="Helpers.Skyrim.Engine" /> helper method <code>Engine.CreateEffect()</code> to create new effects.
+            </remarks>
+</type>
