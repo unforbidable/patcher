@@ -17,12 +17,12 @@
 namespace Patcher.Rules.Compiled.Forms.Skyrim
 {
     /// <summary>
-    /// Represents a form of type KYWD.
+    /// Represents a <b>Keyword</b> form.
     /// </summary>
     public interface IKywd : IForm
     {
         /// <summary>
-        /// Gets or sets the color of this Keyword.
+        /// Gets or sets the color of this <b>Keyword</b>.
         /// </summary>
         uint Color { get; set; }
     }

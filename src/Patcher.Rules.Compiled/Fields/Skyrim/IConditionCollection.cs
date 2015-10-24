@@ -21,11 +21,35 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
+    /// <summary>
+    /// Represents a collection of <see cref="ICondition">Conditions</see>.
+    /// </summary>
+    /// <remarks>
+    /// Use any of the <see cref="Helpers.Skyrim.IFunctionsHelper"/> helper methods to create new conditions.
+    /// Conditions can be removed from a collection using the <code>Remove()</code> method during a <c>foreach</c> iteration.
+    /// </remarks>
     public interface IConditionCollection : IEnumerable<ICondition>
     {
+        /// <summary>
+        /// Gets the number of <see cref="ICondition">Conditions</see> in this collection.
+        /// </summary>
         int Count { get; }
+
+        /// <summary>
+        /// Adds a <see cref="ICondition"/> to this collection.
+        /// </summary>
+        /// <param name="item"></param>
         void Add(ICondition item);
+
+        /// <summary>
+        /// Removes a <see cref="ICondition"/> from this collection.
+        /// </summary>
+        /// <param name="item"></param>
         void Remove(ICondition item);
+
+        /// <summary>
+        /// Removes all <see cref="ICondition">Conditions</see> from this collection.
+        /// </summary>
         void Clear();
     }
 }

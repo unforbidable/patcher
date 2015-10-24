@@ -22,12 +22,39 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
+    /// <summary>
+    /// Represents a custom effect based on a <b>Magic Effect</b>.
+    /// </summary>
+    /// <remarks>
+    /// New effects can be created using the <see cref="Helpers.Skyrim.IEngineHelper"/> helper method <code>Engine.CreateEffect()</code>. 
+    /// When a new custom effect has been created, conditions can be added to it, if desired. 
+    /// And finally, the new effect can be added to an <see cref="IEffectCollection"/> associated with the <code>Target</code> form.
+    /// </remarks>
     public interface IEffect
     {
+        /// <summary>
+        /// Gets or sets the base <b>Magic Effect</b> of this <b>Effect</b>.
+        /// </summary>
         IForm BaseEffect { get; set; }
+
+        /// <summary>
+        /// Gets or sets the magnitude of this <b>Effect</b>.
+        /// </summary>
         float Magnitude { get; set; }
+
+        /// <summary>
+        /// Gets or sets the radius of the area covered with this <b>Effect</b>.
+        /// </summary>
         int Area { get; set; }
+
+        /// <summary>
+        /// Gets or sets the duration of this <b>Effect</b>.
+        /// </summary>
         int Duration { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="IConditionCollection"/> contaning <see cref="ICondition">Conditions</see> that detemine when this <b>Effect</b> is active.
+        /// </summary>
         IConditionCollection Conditions { get; set; }
     }
 }

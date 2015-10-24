@@ -21,6 +21,9 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Forms.Skyrim
 {
+    /// <summary>
+    /// Represents a <b>Static</b> form. 
+    /// </summary>
     public interface IStat : IForm
     {
     }

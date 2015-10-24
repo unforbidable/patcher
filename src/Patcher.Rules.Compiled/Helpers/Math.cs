@@ -19,39 +19,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-/// <summary>
-/// This namespace contains static helper classes that may be used inside compiled rule methods. 
-/// The classes declared in this namespace are the only classes that are made available to the compile rule methods via the using keyword. 
-/// </summary>
 namespace Patcher.Rules.Compiled.Helpers
 {
+    /// <summary>
+    /// Provides useful mathematical functions.
+    /// </summary>
     public static class Math
     {
+        /// <summary>
+        /// Retrieves the lesser of the specified integers.
+        /// </summary>
+        /// <param name="a">First integer to compare.</param>
+        /// <param name="b">Second integer to compare.</param>
+        /// <returns></returns>
         public static int Min(int a, int b)
         {
             return System.Math.Min(a, b);
         }
 
+        /// <summary>
+        /// Retrieves the lesser of the specified short integers.
+        /// </summary>
+        /// <param name="a">First short integer to compare.</param>
+        /// <param name="b">Second short integer to compare.</param>
+        /// <returns></returns>
         public static short Min(short a, short b)
         {
             return System.Math.Min(a, b);
         }
 
+        /// <summary>
+        /// Retrieves the lesser of the specified floating point numbers.
+        /// </summary>
+        /// <param name="a">First floating point number to compare.</param>
+        /// <param name="b">Second floating point number to compare.</param>
+        /// <returns></returns>
         public static float Min(float a, float b)
         {
             return System.Math.Min(a, b);
         }
 
+        /// <summary>
+        /// Retrieves the greater of the specified integers.
+        /// </summary>
+        /// <param name="a">First integer to compare.</param>
+        /// <param name="b">Second integer to compare.</param>
+        /// <returns></returns>
         public static int Max(int a, int b)
         {
             return System.Math.Min(a, b);
         }
 
+        /// <summary>
+        /// Retrieves the greater of the specified short integers.
+        /// </summary>
+        /// <param name="a">First short integer to compare.</param>
+        /// <param name="b">Second short integer to compare.</param>
+        /// <returns></returns>
         public static short Max(short a, short b)
         {
             return System.Math.Min(a, b);
         }
 
+        /// <summary>
+        /// Retrieves the greater of the specified floating point numbers.
+        /// </summary>
+        /// <param name="a">First floating point number to compare.</param>
+        /// <param name="b">Second floating point number to compare.</param>
+        /// <returns></returns>
         public static float Max(float a, float b)
         {
             return System.Math.Min(a, b);

@@ -21,11 +21,26 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
+    /// <summary>
+    /// Defines <b>Potion</b> types.
+    /// </summary>
     public enum PotionTypes
     {
+        /// <summary>
+        /// Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
+        /// </summary>
         Auto,
+        /// <summary>
+        /// Indicates the <b>Potion</b> is food or a drink.
+        /// </summary>
         Food,
+        /// <summary>
+        /// Indicates the <b>Potion</b> is a medicine.
+        /// </summary>
         Medicine,
+        /// <summary>
+        /// Indicates the <b>Potion</b> is a posion.
+        /// </summary>
         Poison,
     }
 }
