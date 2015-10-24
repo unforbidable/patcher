@@ -135,7 +135,7 @@ namespace Documenter
                     if (!genericType.IsGenericParameter && !genericType.IsAbstract)
                         generic = " of " + GetTypeReference(genericType);
                 }
-                return string.Format("<see cref='{0}'>{1}</see>{2}", type.GetLocalFullName(), type.GetLocalName(), generic);
+                return string.Format("<see cref='{0}' />{1}", type.GetLocalFullName(), generic);
             }
             else
             {

@@ -5,6 +5,23 @@
   <xsl:variable name="fullname" select="html/head/meta[@name='doc-fullname']/@content" />
   <xsl:variable name="depth" select="string-length($fullname) - string-length(translate($fullname,'.',''))" />
   <xsl:variable name="relativePath" select="substring('../../../', 1, $depth * 3)" />
+
+  <xsl:template name="substring-after-last">
+    <xsl:param name="string" />
+    <xsl:param name="delimiter" />
+    <xsl:choose>
+      <xsl:when test="contains($string, $delimiter)">
+        <xsl:call-template name="substring-after-last">
+          <xsl:with-param name="string"
+            select="substring-after($string, $delimiter)" />
+          <xsl:with-param name="delimiter" select="$delimiter" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$string" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   
   <xsl:template match="@* | node()">
     <xsl:copy>
@@ -12,25 +29,31 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- c => span-code -->
   <xsl:template match="*/c">
     <span class="span-code">
       <xsl:apply-templates select="@*|node()"/>
     </span>
   </xsl:template>
 
+  <!-- see cref => a href -->
   <xsl:template match="*/see">
     <a>
-      <xsl:apply-templates select="@*|node()"/>
+      <xsl:attribute name="href">
+        <xsl:variable name="fullName" select="@cref"/>
+        <xsl:value-of select="concat($relativePath, translate($fullName, '.', '/'),'.html')"/>
+      </xsl:attribute>
+      <xsl:copy-of select="."/>
+      <xsl:if test=". = ''">
+        <xsl:call-template name="substring-after-last">
+          <xsl:with-param name="string" select="@cref" />
+          <xsl:with-param name="delimiter" select="'.'" />
+        </xsl:call-template>
+      </xsl:if>
     </a>
   </xsl:template>
-  
-  <xsl:template match="*/see/@cref">
-    <xsl:attribute name="href">
-      <xsl:variable name="fullName" select="."/>
-      <xsl:value-of select="concat($relativePath, translate($fullName, '.', '/'),'.html')"/>
-    </xsl:attribute>
-  </xsl:template>
 
+  <!-- Insert css -->
   <xsl:template match="html/head/title">
     <xsl:copy-of select="." />
     <link rel="stylesheet" type="text/css">
