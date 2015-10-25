@@ -43,6 +43,7 @@ namespace Patcher.Data.Plugins.Content
         int CurrentSegmentDepth { get { return segmentStack.Count; } }
 
         internal States CurrentState { get; private set; }
+        internal Record CurrentRecord { get; private set; }
 
         internal PluginFlags PluginFlags { get; set; }
 
@@ -73,7 +74,10 @@ namespace Patcher.Data.Plugins.Content
             // Create header, set flags and read the header
             var pluginHeader = context.CreateHeader();
             pluginHeader.RawFlags = recordMetaData.Flags;
+
+            CurrentRecord = pluginHeader;
             pluginHeader.ReadRecord(this);
+            CurrentRecord = null;
 
             // Keep plugin flags for internal use by the reader
             PluginFlags = (PluginFlags)recordMetaData.Flags;
@@ -296,13 +300,17 @@ namespace Patcher.Data.Plugins.Content
                     deflateReader.StringLocator = StringLocator;
 
                     // Read record form the deflate reader
+                    deflateReader.CurrentRecord = record;
                     record.ReadRecord(deflateReader, lazyLoading);
+                    deflateReader.CurrentRecord = null;
                 }
             }
             else
             {
                 // Read record form the current reader
+                CurrentRecord = record;
                 record.ReadRecord(this, lazyLoading);
+                CurrentRecord = null;
             }
         }
 
