@@ -170,6 +170,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
+        /// Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IProj AsProj(this IForm form)
+        {
+            return form as IProj;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Projectile</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IProj> OfProj(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IProj>();
+        }
+
+        /// <summary>
         /// Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b>.
         /// </summary>
         /// <param name="form"></param>
