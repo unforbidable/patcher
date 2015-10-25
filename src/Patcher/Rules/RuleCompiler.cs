@@ -79,6 +79,7 @@ namespace Patcher.Rules
 
             builder.Usings.Add("Patcher.Rules.Compiled.Helpers");
             builder.Usings.Add("Patcher.Rules.Compiled.Helpers." + engine.Context.GameTitle);
+            builder.Usings.Add("Patcher.Rules.Compiled.Extensions");
             builder.Usings.Add("Patcher.Rules.Compiled.Extensions." + engine.Context.GameTitle);
             builder.Usings.Add("Patcher.Rules.Compiled.Constants");
             builder.Usings.Add("Patcher.Rules.Compiled.Constants." + engine.Context.GameTitle);

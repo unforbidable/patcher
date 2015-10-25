@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Patcher.Rules
@@ -32,6 +33,8 @@ namespace Patcher.Rules
         readonly string namespaceName;
         readonly string className;
         readonly string comment;
+
+        static ISet<string> validNamespaces = new SortedSet<string>(Assembly.GetAssembly(typeof(Compiled.Forms.IForm)).GetTypes().Select(t => t.Namespace).Distinct());
 
         public CodeBuilder(string namespaceName, string className, string comment)
         {
@@ -77,9 +80,14 @@ namespace Patcher.Rules
         {
             return Beautify(string.Format("{0}\n{1}\nnamespace {2}\n{{\npublic class {3}\n{{\n{4}}}\n}}\n",
                 comment,
-                string.Join("", usings.Select(u => string.Format("using {0};\n", u))),
+                string.Join("", usings.Where(u => NamespaceIsValid(u)).Select(u => string.Format("using {0};\n", u))),
                 namespaceName, className,
                 builder.ToString()));
+        }
+
+        private bool NamespaceIsValid(string ns)
+        {
+            return validNamespaces.Contains(ns);
         }
 
         private string Beautify(string source)
