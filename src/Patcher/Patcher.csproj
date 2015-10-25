@@ -71,10 +71,15 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\PotionFlags.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\MiscStat.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\PlayerAction.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ProjectileFlags.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\ProjectileType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptPropertyType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ScriptType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\SoundLevel.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\VatsFunction.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\WardState.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\DestructionData.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\MuzzleFlashModel.cs" />
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
@@ -84,6 +89,7 @@
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Flst.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Proj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
     <Compile Include="Data\Plugins\Content\VersionAttribute.cs" />
     <Compile Include="Data\Plugins\Content\ReferenceAttribute.cs" />
