@@ -2,20 +2,20 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl">
   <xsl:output method="xml" indent="yes"/>
 
+  <xsl:variable name="header">
+    <tr>
+      <td class="td-name">
+        Name
+      </td>
+      <td class="td-description">
+        Description
+      </td>
+    </tr>
+  </xsl:variable>
+
+  <xsl:variable name="typeName" select="@name" />
+
   <xsl:template match="type | node()">
-
-    <xsl:variable name="typeName" select="@name" />
-
-    <xsl:variable name="header">
-      <tr>
-        <td>
-          Name
-        </td>
-        <td>
-          Description
-        </td>
-      </tr>
-    </xsl:variable>
 
     <html>
       <head>
@@ -32,6 +32,9 @@
 
         <div class="div-title">
           <xsl:value-of select="@name"/>
+          <xsl:if test="string-length(@gametitle) > 0">
+            <xsl:value-of select="concat(' (', @gametitle, ')')"/>
+          </xsl:if>
         </div>
 
         <div class="div-header">

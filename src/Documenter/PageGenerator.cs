@@ -97,14 +97,15 @@ namespace Documenter
 
         private XElement GetTypeXmlElement(Type type, bool details)
         {
-            string category = type.GetLocalNamespace();
-            if (category.Contains('.'))
-                category = string.Format("{0} ({1})", category.Split('.'));
+            var namespaceParts = type.GetLocalNamespace().Split('.');
+            string game = namespaceParts.Length > 1 ? namespaceParts[1] : string.Empty;
+            string category = namespaceParts.Length > 1 ? string.Format("{0} ({1})", namespaceParts) : namespaceParts[0];
 
             XElement typeElement = new XElement("type");
             typeElement.Add(new XAttribute("name", type.GetLocalName()));
             typeElement.Add(new XAttribute("fullname", type.GetLocalFullName()));
             typeElement.Add(new XAttribute("category", category));
+            typeElement.Add(new XAttribute("gametitle", game));
             typeElement.Add(GetSummaryTextXElement(GetMemberName(type)));
 
             if (details)
