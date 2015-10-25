@@ -129,7 +129,9 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         bool CanBeDisabled { get; set; }
 
         /// <summary>
-        /// Gets or sets the value that indicates whether this <b>Projectile</b> travels at a supersonic speed.
+        /// Gets or sets the value that indicates whether the sound of this <b>Projectile</b> 
+        /// enamates from point on the trajectory that is the closest to the player character (<c>true</c>) or 
+        /// follows the <b>Projectile</b> until it is destroyed (<c>false</c>).
         /// </summary>
         bool IsSupersonic { get; set; }
 
