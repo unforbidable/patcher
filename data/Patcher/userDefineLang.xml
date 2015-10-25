@@ -26,7 +26,7 @@
             <Keywords name="Folders in comment, close"></Keywords>
             <Keywords name="Keywords1">Target Source</Keywords>
             <Keywords name="Keywords2">Math Forms Debug Functions Engine</Keywords>
-            <Keywords name="Keywords3">Types PotionTypes BodyParts Skills ActorValues</Keywords>
+            <Keywords name="Keywords3">Types PotionTypes BodyParts Skills ActorValues ProjectileTypes SoundLevels</Keywords>
             <Keywords name="Keywords4">var for foreach in return if else while do break false true int float short long null</Keywords>
             <Keywords name="Keywords5"></Keywords>
             <Keywords name="Keywords6"></Keywords>
