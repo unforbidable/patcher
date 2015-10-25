@@ -35,7 +35,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.MODL, Names.MODS, Names.MODT)]
         [Initialize]
-        private Model Model { get; set; }
+        private Model ModelData { get; set; }
 
         [Member(Names.DEST, Names.DSTD, Names.DSTF)]
         private DestructionData Destruction { get; set; }
@@ -44,12 +44,74 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         private ProjectileData Data { get; set; }
 
         [Member(Names.NAM1, Names.NAM2)]
-        private MuzzleFlashModel MuzzleFlashModel { get; set; }
+        private MuzzleFlashModel MuzzleFlashModelData { get; set; }
 
         [Member(Names.VNAM)]
         public SoundLevel SoundLevel { get; set; }
 
-        class ProjectileData : Field
+        public string WorldModel { get { return ModelData.Path; } set { ModelData.Path = value; } }
+
+        public string MuzzleFlashModel
+        {
+            get
+            {
+                return MuzzleFlashModelData != null ? MuzzleFlashModelData.Path : null;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    if (MuzzleFlashModelData == null)
+                        MuzzleFlashModelData = new MuzzleFlashModel();
+                    MuzzleFlashModelData.Path = value;
+                }
+                else
+                {
+                    MuzzleFlashModelData = null;
+                }
+            }
+        }
+
+        public void SetFlag(ProjectileFlags value, bool set)
+        {
+            if (set)
+                Data.Flags |= value;
+            else
+                Data.Flags &= ~value;
+        }
+
+        public bool HasFlag(ProjectileFlags value)
+        {
+            return Data.Flags.HasFlag(value);
+        }
+
+        public ProjectileType Type { get { return Data.Type; } set { Data.Type = value; } }
+
+        public float Gravity { get { return Data.Gravity; } set { Data.Gravity = value; } }
+        public float Speed { get { return Data.Speed; } set { Data.Speed = value; } }
+        public float Range { get { return Data.Range; } set { Data.Range = value; } }
+        public float TracerChance { get { return Data.TracerChance; } set { Data.TracerChance = value; } }
+        public float ExplosionProximity { get { return Data.AltExplosionTriggerProximity; } set { Data.AltExplosionTriggerProximity = value; } }
+        public float ExplosionTimer { get { return Data.AltExplosionTriggerTimer; } set { Data.AltExplosionTriggerTimer = value; } }
+        public float FadeDuration { get { return Data.FadeDuration; } set { Data.FadeDuration = value; } }
+        public float MuzzleFlashDuration { get { return Data.MuzzleFlashDuration; } set { Data.MuzzleFlashDuration = value; } }
+        public float ImpactForce { get { return Data.ImpactForce; } set { Data.ImpactForce = value; } }
+        public float ConeSpread { get { return Data.ConeSpread; } set { Data.ConeSpread = value; } }
+        public float CollisionRadius { get { return Data.CollisionRadius; } set { Data.CollisionRadius = value; } }
+        public float Lifetime { get { return Data.Lifetime; } set { Data.Lifetime = value; } }
+        public float RelaunchInterval { get { return Data.RelaunchInterval; } set { Data.RelaunchInterval = value; } }
+
+        public uint Light { get { return Data.Light; } set { Data.Light = value; } }
+        public uint MuzzleFlashLight { get { return Data.MuzzleFlashLight; } set { Data.MuzzleFlashLight = value; } }
+        public uint Explosion { get { return Data.Explosion; } set { Data.Explosion = value; } }
+        public uint Sound { get { return Data.Sound; } set { Data.Sound = value; } }
+        public uint ExplosionCountdownSound { get { return Data.CountdownSound; } set { Data.CountdownSound = value; } }
+        public uint DisableSound { get { return Data.DisableSound; } set { Data.DisableSound = value; } }
+        public uint DefaultWeaponSource { get { return Data.DefaultWeaponSource; } set { Data.DefaultWeaponSource = value; } }
+        public uint DecalData { get { return Data.DecalData; } set { Data.DecalData = value; } }
+        public uint CollisionLayer { get { return Data.CollisionLayer; } set { Data.CollisionLayer = value; } }
+
+        internal class ProjectileData : Field
         {
             public ProjectileFlags Flags { get; set; }
             public ProjectileType Type { get; set; }
@@ -76,8 +138,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             public uint DecalData { get; set; }
             public uint CollisionLayer { get; set; }
 
-            bool decalDataNotLoaded;
-            bool collisionLayerNotLoaded;
+            bool decalDataNotLoaded = false;
+            bool collisionLayerNotLoaded = false;
 
             internal override void ReadField(RecordReader reader)
             {
@@ -121,7 +183,36 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write((ushort)Flags);
+                writer.Write((ushort)Type);
+                writer.Write(Gravity);
+                writer.Write(Speed);
+                writer.Write(Range);
+                writer.WriteReference(Light, FormKindSet.Any);
+                writer.WriteReference(MuzzleFlashLight, FormKindSet.Any);
+                writer.Write(TracerChance);
+                writer.Write(AltExplosionTriggerProximity);
+                writer.Write(AltExplosionTriggerTimer);
+                writer.WriteReference(Explosion, FormKindSet.Any);
+                writer.WriteReference(Sound, FormKindSet.Any);
+                writer.Write(MuzzleFlashDuration);
+                writer.Write(FadeDuration);
+                writer.Write(ImpactForce);
+                writer.WriteReference(CountdownSound, FormKindSet.Any);
+                writer.WriteReference(DisableSound, FormKindSet.Any);
+                writer.WriteReference(DefaultWeaponSource, FormKindSet.Any);
+                writer.Write(ConeSpread);
+                writer.Write(CollisionRadius);
+                writer.Write(Lifetime);
+                writer.Write(RelaunchInterval);
+
+                // Write this field only if it was loaded, or if value is assigned to it
+                if (!decalDataNotLoaded || DecalData != 0)
+                    writer.WriteReference(DecalData, FormKindSet.Any);
+
+                // Write this field only if it was loaded, or if value is assigned to it
+                if (!collisionLayerNotLoaded || CollisionLayer != 0)
+                    writer.WriteReference(CollisionLayer, FormKindSet.Any);
             }
 
             public override Field CopyField()
