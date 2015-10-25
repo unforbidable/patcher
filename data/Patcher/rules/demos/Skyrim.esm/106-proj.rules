@@ -1,0 +1,14 @@
+<rules>
+	<rule>
+		<name>Unreal arrows</name>
+		<from>PROJ</from>
+		<where>
+			Source.Type == ProjectileTypes.Arrow
+		</where>
+		<update>
+			// Set very unrealistic physical properties of arrows
+			Target.Gravity = 0.01f;
+			Target.Speed = 500;
+		</update>
+	</rule>
+</rules>
