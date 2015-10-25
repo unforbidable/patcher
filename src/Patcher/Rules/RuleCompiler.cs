@@ -44,7 +44,7 @@ namespace Patcher.Rules
         readonly string cachePath;
         readonly string generatedAssemblyPath;
 
-        int ruleCounter = 0;
+        int ruleClassCounter = 0;
 
         public bool HasRules { get { return units.Count > 0; } }
         public IEnumerable<CompiledRule> CompiledRules { get { return units.Select(u => u.Rule); } }
@@ -61,7 +61,7 @@ namespace Patcher.Rules
 
         public void Add(RuleEntry entry, RuleMetadata metadata, bool debug)
         {
-            string className = "Rule_" + ruleCounter++;
+            string className = "Rule_" + ruleClassCounter++;
 
             var unit = new RuleCompilationUnit()
             {
@@ -186,14 +186,19 @@ namespace Patcher.Rules
                 writer.Flush();
                 memoryStream.Position = 0;
 
-                string sourceFilePath = string.Format("{0}@{1}.cs", Path.Combine(cachePath, unit.Rule.Metadata.RuleFileName), unit.ClassName);
+                // Find available file name for the new source file.
+                int ruleNumber = 0;
+                string sourceFilePath;
+                do
+                {
+                    sourceFilePath = string.Format("{0}@{1:00}.cs", Path.Combine(cachePath, unit.Rule.Metadata.RuleFileName), ruleNumber++);
+                } while (units.Any(u => u.Source == sourceFilePath));
 
                 // Update source if necessary
                 var sourceFile = engine.Context.DataFileProvider.GetDataFile(FileMode.Create, sourceFilePath);
                 bool updated = sourceFile.CopyFrom(memoryStream, true);
 
-                // Retrieve path using FileMode.Open
-                unit.Source = engine.Context.DataFileProvider.GetDataFile(FileMode.Open, sourceFilePath).FullPath;
+                unit.Source = sourceFilePath;
                 unit.Updated = updated;
             }
 
@@ -216,7 +221,8 @@ namespace Patcher.Rules
                 if (unit.Updated)
                     anyUpdated = true;
 
-                sources.Add(unit.Source);
+                // Get full path to source fine
+                sources.Add(engine.Context.DataFileProvider.GetDataFile(FileMode.Open, unit.Source).FullPath);
             }
 
             if (!anyUpdated)
