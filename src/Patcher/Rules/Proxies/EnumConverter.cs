@@ -131,6 +131,64 @@ namespace Patcher.Rules.Proxies
             return (PotionTypes)ConvertUsing(potionFlagsToType, value);
         }
 
+        static IDictionary<Enum, Enum> projectileTypesToType = new SortedDictionary<Enum, Enum>()
+        {
+            { ProjectileTypes.Arrow, ProjectileType.Arrow },
+            { ProjectileTypes.Barrier, ProjectileType.Barrier },
+            { ProjectileTypes.Beam, ProjectileType.Beam },
+            { ProjectileTypes.Cone, ProjectileType.Cone },
+            { ProjectileTypes.Flame, ProjectileType.Flame },
+            { ProjectileTypes.Lobber, ProjectileType.Lobber },
+            { ProjectileTypes.Missile, ProjectileType.Missile }
+        };
+
+        static IDictionary<Enum, Enum> projectileTypeToTypes = new SortedDictionary<Enum, Enum>()
+        {
+            { ProjectileType.Arrow, ProjectileTypes.Arrow },
+            { ProjectileType.Barrier, ProjectileTypes.Barrier },
+            { ProjectileType.Beam, ProjectileTypes.Beam },
+            { ProjectileType.Cone, ProjectileTypes.Cone },
+            { ProjectileType.Flame, ProjectileTypes.Flame },
+            { ProjectileType.Lobber, ProjectileTypes.Lobber },
+            { ProjectileType.Missile, ProjectileTypes.Missile }
+        };
+
+        public static ProjectileType ToProjectileType(this ProjectileTypes value)
+        {
+            return (ProjectileType)ConvertUsing(projectileTypesToType, value);
+        }
+
+        public static ProjectileTypes ToProjectileTypes(this ProjectileType value)
+        {
+            return (ProjectileTypes)ConvertUsing(projectileTypeToTypes, value);
+        }
+
+        static IDictionary<Enum, Enum> soundLevelsToLevel = new SortedDictionary<Enum, Enum>()
+        {
+            { SoundLevels.Loud, SoundLevel.Loud },
+            { SoundLevels.Normal, SoundLevel.Normal },
+            { SoundLevels.Silent, SoundLevel.Silent },
+            { SoundLevels.VeryLoud, SoundLevel.VeryLoud }
+        };
+
+        static IDictionary<Enum, Enum> soundLevelToLevels = new SortedDictionary<Enum, Enum>()
+        {
+            { SoundLevel.Loud, SoundLevels.Loud },
+            { SoundLevel.Normal, SoundLevels.Normal },
+            { SoundLevel.Silent, SoundLevels.Silent },
+            { SoundLevel.VeryLoud, SoundLevels.VeryLoud }
+        };
+
+        public static SoundLevel ToSoundLevel(this SoundLevels value)
+        {
+            return (SoundLevel)ConvertUsing(soundLevelsToLevel, value);
+        }
+
+        public static SoundLevels ToSoundLevels(this SoundLevel value)
+        {
+            return (SoundLevels)ConvertUsing(soundLevelToLevels, value);
+        }
+
         private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)
         {
             if (!map.ContainsKey(value))
