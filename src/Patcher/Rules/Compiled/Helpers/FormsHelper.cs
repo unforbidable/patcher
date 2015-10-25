@@ -24,6 +24,7 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Helpers
 {
+    [Helper("Forms", typeof(IFormsHelper))]
     sealed class FormsHelper : IFormsHelper
     {
         readonly CompiledRuleContext context;

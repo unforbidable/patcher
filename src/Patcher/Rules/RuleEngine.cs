@@ -17,6 +17,7 @@
 using Patcher.Data;
 using Patcher.Data.Plugins;
 using Patcher.Rules.Compiled;
+using Patcher.Rules.Compiled.Helpers;
 using Patcher.Rules.Proxies;
 using Patcher.UI;
 using System;
@@ -45,6 +46,9 @@ namespace Patcher.Rules
         readonly ProxyProvider proxyProvider;
         public ProxyProvider ProxyProvider { get { return proxyProvider; } }
 
+        readonly HelperProvider helperProvider;
+        internal HelperProvider HelperProvider { get { return helperProvider; } }
+
         public Plugin ActivePlugin { get; set; }
 
         public bool DebugAll { get; set; }
@@ -60,6 +64,7 @@ namespace Patcher.Rules
 
             proxyProvider = new ProxyProvider(this);
             tagManager = new TagManager(this);
+            helperProvider = new HelperProvider(this);
 
             ExtractCompiledAssemblyFile();
         }

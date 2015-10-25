@@ -17,8 +17,6 @@
 using Microsoft.CSharp;
 using Patcher.Data.Plugins;
 using Patcher.Rules.Compiled;
-using Patcher.Rules.Compiled.Helpers;
-using Patcher.Rules.Compiled.Helpers.Skyrim;
 using Patcher.Rules.Methods;
 using Patcher.UI;
 using System;
@@ -36,37 +34,6 @@ namespace Patcher.Rules
     sealed class RuleCompiler
     {
         static string[] IllegalCodeTokens = { "System.", "Microsoft.", "Patcher.", ".GetType(", "typeof(" };
-
-        static Type[] helperCtorTypes = new Type[] { typeof(CompiledRuleContext) };
-
-        static List<CompiledRuleHelperInfo> helpers = new List<CompiledRuleHelperInfo>()
-        {
-            new CompiledRuleHelperInfo()
-            {
-                Name = "Debug",
-                InterfaceType = typeof(IDebugHelper),
-                Constructor = typeof(DebugHelper).GetConstructor(helperCtorTypes),
-                DebugModeOnly = true
-            },
-            new CompiledRuleHelperInfo()
-            {
-                Name = "Forms",
-                InterfaceType = typeof(IFormsHelper),
-                Constructor = typeof(FormsHelper).GetConstructor(helperCtorTypes)
-            },
-            new CompiledRuleHelperInfo()
-            {
-                Name = "Functions",
-                InterfaceType = typeof(IFunctionsHelper),
-                Constructor = typeof(FunctionsHelper).GetConstructor(helperCtorTypes)
-            },
-            new CompiledRuleHelperInfo()
-            {
-                Name = "Engine",
-                InterfaceType = typeof(IEngineHelper),
-                Constructor = typeof(EngineHelper).GetConstructor(helperCtorTypes)
-            }
-        };
 
         const string NamespaceName = "Patcher.Rules.Compiled.Generated";
         const string VersionClassName = "Version";
@@ -196,7 +163,7 @@ namespace Patcher.Rules
             }
 
             // Declare static helper fields
-            foreach (var helper in helpers)
+            foreach (var helper in engine.HelperProvider.Helpers)
             {
                 // Skip declaration of helpers that are not used in debug mode if debug mode is disabled
                 if (helper.DebugModeOnly && !debug)
@@ -481,22 +448,14 @@ namespace Patcher.Rules
 
                 // Assign static helper fields
                 CompiledRuleContext context = new CompiledRuleContext(unit.Rule);
-                var helperArgs = new object[] { context };
-                foreach (var helper in helpers)
+                foreach (var helper in engine.HelperProvider.Helpers)
                 {
                     // Skip initialization of helpers that are not used in debug mode if debug mode is disabled
                     if (helper.DebugModeOnly && !unit.IsDebugModeEnabled)
                         continue;
 
                     var field = compiledRule.GetField(helper.Name, BindingFlags.Static | BindingFlags.NonPublic);
-                    if (helper.Constructor != null)
-                    {
-                        field.SetValue(null, helper.Constructor.Invoke(helperArgs));
-                    }
-                    else
-                    {
-                        throw new InvalidProgramException("Could not find a suitable constructor for compiled rule helper: " + helper.Name);
-                    }
+                    field.SetValue(null, helper.CreateInstance(context));
                 }
 
                 if (unit.Rule.Where != null)
@@ -596,14 +555,6 @@ namespace Patcher.Rules
             public bool IsDebugModeEnabled { get; set; }
             public string Source { get; set; }
             public bool Updated { get; set; }
-        }
-
-        class CompiledRuleHelperInfo
-        {
-            public string Name { get; set; }
-            public Type InterfaceType { get; set; }
-            public ConstructorInfo Constructor { get; set; }
-            public bool DebugModeOnly { get; set; }
         }
     }
 }

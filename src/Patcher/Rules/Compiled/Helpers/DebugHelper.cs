@@ -23,6 +23,7 @@ using System.Text;
 
 namespace Patcher.Rules.Compiled.Helpers
 {
+    [Helper("Debug", typeof(IDebugHelper))]
     sealed class DebugHelper : IDebugHelper
     {
         readonly CompiledRuleContext context;

@@ -30,6 +30,7 @@ using Patcher.Rules.Compiled.Forms.Skyrim;
 
 namespace Patcher.Rules.Compiled.Helpers.Skyrim
 {
+    [Helper("Functions", typeof(IFunctionsHelper))]
     sealed class FunctionsHelper : IFunctionsHelper
     {
         readonly CompiledRuleContext context;
