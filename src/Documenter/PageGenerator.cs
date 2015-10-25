@@ -52,7 +52,7 @@ namespace Documenter
             index.Add(indexElement);
 
             foreach (var type in assembly.GetTypes()
-                .OrderBy(t => t.GetLocalName()))
+                .OrderBy(t => t.GetLocalNamespace() + " " + t.GetLocalName()))
             {
                 // Ignore extensions (extension methods will be added to the respective class they extend)
                 if (type.FullName.Contains(".Extensions."))
@@ -72,7 +72,15 @@ namespace Documenter
                 transNodes.Transform(tmpFilePath, htmlFilePath);
                 File.Delete(tmpFilePath);
 
-                indexElement.Add(GetTypeXmlElement(type, false));
+                var typeElement = GetTypeXmlElement(type, false);
+
+                var categoryElement = indexElement.Elements("category").Where(e => e.Attribute("name").Value == typeElement.Attribute("category").Value).SingleOrDefault();
+                if (categoryElement == null)
+                {
+                    categoryElement = new XElement("category", new XAttribute("name", typeElement.Attribute("category").Value));
+                    indexElement.Add(categoryElement);
+                }
+                categoryElement.Add(typeElement);
             }
 
             string xmlIndexPath = Path.Combine(Program.TargetPath, "index.xml");
@@ -89,10 +97,14 @@ namespace Documenter
 
         private XElement GetTypeXmlElement(Type type, bool details)
         {
+            string category = type.GetLocalNamespace();
+            if (category.Contains('.'))
+                category = string.Format("{0} ({1})", category.Split('.'));
+
             XElement typeElement = new XElement("type");
             typeElement.Add(new XAttribute("name", type.GetLocalName()));
             typeElement.Add(new XAttribute("fullname", type.GetLocalFullName()));
-            typeElement.Add(new XAttribute("category", type.GetLocalNamespace().Split('.')[0]));
+            typeElement.Add(new XAttribute("category", category));
             typeElement.Add(GetSummaryTextXElement(GetMemberName(type)));
 
             if (details)
