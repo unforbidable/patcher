@@ -28,19 +28,10 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
         private int? Size { get; set; }
 
         [Member(Names.KWDA)]
+        [Initialize]
         private KeywordData Data { get; set; }
 
-        public List<uint> Items { get { EnsureDataCreated(); return Data.List; } set { EnsureDataCreated(); Data.List = value; } }
-
-        private void EnsureDataCreated()
-        {
-            // Data are created only on demand
-            // Will be destroyed if empty
-            if (Data == null)
-            {
-                Data = new KeywordData();
-            }
-        }
+        public List<uint> Items { get { return Data.List; } set { Data.List = value; } }
 
         protected override void BeforeWrite(RecordWriter writer)
         {
@@ -57,6 +48,12 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
             {
                 Size = Data.List.Count;
             }
+        }
+
+        protected override void AfterWrite(RecordWriter writer)
+        {
+            if (Data == null)
+                Data = new KeywordData();
         }
 
         public override string ToString()
