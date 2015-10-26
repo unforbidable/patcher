@@ -58,6 +58,7 @@
     <Compile Include="Fields\Skyrim\IMaterial.cs" />
     <Compile Include="Fields\Skyrim\IMaterialCollection.cs" />
     <Compile Include="Fields\Skyrim\IScript.cs" />
+    <Compile Include="Forms\Skyrim\IAmmo.cs" />
     <Compile Include="Forms\Skyrim\ICobj.cs" />
     <Compile Include="Forms\Skyrim\IProj.cs" />
     <Compile Include="Helpers\Skyrim\IFunctionsHelper.cs" />
