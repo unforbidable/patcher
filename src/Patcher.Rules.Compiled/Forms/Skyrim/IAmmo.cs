@@ -83,7 +83,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         IProj Projectile { get; set; }
 
         /// <summary>
-        /// Gets or sets the damage caused of this <b>Ammo</b>.
+        /// Gets or sets the damage caused by this <b>Ammo</b>.
         /// </summary>
         float Damage { get; set; }
 
