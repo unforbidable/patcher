@@ -1,3 +1,7 @@
+##### v1.4.0 (2015/10/26)
+* New supported forms: PROJ,AMMO
+* Letter case is ignored when looking up forms by Editor ID
+
 ##### v1.3.0 (2015/10/21)
 * New supported forms: ALCH
 * New predefined condition function: GetCurrentTime()
