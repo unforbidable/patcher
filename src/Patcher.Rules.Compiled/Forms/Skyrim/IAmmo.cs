@@ -43,6 +43,11 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         string ShortName { get; set; }
 
         /// <summary>
+        /// Gets or sets the description of this <b>Ammo</b>.
+        /// </summary>
+        string Description { get; set; }
+
+        /// <summary>
         /// Gets or sets the <see cref="IFormCollection{IKywd}"/> containing <b>Keywords</b> associated with this <b>Ammo</b>.
         /// </summary>
         IFormCollection<IKywd> Keywords { get; set; }
