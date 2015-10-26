@@ -30,7 +30,7 @@ namespace Patcher.Data
         IDictionary<byte, IList<Form>> formsByPlugin = new SortedDictionary<byte, IList<Form>>();
         IDictionary<FormKind, IList<Form>> formsByKind = new SortedDictionary<FormKind, IList<Form>>();
         IDictionary<uint, Form> formsById = new SortedDictionary<uint, Form>();
-        IDictionary<string, Form> formsByEditorId = new SortedDictionary<string, Form>();
+        IDictionary<string, Form> formsByEditorId = new SortedDictionary<string, Form>(StringComparer.InvariantCultureIgnoreCase);
 
         IList<Form> formsWithEditorIdOverriden = new List<Form>();
 
