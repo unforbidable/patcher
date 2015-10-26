@@ -49,6 +49,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
+        /// Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IAmmo AsAmmo(this IForm form)
+        {
+            return form as IAmmo;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Ammo</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IAmmo> OfAmmo(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IAmmo>();
+        }
+
+        /// <summary>
         /// Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b>.
         /// </summary>
         /// <param name="form"></param>
