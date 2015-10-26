@@ -1,0 +1,77 @@
+<rules>
+  <rule>
+    <name>Sivler arrow projectile</name>
+    <from>PROJ</from>
+    <where>
+      Source.EditorId == "ArrowSteelProjectile"
+    </where>
+    <insert into="PROJ" copy="true">
+
+      // All data will be copied
+      // Set only new Editor ID and name
+      Target.EditorId = "PD_ArrowSilverProjectile";
+      Target.FullName = "Silver Arrow"
+
+      // The following line can be used to replace the model,
+      // but that is out of the scope of this demo
+      // A new model has to be created as well.
+      //Target.WorldModel = @"Weapons\Silver\SilverArrowFlight.nif";
+
+    </insert>
+  </rule>
+  <rule>
+    <name>Silver arrow</name>
+    <from>AMMO</from>
+    <where>
+      Source.EditorId == "SteelArrow"
+    </where>
+    <insert into="AMMO" copy="true">
+
+      // Set new Editor ID and name
+      Target.EditorId = "PD_SilverArrow";
+      Target.FullName = "Silver Arrow";
+
+      // Set the projectile created in the previous rule
+      Target.Projectile = Forms.Find("PD_ArrowSilverProjectile").AsProj();
+
+      // Add WeapMaterialSilver to the keywords
+      Target.Keywords.Add(Forms.Find("WeapMaterialSilver").AsKywd());
+
+      // The arrow is still partly made out of steel however
+      // it makes sense to remove the WeapMaterialSteel keywords
+      // if only to improve the sorting of the recipe in the crafting menu
+      Target.Keywords.Remove(Forms.Find("WeapMaterialSteel"));
+
+      // The following line can be used to replace the model,
+      // but that is out of the scope of this demo
+      // A new model has to be created as well.
+      //Target.WorldModel = @"Weapons\Silver\SilverArrow.nif";
+
+      // Do note this silver arrow will not have any special properties
+      // that other silver weapons have without some additional work.
+
+    </insert>
+  </rule>
+  <rule>
+    <name>Craft silver arrow</name>
+    <from>COBJ</from>
+    <where>
+      // This recipe is from dawnguard.esm and if this plugin is not loaded
+      // the silver arrow recipe will not be created
+      Source.EditorId == "DLC1RecipeArrowSteel"
+    </where>
+    <insert into="COBJ" copy="true">
+
+      // Set only new Editor ID
+      Target.EditorId = "PD_RecipeArrowSilver";
+
+      // And specify one silver ingot is required on top of the original materials
+      Target.Materials.Add(Forms.Find("IngotSilver"), 1);
+
+      // And do not forget to specify the result is a silver arrow
+      // instead of the steel arrow.
+      Target.Result = Forms.Find("PD_SilverArrow");
+
+    </insert>
+  </rule>
+</rules>
