@@ -1,7 +1,7 @@
 '.source.rules':
   'Rule':
     'prefix': '<rule'
-    'body': '<rule>\n\t<name>$0</name>\n\t$1\n<rule>\n'
+    'body': '<rule>\n\t<name>$0</name>\n\t$1\n</rule>\n'
   'Rules':
     'prefix': '<rules'
     'body': '<rules>\n$0\n</rules>\n'
