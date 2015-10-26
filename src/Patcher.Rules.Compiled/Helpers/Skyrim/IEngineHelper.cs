@@ -39,7 +39,7 @@ namespace Patcher.Rules.Compiled.Helpers.Skyrim
         IEffect CreateEffect(IForm baseEffect, float magnitude, int area, int duration);
 
         /// <summary>
-        /// Create a new <see cref="IMaterial"/> with the specified item and the specified count.
+        /// Creates a new <see cref="IMaterial"/> with the specified item and the specified count.
         /// </summary>
         /// <param name="item">Item to use as the material.</param>
         /// <param name="count">Number of items that are needed.</param>

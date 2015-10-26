@@ -30,8 +30,8 @@ namespace Patcher.Rules.Compiled.Helpers.Skyrim
     /// </summary>
     /// <remarks>
     /// <p>
-    /// Methods <code>GenericFunction()</code> can be used to create a new condition based on basically any Papyrus function 
-    /// when the proper function number and appropriate arguments are provided. 
+    /// Methods such as <code>GenericFunction()</code> can be used to create a new condition based on basically any Papyrus function which returns a value
+    /// when the proper function number and appropriate arguments are specified. 
     /// The engine knows what arguments every function requires and will issue a warning if an incorrect number or types of arguments is specified.
     /// </p>
     /// <p>
