@@ -25,6 +25,7 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
     public sealed class Effect : Compound, IFeaturingConditions
     {
         [Member(Names.EFID)]
+        [Required]
         [Reference(Names.MGEF)]
         public uint BaseEffect { get; set; }
 

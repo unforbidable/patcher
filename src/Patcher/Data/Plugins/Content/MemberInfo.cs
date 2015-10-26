@@ -44,6 +44,7 @@ namespace Patcher.Data.Plugins.Content
         public bool IsListType { get; private set; }
         public bool IsNullableType { get; private set; }
         public bool IsReference { get; private set; }
+        public bool IsRequired { get; private set; }
         public FormKindSet ReferencedFormKinds { get; private set; }
 
         readonly MethodInfo addValueToListMethod;
@@ -61,6 +62,7 @@ namespace Patcher.Data.Plugins.Content
             IsLazy = property.GetCustomAttributes(typeof(LazyAttribute), false).Length > 0;
             IsFakeFloat = property.GetCustomAttributes(typeof(FakeFloatAttribute), false).Length > 0;
             Initialize = property.GetCustomAttributes(typeof(InitializeAttribute), false).Length > 0;
+            IsRequired = property.GetCustomAttributes(typeof(RequiredAttribute), false).Length > 0;
 
             var orderAttribute = (OrderAttribute)property.GetCustomAttributes(typeof(OrderAttribute), false).FirstOrDefault();
             if (orderAttribute != null)
