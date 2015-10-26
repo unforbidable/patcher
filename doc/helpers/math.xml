@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Math" fullname="Helpers.Math" category="Helpers">
+<type name="Math" fullname="Helpers.Math" category="Helpers" gametitle="">
   <summary>
             Provides useful mathematical functions.
             </summary>

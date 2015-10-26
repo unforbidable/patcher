@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants">
+<type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants (Skyrim)" gametitle="Skyrim">
   <summary>
             Defines skills.
             </summary>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Engine" fullname="Helpers.Skyrim.Engine" category="Helpers">
+<type name="Engine" fullname="Helpers.Skyrim.Engine" category="Helpers (Skyrim)" gametitle="Skyrim">
   <summary>
             Provides methods that allow new objects be created.
             </summary>
@@ -14,7 +14,7 @@
     <signature>
       <see cref="Fields.Skyrim.Material" /> CreateMaterial(<see cref="Forms.Form" />,<c>int</c>)</signature>
     <summary>
-            Create a new <see cref="Fields.Skyrim.Material" /> with the specified item and the specified count.
+            Creates a new <see cref="Fields.Skyrim.Material" /> with the specified item and the specified count.
             </summary>
   </method>
   <method name="CreateScript" extension="false">

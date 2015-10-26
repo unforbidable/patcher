@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Flst" fullname="Forms.Skyrim.Flst" category="Forms">
+<type name="Flst" fullname="Forms.Skyrim.Flst" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a <b>Form List</b> form.
             </summary>

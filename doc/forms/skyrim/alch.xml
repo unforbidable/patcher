@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Alch" fullname="Forms.Skyrim.Alch" category="Forms">
+<type name="Alch" fullname="Forms.Skyrim.Alch" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a <b>Potion</b> form.
             </summary>

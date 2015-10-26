@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Types" fullname="Constants.Types" category="Constants">
+<type name="Types" fullname="Constants.Types" category="Constants" gametitle="">
   <summary>
             Defines types that may be used in several contexts, e.g. when declaring <b>Script</b> properties and when specifying the type of a <b>Global Variable</b>.
             </summary>

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html>
   <head>
-    <title>Alch</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
-    <meta name="doc-fullname" content="Forms.Skyrim.Alch" />
+    <title>Ammo</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Forms.Skyrim.Ammo" />
   </head>
   <body>
-    <div class="div-title">Alch (Skyrim)</div>
+    <div class="div-title">Ammo (Skyrim)</div>
     <div class="div-header">
           Summary
         </div>
     <div class="div-summary">
       <summary>
-            Represents a <b>Potion</b> form.
+            Represents an <b>Ammo</b> form.
             </summary>
     </div>
     <div class="div-header">
@@ -30,11 +30,22 @@
         <tr>
           <td class="td-name">
             <signature>
+      <span class="span-code">float</span> Damage</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the damage caused by this <b>Ammo</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
       <span class="span-code">string</span> Description</signature>
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the description of this <b>Potion</b> that will override the enchantment description if provided.
+            Gets or sets the description of this <b>Ammo</b>.
             </summary>
           </td>
         </tr>
@@ -46,17 +57,6 @@
           <td class="td-description">
             <summary>
             Gets or sets the Editor ID associated with this form.
-            </summary>
-          </td>
-        </tr>
-        <tr>
-          <td class="td-name">
-            <signature>
-      <a href="../../fields/skyrim/effectcollection.html"><see cref="Fields.Skyrim.EffectCollection" />EffectCollection</a> Effects</signature>
-          </td>
-          <td class="td-description">
-            <summary>
-            Gets or sets the <a href="../../fields/skyrim/effectcollection.html"><see cref="Fields.Skyrim.EffectCollection" />EffectCollection</a> contaning <a href="../../fields/skyrim/effect.html"><see cref="Fields.Skyrim.Effect">Effects</see></a> of this <b>Potion</b>.
             </summary>
           </td>
         </tr>
@@ -78,7 +78,51 @@
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the in-game name of this <b>Potion</b>.
+            Gets or sets the in-game name of this <b>Ammo</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IgnoresNormalWeaponResistance</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Ammo</b> ignores normal weapon damage resistance.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">string</span> InventoryImage</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the path to the inventory image (.dds file) that will be used for this <b>Ammo</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsBolt</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Ammo</b> is a bolt.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsPlayable</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Ammo</b> can be used by the player character.
             </summary>
           </td>
         </tr>
@@ -89,7 +133,18 @@
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> containing <b>Keywords</b> associated with this <b>Potion</b>.
+            Gets or sets the <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a> containing <b>Keywords</b> associated with this <b>Ammo</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">string</span> MessageIcon</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the path to the message icon (.dds file) that will be used for this <b>Ammo</b>.
             </summary>
           </td>
         </tr>
@@ -100,7 +155,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> of this <b>Potion</b>.
+            Gets or sets the <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> of this <b>Ammo</b>.
             </summary>
           </td>
         </tr>
@@ -111,7 +166,18 @@
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is picked up.
+            Gets or sets the <b>Sound</b> that plays when this <b>Ammo</b> is picked up.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/skyrim/proj.html"><see cref="Forms.Skyrim.Proj" />Proj</a> Projectile</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Projectile</b> that is launched when this <b>Ammo</b> is used.
             </summary>
           </td>
         </tr>
@@ -122,29 +188,18 @@
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is put down.
+            Gets or sets the <b>Sound</b> that plays when this <b>Ammo</b> is put down.
             </summary>
           </td>
         </tr>
         <tr>
           <td class="td-name">
             <signature>
-      <a href="../../constants/skyrim/potiontypes.html"><see cref="Constants.Skyrim.PotionTypes" />PotionTypes</a> Type</signature>
+      <span class="span-code">string</span> ShortName</signature>
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the type of this <b>Potion</b>.
-            </summary>
-          </td>
-        </tr>
-        <tr>
-          <td class="td-name">
-            <signature>
-      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> UseSound</signature>
-          </td>
-          <td class="td-description">
-            <summary>
-            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is used.
+            Gets or sets the short name of this <b>Ammo</b>.
             </summary>
           </td>
         </tr>
@@ -155,18 +210,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the value of this <b>Potion</b>.
-            </summary>
-          </td>
-        </tr>
-        <tr>
-          <td class="td-name">
-            <signature>
-      <span class="span-code">float</span> Weight</signature>
-          </td>
-          <td class="td-description">
-            <summary>
-            Gets or sets the weight of this <b>Potion</b>.
+            Gets or sets the value of this <b>Ammo</b>.
             </summary>
           </td>
         </tr>
@@ -177,7 +221,7 @@
           </td>
           <td class="td-description">
             <summary>
-            Gets or sets the path to the world model (.nif file) that will be used for this <b>Potion</b>.
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Ammo</b>.
             </summary>
           </td>
         </tr>
@@ -219,14 +263,6 @@
           </td>
         </tr>
       </table>
-    </div>
-    <div class="div-header">
-            Remarks
-          </div>
-    <div class="div-summary">
-      <remarks>
-    <b>Potion</b> forms include drinks and food as well.
-            </remarks>
     </div>
     <hr />
     <div class="div-navigation">

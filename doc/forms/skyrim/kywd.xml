@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms">
+<type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a <b>Keyword</b> form.
             </summary>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Cobj" fullname="Forms.Skyrim.Cobj" category="Forms">
+<type name="Cobj" fullname="Forms.Skyrim.Cobj" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a <b>Constructible Object</b> form.
             </summary>

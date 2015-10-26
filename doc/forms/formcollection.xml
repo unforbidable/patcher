@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="FormCollection" fullname="Forms.FormCollection" category="Forms">
+<type name="FormCollection" fullname="Forms.FormCollection" category="Forms" gametitle="">
   <summary>
             Represents a collection of forms.
             A collection may contain mixed form types or only forms of a specific type.
@@ -82,6 +82,13 @@
             Convers and fiters this mixed form collection to a collection of <b>Potion</b> forms.
             </summary>
   </method>
+  <method name="OfAmmo" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Ammo" />&gt; OfAmmo()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Ammo</b> forms.
+            </summary>
+  </method>
   <method name="OfArmo" extension="true">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Armo" />&gt; OfArmo()</signature>
@@ -122,6 +129,13 @@
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Kywd" />&gt; OfKywd()</signature>
     <summary>
             Convers and fiters this mixed form collection to a collection of <b>Keyword</b> forms.
+            </summary>
+  </method>
+  <method name="OfProj" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Proj" />&gt; OfProj()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Projectile</b> forms.
             </summary>
   </method>
   <method name="OfStat" extension="true">

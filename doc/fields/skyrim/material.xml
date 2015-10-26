@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Material" fullname="Fields.Skyrim.Material" category="Fields">
+<type name="Material" fullname="Fields.Skyrim.Material" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a material used by a <b>Constructible Object</b> form.
             </summary>

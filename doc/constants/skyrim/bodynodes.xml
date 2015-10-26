@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants">
+<type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants (Skyrim)" gametitle="Skyrim">
   <summary>
             Defines body nodes.
             </summary>

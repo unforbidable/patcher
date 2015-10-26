@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms">
+<type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a <b>Static</b> form. 
             </summary>

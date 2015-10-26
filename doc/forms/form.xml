@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Form" fullname="Forms.Form" category="Forms">
+<type name="Form" fullname="Forms.Form" category="Forms" gametitle="">
   <summary>
             Represents a form the type of which is either unknown, unsupported or unresolved.
             To convert an unknown form to a specific form use the appropriate extension method.
@@ -38,6 +38,13 @@
       <see cref="Forms.Skyrim.Alch" /> AsAlch()</signature>
     <summary>
             Converts this form to a <b>Potion</b> form or returns <c>null</c> if this form is not a <b>Potion</b> form.
+            </summary>
+  </method>
+  <method name="AsAmmo" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Ammo" /> AsAmmo()</signature>
+    <summary>
+            Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b>.
             </summary>
   </method>
   <method name="AsArmo" extension="true">
@@ -80,6 +87,13 @@
       <see cref="Forms.Skyrim.Kywd" /> AsKywd()</signature>
     <summary>
             Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b>.
+            </summary>
+  </method>
+  <method name="AsProj" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Proj" /> AsProj()</signature>
+    <summary>
+            Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b>.
             </summary>
   </method>
   <method name="AsStat" extension="true">

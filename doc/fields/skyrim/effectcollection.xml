@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="EffectCollection" fullname="Fields.Skyrim.EffectCollection" category="Fields">
+<type name="EffectCollection" fullname="Fields.Skyrim.EffectCollection" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a collection of <see cref="Fields.Skyrim.Effect">Effects</see> that can be used to specify effects of items such as <b>Potions</b> or <b>Scrolls</b>.
             </summary>

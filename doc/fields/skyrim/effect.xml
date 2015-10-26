@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Effect" fullname="Fields.Skyrim.Effect" category="Fields">
+<type name="Effect" fullname="Fields.Skyrim.Effect" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a custom effect based on a <b>Magic Effect</b>.
             </summary>

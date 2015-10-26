@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Gmst" fullname="Forms.Skyrim.Gmst" category="Forms">
+<type name="Gmst" fullname="Forms.Skyrim.Gmst" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a <b>Game Setting</b> form.
             </summary>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="ScriptCollection" fullname="Fields.Skyrim.ScriptCollection" category="Fields">
+<type name="ScriptCollection" fullname="Fields.Skyrim.ScriptCollection" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a collection of <see cref="Fields.Skyrim.Script">Scripts</see> attached to an object.
             </summary>

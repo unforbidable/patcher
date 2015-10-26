@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+  <head>
+    <title>Proj</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Forms.Skyrim.Proj" />
+  </head>
+  <body>
+    <div class="div-title">Proj (Skyrim)</div>
+    <div class="div-header">
+          Summary
+        </div>
+    <div class="div-summary">
+      <summary>
+            Represents a <b>Projectile</b> form.
+            </summary>
+    </div>
+    <div class="div-header">
+            Properties
+          </div>
+    <div class="div-table">
+      <table>
+        <tr>
+          <td class="td-name">
+        Name
+      </td>
+          <td class="td-description">
+        Description
+      </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> CanBeDisabled</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> can be disabled.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> CanBePickedUp</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> can be picked up.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> CanPassThroughSmallTransparent</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> can pass through small transparent objects.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> CollisionLayer</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Collision</b> layer of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> CollisionRadius</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the collision radius of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> ConeSpread</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the spread of the effective cone caused by this <b>Projectile</b>. 
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> DecalData</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the decal <b>Texture</b> of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> DefaultWeaponSource</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the default weapon source of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> DisableSound</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Sound</b> which is played when this <b>Projectile</b> is disabled.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">string</span> EditorId</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> ExplodesOnImpact</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether the explosion caused by this <b>Projectile</b> is triggered on the impact.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> Explosion</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Explosion</b> caused by this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> ExplosionCountdownSound</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Sound</b> of the countdown timer that triggers the explosion of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> ExplosionProximity</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the proximity which triggers the explosion of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> ExplosionTimer</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the timer which triggers the explosion of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FadeDuration</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the beam fade duration of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">uint</span> FormId</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">string</span> FullName</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the in-game name of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> Gravity</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the gravitation pull applied on this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> HasMuzzleFlash</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> causes a muzzle flash.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> ImpactForce</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the force caused by the impact of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsAutoAimEnabled</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether the auto-aim is enabled for this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsExplosive</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> is explosive.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsHitScanEnabled</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether the hit scan is enabled for this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsSupersonic</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether the sound of this <b>Projectile</b> 
+            enamates from point on the trajectory that is the closest to the player character (<span class="span-code">true</span>) or 
+            follows the <b>Projectile</b> until it is destroyed (<span class="span-code">false</span>).
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> Lifetime</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the lifetime of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> Light</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Light</b> caused by this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> MuzzleFlashDuration</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the duration of the muzzle flash caused by this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> MuzzleFlashLight</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the muzzle flash <b>Light</b> caused by this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">string</span> MuzzleFlashModel</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the path to the model (.nif file) of the muzzle flash caused by this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> ObjectBounds</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <a href="../../fields/skyrim/objectbounds.html"><see cref="Fields.Skyrim.ObjectBounds" />ObjectBounds</a> of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> PinsLimbsOnCritical</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> pins limbs when critical effect is triggered.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> Range</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the maximum range this <b>Projectile</b> can travel.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> RelaunchInterval</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the interval at which this <b>Projectile</b> can be launched again.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/form.html"><see cref="Forms.Form" />Form</a> Sound</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Sound</b> caused by this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../constants/skyrim/soundlevels.html"><see cref="Constants.Skyrim.SoundLevels" />SoundLevels</a> SoundLevel</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the sound level of this <b>Projectile</b> in regards to detection.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> Speed</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the travel speed of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> TracerChance</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the chance a tracer will be drawn for this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../constants/skyrim/projectiletypes.html"><see cref="Constants.Skyrim.ProjectileTypes" />ProjectileTypes</a> Type</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the type of this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">string</span> WorldModel</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Projectile</b>.
+            </summary>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="div-header">
+            Methods
+          </div>
+    <div class="div-table">
+      <table>
+        <tr>
+          <td class="td-name">
+        Name
+      </td>
+          <td class="td-description">
+        Description
+      </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> HasTag(<span class="span-code">string</span>)</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">void</span> Tag(<span class="span-code">string</span>)</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Tags this form with the specified text.
+            </summary>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <hr />
+    <div class="div-navigation">
+          Return to: <a href="../../index.html"><see cref="Index">Index</see></a></div>
+  </body>
+</html>

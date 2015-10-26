@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants">
+<type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants (Skyrim)" gametitle="Skyrim">
   <summary>
             Defines <b>Potion</b> types.
             </summary>

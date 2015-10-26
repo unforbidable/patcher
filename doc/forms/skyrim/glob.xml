@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Glob" fullname="Forms.Skyrim.Glob" category="Forms">
+<type name="Glob" fullname="Forms.Skyrim.Glob" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a <b>Global Variable</b> form.
             </summary>

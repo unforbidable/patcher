@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Script" fullname="Fields.Skyrim.Script" category="Fields">
+<type name="Script" fullname="Fields.Skyrim.Script" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a Papyrus script with parameters.
             </summary>

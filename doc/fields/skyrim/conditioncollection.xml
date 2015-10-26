@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="ConditionCollection" fullname="Fields.Skyrim.ConditionCollection" category="Fields">
+<type name="ConditionCollection" fullname="Fields.Skyrim.ConditionCollection" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a collection of <see cref="Fields.Skyrim.Condition">Conditions</see>.
             </summary>

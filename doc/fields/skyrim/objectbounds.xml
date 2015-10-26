@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="ObjectBounds" fullname="Fields.Skyrim.ObjectBounds" category="Fields">
+<type name="ObjectBounds" fullname="Fields.Skyrim.ObjectBounds" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Specifies the dimensions of an object.
             </summary>

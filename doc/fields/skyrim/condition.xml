@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields">
+<type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields (Skyrim)" gametitle="Skyrim">
   <summary>
             Represents a function with parameters, operand, operator used to compare the result of the function with the specified operand 
             and information on which object the function will be run.

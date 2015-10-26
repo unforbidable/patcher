@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Forms" fullname="Helpers.Forms" category="Helpers">
+<type name="Forms" fullname="Helpers.Forms" category="Helpers" gametitle="">
   <summary>
             Provides methods that can be used to look up and retrieve any available forms.
             </summary>
