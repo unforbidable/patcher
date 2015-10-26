@@ -109,6 +109,7 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet NpcOnly = FromNames(Names.NPC_);
         public static readonly FormKindSet PackOnly = FromNames(Names.PACK);
         public static readonly FormKindSet PerkOnly = FromNames(Names.PERK);
+        public static readonly FormKindSet ProjOnly = FromNames(Names.PROJ);
         public static readonly FormKindSet QustOnly = FromNames(Names.QUST);
         public static readonly FormKindSet RaceOnly = FromNames(Names.RACE);
         public static readonly FormKindSet RegnOnly = FromNames(Names.REGN);

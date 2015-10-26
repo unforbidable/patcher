@@ -49,6 +49,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
+        /// Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IAmmo AsAmmo(this IForm form)
+        {
+            return form as IAmmo;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Ammo</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IAmmo> OfAmmo(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IAmmo>();
+        }
+
+        /// <summary>
         /// Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b>.
         /// </summary>
         /// <param name="form"></param>
@@ -167,6 +187,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         public static IFormCollection<IKywd> OfKywd(this IFormCollection<IForm> collection)
         {
             return collection.Of<IKywd>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IProj AsProj(this IForm form)
+        {
+            return form as IProj;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Projectile</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IProj> OfProj(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IProj>();
         }
 
         /// <summary>

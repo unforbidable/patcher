@@ -112,7 +112,10 @@ namespace Patcher.Data.Plugins.Content
         public const string DATA = "DATA";
         public const string DELE = "DELE";
         public const string DESC = "DESC";
+        public const string DEST = "DEST";
         public const string DNAM = "DNAM";
+        public const string DSTD = "DSTD";
+        public const string DSTF = "DSTF";
         public const string EDID = "EDID";
         public const string EFID = "EFID";
         public const string EFIT = "EFIT";
@@ -123,12 +126,14 @@ namespace Patcher.Data.Plugins.Content
         public const string FNAM = "FNAM";
         public const string FULL = "FULL";
         public const string HEDR = "HEDR";
+        public const string ICON = "ICON";
         public const string INTV = "INTV";
         public const string INCC = "INCC";
         public const string KSIZ = "KSIZ";
         public const string KWDA = "KWDA";
         public const string LNAM = "LNAM";
         public const string MAST = "MAST";
+        public const string MICO = "MICO";
         public const string MNAM = "MNAM";
         public const string MODL = "MODL";
         public const string MODS = "MODS";
@@ -139,7 +144,12 @@ namespace Patcher.Data.Plugins.Content
         public const string MOD4 = "MOD4";
         public const string MO4S = "MO4S";
         public const string MO4T = "MO4T";
+        public const string NAM0 = "NAM0";
         public const string NAM1 = "NAM1";
+        public const string NAM2 = "NAM2";
+        public const string NAM3 = "NAM3";
+        public const string NAM4 = "NAM4";
+        public const string NAM5 = "NAM5";
         public const string OBND = "OBND";
         public const string OFST = "OFST";
         public const string ONAM = "ONAM";
@@ -148,6 +158,7 @@ namespace Patcher.Data.Plugins.Content
         public const string SNAM = "SNAM";
         public const string TNAM = "TNAM";
         public const string VMAD = "VMAD";
+        public const string VNAM = "VNAM";
         public const string YNAM = "YNAM";
         public const string ZNAM = "ZNAM";
     }
