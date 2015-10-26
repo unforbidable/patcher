@@ -87,6 +87,7 @@
     <Compile Include="Data\Plugins\Content\IFeaturingEffects.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingObjectBounds.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Flst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Proj.cs" />

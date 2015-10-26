@@ -126,12 +126,14 @@ namespace Patcher.Data.Plugins.Content
         public const string FNAM = "FNAM";
         public const string FULL = "FULL";
         public const string HEDR = "HEDR";
+        public const string ICON = "ICON";
         public const string INTV = "INTV";
         public const string INCC = "INCC";
         public const string KSIZ = "KSIZ";
         public const string KWDA = "KWDA";
         public const string LNAM = "LNAM";
         public const string MAST = "MAST";
+        public const string MICO = "MICO";
         public const string MNAM = "MNAM";
         public const string MODL = "MODL";
         public const string MODS = "MODS";

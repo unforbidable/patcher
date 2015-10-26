@@ -27,6 +27,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
     public sealed class Proj : GenericFormRecord, IFeaturingObjectBounds
     {
         [Member(Names.OBND)]
+        [Initialize]
         public ObjectBounds ObjectBounds { get; set; }
 
         [Member(Names.FULL)]
@@ -207,7 +208,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 writer.Write(RelaunchInterval);
 
                 // Write this field only if it was loaded, or if value is assigned to it
-                if (!decalDataNotLoaded || DecalData != 0)
+                // Or the next optional value is assigned
+                if (!decalDataNotLoaded || DecalData != 0 || CollisionLayer != 0)
                     writer.WriteReference(DecalData, FormKindSet.Any);
 
                 // Write this field only if it was loaded, or if value is assigned to it
