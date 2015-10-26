@@ -67,6 +67,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.ONAM)]
         public string ShortName { get; set; }
+        // ShortName (ONAM) is a zero-terminate string contrary to UESP.NET
 
         public string WorldModel { get { return ModelData.Path; } set { ModelData.Path = value; } }
         public uint Projectile { get { return Data.Projectile; } set { Data.Projectile = value; } }

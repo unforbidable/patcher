@@ -168,6 +168,7 @@
     <Compile Include="Rules\Proxies\EnumConverter.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\AmmoProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\ProjProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyFeatureFactory.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldCollectionProxy.cs" />
