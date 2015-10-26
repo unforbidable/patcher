@@ -1,0 +1,15 @@
+{
+  "name": "patcher-rules",
+  "main": "./lib/patcher-rules",
+  "version": "0.0.0",
+  "description": "Grammar for Patcher Rules",
+  "keywords": [
+  ],
+  "repository": "https://github.com/unforbidable/patcher-rules-atom",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}

@@ -1,0 +1,22 @@
+'.source.rules':
+  'Rule':
+    'prefix': '<rule'
+    'body': '<rule>\n\t<name>$0</name>\n\t$1\n<rule>\n'
+  'Rules':
+    'prefix': '<rules'
+    'body': '<rules>\n$0\n</rules>\n'
+  'From':
+    'prefix': '<from'
+    'body': '<from>${0:FormKind}</from>\n'
+  'Where':
+    'prefix': '<where'
+    'body': '<where>\n\tSource.${0:Property} == ${1:Value}\n</where>\n'
+  'Select':
+    'prefix': '<select'
+    'body': '<select>\n\t$0\n</select>\n'
+  'Update':
+    'prefix': '<update'
+    'body': '<update>\n\t$0\n</update>\n'
+  'Insert':
+    'prefix': '<insert'
+    'body': '<insert into="${0:FormKind}">\n\t$1\n</insert>\n'
