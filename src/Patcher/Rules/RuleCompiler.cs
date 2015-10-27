@@ -298,9 +298,22 @@ namespace Patcher.Rules
 
                 if (results.Errors.HasErrors)
                 {
+                    SortedSet<string> sourcesWithErrors = new SortedSet<string>();
+
                     foreach (CompilerError error in results.Errors)
                     {
                         Log.Error(string.Format("Compiler {0} in file `{1}` at line {2:000}: {3}", error.IsWarning ? "warning" : "error", error.FileName, error.Line, error.ErrorText));
+
+                        // Collect filenames of sources with errors
+                        if (!sourcesWithErrors.Contains(error.FileName))
+                            sourcesWithErrors.Add(error.FileName);
+                    }
+
+                    // Alter the sources that failed to ensure recompilation
+                    // even if the source does not change 
+                    foreach (var path in sourcesWithErrors)
+                    {
+                        File.AppendAllText(path, " ");
                     }
 
                     throw new InvalidProgramException("Error(s) occured during rule compilation");
