@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{34A01F49-04C9-4F19-8498-FDC7138B265E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Patcher</RootNamespace>
     <AssemblyName>Patcher</AssemblyName>
@@ -36,16 +36,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>Patcher.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\Archives\ArchiveManager.cs" />
     <Compile Include="Data\Archives\ArchiveFlags.cs" />
     <Compile Include="Data\Archives\ArchiveReader.cs" />
@@ -214,11 +222,20 @@
     <Compile Include="UI\Progress.cs" />
     <Compile Include="UI\ProgressUpdateInfo.cs" />
     <Compile Include="UI\Prompt.cs" />
+    <Compile Include="UI\IDisplay.cs" />
     <Compile Include="UI\Terminal\LineWrittenEventArgs.cs" />
     <Compile Include="UI\Terminal\TerminalLogger.cs" />
     <Compile Include="UI\Terminal\WriteLineMode.cs" />
     <Compile Include="UI\Terminal\TerminalPrompt.cs" />
     <Compile Include="UI\Terminal\TerminalStatus.cs" />
+    <Compile Include="UI\Windows\LogItem.cs" />
+    <Compile Include="UI\Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\WindowDisplay.cs" />
+    <Compile Include="UI\Windows\WindowLogger.cs" />
+    <Compile Include="UI\Windows\WindowPrompt.cs" />
+    <Compile Include="UI\Windows\WindowStatus.cs" />
     <Compile Include="UserAbortException.cs" />
     <Compile Include="UI\CommandLine\DefaultValueAttribute.cs" />
     <Compile Include="UI\CommandLine\DescriptionAttribute.cs" />
@@ -271,6 +288,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UI\Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" />

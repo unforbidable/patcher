@@ -20,6 +20,7 @@ using Patcher.Logging;
 using Patcher.Rules;
 using Patcher.UI;
 using Patcher.UI.Terminal;
+using Patcher.UI.Windows;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -37,52 +38,41 @@ namespace Patcher
         public readonly static string ProgramCacheFolder = "cache";
         public readonly static string ProgramLogsFolder = "logs";
 
-        private readonly static TerminalDisplay terminal = new TerminalDisplay();
-        public readonly static Status Status = new TerminalStatus(terminal);
-        public readonly static Prompt Prompt = new TerminalPrompt(terminal);
+        public static Status Status;
+        public static Prompt Prompt;
 
+        [STAThread]
         static void Main(string[] args)
         {
+            IDisplay display = new WindowDisplay();
+            Status = display.GetStatus();
+            Prompt = display.GetPrompt();
+
             // Parse arguments, display help screen when appropriate
             var options = new ProgramOptions();
             if (!options.TryLoad(args))
             {
                 // Help screen was displayed on request or on error, exit
-                terminal.Pause();
-                return;
-            }
-
-            // Print program verison info and exit
-            if (options.PrintVersion)
-            {
-                Console.WriteLine(GetProgramVersionInfo());
-                terminal.Pause();
+                display.Shutdown();
                 return;
             }
 
             // Adjust console properties
-            Console.BufferHeight = 1200;
-            if (options.WindowWidth > 0)
+             if (options.WindowWidth > 0)
             {
-                Console.WindowWidth = options.WindowWidth;
+                display.SetWindowWidth(options.WindowWidth);
             }
             if (options.WindowHeight > 0)
             {
-                Console.WindowHeight = options.WindowHeight;
+                display.SetWindowHeight(options.WindowHeight);
             }
-
-            // Set terminal log level, 0-4
-            terminal.ConsoleLogLevel = (LogLevel)Math.Min(4, Math.Max(0, options.ConsoleLogLevel));
 
             // Validate rules folder
             if (string.IsNullOrWhiteSpace(options.RulesFolder) || options.RulesFolder.IndexOfAny(new char[] { '"', '\'', '\\', '/', ':' }) >= 0)
             {
-                Console.WriteLine("Specified rule folder name does not seems to be valid: ");
-                Console.WriteLine();
-                Console.WriteLine(options.RulesFolder);
-                Console.WriteLine();
-                Console.WriteLine("Ensure the value is a single folder name (not a full path) without special characters: \", ', \\, / and :.");
-                terminal.Pause();
+                display.ShowMessage("Specified rule folder name does not seems to be valid: \n\n" + options.RulesFolder + 
+                    "\n\nEnsure the value is a single folder name (not a full path) without special characters: \", ', \\, / and :.");
+                display.Shutdown();
                 return;
             }
 
@@ -98,12 +88,9 @@ namespace Patcher
             {
                 // Program will exit on error
                 // Appropriate hint is displayed
-                Console.WriteLine("Data folder path does not seems to be valid: {0}", ex.Message);
-                Console.WriteLine();
-                Console.WriteLine(options.DataFolder);
-                Console.WriteLine();
-                Console.WriteLine("Use option -d or --data to specify correct path to the data folder or use option -h or --help for more help.");
-                terminal.Pause();
+                display.ShowMessage("Data folder path does not seems to be valid: {0}" + ex.Message + "\n\n" + options.DataFolder + 
+                    "\n\nUse option -d or --data to specify correct path to the data folder or use option -h or --help for more help.");
+                display.Shutdown();
                 return;
             }
 
@@ -120,13 +107,16 @@ namespace Patcher
                 {
                     // Program will exit on error
                     // Appropriate hint is displayed
-                    Console.WriteLine("Incorrect Mod Organizer configuration: {0}", ex.Message);
-                    Console.WriteLine();
-                    Console.WriteLine("Use option -h or --help for more help.");
-                    terminal.Pause();
+                    display.ShowMessage("Incorrect Mod Organizer configuration: {0}" + ex.Message + 
+                        "\n\nUse option -h or --help for more help.");
+                    display.Shutdown();
                     return;
                 }
             }
+
+            // Setup terminal logger
+            // Set terminal log level, 0-4
+            Log.AddLogger(display.GetLogger((LogLevel)Math.Min(4, Math.Max(0, options.ConsoleLogLevel))));
 
             // Determine output plugin file name, use filename from options if provided
             string targetPluginFileName = options.OutputFilename ?? string.Format("Patcher-{0}.esp", options.RulesFolder);
@@ -141,113 +131,118 @@ namespace Patcher
                 Log.Info(GetProgramVersionInfo());
                 Log.Fine("Options: " + options);
 
-                try
+                var task = new Task(() =>
                 {
-                    // Create suitable data context according to the data folder content
-                    using (DataContext context = DataContext.CreateContext(fileProvider))
+                    try
                     {
-                        Log.Fine("Initialized data context: " + context.GetType().FullName);
-
-                        // Context tweaks
-                        context.AsyncFormIndexing = true;
-                        context.AsyncFormLoading = true;
-                        context.AsyncFormLoading = true;
-                        context.AsyncFormLoadingWorkerThreshold = 100;
-                        context.AsyncFromLoadingMaxWorkers = Math.Max(1, options.MaxLoadingThreads);
-
-                        // Inform context to ignore output plugin in case it is active
-                        context.IgnorePlugins.Add(targetPluginFileName);
-
-                        // Index all forms except hidden (such as cells and worlds)
-                        context.Load();
-
-                        using (RuleEngine engine = new RuleEngine(context))
+                        // Create suitable data context according to the data folder content
+                        using (DataContext context = DataContext.CreateContext(fileProvider))
                         {
-                            engine.RulesFolder = options.RulesFolder;
+                            Log.Fine("Initialized data context: " + context.GetType().FullName);
 
-                            // Apply debug scope to rule engine
-                            if (!string.IsNullOrEmpty(options.DebugScope))
+                            // Context tweaks
+                            context.AsyncFormIndexing = true;
+                            context.AsyncFormLoading = true;
+                            context.AsyncFormLoading = true;
+                            context.AsyncFormLoadingWorkerThreshold = 100;
+                            context.AsyncFromLoadingMaxWorkers = Math.Max(1, options.MaxLoadingThreads);
+
+                            // Inform context to ignore output plugin in case it is active
+                            context.IgnorePlugins.Add(targetPluginFileName);
+
+                            // Index all forms except hidden (such as cells and worlds)
+                            context.Load();
+
+                            using (RuleEngine engine = new RuleEngine(context))
                             {
-                                if (options.DebugScope == "*")
+                                engine.RulesFolder = options.RulesFolder;
+
+                                // Apply debug scope to rule engine
+                                if (!string.IsNullOrEmpty(options.DebugScope))
                                 {
-                                    engine.DebugAll = true;
-                                }
-                                else
-                                {
-                                    var parts = options.DebugScope.Split('/', '\\');
-                                    if (parts.Length > 0)
-                                        engine.DebugPluginFileName = parts[0];
-                                    if (parts.Length > 1)
-                                        engine.DebugRuleFileName = parts[1];
-                                }
-                            }
-
-                            // Load rules
-                            engine.Load();
-
-#if DEBUG
-                            // Load supported forms in debug mode
-                            context.LoadForms(f => context.IsSupportedFormKind(f.FormKind));
-#else
-                            // Load all indexed forms in release mode
-                            context.LoadForms();
-#endif
-
-                            // Create and set up target plugin
-                            engine.ActivePlugin = context.CreatePlugin(targetPluginFileName);
-                            engine.ActivePlugin.Author = options.Author ?? GetProgramVersionInfo();
-                            engine.ActivePlugin.Description = options.Description ?? string.Format("Generated by {0}", GetProgramVersionInfo());
-
-                            // See if target plugin exists 
-                            var targetPluginFile = fileProvider.GetDataFile(FileMode.Open, targetPluginFileName);
-                            if (targetPluginFile.Exists())
-                            {
-                                Log.Info("Target plugin {0} already exists and will be overwriten, however previously used FormIDs will be preserved if possible.", targetPluginFileName);
-
-                                try
-                                {
-                                    var inspector = new PluginInspector(context, targetPluginFile);
-                                    foreach (var record in inspector.NewRecords)
+                                    if (options.DebugScope == "*")
                                     {
-                                        engine.ActivePlugin.ReserveFormId(record.FormId, record.EditorId);
+                                        engine.DebugAll = true;
+                                    }
+                                    else
+                                    {
+                                        var parts = options.DebugScope.Split('/', '\\');
+                                        if (parts.Length > 0)
+                                            engine.DebugPluginFileName = parts[0];
+                                        if (parts.Length > 1)
+                                            engine.DebugRuleFileName = parts[1];
                                     }
                                 }
-                                catch (Exception ex)
+
+                                // Load rules
+                                engine.Load();
+
+#if DEBUG
+                                // Load supported forms in debug mode
+                                context.LoadForms(f => context.IsSupportedFormKind(f.FormKind));
+#else
+                                // Load all indexed forms in release mode
+                                context.LoadForms();
+#endif
+
+                                // Create and set up target plugin
+                                engine.ActivePlugin = context.CreatePlugin(targetPluginFileName);
+                                engine.ActivePlugin.Author = options.Author ?? GetProgramVersionInfo();
+                                engine.ActivePlugin.Description = options.Description ?? string.Format("Generated by {0}", GetProgramVersionInfo());
+
+                                // See if target plugin exists 
+                                var targetPluginFile = fileProvider.GetDataFile(FileMode.Open, targetPluginFileName);
+                                if (targetPluginFile.Exists())
                                 {
-                                    Log.Warning("Previously used Form IDs cannot be preserved because target plugin {0} could not be read: {1}", targetPluginFileName, ex.ToString());
+                                    Log.Info("Target plugin {0} already exists and will be overwriten, however previously used FormIDs will be preserved if possible.", targetPluginFileName);
+
+                                    try
+                                    {
+                                        var inspector = new PluginInspector(context, targetPluginFile);
+                                        foreach (var record in inspector.NewRecords)
+                                        {
+                                            engine.ActivePlugin.ReserveFormId(record.FormId, record.EditorId);
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Log.Warning("Previously used Form IDs cannot be preserved because target plugin {0} could not be read: {1}", targetPluginFileName, ex.ToString());
+                                    }
+                                    finally
+                                    {
+                                    }
                                 }
-                                finally
-                                {
-                                }
+
+                                engine.Run();
+
+                                if (!options.KeepDirtyEdits)
+                                    engine.ActivePlugin.PurgeDirtyEdits();
+
+                                // Save target plugin
+                                engine.ActivePlugin.Save();
                             }
-
-                            engine.Run();
-
-                            if (!options.KeepDirtyEdits)
-                                engine.ActivePlugin.PurgeDirtyEdits();
-
-                            // Save target plugin
-                            engine.ActivePlugin.Save();
                         }
                     }
-                }
-                catch (UserAbortException ex)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Program aborted: " + ex.Message);
-                }
+                    catch (UserAbortException ex)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Program aborted: " + ex.Message);
+                    }
 #if !DEBUG
-                // Catch any unhandled exception in a Release build only
-                catch (Exception ex)
-                {
-                    Log.Error("Program error: " + ex.Message);
-                    Log.Fine(ex.ToString());
-                }
+                    // Catch any unhandled exception in a Release build only
+                    catch (Exception ex)
+                    {
+                        Log.Error("Program error: " + ex.Message);
+                        Log.Fine(ex.ToString());
+                    }
 #endif
-                finally
-                {
-                    terminal.Pause();
-                }
+                    finally
+                    {
+                        display.Shutdown();
+                    }
+                });
+
+                display.Run(task);
             }
         }
 

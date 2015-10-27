@@ -26,11 +26,12 @@ namespace Patcher.UI.Terminal
     {
         readonly TerminalDisplay terminal;
 
-        LogLevel maxLogLevel = LogLevel.Info;
+        LogLevel maxLogLevel;
 
-        public TerminalLogger(TerminalDisplay terminal)
+        public TerminalLogger(TerminalDisplay terminal, LogLevel maxLogLevel)
         {
             this.terminal = terminal;
+            this.maxLogLevel = maxLogLevel;
         }
 
         internal override LogLevel MaxLogLevel { get { return maxLogLevel; } }
