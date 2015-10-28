@@ -1,3 +1,6 @@
+##### v1.4.1 (2015/10/28)
+* Graphical interface implemented
+
 ##### v1.4.0 (2015/10/26)
 * New supported forms: PROJ,AMMO
 * Letter case is ignored when looking up forms by Editor ID
