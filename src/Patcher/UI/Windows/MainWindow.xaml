@@ -8,7 +8,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"  
         x:Class="Patcher.UI.Windows.MainWindow"
         mc:Ignorable="d"
-        Title="Patcher" Height="223.093" Width="552.298" Background="{x:Null}" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="Patcher" Height="223.093" Width="552.298" Background="{x:Null}" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <!--Scrollbar Thumbs-->
         <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
@@ -110,7 +110,7 @@
         </Style>
 
         <DataTemplate DataType="{x:Type local:LogItem}">
-            <TextBlock Foreground="{Binding Brush}" Text="{Binding Text}" TextWrapping="Wrap" FontSize="13.333" FontFamily="Consolas" />
+            <TextBlock Foreground="{Binding Brush}" Text="{Binding Text}" TextWrapping="WrapWithOverflow" FontSize="13.333" FontFamily="Consolas" />
         </DataTemplate>
     </Window.Resources>
     <Grid>
