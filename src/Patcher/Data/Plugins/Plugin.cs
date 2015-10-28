@@ -531,6 +531,8 @@ namespace Patcher.Data.Plugins
 
                         Log.Fine("Written {0} form(s)", count);
 
+                        writer.Close();
+
                         // Write memory stream to file
                         // only if changed
                         stream.Position = 0;
