@@ -206,12 +206,12 @@ namespace Patcher.Rules
             units.Add(unit);
         }
 
-        public void CompileAll()
+        public bool CompileAll()
         {
             if (units.Count == 0)
             {
                 Log.Warning("No rules form plugin {0}. Nothing to compile.", pluginFileName);
-                return;
+                return false;
             }
 
             // Collect sources into a list, checking whether any has been updated
@@ -243,7 +243,7 @@ namespace Patcher.Rules
 
                             LoadMethodsFromAssembly(assembly);
                             Log.Info("Using cached assembly containing compiled rules for plugin {0}.", pluginFileName);
-                            return;
+                            return true;
                          }
                         catch (Exception ex)
                         {
@@ -264,20 +264,20 @@ namespace Patcher.Rules
                 }
             }
 
-            // Create version.cs
-            CodeBuilder builder = new CodeBuilder(NamespaceName, VersionClassName, "//\n// Source file for version tracking.\n//\n\n");
-            builder.WriteCode(string.Format("public static readonly string {0} = \"{1}\";\n", VersionFieldName, Program.GetProgramVersionInfo()));
-            string versionCode = builder.ToString();
-            string versionFilePath = Path.Combine(cachePath, "version.cs");
-            var versionFile = engine.Context.DataFileProvider.GetDataFile(FileMode.Create, versionFilePath);
-            using (var stream = versionFile.Open())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(versionCode);
-                }
-            }
-            sources.Add(versionFile.FullPath);
+            //// Create version.cs
+            //CodeBuilder builder = new CodeBuilder(NamespaceName, VersionClassName, "//\n// Source file for version tracking.\n//\n\n");
+            //builder.WriteCode(string.Format("public static readonly string {0} = \"{1}\";\n", VersionFieldName, Program.GetProgramVersionInfo()));
+            //string versionCode = builder.ToString();
+            //string versionFilePath = Path.Combine(cachePath, "version.cs");
+            //var versionFile = engine.Context.DataFileProvider.GetDataFile(FileMode.Create, versionFilePath);
+            //using (var stream = versionFile.Open())
+            //{
+            //    using (var writer = new StreamWriter(stream))
+            //    {
+            //        writer.Write(versionCode);
+            //    }
+            //}
+            //sources.Add(versionFile.FullPath);
 
             // Compile all sources
             Log.Info("Compiling rules for plugin {0}.", pluginFileName);
@@ -342,15 +342,18 @@ namespace Patcher.Rules
                 }
                 else
                 {
-                    Log.Warning("Rule file {0} skipped because an error occured: {1} ", pluginFileName, ex.Message);
+                    Log.Warning("Rules for plugin {0} skipped because an error occured: {1} ", pluginFileName, ex.Message);
+                    return false;
                 }
             }
             finally
             {
                 // Version file is not needed to be cached
                 // new one will always be created when needed
-                versionFile.Delete();
+                //versionFile.Delete();
             }
+
+            return true;
         }
 
         private bool ValidateCachedAssemblyVersion(string path)

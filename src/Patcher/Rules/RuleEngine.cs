@@ -130,8 +130,10 @@ namespace Patcher.Rules
 
                 if (compiler.HasRules)
                 {
-                    compiler.CompileAll();
-                    rules.Add(pluginFileName, new List<IRule>(compiler.CompiledRules));
+                    if (compiler.CompileAll())
+                    {
+                        rules.Add(pluginFileName, new List<IRule>(compiler.CompiledRules));
+                    }
                 }
             }
             sw1.Stop();
