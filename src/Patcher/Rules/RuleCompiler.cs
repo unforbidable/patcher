@@ -206,12 +206,12 @@ namespace Patcher.Rules
             units.Add(unit);
         }
 
-        public void CompileAll()
+        public bool CompileAll()
         {
             if (units.Count == 0)
             {
                 Log.Warning("No rules form plugin {0}. Nothing to compile.", pluginFileName);
-                return;
+                return false;
             }
 
             // Collect sources into a list, checking whether any has been updated
@@ -243,7 +243,7 @@ namespace Patcher.Rules
 
                             LoadMethodsFromAssembly(assembly);
                             Log.Info("Using cached assembly containing compiled rules for plugin {0}.", pluginFileName);
-                            return;
+                            return true;
                          }
                         catch (Exception ex)
                         {
@@ -342,7 +342,8 @@ namespace Patcher.Rules
                 }
                 else
                 {
-                    Log.Warning("Rule file {0} skipped because an error occured: {1} ", pluginFileName, ex.Message);
+                    Log.Warning("Rules for plugin {0} skipped because an error occured: {1} ", pluginFileName, ex.Message);
+                    return false;
                 }
             }
             finally
@@ -351,6 +352,8 @@ namespace Patcher.Rules
                 // new one will always be created when needed
                 //versionFile.Delete();
             }
+
+            return true;
         }
 
         private bool ValidateCachedAssemblyVersion(string path)
