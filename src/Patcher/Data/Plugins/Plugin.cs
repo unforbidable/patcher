@@ -497,10 +497,10 @@ namespace Patcher.Data.Plugins
             int count = 0;
             long total = Forms.Count();
 
-            using (var progress = Program.Status.StartProgress("Saving"))
+            using (var progress = Program.Status.StartProgress("Saving plugin"))
             {
-                var file = context.DataFileProvider.GetDataFile(FileMode.Create, fileName);
-                using (var stream = file.Open())
+                // Save plugin to memory stream
+                using (var stream = new MemoryStream())
                 {
                     using (var writer = context.CreateWriter(stream))
                     {
@@ -525,14 +525,24 @@ namespace Patcher.Data.Plugins
                                 writer.WriteRecord(form.Record, form.FormId);
                                 count++;
 
-                                progress.Update(count, total, "{0}:{1}", file.Name, type);
+                                progress.Update(count, total, "{0}:{1}", FileName, type);
                             }
                         }
-                     }
+
+                        Log.Fine("Written {0} form(s)", count);
+
+                        // Write memory stream to file
+                        // only if changed
+                        stream.Position = 0;
+                        var file = context.DataFileProvider.GetDataFile(FileMode.Create, fileName);
+                        if (!file.CopyFrom(stream, true))
+                        {
+                            Log.Info("New plugin content is the same as that of the existing plugin.");
+                        }
+                    }
                 }
             }
 
-            Log.Fine("Written {0} form(s)", count);
             Log.Info("Plugin saved");
         }
 
