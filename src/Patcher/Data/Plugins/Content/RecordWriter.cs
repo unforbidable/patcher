@@ -31,6 +31,8 @@ namespace Patcher.Data.Plugins.Content
         readonly Stream mainStream;
         Stream segmentStream;
 
+        bool closed = false;
+
         readonly DataContext context;
         public DataContext Context { get { return context; } }
 
@@ -401,8 +403,11 @@ namespace Patcher.Data.Plugins.Content
             segmentStream.Write(bytes, 0, bytes.Length);
         }
 
-        public void Dispose()
+        public void Close()
         {
+            if (closed)
+                throw new InvalidOperationException("Writer has been closed already.");
+
             // End last group if one has begun
             if (currentGroupFormKind != FormKind.Any)
             {
@@ -420,6 +425,17 @@ namespace Patcher.Data.Plugins.Content
             header.NumRecords = numRecords;
             mainStream.Position = 0;
             DoWriteRecord(header, 0);
+
+            closed = true;
+        }
+
+        public void Dispose()
+        {
+            if (!closed)
+            {
+                // Close if not explicitly closed
+                Close();
+            }
 
             mainStream.Dispose();
             while (segmentStack.Count > 0)
