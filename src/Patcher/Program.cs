@@ -82,7 +82,7 @@ namespace Patcher
             {
                 // Program will exit on error
                 // Appropriate hint is displayed
-                Display.ShowPreRunMessage("Data folder path does not seems to be valid: {0}" + ex.Message + "\n\n" + options.DataFolder + 
+                Display.ShowPreRunMessage("Data folder path does not seems to be valid: " + ex.Message + "\n\n" + options.DataFolder + 
                     "\n\nUse option -d or --data to specify correct path to the data folder or use option -h or --help for more help.", true);
                 return;
             }
@@ -100,7 +100,7 @@ namespace Patcher
                 {
                     // Program will exit on error
                     // Appropriate hint is displayed
-                    Display.ShowPreRunMessage("Incorrect Mod Organizer configuration: {0}" + ex.Message + 
+                    Display.ShowPreRunMessage("Incorrect Mod Organizer configuration: " + ex.Message + 
                         "\n\nUse option -h or --help for more help.", true);
                     return;
                 }
