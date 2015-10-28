@@ -25,6 +25,7 @@ namespace Patcher.Logging
     public class StreamLogger : Logger, IDisposable
     {
         TextWriter writer;
+        bool disposed = false;
 
         Dictionary<LogLevel, string> logLevelNameMap = new Dictionary<LogLevel, string>()
         {
@@ -42,17 +43,28 @@ namespace Patcher.Logging
 
         public void Dispose()
         {
-            writer.Dispose();
+            lock (this)
+            {
+                writer.Dispose();
+                disposed = true;
+            }
         }
 
         internal override LogLevel MaxLogLevel { get { return LogLevel.Fine; } } 
 
         internal override void WriteLogEntry(LogEntry entry)
         {
-            writer.WriteLine("{0} {1} {2}", 
-                DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ffffff"), 
-                logLevelNameMap[entry.Level], 
-                entry.Text);
+            lock (this)
+            {
+                // Prevent race condition during disposal
+                if (!disposed)
+                {
+                    writer.WriteLine("{0} {1} {2}",
+                        DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ffffff"),
+                        logLevelNameMap[entry.Level],
+                        entry.Text);
+                }
+            }
         }
     }
 }
