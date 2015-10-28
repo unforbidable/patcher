@@ -14,36 +14,26 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
-namespace Patcher.UI.Terminal
+namespace Patcher.UI.Windows
 {
-    sealed class TerminalLogger : Logger
+    sealed class WindowPrompt : Prompt
     {
-        readonly TerminalDisplay terminal;
+        readonly WindowDisplay display;
 
-        LogLevel maxLogLevel;
-
-        public TerminalLogger(TerminalDisplay terminal, LogLevel maxLogLevel)
+        public WindowPrompt(WindowDisplay display)
         {
-            this.terminal = terminal;
-            this.maxLogLevel = maxLogLevel;
+            this.display = display;
         }
 
-        internal override LogLevel MaxLogLevel { get { return maxLogLevel; } }
-
-        internal override void WriteLogEntry(LogEntry entry)
+        protected override ChoiceOption OfferChoice(string message, ChoiceOption[] options)
         {
-            terminal.WriteLine(entry.Level, entry.Text);
-        }
-
-        public void SetMaxLogLevel(LogLevel level)
-        {
-            maxLogLevel = level;
+            return display.Window.OfferChoice(message, options);
         }
     }
 }

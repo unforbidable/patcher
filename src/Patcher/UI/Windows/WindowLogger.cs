@@ -20,30 +20,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.UI.Terminal
+namespace Patcher.UI.Windows
 {
-    sealed class TerminalLogger : Logger
+    class WindowLogger : Logger
     {
-        readonly TerminalDisplay terminal;
-
+        readonly WindowDisplay display;
         LogLevel maxLogLevel;
 
-        public TerminalLogger(TerminalDisplay terminal, LogLevel maxLogLevel)
+        public WindowLogger(WindowDisplay display, LogLevel maxLogLevel)
         {
-            this.terminal = terminal;
+            this.display = display;
             this.maxLogLevel = maxLogLevel;
         }
 
-        internal override LogLevel MaxLogLevel { get { return maxLogLevel; } }
+        internal override LogLevel MaxLogLevel
+        {
+            get
+            {
+                return maxLogLevel;
+            }
+        }
 
         internal override void WriteLogEntry(LogEntry entry)
         {
-            terminal.WriteLine(entry.Level, entry.Text);
-        }
-
-        public void SetMaxLogLevel(LogLevel level)
-        {
-            maxLogLevel = level;
+            display.Window.WriteLogEntry(entry);
         }
     }
 }

@@ -14,36 +14,22 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Logging;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 
-namespace Patcher.UI.Terminal
+namespace Patcher
 {
-    sealed class TerminalLogger : Logger
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
     {
-        readonly TerminalDisplay terminal;
-
-        LogLevel maxLogLevel;
-
-        public TerminalLogger(TerminalDisplay terminal, LogLevel maxLogLevel)
+        public App()
         {
-            this.terminal = terminal;
-            this.maxLogLevel = maxLogLevel;
-        }
-
-        internal override LogLevel MaxLogLevel { get { return maxLogLevel; } }
-
-        internal override void WriteLogEntry(LogEntry entry)
-        {
-            terminal.WriteLine(entry.Level, entry.Text);
-        }
-
-        public void SetMaxLogLevel(LogLevel level)
-        {
-            maxLogLevel = level;
         }
     }
 }

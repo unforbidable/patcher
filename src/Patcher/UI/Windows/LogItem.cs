@@ -14,36 +14,31 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Logging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
+using System.Windows.Media;
 
-namespace Patcher.UI.Terminal
+namespace Patcher.UI.Windows
 {
-    sealed class TerminalLogger : Logger
+    public class LogItem : INotifyPropertyChanged
     {
-        readonly TerminalDisplay terminal;
+        public Brush Brush { get; set; }
+        public string Text { get; set; }
 
-        LogLevel maxLogLevel;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public TerminalLogger(TerminalDisplay terminal, LogLevel maxLogLevel)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            this.terminal = terminal;
-            this.maxLogLevel = maxLogLevel;
-        }
-
-        internal override LogLevel MaxLogLevel { get { return maxLogLevel; } }
-
-        internal override void WriteLogEntry(LogEntry entry)
-        {
-            terminal.WriteLine(entry.Level, entry.Text);
-        }
-
-        public void SetMaxLogLevel(LogLevel level)
-        {
-            maxLogLevel = level;
+            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                var handler = PropertyChanged;
+                if (handler != null)
+                    handler(this, new PropertyChangedEventArgs(propertyName));
+            }));
         }
     }
 }

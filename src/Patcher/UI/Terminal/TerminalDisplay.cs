@@ -14,35 +14,62 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Microsoft.Win32.SafeHandles;
 using Patcher.Logging;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Patcher.UI.Terminal
 {
-    sealed class TerminalDisplay
+    sealed class TerminalDisplay : IDisplay
     {
+        [DllImport("kernel32.dll",
+           EntryPoint = "GetStdHandle",
+           SetLastError = true,
+           CharSet = CharSet.Auto,
+           CallingConvention = CallingConvention.StdCall)]
+        private static extern IntPtr GetStdHandle(int nStdHandle);
+        [DllImport("kernel32.dll",
+            EntryPoint = "AllocConsole",
+            SetLastError = true,
+            CharSet = CharSet.Auto,
+            CallingConvention = CallingConvention.StdCall)]
+        private static extern int AllocConsole();
+        private const int STD_OUTPUT_HANDLE = -11;
+        private const int MY_CODE_PAGE = 437;
+
         int prevTextLength = 0;
         int rewindTextLength = 0;
-        LogLevel minimalLogSeverity = LogLevel.Fine;
 
         public event EventHandler<LineWrittenEventArgs> OnLineWritten;
 
-        readonly TerminalLogger logger;
-
-        public LogLevel ConsoleLogLevel { get { return logger.MaxLogLevel; } set { logger.SetMaxLogLevel(value); } }
-
         public TerminalDisplay()
         {
-            // Setup terminal logger
-            logger = new TerminalLogger(this);
-            Log.AddLogger(logger);
-
+            // Allocate console
+            AllocConsole();
+            IntPtr stdHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+            SafeFileHandle safeFileHandle = new SafeFileHandle(stdHandle, true);
+            FileStream fileStream = new FileStream(safeFileHandle, FileAccess.Write);
+            Encoding encoding = Encoding.GetEncoding(MY_CODE_PAGE);
+            StreamWriter standardOutput = new StreamWriter(fileStream, encoding);
+            standardOutput.AutoFlush = true;
+            Console.SetOut(standardOutput);
+  
             // Capture CTRL+C
             Console.CancelKeyPress += CancelKeyPress;
+
+            Console.BufferHeight = 1200;
+        }
+
+        public void Run(Task task)
+        {
+            // Console task runs synchronously
+            task.RunSynchronously();
         }
 
         private void CancelKeyPress(object sender, ConsoleCancelEventArgs e)
@@ -50,25 +77,30 @@ namespace Patcher.UI.Terminal
             DoWriteLine(ConsoleColor.DarkCyan, "Program interrupted.");
         }
 
-        public void Pause()
+        public void Shutdown()
         {
             Console.WriteLine();
             DoWriteLine(ConsoleColor.DarkGreen, "Press any key to continue.");
             ReadUnbufferedKey(true);
         }
 
-        public void SetMinimalLogSeverity(LogLevel minimalLogSeverity)
+        public void SetWindowWidth(int windowWidth)
         {
-            this.minimalLogSeverity = minimalLogSeverity;
+            Console.WindowWidth = windowWidth;
         }
 
-        public void Rewind()
+        public void SetWindowHeight(int windowHeight)
+        {
+            Console.WindowHeight = windowHeight;
+        }
+
+        internal void Rewind()
         {
             Console.CursorTop--;
             rewindTextLength = prevTextLength;
         }
 
-        public void WriteLine(LogLevel level, string text)
+        internal void WriteLine(LogLevel level, string text)
         {
             switch (level)
             {
@@ -92,7 +124,7 @@ namespace Patcher.UI.Terminal
             RaiseLineWrittenEvent(WriteLineMode.Log);
         }
 
-        public void WriteLine(WriteLineMode mode, string text)
+        internal void WriteLine(WriteLineMode mode, string text)
         {
             switch (mode)
             {
@@ -115,6 +147,12 @@ namespace Patcher.UI.Terminal
             }
 
             RaiseLineWrittenEvent(mode);
+        }
+
+        public void ShowPreRunMessage(string message, bool isError)
+        {
+            DoWriteLine(isError ? ConsoleColor.Red : ConsoleColor.White, message);
+            Shutdown();
         }
 
         private void RaiseLineWrittenEvent(WriteLineMode mode)
@@ -151,7 +189,7 @@ namespace Patcher.UI.Terminal
             }
         }
 
-        public ConsoleKeyInfo ReadUnbufferedKey(bool intercept)
+        internal ConsoleKeyInfo ReadUnbufferedKey(bool intercept)
         {
             var sw = new Stopwatch();
             sw.Start();
@@ -166,5 +204,22 @@ namespace Patcher.UI.Terminal
                     return keyInfo;
             }
         }
+
+
+        public Status GetStatus()
+        {
+            return new TerminalStatus(this);
+        }
+
+        public Prompt GetPrompt()
+        {
+            return new TerminalPrompt(this);
+        }
+
+        public Logger GetLogger(LogLevel maxLogLevel)
+        {
+            return new TerminalLogger(this, maxLogLevel);
+        }
+
     }
 }
