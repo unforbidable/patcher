@@ -106,6 +106,7 @@ namespace Patcher.UI.CommandLine
 
         private void PrintOptions()
         {
+            StringWriter writer = new StringWriter();
             if (usage != null)
             {
                 StringReader reader = new StringReader(usage);
@@ -114,35 +115,46 @@ namespace Patcher.UI.CommandLine
                 while ((line = reader.ReadLine()) != null)
                 {
                     if (i == 0)
-                        Console.Write("Usage: ");
+                        writer.Write("Usage: ");
                     else
-                        Console.Write("         ");
+                        writer.Write("         ");
 
-                    Console.WriteLine(line);
+                    writer.WriteLine(line);
                     i++;
                 }
-                Console.WriteLine();
+                writer.WriteLine();
             }
 
             int pad = options.Select(o => o.LongName.Length).Max() + 2;
             foreach (var opt in options)
             {
+                string buffer;
                 if (opt.ShortName != '\0')
-                    Console.Write(string.Format(" -{0}, ", opt.ShortName));
+                    buffer = string.Format(" -{0}, ", opt.ShortName);
                 else
-                    Console.Write("     ");
-                Console.Write(string.Format("{0,-" + pad + "}  ", "--" + opt.LongName));
+                    buffer = "     ";
 
-                int col = Console.CursorLeft;
+                buffer = string.Format("{0}{1,-" + pad + "}  ", buffer, "--" + opt.LongName);
+
+                int col = buffer.Length;
+                string indent = new string(Enumerable.Range(0, col).Select(i => ' ').ToArray());
+
+                writer.Write(buffer);
 
                 StringReader reader = new StringReader(opt.Description);
                 string line;
+                bool firstLine = true;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    Console.CursorLeft = col;
-                    Console.WriteLine(line);
+                    if (!firstLine)
+                        writer.Write(indent);
+
+                    writer.WriteLine(line);
+                    firstLine = false;
                 }
             }
+
+            Program.Display.ShowPreRunMessage(writer.ToString(), false);
         }
 
         private void Load(string[] args)

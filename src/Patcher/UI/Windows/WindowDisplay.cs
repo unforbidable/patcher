@@ -6,6 +6,7 @@ using Patcher.Logging;
 using System.Windows;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.IO;
 
 namespace Patcher.UI.Windows
 {
@@ -57,11 +58,18 @@ namespace Patcher.UI.Windows
             window.Width = windowWidth * 6;
         }
 
-        public void ShowPreRunErrorMessage(string message)
+        public void ShowPreRunMessage(string message, bool isError)
         {
             new Task(() =>
             {
-                window.WriteMessage(Brushes.MediumVioletRed, message);
+                Brush brush = isError ? Brushes.MediumVioletRed : Brushes.White;
+                StringReader reader = new StringReader(message);
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    window.WriteMessage(brush, line);
+                }
+
                 window.WriteMessage(Brushes.Gold, "\n\nPress ESC to close the application.");
                 window.TerminateOnEscape = true;
             }).Start();

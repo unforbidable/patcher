@@ -38,41 +38,35 @@ namespace Patcher
         public readonly static string ProgramCacheFolder = "cache";
         public readonly static string ProgramLogsFolder = "logs";
 
-        public static Status Status;
-        public static Prompt Prompt;
+        public static IDisplay Display = new WindowDisplay();
+        public static Status Status = Display.GetStatus();
+        public static Prompt Prompt = Display.GetPrompt();
 
         [STAThread]
         static void Main(string[] args)
         {
-            IDisplay display = new WindowDisplay();
-            //IDisplay display = new TerminalDisplay();
-            Status = display.GetStatus();
-            Prompt = display.GetPrompt();
-
             // Parse arguments, display help screen when appropriate
             var options = new ProgramOptions();
             if (!options.TryLoad(args))
             {
-                // Help screen was displayed on request or on error, exit
-                display.Shutdown();
                 return;
             }
 
             // Adjust console properties
              if (options.WindowWidth > 0)
             {
-                display.SetWindowWidth(options.WindowWidth);
+                Display.SetWindowWidth(options.WindowWidth);
             }
             if (options.WindowHeight > 0)
             {
-                display.SetWindowHeight(options.WindowHeight);
+                Display.SetWindowHeight(options.WindowHeight);
             }
 
             // Validate rules folder
             if (string.IsNullOrWhiteSpace(options.RulesFolder) || options.RulesFolder.IndexOfAny(new char[] { '"', '\'', '\\', '/', ':' }) >= 0)
             {
-                display.ShowPreRunErrorMessage("Specified rule folder name does not seems to be valid: \n\n" + options.RulesFolder + 
-                    "\n\nEnsure the value is a single folder name (not a full path) without special characters: \", ', \\, / and :.");
+                Display.ShowPreRunMessage("Specified rule folder name does not seems to be valid: \n\n" + options.RulesFolder + 
+                    "\n\nEnsure the value is a single folder name (not a full path) without special characters: \", ', \\, / and :.", true);
                 return;
             }
 
@@ -88,8 +82,8 @@ namespace Patcher
             {
                 // Program will exit on error
                 // Appropriate hint is displayed
-                display.ShowPreRunErrorMessage("Data folder path does not seems to be valid: {0}" + ex.Message + "\n\n" + options.DataFolder + 
-                    "\n\nUse option -d or --data to specify correct path to the data folder or use option -h or --help for more help.");
+                Display.ShowPreRunMessage("Data folder path does not seems to be valid: {0}" + ex.Message + "\n\n" + options.DataFolder + 
+                    "\n\nUse option -d or --data to specify correct path to the data folder or use option -h or --help for more help.", true);
                 return;
             }
 
@@ -106,15 +100,15 @@ namespace Patcher
                 {
                     // Program will exit on error
                     // Appropriate hint is displayed
-                    display.ShowPreRunErrorMessage("Incorrect Mod Organizer configuration: {0}" + ex.Message + 
-                        "\n\nUse option -h or --help for more help.");
+                    Display.ShowPreRunMessage("Incorrect Mod Organizer configuration: {0}" + ex.Message + 
+                        "\n\nUse option -h or --help for more help.", true);
                     return;
                 }
             }
 
             // Setup terminal logger
             // Set terminal log level, 0-4
-            Log.AddLogger(display.GetLogger((LogLevel)Math.Min(4, Math.Max(0, options.ConsoleLogLevel))));
+            Log.AddLogger(Display.GetLogger((LogLevel)Math.Min(4, Math.Max(0, options.ConsoleLogLevel))));
 
             // Determine output plugin file name, use filename from options if provided
             string targetPluginFileName = options.OutputFilename ?? string.Format("Patcher-{0}.esp", options.RulesFolder);
@@ -235,11 +229,10 @@ namespace Patcher
 #endif
                     finally
                     {
-                        display.Shutdown();
                     }
                 });
 
-                display.Run(task);
+                Display.Run(task);
             }
         }
 

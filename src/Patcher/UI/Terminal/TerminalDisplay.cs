@@ -149,9 +149,9 @@ namespace Patcher.UI.Terminal
             RaiseLineWrittenEvent(mode);
         }
 
-        public void ShowPreRunErrorMessage(string message)
+        public void ShowPreRunMessage(string message, bool isError)
         {
-            Console.WriteLine(message);
+            DoWriteLine(isError ? ConsoleColor.Red : ConsoleColor.White, message);
             Shutdown();
         }
 

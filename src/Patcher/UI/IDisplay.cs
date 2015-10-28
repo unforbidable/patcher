@@ -8,7 +8,7 @@ namespace Patcher.UI
         void Shutdown();
         void SetWindowHeight(int windowHeight);
         void SetWindowWidth(int windowWidth);
-        void ShowPreRunErrorMessage(string message);
+        void ShowPreRunMessage(string message, bool isError);
 
         Logger GetLogger(LogLevel maxLogLevel);
         Status GetStatus();
