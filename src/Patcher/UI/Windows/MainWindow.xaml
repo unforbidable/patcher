@@ -4,11 +4,99 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Patcher.UI.Windows"
-        xmlns:Patcher="clr-namespace:Patcher" 
+        xmlns:Patcher="clr-namespace:Patcher"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"  
         x:Class="Patcher.UI.Windows.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="303.203" Width="552.298" Background="{x:Null}" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" KeyDown="Window_KeyDown">
+        Title="Patcher" Height="223.093" Width="552.298" Background="{x:Null}" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
     <Window.Resources>
+        <!--Scrollbar Thumbs-->
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid x:Name="Grid">
+                            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Fill="Transparent" />
+                            <Border x:Name="Rectangle1" CornerRadius="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto"  Background="{TemplateBinding Background}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--ScrollBars-->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+            <Setter Property="Foreground" Value="#FFBDBDBD" />
+            <Setter Property="Background" Value="#FF343434" />
+            <Setter Property="Width" Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="GridRoot" Width="19" Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.00001*" />
+                            </Grid.RowDefinitions>
+
+                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
+                                <Track.Resources>
+                                    <!-- Thumb's minimum height is half of this metric -->
+                                    <System:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">
+                                        64
+                                    </System:Double>
+                                </Track.Resources>
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" Style="{DynamicResource ScrollThumbs}" />
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="false" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="false" />
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                <Setter Value="{DynamicResource ButtonSelectBrush}" TargetName="Thumb" Property="Background" />
+                            </Trigger>
+                            <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto" />
+                                <Setter Property="Height" Value="12" />
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="{x:Type ItemsControl}" x:Key="LogViewerStyle">
             <Setter Property="Template">
                 <Setter.Value>
@@ -22,7 +110,7 @@
         </Style>
 
         <DataTemplate DataType="{x:Type local:LogItem}">
-            <TextBlock Foreground="{Binding Brush}" Text="{Binding Text}" TextWrapping="Wrap" FontSize="13.333" />
+            <TextBlock Foreground="{Binding Brush}" Text="{Binding Text}" TextWrapping="Wrap" FontSize="13.333" FontFamily="Consolas" />
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -32,18 +120,19 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="#FFC5C5C5" BorderThickness="1" CornerRadius="2" Margin="2" Background="#FF323131">
+                <Border BorderBrush="#FFC5C5C5" BorderThickness="1" CornerRadius="2" Margin="2" Background="#FF323131" MouseDown="Border_MouseDown" Visibility="Collapsed">
                     <StackPanel Orientation="Horizontal" Opacity="0.75">
                         <Label x:Name="AppLabel" Content="Application Name 1.0.0" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FFFFF7F7" FontSize="13.333"/>
                     </StackPanel>
                 </Border>
                 <Border BorderBrush="#FFC5C5C5" BorderThickness="1" CornerRadius="2" Margin="2" Grid.Row="1" Background="#FF0F0F0F">
                     <DockPanel x:Name="LoggerDockPanel" Margin="4">
-                        <ItemsControl x:Name="LoggerItemsControl" ItemsSource="{Binding}" Style="{StaticResource LogViewerStyle}">
+                        <ItemsControl x:Name="LoggerItemsControl" ItemsSource="{Binding}" Style="{StaticResource LogViewerStyle}" Loaded="LoggerItemsControl_Loaded" SizeChanged="LoggerItemsControl_SizeChanged">
                             <ItemsControl.Template>
                                 <ControlTemplate>
                                     <ScrollViewer CanContentScroll="True">
@@ -51,12 +140,21 @@
                                     </ScrollViewer>
                                 </ControlTemplate>
                             </ItemsControl.Template>
-                         </ItemsControl>
+                        </ItemsControl>
                     </DockPanel>
                 </Border>
-                <Border BorderBrush="#FFCDCDCD" BorderThickness="1" CornerRadius="2" Margin="2" Grid.Row="2" Background="#FF303030">
+                <Border x:Name="PromptControl" BorderBrush="#FFCDCDCD" BorderThickness="1" CornerRadius="2" Margin="2" Grid.Row="2" Background="#FF303030" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="PromptLabel" Content="Prompt?" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FFB076D8" Background="Transparent" FontSize="13.333" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Button x:Name="PromptYesButton" Content="Yes" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF76AE61" Foreground="White" Command="" Click="PromptYesButton_Click"/>
+                        <Button x:Name="PromptNoButton" Content="No" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FFBB6480" Foreground="White" Click="PromptNoButton_Click"/>
+                        <Button x:Name="PromptOkButton" Content="OK" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF628BC7" Foreground="White" Click="PromptOkButton_Click"/>
+                        <Button x:Name="PromptCancelButton" Content="Cancel" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF9C9C9C" Foreground="White" Click="PromptCancelButton_Click"/>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="StatusPanel" BorderBrush="#FFCDCDCD" BorderThickness="1" CornerRadius="2" Margin="2" Grid.Row="3" Background="#FF303030" Visibility="Collapsed">
                     <DockPanel>
-                        <Label x:Name="StatusLabel" Content="Status" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FF59A619" MinWidth="200" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" FontSize="13.333"/>
+                        <Label x:Name="StatusLabel" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FF59A619" MinWidth="200" Background="Transparent" FontSize="13.333" HorizontalAlignment="Right" VerticalAlignment="Top" Content=" "/>
                         <ProgressBar x:Name="StatusProgressBar" Background="{x:Null}" BorderBrush="{x:Null}" Value="50" Margin="4" Visibility="Hidden"/>
                     </DockPanel>
                 </Border>

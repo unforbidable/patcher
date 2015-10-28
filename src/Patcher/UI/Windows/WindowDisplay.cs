@@ -37,6 +37,12 @@ namespace Patcher.UI.Windows
 
         public void Run(Task task)
         {
+            task.ContinueWith(t =>
+            {
+                window.WriteMessage(Brushes.Yellow, "\n\nPress ESC to close the application.");
+                window.ShowStatusMessage(string.Empty);
+                window.TerminateOnEscape = true;
+            });
             task.Start();
             app.Run(window);
         }
@@ -51,16 +57,19 @@ namespace Patcher.UI.Windows
             window.Width = windowWidth * 6;
         }
 
-        public void ShowMessage(string message)
+        public void ShowPreRunErrorMessage(string message)
         {
-            MessageBox.Show(message, "Patcher");
+            new Task(() =>
+            {
+                window.WriteMessage(Brushes.MediumVioletRed, message);
+                window.WriteMessage(Brushes.Gold, "\n\nPress ESC to close the application.");
+                window.TerminateOnEscape = true;
+            }).Start();
+            app.Run(window);
         }
 
         public void Shutdown()
         {
-            Window.WriteMessage(Brushes.Purple, "");
-            Window.WriteMessage(Brushes.Purple, "Press any key to quit.");
-            Window.TerminateOnKey = true;
         }
     }
 }

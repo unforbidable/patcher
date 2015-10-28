@@ -17,15 +17,7 @@ namespace Patcher.UI.Windows
 
         protected override ChoiceOption OfferChoice(string message, ChoiceOption[] options)
         {
-            var result = MessageBox.Show(message, "Patcher", MessageBoxButton.OKCancel);
-            switch (result)
-            {
-                case MessageBoxResult.OK:
-                    return ChoiceOption.Ok;
-
-                default:
-                    return ChoiceOption.Cancel;
-            }
+            return display.Window.OfferChoice(message, options);
         }
     }
 }

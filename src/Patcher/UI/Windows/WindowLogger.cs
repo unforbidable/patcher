@@ -27,7 +27,7 @@ namespace Patcher.UI.Windows
 
         internal override void WriteLogEntry(LogEntry entry)
         {
-            display.Window.WriteMessage(entry);
+            display.Window.WriteLogEntry(entry);
         }
     }
 }

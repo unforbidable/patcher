@@ -45,6 +45,7 @@ namespace Patcher
         static void Main(string[] args)
         {
             IDisplay display = new WindowDisplay();
+            //IDisplay display = new TerminalDisplay();
             Status = display.GetStatus();
             Prompt = display.GetPrompt();
 
@@ -70,9 +71,8 @@ namespace Patcher
             // Validate rules folder
             if (string.IsNullOrWhiteSpace(options.RulesFolder) || options.RulesFolder.IndexOfAny(new char[] { '"', '\'', '\\', '/', ':' }) >= 0)
             {
-                display.ShowMessage("Specified rule folder name does not seems to be valid: \n\n" + options.RulesFolder + 
+                display.ShowPreRunErrorMessage("Specified rule folder name does not seems to be valid: \n\n" + options.RulesFolder + 
                     "\n\nEnsure the value is a single folder name (not a full path) without special characters: \", ', \\, / and :.");
-                display.Shutdown();
                 return;
             }
 
@@ -88,9 +88,8 @@ namespace Patcher
             {
                 // Program will exit on error
                 // Appropriate hint is displayed
-                display.ShowMessage("Data folder path does not seems to be valid: {0}" + ex.Message + "\n\n" + options.DataFolder + 
+                display.ShowPreRunErrorMessage("Data folder path does not seems to be valid: {0}" + ex.Message + "\n\n" + options.DataFolder + 
                     "\n\nUse option -d or --data to specify correct path to the data folder or use option -h or --help for more help.");
-                display.Shutdown();
                 return;
             }
 
@@ -107,9 +106,8 @@ namespace Patcher
                 {
                     // Program will exit on error
                     // Appropriate hint is displayed
-                    display.ShowMessage("Incorrect Mod Organizer configuration: {0}" + ex.Message + 
+                    display.ShowPreRunErrorMessage("Incorrect Mod Organizer configuration: {0}" + ex.Message + 
                         "\n\nUse option -h or --help for more help.");
-                    display.Shutdown();
                     return;
                 }
             }
@@ -225,8 +223,7 @@ namespace Patcher
                     }
                     catch (UserAbortException ex)
                     {
-                        Console.WriteLine();
-                        Console.WriteLine("Program aborted: " + ex.Message);
+                        Log.Error("Program aborted: " + ex.Message);
                     }
 #if !DEBUG
                     // Catch any unhandled exception in a Release build only

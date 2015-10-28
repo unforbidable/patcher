@@ -149,9 +149,10 @@ namespace Patcher.UI.Terminal
             RaiseLineWrittenEvent(mode);
         }
 
-        public void ShowMessage(string message)
+        public void ShowPreRunErrorMessage(string message)
         {
             Console.WriteLine(message);
+            Shutdown();
         }
 
         private void RaiseLineWrittenEvent(WriteLineMode mode)
