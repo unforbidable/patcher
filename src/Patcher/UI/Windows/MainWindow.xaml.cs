@@ -78,21 +78,23 @@ namespace Patcher.UI.Windows
             }
         }
 
-        LogLevel currentLogLevel = LogLevel.None;
-        List<string> logMessageBuffer = new List<string>();
+        //LogLevel currentLogLevel = LogLevel.None;
+        //List<string> logMessageBuffer = new List<string>();
 
         internal void WriteLogEntry(LogEntry entry)
         {
-            if (currentLogLevel != entry.Level || logMessageBuffer.Count > 4)
-            {
-                // Write accumulated log messages of the same kind
-                DoWriteLogMessage(currentLogLevel, string.Join("\n", logMessageBuffer));
-                logMessageBuffer.Clear();
+            DoWriteLogMessage(entry.Level, entry.Text);
 
-                currentLogLevel = entry.Level;
-            }
+            //if (currentLogLevel != entry.Level || logMessageBuffer.Count > 2)
+            //{
+            //    // Write accumulated log messages of the same kind
+            //    DoWriteLogMessage(currentLogLevel, string.Join("\n", logMessageBuffer));
+            //    logMessageBuffer.Clear();
 
-            logMessageBuffer.Add(entry.Text);
+            //    currentLogLevel = entry.Level;
+            //}
+
+            //logMessageBuffer.Add(entry.Text);
         }
 
         private void DoWriteLogMessage(LogLevel level, string text)
@@ -126,7 +128,7 @@ namespace Patcher.UI.Windows
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
             {
-                StatusLabel.Content = text;
+                StatusLabel.Content = text.TrimEnd('.');
                 StatusLabel.Foreground = brush;
 
                 if (string.IsNullOrEmpty(text))
