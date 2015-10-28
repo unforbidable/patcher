@@ -264,20 +264,20 @@ namespace Patcher.Rules
                 }
             }
 
-            // Create version.cs
-            CodeBuilder builder = new CodeBuilder(NamespaceName, VersionClassName, "//\n// Source file for version tracking.\n//\n\n");
-            builder.WriteCode(string.Format("public static readonly string {0} = \"{1}\";\n", VersionFieldName, Program.GetProgramVersionInfo()));
-            string versionCode = builder.ToString();
-            string versionFilePath = Path.Combine(cachePath, "version.cs");
-            var versionFile = engine.Context.DataFileProvider.GetDataFile(FileMode.Create, versionFilePath);
-            using (var stream = versionFile.Open())
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    writer.Write(versionCode);
-                }
-            }
-            sources.Add(versionFile.FullPath);
+            //// Create version.cs
+            //CodeBuilder builder = new CodeBuilder(NamespaceName, VersionClassName, "//\n// Source file for version tracking.\n//\n\n");
+            //builder.WriteCode(string.Format("public static readonly string {0} = \"{1}\";\n", VersionFieldName, Program.GetProgramVersionInfo()));
+            //string versionCode = builder.ToString();
+            //string versionFilePath = Path.Combine(cachePath, "version.cs");
+            //var versionFile = engine.Context.DataFileProvider.GetDataFile(FileMode.Create, versionFilePath);
+            //using (var stream = versionFile.Open())
+            //{
+            //    using (var writer = new StreamWriter(stream))
+            //    {
+            //        writer.Write(versionCode);
+            //    }
+            //}
+            //sources.Add(versionFile.FullPath);
 
             // Compile all sources
             Log.Info("Compiling rules for plugin {0}.", pluginFileName);
@@ -349,7 +349,7 @@ namespace Patcher.Rules
             {
                 // Version file is not needed to be cached
                 // new one will always be created when needed
-                versionFile.Delete();
+                //versionFile.Delete();
             }
         }
 
