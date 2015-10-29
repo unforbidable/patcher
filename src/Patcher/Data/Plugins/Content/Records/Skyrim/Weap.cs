@@ -170,35 +170,27 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         public bool IsPlayable { get { return !Data.Flags.HasFlag(WeaponFlags.NonPlayable); } set { SetWeaponFlag(WeaponFlags.NonPlayable, !value); } }
         public bool CanDrop { get { return !Data.Flags.HasFlag(WeaponFlags.CannotDrop); } set { SetWeaponFlag(WeaponFlags.CannotDrop, !value); } }
         public bool IsBackpackHidden { get { return Data.Flags.HasFlag(WeaponFlags.HideBackpack); } set { SetWeaponFlag(WeaponFlags.HideBackpack, value); } }
-        public bool IsRangeFixed { get { return Data.Flags2.HasFlag(WeaponFlags2.FixedRange); } set { SetWeaponFlag(WeaponFlags2.FixedRange, value); } }
-        public bool IsMinorCrime { get { return Data.Flags2.HasFlag(WeaponFlags2.MinorCrime); } set { SetWeaponFlag(WeaponFlags2.MinorCrime, value); } }
-        public bool IsBoundWeapon { get { return Data.Flags2.HasFlag(WeaponFlags2.BoundWeapon); } set { SetWeaponFlag(WeaponFlags2.BoundWeapon, value); } }
-        public bool IsNonHostile { get { return Data.Flags2.HasFlag(WeaponFlags2.NonHostile); } set { SetWeaponFlag(WeaponFlags2.NonHostile, value); } }
-        public bool CanUseInNormalCombat { get { return !Data.Flags2.HasFlag(WeaponFlags2.NotUsesInNormalCombat); } set { SetWeaponFlag(WeaponFlags2.NotUsesInNormalCombat, !value); } }
-        public bool IsAmmoUsed { get { return Data.Flags2.HasFlag(WeaponFlags2.NpcsUseAmmo); } set { SetWeaponFlag(WeaponFlags2.NpcsUseAmmo, value); } }
-        public bool IsPlayerOnly { get { return Data.Flags2.HasFlag(WeaponFlags2.PlayerOnly); } set { SetWeaponFlag(WeaponFlags2.PlayerOnly, value); } }
+        public bool IsRangeFixed { get { return Data.Flags2.HasFlag(WeaponFlags2.FixedRange); } set { SetWeaponFlag2(WeaponFlags2.FixedRange, value); } }
+        public bool IsMinorCrime { get { return Data.Flags2.HasFlag(WeaponFlags2.MinorCrime); } set { SetWeaponFlag2(WeaponFlags2.MinorCrime, value); } }
+        public bool IsBoundWeapon { get { return Data.Flags2.HasFlag(WeaponFlags2.BoundWeapon); } set { SetWeaponFlag2(WeaponFlags2.BoundWeapon, value); } }
+        public bool IsNonHostile { get { return Data.Flags2.HasFlag(WeaponFlags2.NonHostile); } set { SetWeaponFlag2(WeaponFlags2.NonHostile, value); } }
+        public bool CanUseInNormalCombat { get { return !Data.Flags2.HasFlag(WeaponFlags2.NotUsesInNormalCombat); } set { SetWeaponFlag2(WeaponFlags2.NotUsesInNormalCombat, !value); } }
+        public bool IsAmmoUsed { get { return Data.Flags2.HasFlag(WeaponFlags2.NpcsUseAmmo); } set { SetWeaponFlag2(WeaponFlags2.NpcsUseAmmo, value); } }
+        public bool IsPlayerOnly { get { return Data.Flags2.HasFlag(WeaponFlags2.PlayerOnly); } set { SetWeaponFlag2(WeaponFlags2.PlayerOnly, value); } }
 
         public bool IsCriticalEffectTriggeredOnDeath { get { return Critical.Flags.HasFlag(CriticalFlags.OnDeath); } set { SetCriticalFlag(CriticalFlags.OnDeath, value); } }
 
-        public bool CanCauseDismemberment { get { return Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode; } set { SetOnHitHehavior(OnHitBehavior.DismemberOnly, value); } }
-        public bool CanCauseLimbExplosion { get { return Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode; } set { SetOnHitHehavior(OnHitBehavior.ExplodeOnly, value); } }
+        public bool CanCauseDismemberment { get { return !Data.OnHitBehavior.HasFlag(OnHitBehavior.NoLimbDismember); } set { SetOnHitHehavior(OnHitBehavior.NoLimbDismember, !value); } }
+        public bool CanCauseLimbExplosion { get { return !Data.OnHitBehavior.HasFlag(OnHitBehavior.NoLimbExplosion); } set { SetOnHitHehavior(OnHitBehavior.NoLimbExplosion, !value); } }
 
         public string WorldModel { get; internal set; }
 
         private void SetOnHitHehavior(OnHitBehavior value, bool set)
         {
-            // Normal means both are already set - nothing to do
-            if (set && Data.OnHitBehavior != OnHitBehavior.Normal)
-            {
-                // Set both or this one
-                Data.OnHitBehavior = Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode ? OnHitBehavior.Normal : value;
-            }
-            // NoDismemberOrExplode means both are already unset - nothing to do
-            else if (!set && Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode)
-            {
-                // Set none or the other
-                Data.OnHitBehavior = Data.OnHitBehavior != OnHitBehavior.Normal ? OnHitBehavior.NoDismemberOrExplode : (value == OnHitBehavior.ExplodeOnly ? OnHitBehavior.DismemberOnly : OnHitBehavior.ExplodeOnly);
-            }
+            if (set)
+                Data.OnHitBehavior |= value;
+            else
+                Data.OnHitBehavior &= ~value;
         }
 
         private void SetCriticalFlag(CriticalFlags value, bool set)
@@ -217,7 +209,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 Data.Flags &= ~value;
         }
 
-        private void SetWeaponFlag(WeaponFlags2 value, bool set)
+        private void SetWeaponFlag2(WeaponFlags2 value, bool set)
         {
             if (set)
                 Data.Flags2 |= value;
@@ -270,6 +262,15 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             {
                 return string.Format("Value={0} Weight={1} Damage={2}", Value, Weight, Damage);
             }
+        }
+
+        [Flags]
+        public enum OnHitBehavior
+        {
+            Normal = 0x00,
+            NoLimbExplosion = 0x01,
+            NoLimbDismember = 0x02,
+            NoLimbDismemberOrExplode = 0x03
         }
 
         [Flags]

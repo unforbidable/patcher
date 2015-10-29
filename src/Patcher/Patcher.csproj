@@ -81,7 +81,6 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\FurnitureEntry.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\GenderType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\GlobalVariableType.cs" />
-    <Compile Include="Data\Plugins\Content\Constants\Skyrim\OnHitBehavior.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\PotionFlags.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\MiscStat.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\PlayerAction.cs" />
