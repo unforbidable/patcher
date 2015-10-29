@@ -29,7 +29,7 @@ namespace Patcher.Rules.Compiled.Constants.Skyrim
         /// <summary>
         /// Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
         /// </summary>
-        Auto,
+        None,
         /// <summary>
         /// Indicates the <b>Potion</b> is food or a drink.
         /// </summary>

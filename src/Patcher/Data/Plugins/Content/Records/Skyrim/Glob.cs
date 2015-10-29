@@ -50,7 +50,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                     case GlobalVariableType.Short:
                         return Convert.ToInt16(InternalValue);
 
-                    case GlobalVariableType.Integer:
+                    case GlobalVariableType.Int:
                         return Convert.ToInt32(InternalValue);
 
                     case GlobalVariableType.Float:
@@ -69,7 +69,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                         InternalValue = Convert.ToSingle(Convert.ToInt16(value));
                         break;
 
-                    case GlobalVariableType.Integer:
+                    case GlobalVariableType.Int:
                         InternalValue = Convert.ToSingle(Convert.ToInt32(value));
                         break;
 
@@ -92,7 +92,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 switch (Type)
                 {
                     case GlobalVariableType.Short:
-                    case GlobalVariableType.Integer:
+                    case GlobalVariableType.Int:
                     case GlobalVariableType.Float:
                         Value = 0;
                         break;

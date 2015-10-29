@@ -29,42 +29,42 @@ namespace Patcher.Rules.Compiled.Constants.Skyrim
         /// <summary>
         /// Represents a hand to hand weapon.
         /// </summary>
-        HandToHand = 0,
+        HandToHand,
         /// <summary>
         /// Represents a one-handed sword weapon.
         /// </summary>
-        OneHandSword = 1,
+        OneHandSword,
         /// <summary>
         /// Represents a one-handed dagger weapon.
         /// </summary>
-        OneHandDagger = 2,
+        OneHandDagger,
         /// <summary>
         /// Represents a one-handed axe weapon.
         /// </summary>
-        OneHandAxe = 3,
+        OneHandAxe,
         /// <summary>
         /// Represents a one-handed mace weapon.
         /// </summary>
-        OneHandMace = 4,
+        OneHandMace,
         /// <summary>
         /// Represents a two-handed sword weapon.
         /// </summary>
-        TwoHandSword = 5,
+        TwoHandSword,
         /// <summary>
         /// Represents a two-handed axe weapon.
         /// </summary>
-        TwoHandAxe = 6,
+        TwoHandAxe,
         /// <summary>
         /// Represents a bow.
         /// </summary>
-        Bow = 7,
+        Bow ,
         /// <summary>
         /// Represents a staff.
         /// </summary>
-        Staff = 8,
+        Staff,
         /// <summary>
         /// Represents a crossbox.
         /// </summary>
-        Crossbow = 9
+        Crossbow
     }
 }

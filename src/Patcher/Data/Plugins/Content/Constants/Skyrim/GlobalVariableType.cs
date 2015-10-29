@@ -25,7 +25,7 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
     {
         None = 0,
         Short = (byte)'s',
-        Integer = (byte)'l',
+        Int = (byte)'l',
         Float = (byte)'f'
     }
 }
