@@ -44,6 +44,10 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         [Member(Names.ICON)]
         public string InventoryImage { get; set; }
 
+        // Field not shown in TES5Edit
+        [Member(Names.MICO)]
+        public string MessageIcon { get; set; }
+
         [Member(Names.EITM)]
         [Reference(Names.ENCH)]
         public uint Enchantment { get; set; }
@@ -140,6 +144,86 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         [Member(Names.CNAM)]
         [Reference(Names.WEAP)]
         public uint TemplateWeapon { get; set; }
+
+        public string WorldMode { get { return ModelData.Path; } set { ModelData.Path = value; } }
+
+        public int Value { get { return Misc.Value; } set { Misc.Value = value; } }
+        public float Weight { get { return Misc.Weight; } set { Misc.Weight = value; } }
+        public short Damage { get { return Misc.Damage; } set { Misc.Damage = value; } }
+
+        public ushort CriticalDamage { get { return Critical.Damage; } set { Critical.Damage = value; } }
+        public float CriticalChanceMultiplier { get { return Critical.Multiplier; } set { Critical.Multiplier = value; } }
+        public uint CriticalEffect { get { return Critical.SpellEffect; } set { Critical.SpellEffect = value; } }
+
+        public WeaponType WeaponType { get { return Data.WeaponType; } set { Data.WeaponType = value; } }
+        public float Speed { get { return Data.Speed; } set { Data.Speed = value; } }
+        public float Reach { get { return Data.Reach; } set { Data.Reach = value; } }
+        public AttackAnimation AttackAnimation { get { return Data.AttackAnimation; } set { Data.AttackAnimation = value; } }
+        public byte NumberOfProjectiles { get { return Data.Projectiles; } set { Data.Projectiles = value; } }
+        public float MinRange { get { return Data.MinRange; } set { Data.MinRange = value; } }
+        public float MaxRange { get { return Data.MaxRange; } set { Data.MaxRange = value; } }
+        public float AttackAnimationMultiplier { get { return Data.AttackAnimationMultiplier; } set { Data.AttackAnimationMultiplier = value; } }
+        public ActorValue Skill { get { return Data.Skill; } set { Data.Skill = value; } }
+        public ActorValue Resist { get { return Data.Resist; } set { Data.Resist = value; } }
+        public float Stagger { get { return Data.Stagger; } set { Data.Stagger = value; } }
+
+        public bool IsPlayable { get { return !Data.Flags.HasFlag(WeaponFlags.NonPlayable); } set { SetWeaponFlag(WeaponFlags.NonPlayable, !value); } }
+        public bool CanDrop { get { return !Data.Flags.HasFlag(WeaponFlags.CannotDrop); } set { SetWeaponFlag(WeaponFlags.CannotDrop, !value); } }
+        public bool IsBackpackHidden { get { return Data.Flags.HasFlag(WeaponFlags.HideBackpack); } set { SetWeaponFlag(WeaponFlags.HideBackpack, value); } }
+        public bool IsRangeFixed { get { return Data.Flags2.HasFlag(WeaponFlags2.FixedRange); } set { SetWeaponFlag(WeaponFlags2.FixedRange, value); } }
+        public bool IsMinorCrime { get { return Data.Flags2.HasFlag(WeaponFlags2.MinorCrime); } set { SetWeaponFlag(WeaponFlags2.MinorCrime, value); } }
+        public bool IsBoundWeapon { get { return Data.Flags2.HasFlag(WeaponFlags2.BoundWeapon); } set { SetWeaponFlag(WeaponFlags2.BoundWeapon, value); } }
+        public bool IsNonHostile { get { return Data.Flags2.HasFlag(WeaponFlags2.NonHostile); } set { SetWeaponFlag(WeaponFlags2.NonHostile, value); } }
+        public bool CanUseInNormalCombat { get { return !Data.Flags2.HasFlag(WeaponFlags2.NotUsesInNormalCombat); } set { SetWeaponFlag(WeaponFlags2.NotUsesInNormalCombat, !value); } }
+        public bool IsAmmoUsed { get { return Data.Flags2.HasFlag(WeaponFlags2.NpcsUseAmmo); } set { SetWeaponFlag(WeaponFlags2.NpcsUseAmmo, value); } }
+        public bool IsPlayerOnly { get { return Data.Flags2.HasFlag(WeaponFlags2.PlayerOnly); } set { SetWeaponFlag(WeaponFlags2.PlayerOnly, value); } }
+
+        public bool IsCriticalEffectTriggeredOnDeath { get { return Critical.Flags.HasFlag(CriticalFlags.OnDeath); } set { SetCriticalFlag(CriticalFlags.OnDeath, value); } }
+
+        public bool CanCauseDismemberment { get { return Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode; } set { SetOnHitHehavior(OnHitBehavior.DismemberOnly, value); } }
+        public bool CanCauseLimbExplosion { get { return Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode; } set { SetOnHitHehavior(OnHitBehavior.ExplodeOnly, value); } }
+
+        public string WorldModel { get; internal set; }
+
+        private void SetOnHitHehavior(OnHitBehavior value, bool set)
+        {
+            // Normal means both are already set - nothing to do
+            if (set && Data.OnHitBehavior != OnHitBehavior.Normal)
+            {
+                // Set both or this one
+                Data.OnHitBehavior = Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode ? OnHitBehavior.Normal : value;
+            }
+            // NoDismemberOrExplode means both are already unset - nothing to do
+            else if (!set && Data.OnHitBehavior != OnHitBehavior.NoDismemberOrExplode)
+            {
+                // Set none or the other
+                Data.OnHitBehavior = Data.OnHitBehavior != OnHitBehavior.Normal ? OnHitBehavior.NoDismemberOrExplode : (value == OnHitBehavior.ExplodeOnly ? OnHitBehavior.DismemberOnly : OnHitBehavior.ExplodeOnly);
+            }
+        }
+
+        private void SetCriticalFlag(CriticalFlags value, bool set)
+        {
+            if (set)
+                Critical.Flags |= value;
+            else
+                Critical.Flags &= ~value;
+        }
+
+        private void SetWeaponFlag(WeaponFlags value, bool set)
+        {
+            if (set)
+                Data.Flags |= value;
+            else
+                Data.Flags &= ~value;
+        }
+
+        private void SetWeaponFlag(WeaponFlags2 value, bool set)
+        {
+            if (set)
+                Data.Flags2 |= value;
+            else
+                Data.Flags2 &= ~value;
+        }
 
         class MiscData : Field
         {

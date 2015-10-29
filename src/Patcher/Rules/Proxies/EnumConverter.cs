@@ -73,6 +73,26 @@ namespace Patcher.Rules.Proxies
         {
             return (ArmorSkillUsage)ConvertUsing(skillToUsageMap, value);
         }
+        
+        public static ActorValue ToActorValue(this Skills value)
+        {
+            return ConvertByName<ActorValue>(value);
+        }
+
+        public static Skills ToSkill(this ActorValue value)
+        {
+            return ConvertByName<Skills>(value);
+        }
+
+        public static ActorValue ToActorValue(this Resistances value)
+        {
+            return ConvertByName<ActorValue>(value);
+        }
+
+        public static Resistances ToResistance(this ActorValue value)
+        {
+            return ConvertByName<Resistances>(value);
+        }
 
         public static BodyNodes ToBodyNodes(this BodyParts value)
         {
@@ -84,6 +104,16 @@ namespace Patcher.Rules.Proxies
         {
             // Body node and body part are 1:1
             return (BodyParts)value;
+        }
+
+        public static WeaponType ToType(this WeaponTypes value)
+        {
+            return ConvertByName<WeaponType>(value);
+        }
+
+        public static WeaponTypes ToTypes(this WeaponType value)
+        {
+            return ConvertByName<WeaponTypes>(value);
         }
 
         static IDictionary<Enum, Enum> typeToScriptPropertyTypeMap = new SortedDictionary<Enum, Enum>()
@@ -187,6 +217,31 @@ namespace Patcher.Rules.Proxies
         public static SoundLevels ToSoundLevels(this SoundLevel value)
         {
             return (SoundLevels)ConvertUsing(soundLevelToLevels, value);
+        }
+
+        public static AttackAnimation ToAttackAnimation(this Animations value)
+        {
+            return ConvertByName<AttackAnimation>(value);
+        }
+
+        public static Animations ToAnimations(this AttackAnimation value)
+        {
+            return ConvertByName<Animations>(value);
+        }
+
+        private static T ConvertByName<T>(Enum value)
+        {
+            // TODO: Possibly cache conversion results or at least names and values
+            Type target = typeof(T);
+            string fromName = value.ToString();
+            var names = Enum.GetNames(target);
+            var values = Enum.GetValues(target);
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (fromName == names[i])
+                    return (T)values.GetValue(i);
+            }
+            throw new ArgumentException(value.GetType().Name + "." + value + " is not a valid value in this context.");
         }
 
         private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)
