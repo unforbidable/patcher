@@ -22,25 +22,49 @@ using System.Text;
 namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
     /// <summary>
-    /// Defines <b>Potion</b> types.
+    /// Defines <b>Weapon</b> types.
     /// </summary>
-    public enum PotionTypes
+    public enum WeaponTypes
     {
         /// <summary>
-        /// Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
+        /// Represents a hand to hand weapon.
         /// </summary>
-        None,
+        HandToHand,
         /// <summary>
-        /// Indicates the <b>Potion</b> is food or a drink.
+        /// Represents a one-handed sword weapon.
         /// </summary>
-        Food,
+        OneHandSword,
         /// <summary>
-        /// Indicates the <b>Potion</b> is a medicine.
+        /// Represents a one-handed dagger weapon.
         /// </summary>
-        Medicine,
+        OneHandDagger,
         /// <summary>
-        /// Indicates the <b>Potion</b> is a posion.
+        /// Represents a one-handed axe weapon.
         /// </summary>
-        Poison,
+        OneHandAxe,
+        /// <summary>
+        /// Represents a one-handed mace weapon.
+        /// </summary>
+        OneHandMace,
+        /// <summary>
+        /// Represents a two-handed sword weapon.
+        /// </summary>
+        TwoHandSword,
+        /// <summary>
+        /// Represents a two-handed axe weapon.
+        /// </summary>
+        TwoHandAxe,
+        /// <summary>
+        /// Represents a bow.
+        /// </summary>
+        Bow ,
+        /// <summary>
+        /// Represents a staff.
+        /// </summary>
+        Staff,
+        /// <summary>
+        /// Represents a crossbox.
+        /// </summary>
+        Crossbow
     }
 }

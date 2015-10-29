@@ -23,6 +23,7 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
     public enum ActorValue
     {
+        None = -1,
         Aggresion = 0,
         Confidence = 1,
         Energy = 2,
@@ -35,12 +36,12 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
         Block = 9,
         Smithing = 10,
         HeavyArmor = 11,
-        LightArmro = 12,
+        LightArmor = 12,
         Pickpocket = 13,
         Lockpicking = 14,
         Sneak = 15,
         Alchemy = 16,
-        Speech = 17,
+        Speechcraft = 17,
         Alteration = 18,
         Conjuration = 19,
         Destruction = 20,

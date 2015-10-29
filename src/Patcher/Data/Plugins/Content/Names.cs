@@ -108,6 +108,7 @@ namespace Patcher.Data.Plugins.Content
         public const string CNAM = "CNAM";
         public const string CNTO = "CNTO";
         public const string COED = "COED";
+        public const string CRDT = "CRDT";
         public const string CTDA = "CTDA";
         public const string DATA = "DATA";
         public const string DELE = "DELE";
@@ -116,6 +117,7 @@ namespace Patcher.Data.Plugins.Content
         public const string DNAM = "DNAM";
         public const string DSTD = "DSTD";
         public const string DSTF = "DSTF";
+        public const string EAMT = "EAMT";
         public const string EDID = "EDID";
         public const string EFID = "EFID";
         public const string EFIT = "EFIT";
@@ -127,8 +129,9 @@ namespace Patcher.Data.Plugins.Content
         public const string FULL = "FULL";
         public const string HEDR = "HEDR";
         public const string ICON = "ICON";
-        public const string INTV = "INTV";
+        public const string INAM = "INAM";
         public const string INCC = "INCC";
+        public const string INTV = "INTV";
         public const string KSIZ = "KSIZ";
         public const string KWDA = "KWDA";
         public const string LNAM = "LNAM";
@@ -150,6 +153,11 @@ namespace Patcher.Data.Plugins.Content
         public const string NAM3 = "NAM3";
         public const string NAM4 = "NAM4";
         public const string NAM5 = "NAM5";
+        public const string NAM6 = "NAM6";
+        public const string NAM7 = "NAM7";
+        public const string NAM8 = "NAM8";
+        public const string NAM9 = "NAM9";
+        public const string NNAM = "NNAM";
         public const string OBND = "OBND";
         public const string OFST = "OFST";
         public const string ONAM = "ONAM";
@@ -157,8 +165,11 @@ namespace Patcher.Data.Plugins.Content
         public const string SCRN = "SCRN";
         public const string SNAM = "SNAM";
         public const string TNAM = "TNAM";
+        public const string UNAM = "UNAM";
         public const string VMAD = "VMAD";
         public const string VNAM = "VNAM";
+        public const string WNAM = "WNAM";
+        public const string XNAM = "XNAM";
         public const string YNAM = "YNAM";
         public const string ZNAM = "ZNAM";
     }

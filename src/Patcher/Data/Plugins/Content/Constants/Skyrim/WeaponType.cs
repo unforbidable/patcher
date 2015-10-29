@@ -21,11 +21,17 @@ using System.Text;
 
 namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
-    public enum GlobalVariableType : byte
+    public enum WeaponType
     {
-        None = 0,
-        Short = (byte)'s',
-        Int = (byte)'l',
-        Float = (byte)'f'
+        HandToHand = 0,
+        OneHandSword = 1,
+        OneHandDagger = 2,
+        OneHandAxe = 3,
+        OneHandMace = 4,
+        TwoHandSword = 5,
+        TwoHandAxe = 6,
+        Bow = 7,
+        Staff = 8,
+        Crossbow = 9
     }
 }

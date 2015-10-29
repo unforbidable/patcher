@@ -22,25 +22,41 @@ using System.Text;
 namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
     /// <summary>
-    /// Defines <b>Potion</b> types.
+    /// Defines resistances.
     /// </summary>
-    public enum PotionTypes
+    public enum Resistances
     {
         /// <summary>
-        /// Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
+        /// Represents no resistance.
         /// </summary>
         None,
         /// <summary>
-        /// Indicates the <b>Potion</b> is food or a drink.
+        /// Represents normal damage resistance.
         /// </summary>
-        Food,
+        DamageResist,
         /// <summary>
-        /// Indicates the <b>Potion</b> is a medicine.
+        /// Represents poison resistance.
         /// </summary>
-        Medicine,
+        PoisonResist,
         /// <summary>
-        /// Indicates the <b>Potion</b> is a posion.
+        /// Represents fire resistance.
         /// </summary>
-        Poison,
+        FireResist,
+        /// <summary>
+        /// Represents shock resistance.
+        /// </summary>
+        ShockResist,
+        /// <summary>
+        /// Represents frost resistance.
+        /// </summary>
+        FrostResist,
+        /// <summary>
+        /// Represents magic resistance.
+        /// </summary>
+        MagicResist,
+        /// <summary>
+        /// Represents disease resistance.
+        /// </summary>
+        DiseaseResist
     }
 }

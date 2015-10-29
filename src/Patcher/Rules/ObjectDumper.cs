@@ -145,9 +145,9 @@ namespace Patcher.Rules
                                 anyOutput = true;
                             }
 
-                            if (!anyOutput)
+                            if (!anyOutput && CurrentDepth >= 2)
                             {
-                                // ToString if no properties and not an enumerable
+                                // ToString if no properties and not an enumerable, unless current depth < 2
                                 DumpText(value.ToString());
                             }
 

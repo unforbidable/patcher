@@ -21,11 +21,26 @@ using System.Text;
 
 namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
-    public enum GlobalVariableType : byte
+    public enum AttackAnimation : byte
     {
-        None = 0,
-        Short = (byte)'s',
-        Int = (byte)'l',
-        Float = (byte)'f'
+        Default = 255,
+        AttackLeft = 26,
+        AttackRight = 32,
+        Attack3 = 38,
+        Attack4 = 44,
+        Attack5 = 50,
+        Attack6 = 56,
+        Attack7 = 62,
+        Attack8 = 68,
+        AttackLoop = 74,
+        AttackSpin = 80,
+        AttackSpin2 = 86,
+        PlaceMine = 97,
+        PlaceMine2 = 103,
+        AttackThrow = 109,
+        AttackThrow2 = 115,
+        AttackThrow3 = 121,
+        AttackThrow4 = 127,
+        AttackThrow5 = 133
     }
 }
