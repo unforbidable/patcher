@@ -53,7 +53,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         public uint Enchantment { get; set; }
 
         [Member(Names.EAMT)]
-        public ushort EnchantmentAmount { get; set; }
+        public ushort? EnchantmentAmount { get; set; }
 
         [Member(Names.DEST, Names.DSTD, Names.DSTF)]
         private DestructionData Destruction { get; set; }

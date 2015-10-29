@@ -250,7 +250,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
         {
             get
             {
-                return record.EnchantmentAmount;
+                return record.EnchantmentAmount.HasValue ? (int)record.EnchantmentAmount : 0;
             }
 
             set
