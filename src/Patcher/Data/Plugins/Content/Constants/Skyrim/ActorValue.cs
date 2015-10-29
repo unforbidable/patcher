@@ -23,6 +23,7 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
     public enum ActorValue
     {
+        None = -1,
         Aggresion = 0,
         Confidence = 1,
         Energy = 2,
