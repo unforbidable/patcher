@@ -124,7 +124,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         string WorldModel { get; set; }
 
         /// <summary>
-        /// Gets or sets the <b>Static</b> object that will be shown when this is used <b>Weapon</b> in first person.
+        /// Gets or sets the <b>Static</b> object that will be shown when this <b>Weapon</b> is used in first person.
         /// </summary>
         IStat FirstPersonModel { get; set; }
 
@@ -179,7 +179,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         IForm AttackLoopSound { get; set; }
 
         /// <summary>
-        /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> misses.
+        /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> misses or runs out of ammo.
         /// </summary>
         IForm AttackFailSound { get; set; }
 
@@ -234,7 +234,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         Animations AttackAnimation { get; set; }
 
         /// <summary>
-        /// Gets or sets the increase or decrease of the speed of the attack animations this used by this <b>Weapon</b>.
+        /// Gets or sets the increase or decrease of the speed of the attack animations used by this <b>Weapon</b>.
         /// </summary>
         float AttackAnimationMultiplier { get; set; }
 
