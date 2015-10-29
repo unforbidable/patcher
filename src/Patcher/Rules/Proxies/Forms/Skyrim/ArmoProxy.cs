@@ -229,12 +229,12 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.EquipType);
+                return Provider.CreateReferenceProxy<IForm>(record.Race);
             }
             set
             {
                 EnsureWritable();
-                record.EquipType = value.ToFormId();
+                record.Race = value.ToFormId();
             }
         }
 
