@@ -23,7 +23,7 @@ namespace Patcher.Data.Plugins.Content.Constants.Skyrim
 {
     public enum WeaponType
     {
-        HandToHandMelee = 0,
+        HandToHand = 0,
         OneHandSword = 1,
         OneHandDagger = 2,
         OneHandAxe = 3,

@@ -41,7 +41,7 @@ namespace Patcher.Rules.Compiled.Constants.Skyrim
         /// <summary>
         /// Represents the <b>Marksman</b> skill.
         /// </summary>
-        Marksman,
+        Archery,
         /// <summary>
         /// Represents the <b>Block</b> skill.
         /// </summary>
