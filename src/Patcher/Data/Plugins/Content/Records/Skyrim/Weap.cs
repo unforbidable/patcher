@@ -145,6 +145,17 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         [Reference(Names.WEAP)]
         public uint TemplateWeapon { get; set; }
 
+        protected override void BeforeWrite(RecordWriter writer)
+        {
+            // Sent ench ammount to null if no enchantment assigned
+            if (Enchantment == 0)
+                EnchantmentAmount = null;
+
+            // Ensure enchantment amount is set (at least zero) if enchantment is assigned
+            else if (EnchantmentAmount == null)
+                EnchantmentAmount = 0;
+        }
+
         public string WorldMode { get { return ModelData.Path; } set { ModelData.Path = value; } }
 
         public int Value { get { return Misc.Value; } set { Misc.Value = value; } }
