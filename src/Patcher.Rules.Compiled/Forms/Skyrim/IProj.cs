@@ -106,22 +106,22 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Light</b> caused by this <b>Projectile</b>.
         /// </summary>
-        IForm Light { get; set; }
+        ILigh Light { get; set; }
 
         /// <summary>
         /// Gets or sets the default weapon source of this <b>Projectile</b>.
         /// </summary>
-        IForm DefaultWeaponSource { get; set; }
+        IWeap DefaultWeaponSource { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> caused by this <b>Projectile</b>.
         /// </summary>
-        IForm Sound { get; set; }
+        ISndr Sound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> which is played when this <b>Projectile</b> is disabled.
         /// </summary>
-        IForm DisableSound { get; set; }
+        ISndr DisableSound { get; set; }
 
         /// <summary>
         /// Gets or sets the value that indicates whether this <b>Projectile</b> can be disabled.
@@ -168,7 +168,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Explosion</b> caused by this <b>Projectile</b>.
         /// </summary>
-        IForm Explosion { get; set; }
+        IExpl Explosion { get; set; }
 
         /// <summary>
         /// Gets or sets the value that indicates whether the explosion caused by this <b>Projectile</b> is triggered on the impact.
@@ -188,7 +188,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Sound</b> of the countdown timer that triggers the explosion of this <b>Projectile</b>.
         /// </summary>
-        IForm ExplosionCountdownSound { get; set; }
+        ISndr ExplosionCountdownSound { get; set; }
 
         /// <summary>
         /// Gets or sets the value that indicates whether this <b>Projectile</b> causes a muzzle flash.
@@ -198,7 +198,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the muzzle flash <b>Light</b> caused by this <b>Projectile</b>.
         /// </summary>
-        IForm MuzzleFlashLight { get; set; }
+        ILigh MuzzleFlashLight { get; set; }
 
         /// <summary>
         /// Gets or sets the path to the model (.nif file) of the muzzle flash caused by this <b>Projectile</b>.
@@ -213,11 +213,11 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the decal <b>Texture</b> of this <b>Projectile</b>.
         /// </summary>
-        IForm DecalData { get; set; }
+        ITxst DecalData { get; set; }
 
         /// <summary>
-        /// Gets or sets the <b>Collision</b> layer of this <b>Projectile</b>.
+        /// Gets or sets the <b>Collision Layer</b> of this <b>Projectile</b>.
         /// </summary>
-        IForm CollisionLayer { get; set; }
+        IColl CollisionLayer { get; set; }
     }
 }

@@ -55,17 +55,17 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is picked up.
         /// </summary>
-        IForm PickUpSound { get; set; }
+        ISndr PickUpSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is put down.
         /// </summary>
-        IForm PutDownSound { get; set; }
+        ISndr PutDownSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is used.
         /// </summary>
-        IForm UseSound { get; set; }
+        ISndr UseSound { get; set; }
 
         /// <summary>
         /// Gets or sets the weight of this <b>Potion</b>.

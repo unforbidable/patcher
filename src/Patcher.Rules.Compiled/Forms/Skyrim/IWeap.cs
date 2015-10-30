@@ -46,7 +46,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Enchantment</b> of this <b>Weapon</b>.
         /// </summary>
-        IForm Enchantment { get; set; }
+        IEnch Enchantment { get; set; }
 
         /// <summary>
         /// Gets or sets the charge of the enchantment of this <b>Weapon</b>.
@@ -141,62 +141,62 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Impact Data Set</b> used when attacking with this <b>Weapon</b>.
         /// </summary>
-        IForm ImpactDataSet { get; set; }
+        IIpds ImpactDataSet { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Impact Data Set</b> used when bashing or blocking with this <b>Weapon</b>.
         /// </summary>
-        IForm BlockImpactDataSet { get; set; }
+        IIpds BlockImpactDataSet { get; set; }
 
         /// <summary>
         /// Gets or sets the alternate <b>Material</b> used when bashing or blocking with this <b>Weapon</b>.
         /// </summary>
-        IForm AlternateBlockMaterial { get; set; }
+        IMatt AlternateBlockMaterial { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is picked up.
         /// </summary>
-        IForm PickUpSound { get; set; }
+        ISndr PickUpSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is put down.
         /// </summary>
-        IForm PutDownSound { get; set; }
+        ISndr PutDownSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is used.
         /// </summary>
-        IForm AttackSound { get; set; }
+        ISndr AttackSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is used in first person.
         /// </summary>
-        IForm FirstPersonAttackSound { get; set; }
+        ISndr FirstPersonAttackSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> loop that plays when this <b>Weapon</b> is used.
         /// </summary>
-        IForm AttackLoopSound { get; set; }
+        ISndr AttackLoopSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> misses or runs out of ammo.
         /// </summary>
-        IForm AttackFailSound { get; set; }
+        ISndr AttackFailSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is idle.
         /// </summary>
-        IForm IdleSound { get; set; }
+        ISndr IdleSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is equipped.
         /// </summary>
-        IForm EquipSound { get; set; }
+        ISndr EquipSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is unequipped.
         /// </summary>
-        IForm UnequipSound { get; set; }
+        ISndr UnequipSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="Skills">Skill</see> that will be used when this <b>Weapon</b> is wielded.
@@ -206,7 +206,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Equip Type</b> of this <b>Weapon</b>.
         /// </summary>
-        IForm EquipType { get; set; }
+        IEqup EquipType { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="IFormCollection{IKywd}"/> containing <b>Keywords</b> associated with this <b>Weapon</b>.
@@ -251,7 +251,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the critical effect e.i. <b>Spell</b> caused by this <b>Weapon</b>.
         /// </summary>
-        IForm CriticalEffect { get; set; }
+        ISpel CriticalEffect { get; set; }
 
         /// <summary>
         /// Gets or sets the value that indicates whether the critical effect of this <b>Weapon</b> is always applied on death.

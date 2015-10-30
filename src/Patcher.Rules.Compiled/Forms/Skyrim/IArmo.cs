@@ -52,7 +52,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Enchantment</b> of this <b>Armor</b>.
         /// </summary>
-        IForm Enchantment { get; set; }
+        IEnch Enchantment { get; set; }
 
         /// <summary>
         /// Gets or sets the path to the world model (.nif file) that will be used for this <b>Armor</b> when the player character is a male.
@@ -87,32 +87,32 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Armor</b> is picked up.
         /// </summary>
-        IForm PickUpSound { get; set; }
+        ISndr PickUpSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Armor</b> is put down.
         /// </summary>
-        IForm PutDownSound { get; set; }
+        ISndr PutDownSound { get; set; }
 
         /// <summary>
         /// Gets or sets the shield <b>Equip Type</b> (shields only).
         /// </summary>
-        IForm EquipType { get; set; }
+        IEqup EquipType { get; set; }
 
         /// <summary>
         /// Gets or sets the shield bash <b>Impact Data Set</b> (shields only).
         /// </summary>
-        IForm BlockImpactDataSet { get; set; }
+        IIpds BlockImpactDataSet { get; set; }
 
         /// <summary>
         /// Gets or sets the alternate <b>Material</b> used when bashing or blocking (shields only).
         /// </summary>
-        IForm AlternateBlockMaterial { get; set; }
+        IMatt AlternateBlockMaterial { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Race</b> that is allowed to wear this <b>Armor</b>.
         /// </summary>
-        IForm Race { get; set; }
+        IRace Race { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="IFormCollection{IKywd}"/> containing <b>Keywords</b> associated with this <b>Armor</b>.
