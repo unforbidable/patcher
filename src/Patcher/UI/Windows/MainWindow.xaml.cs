@@ -168,6 +168,9 @@ namespace Patcher.UI.Windows
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => 
             {
+                if (logItems.Count > 20000)
+                    logItems.RemoveAt(0);
+
                 logItems.Add(new LogItem()
                 {
                     Brush = brush,
