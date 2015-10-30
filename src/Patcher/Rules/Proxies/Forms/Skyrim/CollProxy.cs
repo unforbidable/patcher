@@ -23,8 +23,8 @@ using System.Text;
 
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
-    [Proxy(typeof(ISndr))]
-    public sealed class SndrProxy : FormProxy<Sndr>, ISndr
+    [Proxy(typeof(IColl))]
+    public sealed class CollProxy : FormProxy<Coll>, IColl 
     {
     }
 }
