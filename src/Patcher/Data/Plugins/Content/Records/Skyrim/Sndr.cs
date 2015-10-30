@@ -22,6 +22,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.SNDR)]
+    [Dummy]
     public sealed class Sndr : GenericFormRecord
     {
     }

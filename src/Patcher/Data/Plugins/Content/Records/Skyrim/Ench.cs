@@ -22,6 +22,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.ENCH)]
+    [Dummy]
     public sealed class Ench : GenericFormRecord
     {
     }

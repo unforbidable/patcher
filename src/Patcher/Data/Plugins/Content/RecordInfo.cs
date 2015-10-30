@@ -30,6 +30,9 @@ namespace Patcher.Data.Plugins.Content
         readonly int version;
         public int Version { get { return version; } }
 
+        readonly bool isDummyRecord;
+        public bool IsDummyRecord { get { return isDummyRecord; } }
+
         readonly CompoundInfo compound;
         readonly ConstructorInfo ctor;
 
@@ -55,6 +58,9 @@ namespace Patcher.Data.Plugins.Content
             {
                 version = va.Version;
             }
+
+            var da = type.GetCustomAttributes(typeof(DummyAttribute), false).Cast<DummyAttribute>().FirstOrDefault();
+            isDummyRecord = da != null;
 
             ctor = type.GetConstructor(paramlessTypes);
             compound = InfoProvider.GetCompoundInfo(type);

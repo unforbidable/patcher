@@ -22,6 +22,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.EQUP)]
+    [Dummy]
     public sealed class Equp : GenericFormRecord
     {
     }
