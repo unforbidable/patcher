@@ -54,5 +54,10 @@ namespace Patcher.Rules.Compiled.Helpers
         /// <param name="value"></param>
         /// <param name="name"></param>
         void Dump(object value, string name);
+
+        /// <summary>
+        /// Pauses the processing of rules.
+        /// </summary>
+        void Pause();
     }
 }

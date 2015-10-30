@@ -532,7 +532,7 @@ namespace Patcher.Rules
         private string StripDebug(string code)
         {
             // Comment out all calls to Debug class
-            code = Regex.Replace(code, @"(\s*)(Debug\s*\.\s*(Message|Assert|Dump|Break)\s*\([^;]*;)", @"$1/* $2 */", RegexOptions.Multiline);
+            code = Regex.Replace(code, @"(\s*)(Debug\s*\.\s*(Message|Assert|Dump|Break|Pause)\s*\([^;]*;)", @"$1/* $2 */", RegexOptions.Multiline);
             return code;
         }
 
