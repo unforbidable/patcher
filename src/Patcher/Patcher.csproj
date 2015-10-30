@@ -103,6 +103,17 @@
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Txst.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Spel.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Sndr.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Race.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Matt.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Ligh.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Ipds.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Equp.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Ench.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Expl.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Coll.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Flst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Proj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
@@ -187,6 +198,7 @@
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\AmmoProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\ProjProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\SndrProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\WeapProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyFeatureFactory.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldCollectionProxy.cs" />
