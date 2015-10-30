@@ -349,6 +349,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
+        /// Converts this form to a <b>Magic Effect</b> form or returns <c>null</c> if this form is not a <b>Magic Effect</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IMgef AsMgef(this IForm form)
+        {
+            return form as IMgef;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Magic Effect</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IMgef> OfMgef(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IMgef>();
+        }
+
+        /// <summary>
         /// Converts this form to a <b>Race</b> form or returns <c>null</c> if this form is not a <b>Race</b> form.
         /// </summary>
         /// <param name="form"></param>

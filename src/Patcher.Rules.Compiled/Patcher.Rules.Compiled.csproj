@@ -70,6 +70,7 @@
     <Compile Include="Forms\Skyrim\IEqup.cs" />
     <Compile Include="Forms\Skyrim\IIpds.cs" />
     <Compile Include="Forms\Skyrim\ILigh.cs" />
+    <Compile Include="Forms\Skyrim\IMgef.cs" />
     <Compile Include="Forms\Skyrim\IProj.cs" />
     <Compile Include="Forms\Skyrim\IMatt.cs" />
     <Compile Include="Forms\Skyrim\IRace.cs" />

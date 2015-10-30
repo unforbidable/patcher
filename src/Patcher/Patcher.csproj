@@ -104,6 +104,7 @@
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Mgef.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Txst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Spel.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Sndr.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\AmmoProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\MgefProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\TxstProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\SpelProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\SndrProxy.cs" />

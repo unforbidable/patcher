@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Patcher.Rules.Compiled.Forms;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
@@ -25,11 +26,11 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             }
         }
 
-        public IForm BaseEffect
+        public IMgef BaseEffect
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(Field.BaseEffect);
+                return Provider.CreateReferenceProxy<IMgef>(Field.BaseEffect);
             }
 
             set

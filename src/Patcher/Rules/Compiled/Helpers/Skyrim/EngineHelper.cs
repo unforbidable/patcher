@@ -23,6 +23,7 @@ using Patcher.Rules.Compiled.Forms;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Rules.Proxies;
 using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 
 namespace Patcher.Rules.Compiled.Helpers.Skyrim
 {
@@ -36,7 +37,7 @@ namespace Patcher.Rules.Compiled.Helpers.Skyrim
             this.context = context;
         }
 
-        public IEffect CreateEffect(IForm baseEffect, float magnitude, int area, int duration)
+        public IEffect CreateEffect(IMgef baseEffect, float magnitude, int area, int duration)
         {
             return (IEffect)context.Rule.Engine.ProxyProvider.CreateFieldProxy(new Effect()
             {
