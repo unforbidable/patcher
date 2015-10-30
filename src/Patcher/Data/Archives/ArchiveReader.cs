@@ -110,17 +110,13 @@ namespace Patcher.Data.Archives
                 long loaded = 0;
                 string filename = Path.GetFileName(archivePath);
 
-                using (var progress = Program.Status.StartProgress("Indexing archive"))
-                { 
-                    // Read file names
-                    foreach (var folder in folders)
+                // Read file names
+                foreach (var folder in folders)
+                {
+                    foreach (var file in folder.Files)
                     {
-                        foreach (var file in folder.Files)
-                        {
-                            file.Filename = reader.ReadStringZeroTerminated();
-                            loaded++;
-                        }
-                        progress.Update(loaded, total, filename);
+                        file.Filename = reader.ReadStringZeroTerminated();
+                        loaded++;
                     }
                 }
 

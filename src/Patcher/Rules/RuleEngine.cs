@@ -82,62 +82,74 @@ namespace Patcher.Rules
         public void Load()
         {
             Log.Info("Loading rules");
-            Stopwatch sw1 = new Stopwatch();
-            sw1.Start();
 
-            foreach (var pluginFileName in context.Plugins.Select(p => p.FileName))
+            using (var progress = Display.StartProgress("Loading rules"))
             {
-                var compiler = new RuleCompiler(this, pluginFileName);
+                const int pluginWorthPoints = 2;
+                long total = context.Plugins.Count * pluginWorthPoints;
+                long current = 0;
 
-                string path = Path.Combine(Program.ProgramFolder, Program.ProgramRulesFolder, RulesFolder, pluginFileName);
-                foreach (var file in Context.DataFileProvider.FindDataFiles(path, "*.rules"))
+                foreach (var pluginFileName in context.Plugins.Select(p => p.FileName))
                 {
-                    using (var stream = file.Open())
-                    {
-                        bool isDebugModeEnabled = DebugAll ||
-                            pluginFileName.Equals(DebugPluginFileName, StringComparison.OrdinalIgnoreCase) &&
-                            (DebugRuleFileName == null || Path.GetFileName(file.Name).Equals(DebugRuleFileName, StringComparison.OrdinalIgnoreCase));
+                    var compiler = new RuleCompiler(this, pluginFileName);
 
-                        int count = 0;
-                        using (RuleReader reader = new RuleReader(stream))
+                    string path = Path.Combine(Program.ProgramFolder, Program.ProgramRulesFolder, RulesFolder, pluginFileName);
+                    var files = Context.DataFileProvider.FindDataFiles(path, "*.rules").ToArray();
+
+                    total += files.Length;
+
+                    foreach (var file in files)
+                    {
+                        using (var stream = file.Open())
                         {
-                            foreach (var entry in reader.ReadRules())
+                            bool isDebugModeEnabled = DebugAll ||
+                                pluginFileName.Equals(DebugPluginFileName, StringComparison.OrdinalIgnoreCase) &&
+                                (DebugRuleFileName == null || Path.GetFileName(file.Name).Equals(DebugRuleFileName, StringComparison.OrdinalIgnoreCase));
+
+                            int count = 0;
+                            using (RuleReader reader = new RuleReader(stream))
                             {
-                                if (entry.Select == null && entry.Update == null && entry.Inserts.Count() == 0)
+                                foreach (var entry in reader.ReadRules())
                                 {
-                                    Log.Warning("Rule {0} in file {1} ignored because it lacks any operation", entry.Name, pluginFileName);
-                                    continue;
+                                    if (entry.Select == null && entry.Update == null && entry.Inserts.Count() == 0)
+                                    {
+                                        Log.Warning("Rule {0} in file {1} ignored because it lacks any operation", entry.Name, pluginFileName);
+                                        continue;
+                                    }
+
+                                    var metadata = new RuleMetadata()
+                                    {
+                                        PluginFileName = pluginFileName,
+                                        RuleFileName = Path.GetFileName(file.Name),
+                                        Name = entry.Name,
+                                        Description = entry.Description,
+                                    };
+
+                                    Log.Fine("Loading rule {0}\\{1}@{2}", metadata.PluginFileName, metadata.RuleFileName, metadata.Name);
+
+                                    compiler.Add(entry, metadata, isDebugModeEnabled);
+
+                                    count++;
                                 }
-
-                                var metadata = new RuleMetadata()
-                                {
-                                    PluginFileName = pluginFileName,
-                                    RuleFileName = Path.GetFileName(file.Name),
-                                    Name = entry.Name,
-                                    Description = entry.Description,
-                                };
-
-                                Log.Fine("Loading rule {0}\\{1}@{2}", metadata.PluginFileName, metadata.RuleFileName, metadata.Name);
-
-                                compiler.Add(entry, metadata, isDebugModeEnabled);
-
-                                count++;
                             }
+                            Log.Fine("Loaded {0} rule(s) from file {1}", count, stream.Name);
                         }
-                        Log.Fine("Loaded {0} rule(s) from file {1}", count, stream.Name);
+
+                        current++;
+                        progress.Update(current, total, string.Format("{0}\\{1}", pluginFileName, Path.GetFileName(file.Name)));
+                    }
+
+                    if (compiler.HasRules)
+                    {
+                        if (compiler.CompileAll())
+                        {
+                            rules.Add(pluginFileName, new List<IRule>(compiler.CompiledRules));
+                        }
                     }
                 }
 
-                if (compiler.HasRules)
-                {
-                    if (compiler.CompileAll())
-                    {
-                        rules.Add(pluginFileName, new List<IRule>(compiler.CompiledRules));
-                    }
-                }
+                current += pluginWorthPoints;
             }
-            sw1.Stop();
-            Log.Fine("Task finished in {0}ms", sw1.ElapsedMilliseconds);
         }
 
         public void Run()
@@ -145,18 +157,18 @@ namespace Patcher.Rules
             int totalRulesToRun = rules.SelectMany(p => p.Value).Count();
             if (totalRulesToRun == 0)
             {
-                Log.Warning("No rules loaded, nothing to run.");
+                Log.Warning("No rules loaded, nothing to do.");
                 return;
             }
 
-            using (var progress = Program.Status.StartProgress("Running rules"))
+            using (var progress = Display.StartProgress("Executing rules"))
             {
                 int run = 0;
                 foreach (var pluginFileName in rules.Keys)
                 {
                     foreach (var rule in rules[pluginFileName])
                     {
-                        Log.Info("Running rule {0}", rule);
+                        Log.Info("Executing rule {0}", rule);
                         progress.Update(run++, totalRulesToRun, "{0}", rule);
 
                         // Run rule
@@ -165,7 +177,6 @@ namespace Patcher.Rules
                         {
                             runner.Run();
                         }
-#if !DEBUG
                         // Catch any unhandled exception in a Release build only
                         catch (Exception ex)
                         {
@@ -179,7 +190,7 @@ namespace Patcher.Rules
                             }
                             Log.Fine(ex.ToString());
 
-                            var choice = Program.Prompt.Choice("Continue executing rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
+                            var choice = Display.Choice("Continue executing rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
                             if (choice == ChoiceOption.Cancel)
                             {
                                 Log.Warning("Rule execution has been aborted.");
@@ -191,15 +202,11 @@ namespace Patcher.Rules
                                 continue;
                             }
                         }
-#endif
-                        finally
-                        {
-                        }
 
                         // Create/Override/Update forms when the rule is completed
                         ActivePlugin.AddForms(runner.Result);
 
-                        Log.Info("Completed rule with {0} updates and {1} inserts", runner.Updated, runner.Created);
+                        Log.Info("Rule completed with {0} updates and {1} inserts", runner.Updated, runner.Created);
                     }
 
                     // After all rules of a plugin were run

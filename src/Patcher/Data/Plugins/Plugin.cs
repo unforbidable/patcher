@@ -90,7 +90,7 @@ namespace Patcher.Data.Plugins
                 int overriding = 0;
                 int added = 0;
 
-                using (var progress = Program.Status.StartProgress("Indexing forms"))
+                using (var progress = Display.StartProgress("Indexing forms"))
                 {
 
                     if (context.AsyncFormIndexing)
@@ -116,7 +116,7 @@ namespace Patcher.Data.Plugins
                             if (form.IsOverriding)
                                 overriding++;
 
-                            progress.Update(reader.TotalRecordsFound, header.NumRecords, "{0}: {1}", fileName, form.FormKind);
+                            progress.Update(reader.TotalRecordsFound, header.NumRecords, "{0} ({1})", fileName, form.FormKind);
                         }
                     }
                     else
@@ -272,7 +272,7 @@ namespace Patcher.Data.Plugins
 
                     using (var loader = new FormLoader(this, reader, lazyLoading, jobs))
                     {
-                        using (var progress = Program.Status.StartProgress("Loading forms"))
+                        using (var progress = Display.StartProgress("Loading forms"))
                         {
                             foreach (Form form in formsToLoad)
                             {
@@ -283,7 +283,9 @@ namespace Patcher.Data.Plugins
                                 if (formsToLoadIsUnknown)
                                     formsToLoadCount++;
 
-                                progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), FileName);
+                                var lastFormLoaded = loader.LastFormLoaded;
+                                progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast),
+                                    "{0} ({1})", fileName, lastFormLoaded == null ? "..." : lastFormLoaded.ToString());
                             }
 
                             if (context.AsyncFormLoading)
@@ -294,8 +296,10 @@ namespace Patcher.Data.Plugins
                                 // Show progress while loader is still busy
                                 while (loader.IsBusy)
                                 {
-                                    System.Threading.Thread.Sleep(50);
-                                    progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), FileName);
+                                    System.Threading.Thread.Sleep(60);
+                                    var lastFormLoaded = loader.LastFormLoaded;
+                                    progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), 
+                                        "{0} {1}", fileName, lastFormLoaded == null ? "..." : lastFormLoaded.ToString());
                                 }
 
                                 // Wait for loader to finish completely
@@ -497,7 +501,7 @@ namespace Patcher.Data.Plugins
             int count = 0;
             long total = Forms.Count();
 
-            using (var progress = Program.Status.StartProgress("Saving plugin"))
+            using (var progress = Display.StartProgress("Saving plugin"))
             {
                 // Save plugin to memory stream
                 using (var stream = new MemoryStream())

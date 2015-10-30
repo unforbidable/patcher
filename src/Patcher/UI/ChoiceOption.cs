@@ -26,6 +26,7 @@ namespace Patcher.UI
         Cancel,
         Ok,
         Yes,
-        No
+        No,
+        Continue
     }
 }

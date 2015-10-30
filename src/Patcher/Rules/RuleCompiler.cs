@@ -334,7 +334,7 @@ namespace Patcher.Rules
                 Log.Error("Error occured while compiling rules for plugin {0} with message: {1}", pluginFileName, ex.Message);
                 Log.Fine(ex.ToString());
 
-                var choice = Program.Prompt.Choice("Continue compiling rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
+                var choice = Display.Choice("Continue compiling rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
                 if (choice == ChoiceOption.Cancel)
                 {
                     Log.Warning("Rule loading has been aborted.");
@@ -532,7 +532,7 @@ namespace Patcher.Rules
         private string StripDebug(string code)
         {
             // Comment out all calls to Debug class
-            code = Regex.Replace(code, @"(\s*)(Debug\s*\.\s*(Message|Assert|Dump|Break)\s*\([^;]*;)", @"$1/* $2 */", RegexOptions.Multiline);
+            code = Regex.Replace(code, @"(\s*)(Debug\s*\.\s*(Message|Assert|Dump|Break|Pause)\s*\([^;]*;)", @"$1/* $2 */", RegexOptions.Multiline);
             return code;
         }
 

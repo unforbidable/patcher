@@ -26,9 +26,9 @@ namespace Patcher
 {
     public static class Log
     {
-        private static List<Logger> loggers = new List<Logger>();
+        private static List<ILogger> loggers = new List<ILogger>();
 
-        internal static void AddLogger(Logger logger)
+        internal static void AddLogger(ILogger logger)
         {
             lock (loggers)
             {

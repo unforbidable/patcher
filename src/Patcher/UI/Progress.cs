@@ -24,44 +24,72 @@ namespace Patcher.UI
 {
     public sealed class Progress : IDisposable
     {
-        public string Title { get; set; }
+        public string Title { get; private set; }
+        public long Current { get; private set; }
+        public long Total { get; private set; }
+        public string Text { get; private set; }
+        public bool IsCompleted { get { return Current == Total; } }
+
+        public event EventHandler Updated;
+        internal event EventHandler Disposed;
 
         Stopwatch stopwatch = new Stopwatch();
+        int lastUpdateTicks = 0;
 
-        readonly Status status;
+        const int minUpdateInterval = 50;
 
-        internal Progress(Status status, string title)
+        internal Progress(string title)
         {
-            this.status = status;
             Title = title;
             stopwatch.Start();
         }
 
-        public void Update(long current, long maximum, string text)
+        public void Update(long current, long total, string text)
         {
-            DoUpdate(current, maximum, text);
-        }
-
-        public void Update(long current, long maximum, string text, params object[] args)
-        {
-            DoUpdate(current, maximum, string.Format(text, args));
-        }
-
-        private void DoUpdate(long current, long maximum, string text)
-        {
-            status.UpdateProgress(this, new ProgressUpdateInfo()
+            if (CanUpdate(current, total))
             {
-               Current = current,
-               Maximum = maximum,
-               Text = string.Format("{0}: {1}", Title, text)
-            });
+                DoUpdate(current, total, text);
+            }
+        }
+
+        public void Update(long current, long total, string text, params object[] args)
+        {
+            if (CanUpdate(current, total))
+            {
+                DoUpdate(current, total, string.Format(text, args));
+            }
+        }
+
+        private bool CanUpdate(long current, long total)
+        {
+            return current == 0 || current == total || Environment.TickCount - lastUpdateTicks > minUpdateInterval;
+        }
+
+        private void DoUpdate(long current, long total, string text)
+        {
+            Current = current;
+            Total = total;
+            Text = text;
+
+            EventHandler temp = Updated;
+            if (temp != null)
+            {
+                temp(this, EventArgs.Empty);
+            }
+
+            lastUpdateTicks = Environment.TickCount;
         }
 
         public void Dispose()
         {
             stopwatch.Stop();
-            status.DisposeProgress(this, string.Format("{0} finished.", Title));
             Log.Fine("{0} finished in {1} ms", Title, stopwatch.ElapsedMilliseconds);
+
+            EventHandler temp = Disposed;
+            if (temp != null)
+            {
+                temp(this, EventArgs.Empty);
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"  
         x:Class="Patcher.UI.Windows.MainWindow"
         mc:Ignorable="d"
-        Title="Patcher" Height="600" Width="800" Background="{x:Null}" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
+        Title="Patcher" Height="600" Width="1000" Background="{x:Null}" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <!--Scrollbar Thumbs-->
         <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
@@ -112,6 +112,20 @@
         <DataTemplate DataType="{x:Type local:LogItem}">
             <TextBlock Foreground="{Binding Brush}" Text="{Binding Text}" TextWrapping="NoWrap" FontSize="13.333" FontFamily="Consolas" />
         </DataTemplate>
+
+        <Style TargetType="{x:Type ItemsControl}" x:Key="ChoiceViewerStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <ItemsPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate DataType="{x:Type local:ChoiceItem}">
+            <Button Background="{Binding Brush}" Content="{Binding Text}" ToolTip="{Binding Description}" FontSize="13.333" Margin="4" Padding="8,0" BorderBrush="{x:Null}" Foreground="White" Click="ChoiceButton_Click" Focusable="False" IsTabStop="False" />
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Border BorderThickness="2" Padding="2" BorderBrush="#FFB9B9B9">
@@ -125,7 +139,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Background="#FF323131" MouseDown="Border_MouseDown" Visibility="Collapsed">
+                <Border BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Background="#FF323131" Visibility="Collapsed">
                     <StackPanel Orientation="Horizontal" Opacity="0.75">
                         <Label x:Name="AppLabel" Content="Application Name 1.0.0" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FFFFF7F7" FontSize="13.333"/>
                     </StackPanel>
@@ -146,16 +160,26 @@
                 <Border x:Name="PromptControl" BorderBrush="#FFCDCDCD" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="2" Background="#FF303030" Visibility="Collapsed">
                     <StackPanel Orientation="Horizontal">
                         <Label x:Name="PromptLabel" Content="Prompt?" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FFB076D8" Background="Transparent" FontSize="13.333" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <Button x:Name="PromptYesButton" Content="Yes" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF76AE61" Foreground="White" Command="" Click="PromptYesButton_Click"/>
-                        <Button x:Name="PromptNoButton" Content="No" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FFBB6480" Foreground="White" Click="PromptNoButton_Click"/>
-                        <Button x:Name="PromptOkButton" Content="OK" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF628BC7" Foreground="White" Click="PromptOkButton_Click"/>
-                        <Button x:Name="PromptCancelButton" Content="Cancel" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF9C9C9C" Foreground="White" Click="PromptCancelButton_Click"/>
+                        <ItemsControl x:Name="ChoiceItemsControl" ItemsSource="{Binding}" Style="{StaticResource ChoiceViewerStyle}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
                     </StackPanel>
                 </Border>
                 <Border x:Name="StatusPanel" BorderBrush="#FFCDCDCD" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="3" Background="#FF303030" Visibility="Collapsed">
                     <DockPanel>
-                        <Label x:Name="StatusLabel" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FF59A619" MinWidth="200" Background="Transparent" FontSize="13.333" HorizontalAlignment="Right" VerticalAlignment="Top" Content=" "/>
-                        <ProgressBar x:Name="StatusProgressBar" Background="{x:Null}" BorderBrush="{x:Null}" Value="50" Margin="4" Visibility="Hidden"/>
+                        <Label x:Name="StatusLabel" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FF59A619" MinWidth="200" Background="Transparent" FontSize="13.333" Content=" " VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                        <Grid>
+                            <ProgressBar x:Name="StatusProgressBar" Background="#FF838383" BorderBrush="{x:Null}" Value="20" Margin="1" Foreground="#FF0A4219" Opacity="0.75"/>
+                            <TextBlock x:Name="StatusText" TextWrapping="NoWrap" Text=" " Foreground="White" FontSize="13.333" Margin="12,2,2,2" VerticalAlignment="Center" Visibility="{Binding Visibility, ElementName=StatusProgressBar}">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect ShadowDepth="2" BlurRadius="5"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </Grid>
                     </DockPanel>
                 </Border>
             </Grid>

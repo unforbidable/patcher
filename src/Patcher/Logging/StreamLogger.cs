@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Patcher.Logging
 {
-    public class StreamLogger : Logger, IDisposable
+    public class StreamLogger : ILogger, IDisposable
     {
         TextWriter writer;
         bool disposed = false;
@@ -50,9 +50,9 @@ namespace Patcher.Logging
             }
         }
 
-        internal override LogLevel MaxLogLevel { get { return LogLevel.Fine; } } 
+        public LogLevel MaxLogLevel { get { return LogLevel.Fine; } } 
 
-        internal override void WriteLogEntry(LogEntry entry)
+        public void WriteLogEntry(LogEntry entry)
         {
             lock (this)
             {

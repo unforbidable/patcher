@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Patcher.UI;
 
 namespace Patcher.Rules.Compiled.Helpers
 {
@@ -61,5 +62,9 @@ namespace Patcher.Rules.Compiled.Helpers
             dumper.DumpObject(name, value);
         }
 
+        public void Pause()
+        {
+            Display.Choice("Rule processing has been paused.", ChoiceOption.Continue);
+        }
     }
 }

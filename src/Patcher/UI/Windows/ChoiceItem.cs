@@ -16,24 +16,30 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Patcher.UI.Windows
 {
-    sealed class WindowPrompt : Prompt
+    public class ChoiceItem : INotifyPropertyChanged
     {
-        readonly WindowDisplay display;
+        public Brush Brush { get; set; }
+        public string Text { get; set; }
+        public string Description { get; set; }
 
-        public WindowPrompt(WindowDisplay display)
-        {
-            this.display = display;
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected override ChoiceOption OfferChoice(string message, ChoiceOption[] options)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            return display.Window.OfferChoice(message, options);
+            Application.Current.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                var handler = PropertyChanged;
+                if (handler != null)
+                    handler(this, new PropertyChangedEventArgs(propertyName));
+            }));
         }
     }
 }
