@@ -221,9 +221,6 @@ namespace Patcher
                                 {
                                     Log.Warning("Previously used Form IDs cannot be preserved because target plugin {0} could not be read: {1}", targetPluginFileName, ex.ToString());
                                 }
-                                finally
-                                {
-                                }
                             }
 
                             engine.Run();
@@ -240,16 +237,10 @@ namespace Patcher
                 {
                     Log.Error("Program aborted: " + ex.Message);
                 }
-#if !DEBUG
-                // Catch any unhandled exception in a Release build only
                 catch (Exception ex)
                 {
                     Log.Error("Program error: " + ex.Message);
                     Log.Fine(ex.ToString());
-                }
-#endif
-                finally
-                {
                 }
             }
 
