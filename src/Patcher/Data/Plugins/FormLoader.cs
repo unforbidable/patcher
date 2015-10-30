@@ -38,6 +38,7 @@ namespace Patcher.Data.Plugins
         public long Skipped { get { return sharedData.Skipped; } }
         public long Unsupported { get { return sharedData.Unsupported; } }
         public long Supported { get { return sharedData.Loaded - sharedData.Unsupported; } }
+        public Form LastFormLoaded { get { return sharedData.LastFormLoaded; } }
 
         public FormLoader(Plugin plugin, RecordReader stockReader, bool lazyLoading, int backgroundJobs)
         {
@@ -103,6 +104,8 @@ namespace Patcher.Data.Plugins
 
                 reader.ReadRecordAt(form.FilePosition, form.Record, sharedData.LazyLoading);
 
+                sharedData.LastFormLoaded = form;
+
                 if (form.IsDummyRecord)
                     Interlocked.Increment(ref sharedData.Unsupported);
 
@@ -164,6 +167,8 @@ namespace Patcher.Data.Plugins
             public bool LazyLoading { get; set; }
             public BlockingCollection<Form> FormsToLoad { get; set; }
             public AutoResetEvent WorkerCompleteEvent { get; set; }
+            public Form LastFormLoaded { get; set; }
+
             public long Loaded;
             public long Skipped;
             public long Unsupported;

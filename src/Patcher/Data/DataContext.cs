@@ -139,15 +139,18 @@ namespace Patcher.Data
         {
             Log.Info("Indexing files in default archives");
 
-            var sw1 = new Stopwatch();
-            sw1.Start();
-            foreach (string filename in GetDefaultArchives())
+            using (var progress = Display.StartProgress("Indexing default archives"))
             {
-                Log.Fine("Indexing files in archive: " + filename);
-                archives.AddArchive(filename);
+                long total = GetDefaultArchives().Count();
+                long current = 0;
+
+                foreach (string filename in GetDefaultArchives())
+                {
+                    Log.Fine("Indexing files in archive: " + filename);
+                    archives.AddArchive(filename);
+                    progress.Update(current++, total, filename);
+                }
             }
-            sw1.Stop();
-            Log.Fine("Indexing files in default archives finished in {0}ms", sw1.ElapsedMilliseconds);
 
             QuerySupportedTypes();
 

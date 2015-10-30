@@ -116,7 +116,7 @@ namespace Patcher.Data.Plugins
                             if (form.IsOverriding)
                                 overriding++;
 
-                            progress.Update(reader.TotalRecordsFound, header.NumRecords, "{0}: {1}", fileName, form.FormKind);
+                            progress.Update(reader.TotalRecordsFound, header.NumRecords, "{0} ({1})", fileName, form.FormKind);
                         }
                     }
                     else
@@ -283,7 +283,9 @@ namespace Patcher.Data.Plugins
                                 if (formsToLoadIsUnknown)
                                     formsToLoadCount++;
 
-                                progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), FileName);
+                                var lastFormLoaded = loader.LastFormLoaded;
+                                progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast),
+                                    "{0} ({1})", fileName, lastFormLoaded == null ? "..." : lastFormLoaded.ToString());
                             }
 
                             if (context.AsyncFormLoading)
@@ -294,8 +296,10 @@ namespace Patcher.Data.Plugins
                                 // Show progress while loader is still busy
                                 while (loader.IsBusy)
                                 {
-                                    System.Threading.Thread.Sleep(50);
-                                    progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), FileName);
+                                    System.Threading.Thread.Sleep(60);
+                                    var lastFormLoaded = loader.LastFormLoaded;
+                                    progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), 
+                                        "{0} {1}", fileName, lastFormLoaded == null ? "..." : lastFormLoaded.ToString());
                                 }
 
                                 // Wait for loader to finish completely
