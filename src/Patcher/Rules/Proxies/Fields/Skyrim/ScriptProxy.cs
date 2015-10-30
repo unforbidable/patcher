@@ -137,6 +137,8 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         void IDumpabled.Dump(ObjectDumper dumper)
         {
+            dumper.DumpText("Name", Field.Name);
+
             // Dump script properties
             dumper.DumpText("Properties", "{");
             if (dumper.Enter())

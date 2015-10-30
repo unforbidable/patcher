@@ -228,5 +228,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         {
             return collection.Of<IStat>();
         }
+
+
+        /// <summary>
+        /// Converts this form to a <b>Weapon</b> form or returns <c>null</c> if this form is not a <b>Weapon</b>.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IWeap AsWeap(this IForm form)
+        {
+            return form as IWeap;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Weapon</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IWeap> OfWeap(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IWeap>();
+        }
     }
 }

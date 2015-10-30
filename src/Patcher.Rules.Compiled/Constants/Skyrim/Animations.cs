@@ -22,85 +22,85 @@ using System.Text;
 namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
     /// <summary>
-    /// Defines skills.
+    /// Defines types of animations.
     /// </summary>
-    public enum Skills : int
+    public enum Animations
     {
         /// <summary>
-        /// Represents no skill.
+        /// Represents the default animation for the given object.
         /// </summary>
-        None,
+        Default,
         /// <summary>
-        /// Represents the <b>One-handed weapon</b> skill.
+        /// Represents weapon attack animation.
         /// </summary>
-        OneHanded,
+        AttackLeft,
         /// <summary>
-        /// Represents the <b>Two-handed weapon</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        TwoHanded,
+        AttackRight,
         /// <summary>
-        /// Represents the <b>Marksman</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        Archery,
+        Attack3,
         /// <summary>
-        /// Represents the <b>Block</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        Block,
+        Attack4,
         /// <summary>
-        /// Represents the <b>Smithing</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        Smithing,
+        Attack5,
         /// <summary>
-        /// Represents the <b>Heavy armor</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        HeavyArmor,
+        Attack6,
         /// <summary>
-        /// Represents the <b>Light armor</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        LightArmor,
+        Attack7,
         /// <summary>
-        /// Represents the <b>Pickpocket</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        Pickpocket,
+        Attack8,
         /// <summary>
-        /// Represents the <b>Lockpicking</b> skill.
+        /// Represents a weapon attack animation.
         /// </summary>
-        Lockpicking,
+        AttackLoop,
         /// <summary>
-        /// Represents the <b>Sneak</b> skill.
+        /// Represents a weapon looped attack animation.
         /// </summary>
-        Sneak,
+        AttackSpin,
         /// <summary>
-        /// Represents the <b>Alchemy</b> skill.
+        /// Represents a weapon spin attack animation.
         /// </summary>
-        Alchemy,
+        AttackSpin2,
         /// <summary>
-        /// Represents the <b>Speechcraft</b> skill.
+        /// Represents a weapon spin attack animation.
         /// </summary>
-        Speechcraft,
+        PlaceMine,
         /// <summary>
-        /// Represents the <b>Alteration</b> skill.
+        /// Represents a mine placement animation.
         /// </summary>
-        Alteration,
+        PlaceMine2,
         /// <summary>
-        /// Represents the <b>Conjuration</b> skill.
+        /// Represents a mine placement animation.
         /// </summary>
-        Conjuration,
+        AttackThrow,
         /// <summary>
-        /// Represents the <b>Destruction</b> skill.
+        /// Represents a thrown weapon attack animation.
         /// </summary>
-        Destruction,
+        AttackThrow2,
         /// <summary>
-        /// Represents the <b>Illusion</b> skill.
+        /// Represents a thrown weapon attack animation.
         /// </summary>
-        Illusion,
+        AttackThrow3,
         /// <summary>
-        /// Represents the <b>Restoration</b> skill.
+        /// Represents a thrown weapon attack animation.
         /// </summary>
-        Restoration,
+        AttackThrow4,
         /// <summary>
-        /// Represents the <b>Enchanting</b> skill.
+        /// Represents a thrown weapon attack animation.
         /// </summary>
-        Enchanting
+        AttackThrow5
     }
 }

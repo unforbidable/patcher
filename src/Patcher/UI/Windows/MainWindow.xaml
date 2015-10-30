@@ -110,11 +110,11 @@
         </Style>
 
         <DataTemplate DataType="{x:Type local:LogItem}">
-            <TextBlock Foreground="{Binding Brush}" Text="{Binding Text}" TextWrapping="WrapWithOverflow" FontSize="13.333" FontFamily="Consolas" />
+            <TextBlock Foreground="{Binding Brush}" Text="{Binding Text}" TextWrapping="NoWrap" FontSize="13.333" FontFamily="Consolas" />
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Border BorderThickness="2" CornerRadius="4" Margin="2" Padding="2" BorderBrush="#FFB9B9B9">
+        <Border BorderThickness="2" Padding="2" BorderBrush="#FFB9B9B9">
             <Grid Background="Black">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -125,12 +125,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="#FFC5C5C5" BorderThickness="1" CornerRadius="2" Margin="2" Background="#FF323131" MouseDown="Border_MouseDown" Visibility="Collapsed">
+                <Border BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Background="#FF323131" MouseDown="Border_MouseDown" Visibility="Collapsed">
                     <StackPanel Orientation="Horizontal" Opacity="0.75">
                         <Label x:Name="AppLabel" Content="Application Name 1.0.0" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FFFFF7F7" FontSize="13.333"/>
                     </StackPanel>
                 </Border>
-                <Border BorderBrush="#FFC5C5C5" BorderThickness="1" CornerRadius="2" Margin="2" Grid.Row="1" Background="#FF0F0F0F">
+                <Border BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="1" Background="#FF0F0F0F">
                     <DockPanel x:Name="LoggerDockPanel" Margin="4">
                         <ItemsControl x:Name="LoggerItemsControl" ItemsSource="{Binding}" Style="{StaticResource LogViewerStyle}" Loaded="LoggerItemsControl_Loaded" SizeChanged="LoggerItemsControl_SizeChanged">
                             <ItemsControl.Template>
@@ -143,7 +143,7 @@
                         </ItemsControl>
                     </DockPanel>
                 </Border>
-                <Border x:Name="PromptControl" BorderBrush="#FFCDCDCD" BorderThickness="1" CornerRadius="2" Margin="2" Grid.Row="2" Background="#FF303030" Visibility="Collapsed">
+                <Border x:Name="PromptControl" BorderBrush="#FFCDCDCD" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="2" Background="#FF303030" Visibility="Collapsed">
                     <StackPanel Orientation="Horizontal">
                         <Label x:Name="PromptLabel" Content="Prompt?" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FFB076D8" Background="Transparent" FontSize="13.333" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <Button x:Name="PromptYesButton" Content="Yes" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF76AE61" Foreground="White" Command="" Click="PromptYesButton_Click"/>
@@ -152,7 +152,7 @@
                         <Button x:Name="PromptCancelButton" Content="Cancel" Margin="4" Padding="8,0" FontSize="13.333" BorderBrush="{x:Null}" Background="#FF9C9C9C" Foreground="White" Click="PromptCancelButton_Click"/>
                     </StackPanel>
                 </Border>
-                <Border x:Name="StatusPanel" BorderBrush="#FFCDCDCD" BorderThickness="1" CornerRadius="2" Margin="2" Grid.Row="3" Background="#FF303030" Visibility="Collapsed">
+                <Border x:Name="StatusPanel" BorderBrush="#FFCDCDCD" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="3" Background="#FF303030" Visibility="Collapsed">
                     <DockPanel>
                         <Label x:Name="StatusLabel" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FF59A619" MinWidth="200" Background="Transparent" FontSize="13.333" HorizontalAlignment="Right" VerticalAlignment="Top" Content=" "/>
                         <ProgressBar x:Name="StatusProgressBar" Background="{x:Null}" BorderBrush="{x:Null}" Value="50" Margin="4" Visibility="Hidden"/>

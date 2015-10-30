@@ -448,7 +448,7 @@
         'name': 'support.class.rules'
       }
       {
-        'match': '\\b(Types|PotionTypes|BodyParts|Skills|ActorValues|ProjectileTypes|SoundLevels)\\b'
+        'match': '\\b(Types|PotionTypes|BodyParts|Skills|ActorValues|ProjectileTypes|SoundLevels|WeaponTypes|Animations|Resistances)\\b'
         'name': 'support.class.rules'
       }
     ]
