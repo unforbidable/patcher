@@ -1,19 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Patcher.Logging;
 
 namespace Patcher.UI
 {
-    interface IDisplay
+    public interface IDisplay
     {
-        void Shutdown();
-        void SetWindowHeight(int windowHeight);
-        void SetWindowWidth(int windowWidth);
-        void ShowPreRunMessage(string message, bool isError);
-
-        Logger GetLogger(LogLevel maxLogLevel);
-        Status GetStatus();
-        Prompt GetPrompt();
-
-        void Run(Task task);
+        void StartProgress(Progress progess);
+        Choice OfferChoice(string message, Choice[] choice);
+        void WriteText(string text);
     }
 }

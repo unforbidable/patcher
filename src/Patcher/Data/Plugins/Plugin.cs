@@ -90,7 +90,7 @@ namespace Patcher.Data.Plugins
                 int overriding = 0;
                 int added = 0;
 
-                using (var progress = Program.Status.StartProgress("Indexing forms"))
+                using (var progress = Display.StartProgress("Indexing forms"))
                 {
 
                     if (context.AsyncFormIndexing)
@@ -272,7 +272,7 @@ namespace Patcher.Data.Plugins
 
                     using (var loader = new FormLoader(this, reader, lazyLoading, jobs))
                     {
-                        using (var progress = Program.Status.StartProgress("Loading forms"))
+                        using (var progress = Display.StartProgress("Loading forms"))
                         {
                             foreach (Form form in formsToLoad)
                             {
@@ -497,7 +497,7 @@ namespace Patcher.Data.Plugins
             int count = 0;
             long total = Forms.Count();
 
-            using (var progress = Program.Status.StartProgress("Saving plugin"))
+            using (var progress = Display.StartProgress("Saving plugin"))
             {
                 // Save plugin to memory stream
                 using (var stream = new MemoryStream())

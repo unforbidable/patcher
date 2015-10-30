@@ -46,7 +46,7 @@ namespace Patcher.Data.Plugins
                 long newForms = 0;
                 long done = 0;
 
-                using (var progress = Program.Status.StartProgress("Inspecting records"))
+                using (var progress = Display.StartProgress("Inspecting records"))
                 {
                     foreach (var item in index)
                     {

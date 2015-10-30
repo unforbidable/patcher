@@ -66,6 +66,10 @@ namespace Patcher.UI.CommandLine
                     {
                         option.Description = ((DescriptionAttribute)attr).Text;
                     }
+                    else if (attr.GetType() == typeof(ObsoleteAttribute))
+                    {
+                        option.IsObsolete = true;
+                    }
                 }
 
                 if (!string.IsNullOrEmpty(option.LongName))
@@ -82,29 +86,7 @@ namespace Patcher.UI.CommandLine
             }
         }
 
-        public bool TryLoad(string[] args)
-        {
-            try
-            {
-                Load(args);
-                if (ShowHelp)
-                {
-                    PrintOptions();
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Bad arguments: " + e.Message);
-                Console.WriteLine();
-                PrintOptions();
-                return false;
-            }
-
-            return true;
-        }
-
-        private void PrintOptions()
+        public string GetOptions()
         {
             StringWriter writer = new StringWriter();
             if (usage != null)
@@ -126,7 +108,7 @@ namespace Patcher.UI.CommandLine
             }
 
             int pad = options.Select(o => o.LongName.Length).Max() + 2;
-            foreach (var opt in options)
+            foreach (var opt in options.Where(o => !o.IsObsolete))
             {
                 string buffer;
                 if (opt.ShortName != '\0')
@@ -154,10 +136,10 @@ namespace Patcher.UI.CommandLine
                 }
             }
 
-            Program.Display.ShowPreRunMessage(writer.ToString(), false);
+            return writer.ToString();
         }
 
-        private void Load(string[] args)
+        public void Load(string[] args)
         {
             int i = 0;
             while (i < args.Length)
@@ -179,6 +161,9 @@ namespace Patcher.UI.CommandLine
                 Option option = options.Where(o => isLongName && string.Equals(o.LongName, name) || isShortName && o.ShortName == name[0]).FirstOrDefault();
                 if (option == null)
                     throw new ArgumentException("Unknown option '" + prefix + name + "'");
+
+                if (option.IsObsolete)
+                    Log.Warning("Obsolete option --{0} will be ignored", option.LongName);
 
                 string tokenAfterName = tokenWithoutPrefix.Substring(name.Length);
                 if (option.Type == typeof(bool) && tokenAfterName.Length == 0)
@@ -232,6 +217,7 @@ namespace Patcher.UI.CommandLine
             public char ShortName { get; set; }
             public string Description { get; set; }
             public object DefaultValue { get; set; }
+            public bool IsObsolete { get; set; }
         }
     }
 }

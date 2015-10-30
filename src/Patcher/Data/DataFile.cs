@@ -121,7 +121,7 @@ namespace Patcher.Data
                         // Compare existing stream with input stream (or memory stream where input stream was copied into)
                         if (StreamComparer.Compare(existingStream, memoryStream))
                         {
-                            Log.Fine("Cached file {0} is up to date and will be used.", existingFile.FullPath);
+                            Log.Fine("Cached file {0} is up to date.", existingFile.FullPath);
                             return false;
                         }
 
@@ -133,12 +133,12 @@ namespace Patcher.Data
                         if (input != memoryStream)
                             input = memoryStream;
 
-                        Log.Fine("Cached file {0} exists but is no longer valid and will to be updated.", existingFile.FullPath);
+                        Log.Fine("Cached file {0} exists but is no longer valid and will be updated.", existingFile.FullPath);
                     }
                 }
                 else
                 {
-                    Log.Fine("File {0} is not cached and will to be created.", existingFile.FullPath);
+                    Log.Fine("File {0} is not cached and will be created.", existingFile.FullPath);
                 }
             }
 

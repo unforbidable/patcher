@@ -110,7 +110,7 @@ namespace Patcher.Data.Archives
                 long loaded = 0;
                 string filename = Path.GetFileName(archivePath);
 
-                using (var progress = Program.Status.StartProgress("Indexing archive"))
+                using (var progress = Display.StartProgress("Indexing archive"))
                 { 
                     // Read file names
                     foreach (var folder in folders)

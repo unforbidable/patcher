@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Patcher.Program</StartupObject>
+    <StartupObject>Patcher.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>App.ico</ApplicationIcon>
@@ -154,6 +154,7 @@
     <Compile Include="Data\FormRepository.cs" />
     <Compile Include="Data\Plugins\PluginInspector.cs" />
     <Compile Include="Data\QueryableFormRepository.cs" />
+    <Compile Include="Display.cs" />
     <Compile Include="IO\CustomBinaryReader.cs" />
     <Compile Include="IO\CustomBinaryWriter.cs" />
     <Compile Include="Data\Plugins\PluginMode.cs" />
@@ -169,7 +170,7 @@
     <Compile Include="IO\ReadOnlyFileStream.cs" />
     <Compile Include="IO\ReadOnlyMemoryStream.cs" />
     <Compile Include="IO\StreamComparer.cs" />
-    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\ILogger.cs" />
     <Compile Include="ProgramOptions.cs" />
     <Compile Include="Rules\Compiled\CompiledRuleAssertException.cs" />
     <Compile Include="Rules\Compiled\Helpers\DebugHelper.cs" />
@@ -227,23 +228,14 @@
     <Compile Include="Rules\Proxies\Forms\FormProxy.cs" />
     <Compile Include="Rules\RuleRunner.cs" />
     <Compile Include="Rules\TagManager.cs" />
-    <Compile Include="UI\Progress.cs" />
-    <Compile Include="UI\ProgressUpdateInfo.cs" />
-    <Compile Include="UI\Prompt.cs" />
+    <Compile Include="UI\Choice.cs" />
     <Compile Include="UI\IDisplay.cs" />
-    <Compile Include="UI\Terminal\LineWrittenEventArgs.cs" />
-    <Compile Include="UI\Terminal\TerminalLogger.cs" />
-    <Compile Include="UI\Terminal\WriteLineMode.cs" />
-    <Compile Include="UI\Terminal\TerminalPrompt.cs" />
-    <Compile Include="UI\Terminal\TerminalStatus.cs" />
+    <Compile Include="UI\Progress.cs" />
+    <Compile Include="UI\Windows\ChoiceItem.cs" />
     <Compile Include="UI\Windows\LogItem.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\WindowDisplay.cs" />
-    <Compile Include="UI\Windows\WindowLogger.cs" />
-    <Compile Include="UI\Windows\WindowPrompt.cs" />
-    <Compile Include="UI\Windows\WindowStatus.cs" />
     <Compile Include="UserAbortException.cs" />
     <Compile Include="UI\CommandLine\DefaultValueAttribute.cs" />
     <Compile Include="UI\CommandLine\DescriptionAttribute.cs" />
@@ -251,7 +243,6 @@
     <Compile Include="UI\CommandLine\Options.cs" />
     <Compile Include="UI\CommandLine\UsageAttribute.cs" />
     <Compile Include="Logging\StreamLogger.cs" />
-    <Compile Include="UI\Terminal\TerminalChoiceOption.cs" />
     <Compile Include="Data\IPluginListProvider.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Logging\LogEntry.cs" />
@@ -275,9 +266,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\RuleEngine.cs" />
     <Compile Include="UI\ChoiceOption.cs" />
-    <Compile Include="UI\Terminal\TerminalDisplay.cs" />
-    <Compile Include="UI\Message.cs" />
-    <Compile Include="UI\Status.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

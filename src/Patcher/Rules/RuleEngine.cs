@@ -149,7 +149,7 @@ namespace Patcher.Rules
                 return;
             }
 
-            using (var progress = Program.Status.StartProgress("Running rules"))
+            using (var progress = Display.StartProgress("Running rules"))
             {
                 int run = 0;
                 foreach (var pluginFileName in rules.Keys)
@@ -179,7 +179,7 @@ namespace Patcher.Rules
                             }
                             Log.Fine(ex.ToString());
 
-                            var choice = Program.Prompt.Choice("Continue executing rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
+                            var choice = Display.Choice("Continue executing rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
                             if (choice == ChoiceOption.Cancel)
                             {
                                 Log.Warning("Rule execution has been aborted.");

@@ -38,133 +38,46 @@ namespace Patcher.UI.Windows
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IDisplay, ILogger
     {
         ObservableCollection<LogItem> logItems = new ObservableCollection<LogItem>();
+        ObservableCollection<ChoiceItem> choiceItems = new ObservableCollection<ChoiceItem>();
 
-        public bool TerminateOnEscape { get; set; }
+        public LogLevel MaxLogLevel { get; set; }
 
         bool autoScrollEnabled = true;
 
-        ChoiceOption chosenOption = ChoiceOption.Cancel;
-        ChoiceOption[] offeredOptions = new ChoiceOption[] { };
+        bool terminating = false;
+
+        Choice selectedChoice = null;
+        Choice[] offeredChoices = null;
+
         AutoResetEvent waitFormChoseOption = new AutoResetEvent(false);
 
         public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = logItems;
+            LoggerItemsControl.DataContext = logItems;
+            ChoiceItemsControl.DataContext = choiceItems;
 
             AppLabel.Content = Program.GetProgramVersionInfo();
 
             logItems.CollectionChanged += LogItems_CollectionChanged;
         }
 
-        internal ChoiceOption OfferChoice(string message, ChoiceOption[] options)
+        internal void Terminate()
         {
+            terminating = true;
+            WriteMessage(Brushes.Gold, "");
+            WriteMessage(Brushes.Gold, "Press ESC to quit.");
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
             {
-                PromptLabel.Content = message;
-                PromptYesButton.Visibility = options.Contains(ChoiceOption.Yes) ? Visibility.Visible : Visibility.Collapsed;
-                PromptNoButton.Visibility = options.Contains(ChoiceOption.No) ? Visibility.Visible : Visibility.Collapsed;
-                PromptOkButton.Visibility = options.Contains(ChoiceOption.Ok) ? Visibility.Visible : Visibility.Collapsed;
-                PromptCancelButton.Visibility = options.Contains(ChoiceOption.Cancel) ? Visibility.Visible : Visibility.Collapsed;
-                PromptControl.Visibility = Visibility.Visible;
+                StatusPanel.Visibility = Visibility.Collapsed;
             }));
+        }            
 
-            offeredOptions = options;
-
-            // Wait until an option is chosen
-            waitFormChoseOption.Reset();
-            waitFormChoseOption.WaitOne();
-
-            return chosenOption;
-        }
-
-        private void OptionChosen(ChoiceOption option)
-        {
-            // Ignore if not one of the offered options
-            if (offeredOptions.Contains(option))
-            {
-                PromptControl.Visibility = Visibility.Collapsed;
-                chosenOption = option;
-
-                waitFormChoseOption.Set();
-            }
-        }
-
-        //LogLevel currentLogLevel = LogLevel.None;
-        //List<string> logMessageBuffer = new List<string>();
-
-        internal void WriteLogEntry(LogEntry entry)
-        {
-            DoWriteLogMessage(entry.Level, entry.Text);
-
-            //if (currentLogLevel != entry.Level || logMessageBuffer.Count > 2)
-            //{
-            //    // Write accumulated log messages of the same kind
-            //    DoWriteLogMessage(currentLogLevel, string.Join("\n", logMessageBuffer));
-            //    logMessageBuffer.Clear();
-
-            //    currentLogLevel = entry.Level;
-            //}
-
-            //logMessageBuffer.Add(entry.Text);
-        }
-
-        private void DoWriteLogMessage(LogLevel level, string text)
-        {
-            switch (level)
-            {
-                case LogLevel.Error:
-                    WriteMessage(Brushes.OrangeRed, text);
-                    break;
-
-                case LogLevel.Warning:
-                    WriteMessage(Brushes.Orange, text);
-                    break;
-
-                case LogLevel.Info:
-                    WriteMessage(Brushes.White, text);
-                    break;
-
-                case LogLevel.Fine:
-                    WriteMessage(Brushes.DarkGray, text);
-                    break;
-            }
-        }
-
-        internal void ShowStatusMessage(string text)
-        {
-            SetStatusText(Brushes.LimeGreen, text);
-        }
-
-        private void SetStatusText(SolidColorBrush brush, string text)
-        {
-            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
-            {
-                StatusLabel.Content = text.TrimEnd('.');
-                StatusLabel.Foreground = brush;
-
-                if (string.IsNullOrEmpty(text))
-                    StatusPanel.Visibility = Visibility.Collapsed;
-                else
-                    StatusPanel.Visibility = Visibility.Visible;
-            }));
-        }
-
-        internal void UpdateProgress(double current, double total)
-        {
-            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
-            {
-                StatusProgressBar.Visibility = current == 1 ? Visibility.Hidden : Visibility.Visible;
-                StatusProgressBar.Value = current;
-                StatusProgressBar.Maximum = total;
-            }));
-        }
-
-        internal void WriteMessage(Brush brush, string message)
+        private void WriteMessage(Brush brush, string message)
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => 
             {
@@ -177,6 +90,43 @@ namespace Patcher.UI.Windows
                     Text = message
                 });
             }));
+        }
+
+        private void CreateChoiceButtons(Choice[] choices)
+        {
+            choiceItems.Clear();
+            foreach (var choice in choices)
+            {
+                choiceItems.Add(new ChoiceItem()
+                {
+                    Brush = new SolidColorBrush(choice.Color),
+                    Text = choice.Text,
+                    Description = choice.Description
+                });
+            }
+        }
+
+        private void SelectChoice(Choice choice)
+        {
+            // Ignore if not one of the offered options
+            if (offeredChoices.Contains(choice))
+            {
+                PromptControl.Visibility = Visibility.Collapsed;
+                selectedChoice = choice;
+                offeredChoices = null;
+
+                waitFormChoseOption.Set();
+            }
+        }
+
+        private void ChoiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            string text = button.Content.ToString();
+
+            var choice = offeredChoices.Where(o => o.Text.Equals(text, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            if (choice != null)
+                SelectChoice(choice);
         }
 
         private void LogItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -196,32 +146,23 @@ namespace Patcher.UI.Windows
             switch (e.Key)
             {
                 case Key.Escape:
-                    OptionChosen(ChoiceOption.Cancel);
-                    if (TerminateOnEscape)
+                    if (terminating)
                     {
                         Close();
+                        e.Handled = true;
                     }
-                    e.Handled = true;
                     break;
+            }
 
-                case Key.Y:
-                    OptionChosen(ChoiceOption.Yes);
+            var choices = offeredChoices;
+            if (!e.Handled && choices != null)
+            {
+                var choice = choices.Where(c => c.Key == e.Key).FirstOrDefault();
+                if (choice != null)
+                {
+                    SelectChoice(choice);
                     e.Handled = true;
-                    break;
-
-                case Key.N:
-                    OptionChosen(ChoiceOption.No);
-                    e.Handled = true;
-                    break;
-
-                case Key.Enter:
-                    OptionChosen(ChoiceOption.Ok);
-                    e.Handled = true;
-                    break;
-
-                default:
-                    e.Handled = false;
-                    break;
+                }
             }
         }
 
@@ -248,37 +189,6 @@ namespace Patcher.UI.Windows
             }
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
-            {
-                if (WindowState == WindowState.Normal)
-                    WindowState = WindowState.Maximized;
-                else if (WindowState == WindowState.Maximized)
-                    WindowState = WindowState.Normal;
-            }
-        }
-
-        private void PromptYesButton_Click(object sender, RoutedEventArgs e)
-        {
-            OptionChosen(ChoiceOption.Yes);
-        }
-
-        private void PromptNoButton_Click(object sender, RoutedEventArgs e)
-        {
-            OptionChosen(ChoiceOption.No);
-        }
-
-        private void PromptOkButton_Click(object sender, RoutedEventArgs e)
-        {
-            OptionChosen(ChoiceOption.Ok);
-        }
-
-        private void PromptCancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            OptionChosen(ChoiceOption.Cancel);
-        }
-
         private void LoggerItemsControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (LoggerItemsControl.IsLoaded)
@@ -288,6 +198,90 @@ namespace Patcher.UI.Windows
 
                 if (autoScrollEnabled)
                     scrollViewer.ScrollToEnd();
+            }
+        }
+
+        Progress currentProgress = null;
+        private void Progess_Updated(object sender, EventArgs e)
+        {
+            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            {
+                if (currentProgress.IsCompleted)
+                {
+                    currentProgress.Updated -= Progess_Updated;
+                    StatusPanel.Visibility = Visibility.Visible;
+                    StatusProgressBar.Visibility = Visibility.Hidden;
+                    StatusLabel.Content = currentProgress.Title + " finished";
+                    StatusText.Text = string.Empty;
+                }
+                else
+                {
+                    StatusPanel.Visibility = Visibility.Visible;
+                    StatusProgressBar.Visibility = Visibility.Visible;
+                    StatusProgressBar.Value = currentProgress.Current;
+                    StatusProgressBar.Maximum = currentProgress.Total;
+                    StatusLabel.Content = currentProgress.Title;
+                    StatusText.Text = currentProgress.Text;
+                }
+            }));
+        }
+
+        void IDisplay.StartProgress(Progress progess)
+        {
+            currentProgress = progess;
+            progess.Updated += Progess_Updated;
+        }
+
+        Choice IDisplay.OfferChoice(string message, Choice[] choices)
+        {
+            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            {
+                CreateChoiceButtons(choices);
+                PromptLabel.Content = message;
+                PromptControl.Visibility = Visibility.Visible;
+            }));
+
+            offeredChoices = choices;
+
+            // Wait until an option is chosen
+            waitFormChoseOption.Reset();
+            waitFormChoseOption.WaitOne();
+
+            return selectedChoice;
+        }
+
+        void IDisplay.WriteText(string text)
+        {
+            WriteMessage(Brushes.White, text);
+        }
+
+        LogLevel ILogger.MaxLogLevel
+        {
+            get
+            {
+                return MaxLogLevel;
+            }
+        }
+
+        void ILogger.WriteLogEntry(LogEntry entry)
+        {
+            switch (entry.Level)
+            {
+                case LogLevel.Error:
+                    WriteMessage(Brushes.OrangeRed, entry.Text);
+                    break;
+
+                case LogLevel.Warning:
+                    WriteMessage(Brushes.Orange, entry.Text);
+                    break;
+
+                case LogLevel.Info:
+                    WriteMessage(Brushes.White, entry.Text);
+                    break;
+
+                case LogLevel.Fine:
+                    WriteMessage(Brushes.DarkGray, entry.Text);
+                    break;
             }
         }
     }

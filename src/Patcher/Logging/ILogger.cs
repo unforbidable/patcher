@@ -19,14 +19,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.UI.Terminal
+namespace Patcher.Logging
 {
-    enum WriteLineMode
+    public interface ILogger
     {
-        System = 0,
-        Status = 1,
-        Prompt = 2,
-        Log = 3,
-        Other = 4
+        LogLevel MaxLogLevel { get; }
+        void WriteLogEntry(LogEntry entry);
     }
 }

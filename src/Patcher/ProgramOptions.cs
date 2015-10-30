@@ -81,11 +81,13 @@ namespace Patcher
         [Option("consolewidth")]
         [Description("Set the width of the console to given number of\ncolumns.\nDefault: 80")]
         [DefaultValue(0)]
+        [Obsolete]
         public int WindowWidth { get; set; }
 
         [Option("consoleheight")]
         [Description("Set the height of the console to given number of\nrows.\nDefault: 20")]
         [DefaultValue(0)]
+        [Obsolete]
         public int WindowHeight { get; set; }
 
         [Option("version")]
