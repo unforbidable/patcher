@@ -157,18 +157,18 @@ namespace Patcher.Rules
             int totalRulesToRun = rules.SelectMany(p => p.Value).Count();
             if (totalRulesToRun == 0)
             {
-                Log.Warning("No rules loaded, nothing to run.");
+                Log.Warning("No rules loaded, nothing to do.");
                 return;
             }
 
-            using (var progress = Display.StartProgress("Running rules"))
+            using (var progress = Display.StartProgress("Executing rules"))
             {
                 int run = 0;
                 foreach (var pluginFileName in rules.Keys)
                 {
                     foreach (var rule in rules[pluginFileName])
                     {
-                        Log.Info("Running rule {0}", rule);
+                        Log.Info("Executing rule {0}", rule);
                         progress.Update(run++, totalRulesToRun, "{0}", rule);
 
                         // Run rule
@@ -206,7 +206,7 @@ namespace Patcher.Rules
                         // Create/Override/Update forms when the rule is completed
                         ActivePlugin.AddForms(runner.Result);
 
-                        Log.Info("Completed rule with {0} updates and {1} inserts", runner.Updated, runner.Created);
+                        Log.Info("Rule completed with {0} updates and {1} inserts", runner.Updated, runner.Created);
                     }
 
                     // After all rules of a plugin were run

@@ -220,7 +220,7 @@ namespace Patcher.UI.Windows
                     StatusProgressBar.Visibility = Visibility.Visible;
                     StatusProgressBar.Value = currentProgress.Current;
                     StatusProgressBar.Maximum = currentProgress.Total;
-                    StatusLabel.Content = currentProgress.Title;
+                    StatusLabel.Content = currentProgress.Title + " ...";
                     StatusText.Text = currentProgress.Text;
                 }
             }));

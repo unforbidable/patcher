@@ -169,14 +169,14 @@
                         </ItemsControl>
                     </StackPanel>
                 </Border>
-                <Border x:Name="StatusPanel" BorderBrush="#FFCDCDCD" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="3" Background="#FF303030">
+                <Border x:Name="StatusPanel" BorderBrush="#FFCDCDCD" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="3" Background="#FF303030" Visibility="Collapsed">
                     <DockPanel>
                         <Label x:Name="StatusLabel" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FF59A619" MinWidth="200" Background="Transparent" FontSize="13.333" Content=" " VerticalAlignment="Top" HorizontalAlignment="Right"/>
                         <Grid>
-                            <ProgressBar x:Name="StatusProgressBar" Background="#FF838383" BorderBrush="{x:Null}" Value="20" Margin="1" Foreground="#FF0D5B23"/>
+                            <ProgressBar x:Name="StatusProgressBar" Background="#FF838383" BorderBrush="{x:Null}" Value="20" Margin="1" Foreground="#FF0A4219" Opacity="0.75"/>
                             <TextBlock x:Name="StatusText" TextWrapping="NoWrap" Text=" " Foreground="White" FontSize="13.333" Margin="12,2,2,2" VerticalAlignment="Center" Visibility="{Binding Visibility, ElementName=StatusProgressBar}">
                                 <TextBlock.Effect>
-                                    <DropShadowEffect ShadowDepth="0" RenderingBias="Quality"/>
+                                    <DropShadowEffect ShadowDepth="2" BlurRadius="5"/>
                                 </TextBlock.Effect>
                             </TextBlock>
                         </Grid>

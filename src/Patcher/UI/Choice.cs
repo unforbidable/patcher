@@ -31,7 +31,7 @@ namespace Patcher.UI
         public Color Color { get; private set; }
 
         public static readonly Color Green = Color.FromRgb(0x76, 0xAE, 0x61);
-        public static readonly Color Red = Color.FromRgb(0xBB, 0x64, 0x80);
+        public static readonly Color Red = Color.FromRgb(0xCB, 0x64, 0x70);
         public static readonly Color Blue = Color.FromRgb(0x62, 0x8B, 0xC7);
         public static readonly Color Gray = Color.FromRgb(0x9C, 0x9C, 0x9C);
 
