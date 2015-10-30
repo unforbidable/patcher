@@ -1,0 +1,13 @@
+<rules>
+  <rule>
+    <name>The iron sword you always wanted</name>
+    <from>WEAP</from>
+    <where>
+      Source.EditorId == "IronSword"
+    </where>
+    <update>
+      Target.Damage = 500;
+      Target.Speed = 3;
+    </update>
+  </rule>
+</rules>
