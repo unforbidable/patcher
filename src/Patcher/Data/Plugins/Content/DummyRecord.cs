@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 namespace Patcher.Data.Plugins.Content
 {
     [Record("")]
+    [Dummy]
     public sealed class DummyRecord : GenericFormRecord
     {
     }

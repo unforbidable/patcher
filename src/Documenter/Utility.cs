@@ -52,7 +52,7 @@ namespace Documenter
             }
             else if (type.FullName.Contains(".Forms.") || type.Namespace.Contains(".Fields."))
             {
-                return type.Name.TrimStart('I').Replace("`1", string.Empty);
+                return type.Name.Substring(1).Replace("`1", string.Empty);
             }
             else if (type.FullName.StartsWith(Program.RootNamespace))
             {

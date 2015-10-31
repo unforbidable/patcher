@@ -205,7 +205,7 @@ namespace Patcher.UI.CommandLine
 
         public override string ToString()
         {
-            return string.Join(" ", options.Select(o => string.Format("--{0}={1}", o.LongName, o.PropertyInfo.GetValue(this, null))));
+            return string.Join(" ", options.Where(o => !o.IsObsolete).Select(o => string.Format("--{0}={1}", o.LongName, o.PropertyInfo.GetValue(this, null))));
         }
 
         class Option

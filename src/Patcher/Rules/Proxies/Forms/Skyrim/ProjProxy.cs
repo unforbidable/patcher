@@ -56,11 +56,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm CollisionLayer
+        public IColl CollisionLayer
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.CollisionLayer);
+                return Provider.CreateReferenceProxy<IColl>(record.CollisionLayer);
             }
 
             set
@@ -98,11 +98,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm DecalData
+        public ITxst DecalData
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.DecalData);
+                return Provider.CreateReferenceProxy<ITxst>(record.DecalData);
             }
 
             set
@@ -112,11 +112,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm DefaultWeaponSource
+        public IWeap DefaultWeaponSource
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.DefaultWeaponSource);
+                return Provider.CreateReferenceProxy<IWeap>(record.DefaultWeaponSource);
             }
 
             set
@@ -126,11 +126,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm DisableSound
+        public ISndr DisableSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.DisableSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.DisableSound);
             }
 
             set
@@ -168,11 +168,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm Explosion
+        public IExpl Explosion
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.Explosion);
+                return Provider.CreateReferenceProxy<IExpl>(record.Explosion);
             }
 
             set
@@ -183,11 +183,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
 
         }
 
-        public IForm ExplosionCountdownSound
+        public ISndr ExplosionCountdownSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.ExplosionCountdownSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.ExplosionCountdownSound);
             }
 
             set
@@ -359,11 +359,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
 
         }
 
-        public IForm Light
+        public ILigh Light
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.Light);
+                return Provider.CreateReferenceProxy<ILigh>(record.Light);
             }
 
             set
@@ -389,11 +389,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
 
         }
 
-        public IForm MuzzleFlashLight
+        public ILigh MuzzleFlashLight
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.MuzzleFlashLight);
+                return Provider.CreateReferenceProxy<ILigh>(record.MuzzleFlashLight);
             }
 
             set
@@ -477,11 +477,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
 
         }
 
-        public IForm Sound
+        public ISndr Sound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.Sound);
+                return Provider.CreateReferenceProxy<ISndr>(record.Sound);
             }
 
             set

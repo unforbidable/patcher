@@ -70,12 +70,12 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Ammo</b> is picked up.
         /// </summary>
-        IForm PickUpSound { get; set; }
+        ISndr PickUpSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Sound</b> that plays when this <b>Ammo</b> is put down.
         /// </summary>
-        IForm PutDownSound { get; set; }
+        ISndr PutDownSound { get; set; }
 
         /// <summary>
         /// Gets or sets the <b>Projectile</b> that is launched when this <b>Ammo</b> is used.

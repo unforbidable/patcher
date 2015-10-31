@@ -35,12 +35,12 @@
       Target.Projectile = Forms.Find("PD_ArrowSilverProjectile").AsProj();
 
       // Add WeapMaterialSilver to the keywords
-      Target.Keywords.Add(Forms.Find("WeapMaterialSilver").AsKywd());
+      Target.Keywords.Add("WeapMaterialSilver");
 
       // The arrow is still partly made out of steel however
       // it makes sense to remove the WeapMaterialSteel keywords
       // if only to improve the sorting of the recipe in the crafting menu
-      Target.Keywords.Remove(Forms.Find("WeapMaterialSteel"));
+      Target.Keywords.Remove("WeapMaterialSteel");
 
       // The following line can be used to replace the model,
       // but that is out of the scope of this demo

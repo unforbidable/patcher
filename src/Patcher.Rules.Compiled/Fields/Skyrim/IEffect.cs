@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
         /// <summary>
         /// Gets or sets the base <b>Magic Effect</b> of this <b>Effect</b>.
         /// </summary>
-        IForm BaseEffect { get; set; }
+        IMgef BaseEffect { get; set; }
 
         /// <summary>
         /// Gets or sets the magnitude of this <b>Effect</b>.

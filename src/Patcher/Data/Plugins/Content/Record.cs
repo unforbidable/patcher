@@ -52,6 +52,7 @@ namespace Patcher.Data.Plugins.Content
         internal void ReadRecord(RecordReader reader, bool lazyLoading)
         {
             var members = InfoProvider.GetCompoundInfo(GetType()).Members;
+            var recinfo = InfoProvider.GetRecordInfo(GetType());
 
             BeforeRead(reader);
 
@@ -79,7 +80,7 @@ namespace Patcher.Data.Plugins.Content
                         }
                     }
                 }
-                else if (lazyLoading || GetType() == typeof(DummyRecord))
+                else if (lazyLoading || recinfo.IsDummyRecord)
                 {
                     // Prevent segment errors when not all properties were expected to be consumed
                     reader.SeekEndOfSegment();

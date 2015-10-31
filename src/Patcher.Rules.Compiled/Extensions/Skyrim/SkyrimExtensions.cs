@@ -49,7 +49,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b>.
+        /// Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b>.
+        /// Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to a <b>Constructible Object</b> form or returns <c>null</c> if this form is not a <b>Constructible Object</b>.
+        /// Converts this form to a <b>Constructible Object</b> form or returns <c>null</c> if this form is not a <b>Constructible Object</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -109,7 +109,87 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b>.
+        /// Converts this form to a <b>Collision Layer</b> form or returns <c>null</c> if this form is not a <b>Collision Layer</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IColl AsColl(this IForm form)
+        {
+            return form as IColl;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Collision Layer</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IColl> OfColl(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IColl>();
+        }
+
+        /// <summary>
+        /// Converts this form to an <b>Enchantment</b> form or returns <c>null</c> if this form is not an <b>Enchantment</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IEnch AsEnch(this IForm form)
+        {
+            return form as IEnch;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Enchantment</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IEnch> OfEnch(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IEnch>();
+        }
+
+        /// <summary>
+        /// Converts this form to an <b>Equipment Type</b> form or returns <c>null</c> if this form is not an <b>Equipment Type</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IEqup AsEqup(this IForm form)
+        {
+            return form as IEqup;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Equipment Type</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IEqup> OfEqup(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IEqup>();
+        }
+
+        /// <summary>
+        /// Converts this form to an <b>Explosion</b> form or returns <c>null</c> if this form is not an <b>Explosion</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IExpl AsExpl(this IForm form)
+        {
+            return form as IExpl;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Explosion</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IExpl> OfExpl(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IExpl>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -129,7 +209,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to a <b>Global Variable</b> form or returns <c>null</c> if this form is not a <b>Global Variable</b>.
+        /// Converts this form to a <b>Global Variable</b> form or returns <c>null</c> if this form is not a <b>Global Variable</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -149,7 +229,7 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b>.
+        /// Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -168,9 +248,28 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
             return collection.Of<IGmst>();
         }
 
+        /// <summary>
+        /// Converts this form to a <b>Impact Data Set</b> form or returns <c>null</c> if this form is not an <b>Impact Data Set</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IIpds AsIpds(this IForm form)
+        {
+            return form as IIpds;
+        }
 
         /// <summary>
-        /// Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b>.
+        /// Convers and fiters this mixed form collection to a collection of <b>Impact Data Set</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IIpds> OfIpds(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IIpds>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -190,7 +289,27 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b>.
+        /// Converts this form to a <b>Light</b> form or returns <c>null</c> if this form is not a <b>Light</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static ILigh AsLigh(this IForm form)
+        {
+            return form as ILigh;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Light</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<ILigh> OfLigh(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<ILigh>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -210,7 +329,87 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
-        /// Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b>.
+        /// Converts this form to a <b>Material</b> form or returns <c>null</c> if this form is not a <b>Material</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IMatt AsMatt(this IForm form)
+        {
+            return form as IMatt;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Material</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IMatt> OfMatt(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IMatt>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Magic Effect</b> form or returns <c>null</c> if this form is not a <b>Magic Effect</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IMgef AsMgef(this IForm form)
+        {
+            return form as IMgef;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Magic Effect</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IMgef> OfMgef(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IMgef>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Race</b> form or returns <c>null</c> if this form is not a <b>Race</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IRace AsRace(this IForm form)
+        {
+            return form as IRace;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Race</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IRace> OfRace(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<IRace>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Spell</b> form or returns <c>null</c> if this form is not a <b>Spell</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static ISpel AsSpel(this IForm form)
+        {
+            return form as ISpel;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Spell</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<ISpel> OfSpel(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<ISpel>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
@@ -229,9 +428,48 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
             return collection.Of<IStat>();
         }
 
+        /// <summary>
+        /// Converts this form to a <b>Sound</b> form or returns <c>null</c> if this form is not a <b>Sound</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static ISndr AsSndr(this IForm form)
+        {
+            return form as ISndr;
+        }
 
         /// <summary>
-        /// Converts this form to a <b>Weapon</b> form or returns <c>null</c> if this form is not a <b>Weapon</b>.
+        /// Convers and fiters this mixed form collection to a collection of <b>Sound</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<ISndr> OfSndr(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<ISndr>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Texture Set</b> form or returns <c>null</c> if this form is not a <b>Texture Set</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static ITxst AsTxst(this IForm form)
+        {
+            return form as ITxst;
+        }
+
+        /// <summary>
+        /// Convers and fiters this mixed form collection to a collection of <b>Texture Set</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<ITxst> OfTxst(this IFormCollection<IForm> collection)
+        {
+            return collection.Of<ITxst>();
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Weapon</b> form or returns <c>null</c> if this form is not a <b>Weapon</b> form.
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>

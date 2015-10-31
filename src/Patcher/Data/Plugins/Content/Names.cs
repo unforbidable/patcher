@@ -39,11 +39,13 @@ namespace Patcher.Data.Plugins.Content
         public const string CELL = "CELL";
         public const string CLAS = "CLAS";
         public const string COBJ = "COBJ";
+        public const string COLL = "COLL";
         public const string CONT = "CONT";
         public const string DOOR = "DOOR";
         public const string ECZN = "ECZN";
         public const string ENCH = "ENCH";
         public const string EQUP = "EQUP";
+        public const string EXPL = "EXPL";
         public const string FACT = "FACT";
         public const string FLST = "FLST";
         public const string FURN = "FURN";
@@ -92,6 +94,7 @@ namespace Patcher.Data.Plugins.Content
         public const string TACT = "TACT";
         public const string TES4 = "TES4";
         public const string TREE = "TREE";
+        public const string TXST = "TXST";
         public const string VTYP = "VTYP";
         public const string WEAP = "WEAP";
         public const string WRLD = "WRLD";

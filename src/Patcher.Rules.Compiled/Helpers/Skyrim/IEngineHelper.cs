@@ -16,6 +16,7 @@
 
 using Patcher.Rules.Compiled.Fields.Skyrim;
 using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Patcher.Rules.Compiled.Helpers.Skyrim
         /// <param name="area">Area of the new effect.</param>
         /// <param name="duration">Duration of the new effect.</param>
         /// <returns>Returns new effect.</returns>
-        IEffect CreateEffect(IForm baseEffect, float magnitude, int area, int duration);
+        IEffect CreateEffect(IMgef baseEffect, float magnitude, int area, int duration);
 
         /// <summary>
         /// Creates a new <see cref="IMaterial"/> with the specified item and the specified count.

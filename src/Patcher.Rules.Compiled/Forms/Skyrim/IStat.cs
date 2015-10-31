@@ -22,7 +22,7 @@ using System.Text;
 namespace Patcher.Rules.Compiled.Forms.Skyrim
 {
     /// <summary>
-    /// Represents a <b>Static</b> form. 
+    /// Represents a <b>Static</b> form. <i>This form is a work in progress.</i>
     /// </summary>
     public interface IStat : IForm
     {

@@ -69,11 +69,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm Enchantment
+        public IEnch Enchantment
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.Enchantment);
+                return Provider.CreateReferenceProxy<IEnch>(record.Enchantment);
             }
             set
             {
@@ -160,11 +160,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm PickUpSound
+        public ISndr PickUpSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.PickUpSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.PickUpSound);
             }
             set
             {
@@ -173,11 +173,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm PutDownSound
+        public ISndr PutDownSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.PutDownSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.PutDownSound);
             }
             set
             {
@@ -186,11 +186,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm EquipType
+        public IEqup EquipType
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.EquipType);
+                return Provider.CreateReferenceProxy<IEqup>(record.EquipType);
             }
             set
             {
@@ -199,11 +199,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm BlockImpactDataSet
+        public IIpds BlockImpactDataSet
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.BlockImpactDataSet);
+                return Provider.CreateReferenceProxy<IIpds>(record.BlockImpactDataSet);
             }
             set
             {
@@ -212,11 +212,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm AlternateBlockMaterial
+        public IMatt AlternateBlockMaterial
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.AlternateBlockMaterial);
+                return Provider.CreateReferenceProxy<IMatt>(record.AlternateBlockMaterial);
             }
             set
             {
@@ -225,11 +225,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm Race
+        public IRace Race
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.Race);
+                return Provider.CreateReferenceProxy<IRace>(record.Race);
             }
             set
             {

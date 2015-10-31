@@ -29,11 +29,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IWeap))]
     public sealed class WeapProxy : FormProxy<Weap>, IWeap
     {
-        public IForm AlternateBlockMaterial
+        public IMatt AlternateBlockMaterial
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.AlternateBlockMaterial);
+                return Provider.CreateReferenceProxy<IMatt>(record.AlternateBlockMaterial);
             }
             set
             {
@@ -70,11 +70,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm AttackFailSound
+        public ISndr AttackFailSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.AttackFailSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.AttackFailSound);
             }
             set
             {
@@ -83,11 +83,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm AttackLoopSound
+        public ISndr AttackLoopSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.AttackLoopSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.AttackLoopSound);
             }
             set
             {
@@ -96,11 +96,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm AttackSound
+        public ISndr AttackSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.AttackSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.AttackSound);
             }
             set
             {
@@ -109,11 +109,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm BlockImpactDataSet
+        public IIpds BlockImpactDataSet
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.BlockImpactDataSet);
+                return Provider.CreateReferenceProxy<IIpds>(record.BlockImpactDataSet);
             }
             set
             {
@@ -192,11 +192,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm CriticalEffect
+        public ISpel CriticalEffect
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.CriticalEffect);
+                return Provider.CreateReferenceProxy<ISpel>(record.CriticalEffect);
             }
             set
             {
@@ -233,11 +233,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm Enchantment
+        public IEnch Enchantment
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.Enchantment);
+                return Provider.CreateReferenceProxy<IEnch>(record.Enchantment);
             }
             set
             {
@@ -260,11 +260,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm EquipSound
+        public ISndr EquipSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.EquipSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.EquipSound);
             }
             set
             {
@@ -273,11 +273,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm EquipType
+        public IEqup EquipType
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.EquipType);
+                return Provider.CreateReferenceProxy<IEqup>(record.EquipType);
             }
             set
             {
@@ -286,11 +286,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm FirstPersonAttackSound
+        public ISndr FirstPersonAttackSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.AttackSound2D);
+                return Provider.CreateReferenceProxy<ISndr>(record.AttackSound2D);
             }
             set
             {
@@ -326,11 +326,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm IdleSound
+        public ISndr IdleSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.IdleSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.IdleSound);
             }
             set
             {
@@ -339,11 +339,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm ImpactDataSet
+        public IIpds ImpactDataSet
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.ImpactDataSet);
+                return Provider.CreateReferenceProxy<IIpds>(record.ImpactDataSet);
             }
             set
             {
@@ -588,11 +588,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm PickUpSound
+        public ISndr PickUpSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.PickUpSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.PickUpSound);
             }
             set
             {
@@ -601,11 +601,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm PutDownSound
+        public ISndr PutDownSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.PutDownSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.PutDownSound);
             }
             set
             {
@@ -740,11 +740,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm UnequipSound
+        public ISndr UnequipSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.UnequipSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.UnequipSound);
             }
             set
             {

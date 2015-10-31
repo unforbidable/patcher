@@ -86,11 +86,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm PickUpSound
+        public ISndr PickUpSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.PickUpSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.PickUpSound);
             }
             set
             {
@@ -99,11 +99,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm PutDownSound
+        public ISndr PutDownSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.PutDownSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.PutDownSound);
             }
             set
             {
@@ -112,11 +112,11 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
-        public IForm UseSound
+        public ISndr UseSound
         {
             get
             {
-                return Provider.CreateReferenceProxy<IForm>(record.UseSound);
+                return Provider.CreateReferenceProxy<ISndr>(record.UseSound);
             }
             set
             {
