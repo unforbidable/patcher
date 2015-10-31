@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeaponTypes" fullname="Constants.Skyrim.WeaponTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines <b>Weapon</b> types.
+            </summary>
+  <field name="Bow">
+    <summary>
+            Represents a bow.
+            </summary>
+  </field>
+  <field name="Crossbow">
+    <summary>
+            Represents a crossbox.
+            </summary>
+  </field>
+  <field name="HandToHand">
+    <summary>
+            Represents a hand to hand weapon.
+            </summary>
+  </field>
+  <field name="OneHandAxe">
+    <summary>
+            Represents a one-handed axe weapon.
+            </summary>
+  </field>
+  <field name="OneHandDagger">
+    <summary>
+            Represents a one-handed dagger weapon.
+            </summary>
+  </field>
+  <field name="OneHandMace">
+    <summary>
+            Represents a one-handed mace weapon.
+            </summary>
+  </field>
+  <field name="OneHandSword">
+    <summary>
+            Represents a one-handed sword weapon.
+            </summary>
+  </field>
+  <field name="Staff">
+    <summary>
+            Represents a staff.
+            </summary>
+  </field>
+  <field name="TwoHandAxe">
+    <summary>
+            Represents a two-handed axe weapon.
+            </summary>
+  </field>
+  <field name="TwoHandSword">
+    <summary>
+            Represents a two-handed sword weapon.
+            </summary>
+  </field>
+</type>

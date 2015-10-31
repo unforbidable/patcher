@@ -13,6 +13,11 @@
             Represents the <b>Alteration</b> skill.
             </summary>
   </field>
+  <field name="Archery">
+    <summary>
+            Represents the <b>Marksman</b> skill.
+            </summary>
+  </field>
   <field name="Block">
     <summary>
             Represents the <b>Block</b> skill.
@@ -51,11 +56,6 @@
   <field name="Lockpicking">
     <summary>
             Represents the <b>Lockpicking</b> skill.
-            </summary>
-  </field>
-  <field name="Marksman">
-    <summary>
-            Represents the <b>Marksman</b> skill.
             </summary>
   </field>
   <field name="None">

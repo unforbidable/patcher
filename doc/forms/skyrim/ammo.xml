@@ -89,7 +89,7 @@
   </property>
   <property name="PickUpSound">
     <signature>
-      <see cref="Forms.Form" /> PickUpSound</signature>
+      <see cref="Forms.Skyrim.Sndr" /> PickUpSound</signature>
     <summary>
             Gets or sets the <b>Sound</b> that plays when this <b>Ammo</b> is picked up.
             </summary>
@@ -103,7 +103,7 @@
   </property>
   <property name="PutDownSound">
     <signature>
-      <see cref="Forms.Form" /> PutDownSound</signature>
+      <see cref="Forms.Skyrim.Sndr" /> PutDownSound</signature>
     <summary>
             Gets or sets the <b>Sound</b> that plays when this <b>Ammo</b> is put down.
             </summary>

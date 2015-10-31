@@ -103,6 +103,34 @@
             Convers and fiters this mixed form collection to a collection of <b>Constructible Object</b> forms.
             </summary>
   </method>
+  <method name="OfColl" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Coll" />&gt; OfColl()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Collision Layer</b> forms.
+            </summary>
+  </method>
+  <method name="OfEnch" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Ench" />&gt; OfEnch()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Enchantment</b> forms.
+            </summary>
+  </method>
+  <method name="OfEqup" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Equp" />&gt; OfEqup()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Equipment Type</b> forms.
+            </summary>
+  </method>
+  <method name="OfExpl" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Expl" />&gt; OfExpl()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Explosion</b> forms.
+            </summary>
+  </method>
   <method name="OfFlst" extension="true">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Flst" />&gt; OfFlst()</signature>
@@ -124,11 +152,39 @@
             Convers and fiters this mixed form collection to a collection of <b>Game Setting</b> forms.
             </summary>
   </method>
+  <method name="OfIpds" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Ipds" />&gt; OfIpds()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Impact Data Set</b> forms.
+            </summary>
+  </method>
   <method name="OfKywd" extension="true">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Kywd" />&gt; OfKywd()</signature>
     <summary>
             Convers and fiters this mixed form collection to a collection of <b>Keyword</b> forms.
+            </summary>
+  </method>
+  <method name="OfLigh" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Ligh" />&gt; OfLigh()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Light</b> forms.
+            </summary>
+  </method>
+  <method name="OfMatt" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Matt" />&gt; OfMatt()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Material</b> forms.
+            </summary>
+  </method>
+  <method name="OfMgef" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Mgef" />&gt; OfMgef()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Magic Effect</b> forms.
             </summary>
   </method>
   <method name="OfProj" extension="true">
@@ -138,11 +194,46 @@
             Convers and fiters this mixed form collection to a collection of <b>Projectile</b> forms.
             </summary>
   </method>
+  <method name="OfRace" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Race" />&gt; OfRace()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Race</b> forms.
+            </summary>
+  </method>
+  <method name="OfSndr" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Sndr" />&gt; OfSndr()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Sound</b> forms.
+            </summary>
+  </method>
+  <method name="OfSpel" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Spel" />&gt; OfSpel()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Spell</b> forms.
+            </summary>
+  </method>
   <method name="OfStat" extension="true">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Stat" />&gt; OfStat()</signature>
     <summary>
             Convers and fiters this mixed form collection to a collection of <b>Static</b> forms.
+            </summary>
+  </method>
+  <method name="OfTxst" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Txst" />&gt; OfTxst()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Texture Set</b> forms.
+            </summary>
+  </method>
+  <method name="OfWeap" extension="true">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Weap" />&gt; OfWeap()</signature>
+    <summary>
+            Convers and fiters this mixed form collection to a collection of <b>Weapon</b> forms.
             </summary>
   </method>
 </type>

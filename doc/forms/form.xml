@@ -44,63 +44,154 @@
     <signature>
       <see cref="Forms.Skyrim.Ammo" /> AsAmmo()</signature>
     <summary>
-            Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b>.
+            Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b> form.
             </summary>
   </method>
   <method name="AsArmo" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Armo" /> AsArmo()</signature>
     <summary>
-            Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b>.
+            Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b> form.
             </summary>
   </method>
   <method name="AsCobj" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Cobj" /> AsCobj()</signature>
     <summary>
-            Converts this form to a <b>Constructible Object</b> form or returns <c>null</c> if this form is not a <b>Constructible Object</b>.
+            Converts this form to a <b>Constructible Object</b> form or returns <c>null</c> if this form is not a <b>Constructible Object</b> form.
+            </summary>
+  </method>
+  <method name="AsColl" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Coll" /> AsColl()</signature>
+    <summary>
+            Converts this form to a <b>Collision Layer</b> form or returns <c>null</c> if this form is not a <b>Collision Layer</b> form.
+            </summary>
+  </method>
+  <method name="AsEnch" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Ench" /> AsEnch()</signature>
+    <summary>
+            Converts this form to an <b>Enchantment</b> form or returns <c>null</c> if this form is not an <b>Enchantment</b> form.
+            </summary>
+  </method>
+  <method name="AsEqup" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Equp" /> AsEqup()</signature>
+    <summary>
+            Converts this form to an <b>Equipment Type</b> form or returns <c>null</c> if this form is not an <b>Equipment Type</b> form.
+            </summary>
+  </method>
+  <method name="AsExpl" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Expl" /> AsExpl()</signature>
+    <summary>
+            Converts this form to an <b>Explosion</b> form or returns <c>null</c> if this form is not an <b>Explosion</b> form.
             </summary>
   </method>
   <method name="AsFlst" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Flst" /> AsFlst()</signature>
     <summary>
-            Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b>.
+            Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b> form.
             </summary>
   </method>
   <method name="AsGlob" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Glob" /> AsGlob()</signature>
     <summary>
-            Converts this form to a <b>Global Variable</b> form or returns <c>null</c> if this form is not a <b>Global Variable</b>.
+            Converts this form to a <b>Global Variable</b> form or returns <c>null</c> if this form is not a <b>Global Variable</b> form.
             </summary>
   </method>
   <method name="AsGmst" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Gmst" /> AsGmst()</signature>
     <summary>
-            Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b>.
+            Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b> form.
+            </summary>
+  </method>
+  <method name="AsIpds" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Ipds" /> AsIpds()</signature>
+    <summary>
+            Converts this form to a <b>Impact Data Set</b> form or returns <c>null</c> if this form is not an <b>Impact Data Set</b> form.
             </summary>
   </method>
   <method name="AsKywd" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Kywd" /> AsKywd()</signature>
     <summary>
-            Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b>.
+            Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b> form.
+            </summary>
+  </method>
+  <method name="AsLigh" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Ligh" /> AsLigh()</signature>
+    <summary>
+            Converts this form to a <b>Light</b> form or returns <c>null</c> if this form is not a <b>Light</b> form.
+            </summary>
+  </method>
+  <method name="AsMatt" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Matt" /> AsMatt()</signature>
+    <summary>
+            Converts this form to a <b>Material</b> form or returns <c>null</c> if this form is not a <b>Material</b> form.
+            </summary>
+  </method>
+  <method name="AsMgef" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Mgef" /> AsMgef()</signature>
+    <summary>
+            Converts this form to a <b>Magic Effect</b> form or returns <c>null</c> if this form is not a <b>Magic Effect</b> form.
             </summary>
   </method>
   <method name="AsProj" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Proj" /> AsProj()</signature>
     <summary>
-            Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b>.
+            Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b> form.
+            </summary>
+  </method>
+  <method name="AsRace" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Race" /> AsRace()</signature>
+    <summary>
+            Converts this form to a <b>Race</b> form or returns <c>null</c> if this form is not a <b>Race</b> form.
+            </summary>
+  </method>
+  <method name="AsSndr" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> AsSndr()</signature>
+    <summary>
+            Converts this form to a <b>Sound</b> form or returns <c>null</c> if this form is not a <b>Sound</b> form.
+            </summary>
+  </method>
+  <method name="AsSpel" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Spel" /> AsSpel()</signature>
+    <summary>
+            Converts this form to a <b>Spell</b> form or returns <c>null</c> if this form is not a <b>Spell</b> form.
             </summary>
   </method>
   <method name="AsStat" extension="true">
     <signature>
       <see cref="Forms.Skyrim.Stat" /> AsStat()</signature>
     <summary>
-            Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b>.
+            Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b> form.
+            </summary>
+  </method>
+  <method name="AsTxst" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Txst" /> AsTxst()</signature>
+    <summary>
+            Converts this form to a <b>Texture Set</b> form or returns <c>null</c> if this form is not a <b>Texture Set</b> form.
+            </summary>
+  </method>
+  <method name="AsWeap" extension="true">
+    <signature>
+      <see cref="Forms.Skyrim.Weap" /> AsWeap()</signature>
+    <summary>
+            Converts this form to a <b>Weapon</b> form or returns <c>null</c> if this form is not a <b>Weapon</b> form.
             </summary>
   </method>
   <remarks>

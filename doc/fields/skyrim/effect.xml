@@ -12,7 +12,7 @@
   </property>
   <property name="BaseEffect">
     <signature>
-      <see cref="Forms.Form" /> BaseEffect</signature>
+      <see cref="Forms.Skyrim.Mgef" /> BaseEffect</signature>
     <summary>
             Gets or sets the base <b>Magic Effect</b> of this <b>Effect</b>.
             </summary>

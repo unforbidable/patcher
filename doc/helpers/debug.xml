@@ -38,6 +38,13 @@
             Prints the specified message in the console.
             </summary>
   </method>
+  <method name="Pause" extension="false">
+    <signature>
+      <c>void</c> Pause()</signature>
+    <summary>
+            Pauses the processing of rules.
+            </summary>
+  </method>
   <remarks>
             These methods work only if the tool is run in debug mode. See option <code>--debug</code> form more details.
             </remarks>

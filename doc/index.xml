@@ -8,6 +8,11 @@
     </type>
   </category>
   <category name="Constants (Skyrim)">
+    <type name="Animations" fullname="Constants.Skyrim.Animations" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines types of animations.
+            </summary>
+    </type>
     <type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants (Skyrim)" gametitle="Skyrim">
       <summary>
             Defines body nodes.
@@ -23,6 +28,11 @@
             Defines <b>Projectile</b> types.
             </summary>
     </type>
+    <type name="Resistances" fullname="Constants.Skyrim.Resistances" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines resistances.
+            </summary>
+    </type>
     <type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants (Skyrim)" gametitle="Skyrim">
       <summary>
             Defines skills.
@@ -31,6 +41,11 @@
     <type name="SoundLevels" fullname="Constants.Skyrim.SoundLevels" category="Constants (Skyrim)" gametitle="Skyrim">
       <summary>
             Defines the sound levels in regard to detection.
+            </summary>
+    </type>
+    <type name="WeaponTypes" fullname="Constants.Skyrim.WeaponTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines <b>Weapon</b> types.
             </summary>
     </type>
   </category>
@@ -119,6 +134,22 @@
             Represents a <b>Constructible Object</b> form.
             </summary>
     </type>
+    <type name="Coll" fullname="Forms.Skyrim.Coll" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Collision Layer</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Ench" fullname="Forms.Skyrim.Ench" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Enchantment</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Equp" fullname="Forms.Skyrim.Equp" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents am <b>Equip Type</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Expl" fullname="Forms.Skyrim.Expl" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Explosion</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
     <type name="Flst" fullname="Forms.Skyrim.Flst" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents a <b>Form List</b> form.
@@ -134,19 +165,55 @@
             Represents a <b>Game Setting</b> form.
             </summary>
     </type>
+    <type name="Ipds" fullname="Forms.Skyrim.Ipds" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Impact Data Set</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
     <type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents a <b>Keyword</b> form.
             </summary>
+    </type>
+    <type name="Ligh" fullname="Forms.Skyrim.Ligh" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Light</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Matt" fullname="Forms.Skyrim.Matt" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Material</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Mgef" fullname="Forms.Skyrim.Mgef" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Magic Effect</b> form. <i>This form is a work in progress.</i></summary>
     </type>
     <type name="Proj" fullname="Forms.Skyrim.Proj" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents a <b>Projectile</b> form.
             </summary>
     </type>
+    <type name="Race" fullname="Forms.Skyrim.Race" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Race</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Sndr" fullname="Forms.Skyrim.Sndr" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Sound</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Spel" fullname="Forms.Skyrim.Spel" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Spell</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
     <type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
-            Represents a <b>Static</b> form. 
+            Represents a <b>Static</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Txst" fullname="Forms.Skyrim.Txst" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Texture Set</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Weap" fullname="Forms.Skyrim.Weap" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Weapon</b> form.
             </summary>
     </type>
   </category>

@@ -26,9 +26,9 @@
   </property>
   <property name="CollisionLayer">
     <signature>
-      <see cref="Forms.Form" /> CollisionLayer</signature>
+      <see cref="Forms.Skyrim.Coll" /> CollisionLayer</signature>
     <summary>
-            Gets or sets the <b>Collision</b> layer of this <b>Projectile</b>.
+            Gets or sets the <b>Collision Layer</b> of this <b>Projectile</b>.
             </summary>
   </property>
   <property name="CollisionRadius">
@@ -47,21 +47,21 @@
   </property>
   <property name="DecalData">
     <signature>
-      <see cref="Forms.Form" /> DecalData</signature>
+      <see cref="Forms.Skyrim.Txst" /> DecalData</signature>
     <summary>
             Gets or sets the decal <b>Texture</b> of this <b>Projectile</b>.
             </summary>
   </property>
   <property name="DefaultWeaponSource">
     <signature>
-      <see cref="Forms.Form" /> DefaultWeaponSource</signature>
+      <see cref="Forms.Skyrim.Weap" /> DefaultWeaponSource</signature>
     <summary>
             Gets or sets the default weapon source of this <b>Projectile</b>.
             </summary>
   </property>
   <property name="DisableSound">
     <signature>
-      <see cref="Forms.Form" /> DisableSound</signature>
+      <see cref="Forms.Skyrim.Sndr" /> DisableSound</signature>
     <summary>
             Gets or sets the <b>Sound</b> which is played when this <b>Projectile</b> is disabled.
             </summary>
@@ -82,14 +82,14 @@
   </property>
   <property name="Explosion">
     <signature>
-      <see cref="Forms.Form" /> Explosion</signature>
+      <see cref="Forms.Skyrim.Expl" /> Explosion</signature>
     <summary>
             Gets or sets the <b>Explosion</b> caused by this <b>Projectile</b>.
             </summary>
   </property>
   <property name="ExplosionCountdownSound">
     <signature>
-      <see cref="Forms.Form" /> ExplosionCountdownSound</signature>
+      <see cref="Forms.Skyrim.Sndr" /> ExplosionCountdownSound</signature>
     <summary>
             Gets or sets the <b>Sound</b> of the countdown timer that triggers the explosion of this <b>Projectile</b>.
             </summary>
@@ -189,7 +189,7 @@
   </property>
   <property name="Light">
     <signature>
-      <see cref="Forms.Form" /> Light</signature>
+      <see cref="Forms.Skyrim.Ligh" /> Light</signature>
     <summary>
             Gets or sets the <b>Light</b> caused by this <b>Projectile</b>.
             </summary>
@@ -203,7 +203,7 @@
   </property>
   <property name="MuzzleFlashLight">
     <signature>
-      <see cref="Forms.Form" /> MuzzleFlashLight</signature>
+      <see cref="Forms.Skyrim.Ligh" /> MuzzleFlashLight</signature>
     <summary>
             Gets or sets the muzzle flash <b>Light</b> caused by this <b>Projectile</b>.
             </summary>
@@ -245,7 +245,7 @@
   </property>
   <property name="Sound">
     <signature>
-      <see cref="Forms.Form" /> Sound</signature>
+      <see cref="Forms.Skyrim.Sndr" /> Sound</signature>
     <summary>
             Gets or sets the <b>Sound</b> caused by this <b>Projectile</b>.
             </summary>

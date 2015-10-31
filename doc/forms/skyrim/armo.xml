@@ -5,7 +5,7 @@
             </summary>
   <property name="AlternateBlockMaterial">
     <signature>
-      <see cref="Forms.Form" /> AlternateBlockMaterial</signature>
+      <see cref="Forms.Skyrim.Matt" /> AlternateBlockMaterial</signature>
     <summary>
             Gets or sets the alternate <b>Material</b> used when bashing or blocking (shields only).
             </summary>
@@ -19,7 +19,7 @@
   </property>
   <property name="BlockImpactDataSet">
     <signature>
-      <see cref="Forms.Form" /> BlockImpactDataSet</signature>
+      <see cref="Forms.Skyrim.Ipds" /> BlockImpactDataSet</signature>
     <summary>
             Gets or sets the shield bash <b>Impact Data Set</b> (shields only).
             </summary>
@@ -47,14 +47,14 @@
   </property>
   <property name="Enchantment">
     <signature>
-      <see cref="Forms.Form" /> Enchantment</signature>
+      <see cref="Forms.Skyrim.Ench" /> Enchantment</signature>
     <summary>
             Gets or sets the <b>Enchantment</b> of this <b>Armor</b>.
             </summary>
   </property>
   <property name="EquipType">
     <signature>
-      <see cref="Forms.Form" /> EquipType</signature>
+      <see cref="Forms.Skyrim.Equp" /> EquipType</signature>
     <summary>
             Gets or sets the shield <b>Equip Type</b> (shields only).
             </summary>
@@ -124,21 +124,21 @@
   </property>
   <property name="PickUpSound">
     <signature>
-      <see cref="Forms.Form" /> PickUpSound</signature>
+      <see cref="Forms.Skyrim.Sndr" /> PickUpSound</signature>
     <summary>
             Gets or sets the <b>Sound</b> that plays when this <b>Armor</b> is picked up.
             </summary>
   </property>
   <property name="PutDownSound">
     <signature>
-      <see cref="Forms.Form" /> PutDownSound</signature>
+      <see cref="Forms.Skyrim.Sndr" /> PutDownSound</signature>
     <summary>
             Gets or sets the <b>Sound</b> that plays when this <b>Armor</b> is put down.
             </summary>
   </property>
   <property name="Race">
     <signature>
-      <see cref="Forms.Form" /> Race</signature>
+      <see cref="Forms.Skyrim.Race" /> Race</signature>
     <summary>
             Gets or sets the <b>Race</b> that is allowed to wear this <b>Armor</b>.
             </summary>

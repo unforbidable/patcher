@@ -3,11 +3,6 @@
   <summary>
             Defines <b>Potion</b> types.
             </summary>
-  <field name="Auto">
-    <summary>
-            Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
-            </summary>
-  </field>
   <field name="Food">
     <summary>
             Indicates the <b>Potion</b> is food or a drink.
@@ -16,6 +11,11 @@
   <field name="Medicine">
     <summary>
             Indicates the <b>Potion</b> is a medicine.
+            </summary>
+  </field>
+  <field name="None">
+    <summary>
+            Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
             </summary>
   </field>
   <field name="Poison">

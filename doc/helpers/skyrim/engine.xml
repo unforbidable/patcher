@@ -5,7 +5,7 @@
             </summary>
   <method name="CreateEffect" extension="false">
     <signature>
-      <see cref="Fields.Skyrim.Effect" /> CreateEffect(<see cref="Forms.Form" />,<c>float</c>,<c>int</c>,<c>int</c>)</signature>
+      <see cref="Fields.Skyrim.Effect" /> CreateEffect(<see cref="Forms.Skyrim.Mgef" />,<c>float</c>,<c>int</c>,<c>int</c>)</signature>
     <summary>
             Creates a new <see cref="Fields.Skyrim.Effect" /> based on a <b>Magic Effect</b> with given magnitude, area and duration, which can be added to an <see cref="Fields.Skyrim.EffectCollection" />.
             </summary>
