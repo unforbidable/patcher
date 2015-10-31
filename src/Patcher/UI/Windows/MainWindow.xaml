@@ -10,6 +10,8 @@
         mc:Ignorable="d"
         Title="Patcher" Height="600" Width="1000" Background="{x:Null}" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <local:HasValueToVisibilityConverter x:Key="HasValueToVisibilityConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <!--Scrollbar Thumbs-->
         <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
             <Setter Property="Template">
@@ -47,9 +49,7 @@
                             <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
                                 <Track.Resources>
                                     <!-- Thumb's minimum height is half of this metric -->
-                                    <System:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">
-                                        64
-                                    </System:Double>
+                                    <System:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">64</System:Double>
                                 </Track.Resources>
                                 <Track.Thumb>
                                     <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" Style="{DynamicResource ScrollThumbs}" />
@@ -126,6 +126,7 @@
         <DataTemplate DataType="{x:Type local:ChoiceItem}">
             <Button Background="{Binding Brush}" Content="{Binding Text}" ToolTip="{Binding Description}" FontSize="13.333" Margin="4" Padding="8,0" BorderBrush="{x:Null}" Foreground="White" Click="ChoiceButton_Click" Focusable="False" IsTabStop="False" />
         </DataTemplate>
+
     </Window.Resources>
     <Grid>
         <Border BorderThickness="2" Padding="2" BorderBrush="#FFB9B9B9">
@@ -139,10 +140,56 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Background="#FF323131" Visibility="Collapsed">
-                    <StackPanel Orientation="Horizontal" Opacity="0.75">
-                        <Label x:Name="AppLabel" Content="Application Name 1.0.0" ScrollViewer.CanContentScroll="True" Margin="2" Foreground="#FFFFF7F7" FontSize="13.333"/>
-                    </StackPanel>
+                <Border x:Name="IssuePanel" BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Background="#FF323131" Visibility="Collapsed">
+                    <DockPanel Opacity="0.75">
+                        <Grid DockPanel.Dock="Top" VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                <Label>
+                                    <Image x:Name="image4" Source="Images/StatusCritical.png" Margin="0,1,0,0"/>
+                                </Label>
+                                <Label x:Name="IssueTitleLabel" ScrollViewer.CanContentScroll="True" Foreground="#FFFFF7F7" FontSize="13.333" Content="Issue Title" Background="{x:Null}" Margin="-4,0,0,0"/>
+                            </StackPanel>
+                            <Button x:Name="CopyToClipButton" Focusable="False" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,2,0">
+                                <Image x:Name="image" Source="Images/Copy.png" ToolTip="Copy all to clipboard" RenderTransformOrigin="6.25,0.562"/>
+                            </Button>
+                        </Grid>
+                        <Border BorderBrush="#FFC5C5C5" BorderThickness="0,2,0,0" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0">
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Top">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="IssueMessageLabel" Foreground="#FFC5C5C5" FontSize="13.333" Background="{x:Null}" Content="Issue Message"/>
+                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Orientation="Horizontal">
+                                        <Button x:Name="PrevButton" Visibility="{Binding Visibility, ElementName=IssueCounterLabel}" Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Image x:Name="image2" Source="Images/Prev.png"/>
+                                        </Button>
+                                        <Label x:Name="IssueCounterLabel" ScrollViewer.CanContentScroll="True" Foreground="#FFFFF7F7" FontSize="13.333" Content="1/5" Background="{x:Null}" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueCounterLabel}"/>
+                                        <Button x:Name="NextButton" Visibility="{Binding Visibility, ElementName=IssueCounterLabel}" Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,2,0">
+                                            <Image x:Name="image1" Source="Images/Next.png"/>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueFileLabel}" Margin="0,-8,0,0">
+                                    <Label x:Name="IssueInLabel" Foreground="#FFC5C5C5" FontSize="13.333" Content="In file" Background="{x:Null}"/>
+                                    <Label x:Name="IssueFileLabel" Foreground="#FF3CB8FF" FontSize="13.333" Background="{x:Null}" Content="file name" Cursor="Hand" Margin="-4,0" MouseDown="IssueFileLabel_MouseDown"/>
+                                    <Label x:Name="IssueAtLabel" Foreground="#FFC5C5C5" FontSize="13.333" Content="at line" Background="{x:Null}" Visibility="{Binding Visibility, ElementName=IssueLineLabel}"/>
+                                    <Label x:Name="IssueLineLabel" Foreground="#FFF0F00A" FontSize="13.333" Content="42" Background="{x:Null}" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueLineLabel}" Margin="-4,0"/>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueSolutionLabel}" Margin="0,-8,0,0">
+                                    <Label>
+                                        <Image x:Name="image3" Source="Images/LightBulb.png" Margin="0,1,0,0"/>
+                                    </Label>
+                                    <Label x:Name="IssueSolutionLabel" Foreground="#FFFFF7F7" FontSize="13.333" Content="Issue Solution" Background="{x:Null}" Width="978" Margin="-4,0,0,0"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </Border>
+                    </DockPanel>
                 </Border>
                 <Border BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="1" Background="#FF0F0F0F">
                     <DockPanel x:Name="LoggerDockPanel" Margin="4">

@@ -255,8 +255,11 @@
     <Compile Include="Rules\TagManager.cs" />
     <Compile Include="UI\Choice.cs" />
     <Compile Include="UI\IDisplay.cs" />
+    <Compile Include="UI\Problem.cs" />
     <Compile Include="UI\Progress.cs" />
     <Compile Include="UI\Windows\ChoiceItem.cs" />
+    <Compile Include="UI\Windows\HasValueToVisibilityConverter.cs" />
+    <Compile Include="UI\Windows\IssueItem.cs" />
     <Compile Include="UI\Windows\LogItem.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -310,6 +313,11 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
     <Content Include="App.ico" />
+    <Resource Include="UI\Windows\Images\LightBulb.png" />
+    <Resource Include="UI\Windows\Images\StatusCritical.png" />
+    <Resource Include="UI\Windows\Images\Prev.png" />
+    <Resource Include="UI\Windows\Images\Next.png" />
+    <Resource Include="UI\Windows\Images\Copy.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

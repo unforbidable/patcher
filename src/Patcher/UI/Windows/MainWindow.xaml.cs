@@ -52,6 +52,9 @@ namespace Patcher.UI.Windows
         Choice selectedChoice = null;
         Choice[] offeredChoices = null;
 
+        int currentProblem = 0;
+        Problem[] shownProblems = null;
+
         AutoResetEvent waitFormChoseOption = new AutoResetEvent(false);
 
         public MainWindow()
@@ -60,8 +63,6 @@ namespace Patcher.UI.Windows
 
             LoggerItemsControl.DataContext = logItems;
             ChoiceItemsControl.DataContext = choiceItems;
-
-            AppLabel.Content = Program.GetProgramVersionInfo();
 
             logItems.CollectionChanged += LogItems_CollectionChanged;
         }
@@ -116,6 +117,42 @@ namespace Patcher.UI.Windows
                 offeredChoices = null;
 
                 waitFormChoseOption.Set();
+            }
+        }
+
+        private void ShowProblem()
+        {
+            if (shownProblems == null || shownProblems.Length == 0)
+            {
+                IssueCounterLabel.Content = string.Empty;
+                IssueMessageLabel.Content = string.Empty;
+                IssueFileLabel.Content = string.Empty;
+                IssueSolutionLabel.Content = string.Empty;
+            }
+            else
+            {
+                if (shownProblems.Length > 1)
+                {
+                    IssueCounterLabel.Content = string.Format("{0}/{1}", currentProblem + 1, shownProblems.Length);
+                }
+                else
+                {
+                    IssueCounterLabel.Content = string.Empty;
+                }
+
+                var problem = shownProblems[currentProblem];
+                IssueMessageLabel.Content = problem.Message;
+                IssueFileLabel.Content = problem.File;
+                IssueLineLabel.Content = problem.Line >= 0 ? problem.Line.ToString() : string.Empty;
+                IssueSolutionLabel.Content = problem.Solution;
+            }
+        }
+
+        private void IssueFileLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                System.Diagnostics.Process.Start(shownProblems[currentProblem].File);
             }
         }
 
@@ -284,5 +321,29 @@ namespace Patcher.UI.Windows
                     break;
             }
         }
+
+        void IDisplay.ShowProblems(string title, string text, params Problem[] problems)
+        {
+            currentProblem = 0;
+            shownProblems = problems;
+
+            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            {
+                ShowProblem();
+                IssueTitleLabel.Content = title;
+                IssuePanel.Visibility = Visibility.Visible;
+            }));
+        }
+
+        void IDisplay.ClearProblems()
+        {
+            shownProblems = null;
+
+            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            {
+                IssuePanel.Visibility = Visibility.Collapsed;
+            }));
+        }
+
     }
 }

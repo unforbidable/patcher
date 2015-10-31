@@ -11,5 +11,7 @@ namespace Patcher.UI
         void StartProgress(Progress progess);
         Choice OfferChoice(string message, Choice[] choice);
         void WriteText(string text);
+        void ShowProblems(string title, string text, params Problem[] problems);
+        void ClearProblems();
     }
 }
