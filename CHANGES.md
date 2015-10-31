@@ -1,3 +1,8 @@
+##### v1.5.0 (2015/10/31)
+* New supported forms: WEAP
+* Graphical interface improvements
+* All reference properties require proper casting
+
 ##### v1.4.1 (2015/10/28)
 * Graphical interface implemented
 
