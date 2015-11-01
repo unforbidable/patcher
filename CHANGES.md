@@ -1,3 +1,11 @@
+##### v1.5.1 (2015/11/01)
+* New Math helper methods Round(), Floor() and Ceiling().
+* Changes made in rule methods are applied immediately.
+* Processing can be paused with pressing the Space bar.
+* Errors show up in new panel sometime with a helpful hint.
+* Rules can be reloaded on compiler error without restarting.
+* Shrunk log buffer for better performance.
+
 ##### v1.5.0 (2015/10/31)
 * New supported forms: WEAP
 * Graphical interface improvements
