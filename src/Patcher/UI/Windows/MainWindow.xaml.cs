@@ -54,12 +54,17 @@ namespace Patcher.UI.Windows
 
         int currentProblem = 0;
         Problem[] shownProblems = null;
+        string problemsText = null;
 
         AutoResetEvent waitFormChoseOption = new AutoResetEvent(false);
 
         public MainWindow()
         {
             InitializeComponent();
+
+            IssuePanel.Visibility = Visibility.Collapsed;
+            PromptControl.Visibility = Visibility.Collapsed;
+            StatusPanel.Visibility = Visibility.Collapsed;
 
             LoggerItemsControl.DataContext = logItems;
             ChoiceItemsControl.DataContext = choiceItems;
@@ -120,13 +125,15 @@ namespace Patcher.UI.Windows
             }
         }
 
-        private void ShowProblem()
+        private void ShowCurrentProblem()
         {
             if (shownProblems == null || shownProblems.Length == 0)
             {
                 IssueCounterLabel.Content = string.Empty;
                 IssueMessageLabel.Content = string.Empty;
                 IssueFileLabel.Content = string.Empty;
+                IssueLineLabel.Content = string.Empty;
+                IssueColumnLabel.Content = string.Empty;
                 IssueSolutionLabel.Content = string.Empty;
             }
             else
@@ -143,9 +150,31 @@ namespace Patcher.UI.Windows
                 var problem = shownProblems[currentProblem];
                 IssueMessageLabel.Content = problem.Message;
                 IssueFileLabel.Content = problem.File;
-                IssueLineLabel.Content = problem.Line >= 0 ? problem.Line.ToString() : string.Empty;
+                IssueLineLabel.Content = problem.Line.HasValue ? problem.Line.ToString() : string.Empty;
+                IssueColumnLabel.Content = problem.Column.HasValue ? problem.Column.ToString() : string.Empty;
                 IssueSolutionLabel.Content = problem.Solution;
             }
+        }
+
+        private void CopyToClipButton_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(problemsText);
+        }
+
+        private void PrevButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentProblem > 0)
+                currentProblem--;
+
+            ShowCurrentProblem();
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentProblem < shownProblems.Length - 1)
+                currentProblem++;
+
+            ShowCurrentProblem();
         }
 
         private void IssueFileLabel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -326,10 +355,11 @@ namespace Patcher.UI.Windows
         {
             currentProblem = 0;
             shownProblems = problems;
+            problemsText = text;
 
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
             {
-                ShowProblem();
+                ShowCurrentProblem();
                 IssueTitleLabel.Content = title;
                 IssuePanel.Visibility = Visibility.Visible;
             }));
@@ -344,6 +374,5 @@ namespace Patcher.UI.Windows
                 IssuePanel.Visibility = Visibility.Collapsed;
             }));
         }
-
     }
 }
