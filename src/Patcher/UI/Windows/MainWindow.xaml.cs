@@ -87,7 +87,7 @@ namespace Patcher.UI.Windows
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => 
             {
-                if (logItems.Count > 20000)
+                if (logItems.Count > 10000)
                     logItems.RemoveAt(0);
 
                 logItems.Add(new LogItem()
@@ -179,9 +179,16 @@ namespace Patcher.UI.Windows
 
         private void IssueFileLabel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed && shownProblems != null && shownProblems.Length > currentProblem)
             {
-                System.Diagnostics.Process.Start(shownProblems[currentProblem].File);
+                try
+                {
+                    System.Diagnostics.Process.Start(shownProblems[currentProblem].File);
+                }
+                catch (Exception)
+                {
+                    Log.Error("Could not open source file {0}", shownProblems[currentProblem].File);
+                }
             }
         }
 
