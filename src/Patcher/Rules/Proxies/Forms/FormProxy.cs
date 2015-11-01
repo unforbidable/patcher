@@ -89,6 +89,15 @@ namespace Patcher.Rules.Proxies.Forms
         {
             Provider.Engine.Tags.Tag(text, formId);
         }
+
+        public T As<T>() where T : class, IForm
+        {
+            var target = this as T;
+            if (target == null)
+                Log.Warning("Failed to cast {0} as {1}.", GetType().FullName, typeof(T).FullName);
+
+            return target;
+        }
     }
 
     public class FormProxy<T> : FormProxy where T : GenericFormRecord
