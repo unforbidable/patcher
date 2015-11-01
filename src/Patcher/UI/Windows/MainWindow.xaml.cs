@@ -87,7 +87,7 @@ namespace Patcher.UI.Windows
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => 
             {
-                if (logItems.Count > 10000)
+                if (logItems.Count > 800)
                     logItems.RemoveAt(0);
 
                 logItems.Add(new LogItem()
