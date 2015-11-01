@@ -36,6 +36,16 @@ namespace Patcher
             Display.display = display;
         }
 
+        public static void ShowProblems(string title, string text, params Problem[] problems)
+        {
+            display.ShowProblems(title, text, problems);
+        }
+
+        public static void ClearProblems()
+        {
+            display.ClearProblems();
+        }
+
         public static ChoiceOption Choice(string message, params ChoiceOption[] options)
         {
             return display.OfferChoice(message, options.Select(o => new Choice(o)).ToArray()).GetOption();

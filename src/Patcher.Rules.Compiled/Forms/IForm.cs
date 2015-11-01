@@ -71,5 +71,12 @@ namespace Patcher.Rules.Compiled.Forms
         /// <param name="text">Text of the tag to determine.</param>
         /// <returns>Returns <c>true</c> if the form has been taged with specified text, otherwise returns <c>false</c>.</returns>
         bool HasTag(string text);
+
+        /// <summary>
+        /// Converts a unknown form to a specific form kind.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        T As<T>() where T: class, IForm;
     }
 }

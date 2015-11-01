@@ -90,6 +90,10 @@ namespace Patcher
         [Obsolete]
         public int WindowHeight { get; set; }
 
+        [Option("maximize")]
+        [Description("Open the main window maximized.\nDefault: false")]
+        public bool StartWindowMaximized { get; set; }
+
         [Option("version")]
         [Description("Print the program version information.")]
         public bool PrintVersion { get; private set; }

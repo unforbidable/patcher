@@ -165,5 +165,33 @@ namespace Patcher.Rules
             }
         }
 
+        public static string GetRuntimeErrorHint(Exception ex)
+        {
+            var runtimeException = ex as RuntimeException;
+            if (runtimeException != null)
+            {
+                // Provide hint by RuntimeError
+                switch (runtimeException.Error)
+                {
+                    case RuntimeError.ReadOnlyProxy:
+                        return "Only the Target form or new objects intended to be added to the Target form can be modified.";
+
+                    default:
+                        return string.Empty;
+                }
+            }
+            else
+            {
+                // Provide hint by exception type
+                if (ex is NullReferenceException || ex is ArgumentNullException)
+                {
+                    return "The most likely cause of this error is that either helper method Forms.Find() did not find specified form, or that an attemt to cast an uknown Form into a specific form kind suing an extensison method (i.e. As*) failed.";
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
     }
 }

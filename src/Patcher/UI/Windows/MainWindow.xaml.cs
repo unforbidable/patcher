@@ -52,16 +52,24 @@ namespace Patcher.UI.Windows
         Choice selectedChoice = null;
         Choice[] offeredChoices = null;
 
-        AutoResetEvent waitFormChoseOption = new AutoResetEvent(false);
+        int currentProblem = 0;
+        Problem[] shownProblems = null;
+        string problemsText = null;
+
+        bool paused = false;
+
+        AutoResetEvent waitForChoice = new AutoResetEvent(false);
 
         public MainWindow()
         {
             InitializeComponent();
 
+            IssuePanel.Visibility = Visibility.Collapsed;
+            PromptControl.Visibility = Visibility.Collapsed;
+            StatusPanel.Visibility = Visibility.Collapsed;
+
             LoggerItemsControl.DataContext = logItems;
             ChoiceItemsControl.DataContext = choiceItems;
-
-            AppLabel.Content = Program.GetProgramVersionInfo();
 
             logItems.CollectionChanged += LogItems_CollectionChanged;
         }
@@ -75,13 +83,23 @@ namespace Patcher.UI.Windows
             {
                 StatusPanel.Visibility = Visibility.Collapsed;
             }));
-        }            
+        }
+
+        private void HandlePause()
+        {
+            if (paused)
+            {
+                paused = false;
+
+                Display.Choice("Program has been paused.", ChoiceOption.Continue);
+            }
+        }
 
         private void WriteMessage(Brush brush, string message)
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => 
             {
-                if (logItems.Count > 20000)
+                if (logItems.Count > 800)
                     logItems.RemoveAt(0);
 
                 logItems.Add(new LogItem()
@@ -115,7 +133,74 @@ namespace Patcher.UI.Windows
                 selectedChoice = choice;
                 offeredChoices = null;
 
-                waitFormChoseOption.Set();
+                waitForChoice.Set();
+            }
+        }
+
+        private void ShowCurrentProblem()
+        {
+            if (shownProblems == null || shownProblems.Length == 0)
+            {
+                IssueCounterLabel.Content = string.Empty;
+                IssueMessageLabel.Content = string.Empty;
+                IssueFileLabel.Content = string.Empty;
+                IssueLineLabel.Content = string.Empty;
+                IssueColumnLabel.Content = string.Empty;
+                IssueSolutionLabel.Content = string.Empty;
+            }
+            else
+            {
+                if (shownProblems.Length > 1)
+                {
+                    IssueCounterLabel.Content = string.Format("{0}/{1}", currentProblem + 1, shownProblems.Length);
+                }
+                else
+                {
+                    IssueCounterLabel.Content = string.Empty;
+                }
+
+                var problem = shownProblems[currentProblem];
+                IssueMessageLabel.Content = problem.Message;
+                IssueFileLabel.Content = problem.File;
+                IssueLineLabel.Content = problem.Line.HasValue ? problem.Line.ToString() : string.Empty;
+                IssueColumnLabel.Content = problem.Column.HasValue ? problem.Column.ToString() : string.Empty;
+                IssueSolutionLabel.Content = problem.Solution;
+            }
+        }
+
+        private void CopyToClipButton_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(problemsText);
+        }
+
+        private void PrevButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentProblem > 0)
+                currentProblem--;
+
+            ShowCurrentProblem();
+        }
+
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentProblem < shownProblems.Length - 1)
+                currentProblem++;
+
+            ShowCurrentProblem();
+        }
+
+        private void IssueFileLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed && shownProblems != null && shownProblems.Length > currentProblem)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(shownProblems[currentProblem].File);
+                }
+                catch (Exception)
+                {
+                    Log.Error("Could not open source file {0}", shownProblems[currentProblem].File);
+                }
             }
         }
 
@@ -143,17 +228,6 @@ namespace Patcher.UI.Windows
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
-            {
-                case Key.Escape:
-                    if (terminating)
-                    {
-                        Close();
-                        e.Handled = true;
-                    }
-                    break;
-            }
-
             var choices = offeredChoices;
             if (!e.Handled && choices != null)
             {
@@ -162,6 +236,27 @@ namespace Patcher.UI.Windows
                 {
                     SelectChoice(choice);
                     e.Handled = true;
+                }
+            }
+
+            if (!e.Handled)
+            {
+                switch (e.Key)
+                {
+                    case Key.Escape:
+                        if (terminating)
+                        {
+                            Close();
+                            e.Handled = true;
+                        }
+                        break;
+
+                    case Key.Space:
+                        if (!paused)
+                        {
+                            paused = true;
+                        }
+                        break;
                 }
             }
         }
@@ -204,6 +299,8 @@ namespace Patcher.UI.Windows
         Progress currentProgress = null;
         private void Progess_Updated(object sender, EventArgs e)
         {
+            HandlePause();
+
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
             {
                 if (currentProgress.IsCompleted)
@@ -228,6 +325,8 @@ namespace Patcher.UI.Windows
 
         void IDisplay.StartProgress(Progress progess)
         {
+            HandlePause();
+
             currentProgress = progess;
             progess.Updated += Progess_Updated;
         }
@@ -244,14 +343,16 @@ namespace Patcher.UI.Windows
             offeredChoices = choices;
 
             // Wait until an option is chosen
-            waitFormChoseOption.Reset();
-            waitFormChoseOption.WaitOne();
+            waitForChoice.Reset();
+            waitForChoice.WaitOne();
 
             return selectedChoice;
         }
 
         void IDisplay.WriteText(string text)
         {
+            HandlePause();
+
             WriteMessage(Brushes.White, text);
         }
 
@@ -265,6 +366,8 @@ namespace Patcher.UI.Windows
 
         void ILogger.WriteLogEntry(LogEntry entry)
         {
+            HandlePause();
+
             switch (entry.Level)
             {
                 case LogLevel.Error:
@@ -283,6 +386,30 @@ namespace Patcher.UI.Windows
                     WriteMessage(Brushes.DarkGray, entry.Text);
                     break;
             }
+        }
+
+        void IDisplay.ShowProblems(string title, string text, params Problem[] problems)
+        {
+            currentProblem = 0;
+            shownProblems = problems;
+            problemsText = text;
+
+            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            {
+                ShowCurrentProblem();
+                IssueTitleLabel.Content = title;
+                IssuePanel.Visibility = Visibility.Visible;
+            }));
+        }
+
+        void IDisplay.ClearProblems()
+        {
+            shownProblems = null;
+
+            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            {
+                IssuePanel.Visibility = Visibility.Collapsed;
+            }));
         }
     }
 }

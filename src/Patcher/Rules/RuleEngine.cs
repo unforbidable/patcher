@@ -85,70 +85,155 @@ namespace Patcher.Rules
 
             using (var progress = Display.StartProgress("Loading rules"))
             {
-                const int pluginWorthPoints = 2;
-                long total = context.Plugins.Count * pluginWorthPoints;
+                long total = context.Plugins.Count;
                 long current = 0;
 
                 foreach (var pluginFileName in context.Plugins.Select(p => p.FileName))
                 {
-                    var compiler = new RuleCompiler(this, pluginFileName);
-
-                    string path = Path.Combine(Program.ProgramFolder, Program.ProgramRulesFolder, RulesFolder, pluginFileName);
-                    var files = Context.DataFileProvider.FindDataFiles(path, "*.rules").ToArray();
-
-                    total += files.Length;
-
-                    foreach (var file in files)
+                    bool retry;
+                    do
                     {
-                        using (var stream = file.Open())
+                        retry = false;
+                        try
                         {
-                            bool isDebugModeEnabled = DebugAll ||
-                                pluginFileName.Equals(DebugPluginFileName, StringComparison.OrdinalIgnoreCase) &&
-                                (DebugRuleFileName == null || Path.GetFileName(file.Name).Equals(DebugRuleFileName, StringComparison.OrdinalIgnoreCase));
+                            var compiler = new RuleCompiler(this, pluginFileName);
 
-                            int count = 0;
-                            using (RuleReader reader = new RuleReader(stream))
+                            string path = Path.Combine(Program.ProgramFolder, Program.ProgramRulesFolder, RulesFolder, pluginFileName);
+                            var files = Context.DataFileProvider.FindDataFiles(path, "*.rules").ToArray();
+
+                            total += files.Length;
+
+                            foreach (var file in files)
                             {
-                                foreach (var entry in reader.ReadRules())
+                                using (var stream = file.Open())
                                 {
-                                    if (entry.Select == null && entry.Update == null && entry.Inserts.Count() == 0)
+                                    bool isDebugModeEnabled = DebugAll ||
+                                        pluginFileName.Equals(DebugPluginFileName, StringComparison.OrdinalIgnoreCase) &&
+                                        (DebugRuleFileName == null || Path.GetFileName(file.Name).Equals(DebugRuleFileName, StringComparison.OrdinalIgnoreCase));
+
+                                    int count = 0;
+                                    using (RuleReader reader = new RuleReader(stream))
                                     {
-                                        Log.Warning("Rule {0} in file {1} ignored because it lacks any operation", entry.Name, pluginFileName);
-                                        continue;
+                                        foreach (var entry in reader.ReadRules())
+                                        {
+                                            if (entry.Select == null && entry.Update == null && entry.Inserts.Count() == 0)
+                                            {
+                                                Log.Warning("Rule {0} in file {1} ignored because it lacks any operation", entry.Name, pluginFileName);
+                                                continue;
+                                            }
+
+                                            var metadata = new RuleMetadata()
+                                            {
+                                                PluginFileName = pluginFileName,
+                                                RuleFileName = Path.GetFileName(file.Name),
+                                                Name = entry.Name,
+                                                Description = entry.Description,
+                                            };
+
+                                            Log.Fine("Loading rule {0}\\{1}@{2}", metadata.PluginFileName, metadata.RuleFileName, metadata.Name);
+
+                                            try
+                                            {
+                                                compiler.Add(entry, metadata, isDebugModeEnabled);
+                                            }
+                                            catch (IllegalTokenException ex)
+                                            {
+                                                Display.ShowProblems("Illegal Token", ex.ToString(), new Problem()
+                                                {
+                                                    Message = ex.Message,
+                                                    File = file.GetRelativePath(),
+                                                    Solution = string.Format("Please avoid using the following tokens in rule code: {0}",
+                                                        string.Join(", ", RuleCompiler.GetIllegalCodeTokens()))
+                                                });
+                                                throw;
+                                            }
+
+                                            count++;
+                                        }
                                     }
-
-                                    var metadata = new RuleMetadata()
-                                    {
-                                        PluginFileName = pluginFileName,
-                                        RuleFileName = Path.GetFileName(file.Name),
-                                        Name = entry.Name,
-                                        Description = entry.Description,
-                                    };
-
-                                    Log.Fine("Loading rule {0}\\{1}@{2}", metadata.PluginFileName, metadata.RuleFileName, metadata.Name);
-
-                                    compiler.Add(entry, metadata, isDebugModeEnabled);
-
-                                    count++;
+                                    Log.Fine("Loaded {0} rule(s) from file {1}", count, stream.Name);
                                 }
+
+                                progress.Update(current, total, string.Format("{0}\\{1}", pluginFileName, Path.GetFileName(file.Name)));
                             }
-                            Log.Fine("Loaded {0} rule(s) from file {1}", count, stream.Name);
+
+                            if (compiler.HasRules)
+                            {
+                                try
+                                {
+                                    compiler.CompileAll();
+                                }
+                                catch (CompilerException ex)
+                                {
+                                    StringBuilder text = new StringBuilder();
+                                    List<Problem> problems = new List<Problem>();
+                                    foreach (System.CodeDom.Compiler.CompilerError error in ex.Errors)
+                                    {
+                                        if (!error.IsWarning)
+                                        {
+                                            text.AppendLine(error.ToString());
+
+                                            problems.Add(new Problem()
+                                            {
+                                                Message = string.Format("{0}: {1}", error.ErrorNumber, error.ErrorText),
+                                                File = DataFile.GetRelativePath(error.FileName),
+                                                Line = error.Line,
+                                                Column = error.Column,
+                                                Solution = RuleCompiler.GetCompilerErrorHint(error)
+                                            });
+                                        }
+                                    }
+                                    text.Append(ex.ToString());
+
+                                    Display.ShowProblems("Compiler Error(s)", text.ToString(), problems.ToArray());
+
+                                    throw ex;
+                                }
+
+                                rules.Add(pluginFileName, new List<IRule>(compiler.CompiledRules));
+                            }
                         }
-
-                        current++;
-                        progress.Update(current, total, string.Format("{0}\\{1}", pluginFileName, Path.GetFileName(file.Name)));
-                    }
-
-                    if (compiler.HasRules)
-                    {
-                        if (compiler.CompileAll())
+                        catch (Exception ex)
                         {
-                            rules.Add(pluginFileName, new List<IRule>(compiler.CompiledRules));
+                            Log.Error("Error occured while loading rules for plugin {0} with message: {1}", pluginFileName, ex.Message);
+                            Log.Fine(ex.ToString());
+
+                            // Depending on the kind of error, offer a choice to reload rules for this plugin
+                            // Rules can be reloaded only if illegal tokens have been detected or when compilation has failed
+                            ChoiceOption result = ChoiceOption.Cancel;
+                            if (ex.GetType() == typeof(IllegalTokenException) || ex.GetType() == typeof(CompilerException))
+                            {
+                                result = Display.Choice(string.Format("Try loading rules for plugin {0} again?", pluginFileName), ChoiceOption.Yes, ChoiceOption.Continue, ChoiceOption.Cancel);
+                            }
+                            else
+                            {
+                                result = Display.Choice("Continue loading rules?", ChoiceOption.Continue, ChoiceOption.Cancel);
+                            }
+
+                            if (result == ChoiceOption.Yes)
+                            {
+                                Log.Info("Rules for plugin {0} will be reloaded.", pluginFileName);
+                                retry = true;
+                            }
+                            else if (result == ChoiceOption.Continue)
+                            {
+                                Log.Warning("Rules for plugin {0} skipped because an error occured: {1} ", pluginFileName, ex.Message);
+                            }
+                            else
+                            {
+                                Log.Warning("Rule loading has been aborted.");
+                                throw new UserAbortException("Rule loading has been aborted by the user.");
+                            }
                         }
-                    }
+                        finally
+                        {
+                            Display.ClearProblems();
+                        }
+
+                    } while (retry);
                 }
 
-                current += pluginWorthPoints;
+                current++;
             }
         }
 
@@ -177,7 +262,6 @@ namespace Patcher.Rules
                         {
                             runner.Run();
                         }
-                        // Catch any unhandled exception in a Release build only
                         catch (Exception ex)
                         {
                             if (ex is CompiledRuleAssertException)
@@ -190,6 +274,20 @@ namespace Patcher.Rules
                             }
                             Log.Fine(ex.ToString());
 
+                            // Determine were the exception occured
+                            var stackTrace = new StackTrace(ex, true);
+                            var frame = stackTrace.GetFrames().Where(f => f.GetMethod().DeclaringType.Namespace == "Patcher.Rules.Compiled.Generated").FirstOrDefault();
+                            if (frame != null)
+                            {
+                                Display.ShowProblems("Runtime Error", ex.ToString(), new Problem()
+                                {
+                                    Message = string.Format("{0}: {1}", ex.GetType().FullName, ex.Message),
+                                    File = DataFile.GetRelativePath(frame.GetFileName()),
+                                    Line = frame.GetFileLineNumber(),
+                                    Solution = RuleRunner.GetRuntimeErrorHint(ex)
+                                });
+                            }
+
                             var choice = Display.Choice("Continue executing rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
                             if (choice == ChoiceOption.Cancel)
                             {
@@ -201,6 +299,10 @@ namespace Patcher.Rules
                                 Log.Warning("Any changes made by the faulty rule were discarded.");
                                 continue;
                             }
+                        }
+                        finally
+                        {
+                            Display.ClearProblems();
                         }
 
                         // Create/Override/Update forms when the rule is completed

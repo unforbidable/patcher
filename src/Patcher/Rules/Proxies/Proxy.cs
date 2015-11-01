@@ -34,15 +34,14 @@ namespace Patcher.Rules.Proxies
             {
                 // Provide a specific reason depending on the proxy mode
                 if (Mode == ProxyMode.Source)
-                    throw new InvalidOperationException("The Source form cannot be modified.");
+                    throw new RuntimeException("The Source form cannot be modified.", RuntimeError.ReadOnlyProxy);
 
                 if (Mode == ProxyMode.Discovered)
-                    throw new InvalidOperationException("Forms retrieved via Forms.FindForm() and similar cannot be modified.");
+                    throw new RuntimeException("Forms retrieved via Forms.FindForm() and similar cannot be modified.", RuntimeError.ReadOnlyProxy);
 
                 if (Mode == ProxyMode.Referenced)
-                    throw new InvalidOperationException("Forms retrieved from a references cannot be modified.");
+                    throw new RuntimeException("Forms retrieved from a references cannot be modified.", RuntimeError.ReadOnlyProxy);
             }
         }
-
     }
 }
