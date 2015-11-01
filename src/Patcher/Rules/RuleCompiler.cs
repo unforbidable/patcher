@@ -60,6 +60,9 @@ namespace Patcher.Rules
         {
             switch (error.ErrorNumber)
             {
+                case "CS0029":
+                    return "The value which is being assigned to a variable or property is not the correct type.";
+
                 case "CS0103":
                     return "Make sure the object which is being accessed has been declared. When accessing predefined Source and Target forms, helpers and constants make sure the correct letter case is used.";
 
