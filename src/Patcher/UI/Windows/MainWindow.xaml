@@ -24,7 +24,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="Tag" Value="Horizontal">
                                 <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
-                                <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                                <Setter TargetName="Rectangle1" Property="Height" Value="10" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -86,7 +86,8 @@
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="Width" Value="Auto" />
-                                <Setter Property="Height" Value="12" />
+                                <Setter Property="Height" Value="16" />
+                                <Setter Property="Margin" Value="3,0,3,1" />
                                 <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
                                 <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
                                 <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
@@ -154,7 +155,7 @@
                                 <Label>
                                     <Image Source="Images/StatusCritical.png" Margin="0,1,0,0"/>
                                 </Label>
-                                <Label x:Name="IssueTitleLabel" ScrollViewer.CanContentScroll="True" Foreground="#FFFFF7F7" FontSize="13.333" Content="Issue Title" Background="{x:Null}" Margin="0,0,16,0"/>
+                                <Label x:Name="IssueTitleLabel" ScrollViewer.CanContentScroll="True" Foreground="#FFFFF7F7" FontSize="13.333" Content="Issue Title" Background="{x:Null}" Margin="0,0,12,0"/>
                                 <Button x:Name="PrevButton" Visibility="{Binding Visibility, ElementName=IssueCounterLabel}" Focusable="False" VerticalAlignment="Center" Click="PrevButton_Click">
                                     <Image Source="Images/Prev.png"/>
                                 </Button>
@@ -167,12 +168,20 @@
                                 <Image Source="Images/Copy.png" ToolTip="Copy all to clipboard" RenderTransformOrigin="0.562,0.5"/>
                             </Button>
                         </Grid>
-                        <Border BorderBrush="#FFC5C5C5" BorderThickness="0" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0">
-                            <DockPanel>
-                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <ScrollViewer DockPanel.Dock="Top" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal">
                                     <Label x:Name="IssueMessageLabel" Foreground="#FFC5C5C5" FontSize="13.333" Background="{x:Null}" Content="Issue Message"/>
                                 </StackPanel>
-                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueFileLabel}" Margin="0,-6,0,0">
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueFileLabel}" Grid.Row="1" Margin="0,-4,0,0">
                                     <Label Foreground="#FFC5C5C5" FontSize="13.333" Content="In file" Background="{x:Null}"/>
                                     <Label x:Name="IssueFileLabel" Foreground="#FF3CB8FF" FontSize="13.333" Background="{x:Null}" Content="file name" Cursor="Hand" Margin="-4,0" MouseDown="IssueFileLabel_MouseDown"/>
                                     <Label Foreground="#FFC5C5C5" FontSize="13.333" Content="at line" Background="{x:Null}" Visibility="{Binding Visibility, ElementName=IssueLineLabel}"/>
@@ -180,14 +189,14 @@
                                     <Label Foreground="#FFC5C5C5" FontSize="13.333" Content="and column" Background="{x:Null}" Visibility="{Binding Visibility, ElementName=IssueColumnLabel}"/>
                                     <Label x:Name="IssueColumnLabel" Foreground="#FFF0F00A" FontSize="13.333" Content="13" Background="{x:Null}" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueColumnLabel}" Margin="-4,0"/>
                                 </StackPanel>
-                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueSolutionLabel}" Margin="0">
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding Content, Converter={StaticResource HasValueToVisibilityConverter}, ElementName=IssueSolutionLabel}" Grid.Row="2">
                                     <Label>
                                         <Image Source="Images/LightBulb.png" Margin="0,1,0,0"/>
                                     </Label>
                                     <Label x:Name="IssueSolutionLabel" Foreground="#FFFFF7F7" FontSize="13.333" Content="Issue Solution" Background="{x:Null}" Margin="0"/>
                                 </StackPanel>
-                            </DockPanel>
-                        </Border>
+                            </Grid>
+                        </ScrollViewer>
                     </DockPanel>
                 </Border>
                 <Border BorderBrush="#FFC5C5C5" BorderThickness="2" CornerRadius="4" Margin="1" Grid.Row="1" Background="#FF0F0F0F">
