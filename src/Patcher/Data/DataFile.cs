@@ -149,5 +149,23 @@ namespace Patcher.Data
 
             return true;
         }
+
+        public string GetRelativePath()
+        {
+            return GetRelativePath(FullPath);
+        }
+
+        public static string GetRelativePath(string path)
+        {
+            string currentDir = Directory.GetCurrentDirectory();
+            if (path.StartsWith(currentDir, StringComparison.OrdinalIgnoreCase))
+            {
+                return "." + path.Substring(currentDir.Length);
+            }
+            else
+            {
+                return path;
+            }
+        }
     }
 }
