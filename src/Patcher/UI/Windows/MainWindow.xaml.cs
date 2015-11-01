@@ -56,7 +56,9 @@ namespace Patcher.UI.Windows
         Problem[] shownProblems = null;
         string problemsText = null;
 
-        AutoResetEvent waitFormChoseOption = new AutoResetEvent(false);
+        bool paused = false;
+
+        AutoResetEvent waitForChoice = new AutoResetEvent(false);
 
         public MainWindow()
         {
@@ -81,7 +83,17 @@ namespace Patcher.UI.Windows
             {
                 StatusPanel.Visibility = Visibility.Collapsed;
             }));
-        }            
+        }
+
+        private void HandlePause()
+        {
+            if (paused)
+            {
+                paused = false;
+
+                Display.Choice("Program has been paused.", ChoiceOption.Continue);
+            }
+        }
 
         private void WriteMessage(Brush brush, string message)
         {
@@ -121,7 +133,7 @@ namespace Patcher.UI.Windows
                 selectedChoice = choice;
                 offeredChoices = null;
 
-                waitFormChoseOption.Set();
+                waitForChoice.Set();
             }
         }
 
@@ -216,17 +228,6 @@ namespace Patcher.UI.Windows
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
-            {
-                case Key.Escape:
-                    if (terminating)
-                    {
-                        Close();
-                        e.Handled = true;
-                    }
-                    break;
-            }
-
             var choices = offeredChoices;
             if (!e.Handled && choices != null)
             {
@@ -235,6 +236,27 @@ namespace Patcher.UI.Windows
                 {
                     SelectChoice(choice);
                     e.Handled = true;
+                }
+            }
+
+            if (!e.Handled)
+            {
+                switch (e.Key)
+                {
+                    case Key.Escape:
+                        if (terminating)
+                        {
+                            Close();
+                            e.Handled = true;
+                        }
+                        break;
+
+                    case Key.Space:
+                        if (!paused)
+                        {
+                            paused = true;
+                        }
+                        break;
                 }
             }
         }
@@ -277,6 +299,8 @@ namespace Patcher.UI.Windows
         Progress currentProgress = null;
         private void Progess_Updated(object sender, EventArgs e)
         {
+            HandlePause();
+
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
             {
                 if (currentProgress.IsCompleted)
@@ -301,6 +325,8 @@ namespace Patcher.UI.Windows
 
         void IDisplay.StartProgress(Progress progess)
         {
+            HandlePause();
+
             currentProgress = progess;
             progess.Updated += Progess_Updated;
         }
@@ -317,14 +343,16 @@ namespace Patcher.UI.Windows
             offeredChoices = choices;
 
             // Wait until an option is chosen
-            waitFormChoseOption.Reset();
-            waitFormChoseOption.WaitOne();
+            waitForChoice.Reset();
+            waitForChoice.WaitOne();
 
             return selectedChoice;
         }
 
         void IDisplay.WriteText(string text)
         {
+            HandlePause();
+
             WriteMessage(Brushes.White, text);
         }
 
@@ -338,6 +366,8 @@ namespace Patcher.UI.Windows
 
         void ILogger.WriteLogEntry(LogEntry entry)
         {
+            HandlePause();
+
             switch (entry.Level)
             {
                 case LogLevel.Error:
