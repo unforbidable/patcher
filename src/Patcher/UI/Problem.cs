@@ -9,7 +9,8 @@ namespace Patcher.UI
     {
         public string Message { get; set; }
         public string File { get; set; }
-        public int Line { get; set; }
+        public int? Line { get; set; }
+        public int? Column { get; set; }
         public string Solution { get; set; }
     }
 }
