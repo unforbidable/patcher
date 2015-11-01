@@ -91,5 +91,35 @@ namespace Patcher.Rules.Compiled.Helpers
         {
             return System.Math.Min(a, b);
         }
+
+        /// <summary>
+        /// Rounds the specified floating point value to the nearest integer value.
+        /// </summary>
+        /// <param name="a">Floating point value to round.</param>
+        /// <returns></returns>
+        public static int Round(float a)
+        {
+            return (int)System.Math.Round(a);
+        }
+
+        /// <summary>
+        /// Returns the largest integer value which is lesser or equal to the specified floating point number.
+        /// </summary>
+        /// <param name="a">Floating point value to floor.</param>
+        /// <returns></returns>
+        public static int Floor(float a)
+        {
+            return (int)System.Math.Floor(a);
+        }
+
+        /// <summary>
+        /// Returns the smallest integer value which is greater or equal to the specified floating point number.
+        /// </summary>
+        /// <param name="a">Floating point value to ceil.</param>
+        /// <returns></returns>
+        public static int Ceiling(float a)
+        {
+            return (int)System.Math.Ceiling(a);
+        }
     }
 }
