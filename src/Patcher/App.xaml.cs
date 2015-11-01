@@ -44,9 +44,10 @@ namespace Patcher
             base.OnStartup(e);
 
             MainWindow = new MainWindow();
-            MainWindow.Show();
 
             Start((MainWindow)MainWindow, e.Args);
+
+            MainWindow.Show();
         }
 
         private void Start(MainWindow window, string[] args)
@@ -78,6 +79,9 @@ namespace Patcher
 
             // Set log level from options
             window.MaxLogLevel = options.ConsoleLogLevel >= 0 && options.ConsoleLogLevel <= 4 ? (LogLevel)options.ConsoleLogLevel : LogLevel.Info;
+
+            // Set initial window state
+            window.WindowState = options.StartWindowMaximized ? WindowState.Maximized : WindowState.Normal;
 
             // Run in the background
             new Task(() =>
