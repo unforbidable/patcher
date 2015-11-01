@@ -32,6 +32,9 @@ namespace Patcher.Rules.Proxies.Forms
 
         internal Form Form { get { return form; } }
 
+        List<string> delayedTags = null;
+        internal IEnumerable<string> DelayedTags { get { return delayedTags ?? Enumerable.Empty<string>(); } }
+
         internal FormProxy WithForm(uint formId)
         {
             if (GetType() != typeof(DummyFormProxy))
@@ -82,12 +85,36 @@ namespace Patcher.Rules.Proxies.Forms
 
         public bool HasTag(string text)
         {
-            return Provider.Engine.Tags.HasTag(text, formId);
+            if (formId == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return Provider.Engine.Tags.HasTag(text, formId);
+            }
         }
 
         public void Tag(string text)
         {
-            Provider.Engine.Tags.Tag(text, formId);
+            if (formId == 0)
+            {
+                if (Mode == ProxyMode.Target)
+                {
+                    if (delayedTags == null)
+                        delayedTags = new List<string>();
+                    delayedTags.Add(text);
+                    Log.Fine("New form will be tagged once its creation is complete.");
+                }
+                else
+                {
+                    Log.Warning("Cannot tag a NULL form.");
+                }
+            }
+            else
+            {
+                Provider.Engine.Tags.Tag(text, formId);
+            }
         }
 
         public T As<T>() where T : class, IForm
