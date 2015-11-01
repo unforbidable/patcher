@@ -28,7 +28,7 @@ namespace Patcher.UI.Windows
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value.ToString().Length > 0 ? Visibility.Visible : Visibility.Collapsed;
+            return value != null && value.ToString().Length > 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
