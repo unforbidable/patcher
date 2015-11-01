@@ -51,6 +51,42 @@ namespace Patcher.Rules
 
         List<RuleCompilationUnit> units = new List<RuleCompilationUnit>();
 
+        public static IEnumerable<string> GetIllegalCodeTokens()
+        {
+            return IllegalCodeTokens.Select(t => t);
+        }
+
+        public static string GetCompilerErrorHint(CompilerError error)
+        {
+            switch (error.ErrorNumber)
+            {
+                case "CS0103":
+                    return "Make sure the object which is being accessed has been declared. When accessing predefined Source and Target forms, helpers and constants make sure the correct letter case is used.";
+
+                case "CS0428":
+                    return "The most likely cause of this error is that parentheses are missing after the method name which is being invoked. Parentheses are required even when the method has not parameters.";
+
+                case "CS1061":
+                    return "Make sure the method or property is defined for the form, helper or another object on which it is invoked or accessed and the correct letter case is used.";
+
+                case "CS1501":
+                    return "Make sure to pass the correct number of arguments to the method.";
+
+                case "CS1502":
+                    return "Make sure the arguments passed to the method are the correct type.";
+
+                case "CS1503":
+                    return "The method was expecing an argument of different type.";
+
+                case "CS1955":
+                    return "The most likely cause of this error is that parentheses are used after the property name which is being accessed. Properties are accessed without parentheses.";
+
+                default:
+                    // No hint is offered
+                    return string.Empty;
+            }
+        }
+
         public RuleCompiler(RuleEngine engine, string pluginFileName)
         {
             this.engine = engine;
@@ -281,77 +317,50 @@ namespace Patcher.Rules
 
             // Compile all sources
             Log.Info("Compiling rules for plugin {0}.", pluginFileName);
-            try
+
+            CSharpCodeProvider provider = new CSharpCodeProvider();
+            CompilerParameters parameters = new CompilerParameters();
+            // Following 2 needed for dynamic type
+            parameters.ReferencedAssemblies.Add("Microsoft.CSharp.dll"); 
+            parameters.ReferencedAssemblies.Add("System.Core.dll"); 
+            // Extracted embedded resource with proxies and helpers
+            parameters.ReferencedAssemblies.Add(engine.Context.DataFileProvider.GetDataFile(FileMode.Open, RuleEngine.CompiledRulesAssemblyPath).FullPath); 
+            parameters.GenerateExecutable = false;
+            parameters.GenerateInMemory = false;
+            parameters.IncludeDebugInformation = true;
+            parameters.OutputAssembly = engine.Context.DataFileProvider.GetDataFile(FileMode.Create, generatedAssemblyPath).FullPath;
+            CompilerResults results = provider.CompileAssemblyFromFile(parameters, sources.ToArray());
+
+            // Version file is not needed to be cached
+            // new one will always be created when needed
+            //versionFile.Delete();
+
+            if (results.Errors.HasErrors)
             {
-                CSharpCodeProvider provider = new CSharpCodeProvider();
-                CompilerParameters parameters = new CompilerParameters();
-                // Following 2 needed for dynamic type
-                parameters.ReferencedAssemblies.Add("Microsoft.CSharp.dll"); 
-                parameters.ReferencedAssemblies.Add("System.Core.dll"); 
-                // Extracted embedded resource with proxies and helpers
-                parameters.ReferencedAssemblies.Add(engine.Context.DataFileProvider.GetDataFile(FileMode.Open, RuleEngine.CompiledRulesAssemblyPath).FullPath); 
-                parameters.GenerateExecutable = false;
-                parameters.GenerateInMemory = false;
-                parameters.IncludeDebugInformation = true;
-                parameters.OutputAssembly = engine.Context.DataFileProvider.GetDataFile(FileMode.Create, generatedAssemblyPath).FullPath;
-                CompilerResults results = provider.CompileAssemblyFromFile(parameters, sources.ToArray());
+                SortedSet<string> sourcesWithErrors = new SortedSet<string>();
 
-                if (results.Errors.HasErrors)
+                foreach (CompilerError error in results.Errors)
                 {
-                    SortedSet<string> sourcesWithErrors = new SortedSet<string>();
+                    //Log.Error(string.Format("Compiler {0} in file `{1}` at line {2:000}: {3}", error.IsWarning ? "warning" : "error", error.FileName, error.Line, error.ErrorText));
+                    if (!error.IsWarning)
+                        Log.Error(error.ToString());
 
-                    foreach (CompilerError error in results.Errors)
-                    {
-                        Log.Error(string.Format("Compiler {0} in file `{1}` at line {2:000}: {3}", error.IsWarning ? "warning" : "error", error.FileName, error.Line, error.ErrorText));
-
-                        // Collect filenames of sources with errors
-                        if (!sourcesWithErrors.Contains(error.FileName))
-                            sourcesWithErrors.Add(error.FileName);
-                    }
-
-                    // Alter the sources that failed to ensure recompilation
-                    // even if the source does not change 
-                    foreach (var path in sourcesWithErrors)
-                    {
-                        File.AppendAllText(path, " ");
-                    }
-
-                    throw new InvalidProgramException("Error(s) occured during rule compilation");
+                    // Collect filenames of sources with errors
+                    if (!sourcesWithErrors.Contains(error.FileName))
+                        sourcesWithErrors.Add(error.FileName);
                 }
 
-                if (results.Errors.HasWarnings)
+                // Alter the sources that failed to ensure recompilation
+                // even if the source does not change 
+                foreach (var path in sourcesWithErrors)
                 {
-                    foreach (CompilerError error in results.Errors)
-                    {
-                        Log.Fine(string.Format("Compiler warning in file `{0}` at line {1:000}: {2}", error.FileName, error.Line, error.ErrorText));
-                    }
+                    File.AppendAllText(path, " ");
                 }
 
-                LoadMethodsFromAssembly(results.CompiledAssembly);
+                throw new CompilerException("Error(s) occured during rule compilation", results.Errors);
             }
-            catch (Exception ex)
-            {
-                Log.Error("Error occured while compiling rules for plugin {0} with message: {1}", pluginFileName, ex.Message);
-                Log.Fine(ex.ToString());
 
-                var choice = Display.Choice("Continue compiling rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
-                if (choice == ChoiceOption.Cancel)
-                {
-                    Log.Warning("Rule loading has been aborted.");
-                    throw new UserAbortException("Rule loading has been aborted by the user.");
-                }
-                else
-                {
-                    Log.Warning("Rules for plugin {0} skipped because an error occured: {1} ", pluginFileName, ex.Message);
-                    return false;
-                }
-            }
-            finally
-            {
-                // Version file is not needed to be cached
-                // new one will always be created when needed
-                //versionFile.Delete();
-            }
+            LoadMethodsFromAssembly(results.CompiledAssembly);
 
             return true;
         }
@@ -565,7 +574,7 @@ namespace Patcher.Rules
             {
                 if (stripped.Contains(token))
                 {
-                    throw new InvalidProgramException("Illegal token found in code: '" + token + "'");
+                    throw new IllegalTokenException(string.Format("Illegal token '{0}' found in rule code" , token));
                 }
             }
         }
