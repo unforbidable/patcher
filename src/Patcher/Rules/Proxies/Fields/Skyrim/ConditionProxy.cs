@@ -38,12 +38,14 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition AndNext()
         {
+            EnsureWritable();
             ClearFlag(ConditionFlags.Or);
             return this;
         }
 
         public ICondition IsEqualTo(IForm glob)
         {
+            EnsureWritable();
             UseGlobal(glob);
             UseOperator(ConditionFlags.Equal);
             return this;
@@ -51,6 +53,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsEqualTo(float value)
         {
+            EnsureWritable();
             UseFloat(value);
             UseOperator(ConditionFlags.Equal);
             return this;
@@ -58,11 +61,13 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsFalse()
         {
+            EnsureWritable();
             return IsNotEqualTo(1);
         }
 
         public ICondition IsGreaterThan(IForm glob)
         {
+            EnsureWritable();
             UseGlobal(glob);
             UseOperator(ConditionFlags.GreaterThan);
             return this;
@@ -70,6 +75,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsGreaterThan(float value)
         {
+            EnsureWritable();
             UseFloat(value);
             UseOperator(ConditionFlags.GreaterThan);
             return this;
@@ -77,6 +83,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsGreaterThanOrEqualTo(IForm glob)
         {
+            EnsureWritable();
             UseGlobal(glob);
             UseOperator(ConditionFlags.GreaterThanOrEqual);
             return this;
@@ -84,6 +91,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsGreaterThanOrEqualTo(float value)
         {
+            EnsureWritable();
             UseFloat(value);
             UseOperator(ConditionFlags.GreaterThanOrEqual);
             return this;
@@ -91,6 +99,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsLessThen(IForm glob)
         {
+            EnsureWritable();
             UseGlobal(glob);
             UseOperator(ConditionFlags.LessThen);
             return this;
@@ -98,6 +107,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsLessThen(float value)
         {
+            EnsureWritable();
             UseFloat(value);
             UseOperator(ConditionFlags.LessThen);
             return this;
@@ -105,6 +115,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsLessThenOrEqualTo(IForm glob)
         {
+            EnsureWritable();
             UseGlobal(glob);
             UseOperator(ConditionFlags.LessThenOrEqual);
             return this;
@@ -112,6 +123,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsLessThenOrEqualTo(float value)
         {
+            EnsureWritable();
             UseFloat(value);
             UseOperator(ConditionFlags.LessThenOrEqual);
             return this;
@@ -119,6 +131,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsNotEqualTo(IForm glob)
         {
+            EnsureWritable();
             UseGlobal(glob);
             UseOperator(ConditionFlags.NotEqual);
             return this;
@@ -126,6 +139,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsNotEqualTo(float value)
         {
+            EnsureWritable();
             UseFloat(value);
             UseOperator(ConditionFlags.NotEqual);
             return this;
@@ -133,17 +147,20 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition IsTrue()
         {
+            EnsureWritable();
             return IsEqualTo(1);
         }
 
         public ICondition OrNext()
         {
+            EnsureWritable();
             SetFlag(ConditionFlags.Or);
             return this;
         }
 
         public ICondition RunOn(IForm reference)
         {
+            EnsureWritable();
             Field.FunctionTarget = FunctionTarget.Reference;
             Field.FunctionTargetReference = reference.ToFormId();
             return this;
@@ -151,6 +168,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition RunOnCombatTarget()
         {
+            EnsureWritable();
             Field.FunctionTarget = FunctionTarget.CombatTarget;
             Field.FunctionTargetReference = 0;
             return this;
@@ -158,6 +176,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition RunOnSubject()
         {
+            EnsureWritable();
             Field.FunctionTarget = FunctionTarget.Subject;
             Field.FunctionTargetReference = 0;
             return this;
@@ -165,6 +184,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition RunOnTarget()
         {
+            EnsureWritable();
             Field.FunctionTarget = FunctionTarget.Target;
             Field.FunctionTargetReference = 0;
             return this;
@@ -172,6 +192,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition RunOnPlayer()
         {
+            EnsureWritable();
             Field.FunctionTarget = FunctionTarget.Reference;
             Field.FunctionTargetReference = PlayerRefFormId;
             return this;
@@ -179,6 +200,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
 
         public ICondition SwapSubjectAndTarget()
         {
+            EnsureWritable();
             SetFlag(ConditionFlags.SwapSubjectAndTarget);
             return this;
         }
