@@ -29,9 +29,6 @@ namespace Patcher.Rules
         readonly RuleEngine engine;
         readonly IRule rule;
         
-        IList<Form> result = new List<Form>();
-        public IList<Form> Result { get { return result; } }
-
         public int Created { get; private set; }
         public int Updated { get; private set; }
 
@@ -122,7 +119,7 @@ namespace Patcher.Rules
                 updateProxy.WithForm(targetForm);
                 if (rule.Update.Method(sourceProxy, updateProxy))
                 {
-                    result.Add(targetForm);
+                    engine.ActivePlugin.AddForm(targetForm);
                     Updated++;
                 }
             }
@@ -158,8 +155,15 @@ namespace Patcher.Rules
                     var targetProxy = engine.ProxyProvider.CreateFormProxy(targetForm, ProxyMode.Target);
                     if (insert.Method(sourceProxy, targetProxy))
                     {
-                        result.Add(targetForm);
+                        engine.ActivePlugin.AddForm(targetForm);
                         Created++;
+
+                        // Tag the new form now that it has a Form ID
+                        // if it has been tagged during its creation
+                        foreach (var text in targetProxy.DelayedTags)
+                        {
+                            engine.Tags.Tag(text, targetForm.FormId);
+                        }
                     }
                 }
             }

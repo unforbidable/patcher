@@ -296,7 +296,7 @@ namespace Patcher.Rules
                             }
                             else
                             {
-                                Log.Warning("Any changes made by the faulty rule were discarded.");
+                                Log.Warning("The last rule has not been fully applied.");
                                 continue;
                             }
                         }
@@ -304,9 +304,6 @@ namespace Patcher.Rules
                         {
                             Display.ClearProblems();
                         }
-
-                        // Create/Override/Update forms when the rule is completed
-                        ActivePlugin.AddForms(runner.Result);
 
                         Log.Info("Rule completed with {0} updates and {1} inserts", runner.Updated, runner.Created);
                     }
