@@ -66,6 +66,9 @@ namespace Patcher.Rules
                 case "CS0103":
                     return "Make sure the object which is being accessed has been declared. When accessing predefined Source and Target forms, helpers and constants make sure the correct letter case is used.";
 
+                case "CS0266":
+                    return "This error usually occurs when assigning a floating point value to an integer. If that is the case use methods Math.Round(), Math.Floor() or Math.Ceiling() to retrieve an integer value.";
+
                 case "CS0428":
                     return "The most likely cause of this error is that parentheses are missing after the method name which is being invoked. Parentheses are required even when the method has not parameters.";
 
