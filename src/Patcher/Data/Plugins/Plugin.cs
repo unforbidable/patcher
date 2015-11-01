@@ -323,98 +323,103 @@ namespace Patcher.Data.Plugins
             reservedEditorIdMap.Add(editorId, formId);
         }
 
-        public void AddForms(IEnumerable<Form> formsToAdd)
+        public void AddForm(Form newForm)
         {
             // Retrieve plugin number so that added forms can be linked to it
             byte pluginNumber = context.Plugins.GetPluginNumber(this);
 
-            foreach (var newForm in formsToAdd)
+            if (newForm.FormId == 0)
             {
-                if (newForm.FormId == 0)
+                // Brand new form is being added
+                newForm.PluginNumber = pluginNumber;
+                newForm.FilePosition = -1;
+
+                if (!string.IsNullOrEmpty(newForm.EditorId) && reservedEditorIdMap.ContainsKey(newForm.EditorId))
                 {
-                    // Brand new form is being added
-                    newForm.PluginNumber = pluginNumber;
-                    newForm.FilePosition = -1;
+                    // Get reserved Form ID and adjust it to the plugin number
+                    newForm.FormId = reservedEditorIdMap[newForm.EditorId] | (uint)((long)pluginNumber) << 24;
 
-                    if (!string.IsNullOrEmpty(newForm.EditorId) && reservedEditorIdMap.ContainsKey(newForm.EditorId))
+                    // Make sure it has not been claimed somehow
+                    if (context.Forms.Contains(newForm.FormId))
                     {
-                        // Get reserved Form ID and adjust it to the plugin number
-                        newForm.FormId = reservedEditorIdMap[newForm.EditorId] | (uint)((long)pluginNumber) << 24;
+                        Log.Warning("Form ID {0:X8} has been reserved for EditorId {1} but somehow it has already been claimed by form {2}.", newForm.FormId, newForm.EditorId, context.Forms[newForm.FormId]);
 
-                        // Make sure it has not been claimed somehow
-                        if (context.Forms.Contains(newForm.FormId))
-                        {
-                            Log.Warning("Form ID {0:X8} has been reserved for EditorId {1} but somehow it has already been claimed by form {2}.", newForm.FormId, newForm.EditorId, context.Forms[newForm.FormId]);
-
-                            // Unset the Form ID and allow a new one be claimed below normally
-                            newForm.FormId = 0;
-                        }
-                        else
-                        {
-                            // and remove it from reservation
-                            reservedEditorIdMap.Remove(newForm.EditorId);
-                            reservedFormIds.Remove(newForm.FormId);
-
-                            Log.Fine("New form claims a reserved Form ID.");
-                        }
-                    }
-
-                    // Assign new form ID if not reserved or reservation above failed
-                    // Keep looking in case that Form ID is reserved or already claimed
-                    if (newForm.FormId == 0)
-                    {
-                        do
-                        {
-                            // Grab new form ID and adjust it to the plugin number
-                            newForm.FormId = header.NextFormId++ | (uint)((long)pluginNumber) << 24;
-
-                            // FormIDs are reserved without the plugin number so mask 0xFFFFFF has to be applied when checking if new FormId has been reserved
-                        } while (reservedFormIds.Contains(newForm.FormId & 0xFFFFFF) || context.Forms.Contains(newForm.FormId));
-
-                        Log.Fine("New form claims a new Form ID.");
-                    }
-
-                    // Add new form to local and global index
-                    context.Forms.Add(newForm);
-                    Log.Fine("Form created: {0}", newForm);
-                }
-                else if (context.Forms.Contains(newForm.FormId))
-                {
-                    // Form with this FormID already exists, make sure the type matches
-                    Form existingForm = context.Forms[newForm.FormId];
-                    if (existingForm.FormKind != newForm.FormKind)
-                    {
-                        throw new InvalidOperationException("Cannot update or override form with another that is of different type");
-                    }
-
-                    if (existingForm.PluginNumber == pluginNumber)
-                    {
-                        newForm.PluginNumber = pluginNumber;
-                        newForm.FilePosition = -1;
-
-                        // Form is already in the target plugin so replacing the form
-                        context.Forms.Remove(existingForm);
-                        context.Forms.Add(newForm);
-                        Log.Fine("Form updated: {0}", newForm);
+                        // Unset the Form ID and allow a new one be claimed below normally
+                        newForm.FormId = 0;
                     }
                     else
                     {
-                        newForm.PluginNumber = pluginNumber;
-                        newForm.FilePosition = -1;
+                        // and remove it from reservation
+                        reservedEditorIdMap.Remove(newForm.EditorId);
+                        reservedFormIds.Remove(newForm.FormId);
 
-                        // Tatget plugin is different - the original form will be overriden
-                        // New form will be added to local form index
-                        // New form will replace original form in global index
-                        context.Forms.Add(newForm);
-                        Log.Fine("Form overriden: {0}", newForm);
+                        Log.Fine("New form claims a reserved Form ID.");
                     }
+                }
+
+                // Assign new form ID if not reserved or reservation above failed
+                // Keep looking in case that Form ID is reserved or already claimed
+                if (newForm.FormId == 0)
+                {
+                    do
+                    {
+                        // Grab new form ID and adjust it to the plugin number
+                        newForm.FormId = header.NextFormId++ | (uint)((long)pluginNumber) << 24;
+
+                        // FormIDs are reserved without the plugin number so mask 0xFFFFFF has to be applied when checking if new FormId has been reserved
+                    } while (reservedFormIds.Contains(newForm.FormId & 0xFFFFFF) || context.Forms.Contains(newForm.FormId));
+
+                    Log.Fine("New form claims a new Form ID.");
+                }
+
+                // Add new form to local and global index
+                context.Forms.Add(newForm);
+                Log.Fine("Form created: {0}", newForm);
+            }
+            else if (context.Forms.Contains(newForm.FormId))
+            {
+                // Form with this FormID already exists, make sure the type matches
+                Form existingForm = context.Forms[newForm.FormId];
+                if (existingForm.FormKind != newForm.FormKind)
+                {
+                    throw new InvalidOperationException("Cannot update or override form with another that is of different type");
+                }
+
+                if (existingForm.PluginNumber == pluginNumber)
+                {
+                    newForm.PluginNumber = pluginNumber;
+                    newForm.FilePosition = -1;
+
+                    // Form is already in the target plugin so replacing the form
+                    context.Forms.Remove(existingForm);
+                    context.Forms.Add(newForm);
+                    Log.Fine("Form updated: {0}", newForm);
                 }
                 else
                 {
-                    // TODO: Allow injecting
-                    // New form has FormId but no form with that FormId exists
-                    throw new InvalidOperationException("Cannot update or override form that does not exist");
+                    newForm.PluginNumber = pluginNumber;
+                    newForm.FilePosition = -1;
+
+                    // Tatget plugin is different - the original form will be overriden
+                    // New form will be added to local form index
+                    // New form will replace original form in global index
+                    context.Forms.Add(newForm);
+                    Log.Fine("Form overriden: {0}", newForm);
                 }
+            }
+            else
+            {
+                // TODO: Allow injecting
+                // New form has FormId but no form with that FormId exists
+                throw new InvalidOperationException("Cannot update or override form that does not exist");
+            }
+        }
+
+        public void AddForms(IEnumerable<Form> formsToAdd)
+        {
+            foreach (var newForm in formsToAdd)
+            {
+                AddForm(newForm);
             }
         }
 
