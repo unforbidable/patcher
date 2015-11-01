@@ -1,0 +1,71 @@
+<rules>
+  <rule>
+    <name>Enhanced and masterwork dagger</name>
+    <from>WEAP</from>
+    <where>
+      Source.EditorId == "IronDagger"
+    </where>
+    <insert into="WEAP" copy="true">
+      Target.EditorId = "PD_Enhanced" + Source.EditorId;
+      Target.FullName = "Enhanced " + Source.FullName;
+
+      // Set values that are somewhat better
+      Target.Damage = Math.Round(Source.Damage * 1.5f);
+      Target.Weight = Source.Weight * 0.5f;
+      Target.Speed = Source.Speed * 1.5f;
+      Target.Value = Source.Value * 5;
+    </insert>
+    <insert into="WEAP" copy="true">
+      Target.EditorId = "PD_Masterwork" + Source.EditorId;
+      Target.FullName = "Masterwork " + Source.FullName;
+
+      // Set values that are considerably better
+      Target.Damage = Math.Round(Source.Damage * 3.0f);
+      Target.Weight = Source.Weight * 0.25f;
+      Target.Speed = Source.Speed * 3.0f;
+      Target.Value = Source.Value * 10;
+    </insert>
+    <insert into="COBJ">
+      Target.EditorId = "PD_CraftEnhanced" + Source.EditorId;
+
+      // Making enhanced dagger from a normal dagger and an ingot
+      var normal = Source; // Source is the normal dagger
+      var enhanced = Forms.Find("PD_Enhanced" + Source.EditorId);
+      var ingot = Forms.Find("IngotIron");
+
+      Target.Materials.Add(normal, 1);
+      Target.Materials.Add(ingot, 1);
+
+      Target.Conditions.Add(Functions.GetItemCount(normal)
+        .IsGreaterThan(0));
+      Target.Conditions.Add(Functions.GetItemCount(ingot)
+        .IsGreaterThan(0));
+
+      Target.Result = enhanced;
+      Target.ResultCount = 1;
+
+      Target.Workbench = Forms.Find("CraftingSmithingForge").AsKywd();
+    </insert>
+    <insert into="COBJ">
+      Target.EditorId = "PD_CraftMasterwork" + Source.EditorId;
+
+      // Making masterwork dagger from an enhanced dagger and an ingot
+      var enhanced = Forms.Find("PD_Enhanced" + Source.EditorId);
+      var masterwork = Forms.Find("PD_Masterwork" + Source.EditorId);
+      var ingot = Forms.Find("IngotIron");
+
+      Target.Materials.Add(enhanced, 1);
+      Target.Materials.Add(ingot, 1);
+
+      Target.Conditions.Add(Functions.GetItemCount(enhanced)
+        .IsGreaterThan(0));
+      Target.Conditions.Add(Functions.GetItemCount(ingot)
+        .IsGreaterThan(0));
+
+      Target.Result = masterwork;
+      Target.ResultCount = 1;
+
+      Target.Workbench = Forms.Find("CraftingSmithingForge").AsKywd();
+    </insert>
+  </rule>
+</rules>
