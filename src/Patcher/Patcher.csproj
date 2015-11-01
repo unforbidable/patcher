@@ -242,6 +242,8 @@
     <Compile Include="Rules\Proxies\Forms\Skyrim\GlobProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\GmstProxy.cs" />
     <Compile Include="Rules\Compiled\CompiledRuleContext.cs" />
+    <Compile Include="Rules\RuntimeError.cs" />
+    <Compile Include="Rules\RuntimeException.cs" />
     <Compile Include="Rules\RuleCompiler.cs" />
     <Compile Include="Rules\RuleEntry.cs" />
     <Compile Include="Rules\RuleMetadata.cs" />

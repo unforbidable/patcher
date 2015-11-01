@@ -262,7 +262,6 @@ namespace Patcher.Rules
                         {
                             runner.Run();
                         }
-                        // Catch any unhandled exception in a Release build only
                         catch (Exception ex)
                         {
                             if (ex is CompiledRuleAssertException)
@@ -275,6 +274,20 @@ namespace Patcher.Rules
                             }
                             Log.Fine(ex.ToString());
 
+                            // Determine were the exception occured
+                            var stackTrace = new StackTrace(ex, true);
+                            var frame = stackTrace.GetFrames().Where(f => f.GetMethod().DeclaringType.Namespace == "Patcher.Rules.Compiled.Generated").FirstOrDefault();
+                            if (frame != null)
+                            {
+                                Display.ShowProblems("Runtime Error", ex.ToString(), new Problem()
+                                {
+                                    Message = string.Format("{0}: {1}", ex.GetType().FullName, ex.Message),
+                                    File = DataFile.GetRelativePath(frame.GetFileName()),
+                                    Line = frame.GetFileLineNumber(),
+                                    Solution = RuleRunner.GetRuntimeErrorHint(ex)
+                                });
+                            }
+
                             var choice = Display.Choice("Continue executing rules?", ChoiceOption.Ok, ChoiceOption.Cancel);
                             if (choice == ChoiceOption.Cancel)
                             {
@@ -286,6 +299,10 @@ namespace Patcher.Rules
                                 Log.Warning("Any changes made by the faulty rule were discarded.");
                                 continue;
                             }
+                        }
+                        finally
+                        {
+                            Display.ClearProblems();
                         }
 
                         // Create/Override/Update forms when the rule is completed
