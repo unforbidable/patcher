@@ -594,7 +594,14 @@ namespace Patcher.Data.Plugins.Content
                 }
                 else
                 {
-                    return ReadStringZeroTerminated();
+                    // It may happend that a text field will exist but it will be empty
+                    // i.e. there will not be a zero byte as to terminate and empty string.
+                    // This was first noticed in AOS2_WAF Patch.esp  Iron Dagger DESC field
+                    // When this happends no data should be read and en empty string returned.
+                    if (IsEndOfSegment)
+                        return string.Empty;
+                    else
+                        return ReadStringZeroTerminated();
                 }
             }
             else if (memberInfo.FieldType == typeof(int))
