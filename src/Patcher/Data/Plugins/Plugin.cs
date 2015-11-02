@@ -486,9 +486,10 @@ namespace Patcher.Data.Plugins
             // Add headers (will be sorted by pluginNumber)
             foreach (var number in collectedMasters.OrderBy(i => i))
             {
-                header.AddMasterFile(context.Plugins[number].FileName);
+                var masterFileName = context.Plugins[number].FileName;
+                header.AddMasterFile(masterFileName);
+                Log.Fine("Added master: {0}", masterFileName);
             }
-            Log.Fine("Added masters: {0}", string.Join(", ", MasterFiles));
 
             //// Make a backup of existing file
             //string backupPath = null;

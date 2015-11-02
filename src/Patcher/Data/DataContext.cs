@@ -168,7 +168,7 @@ namespace Patcher.Data
             }
 
             sw2.Stop();
-            Log.Fine("Indexing forms in active plugins finished in {0}ms", sw2.ElapsedMilliseconds);
+            Log.Fine("Indexing forms in all plugins finished in {0}ms", sw2.ElapsedMilliseconds);
 
             //if (detectedUnsupportedFormKinds.Count > 0)
             //{
@@ -258,7 +258,7 @@ namespace Patcher.Data
             }
             sw.Stop();
 
-            Log.Fine("Loading forms finished in {0}ms", sw.ElapsedMilliseconds);
+            Log.Fine("Loading forms from all plugins finished in {0}ms", sw.ElapsedMilliseconds);
         }
 
         public void Dispose()

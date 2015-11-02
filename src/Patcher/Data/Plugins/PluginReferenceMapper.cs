@@ -24,6 +24,8 @@ namespace Patcher.Data.Plugins
 {
     class PluginReferenceMapper : IReferenceMapper
     {
+        readonly public string[] allNames;
+
         readonly byte[] localToContext;
         readonly byte[] contextToLocal;
 
@@ -31,6 +33,8 @@ namespace Patcher.Data.Plugins
         {
             var masters = plugin.MasterFiles.ToList();
             var all = plugin.Context.Plugins.Select(p => p.FileName).ToList();
+
+            allNames = all.ToArray();
 
             localToContext = new byte[masters.Count + 1];
             for (int i = 0; i < masters.Count; i++)
@@ -78,9 +82,13 @@ namespace Patcher.Data.Plugins
                 return formId;
 
             byte p = (byte)(formId >> 24);
-            if (p >= contextToLocal.Length || contextToLocal[p] == byte.MaxValue)
+            if (p >= contextToLocal.Length)
             {
-                throw new InvalidOperationException("Cannot map reference to mod that doesn't have original plugin as master.");
+                throw new InvalidOperationException("Cannot map reference to plugin number " + p + " because this plugin number is out of the current plugin list range.");
+            }
+            else if (contextToLocal[p] == byte.MaxValue)
+            {
+                throw new InvalidOperationException("Cannot map reference to plugin " + allNames[p] + " because it is not a master for the current plugin.");
             }
             return (formId & 0xFFFFFF) | ((uint)contextToLocal[p] << 24);
         }

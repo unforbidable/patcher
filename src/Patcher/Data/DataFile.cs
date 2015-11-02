@@ -56,10 +56,12 @@ namespace Patcher.Data
             // Returns stream depeding on mode
             if (mode == FileMode.Open)
             {
+                Log.Fine("Opening file {0} for reading.", fullPath);
                 return new ReadOnlyFileStream(FullPath, mode, FileAccess.Read);
             }
             else
             {
+                Log.Fine("Opening file {0} for writing.", fullPath);
                 // When creating files create path if it does not exist
                 EnsureDirectoryExists(Path.GetDirectoryName(FullPath));
                 return new FileStream(FullPath, mode, FileAccess.Write);
@@ -77,6 +79,7 @@ namespace Patcher.Data
             {
                 EnsureDirectoryExists(Path.GetDirectoryName(path));
 
+                Log.Fine("Creating directory {0}.", path);
                 Directory.CreateDirectory(path);
             }
         }
