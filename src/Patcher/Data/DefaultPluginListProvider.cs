@@ -37,7 +37,7 @@ namespace Patcher.Data
                 {
                     line = line.Trim();
 
-                    if (line.StartsWith("#"))
+                    if (line.StartsWith("#") || line.Length == 0)
                         continue;
 
                     plugins.Add(new PluginListEntry()
