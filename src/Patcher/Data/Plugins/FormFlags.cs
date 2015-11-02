@@ -26,6 +26,7 @@ namespace Patcher.Data.Plugins
     {
         None = 0x01,
         LazyLoaded = 0x02,
-        Overriden = 0x04
+        Overriden = 0x04,
+        Injected = 0x08,
     }
 }

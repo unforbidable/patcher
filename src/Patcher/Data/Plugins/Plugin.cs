@@ -276,7 +276,11 @@ namespace Patcher.Data.Plugins
                         {
                             foreach (Form form in formsToLoad)
                             {
-                                loader.LoadForm(form);
+                                // Do not load froms which have been injected during indexing
+                                if (!form.IsInjected)
+                                {
+                                    loader.LoadForm(form);
+                                }
 
                                 // Unknown total number of forms to load
                                 // has to be determined during iteration

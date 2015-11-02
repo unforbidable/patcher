@@ -62,6 +62,35 @@ namespace Patcher.Data
         {
             lock (forms)
             {
+                if (form.PluginNumber > 0 && !formsById.ContainsKey(form.FormId))
+                {
+                    // Handle injecting when Form ID has not been used yet
+                    // but the actual plugin number does not correspond to the plugin number 
+                    // where this form belong to.
+                    byte actualPluginNumber = (byte)(form.FormId >> 24);
+                    if (actualPluginNumber > form.PluginNumber)
+                    {
+                        Log.Warning("Cannot inject forms into a plugin the number of which is greater than the number of the target plugin.");
+                    }
+                    else if (actualPluginNumber < form.PluginNumber)
+                    {
+                        // Injected forms are added to the target plugin
+                        // as if they have always been there
+                        // but the form record will never be loaded
+                        // The actual form will override the injected form normally
+                        var injected = new Form()
+                        {
+                            PluginNumber = actualPluginNumber,
+                            FilePosition = -1,
+                            Flags = FormFlags.Injected,
+                            FormKind = form.FormKind,
+                            FormId = form.FormId
+                        };
+                        Add(injected);
+                        Log.Fine("Injected from {0}", injected);
+                    }
+                }
+
                 forms.Add(form);
 
                 if (!formsByPlugin.ContainsKey(form.PluginNumber))
