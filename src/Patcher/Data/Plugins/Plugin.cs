@@ -413,9 +413,28 @@ namespace Patcher.Data.Plugins
             }
             else
             {
-                // TODO: Allow injecting
-                // New form has FormId but no form with that FormId exists
-                throw new InvalidOperationException("Cannot update or override form that does not exist");
+                // Allow injecting
+                byte actualPluginNumber = (byte)((newForm.FormId & 0xFF000000) >> 24);
+                if (actualPluginNumber == 0)
+                {
+                    // Plugin number has not been specified
+                    // meaning the active plugin number has to be filled in
+                    uint pluginNumberAsUInt32 = pluginNumber;
+                    newForm.FormId |= pluginNumberAsUInt32 << 24;
+
+                    Log.Fine("New form claims explixitly specified Form ID.");
+                }
+                else
+                {
+                    Log.Fine("New form will be injected into plugin {0}.", context.Plugins[actualPluginNumber].FileName);
+                }
+
+                newForm.FilePosition = -1;
+                newForm.PluginNumber = pluginNumber;
+
+                // Add new form to local and global index
+                context.Forms.Add(newForm);
+                Log.Fine("Form created: {0}", newForm);
             }
         }
 
@@ -572,8 +591,9 @@ namespace Patcher.Data.Plugins
             Log.Info("Purging dirty forms");
 
             // Create new list (ToArray) so that the form repository can be modified during the iteration 
+            // Skip forms overriding injected forms
             int count = 0;
-            foreach (var form in context.Forms.OfPlugin(this).Where(f => f.IsOverriding && f.Record.Equals(f.OverridesForm.Record)).ToArray())
+            foreach (var form in context.Forms.OfPlugin(this).Where(f => f.IsOverriding && !f.OverridesForm.IsInjected && f.Record.Equals(f.OverridesForm.Record)).ToArray())
             {
                 context.Forms.Remove(form);
                 count++;

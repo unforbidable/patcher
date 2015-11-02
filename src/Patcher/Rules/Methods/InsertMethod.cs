@@ -30,6 +30,11 @@ namespace Patcher.Rules.Methods
     class InsertMethod
     {
         /// <summary>
+        /// Gets or sents the Form ID of the new form.
+        /// </summary>
+        public uint InsertedFormId { get; set; }
+
+        /// <summary>
         /// Gets or sets the type of the new form.
         /// </summary>
         public FormKind InsertedFormKind { get; set; }

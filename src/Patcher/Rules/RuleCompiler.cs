@@ -198,6 +198,7 @@ namespace Patcher.Rules
 
                     methods.Add(new InsertMethod()
                     {
+                        InsertedFormId = insert.InsertedFormId,
                         InsertedFormKind = (FormKind)insert.InsertedFormKind,
                         Copy = insert.Copy
                     });

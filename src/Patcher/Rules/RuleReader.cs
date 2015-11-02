@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -115,7 +116,7 @@ namespace Patcher.Rules
                         {
                             if (!bool.TryParse(copyAttribute.Value.ToLower(), out copy))
                             {
-                                Log.Warning("Attribute 'copy' present on insert but the value could not be parsed. Expected 'true' or 'false'.");
+                                Log.Warning("Attribute 'copy' present on insert but the value '{0}' could not be parsed. Expected 'true' or 'false'.", copyAttribute.Value);
                             }
 
                             // Warn when copy attribute will be ignored - non-query and incompatible inserts
@@ -125,7 +126,17 @@ namespace Patcher.Rules
                             }
                         }
 
-                        inserts.Add(new RuleEntry.RuleEntryInsert() { InsertedFormKind = insertFormKind, Copy = copy, Code = insertElement.Value });
+                        uint insertedFormId = 0;
+                        var asAttribute = insertElement.Attribute("as");
+                        if (asAttribute != null)
+                        {
+                            if (!uint.TryParse(asAttribute.Value.ToLower(), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out insertedFormId))
+                            {
+                                Log.Warning("Attribute 'as' present on insert but the value '{0}' could not be parsed.", asAttribute.Value);
+                            }
+                        }
+
+                        inserts.Add(new RuleEntry.RuleEntryInsert() { InsertedFormId = insertedFormId, InsertedFormKind = insertFormKind, Copy = copy, Code = insertElement.Value });
                     }
 
                     entry.Inserts = inserts;

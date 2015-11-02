@@ -155,6 +155,12 @@ namespace Patcher.Rules
                     var targetProxy = engine.ProxyProvider.CreateFormProxy(targetForm, ProxyMode.Target);
                     if (insert.Method(sourceProxy, targetProxy))
                     {
+                        if (insert.InsertedFormId != 0)
+                        {
+                            // Set explicit Form ID
+                            targetForm.FormId = insert.InsertedFormId;
+                        }
+
                         engine.ActivePlugin.AddForm(targetForm);
                         Created++;
 

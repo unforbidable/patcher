@@ -53,6 +53,7 @@ namespace Patcher.Rules
 
         public sealed class RuleEntryInsert
         {
+            public uint InsertedFormId { get; set; }
             public string InsertedFormKind { get; set; }
             public bool Copy { get; set; }
             public string Code { get; set; }
