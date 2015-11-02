@@ -1,0 +1,38 @@
+<rules>
+  <rule>
+    <name>Inject new keyword</name>
+    <insert into="KYWD" as="01FD0801">
+      // Normally, the engine assigns a new Form ID which is perfectly fine
+      // and will even try to match previosuly used Form IDs and Editor IDs.
+      // Attribute 'as' specifies the Form ID that will be used for this new form
+      // for whatever reason one deems valid.
+      //
+      // A good reason to explicitly specify a Form ID is when a form
+      // is referenced in a script by the Form ID.
+      // In that case, do not specify the first two digits
+      // as they will be infered.
+      //
+      // This feature can be used to have new forms injected into other plugins.
+      // In this case, the first two digits must be included as they
+      // indicate the target plugin number.
+      // This example injects a new keyword into Update.esm
+      Target.EditorId = "PD_InjectedKeyword";
+
+      // In order to inject a form into Update.esm it must be
+      // present in the load order.
+      // Also, Update.esm must be loaded right after Skyrim.esm,
+      // but that should be the case normally.
+      var armorMaterialBlades = Forms.Find("Update.esm", 0x0009C0);
+      if (armorMaterialBlades == null)
+      {
+        // It seems as though the Update.esm is not in the load order
+        // which means a form cannot be injected into it.
+        // Returning false will prevent this new form from being created
+        Debug.Message("==========================================================================================");
+        Debug.Message("Plugin Update.esm not found in load order. This particular part of the demo will not work.");
+        Debug.Message("==========================================================================================");
+        return false;
+      }
+    </insert>
+  </rule>
+</rules>
