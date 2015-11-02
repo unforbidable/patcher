@@ -87,7 +87,7 @@ namespace Patcher.Data
                             FormId = form.FormId
                         };
                         Add(injected);
-                        Log.Fine("Injected from {0}", injected);
+                        Log.Fine("Injected form {0}", injected);
                     }
                 }
 
