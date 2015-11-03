@@ -289,7 +289,7 @@ namespace Patcher.Data.Plugins
 
                                 var lastFormLoaded = loader.LastFormLoaded;
                                 progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast),
-                                    "{0} ({1})", fileName, lastFormLoaded == null ? "..." : lastFormLoaded.ToString());
+                                    "{0} {1}", fileName, lastFormLoaded == null ? string.Empty : lastFormLoaded.ToString());
                             }
 
                             if (context.AsyncFormLoading)
@@ -300,10 +300,10 @@ namespace Patcher.Data.Plugins
                                 // Show progress while loader is still busy
                                 while (loader.IsBusy)
                                 {
-                                    System.Threading.Thread.Sleep(60);
+                                    System.Threading.Thread.Sleep(30);
                                     var lastFormLoaded = loader.LastFormLoaded;
                                     progress.Update(loader.Loaded, Math.Max(formsToLoadCount, formsToLoadCountAtLeast), 
-                                        "{0} {1}", fileName, lastFormLoaded == null ? "..." : lastFormLoaded.ToString());
+                                        "{0} {1}", fileName, lastFormLoaded == null ? string.Empty : lastFormLoaded.ToString());
                                 }
 
                                 // Wait for loader to finish completely
