@@ -332,6 +332,13 @@ namespace Patcher.Data.Plugins
             // Retrieve plugin number so that added forms can be linked to it
             byte pluginNumber = context.Plugins.GetPluginNumber(this);
 
+            if (!string.IsNullOrEmpty(newForm.EditorId) && context.Forms.Contains(newForm.EditorId))
+            {
+                var existingForm = context.Forms[newForm.EditorId];
+                if (existingForm.FormId != newForm.FormId)
+                    Log.Warning("New form has an Editor ID '{0}' that has already been used by form '{1}'. The Editor ID will reference the new form instead.", newForm.EditorId, existingForm);
+            }
+
             if (newForm.FormId == 0)
             {
                 // Brand new form is being added

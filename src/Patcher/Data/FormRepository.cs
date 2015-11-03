@@ -202,8 +202,9 @@ namespace Patcher.Data
                     formsByEditorId.Remove(editorId);
 
                     // Warn only when not overriding
+                    // Waning moved to Plugin.AddForm to appear only when forms are added, never when loaded
                     if (existingForm.FormId != form.FormId)
-                        Log.Warning("Form " + form + " uses EditorID that has already been used by form " + existingForm + ". The Editor ID will reference the most recently added form.");
+                        Log.Fine("Form {0} uses EditorID that has already been used by form {1}.", form, existingForm);
                 }
 
                 formsByEditorId.Add(editorId, form);
