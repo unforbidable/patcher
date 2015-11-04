@@ -215,6 +215,9 @@ namespace Patcher.Data
         {
             foreach (var form in GetHardcodedForms(pluginNumber))
             {
+                form.Flags |= FormFlags.Hardcoded;
+                form.FilePosition = -1;
+
                 Forms.Add(form);
                 Log.Fine("Hardcoded form inserted: {0}", form);
             }

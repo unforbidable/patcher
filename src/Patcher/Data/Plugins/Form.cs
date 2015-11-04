@@ -59,6 +59,7 @@ namespace Patcher.Data.Plugins
         FormFlags flags;
         internal FormFlags Flags { get { return flags; } set { flags = value; } }
 
+        public bool IsHardcoded { get { return flags.HasFlag(FormFlags.Hardcoded); } }
         public bool IsInjected { get { return flags.HasFlag(FormFlags.Injected); } }
         public bool IsOverriden { get { return flags.HasFlag(FormFlags.Overriden); } }
         public bool IsOverriding { get { return OverridesForm != null; } }

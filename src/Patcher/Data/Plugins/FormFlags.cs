@@ -28,5 +28,6 @@ namespace Patcher.Data.Plugins
         LazyLoaded = 0x02,
         Overriden = 0x04,
         Injected = 0x08,
+        Hardcoded = 0x10,
     }
 }

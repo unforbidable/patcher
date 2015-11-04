@@ -277,7 +277,7 @@ namespace Patcher.Data.Plugins
                             foreach (Form form in formsToLoad)
                             {
                                 // Do not load froms which have been injected during indexing
-                                if (!form.IsInjected)
+                                if (!form.IsInjected && !form.IsHardcoded)
                                 {
                                     loader.LoadForm(form);
                                 }
