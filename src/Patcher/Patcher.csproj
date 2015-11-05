@@ -65,6 +65,7 @@
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
     <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
+    <Compile Include="Data\Plugins\Content\ColorAdapter.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ActorValue.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\Alignment.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ArmorSkillUsage.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
+    <Compile Include="Data\Plugins\Content\IColorFloatAdaptable.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingConditions.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingEffects.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingObjectBounds.cs" />
@@ -199,6 +201,7 @@
     <Compile Include="Rules\IllegalTokenException.cs" />
     <Compile Include="Rules\ObjectDumper.cs" />
     <Compile Include="Rules\Proxies\EnumConverter.cs" />
+    <Compile Include="Rules\Proxies\Fields\ColorProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\AmmoProxy.cs" />
