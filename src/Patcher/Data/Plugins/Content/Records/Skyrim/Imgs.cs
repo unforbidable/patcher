@@ -40,6 +40,69 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         [Member(Names.DNAM)]
         private DofData Dof { get; set; }
 
+        ColorAdapter color = null;
+        public ColorAdapter TintColor
+        {
+            get
+            {
+                EnsureTintExists();
+                if (color == null)
+                    color = new ColorAdapter(Tint);
+                return color;
+            }
+        }
+
+        private void EnsureHdrExists()
+        {
+            if (Hdr == null)
+                Hdr = new HdrData();
+        }
+
+        private void EnsureCinematicExists()
+        {
+            if (Cinematic == null)
+                Cinematic = new CinematicData();
+        }
+
+        private void EnsureTintExists()
+        {
+            if (Tint == null)
+                Tint = new TintData();
+        }
+
+        private void EnsureDofExists()
+        {
+            if (Dof == null)
+                Dof = new DofData();
+        }
+
+        static readonly HdrData DefaultHdr = new HdrData();
+        static readonly CinematicData DefaultCinematic = new CinematicData();
+        static readonly TintData DefaultTint = new TintData();
+        static readonly DofData DefaultDof = new DofData();
+
+        public float EyeAdaptSpeed { get { return (Hdr ?? DefaultHdr).EyeAdaptSpeed; } set { EnsureHdrExists(); Hdr.EyeAdaptSpeed = value; } }
+        public float BloomBlurRadius { get { return (Hdr ?? DefaultHdr).BloomBlurRadius; } set { EnsureHdrExists(); Hdr.BloomBlurRadius = value; } }
+        public float BloomThreshold { get { return (Hdr ?? DefaultHdr).BloomThreshold; } set { EnsureHdrExists(); Hdr.BloomThreshold = value; } }
+        public float BloomScale { get { return (Hdr ?? DefaultHdr).BloomScale; } set { EnsureHdrExists(); Hdr.BloomScale = value; } }
+        public float ReceiveBloomThreshold { get { return (Hdr ?? DefaultHdr).ReceiveBloomThreshold; } set { EnsureHdrExists(); Hdr.ReceiveBloomThreshold = value; } }
+        public float White { get { return (Hdr ?? DefaultHdr).White; } set { EnsureHdrExists(); Hdr.White = value; } }
+        public float SunlightScale { get { return (Hdr ?? DefaultHdr).SunlightScale; } set { EnsureHdrExists(); Hdr.SunlightScale = value; } }
+        public float SkyScale { get { return (Hdr ?? DefaultHdr).SkyScale; } set { EnsureHdrExists(); Hdr.SkyScale = value; } }
+        public float EyeAdaptStrength { get { return (Hdr ?? DefaultHdr).EyeAdaptStrength; } set { EnsureHdrExists(); Hdr.EyeAdaptStrength = value; } }
+
+        public float Saturation { get { return (Cinematic ?? DefaultCinematic).Saturation; } set { EnsureCinematicExists(); Cinematic.Saturation = value; } }
+        public float Brightness { get { return (Cinematic ?? DefaultCinematic).Brightness; } set { EnsureCinematicExists(); Cinematic.Brightness = value; } }
+        public float Contrast { get { return (Cinematic ?? DefaultCinematic).Contrast; } set { EnsureCinematicExists(); Cinematic.Contrast = value; } }
+
+        public float TintAmount { get { return (Tint ?? DefaultTint).Amount; } set { EnsureTintExists(); Tint.Amount = value; } }
+
+        public float DepthOfFieldStrength { get { return (Dof ?? DefaultDof).Strength; } set { EnsureDofExists(); Dof.Strength = value; } }
+        public float DepthOfFieldRange { get { return (Dof ?? DefaultDof).Range; } set { EnsureDofExists(); Dof.Range = value; } }
+        public float DepthOfFieldDistance { get { return (Dof ?? DefaultDof).Distance; } set { EnsureDofExists(); Dof.Distance = value; } }
+        public float DepthOfFieldRadius { get { return (Dof ?? DefaultDof).GetRadius(); } set { EnsureDofExists(); Dof.SetRadius(value); } }
+        public bool IsDepthOfFieldSkyDisabled { get { return (Dof ?? DefaultDof).GetNoSky(); } set { EnsureDofExists(); Dof.SetNoSky(value); } }
+
         sealed class HdrData : Field
         {
             public float EyeAdaptSpeed { get; set; }
@@ -160,7 +223,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             }
         }
 
-        sealed class TintData : Field
+        sealed class TintData : Field, IColorFloatAdaptable
         {
             public float Amount { get; set; }
             public float Red { get; set; }
@@ -216,19 +279,44 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             public float Strength { get; set; }
             public float Distance { get; set; }
             public float Range { get; set; }
-            private ushort RawRadius { get; set; }
+            private float Radius { get; set; }
 
-            public RadiusFlags Radius { get { return GetRadius(); } set { SetRadius(value); } }
+            public float GetRadius()
+            {
+                return (float)Math.Floor(Radius - 2 / 8);
+            }
+
+            public void SetRadius(float value)
+            {
+                value = (float)Math.Min(7, Math.Max(0, Math.Floor(value)));
+                if (GetNoSky())
+                    Radius = value + 4;
+                else
+                    Radius = value;
+            }
+
+            public bool GetNoSky()
+            {
+                return (Radius) % 8 == 6;
+            }
+
+            public void SetNoSky(bool value)
+            {
+                if (value && !GetNoSky())
+                    Radius += 4;
+                else if (!value && GetNoSky())
+                    Radius -= 4;
+            }
 
             internal override void ReadField(RecordReader reader)
             {
                 Strength = reader.ReadSingle();
                 Distance = reader.ReadSingle();
                 Range = reader.ReadSingle();
+
                 if (!reader.IsEndOfSegment)
                 {
-                    reader.ReadUInt16();
-                    RawRadius = reader.ReadUInt16();
+                    Radius = reader.ReadSingle();
                 }
             }
             
@@ -238,11 +326,10 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 writer.Write(Distance);
                 writer.Write(Range);
 
-                if (RawRadius != 0)
+                if (Radius != 0)
                 {
                     // Write radius only if initialized
-                    writer.Write((ushort)0);
-                    writer.Write(RawRadius);
+                    writer.Write(Radius);
                 }
             }
 
@@ -253,7 +340,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                     Strength = Strength,
                     Distance = Distance,
                     Range = Range,
-                    RawRadius = RawRadius
+                    Radius = Radius
                 };
             }
 
@@ -265,61 +352,13 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             public override bool Equals(Field other)
             {
                 var cast = (DofData)other;
-                return Strength == cast.Strength && Distance == cast.Distance && Range == cast.Range && RawRadius == cast.RawRadius;
+                return Strength == cast.Strength && Distance == cast.Distance && Range == cast.Range && Radius == cast.Radius;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
                 yield break;
             }
-
-            private void SetRadius(RadiusFlags value)
-            {
-                RawRadius = radiusMap.Where(m => m.Value == value).First().Key;
-            }
-
-            private RadiusFlags GetRadius()
-            {
-                // Return default value if not initialized
-                if (RawRadius == 0)
-                    return RadiusFlags.R0;
-                else
-                    return radiusMap.Where(m => m.Key == RawRadius).First().Value;
-            }
-
-            static Dictionary<ushort, RadiusFlags> radiusMap = new Dictionary<ushort, RadiusFlags>()
-            {
-                { 0x4000, RadiusFlags.R0 },
-                { 0x40c0, RadiusFlags.R0 | RadiusFlags.NoSky },
-                { 0x4120, RadiusFlags.R1 },
-                { 0x4160, RadiusFlags.R1 | RadiusFlags.NoSky },
-                { 0x4190, RadiusFlags.R2 },
-                { 0x41B0, RadiusFlags.R2 | RadiusFlags.NoSky },
-                { 0x41D0, RadiusFlags.R3 },
-                { 0x41F0, RadiusFlags.R3 | RadiusFlags.NoSky },
-                { 0x4208, RadiusFlags.R4 },
-                { 0x4218, RadiusFlags.R4 | RadiusFlags.NoSky },
-                { 0x4228, RadiusFlags.R5 },
-                { 0x4238, RadiusFlags.R5 | RadiusFlags.NoSky },
-                { 0x4248, RadiusFlags.R6 },
-                { 0x4258, RadiusFlags.R6 | RadiusFlags.NoSky },
-                { 0x4268, RadiusFlags.R7 },
-                { 0x4278, RadiusFlags.R7 | RadiusFlags.NoSky },
-            };
-        }
-
-        [Flags]
-        enum RadiusFlags
-        {
-            R0 = 0,
-            R1 = 1,
-            R2 = 2,
-            R3 = 3,
-            R4 = 4,
-            R5 = 5,
-            R6 = 6,
-            R7 = 7,
-            NoSky = 0x8000,
         }
     }
 }
