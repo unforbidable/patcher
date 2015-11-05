@@ -459,33 +459,39 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return this;
         }
 
-        void IDumpabled.Dump(ObjectDumper dumper)
+        void IDumpabled.Dump(string name, ObjectDumper dumper)
         {
-            dumper.DumpText("Function", FunctionToString());
+            dumper.DumpText(name, "{");
+            if (dumper.Enter())
+            {
+                dumper.DumpText("Function", FunctionToString());
 
-            if (Field.Flags.HasFlag(ConditionFlags.UseGlobal))
-            {
-                dumper.DumpObject("Operand", Provider.CreateReferenceProxy<GlobProxy>(Field.GlobalVariableOperand));
-            }
-            else
-            {
-                dumper.DumpObject("Operand", Field.FloatOperand);
-            }
-
-            if (Field.FunctionTarget == FunctionTarget.Reference && Field.FunctionTargetReference == PlayerRefFormId)
-            {
-                dumper.DumpText("RunOn", "Player");
-            }
-            else
-            {
-                dumper.DumpObject("RunOn", Field.FunctionTarget);
-                if (Field.FunctionTarget == FunctionTarget.Reference || Field.FunctionTarget == FunctionTarget.LinkedReference)
+                if (Field.Flags.HasFlag(ConditionFlags.UseGlobal))
                 {
-                    dumper.DumpObject("RunOnReference", Provider.CreateReferenceProxy<FormProxy>(Field.FunctionTargetReference));
+                    dumper.DumpObject("Operand", Provider.CreateReferenceProxy<GlobProxy>(Field.GlobalVariableOperand));
                 }
-            }
+                else
+                {
+                    dumper.DumpObject("Operand", Field.FloatOperand);
+                }
 
-            dumper.DumpObject("Flags", Field.Flags);
+                if (Field.FunctionTarget == FunctionTarget.Reference && Field.FunctionTargetReference == PlayerRefFormId)
+                {
+                    dumper.DumpText("RunOn", "Player");
+                }
+                else
+                {
+                    dumper.DumpObject("RunOn", Field.FunctionTarget);
+                    if (Field.FunctionTarget == FunctionTarget.Reference || Field.FunctionTarget == FunctionTarget.LinkedReference)
+                    {
+                        dumper.DumpObject("RunOnReference", Provider.CreateReferenceProxy<FormProxy>(Field.FunctionTargetReference));
+                    }
+                }
+
+                dumper.DumpObject("Flags", Field.Flags);
+                dumper.Leave();
+            }
+            dumper.DumpText("}");
         }
 
         private string FunctionToString()

@@ -135,34 +135,40 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             return prop;
         }
 
-        void IDumpabled.Dump(ObjectDumper dumper)
+        void IDumpabled.Dump(string name, ObjectDumper dumper)
         {
-            dumper.DumpText("Name", Field.Name);
-
-            // Dump script properties
-            dumper.DumpText("Properties", "{");
+            dumper.DumpText(name, "{");
             if (dumper.Enter())
             {
-                dumper.DumpText("Count", Field.Properties.Count.ToString());
-                dumper.DumpText("[");
+                dumper.DumpText("Name", Field.Name);
+
+                // Dump script properties
+                dumper.DumpText("Properties", "{");
                 if (dumper.Enter())
                 {
-                    foreach (var prop in Field.Properties)
+                    dumper.DumpText("Count", Field.Properties.Count.ToString());
+                    dumper.DumpText("[");
+                    if (dumper.Enter())
                     {
-                        // Dump property
-                        dumper.DumpText(prop.Name, "{");
-                        if (dumper.Enter())
+                        foreach (var prop in Field.Properties)
                         {
-                            dumper.DumpText("Type", prop.Type.ToString());
-                            dumper.DumpText("Values", ScriptPropertyValuesToString(prop));
+                            // Dump property
+                            dumper.DumpText(prop.Name, "{");
+                            if (dumper.Enter())
+                            {
+                                dumper.DumpText("Type", prop.Type.ToString());
+                                dumper.DumpText("Values", ScriptPropertyValuesToString(prop));
 
-                            dumper.Leave();
+                                dumper.Leave();
+                            }
+                            dumper.DumpText("}");
                         }
-                        dumper.DumpText("}");
+                        dumper.Leave();
                     }
+                    dumper.DumpText("]");
                     dumper.Leave();
                 }
-                dumper.DumpText("]");
+                dumper.DumpText("}");
                 dumper.Leave();
             }
             dumper.DumpText("}");

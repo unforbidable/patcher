@@ -23,6 +23,6 @@ namespace Patcher.Rules
 {
     interface IDumpabled
     {
-        void Dump(ObjectDumper dumper);
+        void Dump(string name, ObjectDumper dumper);
     }
 }
