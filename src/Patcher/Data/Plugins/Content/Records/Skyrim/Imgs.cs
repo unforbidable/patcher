@@ -67,27 +67,49 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(EyeAdaptSpeed);
+                writer.Write(BloomBlurRadius);
+                writer.Write(BloomThreshold);
+                writer.Write(BloomScale);
+                writer.Write(ReceiveBloomThreshold);
+                writer.Write(White);
+                writer.Write(SunlightScale);
+                writer.Write(SkyScale);
+                writer.Write(EyeAdaptStrength);
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new HdrData()
+                {
+                    EyeAdaptSpeed = EyeAdaptSpeed,
+                    BloomBlurRadius = BloomBlurRadius,
+                    BloomThreshold = BloomThreshold,
+                    BloomScale = BloomScale,
+                    ReceiveBloomThreshold = ReceiveBloomThreshold,
+                    White = White,
+                    SunlightScale = SunlightScale,
+                    SkyScale = SkyScale,
+                    EyeAdaptStrength = EyeAdaptStrength,
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("HDR Data");
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (HdrData)other;
+                return EyeAdaptSpeed == cast.EyeAdaptSpeed && BloomBlurRadius == cast.BloomBlurRadius && BloomThreshold == cast.BloomThreshold &&
+                    BloomScale == cast.BloomScale && ReceiveBloomThreshold == cast.ReceiveBloomThreshold && White == cast.White &&
+                    SunlightScale == cast.SunlightScale && SkyScale == cast.SkyScale && EyeAdaptStrength == cast.EyeAdaptStrength;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
@@ -106,27 +128,35 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(Saturation);
+                writer.Write(Brightness);
+                writer.Write(Contrast);
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new CinematicData()
+                {
+                    Saturation = Saturation,
+                    Brightness = Brightness,
+                    Contrast = Contrast
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("Cinematic Data");
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (CinematicData)other;
+                return Saturation == cast.Saturation && Brightness == cast.Saturation && Contrast == cast.Contrast;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
@@ -147,27 +177,37 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(Amount);
+                writer.Write(Red);
+                writer.Write(Green);
+                writer.Write(Blue);
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new TintData()
+                {
+                    Amount = Amount,
+                    Red = Red,
+                    Green = Green,
+                    Blue = Blue
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("Tint Data");
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (TintData)other;
+                return Amount == cast.Amount && Red == cast.Red && Green == cast.Green && Blue == cast.Blue;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
@@ -194,27 +234,43 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(Strength);
+                writer.Write(Distance);
+                writer.Write(Range);
+
+                if (RawRadius != 0)
+                {
+                    // Write radius only if initialized
+                    writer.Write((ushort)0);
+                    writer.Write(RawRadius);
+                }
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new DofData()
+                {
+                    Strength = Strength,
+                    Distance = Distance,
+                    Range = Range,
+                    RawRadius = RawRadius
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("Strength={0} Distance={1}", Strength, Distance);
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (DofData)other;
+                return Strength == cast.Strength && Distance == cast.Distance && Range == cast.Range && RawRadius == cast.RawRadius;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
 
             private void SetRadius(RadiusFlags value)
