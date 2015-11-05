@@ -104,6 +104,7 @@
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Imgs.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Mgef.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Txst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Spel.cs" />
