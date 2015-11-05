@@ -214,7 +214,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             public override bool Equals(Field other)
             {
                 var cast = (CinematicData)other;
-                return Saturation == cast.Saturation && Brightness == cast.Saturation && Contrast == cast.Contrast;
+                return Saturation == cast.Saturation && Brightness == cast.Brightness && Contrast == cast.Contrast;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
@@ -283,21 +283,24 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             public float GetRadius()
             {
-                return (float)Math.Floor(Radius - 2 / 8);
+                if (Radius == 0)
+                    return 0;
+                else
+                    return (float)Math.Floor((Radius - 2) / 8);
             }
 
             public void SetRadius(float value)
             {
                 value = (float)Math.Min(7, Math.Max(0, Math.Floor(value)));
                 if (GetNoSky())
-                    Radius = value + 4;
+                    Radius = value * 8 + 6;
                 else
-                    Radius = value;
+                    Radius = value * 8 + 2;
             }
 
             public bool GetNoSky()
             {
-                return (Radius) % 8 == 6;
+                return Radius == 0 || Radius % 8 == 6;
             }
 
             public void SetNoSky(bool value)
