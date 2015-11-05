@@ -24,7 +24,7 @@ using System.Text;
 namespace Patcher.Rules.Proxies.Fields
 {
     [Proxy(typeof(IColor))]
-    public class ColorProxy : Proxy, IColor
+    public class ColorProxy : Proxy, IColor, IDumpabled
     {
         private ColorAdapter adapter;
 
@@ -71,6 +71,11 @@ namespace Patcher.Rules.Proxies.Fields
                 EnsureWritable();
                 adapter.Red = value;
             }
+        }
+
+        void IDumpabled.Dump(string name, ObjectDumper dumper)
+        {
+            dumper.DumpText(name, "({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
         }
     }
 }
