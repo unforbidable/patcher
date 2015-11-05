@@ -100,7 +100,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         public float DepthOfFieldStrength { get { return (Dof ?? DefaultDof).Strength; } set { EnsureDofExists(); Dof.Strength = value; } }
         public float DepthOfFieldRange { get { return (Dof ?? DefaultDof).Range; } set { EnsureDofExists(); Dof.Range = value; } }
         public float DepthOfFieldDistance { get { return (Dof ?? DefaultDof).Distance; } set { EnsureDofExists(); Dof.Distance = value; } }
-        public float DepthOfFieldRadius { get { return (Dof ?? DefaultDof).GetRadius(); } set { EnsureDofExists(); Dof.SetRadius(value); } }
+        public float DepthOfFieldBlurRadius { get { return (Dof ?? DefaultDof).GetRadius(); } set { EnsureDofExists(); Dof.SetRadius(value); } }
         public bool IsDepthOfFieldSkyDisabled { get { return (Dof ?? DefaultDof).GetNoSky(); } set { EnsureDofExists(); Dof.SetNoSky(value); } }
 
         sealed class HdrData : Field
