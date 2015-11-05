@@ -205,6 +205,7 @@
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\AmmoProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\ImgsProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\MgefProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\TxstProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\SpelProxy.cs" />
