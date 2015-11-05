@@ -19,10 +19,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules
+namespace Patcher.Data.Plugins.Content
 {
-    interface IDumpabled
+    public interface IColorFloatAdaptable
     {
-        void Dump(string name, ObjectDumper dumper);
+        float Red { get; set; }
+        float Green { get; set; }
+        float Blue { get; set; }
     }
 }

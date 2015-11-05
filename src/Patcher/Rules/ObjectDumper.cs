@@ -88,14 +88,7 @@ namespace Patcher.Rules
                     if (dumpable != null)
                     {
                         // Call custom method of custom dumpable objects
-                        // Print the content of an arbitrary object
-                        DumpText(name, "{");
-                        if (Enter())
-                        {
-                            dumpable.Dump(this);
-                            Leave();
-                        }
-                        DumpText(name, "}");
+                        dumpable.Dump(name, this);
                     }
                     else if (formProxy != null && currentDepth > 0)
                     {

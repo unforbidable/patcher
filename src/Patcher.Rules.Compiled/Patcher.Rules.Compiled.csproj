@@ -55,6 +55,7 @@
     <Compile Include="Constants\Skyrim\WeaponTypes.cs" />
     <Compile Include="Constants\Types.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
+    <Compile Include="Fields\IColor.cs" />
     <Compile Include="Fields\Skyrim\ICondition.cs" />
     <Compile Include="Fields\Skyrim\IConditionCollection.cs" />
     <Compile Include="Fields\Skyrim\IEffect.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Forms\Skyrim\IExpl.cs" />
     <Compile Include="Forms\Skyrim\IEnch.cs" />
     <Compile Include="Forms\Skyrim\IEqup.cs" />
+    <Compile Include="Forms\Skyrim\IImgs.cs" />
     <Compile Include="Forms\Skyrim\IIpds.cs" />
     <Compile Include="Forms\Skyrim\ILigh.cs" />
     <Compile Include="Forms\Skyrim\IMgef.cs" />

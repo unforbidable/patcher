@@ -54,6 +54,7 @@ namespace Patcher.Data.Plugins.Content
         public const string GRAS = "GRAS";
         public const string IDLE = "IDLE";
         public const string IDLM = "IDLM";
+        public const string IMGS = "IMGS";
         public const string INGR = "INGR";
         public const string IPDS = "IPDS";
         public const string KEYM = "KEYM";
@@ -125,12 +126,14 @@ namespace Patcher.Data.Plugins.Content
         public const string EFID = "EFID";
         public const string EFIT = "EFIT";
         public const string EITM = "EITM";
+        public const string ENAM = "ENAM";
         public const string ENIT = "ENIT";
         public const string ETYP = "ETYP";
         public const string FLTV = "FLTV";
         public const string FNAM = "FNAM";
         public const string FULL = "FULL";
         public const string HEDR = "HEDR";
+        public const string HNAM = "HNAM";
         public const string ICON = "ICON";
         public const string INAM = "INAM";
         public const string INCC = "INCC";
