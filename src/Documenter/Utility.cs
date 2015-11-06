@@ -50,7 +50,7 @@ namespace Documenter
             {
                 return type.Name.TrimStart('I').Replace("Helper", string.Empty);
             }
-            else if (type.FullName.Contains(".Forms.") || type.Namespace.Contains(".Fields."))
+            else if (type.FullName.Contains(".Forms.") || type.FullName.Contains(".Fields."))
             {
                 return type.Name.Substring(1).Replace("`1", string.Empty);
             }
