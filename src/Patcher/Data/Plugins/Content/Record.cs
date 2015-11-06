@@ -51,25 +51,25 @@ namespace Patcher.Data.Plugins.Content
 
         internal void ReadRecord(RecordReader reader, bool lazyLoading)
         {
-            var members = InfoProvider.GetCompoundInfo(GetType()).Members;
+            var compinfo = InfoProvider.GetCompoundInfo(GetType());
             var recinfo = InfoProvider.GetRecordInfo(GetType());
 
             BeforeRead(reader);
 
             reader.BeginReadFields(0);
 
-            HashSet<string> remainingPropertiesToLoad = lazyLoading ? new HashSet<string>(members.Values.Where(m => m.IsLazy).SelectMany(m => m.FieldNames)) : null;
+            HashSet<string> remainingPropertiesToLoad = lazyLoading ? new HashSet<string>(compinfo.Members.Values.Where(m => m.IsLazy).SelectMany(m => m.FieldNames)) : null;
 
             foreach (string propertyName in reader.FindFields())
             {
-                if (members.ContainsKey(propertyName))
+                MemberInfo meminf = compinfo.FindMember(propertyName);
+                if (meminf != null)
                 {
-                    MemberInfo meminf = members[propertyName];
                     reader.ReadField(this, propertyName, meminf, 0);
 
                     if (remainingPropertiesToLoad != null)
                     {
-                        if (!meminf.IsListType)
+                        if (!meminf.IsListType && !meminf.IsDynamicArray)
                             remainingPropertiesToLoad.Remove(propertyName);
 
                         if (!remainingPropertiesToLoad.Any())

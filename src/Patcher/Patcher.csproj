@@ -94,6 +94,7 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\WardState.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\WeaponType.cs" />
     <Compile Include="Data\Plugins\Content\DummyAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\DynamicArrayCompound.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\DestructionData.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\MuzzleFlashModel.cs" />
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
