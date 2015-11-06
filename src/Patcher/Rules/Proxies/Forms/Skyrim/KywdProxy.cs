@@ -15,7 +15,9 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Rules.Compiled.Fields;
 using Patcher.Rules.Compiled.Forms.Skyrim;
+using Patcher.Rules.Proxies.Fields;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,16 +29,18 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
     [Proxy(typeof(IKywd))]
     public sealed class KywdProxy : FormProxy<Kywd>, IKywd
     {
-        public uint Color
+        public IColor Color
         {
             get
             {
-                return record.Color;
+                return Provider.CreateProxy<ColorProxy>(Mode).With(record.Color);
             }
             set
             {
                 EnsureWritable();
-                record.Color = value;
+                record.Color.Red = value.Red;
+                record.Color.Green = value.Green;
+                record.Color.Blue = value.Blue;
             }
         }
     }

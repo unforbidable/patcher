@@ -23,9 +23,24 @@ using System.Threading.Tasks;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.KYWD)]
-    public sealed class Kywd : GenericFormRecord
+    public sealed class Kywd : GenericFormRecord, IColorFloatAdaptable
     {
         [Member(Names.CNAM)]
-        public uint Color { get; set; }
+        private uint RawColor { get; set; }
+
+        private ColorAdapter color = null;
+        public ColorAdapter Color
+        {
+            get
+            {
+                if (color == null)
+                    color = new ColorAdapter(this);
+                return color;
+            }
+        }
+
+        public float Red { get { return (RawColor & 0xFF) / 255f; } set { RawColor = RawColor & 0xFFFFFF00 | (uint)(value * 255); } }
+        public float Green { get { return (RawColor >> 8 & 0xFF) / 255f; } set { RawColor = RawColor & 0xFFFF00FF | (uint)(value * 255) << 8; } }
+        public float Blue { get { return (RawColor >> 16 & 0xFF) / 255f; } set { RawColor = RawColor & 0xFF00FFFF | (uint)(value * 255) << 16; } }
     }
 }
