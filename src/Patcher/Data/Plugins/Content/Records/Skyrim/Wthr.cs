@@ -171,7 +171,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         public float FogDayFar { get { return Fog == null ? 0f : Fog.DayFar; } set { EnsureFogDataCreated(); Fog.DayFar = value; } }
         public float FogNightNear { get { return Fog == null ? 0f : Fog.NightNear; } set { EnsureFogDataCreated(); Fog.NightNear = value; } }
         public float FogNightFar { get { return Fog == null ? 0f : Fog.NightFar; } set { EnsureFogDataCreated(); Fog.NightFar = value; } }
-        public float DayPow { get { return Fog == null ? 0f : Fog.DayPow; } set { EnsureFogDataCreated(); Fog.DayPow = value; } }
+        public float FogDayPow { get { return Fog == null ? 0f : Fog.DayPow; } set { EnsureFogDataCreated(); Fog.DayPow = value; } }
         public float FogNightPow { get { return Fog == null ? 0f : Fog.NightPow; } set { EnsureFogDataCreated(); Fog.NightPow = value; } }
         public float FogDayMax { get { return Fog == null ? 0f : Fog.DayMax; } set { EnsureFogDataCreated(); Fog.DayMax = value; } }
         public float FogNightMax { get { return Fog == null ? 0f : Fog.NightMax; } set { EnsureFogDataCreated(); Fog.NightMax = value; } }
