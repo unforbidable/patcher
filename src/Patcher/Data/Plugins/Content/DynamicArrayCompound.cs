@@ -33,15 +33,16 @@ namespace Patcher.Data.Plugins.Content
         {
             int index = FieldNameToIndex(fieldName);
             EnsureLength(index + 1);
+            elements[index] = reader.ReadField<T>();
+        }
 
+        internal override void WriteField(RecordWriter writer)
+        {
             var type = typeof(T);
-            if (type == typeof(string))
+            for (int i = 0; i < elements.Count; i++)
             {
-                elements[index] = (T)(object)reader.ReadStringZeroTerminated();
-            }
-            else
-            {
-                throw new InvalidOperationException("Unsupported Dynamic Array Compund element type: " + type.FullName);
+                string fieldName = IndexToFieldName(i);
+                writer.WriteField(elements[i], fieldName);
             }
         }
 

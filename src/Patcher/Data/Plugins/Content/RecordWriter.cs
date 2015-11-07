@@ -100,6 +100,16 @@ namespace Patcher.Data.Plugins.Content
             EndSegment();
         }
 
+        internal void WriteField(object value, string fieldName)
+        {
+            if (value != null)
+            {
+                BeginPropertySegment(fieldName);
+                WritePrimitiveField(value);
+                EndSegment();
+            }
+        }
+
         internal void WriteField(object target, MemberInfo meminfo)
         {
             var value = meminfo.GetValue(target);
@@ -240,6 +250,19 @@ namespace Patcher.Data.Plugins.Content
             else
             {
                 throw new InvalidProgramException("Unsupported primitive field type: " + meminf.FieldType.FullName);
+            }
+        }
+
+        private void WritePrimitiveField(object value)
+        {
+            var type = value.GetType();
+            if (type == typeof(string))
+            {
+                WriteStringZeroTerminated((string)value);
+            }
+            else
+            {
+                throw new InvalidProgramException("Unsupported primitive field type: " + type.FullName);
             }
         }
 
