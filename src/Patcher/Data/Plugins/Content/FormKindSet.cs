@@ -102,6 +102,7 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet FurnOnly = FromNames(Names.FURN);
         public static readonly FormKindSet GlobOnly = FromNames(Names.GLOB);
         public static readonly FormKindSet IdleOnly = FromNames(Names.IDLE);
+        public static readonly FormKindSet ImgsOnly = FromNames(Names.IMGS);
         public static readonly FormKindSet KywdOnly = FromNames(Names.KYWD);
         public static readonly FormKindSet LcrtOnly = FromNames(Names.LCRT);
         public static readonly FormKindSet LctnOnly = FromNames(Names.LCTN);
