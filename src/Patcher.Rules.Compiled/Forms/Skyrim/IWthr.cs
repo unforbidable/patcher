@@ -45,10 +45,6 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         IFormCollection<IStat> SkyStatics { get; set; }
         /// <summary>
-        /// Gets or sets the ambient light data for this <b>Weather</b>.
-        /// </summary>
-        IWeatherAmbientLight AmbientLight { get; set; }
-        /// <summary>
         /// Gets or sets the near fog distance during the day.
         /// </summary>
         float FogDayNear { get; set; }
@@ -168,6 +164,38 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// Gets or sets the value which determines whether the <b>Weather</b> effects are always visible.
         /// </summary>
         bool EffectsAlwaysVisible { get; set; }
+        /// <summary>
+        /// Gets the colors of the ambient light in the negative X-axis direction.
+        /// </summary>
+        IWeatherColorQuad AmbientColorsX1 { get; }
+        /// <summary>
+        /// Gets the colors of the ambient light in the positive X-axis direction.
+        /// </summary>
+        IWeatherColorQuad AmbientColorsX2 { get; }
+        /// <summary>
+        /// Gets the colors of the ambient light in the negative Y-axis direction.
+        /// </summary>
+        IWeatherColorQuad AmbientColorsY1 { get; }
+        /// <summary>
+        /// Gets the colors of the ambient light in the positive Y-axis direction.
+        /// </summary>
+        IWeatherColorQuad AmbientColorsY2 { get; }
+        /// <summary>
+        /// Gets the colors of the ambient light in the negative Z-axis direction.
+        /// </summary>
+        IWeatherColorQuad AmbientColorsZ1 { get; }
+        /// <summary>
+        /// Gets the colors of the ambient light in the positive Z-axis direction.
+        /// </summary>
+        IWeatherColorQuad AmbientColorsZ2 { get; }
+        /// <summary>
+        /// Gets the specular lighting colors.
+        /// </summary>
+        IWeatherColorQuad SpecularColors { get; }
+        /// <summary>
+        /// Gets the Fresnel powers.
+        /// </summary>
+        IWeatherFresnelQuad FresnelPowers { get; }
         /// <summary>
         /// Retrieves the specified cloud layer (0-31).
         /// </summary>

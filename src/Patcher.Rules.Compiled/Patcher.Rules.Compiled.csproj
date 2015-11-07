@@ -65,7 +65,6 @@
     <Compile Include="Fields\Skyrim\IWeatherSoundCollection.cs" />
     <Compile Include="Fields\Skyrim\IMaterialCollection.cs" />
     <Compile Include="Fields\Skyrim\IScript.cs" />
-    <Compile Include="Fields\Skyrim\IWeatherAmbientLight.cs" />
     <Compile Include="Fields\Skyrim\IWeatherCloudLayer.cs" />
     <Compile Include="Fields\Skyrim\IWeatherFresnelQuad.cs" />
     <Compile Include="Fields\Skyrim\IWeatherAlphaQuad.cs" />
