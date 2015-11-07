@@ -165,37 +165,37 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         bool EffectsAlwaysVisible { get; set; }
         /// <summary>
-        /// Gets the colors of the ambient light in the negative X-axis direction.
+        /// Gets or sets the colors of the ambient light in the negative X-axis direction.
         /// </summary>
-        IWeatherColorQuad AmbientColorsX1 { get; }
+        IWeatherColorQuad AmbientColorsX1 { get; set; }
         /// <summary>
-        /// Gets the colors of the ambient light in the positive X-axis direction.
+        /// Gets or sets the colors of the ambient light in the positive X-axis direction.
         /// </summary>
-        IWeatherColorQuad AmbientColorsX2 { get; }
+        IWeatherColorQuad AmbientColorsX2 { get; set; }
         /// <summary>
-        /// Gets the colors of the ambient light in the negative Y-axis direction.
+        /// Gets or sets the colors of the ambient light in the negative Y-axis direction.
         /// </summary>
-        IWeatherColorQuad AmbientColorsY1 { get; }
+        IWeatherColorQuad AmbientColorsY1 { get; set; }
         /// <summary>
-        /// Gets the colors of the ambient light in the positive Y-axis direction.
+        /// Gets or sets the colors of the ambient light in the positive Y-axis direction.
         /// </summary>
-        IWeatherColorQuad AmbientColorsY2 { get; }
+        IWeatherColorQuad AmbientColorsY2 { get; set; }
         /// <summary>
-        /// Gets the colors of the ambient light in the negative Z-axis direction.
+        /// Gets or sets the colors of the ambient light in the negative Z-axis direction.
         /// </summary>
-        IWeatherColorQuad AmbientColorsZ1 { get; }
+        IWeatherColorQuad AmbientColorsZ1 { get; set; }
         /// <summary>
-        /// Gets the colors of the ambient light in the positive Z-axis direction.
+        /// Gets or sets the colors of the ambient light in the positive Z-axis direction.
         /// </summary>
-        IWeatherColorQuad AmbientColorsZ2 { get; }
+        IWeatherColorQuad AmbientColorsZ2 { get; set; }
         /// <summary>
-        /// Gets the specular lighting colors.
+        /// Gets or sets the specular lighting colors.
         /// </summary>
-        IWeatherColorQuad SpecularColors { get; }
+        IWeatherColorQuad SpecularColors { get; set; }
         /// <summary>
-        /// Gets the Fresnel powers.
+        /// Gets or sets the Fresnel powers.
         /// </summary>
-        IWeatherFresnelQuad FresnelPowers { get; }
+        IWeatherFresnelQuad FresnelPowers { get; set; }
         /// <summary>
         /// Retrieves the specified cloud layer (0-31).
         /// </summary>
