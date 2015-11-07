@@ -446,6 +446,27 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             }
         }
 
+        sealed class WeatherTextures : DynamicArrayCompound<string>
+        {
+            static readonly byte IndexBase = Convert.ToByte('0');
+
+            protected override int FieldNameToIndex(string fieldName)
+            {
+                if (!fieldName.EndsWith("0TX"))
+                    throw new InvalidOperationException("Unexpected field name: " + fieldName);
+
+                return Convert.ToByte(fieldName[0]) - IndexBase;
+            }
+
+            protected override string IndexToFieldName(int index)
+            {
+                if (index < 0 || index > 28)
+                    throw new IndexOutOfRangeException("Index is out of range.");
+
+                return string.Format("{0}0TXT", Convert.ToChar(index + IndexBase));
+            }
+        }
+
         public class AmbientLightData
         {
             public ColorQuad X1 { get; private set; }
