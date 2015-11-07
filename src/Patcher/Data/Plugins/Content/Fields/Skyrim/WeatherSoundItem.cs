@@ -35,27 +35,33 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
         internal override void WriteField(RecordWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteReference(Sound, FormKindSet.SndrOnly);
+            writer.Write((int)Type);
         }
 
         public override Field CopyField()
         {
-            throw new NotImplementedException();
+            return new WeatherSoundItem()
+            {
+                Sound = Sound,
+                Type = Type
+            };
         }
 
         public override bool Equals(Field other)
         {
-            throw new NotImplementedException();
+            var cast = (WeatherSoundItem)other;
+            return Sound == cast.Sound && Type == cast.Type;
         }
 
         public override IEnumerable<uint> GetReferencedFormIds()
         {
-            throw new NotImplementedException();
+            yield return Sound;
         }
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format("Type={0} Sound={1:X8}", Type, Sound);
         }
     }
 }

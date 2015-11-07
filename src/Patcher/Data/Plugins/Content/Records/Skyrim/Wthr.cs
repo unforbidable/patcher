@@ -188,27 +188,46 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(DayNear);
+                writer.Write(DayFar);
+                writer.Write(NightNear);
+                writer.Write(NightFar);
+                writer.Write(DayPow);
+                writer.Write(NightPow);
+                writer.Write(DayMax);
+                writer.Write(NightMax);
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new FogData()
+                {
+                    DayNear = DayNear,
+                    DayFar = DayFar,
+                    NightNear = NightNear,
+                    NightFar = NightFar,
+                    DayPow = DayPow,
+                    NightPow = NightPow,
+                    DayMax = DayMax,
+                    NightMax = NightMax,
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("Fog Data");
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (FogData)other;
+                return DayNear == cast.DayNear && DayFar == cast.DayFar && NightNear == cast.NightNear && NightFar == cast.NightFar &&
+                    DayPow == cast.DayPow && NightPow == cast.NightPow && DayMax == cast.DayMax && NightMax == cast.NightMax;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
@@ -240,27 +259,40 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.WriteReference(Sunrise, FormKindSet.ImgsOnly);
+                writer.WriteReference(Day, FormKindSet.ImgsOnly);
+                writer.WriteReference(Sunset, FormKindSet.ImgsOnly);
+                writer.WriteReference(Night, FormKindSet.ImgsOnly);
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new ImageSpaceData()
+                {
+                    Sunrise = Sunrise,
+                    Day = Day,
+                    Sunset = Sunset,
+                    Night = Night
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("Sunrise={0:X8} Day={1:X8} Sunset={2:X8} Night={3:X8}", Sunrise, Day, Sunset, Night);
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (ImageSpaceData)other;
+                return Sunrise == cast.Sunrise && Day == cast.Day && Sunset == cast.Sunset && Night == cast.Night;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield return Sunrise;
+                yield return Day;
+                yield return Sunset;
+                yield return Night;
             }
         }
 
@@ -298,7 +330,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void ReadField(RecordReader reader)
             {
-                WindDirection = reader.ReadByte() / 255f;
+                WindSpeed = reader.ReadByte() / 255f;
                 reader.ReadInt16(); // Skip 2 bytes
                 TransDelta = reader.ReadByte() / 1020f;
                 SunGlare = reader.ReadByte() / 255f;
@@ -317,27 +349,60 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write((byte)(WindSpeed * 255f));
+                writer.Write((ushort)0);
+                writer.Write((byte)(TransDelta * 255f));
+                writer.Write((byte)(SunGlare * 255f));
+                writer.Write((byte)(SunDamage * 255f));
+                writer.Write((byte)(PrecipitationBeginFadeIn * 255f));
+                writer.Write((byte)(PrecipitationEndFadeOut * 255f));
+                writer.Write((byte)(ThunderBeginFadeIn * 255f));
+                writer.Write((byte)(ThunderEndFadeOut * 255f));
+                writer.Write((byte)(ThunderFrequency * 255f));
+                writer.Write((byte)Flags);
+                writer.Write(LightningColor);
+                writer.Write((byte)0);
+                writer.Write((byte)(WindDirection * 255f / 360f));
+                writer.Write((byte)(WindDirectionRange * 255f / 180f));
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new WeatherData()
+                {
+                    WindSpeed = WindSpeed,
+                    TransDelta = TransDelta,
+                    SunGlare = SunGlare,
+                    SunDamage = SunDamage,
+                    PrecipitationBeginFadeIn = PrecipitationBeginFadeIn,
+                    PrecipitationEndFadeOut = PrecipitationEndFadeOut,
+                    ThunderBeginFadeIn = ThunderBeginFadeIn,
+                    ThunderEndFadeOut = ThunderEndFadeOut,
+                    ThunderFrequency = ThunderFrequency,
+                    Flags = Flags,
+                    LightningColor = LightningColor,
+                    WindDirection = WindDirection,
+                    WindDirectionRange = WindDirectionRange,
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("Flags={0}", Flags);
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (WeatherData)other;
+                return WindSpeed == cast.WindSpeed && TransDelta == cast.TransDelta && SunGlare == cast.SunGlare && SunDamage == cast.SunDamage &&
+                    PrecipitationBeginFadeIn == cast.PrecipitationBeginFadeIn && PrecipitationEndFadeOut == cast.PrecipitationEndFadeOut &&
+                    ThunderBeginFadeIn == cast.ThunderBeginFadeIn && ThunderEndFadeOut == cast.ThunderEndFadeOut && ThunderFrequency == cast.ThunderFrequency &&
+                    Flags == cast.Flags && LightningColor.SequenceEqual(cast.LightningColor) && WindDirection == cast.WindDirection && WindDirectionRange == cast.WindDirectionRange;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
