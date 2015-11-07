@@ -128,10 +128,14 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             return Enumerable.Range(0, 17).Select(i => GetColor(i));
         }
 
-        public AmbientLightData GetAmbientLightData()
-        {
-            return new AmbientLightData(this);
-        }
+        public ColorQuad AmbientColorX2 { get { return new ColorQuad(allLightData, 0, 32, 64, 96); } }
+        public ColorQuad AmbientColorX1 { get { return new ColorQuad(allLightData, 4, 4 + 32, 4 + 64, 4 + 96); } }
+        public ColorQuad AmbientColorY2 { get { return new ColorQuad(allLightData, 8, 8 + 32, 8 + 64, 8 + 96); } }
+        public ColorQuad AmbientColorY1 { get { return new ColorQuad(allLightData, 12, 12 + 32, 12 + 64, 12 + 96); } }
+        public ColorQuad AmbientColorZ2 { get { return new ColorQuad(allLightData, 16, 16 + 32, 16 + 64, 16 + 96); } }
+        public ColorQuad AmbientColorZ1 { get { return new ColorQuad(allLightData, 20, 20 + 32, 20 + 64, 20 + 96); } }
+        public ColorQuad SpecularColor { get { return new ColorQuad(allLightData, 24, 24 + 32, 24 + 64, 24 + 96); } }
+        public FloatQuad FresnelPower { get { return new FloatQuad(allLightData, 28, 28 + 32, 28 + 64, 28 + 96); } }
 
         protected override void AfterRead(RecordReader reader)
         {
@@ -464,30 +468,6 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                     throw new IndexOutOfRangeException("Index is out of range.");
 
                 return string.Format("{0}0TXT", Convert.ToChar(index + IndexBase));
-            }
-        }
-
-        public class AmbientLightData
-        {
-            public ColorQuad X1 { get; private set; }
-            public ColorQuad X2 { get; private set; }
-            public ColorQuad Y1 { get; private set; }
-            public ColorQuad Y2 { get; private set; }
-            public ColorQuad Z1 { get; private set; }
-            public ColorQuad Z2 { get; private set; }
-            public ColorQuad Specular { get; private set; }
-            public FloatQuad FresnelPower { get; private set; }
-
-            public AmbientLightData(Wthr weather)
-            {
-                X2 = new ColorQuad(weather.allLightData, 0, 32, 64, 96);
-                X1 = new ColorQuad(weather.allLightData, 4, 4 + 32, 4 + 64, 4 + 96);
-                Y2 = new ColorQuad(weather.allLightData, 8, 8 + 32, 8 + 64, 8 + 96);
-                Y1 = new ColorQuad(weather.allLightData, 12, 12 + 32, 12 + 64, 12 + 96);
-                Z2 = new ColorQuad(weather.allLightData, 16, 16 + 32, 16 + 64, 16 + 96);
-                Z1 = new ColorQuad(weather.allLightData, 20, 20 + 32, 20 + 64, 20 + 96);
-                Specular = new ColorQuad(weather.allLightData, 24, 24 + 32, 24 + 64, 24 + 96);
-                FresnelPower = new FloatQuad(weather.allLightData, 28, 28 + 32, 28 + 64, 28 + 96);
             }
         }
 
