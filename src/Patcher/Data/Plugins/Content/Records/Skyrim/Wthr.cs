@@ -128,14 +128,14 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             return Enumerable.Range(0, 17).Select(i => GetColor(i));
         }
 
-        public ColorQuad AmbientColorX2 { get { return new ColorQuad(allLightData, 0, 32, 64, 96); } }
-        public ColorQuad AmbientColorX1 { get { return new ColorQuad(allLightData, 4, 4 + 32, 4 + 64, 4 + 96); } }
-        public ColorQuad AmbientColorY2 { get { return new ColorQuad(allLightData, 8, 8 + 32, 8 + 64, 8 + 96); } }
-        public ColorQuad AmbientColorY1 { get { return new ColorQuad(allLightData, 12, 12 + 32, 12 + 64, 12 + 96); } }
-        public ColorQuad AmbientColorZ2 { get { return new ColorQuad(allLightData, 16, 16 + 32, 16 + 64, 16 + 96); } }
-        public ColorQuad AmbientColorZ1 { get { return new ColorQuad(allLightData, 20, 20 + 32, 20 + 64, 20 + 96); } }
-        public ColorQuad SpecularColor { get { return new ColorQuad(allLightData, 24, 24 + 32, 24 + 64, 24 + 96); } }
-        public FloatQuad FresnelPower { get { return new FloatQuad(allLightData, 28, 28 + 32, 28 + 64, 28 + 96); } }
+        public ColorQuad GetAmbientColorX2() { return new ColorQuad(allLightData, 0, 32, 64, 96); } 
+        public ColorQuad GetAmbientColorX1() { return new ColorQuad(allLightData, 4, 4 + 32, 4 + 64, 4 + 96); } 
+        public ColorQuad GetAmbientColorY2() { return new ColorQuad(allLightData, 8, 8 + 32, 8 + 64, 8 + 96); } 
+        public ColorQuad GetAmbientColorY1() { return new ColorQuad(allLightData, 12, 12 + 32, 12 + 64, 12 + 96); } 
+        public ColorQuad GetAmbientColorZ2() { return new ColorQuad(allLightData, 16, 16 + 32, 16 + 64, 16 + 96); } 
+        public ColorQuad GetAmbientColorZ1() { return new ColorQuad(allLightData, 20, 20 + 32, 20 + 64, 20 + 96); } 
+        public ColorQuad GetSpecularColor() { return new ColorQuad(allLightData, 24, 24 + 32, 24 + 64, 24 + 96); } 
+        public FloatQuad GetFresnelPower() { return new FloatQuad(allLightData, 28, 28 + 32, 28 + 64, 28 + 96); } 
 
         protected override void AfterRead(RecordReader reader)
         {
