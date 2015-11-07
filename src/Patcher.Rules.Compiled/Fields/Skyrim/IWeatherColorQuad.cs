@@ -27,20 +27,20 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
     public interface IWeatherColorQuad
     {
         /// <summary>
-        /// Gets the weather color during the sunrise.
+        /// Gets or sets the weather color during the sunrise.
         /// </summary>
-        IColor Sunrise { get; }
+        IColor Sunrise { get; set; }
         /// <summary>
-        /// Gets the weather color during the day.
+        /// Gets or sets the weather color during the day.
         /// </summary>
-        IColor Day { get; }
+        IColor Day { get; set; }
         /// <summary>
-        /// Gets the weather color during the sunset.
+        /// Gets or sets the weather color during the sunset.
         /// </summary>
-        IColor Sunset { get; }
+        IColor Sunset { get; set; }
         /// <summary>
-        /// Gets the weather color during the night.
+        /// Gets or sets the weather color during the night.
         /// </summary>
-        IColor Night { get; }
+        IColor Night { get; set; }
     }
 }
