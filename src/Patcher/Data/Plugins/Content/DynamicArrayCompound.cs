@@ -27,13 +27,12 @@ namespace Patcher.Data.Plugins.Content
 
         public int Length { get { return elements.Count; } }
 
+        public T this[int index] { get { return index >= Length ? null : elements[index]; } set { EnsureLength(index + 1); elements[index] = value; } }
+
         internal override void ReadCompoundField(RecordReader reader, string fieldName, int depth)
         {
             int index = FieldNameToIndex(fieldName);
-
-            // Ensure list size
-            if (index >= elements.Count)
-                elements.AddRange(new T[index - elements.Count + 1]);
+            EnsureLength(index + 1);
 
             var type = typeof(T);
             if (type == typeof(string))
@@ -44,6 +43,13 @@ namespace Patcher.Data.Plugins.Content
             {
                 throw new InvalidOperationException("Unsupported Dynamic Array Compund element type: " + type.FullName);
             }
+        }
+
+        void EnsureLength(int length)
+        {
+            // Ensure list size
+            if (length >= elements.Count)
+                elements.AddRange(new T[length - elements.Count]);
         }
 
         protected abstract int FieldNameToIndex(string fieldName);
