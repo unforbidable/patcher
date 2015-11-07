@@ -148,6 +148,19 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 LightDataParts[i].Bytes.CopyTo(allLightData, i * 32);
         }
 
+        protected override void BeforeWrite(RecordWriter writer)
+        {
+            // Copy single array back into LightData
+            for (int i = 0; i < 4; i++)
+            {
+                // Ensure byte array is big enough
+                if (LightDataParts[i].Bytes.Length < 32)
+                    LightDataParts[i].Bytes = new byte[32];
+
+                Array.Copy(allLightData, i * 32, LightDataParts[i].Bytes, 0, 32);
+            }
+        }
+
         void EnsureFogDataCreated()
         {
             if (Fog == null)
