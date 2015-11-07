@@ -320,10 +320,37 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         public float ThunderBeginFadeIn { get { return Data.ThunderBeginFadeIn; } set { Data.ThunderBeginFadeIn = value; } }
         public float ThunderEndFadeOut { get { return Data.ThunderEndFadeOut; } set { Data.ThunderEndFadeOut = value; } }
         public float ThunderFrequency { get { return Data.ThunderFrequency; } set { Data.ThunderFrequency = value; } }
-        public WeatherFlags Flags { get { return Data.Flags; } set { Data.Flags = value; } }
         public ColorAdapter LightningColor { get { if (lightningColor == null) lightningColor = new ColorAdapter(Data.LightningColor); return lightningColor; } }
         public float WindDirection { get { return Data.WindDirection; } set { Data.WindDirection = value; } }
         public float WindDirectionRange { get { return Data.WindDirectionRange; } set { Data.WindDirectionRange = value; } }
+
+        public bool IsPleasant { get { return HasWeatherFlag(WeatherFlags.Pleasant); } set { SetWeatherFlag(WeatherFlags.Pleasant, value); } }
+        public bool IsCloudy { get { return HasWeatherFlag(WeatherFlags.Cloudy); } set { SetWeatherFlag(WeatherFlags.Cloudy, value); } }
+        public bool IsRainy { get { return HasWeatherFlag(WeatherFlags.Rainy); } set { SetWeatherFlag(WeatherFlags.Rainy, value); } }
+        public bool IsSnowy { get { return HasWeatherFlag(WeatherFlags.Snowy); } set { SetWeatherFlag(WeatherFlags.Snowy, value); } }
+        public bool AuroraFollowsSun { get { return HasWeatherFlag(WeatherFlags.FollowsSunPosition); } set { SetWeatherFlag(WeatherFlags.FollowsSunPosition, value); } }
+        public bool EffectsAlwaysVisible { get { return HasWeatherFlag(WeatherFlags.AlwaysVisible); } set { SetWeatherFlag(WeatherFlags.AlwaysVisible, value); } }
+
+        bool HasWeatherFlag(WeatherFlags flag)
+        {
+            return Data.Flags.HasFlag(flag);
+        }
+
+        void SetWeatherFlag(WeatherFlags flag, bool value)
+        {
+            if (value)
+            {
+                // When setting weather type, unset all weather types bits first
+                if ((flag & WeatherFlags.WeatherTypeMask) != 0)
+                    Data.Flags &= ~WeatherFlags.WeatherTypeMask;
+
+                Data.Flags |= flag;
+            }
+            else
+            {
+                Data.Flags &= ~flag;
+            }
+        }
 
         sealed class WeatherData : Field
         {
@@ -580,6 +607,19 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 var temp = BitConverter.GetBytes(value);
                 temp.CopyTo(buffer, offset);
             }
+        }
+
+        [Flags]
+        public enum WeatherFlags : byte
+        {
+            None = 0,
+            Pleasant = 0x01,
+            Cloudy = 0x02,
+            Rainy = 0x04,
+            Snowy = 0x08,
+            AlwaysVisible = 0x10,
+            FollowsSunPosition = 0x20,
+            WeatherTypeMask = 0x0f,
         }
     }
 }
