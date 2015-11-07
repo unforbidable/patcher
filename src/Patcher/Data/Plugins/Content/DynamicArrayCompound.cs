@@ -56,6 +56,26 @@ namespace Patcher.Data.Plugins.Content
         protected abstract int FieldNameToIndex(string fieldName);
         protected abstract string IndexToFieldName(int index);
 
+        public override Field CopyField()
+        {
+            var instance = (DynamicArrayCompound<T>)Activator.CreateInstance(GetType());
+            instance.elements = new List<T>(elements);
+            return instance;
+        }
+
+        public override bool Equals(Field other)
+        {
+            var cast = (DynamicArrayCompound<T>)other;
+            if (elements.Count != cast.elements.Count)
+                return false;
+            return elements.SequenceEqual(cast.elements);
+        }
+
+        public override IEnumerable<uint> GetReferencedFormIds()
+        {
+            yield break;
+        }
+
         public override string ToString()
         {
             return string.Format("Length={0}", Length);
