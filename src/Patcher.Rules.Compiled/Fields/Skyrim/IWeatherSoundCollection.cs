@@ -33,31 +33,31 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
     public interface IWeatherSoundCollection : IEnumerable<IWeatherSound>
     {
         /// <summary>
-        /// Gets the number of sounds in this collection.
+        /// Gets the number of <see cref="IWeatherSound">WeatherSounds</see> in this collection.
         /// </summary>
         int Count { get; }
 
         /// <summary>
-        /// Creates a new <see cref="IWeatherSound">Weather Sound</see> based on the specified <b>Sound</b> and type and adds it to this collection.
+        /// Creates a new <see cref="IWeatherSound">WeatherSound</see> based on the specified <b>Sound</b> and type and adds it to this collection.
         /// </summary>
         /// <param name="sound">Sound form.</param>
         /// <param name="type">Weather type.</param>
         void Add(ISndr sound, WeatherSoundTypes type);
 
         /// <summary>
-        /// Adds an existing <see cref="IWeatherSound">Weather Sound</see> to this collection.
+        /// Adds an existing <see cref="IWeatherSound">WeatherSound</see> to this collection.
         /// </summary>
         /// <param name="weatherSound">Weather sound to add.</param>
         void Add(IWeatherSound weatherSound);
 
         /// <summary>
-        /// Removes a <see cref="IWeatherSound">Weather Sound</see> from this collection.
+        /// Removes a <see cref="IWeatherSound">WeatherSound</see> from this collection.
         /// </summary>
         /// <param name="weatherSound"></param>
         void Remove(IWeatherSound weatherSound);
 
         /// <summary>
-        /// Removes all <see cref="IWeatherSound">Weather Sound</see> from this collection.
+        /// Removes all <see cref="IWeatherSound">WeatherSounds</see> from this collection.
         /// </summary>
         void Clear();
     }

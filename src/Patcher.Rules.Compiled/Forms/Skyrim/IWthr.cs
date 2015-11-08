@@ -77,19 +77,19 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         float FogNightMax { get; set; }
         /// <summary>
-        /// Gets or sets the <b>Image Space</b> using during the sunrise.
+        /// Gets or sets the <b>Image Space</b> used during the sunrise.
         /// </summary>
         IImgs SunriseImageSpace { get; set; }
         /// <summary>
-        /// Gets or sets the <b>Image Space</b> using during the day.
+        /// Gets or sets the <b>Image Space</b> used during the day.
         /// </summary>
         IImgs DayImageSpace { get; set; }
         /// <summary>
-        /// Gets or sets the <b>Image Space</b> using during the sunset.
+        /// Gets or sets the <b>Image Space</b> used during the sunset.
         /// </summary>
         IImgs SunsetImageSpace { get; set; }
         /// <summary>
-        /// Gets or sets the <b>Image Space</b> using during the night.
+        /// Gets or sets the <b>Image Space</b> used during the night.
         /// </summary>
         IImgs NightImageSpace { get; set; }
         /// <summary>
@@ -208,13 +208,12 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// <param name="component">The number of the component.</param>
         /// <returns></returns>
         IWeatherColorQuad GetWeatherColors(int component);
-
         /// <summary>
-        /// TEST
+        /// Retreives an enumerable collection of all cloud layers.
         /// </summary>
         IEnumerable<IWeatherCloudLayer> CloudLayers { get; }
         /// <summary>
-        /// TEST
+        /// Retreives an enumerable collection of colors of all components.
         /// </summary>
         IEnumerable<IWeatherColorQuad> Colors { get; }
     }
