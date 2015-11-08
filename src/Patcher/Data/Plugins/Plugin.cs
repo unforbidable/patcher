@@ -491,7 +491,14 @@ namespace Patcher.Data.Plugins
                 {
                     //Log.Warning("Unable to determine the master of unresolved reference [0x{0:X8}].", id);
                     // Skip unresolved references, a warning will be issued while writing
-                    // TODO: To handle unresolved references as bes as possible, derive plugin number from formId and add it as a master
+
+                    // Handle unresolved references as best as possible, derive plugin number from formId and add it as a master
+                    byte assumedPluginNumber = (byte)(id >> 24);
+                    if (assumedPluginNumber != thisPluginNumber)
+                        if (!collectedMasters.Contains(assumedPluginNumber))
+                            collectedMasters.Add(assumedPluginNumber);
+
+                    Log.Warning("Assumed unresolved form {0:X8} plugin {1}.", id, context.Plugins[assumedPluginNumber].FileName);
                     continue;
                 }
                 var form = context.Forms[id];
