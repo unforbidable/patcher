@@ -158,7 +158,12 @@ namespace Patcher.Data.Plugins.Content
             {
                 if (IsListType)
                 {
-                    foreach (object item in (IEnumerable)GetValue(target))
+                    // No references if list is null
+                    var value = GetValue(target);
+                    if (value == null)
+                        yield break;
+
+                    foreach (object item in (IEnumerable)value)
                     {
                         var field = (Field)item;
                         if (field != null)
@@ -244,10 +249,15 @@ namespace Patcher.Data.Plugins.Content
         {
             if (IsListType)
             {
+                // If list is null, nothing to copy
+                var value = GetValue(from);
+                if (value == null)
+                    return null;
+
                 // create new list instance and copy values one by one
                 object list = createListCtor.Invoke(paramlessArgs);
                 var addValueToListParams = new object[1];
-                foreach (object item in (IEnumerable)GetValue(from))
+                foreach (object item in (IEnumerable)value)
                 {
                     if (IsPrimitiveType)
                     {
