@@ -105,7 +105,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             get
             {
                 if (ambientColorsZ1 == null)
-                    ambientColorsZ1 = Provider.CreateProxy<WeatherColorQuadProxy>(Mode).With(record.GetAmbientColorZ2());
+                    ambientColorsZ1 = Provider.CreateProxy<WeatherColorQuadProxy>(Mode).With(record.GetAmbientColorZ1());
                 return ambientColorsZ1;
             }
 
@@ -664,7 +664,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             return Provider.CreateProxy<WeatherCloudLayerProxy>(Mode).With(record.GetCloudLayer(layer));
         }
 
-        public IWeatherColorQuad GetWeatherColors(int component)
+        public IWeatherColorQuad GetColors(int component)
         {
             return Provider.CreateProxy<WeatherColorQuadProxy>(Mode).With(record.GetColor(component));
         }

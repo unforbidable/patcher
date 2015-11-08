@@ -207,7 +207,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         /// <param name="component">The number of the component.</param>
         /// <returns></returns>
-        IWeatherColorQuad GetWeatherColors(int component);
+        IWeatherColorQuad GetColors(int component);
         /// <summary>
         /// Retreives an enumerable collection of all cloud layers.
         /// </summary>
