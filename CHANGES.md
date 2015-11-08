@@ -1,3 +1,9 @@
+##### v1.6.0 (2015/11/08)
+* New supported forms: WTHR,IMGS
+* 32bit executable to allow running via Mod Organizer
+* New option to specify new Form IDs
+* New forms can be injected into other plugins
+
 ##### v1.5.1 (2015/11/01)
 * New Math helper methods Round(), Floor() and Ceiling().
 * Changes made in rule methods are applied immediately.
