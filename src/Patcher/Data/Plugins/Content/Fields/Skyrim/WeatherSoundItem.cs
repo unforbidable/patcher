@@ -29,13 +29,13 @@ namespace Patcher.Data.Plugins.Content.Fields.Skyrim
 
         internal override void ReadField(RecordReader reader)
         {
-            Sound = reader.ReadReference(FormKindSet.SndrOnly);
+            Sound = reader.ReadReference(FormKindSet.SndrOrSoun);
             Type = (WeatherSoundType)reader.ReadInt32();
         }
 
         internal override void WriteField(RecordWriter writer)
         {
-            writer.WriteReference(Sound, FormKindSet.SndrOnly);
+            writer.WriteReference(Sound, FormKindSet.SndrOrSoun);
             writer.Write((int)Type);
         }
 

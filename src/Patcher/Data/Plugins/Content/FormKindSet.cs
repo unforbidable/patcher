@@ -135,5 +135,6 @@ namespace Patcher.Data.Plugins.Content
             Names.INGR + Names.KEYM + Names.LIGH + Names.LVLI + Names.MISC + Names.SCRL + Names.SLGM + Names.WEAP);
         public static readonly FormKindSet Owner = FromNames(Names.FACT + Names.NPC_);
         public static readonly FormKindSet VoiceTypeOrList = FromNames(Names.FLST + Names.VTYP);
+        public static readonly FormKindSet SndrOrSoun = FromNames(Names.SNDR + Names.SOUN);
     }
 }
