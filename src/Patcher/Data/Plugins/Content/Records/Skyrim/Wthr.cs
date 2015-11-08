@@ -73,6 +73,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.TNAM)]
         [Reference(Names.STAT)]
+        [Initialize]
         public List<uint> SkyStatics { get; set; }
 
         [Member(Names.IMSP)]
@@ -145,6 +146,14 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 byte[] temp = new byte[272];
                 Colors.Bytes.CopyTo(temp, 0);
                 Colors.Bytes = temp;
+            }
+
+            // Ensure Cloud Colors are full size
+            if (CloudColors != null && CloudColors.Bytes.Length < 512)
+            {
+                byte[] temp = new byte[512];
+                CloudColors.Bytes.CopyTo(temp, 0);
+                CloudColors.Bytes = temp;
             }
 
             // Copy LightData into a single array
@@ -491,7 +500,18 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
                 layerBitMask = (uint)1 << layerNumber;
 
+                if (weather.CloudColors == null)
+                {
+                    weather.CloudColors = new ByteArray();
+                    weather.CloudColors.Bytes = new byte[512];
+                }
                 Colors = new ColorQuad(weather.CloudColors.Bytes, layerNumber * 16);
+
+                if (weather.CloudAlphas == null)
+                {
+                    weather.CloudAlphas = new ByteArray();
+                    weather.CloudAlphas.Bytes = new byte[512];
+                }
                 Alphas = new FloatQuad(weather.CloudAlphas.Bytes, layerNumber * 16);
             }
 
