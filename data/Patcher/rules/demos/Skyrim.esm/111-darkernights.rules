@@ -1,0 +1,96 @@
+<rules>
+  <rule>
+    <name>Darker nights weathers</name>
+    <from>WTHR</from>
+    <update>
+      // This demo has been inspired by the mod Realistic Nights
+      // It demonstrates how a similar result may be achieved
+
+      // Although a sophisicated mod will usually be more finely tuned
+      // you may quickly achieve the perfect level of darkness that suits you
+      // with a patcher rule like this.
+
+      // Lets skip the weird TEST weather form
+      if (Source.EditorId == "TESTCloudyRain")
+        return false;
+
+      // The most tricky part is to decite which weathers should be adjusted
+      // Lets skip weathers with Editor ID which does not contains Skyrim or Riften
+      // This should cover the Blackreach and most of the other interiors and Sovengard
+      // May not be perfect but it should suffice for this demonstration
+      if (!(Source.EditorId.StartsWith("Skyrim") || Source.EditorId.StartsWith("Riften")))
+      {
+        //Debug.Message("Skipped weather: " + Source);
+        return false;
+      }
+
+      // Weather colors are simply darkened using the following multiplier
+      float normalMult = 0.10f;
+
+      // Change the weather color components
+      // Not &lt; must to be used inside a XML element instead of the less then operator
+      for (int i = 0; i &lt; 17; i++)
+      {
+        // Skip Stars, Sky Lower, Horizont, Effect Light and Moon colors
+        if (i == 6 || i == 7 || i == 8 || i == 9 || i == 16)
+          continue;
+
+        // Change only the Night color of each of the weather colors
+        var colors = Target.GetColors(i);
+        colors.Night.Red *= normalMult;
+        colors.Night.Green *= normalMult;
+        colors.Night.Blue *= normalMult;
+      }
+
+      // Ambient colors are darkened using another multiplier
+      float ambientMult = 0.33f;
+
+      // Change the ambient colors during the night
+      Target.AmbientColorsX1.Night.Red *= ambientMult;
+      Target.AmbientColorsX1.Night.Green *= ambientMult;
+      Target.AmbientColorsX1.Night.Blue *= ambientMult;
+      Target.AmbientColorsX2.Night.Red *= ambientMult;
+      Target.AmbientColorsX2.Night.Green *= ambientMult;
+      Target.AmbientColorsX2.Night.Blue *= ambientMult;
+      Target.AmbientColorsY1.Night.Red *= ambientMult;
+      Target.AmbientColorsY1.Night.Green *= ambientMult;
+      Target.AmbientColorsY1.Night.Blue *= ambientMult;
+      Target.AmbientColorsY2.Night.Red *= ambientMult;
+      Target.AmbientColorsY2.Night.Green *= ambientMult;
+      Target.AmbientColorsY2.Night.Blue *= ambientMult;
+      Target.AmbientColorsZ1.Night.Red *= ambientMult;
+      Target.AmbientColorsZ1.Night.Green *= ambientMult;
+      Target.AmbientColorsZ1.Night.Blue *= ambientMult;
+      Target.AmbientColorsZ2.Night.Red *= ambientMult;
+      Target.AmbientColorsZ2.Night.Green *= ambientMult;
+      Target.AmbientColorsZ2.Night.Blue *= ambientMult;
+
+      // The mod Realistic nights also changes the image spaces for night
+      // So lets tag them and change them in the following rule
+      Source.NightImageSpace.Tag("NightImageSpace");
+    </update>
+  </rule>
+  <rule>
+    <name>Darker nights image spaces</name>
+    <from>IMGS</from>
+    <where>
+      Source.HasTag("NightImageSpace")
+    </where>
+    <update>
+      // Even if one image space has been tagged multiple times
+      // each tagged image space will be processed only once
+
+      // Realistic Nights mod sets the sky scale to zero
+      Target.SkyScale = 0f;
+
+      // Realistic Nights mod reduces the tint color during storms
+      // and a similar result can be achieved as follows
+      if (Source.EditorId.Contains("Storm"))
+      {
+        Target.TintColor.Red *= 0.5f;
+        Target.TintColor.Red *= 0.5f;
+        Target.TintColor.Red *= 0.5f;
+      }
+    </update>
+  </rule>
+</rules>
