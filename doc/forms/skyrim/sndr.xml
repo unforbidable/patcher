@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <type name="Sndr" fullname="Forms.Skyrim.Sndr" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
-            Represents a <b>Sound</b> form. <i>This form is a work in progress.</i></summary>
+            Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i></summary>
   <property name="EditorId">
     <signature>
       <c>string</c> EditorId</signature>

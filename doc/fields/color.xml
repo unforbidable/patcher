@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Color" fullname="Fields.Color" category="Fields" gametitle="">
+  <summary>
+            Represents a color definition.
+            </summary>
+  <property name="Blue">
+    <signature>
+      <c>float</c> Blue</signature>
+    <summary>
+            Gets or sets the blue component value.
+            </summary>
+  </property>
+  <property name="Green">
+    <signature>
+      <c>float</c> Green</signature>
+    <summary>
+            Gets or sets the green component value.
+            </summary>
+  </property>
+  <property name="Red">
+    <signature>
+      <c>float</c> Red</signature>
+    <summary>
+            Gets or sets the red component value.
+            </summary>
+  </property>
+  <remarks>
+            The valid value range of color components is <code>0.0f</code> through <code>1.0f</code>.
+            </remarks>
+</type>

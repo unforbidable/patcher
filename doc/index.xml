@@ -48,6 +48,18 @@
             Defines <b>Weapon</b> types.
             </summary>
     </type>
+    <type name="WeatherSoundTypes" fullname="Constants.Skyrim.WeatherSoundTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines the types of weather sounds.
+            </summary>
+    </type>
+  </category>
+  <category name="Fields">
+    <type name="Color" fullname="Fields.Color" category="Fields" gametitle="">
+      <summary>
+            Represents a color definition.
+            </summary>
+    </type>
   </category>
   <category name="Fields (Skyrim)">
     <type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields (Skyrim)" gametitle="Skyrim">
@@ -94,6 +106,36 @@
     <type name="ScriptCollection" fullname="Fields.Skyrim.ScriptCollection" category="Fields (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents a collection of <see cref="Fields.Skyrim.Script">Scripts</see> attached to an object.
+            </summary>
+    </type>
+    <type name="WeatherAlphaQuad" fullname="Fields.Skyrim.WeatherAlphaQuad" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a set of alpha channel for each of the four parts of the day: sunrise, day, sunset and night.
+            </summary>
+    </type>
+    <type name="WeatherCloudLayer" fullname="Fields.Skyrim.WeatherCloudLayer" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents one of the 32 layers of clouds.
+            </summary>
+    </type>
+    <type name="WeatherColorQuad" fullname="Fields.Skyrim.WeatherColorQuad" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a set of weather colors for each of the four parts of the day: sunrise, day, sunset and night.
+            </summary>
+    </type>
+    <type name="WeatherFresnelQuad" fullname="Fields.Skyrim.WeatherFresnelQuad" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a set of weather fresnel power for each of the four parts of the day: sunrise, day, sunset and night.
+            </summary>
+    </type>
+    <type name="WeatherSound" fullname="Fields.Skyrim.WeatherSound" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a weather sound of certain type.
+            </summary>
+    </type>
+    <type name="WeatherSoundCollection" fullname="Fields.Skyrim.WeatherSoundCollection" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a collection of <see cref="Fields.Skyrim.WeatherSound">Weather Sounds</see>.
             </summary>
     </type>
   </category>
@@ -165,6 +207,11 @@
             Represents a <b>Game Setting</b> form.
             </summary>
     </type>
+    <type name="Imgs" fullname="Forms.Skyrim.Imgs" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Image Space</b> form.
+            </summary>
+    </type>
     <type name="Ipds" fullname="Forms.Skyrim.Ipds" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents an <b>Impact Data Set</b> form. <i>This form is a work in progress.</i></summary>
@@ -195,13 +242,21 @@
       <summary>
             Represents a <b>Race</b> form. <i>This form is a work in progress.</i></summary>
     </type>
+    <type name="Rfct" fullname="Forms.Skyrim.Rfct" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Visual Effect</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
     <type name="Sndr" fullname="Forms.Skyrim.Sndr" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
-            Represents a <b>Sound</b> form. <i>This form is a work in progress.</i></summary>
+            Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i></summary>
     </type>
     <type name="Spel" fullname="Forms.Skyrim.Spel" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents a <b>Spell</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Spgd" fullname="Forms.Skyrim.Spgd" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Shader Particle Geometry</b> form. <i>This form is a work in progress.</i></summary>
     </type>
     <type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
@@ -214,6 +269,11 @@
     <type name="Weap" fullname="Forms.Skyrim.Weap" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents a <b>Weapon</b> form.
+            </summary>
+    </type>
+    <type name="Wthr" fullname="Forms.Skyrim.Wthr" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Weather</b> form.
             </summary>
     </type>
   </category>

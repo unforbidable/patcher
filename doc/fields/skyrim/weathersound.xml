@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherSound" fullname="Fields.Skyrim.WeatherSound" category="Fields (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a weather sound of certain type.
+            </summary>
+  <property name="Sound">
+    <signature>
+      <see cref="Forms.Form" /> Sound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> or <b>Sound Reference</b>.
+            </summary>
+  </property>
+  <property name="Type">
+    <signature>
+      <see cref="Constants.Skyrim.WeatherSoundTypes" /> Type</signature>
+    <summary>
+            Gets or sets the type.
+            </summary>
+  </property>
+</type>

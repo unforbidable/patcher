@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherFresnelQuad" fullname="Fields.Skyrim.WeatherFresnelQuad" category="Fields (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a set of weather fresnel power for each of the four parts of the day: sunrise, day, sunset and night.
+            </summary>
+  <property name="Day">
+    <signature>
+      <c>float</c> Day</signature>
+    <summary>
+            Gets or sets the weather fresnel power during the day.
+            </summary>
+  </property>
+  <property name="Night">
+    <signature>
+      <c>float</c> Night</signature>
+    <summary>
+            Gets or sets the weather fresnel power during the night.
+            </summary>
+  </property>
+  <property name="Sunrise">
+    <signature>
+      <c>float</c> Sunrise</signature>
+    <summary>
+            Gets or sets the weather fresnel power during the sunrise.
+            </summary>
+  </property>
+  <property name="Sunset">
+    <signature>
+      <c>float</c> Sunset</signature>
+    <summary>
+            Gets or sets the weather fresnel power during the sunset.
+            </summary>
+  </property>
+</type>

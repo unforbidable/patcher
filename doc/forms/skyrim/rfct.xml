@@ -1,15 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms (Skyrim)" gametitle="Skyrim">
+<type name="Rfct" fullname="Forms.Skyrim.Rfct" category="Forms (Skyrim)" gametitle="Skyrim">
   <summary>
-            Represents a <b>Keyword</b> form.
-            </summary>
-  <property name="Color">
-    <signature>
-      <see cref="Fields.Color" /> Color</signature>
-    <summary>
-            Gets or sets the color of this <b>Keyword</b>.
-            </summary>
-  </property>
+            Represents a <b>Visual Effect</b> form. <i>This form is a work in progress.</i></summary>
   <property name="EditorId">
     <signature>
       <c>string</c> EditorId</signature>

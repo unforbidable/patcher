@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html>
+  <head>
+    <title>Wthr</title><link rel="stylesheet" type="text/css" href="../../../doc-styles.scss" />
+    <meta name="doc-fullname" content="Forms.Skyrim.Wthr" />
+  </head>
+  <body>
+    <div class="div-title">Wthr (Skyrim)</div>
+    <div class="div-header">
+          Summary
+        </div>
+    <div class="div-summary">
+      <summary>
+            Represents a <b>Weather</b> form.
+            </summary>
+    </div>
+    <div class="div-header">
+            Properties
+          </div>
+    <div class="div-table">
+      <table>
+        <tr>
+          <td class="td-name">
+        Name
+      </td>
+          <td class="td-description">
+        Description
+      </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> AmbientColorsX1</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the colors of the ambient light in the negative X-axis direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> AmbientColorsX2</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the colors of the ambient light in the positive X-axis direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> AmbientColorsY1</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the colors of the ambient light in the negative Y-axis direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> AmbientColorsY2</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the colors of the ambient light in the positive Y-axis direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> AmbientColorsZ1</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the colors of the ambient light in the negative Z-axis direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> AmbientColorsZ2</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the colors of the ambient light in the positive Z-axis direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> AuroraFollowsSun</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value which determines whether the aurora follows the sun.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">IEnumerable</span>&lt;<a href="../../fields/skyrim/weathercloudlayer.html"><see cref="Fields.Skyrim.WeatherCloudLayer" />WeatherCloudLayer</a>&gt; CloudLayers</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Retreives an enumerable collection of all cloud layers which can be iterated using a <code>foreach</code> construct.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">IEnumerable</span>&lt;<a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a>&gt; Colors</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Retreives an enumerable collection of colors of all components which can be iterated using a <code>foreach</code> construct.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/skyrim/imgs.html"><see cref="Forms.Skyrim.Imgs" />Imgs</a> DayImageSpace</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Image Space</b> used during the day.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">string</span> EditorId</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> EffectsAlwaysVisible</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value which determines whether the <b>Weather</b> effects are always visible.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogDayFar</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the far fog distance during the day.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogDayMax</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the maximum fog distance during the night.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogDayNear</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the near fog distance during the day.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogDayPow</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the power of fog distance during the day.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogNightFar</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the far fog distance during the night.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogNightMax</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the maximum fog distance during the night.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogNightNear</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the near fog distance during the night.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> FogNightPow</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the power of fog distance during the night.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">uint</span> FormId</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weatherfresnelquad.html"><see cref="Fields.Skyrim.WeatherFresnelQuad" />WeatherFresnelQuad</a> FresnelPowers</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the Fresnel powers.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsCloudy</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value which determines whether this weather is cloudy.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsPleasant</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value which determines whether this weather is pleasant.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsRainy</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value which determines whether this weather is rainy.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> IsSnowy</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the value which determines whether this weather is snowy.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/color.html"><see cref="Fields.Color" />Color</a> LightningColor</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the color of the lightning during this <b>Weather</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/skyrim/imgs.html"><see cref="Forms.Skyrim.Imgs" />Imgs</a> NightImageSpace</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Image Space</b> used during the night.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> PrecipitationBeginFadeIn</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the point of transition into this <b>Weather</b> when the precipitation begins.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> PrecipitationEndFadeOut</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the point of transition from this <b>Weather</b> when the precipitation ends.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/skyrim/spgd.html"><see cref="Forms.Skyrim.Spgd" />Spgd</a> PrecipitationParticle</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Shader Particle Geometry</b> used to render rain or snow.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/formcollection.html"><see cref="Forms.FormCollection" />FormCollection</a>&lt;<a href="../../forms/skyrim/stat.html"><see cref="Forms.Skyrim.Stat" />Stat</a>&gt; SkyStatics</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the collection of <b>Static</b> objects which make up the sky dome of this <b>Weather</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathersoundcollection.html"><see cref="Fields.Skyrim.WeatherSoundCollection" />WeatherSoundCollection</a> Sounds</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the collection of sounds associated with this <b>Weather</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> SpecularColors</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets the specular lighting colors.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> SunDamage</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the multiplier of the damage caused by the sun to vampires.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> SunGlare</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the sun glare intensity for this <b>Weather</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/skyrim/imgs.html"><see cref="Forms.Skyrim.Imgs" />Imgs</a> SunriseImageSpace</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Image Space</b> used during the sunrise.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/skyrim/imgs.html"><see cref="Forms.Skyrim.Imgs" />Imgs</a> SunsetImageSpace</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Image Space</b> used during the sunset.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> ThunderBeginFadeIn</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the point of transition into this <b>Weather</b> when the lightnings begins.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> ThunderEndFadeOut</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the point of transition from this <b>Weather</b> when the lightnings ends.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> ThunderFrequency</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the frequency of lightnings. The lesser value the more often lightnings occur.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> TransDelta</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the transition delta of this <b>Weather</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../forms/skyrim/rfct.html"><see cref="Forms.Skyrim.Rfct" />Rfct</a> VisualEffect</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the <b>Visual Effect</b> for this <b>Weather</b>.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> WindDirection</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the angle that specified the wind direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> WindDirectionRange</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the angle that specifies the allowed deviation of wind direction.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">float</span> WindSpeed</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Gets or sets the speed of wind for this <b>Weather</b>.
+            </summary>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="div-header">
+            Methods
+          </div>
+    <div class="div-table">
+      <table>
+        <tr>
+          <td class="td-name">
+        Name
+      </td>
+          <td class="td-description">
+        Description
+      </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercloudlayer.html"><see cref="Fields.Skyrim.WeatherCloudLayer" />WeatherCloudLayer</a> GetCloudLayer(<span class="span-code">int</span>)</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Retrieves the specified cloud layer (0-28).
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <a href="../../fields/skyrim/weathercolorquad.html"><see cref="Fields.Skyrim.WeatherColorQuad" />WeatherColorQuad</a> GetColors(<span class="span-code">int</span>)</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Retrieves the colors which define thespecified component of this <b>Weather</b> (0-16).
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">bool</span> HasTag(<span class="span-code">string</span>)</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-name">
+            <signature>
+      <span class="span-code">void</span> Tag(<span class="span-code">string</span>)</signature>
+          </td>
+          <td class="td-description">
+            <summary>
+            Tags this form with the specified text.
+            </summary>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <hr />
+    <div class="div-navigation">
+          Return to: <a href="../../index.html"><see cref="Index">Index</see></a></div>
+  </body>
+</html>
