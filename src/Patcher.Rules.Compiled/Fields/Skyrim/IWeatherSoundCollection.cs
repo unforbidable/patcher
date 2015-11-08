@@ -42,7 +42,7 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
         /// </summary>
         /// <param name="sound">Sound form.</param>
         /// <param name="type">Weather type.</param>
-        void Add(ISndr sound, WeatherSoundTypes type);
+        void Add(IForm sound, WeatherSoundTypes type);
 
         /// <summary>
         /// Adds an existing <see cref="IWeatherSound">WeatherSound</see> to this collection.

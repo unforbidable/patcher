@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Rules.Compiled.Constants.Skyrim;
+using Patcher.Rules.Compiled.Forms;
 using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,9 @@ namespace Patcher.Rules.Compiled.Fields.Skyrim
     public interface IWeatherSound
     {
         /// <summary>
-        /// Gets or sets the <b>Sound</b>.
+        /// Gets or sets the <b>Sound</b> or <b>Sound Reference</b>.
         /// </summary>
-        ISndr Sound { get; set; }
+        IForm Sound { get; set; }
         /// <summary>
         /// Gets or sets the type.
         /// </summary>

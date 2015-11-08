@@ -22,17 +22,18 @@ using System.Linq;
 using System.Text;
 using Patcher.Rules.Compiled.Constants.Skyrim;
 using Patcher.Rules.Compiled.Forms.Skyrim;
+using Patcher.Rules.Compiled.Forms;
 
 namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
     [Proxy(typeof(IWeatherSound))]
     public sealed class WeatherSoundProxy : FieldProxy<WeatherSoundItem>, IWeatherSound
     {
-        public ISndr Sound
+        public IForm Sound
         {
             get
             {
-                return Provider.CreateReferenceProxy<ISndr>(Field.Sound);
+                return Provider.CreateReferenceProxy<IForm>(Field.Sound);
             }
 
             set

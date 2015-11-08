@@ -18,6 +18,7 @@ using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Data.Plugins.Content.Records.Skyrim;
 using Patcher.Rules.Compiled.Constants.Skyrim;
 using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Rules.Compiled.Forms;
 using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
 using System.Collections;
@@ -54,7 +55,7 @@ namespace Patcher.Rules.Proxies.Fields.Skyrim
             ClearFields();
         }
 
-        public void Add(ISndr sound, WeatherSoundTypes type)
+        public void Add(IForm sound, WeatherSoundTypes type)
         {
             EnsureWritable();
 
