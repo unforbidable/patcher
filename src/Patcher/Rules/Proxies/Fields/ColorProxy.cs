@@ -75,7 +75,12 @@ namespace Patcher.Rules.Proxies.Fields
 
         void IDumpabled.Dump(string name, ObjectDumper dumper)
         {
-            dumper.DumpText(name, "({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
+            dumper.DumpText(name, ToString());
+        }
+
+        public override string ToString()
+        {
+            return string.Format("({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
         }
     }
 }
