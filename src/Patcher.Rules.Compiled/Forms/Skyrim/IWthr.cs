@@ -29,7 +29,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
     public interface IWthr : IForm
     {
         /// <summary>
-        /// Gets or sets the <b>Shader Particle Geometry</b> use for rain or snow.
+        /// Gets or sets the <b>Shader Particle Geometry</b> used to render rain or snow.
         /// </summary>
         ISpgd PrecipitationParticle { get; set; }
         /// <summary>
@@ -41,7 +41,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         IWeatherSoundCollection Sounds { get; set; }
         /// <summary>
-        /// Gets or sets the collection of <b>Static</b> objects which make up the sky for this <b>Weather</b>.
+        /// Gets or sets the collection of <b>Static</b> objects which make up the sky dome of this <b>Weather</b>.
         /// </summary>
         IFormCollection<IStat> SkyStatics { get; set; }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         float WindSpeed { get; set; }
         /// <summary>
-        /// Gets or sets the trannsition delta of this <b>Weather</b>.
+        /// Gets or sets the transition delta of this <b>Weather</b>.
         /// </summary>
         float TransDelta { get; set; }
         /// <summary>
@@ -117,11 +117,11 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         float PrecipitationEndFadeOut { get; set; }
         /// <summary>
-        /// Gets or sets the point of transition into this <b>Weather</b> when the lightning begins.
+        /// Gets or sets the point of transition into this <b>Weather</b> when the lightnings begins.
         /// </summary>
         float ThunderBeginFadeIn { get; set; }
         /// <summary>
-        /// Gets or sets the point of transition from this <b>Weather</b> when the lightning ends.
+        /// Gets or sets the point of transition from this <b>Weather</b> when the lightnings ends.
         /// </summary>
         float ThunderEndFadeOut { get; set; }
         /// <summary>
@@ -133,11 +133,11 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         IColor LightningColor { get; set; }
         /// <summary>
-        /// Gets or sets the angle that indicates the wind direction.
+        /// Gets or sets the angle that specified the wind direction.
         /// </summary>
         float WindDirection { get; set; }
         /// <summary>
-        /// Gets or sets the angle that indicates the allowed deviation of wind direction.
+        /// Gets or sets the angle that specifies the allowed deviation of wind direction.
         /// </summary>
         float WindDirectionRange { get; set; }
         /// <summary>
@@ -197,23 +197,23 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         IWeatherFresnelQuad FresnelPowers { get; }
         /// <summary>
-        /// Retrieves the specified cloud layer (0-31).
+        /// Retrieves the specified cloud layer (0-28).
         /// </summary>
         /// <param name="layer">The number of the cloud layer.</param>
         /// <returns></returns>
         IWeatherCloudLayer GetCloudLayer(int layer);
         /// <summary>
-        /// Retrieves the colors which defines specified component of this <b>Weather</b> (0-16).
+        /// Retrieves the colors which define thespecified component of this <b>Weather</b> (0-16).
         /// </summary>
         /// <param name="component">The number of the component.</param>
         /// <returns></returns>
         IWeatherColorQuad GetColors(int component);
         /// <summary>
-        /// Retreives an enumerable collection of all cloud layers.
+        /// Retreives an enumerable collection of all cloud layers which can be iterated using a <code>foreach</code> construct.
         /// </summary>
         IEnumerable<IWeatherCloudLayer> CloudLayers { get; }
         /// <summary>
-        /// Retreives an enumerable collection of colors of all components.
+        /// Retreives an enumerable collection of colors of all components which can be iterated using a <code>foreach</code> construct.
         /// </summary>
         IEnumerable<IWeatherColorQuad> Colors { get; }
     }
