@@ -36,7 +36,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.MNAM)]
         [Reference(Names.SPGD)]
-        public uint Precipitation { get; set; }
+        public uint PrecipitationParticle { get; set; }
 
         [Member(Names.NNAM)]
         [Reference(Names.RFCT)]
