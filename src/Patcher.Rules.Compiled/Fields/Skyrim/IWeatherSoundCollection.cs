@@ -25,7 +25,7 @@ using System.Text;
 namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
     /// <summary>
-    /// Represents a collection of <see cref="IWeatherSound">Weather Sounds</see>.
+    /// Represents a collection of <see cref="IWeatherSound">WeatherSounds</see>.
     /// </summary>
     /// <remarks>
     /// Weather sounds in a collection can be edited or removed within a <c>foreach</c> iteration.
