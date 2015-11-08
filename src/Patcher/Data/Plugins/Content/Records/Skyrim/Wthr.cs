@@ -36,6 +36,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.MNAM)]
         [Reference(Names.SPGD)]
+        [Required]
         public uint PrecipitationParticle { get; set; }
 
         [Member(Names.NNAM)]
@@ -109,6 +110,55 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         private byte[] allLightData = new byte[128];
 
+        protected override void AfterRead(RecordReader reader)
+        {
+            // Ensure ComponentColors are full size
+            if (Colors.Bytes.Length < 272)
+            {
+                byte[] temp = new byte[272];
+                Colors.Bytes.CopyTo(temp, 0);
+                Colors.Bytes = temp;
+            }
+
+            // Ensure Cloud Colors are full size
+            if (CloudColors != null && CloudColors.Bytes.Length < 512)
+            {
+                byte[] temp = new byte[512];
+                CloudColors.Bytes.CopyTo(temp, 0);
+                CloudColors.Bytes = temp;
+            }
+
+            // Copy LightData into a single array
+            for (int i = 0; i < 4; i++)
+                LightDataParts[i].Bytes.CopyTo(allLightData, i * 32);
+
+            // Remove obsolete fields
+            CloudTexture0 = null;
+            CloudTexture1 = null;
+            CloudTexture2 = null;
+            CloudTexture3 = null;
+            AltCloudSpeedsX = null;
+        }
+
+        protected override void BeforeWrite(RecordWriter writer)
+        {
+            // Copy single array back into LightData
+            for (int i = 0; i < 4; i++)
+            {
+                // Ensure byte array is big enough
+                if (LightDataParts[i].Bytes.Length < 32)
+                    LightDataParts[i].Bytes = new byte[32];
+
+                Array.Copy(allLightData, i * 32, LightDataParts[i].Bytes, 0, 32);
+            }
+        }
+
+        protected override void AfterCopy(GenericFormRecord copy)
+        {
+            allLightData.CopyTo(((Wthr)copy).allLightData, 0);
+            base.AfterCopy(copy);
+        }
+
         public CloudLayer GetCloudLayer(int layer)
         {
             return new CloudLayer(this, layer);
@@ -137,42 +187,6 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         public ColorQuad GetAmbientColorZ1() { return new ColorQuad(allLightData, 20, 20 + 32, 20 + 64, 20 + 96); } 
         public ColorQuad GetSpecularColor() { return new ColorQuad(allLightData, 24, 24 + 32, 24 + 64, 24 + 96); } 
         public FloatQuad GetFresnelPower() { return new FloatQuad(allLightData, 28, 28 + 32, 28 + 64, 28 + 96); } 
-
-        protected override void AfterRead(RecordReader reader)
-        {
-            // Ensure ComponentColors are full size
-            if (Colors.Bytes.Length < 272)
-            {
-                byte[] temp = new byte[272];
-                Colors.Bytes.CopyTo(temp, 0);
-                Colors.Bytes = temp;
-            }
-
-            // Ensure Cloud Colors are full size
-            if (CloudColors != null && CloudColors.Bytes.Length < 512)
-            {
-                byte[] temp = new byte[512];
-                CloudColors.Bytes.CopyTo(temp, 0);
-                CloudColors.Bytes = temp;
-            }
-
-            // Copy LightData into a single array
-            for (int i = 0; i < 4; i++)
-                LightDataParts[i].Bytes.CopyTo(allLightData, i * 32);
-        }
-
-        protected override void BeforeWrite(RecordWriter writer)
-        {
-            // Copy single array back into LightData
-            for (int i = 0; i < 4; i++)
-            {
-                // Ensure byte array is big enough
-                if (LightDataParts[i].Bytes.Length < 32)
-                    LightDataParts[i].Bytes = new byte[32];
-
-                Array.Copy(allLightData, i * 32, LightDataParts[i].Bytes, 0, 32);
-            }
-        }
 
         void EnsureFogDataCreated()
         {
@@ -404,7 +418,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             {
                 writer.Write((byte)(WindSpeed * 255f));
                 writer.Write((ushort)0);
-                writer.Write((byte)(TransDelta * 255f));
+                writer.Write((byte)(TransDelta * 1020f));
                 writer.Write((byte)(SunGlare * 255f));
                 writer.Write((byte)(SunDamage * 255f));
                 writer.Write((byte)(PrecipitationBeginFadeIn * 255f));
@@ -476,7 +490,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 if (index < 0 || index > 28)
                     throw new IndexOutOfRangeException("Index is out of range.");
 
-                return string.Format("{0}0TXT", Convert.ToChar(index + IndexBase));
+                return string.Format("{0}0TX", Convert.ToChar(index + IndexBase));
             }
         }
 
