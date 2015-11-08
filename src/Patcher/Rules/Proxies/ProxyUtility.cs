@@ -101,5 +101,15 @@ namespace Patcher.Rules.Proxies
         {
             return ProxyToField((ScriptProxy)proxy);
         }
+
+        /// <summary>
+        /// Retreives the Weather Sound field exposed by this proxy, or null if the proxy is null.
+        /// </summary>
+        /// <param name="proxy"></param>
+        /// <returns></returns>
+        public static WeatherSoundItem ToField(this IWeatherSound proxy)
+        {
+            return ProxyToField((WeatherSoundProxy)proxy);
+        }
     }
 }

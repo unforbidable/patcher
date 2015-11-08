@@ -133,6 +133,16 @@ namespace Patcher.Rules.Proxies
             return ConvertByName<Animations>(value);
         }
 
+        public static WeatherSoundType ToWeatherSoundType(this WeatherSoundTypes value)
+        {
+            return ConvertByName<WeatherSoundType>(value);
+        }
+
+        public static WeatherSoundTypes ToWeatherSoundTypes(this WeatherSoundType value)
+        {
+            return ConvertByName<WeatherSoundTypes>(value);
+        }
+
         private static T ConvertByName<T>(Enum value)
         {
             // TODO: Possibly cache conversion results or at least names and values
