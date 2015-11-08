@@ -38,7 +38,6 @@ namespace Patcher.Data.Plugins.Content
 
         internal override void WriteField(RecordWriter writer)
         {
-            var type = typeof(T);
             for (int i = 0; i < elements.Count; i++)
             {
                 string fieldName = IndexToFieldName(i);
