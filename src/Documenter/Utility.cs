@@ -46,11 +46,15 @@ namespace Documenter
             {
                 return "delegate";
             }
+            else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+            {
+                return "IEnumerable";
+            }
             else if (type.FullName.Contains(".Helpers."))
             {
                 return type.Name.TrimStart('I').Replace("Helper", string.Empty);
             }
-            else if (type.FullName.Contains(".Forms.") || type.FullName.Contains(".Fields."))
+            else if (type.Namespace.Contains(".Forms") || type.Namespace.Contains(".Fields"))
             {
                 return type.Name.Substring(1).Replace("`1", string.Empty);
             }
@@ -138,21 +142,21 @@ namespace Documenter
 
         public static string GetTypeReference(this Type type)
         {
+            string generic = string.Empty;
+            if (type.IsGenericType)
+            {
+                var genericType = type.GetGenericArguments()[0];
+                if (!genericType.IsGenericParameter && genericType != typeof(IForm))
+                    generic = string.Format("&lt;{0}&gt;", GetTypeReference(genericType));
+            }
+
             if (type.Namespace.Contains(Program.RootNamespace))
             {
-                string generic = string.Empty;
-
-                if (type.IsGenericType)
-                {
-                    var genericType = type.GetGenericArguments()[0];
-                    if (!genericType.IsGenericParameter && genericType != typeof(IForm))
-                        generic = string.Format("&lt;{0}&gt;", GetTypeReference(genericType));
-                }
                 return string.Format("<see cref='{0}' />{1}", type.GetLocalFullName(), generic);
             }
             else
             {
-                return string.Format("<c>{0}</c>", type.GetLocalName());
+                return string.Format("<c>{0}</c>{1}", type.GetLocalName(), generic);
             }
         }
     }
