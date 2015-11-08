@@ -14,17 +14,17 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Rules.Proxies.Forms.Skyrim
 {
-    /// <summary>
-    /// Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i>
-    /// </summary>
-    public interface ISndr : IForm
+    [Proxy(typeof(ISpgd))]
+    public sealed class SpgdProxy : FormProxy<Spgd>, ISpgd
     {
     }
 }

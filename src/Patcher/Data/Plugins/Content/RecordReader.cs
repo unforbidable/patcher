@@ -573,11 +573,16 @@ namespace Patcher.Data.Plugins.Content
                     compoundFields[depth].OnComplete(this, depth + 1);
                 }
 
-                memberInfo.SetOrAddValue(target, ReadFieldValue(memberInfo));
+                memberInfo.SetOrAddValue(target, ReadPrimitiveFieldValue(memberInfo));
             }
         }
 
-        private object ReadFieldValue(MemberInfo memberInfo)
+        internal T ReadField<T>()
+        {
+            return ReadPrimitiveFieldValue<T>();
+        }
+
+        private object ReadPrimitiveFieldValue(MemberInfo memberInfo)
         {
             if (!memberInfo.IsPrimitiveType)
             {
@@ -594,14 +599,7 @@ namespace Patcher.Data.Plugins.Content
                 }
                 else
                 {
-                    // It may happend that a text field will exist but it will be empty
-                    // i.e. there will not be a zero byte as to terminate and empty string.
-                    // This was first noticed in AOS2_WAF Patch.esp  Iron Dagger DESC field
-                    // When this happends no data should be read and en empty string returned.
-                    if (IsEndOfSegment)
-                        return string.Empty;
-                    else
-                        return ReadStringZeroTerminated();
+                    return ReadPrimitiveFieldValue<string>();
                 }
             }
             else if (memberInfo.FieldType == typeof(int))
@@ -653,6 +651,26 @@ namespace Patcher.Data.Plugins.Content
             else
             {
                 throw new InvalidProgramException("Unsupported primitive field type: " + memberInfo.FieldType.FullName);
+            }
+        }
+
+        private T ReadPrimitiveFieldValue<T>()
+        {
+            var type = typeof(T);
+            if (type == typeof(string))
+            {
+                // It may happend that a text field will exist but it will be empty
+                // i.e. there will not be a zero byte as to terminate and empty string.
+                // This was first noticed in AOS2_WAF Patch.esp  Iron Dagger DESC field
+                // When this happends no data should be read and en empty string returned.
+                if (IsEndOfSegment)
+                    return (T)(object)string.Empty;
+                else
+                    return (T)(object)ReadStringZeroTerminated();
+            }
+            else
+            {
+                throw new InvalidProgramException("Unsupported primitive field type: " + type.FullName);
             }
         }
 

@@ -14,73 +14,90 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Data.Plugins.Content;
-using Patcher.Rules.Compiled.Fields;
+using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Rules.Compiled.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Proxies.Fields
+namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
-    [Proxy(typeof(IColor))]
-    public class ColorProxy : Proxy, IColor, IDumpabled
+    [Proxy(typeof(IWeatherFresnelQuad))]
+    public sealed class WeatherFresnelQuadProxy : Proxy, IWeatherFresnelQuad, IDumpabled
     {
-        private ColorAdapter adapter;
+        Wthr.FloatQuad target = null;
 
-        internal ColorProxy With(ColorAdapter adapter)
+        internal WeatherFresnelQuadProxy With(Wthr.FloatQuad target)
         {
-            this.adapter = adapter;
+            this.target = target;
             return this;
-        }
-
-        public float Blue
-        {
-            get
-            {
-                return adapter.Blue;
-            }
-            set
-            {
-                EnsureWritable();
-                adapter.Blue = value;
-            }
-        }
-
-        public float Green
-        {
-            get
-            {
-                return adapter.Green;
-            }
-            set
-            {
-                EnsureWritable();
-                adapter.Green = value;
-            }
-        }
-
-        public float Red
-        {
-            get
-            {
-                return adapter.Red;
-            }
-            set
-            {
-                EnsureWritable();
-                adapter.Red = value;
-            }
         }
 
         void IDumpabled.Dump(string name, ObjectDumper dumper)
         {
-            dumper.DumpText(name, ToString());
+            dumper.DumpText(name, "{{ {0} }}", ToString());
         }
 
         public override string ToString()
         {
-            return string.Format("({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
+            return string.Format("Sunrise={0} Day={1} Sunset={2} Night={3}", Sunrise, Day, Sunset, Night);
+        }
+
+        public float Day
+        {
+            get
+            {
+                return target.Day;
+            }
+
+            set
+            {
+                EnsureWritable();
+                target.Day = value;
+            }
+        }
+
+        public float Night
+        {
+            get
+            {
+                return target.Night;
+            }
+
+            set
+            {
+                EnsureWritable();
+                target.Night = value;
+            }
+        }
+
+        public float Sunrise
+        {
+            get
+            {
+                return target.Sunrise;
+            }
+
+            set
+            {
+                EnsureWritable();
+                target.Sunrise = value;
+            }
+        }
+
+        public float Sunset
+        {
+            get
+            {
+                return target.Sunset;
+            }
+
+            set
+            {
+                EnsureWritable();
+                target.Sunset = value;
+            }
         }
     }
 }

@@ -56,12 +56,16 @@ namespace Patcher.Data.Plugins.Content
             var recinfo = InfoProvider.GetRecordInfo(GetType());
             var other = recinfo.CreateInstance();
 
+            BeforeCopy(other);
+
             // Copy raw flags and version
             other.RawFlags = RawFlags;
             other.Version = Version;
 
             var compinfo = InfoProvider.GetCompoundInfo(GetType());
             compinfo.Copy(this, other);
+
+            AfterCopy(other);
 
             return other;
         }
@@ -80,6 +84,14 @@ namespace Patcher.Data.Plugins.Content
         {
             var compinfo = InfoProvider.GetCompoundInfo(GetType());
             return compinfo.GetReferencedFormIds(this);
+        }
+
+        protected virtual void BeforeCopy(GenericFormRecord copy)
+        {
+        }
+
+        protected virtual void AfterCopy(GenericFormRecord copy)
+        {
         }
 
         protected virtual bool OnEditorIdChanging(string previousEditorId, string newEditorId)

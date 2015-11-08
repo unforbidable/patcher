@@ -102,6 +102,7 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet FurnOnly = FromNames(Names.FURN);
         public static readonly FormKindSet GlobOnly = FromNames(Names.GLOB);
         public static readonly FormKindSet IdleOnly = FromNames(Names.IDLE);
+        public static readonly FormKindSet ImgsOnly = FromNames(Names.IMGS);
         public static readonly FormKindSet KywdOnly = FromNames(Names.KYWD);
         public static readonly FormKindSet LcrtOnly = FromNames(Names.LCRT);
         public static readonly FormKindSet LctnOnly = FromNames(Names.LCTN);
@@ -134,5 +135,6 @@ namespace Patcher.Data.Plugins.Content
             Names.INGR + Names.KEYM + Names.LIGH + Names.LVLI + Names.MISC + Names.SCRL + Names.SLGM + Names.WEAP);
         public static readonly FormKindSet Owner = FromNames(Names.FACT + Names.NPC_);
         public static readonly FormKindSet VoiceTypeOrList = FromNames(Names.FLST + Names.VTYP);
+        public static readonly FormKindSet SndrOrSoun = FromNames(Names.SNDR + Names.SOUN);
     }
 }

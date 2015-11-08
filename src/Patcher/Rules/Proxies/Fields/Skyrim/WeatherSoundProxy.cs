@@ -14,73 +14,47 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Data.Plugins.Content;
-using Patcher.Rules.Compiled.Fields;
+using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Rules.Compiled.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Patcher.Rules.Compiled.Constants.Skyrim;
+using Patcher.Rules.Compiled.Forms.Skyrim;
+using Patcher.Rules.Compiled.Forms;
 
-namespace Patcher.Rules.Proxies.Fields
+namespace Patcher.Rules.Proxies.Fields.Skyrim
 {
-    [Proxy(typeof(IColor))]
-    public class ColorProxy : Proxy, IColor, IDumpabled
+    [Proxy(typeof(IWeatherSound))]
+    public sealed class WeatherSoundProxy : FieldProxy<WeatherSoundItem>, IWeatherSound
     {
-        private ColorAdapter adapter;
-
-        internal ColorProxy With(ColorAdapter adapter)
-        {
-            this.adapter = adapter;
-            return this;
-        }
-
-        public float Blue
+        public IForm Sound
         {
             get
             {
-                return adapter.Blue;
+                return Provider.CreateReferenceProxy<IForm>(Field.Sound);
             }
+
             set
             {
                 EnsureWritable();
-                adapter.Blue = value;
+                Field.Sound = value.ToFormId();
             }
         }
 
-        public float Green
+        public WeatherSoundTypes Type
         {
             get
             {
-                return adapter.Green;
+                return Field.Type.ToWeatherSoundTypes();
             }
+
             set
             {
                 EnsureWritable();
-                adapter.Green = value;
+                Field.Type = value.ToWeatherSoundType();
             }
-        }
-
-        public float Red
-        {
-            get
-            {
-                return adapter.Red;
-            }
-            set
-            {
-                EnsureWritable();
-                adapter.Red = value;
-            }
-        }
-
-        void IDumpabled.Dump(string name, ObjectDumper dumper)
-        {
-            dumper.DumpText(name, ToString());
-        }
-
-        public override string ToString()
-        {
-            return string.Format("({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
         }
     }
 }

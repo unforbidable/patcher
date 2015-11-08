@@ -42,6 +42,22 @@ namespace Patcher.Data.Plugins.Content
             SetBlue = (value) => { target.Blue = value; };
         }
 
+        public ColorAdapter(byte[] buffer)
+            : this(buffer, 0)
+        {
+        }
+
+        public ColorAdapter(byte[] buffer, int offset)
+        {
+            // byte offset + 0 is unused
+            GetRed = () => { return buffer[offset + 0] / 255f; };
+            GetGreen = () => { return buffer[offset + 1] / 255f; };
+            GetBlue = () => { return buffer[offset + 2] / 255f; };
+            SetRed = (value) => { buffer[offset + 0] = (byte)(value * 256); };
+            SetGreen = (value) => { buffer[offset + 1] = (byte)(value * 256); };
+            SetBlue = (value) => { buffer[offset + 2] = (byte)(value * 256); };
+        }
+
         private float LimitRange(float value)
         {
             return Math.Min(Math.Max(value, 0.0f), 1.0f);
@@ -50,5 +66,10 @@ namespace Patcher.Data.Plugins.Content
         public float Red { get { return GetRed.Invoke(); } set { SetRed.Invoke(LimitRange(value)); } }
         public float Green { get { return GetGreen.Invoke(); } set { SetGreen.Invoke(LimitRange(value)); } }
         public float Blue { get { return GetBlue.Invoke(); } set { SetBlue.Invoke(LimitRange(value)); } }
+
+        public override string ToString()
+        {
+            return string.Format("({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
+        }
     }
 }

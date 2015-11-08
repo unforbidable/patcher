@@ -54,6 +54,23 @@ namespace Patcher.Data.Plugins.Content
             }
         }
 
+        internal MemberInfo FindMember(string propertyName)
+        {
+            foreach (var currentMemberInfo in members.Values)
+            {
+                if (currentMemberInfo.FieldNames.Contains(propertyName))
+                {
+                    return currentMemberInfo;
+                }
+                else if (currentMemberInfo.IsDynamicArray && currentMemberInfo.DynamicArrayRegex.IsMatch(propertyName))
+                {
+                    return currentMemberInfo;
+                }
+            }
+
+            return null;
+        }
+
         public void Copy(object from, object to)
         {
             foreach (var meminfo in members.Values.Distinct())

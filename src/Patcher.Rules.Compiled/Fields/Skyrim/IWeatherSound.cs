@@ -14,17 +14,28 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Rules.Compiled.Constants.Skyrim;
+using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Forms.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
     /// <summary>
-    /// Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i>
+    /// Represents a weather sound of certain type.
     /// </summary>
-    public interface ISndr : IForm
+    public interface IWeatherSound
     {
+        /// <summary>
+        /// Gets or sets the <b>Sound</b> or <b>Sound Reference</b>.
+        /// </summary>
+        IForm Sound { get; set; }
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        WeatherSoundTypes Type { get; set; }
     }
 }

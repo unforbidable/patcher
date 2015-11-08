@@ -53,6 +53,7 @@
     <Compile Include="Constants\Skyrim\Skills.cs" />
     <Compile Include="Constants\Skyrim\SoundLevels.cs" />
     <Compile Include="Constants\Skyrim\WeaponTypes.cs" />
+    <Compile Include="Constants\Skyrim\WeatherSoundType.cs" />
     <Compile Include="Constants\Types.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
     <Compile Include="Fields\IColor.cs" />
@@ -61,8 +62,14 @@
     <Compile Include="Fields\Skyrim\IEffect.cs" />
     <Compile Include="Fields\Skyrim\IEffectCollection.cs" />
     <Compile Include="Fields\Skyrim\IMaterial.cs" />
+    <Compile Include="Fields\Skyrim\IWeatherSoundCollection.cs" />
     <Compile Include="Fields\Skyrim\IMaterialCollection.cs" />
     <Compile Include="Fields\Skyrim\IScript.cs" />
+    <Compile Include="Fields\Skyrim\IWeatherCloudLayer.cs" />
+    <Compile Include="Fields\Skyrim\IWeatherFresnelQuad.cs" />
+    <Compile Include="Fields\Skyrim\IWeatherAlphaQuad.cs" />
+    <Compile Include="Fields\Skyrim\IWeatherColorQuad.cs" />
+    <Compile Include="Fields\Skyrim\IWeatherSound.cs" />
     <Compile Include="Forms\Skyrim\IAmmo.cs" />
     <Compile Include="Forms\Skyrim\ICobj.cs" />
     <Compile Include="Forms\Skyrim\IColl.cs" />
@@ -72,6 +79,8 @@
     <Compile Include="Forms\Skyrim\IImgs.cs" />
     <Compile Include="Forms\Skyrim\IIpds.cs" />
     <Compile Include="Forms\Skyrim\ILigh.cs" />
+    <Compile Include="Forms\Skyrim\IRfct.cs" />
+    <Compile Include="Forms\Skyrim\ISpgd.cs" />
     <Compile Include="Forms\Skyrim\IMgef.cs" />
     <Compile Include="Forms\Skyrim\IProj.cs" />
     <Compile Include="Forms\Skyrim\IMatt.cs" />
@@ -80,6 +89,7 @@
     <Compile Include="Forms\Skyrim\ISpel.cs" />
     <Compile Include="Forms\Skyrim\ISndr.cs" />
     <Compile Include="Forms\Skyrim\IWeap.cs" />
+    <Compile Include="Forms\Skyrim\IWthr.cs" />
     <Compile Include="Helpers\Skyrim\IFunctionsHelper.cs" />
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />

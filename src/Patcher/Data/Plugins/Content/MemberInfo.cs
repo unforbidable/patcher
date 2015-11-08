@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Patcher.Data.Plugins.Content
 {
@@ -45,7 +46,10 @@ namespace Patcher.Data.Plugins.Content
         public bool IsNullableType { get; private set; }
         public bool IsReference { get; private set; }
         public bool IsRequired { get; private set; }
+        public bool IsDynamicArray { get; set; }
         public FormKindSet ReferencedFormKinds { get; private set; }
+
+        public Regex DynamicArrayRegex { get; set; }
 
         readonly MethodInfo addValueToListMethod;
         readonly ConstructorInfo createListCtor;
@@ -102,7 +106,30 @@ namespace Patcher.Data.Plugins.Content
                 IsListType = false;
             }
 
+            if (fieldNames.First() == ".0TX")
+            {
+
+            }
+
             IsPrimitiveType = !typeof(Field).IsAssignableFrom(fieldType);
+            IsDynamicArray = false;
+
+            Type checkType = property.PropertyType;
+            while (checkType != null)
+            {
+                if (checkType.IsGenericType && checkType.GetGenericTypeDefinition() == typeof(DynamicArrayCompound<>))
+                {
+                    IsDynamicArray = true;
+                    break;
+                }
+                checkType = checkType.BaseType;
+            }
+
+            if (IsDynamicArray)
+            {
+                var pattern = string.Join("|", fieldNames);
+                DynamicArrayRegex = new Regex(pattern);
+            }
 
             //Enums treat enums as if the where the underlaying primitive type.
             if (fieldType.IsEnum)
@@ -131,7 +158,12 @@ namespace Patcher.Data.Plugins.Content
             {
                 if (IsListType)
                 {
-                    foreach (object item in (IEnumerable)GetValue(target))
+                    // No references if list is null
+                    var value = GetValue(target);
+                    if (value == null)
+                        yield break;
+
+                    foreach (object item in (IEnumerable)value)
                     {
                         var field = (Field)item;
                         if (field != null)
@@ -217,10 +249,15 @@ namespace Patcher.Data.Plugins.Content
         {
             if (IsListType)
             {
+                // If list is null, nothing to copy
+                var value = GetValue(from);
+                if (value == null)
+                    return null;
+
                 // create new list instance and copy values one by one
                 object list = createListCtor.Invoke(paramlessArgs);
                 var addValueToListParams = new object[1];
-                foreach (object item in (IEnumerable)GetValue(from))
+                foreach (object item in (IEnumerable)value)
                 {
                     if (IsPrimitiveType)
                     {

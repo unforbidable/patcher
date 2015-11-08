@@ -241,11 +241,13 @@ namespace Patcher
                 {
                     Log.Error("Program aborted: " + ex.Message);
                 }
+#if !DEBUG
                 catch (Exception ex)
                 {
                     Log.Error("Program error: " + ex.Message);
                     Log.Fine(ex.ToString());
                 }
+#endif
             }
 
             return;

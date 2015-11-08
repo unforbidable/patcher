@@ -22,9 +22,9 @@ using System.Text;
 namespace Patcher.Rules.Compiled.Forms.Skyrim
 {
     /// <summary>
-    /// Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i>
+    /// Represents a <b>Shader Particle Geometry</b> form. <i>This form is a work in progress.</i>
     /// </summary>
-    public interface ISndr : IForm
+    public interface ISpgd : IForm
     {
     }
 }

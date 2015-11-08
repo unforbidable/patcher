@@ -42,7 +42,7 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
                 EnsureWritable();
 
                 if (value == null)
-                    throw new ArgumentNullException("value", "Cannot set material collection to false.");
+                    throw new ArgumentNullException("value", "Cannot set material collection to null.");
 
                 var otherCollection = (MaterialCollectionProxy)value;
 

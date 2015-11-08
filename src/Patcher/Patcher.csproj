@@ -93,9 +93,12 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\VatsFunction.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\WardState.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\WeaponType.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Skyrim\WeatherSoundType.cs" />
     <Compile Include="Data\Plugins\Content\DummyAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\DynamicArrayCompound.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\DestructionData.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\MuzzleFlashModel.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Skyrim\WeatherSoundItem.cs" />
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
@@ -108,6 +111,8 @@
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Imgs.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Mgef.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Rfct.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Spgd.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Txst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Spel.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Sndr.cs" />
@@ -123,6 +128,7 @@
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Proj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Weap.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Wthr.cs" />
     <Compile Include="Data\Plugins\Content\RequiredAttribute.cs" />
     <Compile Include="Data\Plugins\Content\VersionAttribute.cs" />
     <Compile Include="Data\Plugins\Content\ReferenceAttribute.cs" />
@@ -204,9 +210,17 @@
     <Compile Include="Rules\Proxies\Fields\ColorProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\EffectProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherCloudLayerProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherColorQuadProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherFresnelQuadProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherAlphaQuadProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherSoundCollectionProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherSoundProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\AmmoProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\ImgsProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\MgefProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\RfctProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\SpgdProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\TxstProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\SpelProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\SndrProxy.cs" />
@@ -220,6 +234,7 @@
     <Compile Include="Rules\Proxies\Forms\Skyrim\ProjProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\CollProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\WeapProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\WthrProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyFeatureFactory.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\FieldProxy.cs" />

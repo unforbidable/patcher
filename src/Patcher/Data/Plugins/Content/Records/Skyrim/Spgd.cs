@@ -19,12 +19,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
-    /// <summary>
-    /// Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i>
-    /// </summary>
-    public interface ISndr : IForm
+    [Record(Names.SPGD)]
+    [Dummy]
+    public sealed class Spgd : GenericFormRecord
     {
     }
 }

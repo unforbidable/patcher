@@ -19,12 +19,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Rules.Compiled.Constants.Skyrim
 {
     /// <summary>
-    /// Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i>
+    /// Defines the types of weather sounds.
     /// </summary>
-    public interface ISndr : IForm
+    public enum WeatherSoundTypes
     {
+        /// <summary>
+        /// Represents the default weather sound.
+        /// </summary>
+        Default = 0,
+        /// <summary>
+        /// Represents the sound of the rain.
+        /// </summary>
+        Precipitation = 1,
+        /// <summary>
+        /// Represents the sound of the wind.
+        /// </summary>
+        Wind = 2,
+        /// <summary>
+        /// Represents the sound of a thunder.
+        /// </summary>
+        Thunder = 3,
     }
 }

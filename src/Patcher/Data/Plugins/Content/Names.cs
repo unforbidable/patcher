@@ -84,6 +84,7 @@ namespace Patcher.Data.Plugins.Content
         public const string RACE = "RACE";
         public const string REFR = "REFR";
         public const string REGN = "REGN";
+        public const string RFCT = "RFCT";
         public const string SCEN = "SCEN";
         public const string SCRL = "SCRL";
         public const string SHOU = "SHOU";
@@ -91,6 +92,7 @@ namespace Patcher.Data.Plugins.Content
         public const string SNDR = "SNDR";
         public const string SOUN = "SOUN";
         public const string SPEL = "SPEL";
+        public const string SPGD = "SPGD";
         public const string STAT = "STAT";
         public const string TACT = "TACT";
         public const string TES4 = "TES4";
@@ -101,6 +103,7 @@ namespace Patcher.Data.Plugins.Content
         public const string WRLD = "WRLD";
         public const string WTHR = "WTHR";
 
+        public const string ANAM = "ANAM";
         public const string BAMT = "BAMT";
         public const string BIDS = "BIDS";
         public const string BNAM = "BNAM";
@@ -115,6 +118,7 @@ namespace Patcher.Data.Plugins.Content
         public const string CRDT = "CRDT";
         public const string CTDA = "CTDA";
         public const string DATA = "DATA";
+        public const string DALC = "DALC";
         public const string DELE = "DELE";
         public const string DESC = "DESC";
         public const string DEST = "DEST";
@@ -135,9 +139,11 @@ namespace Patcher.Data.Plugins.Content
         public const string HEDR = "HEDR";
         public const string HNAM = "HNAM";
         public const string ICON = "ICON";
+        public const string IMSP = "IMSP";
         public const string INAM = "INAM";
         public const string INCC = "INCC";
         public const string INTV = "INTV";
+        public const string JNAM = "JNAM";
         public const string KSIZ = "KSIZ";
         public const string KWDA = "KWDA";
         public const string LNAM = "LNAM";
@@ -167,6 +173,8 @@ namespace Patcher.Data.Plugins.Content
         public const string OBND = "OBND";
         public const string OFST = "OFST";
         public const string ONAM = "ONAM";
+        public const string PNAM = "PNAM";
+        public const string QNAM = "QNAM";
         public const string RNAM = "RNAM";
         public const string SCRN = "SCRN";
         public const string SNAM = "SNAM";

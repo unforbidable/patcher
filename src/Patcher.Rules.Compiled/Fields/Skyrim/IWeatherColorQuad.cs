@@ -19,12 +19,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
     /// <summary>
-    /// Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i>
+    /// Represents a set of weather colors for each of the four parts of the day: sunrise, day, sunset and night.
     /// </summary>
-    public interface ISndr : IForm
+    public interface IWeatherColorQuad
     {
+        /// <summary>
+        /// Gets or sets the weather color during the sunrise.
+        /// </summary>
+        IColor Sunrise { get; set; }
+        /// <summary>
+        /// Gets or sets the weather color during the day.
+        /// </summary>
+        IColor Day { get; set; }
+        /// <summary>
+        /// Gets or sets the weather color during the sunset.
+        /// </summary>
+        IColor Sunset { get; set; }
+        /// <summary>
+        /// Gets or sets the weather color during the night.
+        /// </summary>
+        IColor Night { get; set; }
     }
 }

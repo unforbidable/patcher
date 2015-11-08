@@ -262,6 +262,7 @@ namespace Patcher.Rules
                         {
                             runner.Run();
                         }
+#if !DEBUG
                         catch (Exception ex)
                         {
                             if (ex is CompiledRuleAssertException)
@@ -300,6 +301,7 @@ namespace Patcher.Rules
                                 continue;
                             }
                         }
+#endif
                         finally
                         {
                             Display.ClearProblems();

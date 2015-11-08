@@ -50,7 +50,7 @@ namespace Patcher.Data.Plugins.Content
             throw new NotImplementedException("Not implemented for compound fields");
         }
 
-        internal void ReadCompoundField(RecordReader reader, string fieldName, int depth)
+        internal virtual void ReadCompoundField(RecordReader reader, string fieldName, int depth)
         {
             var members = InfoProvider.GetCompoundInfo(GetType()).Members;
             if (!members.ContainsKey(fieldName))

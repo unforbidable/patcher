@@ -19,12 +19,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Rules.Compiled.Forms.Skyrim
+namespace Patcher.Rules.Compiled.Fields.Skyrim
 {
     /// <summary>
-    /// Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i>
+    /// Represents a set of alpha channel for each of the four parts of the day: sunrise, day, sunset and night.
     /// </summary>
-    public interface ISndr : IForm
+    public interface IWeatherAlphaQuad
     {
+        /// <summary>
+        /// Gets or sets the alpha channel during the sunrise.
+        /// </summary>
+        float Sunrise { get; set; }
+        /// <summary>
+        /// Gets or sets the alpha channel during the day.
+        /// </summary>
+        float Day { get; set; }
+        /// <summary>
+        /// Gets or sets the alpha channel during the sunset.
+        /// </summary>
+        float Sunset { get; set; }
+        /// <summary>
+        /// Gets or sets the alpha channel during the night.
+        /// </summary>
+        float Night { get; set; }
     }
 }
