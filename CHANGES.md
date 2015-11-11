@@ -1,3 +1,7 @@
+##### v1.7.0 (2015/11/11)
+* New Fallout 4 forms: FLST,GLOB,GMST,KYWD
+* Ability to generate plugins for Fallout 4.
+
 ##### v1.6.0 (2015/11/08)
 * New supported forms: WTHR,IMGS
 * 32bit executable to allow running via Mod Organizer
