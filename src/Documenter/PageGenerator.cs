@@ -31,11 +31,13 @@ namespace Documenter
     {
         readonly XDocument source;
         readonly Assembly assembly;
+        readonly string gameTitle;
 
-        public PageGenerator(XDocument source, Assembly assembly)
+        public PageGenerator(XDocument source, Assembly assembly, string gameTitle)
         {
             this.source = source;
             this.assembly = assembly;
+            this.gameTitle = gameTitle;
         }
 
         public void GeneratePages()
@@ -61,9 +63,12 @@ namespace Documenter
                 var target = new XDocument();
                 target.Add(GetTypeXmlElement(type, true));
 
-                string xmlFilePath = Path.Combine(Program.TargetPath, type.GetLocalPath(".xml"));
-                string tmpFilePath = Path.Combine(Program.TargetPath, type.GetLocalPath(".tmp"));
-                string htmlFilePath = Path.Combine(Program.TargetPath, type.GetLocalPath(".html"));
+                if (target.Root == null)
+                    continue;
+
+                string xmlFilePath = Path.Combine(Program.TargetPath, gameTitle.ToLower(), type.GetLocalPath(".xml"));
+                string tmpFilePath = Path.Combine(Program.TargetPath, gameTitle.ToLower(), type.GetLocalPath(".tmp"));
+                string htmlFilePath = Path.Combine(Program.TargetPath, gameTitle.ToLower(), type.GetLocalPath(".html"));
 
                 Directory.CreateDirectory(Path.GetDirectoryName(xmlFilePath));
                 target.Save(xmlFilePath);
@@ -83,9 +88,9 @@ namespace Documenter
                 categoryElement.Add(typeElement);
             }
 
-            string xmlIndexPath = Path.Combine(Program.TargetPath, "index.xml");
-            string tmpIndexPath = Path.Combine(Program.TargetPath, "index.tmp");
-            string htmlIndexPath = Path.Combine(Program.TargetPath, "index.html");
+            string xmlIndexPath = Path.Combine(Program.TargetPath, gameTitle.ToLower(), "index.xml");
+            string tmpIndexPath = Path.Combine(Program.TargetPath, gameTitle.ToLower(), "index.tmp");
+            string htmlIndexPath = Path.Combine(Program.TargetPath, gameTitle.ToLower(), "index.html");
 
             Directory.CreateDirectory(Path.GetDirectoryName(xmlIndexPath));
             index.Save(xmlIndexPath);
@@ -97,15 +102,15 @@ namespace Documenter
 
         private XElement GetTypeXmlElement(Type type, bool details)
         {
-            var namespaceParts = type.GetLocalNamespace().Split('.');
-            string game = namespaceParts.Length > 1 ? namespaceParts[1] : string.Empty;
-            string category = namespaceParts.Length > 1 ? string.Format("{0} ({1})", namespaceParts) : namespaceParts[0];
+            string currentGameTitle = type.GetGameTitle();
+            if (currentGameTitle != gameTitle && currentGameTitle.Length != 0)
+                return null;
 
             XElement typeElement = new XElement("type");
             typeElement.Add(new XAttribute("name", type.GetLocalName()));
             typeElement.Add(new XAttribute("fullname", type.GetLocalFullName()));
-            typeElement.Add(new XAttribute("category", category));
-            typeElement.Add(new XAttribute("gametitle", game));
+            typeElement.Add(new XAttribute("category", type.GetCategory()));
+            typeElement.Add(new XAttribute("gametitle", currentGameTitle));
             typeElement.Add(GetSummaryTextXElement(GetMemberName(type)));
 
             if (details)
@@ -169,6 +174,7 @@ namespace Documenter
         {
             var element = new XElement("field");
             element.Add(new XAttribute("name", field.Name));
+            element.Add(new XAttribute("gametitle", field.DeclaringType.GetGameTitle()));
             element.Add(GetSummaryTextXElement(GetMemberName(field)));
             return element;
         }
@@ -177,6 +183,7 @@ namespace Documenter
         {
             var element = new XElement("property");
             element.Add(new XAttribute("name", property.Name));
+            element.Add(new XAttribute("gametitle", property.DeclaringType.GetGameTitle()));
             element.Add(GetSignatureXmlElement(property));
             element.Add(GetSummaryTextXElement(GetMemberName(property)));
             return element;
@@ -184,9 +191,14 @@ namespace Documenter
 
         private XElement GetMethodXElement(MethodInfo method)
         {
+            string currentGameTitle = method.DeclaringType.GetGameTitle();
+            if (currentGameTitle != gameTitle && currentGameTitle.Length != 0)
+                return null;
+
             var element = new XElement("method");
             element.Add(new XAttribute("name", method.Name));
             element.Add(new XAttribute("extension", method.IsDefined(typeof(ExtensionAttribute), true)));
+            element.Add(new XAttribute("gametitle", currentGameTitle));
             element.Add(GetSignatureXmlElement(method));
             element.Add(GetSummaryTextXElement(GetMemberName(method)));
             return element;

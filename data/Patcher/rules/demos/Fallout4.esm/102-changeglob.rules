@@ -1,0 +1,18 @@
+<rules>
+	<rule>
+		<name>Increase XP rewards for quests</name>
+		<from>GLOB</from>
+		<where>
+			Source.EditorId.StartsWith("XP")
+		</where>
+		<update>
+			// Increase the amount of XP rewarded for certain events
+			// This will cover all global variables starting with "XP"
+			// but only gloabl variables for quest rewards start with "XP".
+			// To modify other rewards as well alter the WHERE condition above accordingly.
+			Target.Value = Target.Value * 2;
+			Debug.Message("Original value: " + Source.Value);
+			Debug.Message("New value: " + Target.Value);
+		</update>
+	</rule>
+</rules>

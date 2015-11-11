@@ -1,0 +1,17 @@
+<rules>
+	<rule>
+		<name>Change fCombatSneak* setting</name>
+		<from>GMST</from>
+		<where>Source.EditorId.StartsWith("fCombatSneak")
+			</where>
+		<update>
+			// This demo has been migrated from Skyrim demos
+			// Depending on whether these Game Settings are still
+			// used to determine the sneak damage, 
+			// this actually may or may not have any effect in Fallout 4.
+			Target.Value += 5;
+			Debug.Message("Original value: " + Source.Value);
+			Debug.Message("New value: " + Target.Value);
+		</update>
+	</rule>
+</rules>

@@ -159,5 +159,17 @@ namespace Documenter
                 return string.Format("<c>{0}</c>{1}", type.GetLocalName(), generic);
             }
         }
+
+        public static string GetCategory(this Type type)
+        {
+            var namespaceParts = type.GetLocalNamespace().Split('.');
+            return namespaceParts.Length > 1 ? string.Format("{0} ({1})", namespaceParts) : namespaceParts[0];
+        }
+
+        public static string GetGameTitle(this Type type)
+        {
+            var namespaceParts = type.GetLocalNamespace().Split('.');
+            return namespaceParts.Length > 1 ? namespaceParts[1] : string.Empty;
+        }
     }
 }
