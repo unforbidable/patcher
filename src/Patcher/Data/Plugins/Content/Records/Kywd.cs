@@ -32,7 +32,7 @@ namespace Patcher.Data.Plugins.Content.Records
 
         [Member(Names.TNAM)]
         [Game(Games.Fallout4)]
-        public int Unknown { get; set; }
+        public int? Unknown { get; set; }
 
         [Member(Names.NNAM)]
         [Game(Games.Fallout4)]

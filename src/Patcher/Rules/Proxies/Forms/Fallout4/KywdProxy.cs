@@ -103,7 +103,7 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
         {
             get
             {
-                return record.Unknown;
+                return record.Unknown.HasValue ? record.Unknown.Value : 0;
             }
 
             set
