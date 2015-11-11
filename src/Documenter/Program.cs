@@ -30,16 +30,20 @@ namespace Documenter
     {
         public const string RootNamespace = "Patcher.Rules.Compiled";
         public const string RootFolder = "reference";
-        public const string TargetPath = @"doc";
+        public const string TargetPath = @".";
 
         static void Main(string[] args)
         {
             var assembly = Assembly.GetAssembly(typeof(Patcher.Rules.Compiled.Forms.IForm));
             var xmlFilePath = Path.GetFileNameWithoutExtension(assembly.GetName().CodeBase) + ".xml";
 
-            XDocument source = XDocument.Load(xmlFilePath);
-            PageGenerator generator = new PageGenerator(source, assembly);
-            generator.GeneratePages();
+            var games = new string[] { "Skyrim", "Fallout4" };
+            foreach (var game in games)
+            {
+                XDocument source = XDocument.Load(xmlFilePath);
+                PageGenerator generator = new PageGenerator(source, assembly, game);
+                generator.GeneratePages();
+            }
         }
     }
 }
