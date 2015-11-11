@@ -43,5 +43,74 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
                 record.Color.Blue = value.Blue;
             }
         }
+
+        public string Description
+        {
+            get
+            {
+                return record.Description;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.Description = value;
+            }
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return record.FullName;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FullName = value;
+            }
+        }
+
+        public IAoru ActivationRule
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IAoru>(record.Data);
+            }
+            set
+            {
+                EnsureWritable();
+                record.Data = value.ToFormId();
+            }
+        }
+
+        public string ShortName
+        {
+            get
+            {
+                return record.ShortName;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.ShortName = value;
+            }
+        }
+
+        public int UnknownNumber
+        {
+            get
+            {
+                return record.Unknown;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.Unknown = value;
+            }
+        }
     }
 }

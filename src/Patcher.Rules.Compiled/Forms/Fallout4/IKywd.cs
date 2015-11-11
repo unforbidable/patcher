@@ -27,5 +27,26 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// Gets or sets the color of this <b>Keyword</b>.
         /// </summary>
         IColor Color { get; set; }
+        ///// <summary>
+        ///// Gets or sets an unknown number. 
+        ///// </summary>
+        //int UnknownNumber { get; set; }
+        /// <summary>
+        /// Gets or sets the short name.
+        /// </summary>
+        string ShortName { get; set; }
+        /// <summary>
+        /// Gets or sets the full in-game name.
+        /// </summary>
+        string FullName { get; set; }
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        string Description { get; set; }
+        /// <summary>
+        /// Gets or sets the activation rule.
+        /// </summary>
+        IAoru ActivationRule { get; set; }
+
     }
 }
