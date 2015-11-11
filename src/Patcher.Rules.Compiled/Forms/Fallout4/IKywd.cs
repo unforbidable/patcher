@@ -21,22 +21,26 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
     /// <summary>
     /// Represents a <b>Keyword</b> form.
     /// </summary>
+    /// <remarks>
+    /// The meaning of property <code>UnknownNumber</code> is unknown so use it with caution. 
+    /// The property will be removed and replaced with the proper property as soon as more information is available.
+    /// </remarks>
     public interface IKywd : IForm
     {
         /// <summary>
         /// Gets or sets the color of this <b>Keyword</b>.
         /// </summary>
         IColor Color { get; set; }
-        ///// <summary>
-        ///// Gets or sets an unknown number. 
-        ///// </summary>
-        //int UnknownNumber { get; set; }
         /// <summary>
-        /// Gets or sets the short name.
+        /// Gets or sets an unknown number.
+        /// </summary>
+        int UnknownNumber { get; set; }
+        /// <summary>
+        /// Gets or sets the short name (only used by some keywords).
         /// </summary>
         string ShortName { get; set; }
         /// <summary>
-        /// Gets or sets the full in-game name.
+        /// Gets or sets the full in-game name (only used by some keywords).
         /// </summary>
         string FullName { get; set; }
         /// <summary>
@@ -44,7 +48,7 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// </summary>
         string Description { get; set; }
         /// <summary>
-        /// Gets or sets the activation rule.
+        /// Gets or sets the furniture activation rule.
         /// </summary>
         IAoru ActivationRule { get; set; }
 
