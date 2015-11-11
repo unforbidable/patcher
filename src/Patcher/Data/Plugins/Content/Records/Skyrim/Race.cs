@@ -22,6 +22,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.RACE)]
+    [Game(Games.Skyrim)]
     [Dummy]
     public sealed class Race : GenericFormRecord
     {

@@ -19,14 +19,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Rules.Compiled.Forms.Fallout4
 {
-    [Record(Names.FLST)]
-    public sealed class Flst : GenericFormRecord
+    /// <summary>
+    /// Represents an <b>Activation Rule</b> form. <i>This form is a work in progress.</i>
+    /// </summary>
+    public interface IAoru : IForm
     {
-        [Member(Names.LNAM)]
-        [Initialize]
-        [Reference]
-        public List<uint> Items { get; set; }
     }
 }

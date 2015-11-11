@@ -24,6 +24,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.COBJ)]
+    [Game(Games.Skyrim)]
     public sealed class Cobj : GenericFormRecord, IFeaturingConditions
     {
         [Member(Names.COCT)]

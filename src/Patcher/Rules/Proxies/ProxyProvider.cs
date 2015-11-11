@@ -24,10 +24,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Patcher.Data.Plugins.Content;
-using Patcher.Rules.Compiled.Fields;
 using Patcher.Rules.Proxies.Fields;
-using Patcher.Data.Plugins.Content.Records.Skyrim;
-using Patcher.Rules.Compiled.Fields.Skyrim;
 
 namespace Patcher.Rules.Proxies
 {
@@ -50,9 +47,15 @@ namespace Patcher.Rules.Proxies
         {
             this.engine = engine;
 
+            string[] namespaces = new string[] { engine.Context.GameTitle, "Forms", "Fields" };
+
             var types = Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof(Proxy).IsAssignableFrom(t) && !t.IsAbstract && !t.IsGenericType);
             foreach (Type type in types)
             {
+                // Skip proxies outside the allowed namespaces
+                if (!namespaces.Where(n => type.Namespace.EndsWith(n)).Any())
+                    continue;
+
                 // Fetch attribute
                 ProxyAttribute a = (ProxyAttribute)type.GetCustomAttributes(typeof(ProxyAttribute), false).FirstOrDefault();
                 if (a == null)
@@ -83,7 +86,6 @@ namespace Patcher.Rules.Proxies
 
                     searchType = searchType.BaseType;
                 }
-
 
                 FormKind backingFormKind = backingRecordType != null ? engine.Context.GetRecordFormKind(backingRecordType) : FormKind.Any;
                 Type implementationType = type;

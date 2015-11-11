@@ -16,7 +16,6 @@
 
 using Patcher.Data.Plugins;
 using Patcher.Data.Plugins.Content;
-using Patcher.Data.Plugins.Content.Records.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,17 +26,13 @@ using System.Text;
 namespace Patcher.Data
 {
     /// <summary>
-    /// Represents an implementation of DataContext specific to game The Elder Scrolls: Skyrim.
+    /// Represents an implementation of DataContext specific to game Fallout 4.
     /// </summary>
-    [DataContext("Skyrim.esm")]
-    public sealed class SkyrimDataContext : DataContext
+    [DataContext("Fallout4.esm")]
+    public sealed class Fallout4DataContext : DataContext
     {
         readonly static string[] hiddenFormTypes = new string[] { "CELL", "WRLD" };
-
-        // Skyrim - Interface.bsa should be always loaded because it contains localized text files
-        readonly static string[] defaultArchives = new string[] { "Skyrim - Interface.bsa" };
-        //readonly static string[] defaultArchives = new string[] { "Skyrim - Misc.bsa" , "Skyrim - Shaders.bsa", "Skyrim - Textures.bsa", "Skyrim - Interface.bsa",
-        //   "Skyrim - Animations.bsa", "Skyrim - Meshes.bsa", "Skyrim - Sounds.bsa", "Skyrim - Voices.bsa", "Skyrim - VoicesExtra.bsa" };
+        readonly static string[] defaultArchives = new string[] { };
 
         protected override IEnumerable<string> GetDefaultArchives()
         {
@@ -55,12 +50,12 @@ namespace Patcher.Data
             // Create plugin list provider that will use this context specific path to plugins.txt
             // unless DataFileProvider overrides the path
             return new DefaultPluginListProvider(DataFileProvider, 
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Skyrim\plugins.txt"));
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Fallout4\plugins.txt"));
         }
 
         protected override string GetGameTitle()
         {
-            return "Skyrim";
+            return "Fallout4";
         }
 
         protected override IEnumerable<Form> GetHardcodedForms(byte pluginNumber)
@@ -82,7 +77,17 @@ namespace Patcher.Data
 
         protected override string GetDefaultLanguage()
         {
-            return "english";
+            return "en";
+        }
+
+        public override float GetLatestPluginVersion()
+        {
+            return 0.95f;
+        }
+
+        public override ushort GetLatestFormVersion()
+        {
+            return 0x83;
         }
     }
 }

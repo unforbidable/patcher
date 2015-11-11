@@ -103,20 +103,20 @@ namespace Patcher.Data
         /// <returns>Returns array of FormType representing form types that will not be indexed.</returns>
         protected abstract IEnumerable<FormKind> GetIgnoredFormKinds();
         protected abstract IEnumerable<string> GetDefaultArchives();
-        protected abstract Assembly GetRecordTypeAssembly();
-        protected abstract string GetRecordTypeNamespace();
         protected abstract IPluginListProvider GetPluginListProvider();
         protected abstract string GetGameTitle();
         protected abstract IEnumerable<Form> GetHardcodedForms(byte plugin);
+        protected abstract string GetDefaultLanguage();
 
         private void QuerySupportedTypes()
         {
-            var assembly = GetRecordTypeAssembly();
-            string ns = GetRecordTypeNamespace();
+            var assembly = Assembly.GetExecutingAssembly();
 
-            foreach (Type type in assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(GenericFormRecord)) && t != typeof(DummyRecord) && t.Namespace == ns))
+            foreach (Type type in assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(GenericFormRecord))))
             {
-                AddSupportedType(type);
+                var gameAttributes = type.GetCustomAttributes(typeof(GameAttribute), false).Cast<GameAttribute>().ToArray();
+                if (gameAttributes.Where(a => a.Title == GetGameTitle()).Any())
+                    AddSupportedType(type);
             }
         }
 
@@ -280,6 +280,11 @@ namespace Patcher.Data
         public virtual ushort GetLatestFormVersion()
         {
             return 43;
+        }
+
+        public string GetLanguage()
+        {
+            return GetDefaultLanguage();
         }
 
         internal virtual RecordWriter CreateWriter(Stream stream)

@@ -43,7 +43,7 @@ namespace Patcher.Data.Strings
 
         private static StringTableReader CreateReader(Plugin plugin, string extension, bool ignoreStringLength)
         {
-            string pathWithoutExtension = Path.Combine("strings", Path.GetFileNameWithoutExtension(plugin.FileName)) + "_english";
+            string pathWithoutExtension = Path.Combine("strings", Path.GetFileNameWithoutExtension(plugin.FileName)) + "_" + plugin.Context.GetLanguage();
             string path = string.Format("{0}.{1}", pathWithoutExtension, extension);
 
             // Search data folder first

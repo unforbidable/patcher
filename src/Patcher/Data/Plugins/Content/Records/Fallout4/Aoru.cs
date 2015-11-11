@@ -19,12 +19,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Data.Plugins.Content.Records.Fallout4
 {
-    [Record(Names.MATT)]
-    [Game(Games.Skyrim)]
+    [Record(Names.AORU)]
+    [Game(Games.Fallout4)]
     [Dummy]
-    public sealed class Matt : GenericFormRecord
+    public sealed class Aoru : GenericFormRecord
     {
     }
 }

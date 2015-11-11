@@ -20,27 +20,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Data
 {
-    [Record(Names.KYWD)]
-    public sealed class Kywd : GenericFormRecord, IColorFloatAdaptable
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
+    sealed class GameAttribute : Attribute
     {
-        [Member(Names.CNAM)]
-        private uint RawColor { get; set; }
+        readonly string title;
 
-        private ColorAdapter color = null;
-        public ColorAdapter Color
+        public string Title { get { return title; } }
+
+        public GameAttribute(string title)
         {
-            get
-            {
-                if (color == null)
-                    color = new ColorAdapter(this);
-                return color;
-            }
+            this.title = title;
         }
-
-        public float Red { get { return (RawColor & 0xFF) / 255f; } set { RawColor = RawColor & 0xFFFFFF00 | (uint)(value * 255); } }
-        public float Green { get { return (RawColor >> 8 & 0xFF) / 255f; } set { RawColor = RawColor & 0xFFFF00FF | (uint)(value * 255) << 8; } }
-        public float Blue { get { return (RawColor >> 16 & 0xFF) / 255f; } set { RawColor = RawColor & 0xFF00FFFF | (uint)(value * 255) << 16; } }
     }
 }

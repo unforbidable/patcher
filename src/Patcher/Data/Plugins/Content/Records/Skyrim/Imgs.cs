@@ -23,6 +23,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.IMGS)]
+    [Game(Games.Skyrim)]
     public sealed class Imgs : GenericFormRecord
     {
         [Member(Names.ENAM)]

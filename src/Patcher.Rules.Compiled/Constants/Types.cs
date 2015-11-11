@@ -38,6 +38,10 @@ namespace Patcher.Rules.Compiled.Constants
         /// </summary>
         Int,
         /// <summary>
+        /// Represents an unsigned integer number.
+        /// </summary>
+        UnsignedInt,
+        /// <summary>
         /// Represents a floating point number.
         /// </summary>
         Float,

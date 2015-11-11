@@ -19,12 +19,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Data
 {
-    [Record(Names.MATT)]
-    [Game(Games.Skyrim)]
-    [Dummy]
-    public sealed class Matt : GenericFormRecord
+    public static class Games
     {
+        public const string Skyrim = "Skyrim";
+        public const string Fallout4 = "Fallout4";
     }
 }

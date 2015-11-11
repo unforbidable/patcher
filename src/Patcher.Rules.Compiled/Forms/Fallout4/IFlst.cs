@@ -19,12 +19,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Rules.Compiled.Forms.Fallout4
 {
-    [Record(Names.MATT)]
-    [Game(Games.Skyrim)]
-    [Dummy]
-    public sealed class Matt : GenericFormRecord
+    /// <summary>
+    /// Represents a <b>Form List</b> form.
+    /// </summary>
+    /// <remarks>
+    /// <p>
+    /// Because property <code>Items</code> represents a mixed <see cref="IFormCollection{IForm}"/> each form which is retrieved from 
+    /// the collection must be cast into its specific types before properties and methods specific to each form can be accessed.
+    /// </p>
+    /// </remarks>
+    public interface IFlst : IForm
     {
+        /// <summary>
+        /// Gets or sets the mixed <see cref="IFormCollection{IForm}"/> associated with this <b>Form List</b>.
+        /// </summary>
+        IFormCollection<IForm> Items { get; set; }
     }
 }

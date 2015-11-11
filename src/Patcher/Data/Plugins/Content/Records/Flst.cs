@@ -19,12 +19,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Data.Plugins.Content.Records
 {
-    [Record(Names.MATT)]
+    [Record(Names.FLST)]
     [Game(Games.Skyrim)]
-    [Dummy]
-    public sealed class Matt : GenericFormRecord
+    [Game(Games.Fallout4)]
+    public sealed class Flst : GenericFormRecord
     {
+        [Member(Names.LNAM)]
+        [Initialize]
+        [Reference]
+        public List<uint> Items { get; set; }
+
+        [Member(Names.FULL)]
+        [Game(Games.Fallout4)]
+        [LocalizedString(LocalizedStringGroups.Strings)]
+        public string FullName { get; set; }
     }
 }

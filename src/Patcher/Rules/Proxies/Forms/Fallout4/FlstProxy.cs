@@ -14,17 +14,30 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Plugins.Content.Records;
+using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Forms.Fallout4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Rules.Proxies.Forms.Fallout4
 {
-    [Record(Names.MATT)]
-    [Game(Games.Skyrim)]
-    [Dummy]
-    public sealed class Matt : GenericFormRecord
+    [Proxy(typeof(IFlst))]
+    public sealed class FlstProxy : FormProxy<Flst>, IFlst
     {
+        public IFormCollection<IForm> Items
+        {
+            get
+            {
+                return Provider.CreateFormCollectionProxy<IForm>(Mode, record.Items);
+            }
+            set
+            {
+                EnsureWritable();
+                record.Items = value.ToFormIdList();
+            }
+        }
     }
 }

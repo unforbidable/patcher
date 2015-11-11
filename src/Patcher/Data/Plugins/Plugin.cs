@@ -47,6 +47,8 @@ namespace Patcher.Data.Plugins
         ISet<uint> reservedFormIds = new SortedSet<uint>();
         IDictionary<string, uint> reservedEditorIdMap = new SortedDictionary<string, uint>();
 
+        public bool IsMasterFile { get { return header.Flags.HasFlag(PluginFlags.Master); } set { if (value) header.Flags |= PluginFlags.Master; else header.Flags &= ~PluginFlags.Master; } }
+
         // DataContext creates plugins
         internal Plugin(DataContext context, string fileName, PluginMode mode)
         {
@@ -556,7 +558,6 @@ namespace Patcher.Data.Plugins
 
                         // Write header
                         header.PluginVersion = context.GetLatestPluginVersion();
-                        header.Flags = PluginFlags.None;
                         writer.WriteHeader(header);
                         Log.Fine("Written header record");
 
