@@ -20,9 +20,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Data.Plugins.Content.Records
 {
     [Record(Names.GMST)]
+    [Game(Games.Skyrim)]
+    [Game(Games.Fallout4)]
     public sealed class Gmst : GenericFormRecord
     {
         [Member(Names.DATA)]
@@ -51,6 +53,10 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                     case 'b':
                         return BitConverter.ToBoolean(Data.Bytes, 0);
 
+                    case 'u':
+                        // Fallout4 only data type
+                        return BitConverter.ToUInt32(Data.Bytes, 0);
+
                     default:
                         throw new InvalidOperationException("Game Setting EditorId must be set before its value can be accessed");
                 }
@@ -75,6 +81,10 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                     case 'b':
                         // Store bool as int32
                         Data.Bytes = BitConverter.GetBytes((value ? 1 : 0));
+                        break;
+
+                    case 'u':
+                        Data.Bytes = BitConverter.GetBytes((uint)value);
                         break;
 
                     default:
@@ -126,8 +136,11 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                             break;
 
                         case 'i':
+                        case 'u':
                         case 'f':
                             Value = 0;
+
+                            // TODO: Warn when 'u' type used in Skyrim
                             break;
 
                         case 'b':
@@ -136,7 +149,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
                         default:
                             // Unknown type enconutered
-                            Log.Warning("Game Setting EditorID should start with letter s, i or f: " + EditorId);
+                            Log.Warning("Game Setting EditorID should start with letter s, i, f, u or b: " + EditorId);
                             break;
                     }
                 }

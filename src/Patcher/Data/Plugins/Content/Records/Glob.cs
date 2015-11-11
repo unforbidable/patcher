@@ -21,9 +21,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Data.Plugins.Content.Records
 {
     [Record(Names.GLOB)]
+    [Game(Games.Skyrim)]
+    [Game(Games.Fallout4)]
     public sealed class Glob : GenericFormRecord
     {
         public bool IsConstant { get { return HasFlag(GlobalVariableRecordFlags.Constant); } set { SetFlag(GlobalVariableRecordFlags.Constant, value); } }

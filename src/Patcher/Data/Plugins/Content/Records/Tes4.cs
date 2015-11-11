@@ -24,6 +24,8 @@ using System.Threading.Tasks;
 namespace Patcher.Data.Plugins.Content.Records
 {
     [Record(Names.TES4)]
+    [Game(Games.Skyrim)]
+    [Game(Games.Fallout4)]
     public sealed class Tes4 : HeaderRecord
     {
         [Member(Names.HEDR)]
@@ -38,6 +40,10 @@ namespace Patcher.Data.Plugins.Content.Records
 
         [Member(Names.CNAM)]
         public override string Author { get; set; }
+
+        [Member(Names.TNAM)]
+        [Game(Games.Fallout4)]
+        private List<ByteArray> Unknown5 { get; set; }
 
         [Member(Names.MAST, Names.DATA)]
         private List<MasterEntry> Masters { get; set; }

@@ -20,13 +20,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Patcher.Data.Plugins.Content.Records.Skyrim
+namespace Patcher.Data.Plugins.Content.Records
 {
     [Record(Names.KYWD)]
+    [Game(Games.Skyrim)]
+    [Game(Games.Fallout4)]
     public sealed class Kywd : GenericFormRecord, IColorFloatAdaptable
     {
         [Member(Names.CNAM)]
         private uint RawColor { get; set; }
+
+        [Member(Names.TNAM)]
+        [Game(Games.Fallout4)]
+        public int Unknown { get; set; }
+
+        [Member(Names.NNAM)]
+        [Game(Games.Fallout4)]
+        public string ShortName { get; set; }
+
+        [Member(Names.FULL)]
+        [Game(Games.Fallout4)]
+        [LocalizedString(LocalizedStringGroups.Strings)]
+        public string FullName { get; set; }
+
+        [Member(Names.DNAM)]
+        [Game(Games.Fallout4)]
+        public string Description { get; set; }
+
+        [Member(Names.DATA)]
+        [Game(Games.Fallout4)]
+        public uint? Data { get; set; }
 
         private ColorAdapter color = null;
         public ColorAdapter Color

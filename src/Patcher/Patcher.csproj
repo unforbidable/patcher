@@ -102,11 +102,13 @@
     <Compile Include="Data\Plugins\Content\FormKindSet.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
+    <Compile Include="Data\Games.cs" />
     <Compile Include="Data\Plugins\Content\IColorFloatAdaptable.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingConditions.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingEffects.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingObjectBounds.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
+    <Compile Include="Data\GameAttribute.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Imgs.cs" />
@@ -124,7 +126,7 @@
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ench.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Expl.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Coll.cs" />
-    <Compile Include="Data\Plugins\Content\Records\Skyrim\Flst.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Flst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Proj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Stat.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Weap.cs" />
@@ -140,7 +142,7 @@
     <Compile Include="Data\Plugins\Content\LocalizedStringAttribute.cs" />
     <Compile Include="Data\Plugins\Content\InitializeAttributes.cs" />
     <Compile Include="Data\Plugins\Content\OrderAttribute.cs" />
-    <Compile Include="Data\Plugins\Content\Records\Skyrim\Gmst.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Gmst.cs" />
     <Compile Include="Data\Plugins\Content\LocalizedStringGroups.cs" />
     <Compile Include="Data\Plugins\Content\RecordWriter.cs" />
     <Compile Include="Data\DataContext.cs" />
@@ -166,8 +168,8 @@
     <Compile Include="Data\Plugins\Content\Names.cs" />
     <Compile Include="Data\Plugins\Content\GenericFormRecord.cs" />
     <Compile Include="Data\Plugins\Content\Metadata.cs" />
-    <Compile Include="Data\Plugins\Content\Records\Skyrim\Glob.cs" />
-    <Compile Include="Data\Plugins\Content\Records\Skyrim\Kywd.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Glob.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Kywd.cs" />
     <Compile Include="Data\Plugins\Form.cs" />
     <Compile Include="Data\Plugins\PluginFlags.cs" />
     <Compile Include="Data\Plugins\FormFlags.cs" />
@@ -176,6 +178,7 @@
     <Compile Include="Data\FormRepository.cs" />
     <Compile Include="Data\Plugins\PluginInspector.cs" />
     <Compile Include="Data\QueryableFormRepository.cs" />
+    <Compile Include="Data\Fallout4DataContext.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="IO\CustomBinaryReader.cs" />
     <Compile Include="IO\CustomBinaryWriter.cs" />
@@ -216,6 +219,10 @@
     <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherAlphaQuadProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherSoundCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherSoundProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\FlstProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\GlobProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\GmstProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\KywdProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\AmmoProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\ImgsProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\MgefProxy.cs" />
