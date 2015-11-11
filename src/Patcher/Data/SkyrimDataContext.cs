@@ -50,16 +50,6 @@ namespace Patcher.Data
             return hiddenFormTypes.Select(t => (FormKind)t).ToArray();
         }
 
-        protected override Assembly GetRecordTypeAssembly()
-        {
-            return typeof(Gmst).Assembly;
-        }
-
-        protected override string GetRecordTypeNamespace()
-        {
-            return typeof(Gmst).Namespace;
-        }
-
         protected override IPluginListProvider GetPluginListProvider()
         {
             // Create plugin list provider that will use this context specific path to plugins.txt
@@ -88,6 +78,11 @@ namespace Patcher.Data
                     EditorId = "PlayerRef"
                 }
             };
+        }
+
+        protected override string GetDefaultLanguage()
+        {
+            return "english";
         }
     }
 }
