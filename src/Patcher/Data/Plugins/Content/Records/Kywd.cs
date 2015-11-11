@@ -49,7 +49,7 @@ namespace Patcher.Data.Plugins.Content.Records
 
         [Member(Names.DATA)]
         [Game(Games.Fallout4)]
-        public uint? Data { get; set; }
+        public uint Data { get; set; }
 
         private ColorAdapter color = null;
         public ColorAdapter Color
