@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Resistances" fullname="Constants.Skyrim.Resistances" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines resistances.
+            </summary>
+  <field name="DamageResist" gametitle="Skyrim">
+    <summary>
+            Represents normal damage resistance.
+            </summary>
+  </field>
+  <field name="DiseaseResist" gametitle="Skyrim">
+    <summary>
+            Represents disease resistance.
+            </summary>
+  </field>
+  <field name="FireResist" gametitle="Skyrim">
+    <summary>
+            Represents fire resistance.
+            </summary>
+  </field>
+  <field name="FrostResist" gametitle="Skyrim">
+    <summary>
+            Represents frost resistance.
+            </summary>
+  </field>
+  <field name="MagicResist" gametitle="Skyrim">
+    <summary>
+            Represents magic resistance.
+            </summary>
+  </field>
+  <field name="None" gametitle="Skyrim">
+    <summary>
+            Represents no resistance.
+            </summary>
+  </field>
+  <field name="PoisonResist" gametitle="Skyrim">
+    <summary>
+            Represents poison resistance.
+            </summary>
+  </field>
+  <field name="ShockResist" gametitle="Skyrim">
+    <summary>
+            Represents shock resistance.
+            </summary>
+  </field>
+</type>

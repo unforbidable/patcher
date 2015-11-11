@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<index>
+  <category name="Constants">
+    <type name="Types" fullname="Constants.Types" category="Constants" gametitle="">
+      <summary>
+            Defines types that may be used in several contexts, e.g. when declaring <b>Script</b> properties and when specifying the type of a <b>Global Variable</b>.
+            </summary>
+    </type>
+  </category>
+  <category name="Fields">
+    <type name="Color" fullname="Fields.Color" category="Fields" gametitle="">
+      <summary>
+            Represents a color definition.
+            </summary>
+    </type>
+  </category>
+  <category name="Forms">
+    <type name="Form" fullname="Forms.Form" category="Forms" gametitle="">
+      <summary>
+            Represents a form the type of which is either unknown, unsupported or unresolved.
+            To convert an unknown form to a specific form use the appropriate extension method.
+            Properties and methods provided by this class are available to all forms.
+            </summary>
+    </type>
+    <type name="FormCollection" fullname="Forms.FormCollection" category="Forms" gametitle="">
+      <summary>
+            Represents a collection of forms.
+            A collection may contain mixed form types or only forms of a specific type.
+            To filter and convert a mixed collection to a specific form collection use the appropriate extension method. 
+            </summary>
+    </type>
+  </category>
+  <category name="Forms (Fallout4)">
+    <type name="Aoru" fullname="Forms.Fallout4.Aoru" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents an <b>Activation Rule</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Flst" fullname="Forms.Fallout4.Flst" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Form List</b> form.
+            </summary>
+    </type>
+    <type name="Glob" fullname="Forms.Fallout4.Glob" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Global Variable</b> form.
+            </summary>
+    </type>
+    <type name="Gmst" fullname="Forms.Fallout4.Gmst" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Game Setting</b> form.
+            </summary>
+    </type>
+    <type name="Kywd" fullname="Forms.Fallout4.Kywd" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Keyword</b> form.
+            </summary>
+    </type>
+  </category>
+  <category name="Helpers">
+    <type name="Debug" fullname="Helpers.Debug" category="Helpers" gametitle="">
+      <summary>
+            Provides methods that may assist during development and troubleshooting.
+            </summary>
+    </type>
+    <type name="Forms" fullname="Helpers.Forms" category="Helpers" gametitle="">
+      <summary>
+            Provides methods that can be used to look up and retrieve any available forms.
+            </summary>
+    </type>
+    <type name="Math" fullname="Helpers.Math" category="Helpers" gametitle="">
+      <summary>
+            Provides useful mathematical functions.
+            </summary>
+    </type>
+  </category>
+</index>

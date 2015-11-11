@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Form" fullname="Forms.Form" category="Forms" gametitle="">
+  <summary>
+            Represents a form the type of which is either unknown, unsupported or unresolved.
+            To convert an unknown form to a specific form use the appropriate extension method.
+            Properties and methods provided by this class are available to all forms.
+            </summary>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+  <method name="AsAlch" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Alch" /> AsAlch()</signature>
+    <summary>
+            Converts this form to a <b>Potion</b> form or returns <c>null</c> if this form is not a <b>Potion</b> form.
+            </summary>
+  </method>
+  <method name="AsAmmo" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ammo" /> AsAmmo()</signature>
+    <summary>
+            Converts this form to an <b>Ammo</b> form or returns <c>null</c> if this form is not an <b>Ammo</b> form.
+            </summary>
+  </method>
+  <method name="AsArmo" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Armo" /> AsArmo()</signature>
+    <summary>
+            Converts this form to an <b>Armor</b> form or returns <c>null</c> if this form is not an <b>Armor</b> form.
+            </summary>
+  </method>
+  <method name="AsCobj" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Cobj" /> AsCobj()</signature>
+    <summary>
+            Converts this form to a <b>Constructible Object</b> form or returns <c>null</c> if this form is not a <b>Constructible Object</b> form.
+            </summary>
+  </method>
+  <method name="AsColl" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Coll" /> AsColl()</signature>
+    <summary>
+            Converts this form to a <b>Collision Layer</b> form or returns <c>null</c> if this form is not a <b>Collision Layer</b> form.
+            </summary>
+  </method>
+  <method name="AsEnch" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ench" /> AsEnch()</signature>
+    <summary>
+            Converts this form to an <b>Enchantment</b> form or returns <c>null</c> if this form is not an <b>Enchantment</b> form.
+            </summary>
+  </method>
+  <method name="AsEqup" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Equp" /> AsEqup()</signature>
+    <summary>
+            Converts this form to an <b>Equipment Type</b> form or returns <c>null</c> if this form is not an <b>Equipment Type</b> form.
+            </summary>
+  </method>
+  <method name="AsExpl" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Expl" /> AsExpl()</signature>
+    <summary>
+            Converts this form to an <b>Explosion</b> form or returns <c>null</c> if this form is not an <b>Explosion</b> form.
+            </summary>
+  </method>
+  <method name="AsFlst" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Flst" /> AsFlst()</signature>
+    <summary>
+            Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b> form.
+            </summary>
+  </method>
+  <method name="AsGlob" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Glob" /> AsGlob()</signature>
+    <summary>
+            Converts this form to a <b>Global Variable</b> form or returns <c>null</c> if this form is not a <b>Global Variable</b> form.
+            </summary>
+  </method>
+  <method name="AsGmst" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Gmst" /> AsGmst()</signature>
+    <summary>
+            Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b> form.
+            </summary>
+  </method>
+  <method name="AsIpds" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ipds" /> AsIpds()</signature>
+    <summary>
+            Converts this form to a <b>Impact Data Set</b> form or returns <c>null</c> if this form is not an <b>Impact Data Set</b> form.
+            </summary>
+  </method>
+  <method name="AsKywd" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Kywd" /> AsKywd()</signature>
+    <summary>
+            Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b> form.
+            </summary>
+  </method>
+  <method name="AsLigh" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ligh" /> AsLigh()</signature>
+    <summary>
+            Converts this form to a <b>Light</b> form or returns <c>null</c> if this form is not a <b>Light</b> form.
+            </summary>
+  </method>
+  <method name="AsMatt" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Matt" /> AsMatt()</signature>
+    <summary>
+            Converts this form to a <b>Material</b> form or returns <c>null</c> if this form is not a <b>Material</b> form.
+            </summary>
+  </method>
+  <method name="AsMgef" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Mgef" /> AsMgef()</signature>
+    <summary>
+            Converts this form to a <b>Magic Effect</b> form or returns <c>null</c> if this form is not a <b>Magic Effect</b> form.
+            </summary>
+  </method>
+  <method name="AsProj" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Proj" /> AsProj()</signature>
+    <summary>
+            Converts this form to a <b>Projectile</b> form or returns <c>null</c> if this form is not a <b>Projectile</b> form.
+            </summary>
+  </method>
+  <method name="AsRace" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Race" /> AsRace()</signature>
+    <summary>
+            Converts this form to a <b>Race</b> form or returns <c>null</c> if this form is not a <b>Race</b> form.
+            </summary>
+  </method>
+  <method name="AsSndr" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> AsSndr()</signature>
+    <summary>
+            Converts this form to a <b>Sound</b> form or returns <c>null</c> if this form is not a <b>Sound</b> form.
+            </summary>
+  </method>
+  <method name="AsSpel" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Spel" /> AsSpel()</signature>
+    <summary>
+            Converts this form to a <b>Spell</b> form or returns <c>null</c> if this form is not a <b>Spell</b> form.
+            </summary>
+  </method>
+  <method name="AsStat" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Stat" /> AsStat()</signature>
+    <summary>
+            Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b> form.
+            </summary>
+  </method>
+  <method name="AsTxst" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Txst" /> AsTxst()</signature>
+    <summary>
+            Converts this form to a <b>Texture Set</b> form or returns <c>null</c> if this form is not a <b>Texture Set</b> form.
+            </summary>
+  </method>
+  <method name="AsWeap" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Weap" /> AsWeap()</signature>
+    <summary>
+            Converts this form to a <b>Weapon</b> form or returns <c>null</c> if this form is not a <b>Weapon</b> form.
+            </summary>
+  </method>
+  <remarks>
+    <p>
+            When a variable refers to an unknown or generic form it means that only the common form properties and methods are available. 
+            In order to access all properties of the form the variable must be cast to the specific form using the appropriate extension method.
+            </p>
+    <p>
+            Unknow or generic forms can be retrieved via the <see cref="Helpers.Forms" /> helper method <code>Forms.Find()</code>
+            or by iterating a mixed <see cref="Forms.FormCollection" /> such as the collection of forms associated with a <b>Form List</b> form.
+            </p>
+    <p>
+            Unsupported forms are forms that have been loaded but the appliaction does not know anything about such form. 
+            Unsupported forms can be assigned to properties of supported forms or added to mixed <see cref="Forms.FormCollection" />.
+            Unsupported forms cannot be converted to a specific form.
+            </p>
+    <p>
+            Unresolved forms are threaded the same way unsupported forms are treated, except that their Editor ID is always <c>null</c>.
+            Unresolved forms come about from references to forms that do not exist due to an error in a plugin, 
+            or because the tool deliberately skipped these forms while loading plugin.
+            Saving plugin that reference unresolved forms will produce a warning, but will work as intended as long as the form really exists.
+            </p>
+  </remarks>
+</type>

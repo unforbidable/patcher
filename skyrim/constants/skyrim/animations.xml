@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Animations" fullname="Constants.Skyrim.Animations" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines types of animations.
+            </summary>
+  <field name="Attack3" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="Attack4" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="Attack5" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="Attack6" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="Attack7" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="Attack8" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="AttackLeft" gametitle="Skyrim">
+    <summary>
+            Represents weapon attack animation.
+            </summary>
+  </field>
+  <field name="AttackLoop" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="AttackRight" gametitle="Skyrim">
+    <summary>
+            Represents a weapon attack animation.
+            </summary>
+  </field>
+  <field name="AttackSpin" gametitle="Skyrim">
+    <summary>
+            Represents a weapon looped attack animation.
+            </summary>
+  </field>
+  <field name="AttackSpin2" gametitle="Skyrim">
+    <summary>
+            Represents a weapon spin attack animation.
+            </summary>
+  </field>
+  <field name="AttackThrow" gametitle="Skyrim">
+    <summary>
+            Represents a mine placement animation.
+            </summary>
+  </field>
+  <field name="AttackThrow2" gametitle="Skyrim">
+    <summary>
+            Represents a thrown weapon attack animation.
+            </summary>
+  </field>
+  <field name="AttackThrow3" gametitle="Skyrim">
+    <summary>
+            Represents a thrown weapon attack animation.
+            </summary>
+  </field>
+  <field name="AttackThrow4" gametitle="Skyrim">
+    <summary>
+            Represents a thrown weapon attack animation.
+            </summary>
+  </field>
+  <field name="AttackThrow5" gametitle="Skyrim">
+    <summary>
+            Represents a thrown weapon attack animation.
+            </summary>
+  </field>
+  <field name="Default" gametitle="Skyrim">
+    <summary>
+            Represents the default animation for the given object.
+            </summary>
+  </field>
+  <field name="PlaceMine" gametitle="Skyrim">
+    <summary>
+            Represents a weapon spin attack animation.
+            </summary>
+  </field>
+  <field name="PlaceMine2" gametitle="Skyrim">
+    <summary>
+            Represents a mine placement animation.
+            </summary>
+  </field>
+</type>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Engine" fullname="Helpers.Skyrim.Engine" category="Helpers (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Provides methods that allow new objects be created.
+            </summary>
+  <method name="CreateEffect" extension="false" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.Effect" /> CreateEffect(<see cref="Forms.Skyrim.Mgef" />,<c>float</c>,<c>int</c>,<c>int</c>)</signature>
+    <summary>
+            Creates a new <see cref="Fields.Skyrim.Effect" /> based on a <b>Magic Effect</b> with given magnitude, area and duration, which can be added to an <see cref="Fields.Skyrim.EffectCollection" />.
+            </summary>
+  </method>
+  <method name="CreateMaterial" extension="false" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.Material" /> CreateMaterial(<see cref="Forms.Form" />,<c>int</c>)</signature>
+    <summary>
+            Creates a new <see cref="Fields.Skyrim.Material" /> with the specified item and the specified count.
+            </summary>
+  </method>
+  <method name="CreateScript" extension="false" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.Script" /> CreateScript(<c>string</c>)</signature>
+    <summary>
+            Creates a new <see cref="Fields.Skyrim.Script" /> with the specified script name.
+            </summary>
+  </method>
+</type>

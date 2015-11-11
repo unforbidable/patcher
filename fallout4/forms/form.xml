@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Form" fullname="Forms.Form" category="Forms" gametitle="">
+  <summary>
+            Represents a form the type of which is either unknown, unsupported or unresolved.
+            To convert an unknown form to a specific form use the appropriate extension method.
+            Properties and methods provided by this class are available to all forms.
+            </summary>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+  <method name="AsAoru" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Aoru" /> AsAoru()</signature>
+    <summary>
+            Converts this form to a <b>Activation Rule</b> form or returns <c>null</c> if this form is not a <b>Activation Rule</b> form.
+            </summary>
+  </method>
+  <method name="AsFlst" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Flst" /> AsFlst()</signature>
+    <summary>
+            Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b> form.
+            </summary>
+  </method>
+  <method name="AsGlob" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Glob" /> AsGlob()</signature>
+    <summary>
+            Converts this form to a <b>Global Variable</b> form or returns <c>null</c> if this form is not a <b>Global Variable</b> form.
+            </summary>
+  </method>
+  <method name="AsGmst" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Gmst" /> AsGmst()</signature>
+    <summary>
+            Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b> form.
+            </summary>
+  </method>
+  <method name="AsKywd" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Kywd" /> AsKywd()</signature>
+    <summary>
+            Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b> form.
+            </summary>
+  </method>
+  <remarks>
+    <p>
+            When a variable refers to an unknown or generic form it means that only the common form properties and methods are available. 
+            In order to access all properties of the form the variable must be cast to the specific form using the appropriate extension method.
+            </p>
+    <p>
+            Unknow or generic forms can be retrieved via the <see cref="Helpers.Forms" /> helper method <code>Forms.Find()</code>
+            or by iterating a mixed <see cref="Forms.FormCollection" /> such as the collection of forms associated with a <b>Form List</b> form.
+            </p>
+    <p>
+            Unsupported forms are forms that have been loaded but the appliaction does not know anything about such form. 
+            Unsupported forms can be assigned to properties of supported forms or added to mixed <see cref="Forms.FormCollection" />.
+            Unsupported forms cannot be converted to a specific form.
+            </p>
+    <p>
+            Unresolved forms are threaded the same way unsupported forms are treated, except that their Editor ID is always <c>null</c>.
+            Unresolved forms come about from references to forms that do not exist due to an error in a plugin, 
+            or because the tool deliberately skipped these forms while loading plugin.
+            Saving plugin that reference unresolved forms will produce a warning, but will work as intended as long as the form really exists.
+            </p>
+  </remarks>
+</type>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines skills.
+            </summary>
+  <field name="Alchemy" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Alchemy</b> skill.
+            </summary>
+  </field>
+  <field name="Alteration" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Alteration</b> skill.
+            </summary>
+  </field>
+  <field name="Archery" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Marksman</b> skill.
+            </summary>
+  </field>
+  <field name="Block" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Block</b> skill.
+            </summary>
+  </field>
+  <field name="Conjuration" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Conjuration</b> skill.
+            </summary>
+  </field>
+  <field name="Destruction" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Destruction</b> skill.
+            </summary>
+  </field>
+  <field name="Enchanting" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Enchanting</b> skill.
+            </summary>
+  </field>
+  <field name="HeavyArmor" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Heavy armor</b> skill.
+            </summary>
+  </field>
+  <field name="Illusion" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Illusion</b> skill.
+            </summary>
+  </field>
+  <field name="LightArmor" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Light armor</b> skill.
+            </summary>
+  </field>
+  <field name="Lockpicking" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Lockpicking</b> skill.
+            </summary>
+  </field>
+  <field name="None" gametitle="Skyrim">
+    <summary>
+            Represents no skill.
+            </summary>
+  </field>
+  <field name="OneHanded" gametitle="Skyrim">
+    <summary>
+            Represents the <b>One-handed weapon</b> skill.
+            </summary>
+  </field>
+  <field name="Pickpocket" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Pickpocket</b> skill.
+            </summary>
+  </field>
+  <field name="Restoration" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Restoration</b> skill.
+            </summary>
+  </field>
+  <field name="Smithing" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Smithing</b> skill.
+            </summary>
+  </field>
+  <field name="Sneak" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Sneak</b> skill.
+            </summary>
+  </field>
+  <field name="Speechcraft" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Speechcraft</b> skill.
+            </summary>
+  </field>
+  <field name="TwoHanded" gametitle="Skyrim">
+    <summary>
+            Represents the <b>Two-handed weapon</b> skill.
+            </summary>
+  </field>
+</type>

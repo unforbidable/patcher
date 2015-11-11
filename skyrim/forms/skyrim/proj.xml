@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Proj" fullname="Forms.Skyrim.Proj" category="Forms (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a <b>Projectile</b> form.
+            </summary>
+  <property name="CanBeDisabled" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> CanBeDisabled</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> can be disabled.
+            </summary>
+  </property>
+  <property name="CanBePickedUp" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> CanBePickedUp</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> can be picked up.
+            </summary>
+  </property>
+  <property name="CanPassThroughSmallTransparent" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> CanPassThroughSmallTransparent</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> can pass through small transparent objects.
+            </summary>
+  </property>
+  <property name="CollisionLayer" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Coll" /> CollisionLayer</signature>
+    <summary>
+            Gets or sets the <b>Collision Layer</b> of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="CollisionRadius" gametitle="Skyrim">
+    <signature>
+      <c>float</c> CollisionRadius</signature>
+    <summary>
+            Gets or sets the collision radius of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="ConeSpread" gametitle="Skyrim">
+    <signature>
+      <c>float</c> ConeSpread</signature>
+    <summary>
+            Gets or sets the spread of the effective cone caused by this <b>Projectile</b>. 
+            </summary>
+  </property>
+  <property name="DecalData" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Txst" /> DecalData</signature>
+    <summary>
+            Gets or sets the decal <b>Texture</b> of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="DefaultWeaponSource" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Weap" /> DefaultWeaponSource</signature>
+    <summary>
+            Gets or sets the default weapon source of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="DisableSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> DisableSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> which is played when this <b>Projectile</b> is disabled.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="ExplodesOnImpact" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> ExplodesOnImpact</signature>
+    <summary>
+            Gets or sets the value that indicates whether the explosion caused by this <b>Projectile</b> is triggered on the impact.
+            </summary>
+  </property>
+  <property name="Explosion" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Expl" /> Explosion</signature>
+    <summary>
+            Gets or sets the <b>Explosion</b> caused by this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="ExplosionCountdownSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> ExplosionCountdownSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> of the countdown timer that triggers the explosion of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="ExplosionProximity" gametitle="Skyrim">
+    <signature>
+      <c>float</c> ExplosionProximity</signature>
+    <summary>
+            Gets or sets the proximity which triggers the explosion of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="ExplosionTimer" gametitle="Skyrim">
+    <signature>
+      <c>float</c> ExplosionTimer</signature>
+    <summary>
+            Gets or sets the timer which triggers the explosion of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="FadeDuration" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FadeDuration</signature>
+    <summary>
+            Gets or sets the beam fade duration of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="FullName" gametitle="Skyrim">
+    <signature>
+      <c>string</c> FullName</signature>
+    <summary>
+            Gets or sets the in-game name of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="Gravity" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Gravity</signature>
+    <summary>
+            Gets or sets the gravitation pull applied on this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="HasMuzzleFlash" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> HasMuzzleFlash</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> causes a muzzle flash.
+            </summary>
+  </property>
+  <property name="ImpactForce" gametitle="Skyrim">
+    <signature>
+      <c>float</c> ImpactForce</signature>
+    <summary>
+            Gets or sets the force caused by the impact of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="IsAutoAimEnabled" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsAutoAimEnabled</signature>
+    <summary>
+            Gets or sets the value that indicates whether the auto-aim is enabled for this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="IsExplosive" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsExplosive</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> is explosive.
+            </summary>
+  </property>
+  <property name="IsHitScanEnabled" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsHitScanEnabled</signature>
+    <summary>
+            Gets or sets the value that indicates whether the hit scan is enabled for this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="IsSupersonic" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsSupersonic</signature>
+    <summary>
+            Gets or sets the value that indicates whether the sound of this <b>Projectile</b> 
+            enamates from point on the trajectory that is the closest to the player character (<c>true</c>) or 
+            follows the <b>Projectile</b> until it is destroyed (<c>false</c>).
+            </summary>
+  </property>
+  <property name="Lifetime" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Lifetime</signature>
+    <summary>
+            Gets or sets the lifetime of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="Light" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ligh" /> Light</signature>
+    <summary>
+            Gets or sets the <b>Light</b> caused by this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="MuzzleFlashDuration" gametitle="Skyrim">
+    <signature>
+      <c>float</c> MuzzleFlashDuration</signature>
+    <summary>
+            Gets or sets the duration of the muzzle flash caused by this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="MuzzleFlashLight" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ligh" /> MuzzleFlashLight</signature>
+    <summary>
+            Gets or sets the muzzle flash <b>Light</b> caused by this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="MuzzleFlashModel" gametitle="Skyrim">
+    <signature>
+      <c>string</c> MuzzleFlashModel</signature>
+    <summary>
+            Gets or sets the path to the model (.nif file) of the muzzle flash caused by this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="ObjectBounds" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.ObjectBounds" /> ObjectBounds</signature>
+    <summary>
+            Gets or sets the <see cref="Fields.Skyrim.ObjectBounds" /> of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="PinsLimbsOnCritical" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> PinsLimbsOnCritical</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Projectile</b> pins limbs when critical effect is triggered.
+            </summary>
+  </property>
+  <property name="Range" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Range</signature>
+    <summary>
+            Gets or sets the maximum range this <b>Projectile</b> can travel.
+            </summary>
+  </property>
+  <property name="RelaunchInterval" gametitle="Skyrim">
+    <signature>
+      <c>float</c> RelaunchInterval</signature>
+    <summary>
+            Gets or sets the interval at which this <b>Projectile</b> can be launched again.
+            </summary>
+  </property>
+  <property name="Sound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> Sound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> caused by this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="SoundLevel" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.SoundLevels" /> SoundLevel</signature>
+    <summary>
+            Gets or sets the sound level of this <b>Projectile</b> in regards to detection.
+            </summary>
+  </property>
+  <property name="Speed" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Speed</signature>
+    <summary>
+            Gets or sets the travel speed of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="TracerChance" gametitle="Skyrim">
+    <signature>
+      <c>float</c> TracerChance</signature>
+    <summary>
+            Gets or sets the chance a tracer will be drawn for this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="Type" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.ProjectileTypes" /> Type</signature>
+    <summary>
+            Gets or sets the type of this <b>Projectile</b>.
+            </summary>
+  </property>
+  <property name="WorldModel" gametitle="Skyrim">
+    <signature>
+      <c>string</c> WorldModel</signature>
+    <summary>
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Projectile</b>.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+</type>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines <b>Potion</b> types.
+            </summary>
+  <field name="Food" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Potion</b> is food or a drink.
+            </summary>
+  </field>
+  <field name="Medicine" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Potion</b> is a medicine.
+            </summary>
+  </field>
+  <field name="None" gametitle="Skyrim">
+    <summary>
+            Allows the game engine to assume the type of the <b>Potion</b> based on its effects.
+            </summary>
+  </field>
+  <field name="Poison" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Potion</b> is a posion.
+            </summary>
+  </field>
+</type>

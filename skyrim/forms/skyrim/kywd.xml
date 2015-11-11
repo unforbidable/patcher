@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a <b>Keyword</b> form.
+            </summary>
+  <property name="Color" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Color" /> Color</signature>
+    <summary>
+            Gets or sets the color of this <b>Keyword</b>.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+</type>

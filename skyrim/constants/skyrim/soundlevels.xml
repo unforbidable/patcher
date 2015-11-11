@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="SoundLevels" fullname="Constants.Skyrim.SoundLevels" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines the sound levels in regard to detection.
+            </summary>
+  <field name="Loud" gametitle="Skyrim">
+    <summary>
+            Represents <b>Loud</b> sound level.
+            </summary>
+  </field>
+  <field name="Normal" gametitle="Skyrim">
+    <summary>
+            Represents <b>Normal</b> sound level.
+            </summary>
+  </field>
+  <field name="Silent" gametitle="Skyrim">
+    <summary>
+            Represents <b>Silent</b> sound level.
+            </summary>
+  </field>
+  <field name="VeryLoud" gametitle="Skyrim">
+    <summary>
+            Represents <b>Very Loud</b> sound level.
+            </summary>
+  </field>
+</type>

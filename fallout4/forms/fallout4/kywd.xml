@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Kywd" fullname="Forms.Fallout4.Kywd" category="Forms (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Represents a <b>Keyword</b> form.
+            </summary>
+  <property name="ActivationRule" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Aoru" /> ActivationRule</signature>
+    <summary>
+            Gets or sets the furniture activation rule.
+            </summary>
+  </property>
+  <property name="Color" gametitle="Fallout4">
+    <signature>
+      <see cref="Fields.Color" /> Color</signature>
+    <summary>
+            Gets or sets the color of this <b>Keyword</b>.
+            </summary>
+  </property>
+  <property name="Description" gametitle="Fallout4">
+    <signature>
+      <c>string</c> Description</signature>
+    <summary>
+            Gets or sets the description.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="FullName" gametitle="Fallout4">
+    <signature>
+      <c>string</c> FullName</signature>
+    <summary>
+            Gets or sets the full in-game name (only used by some keywords).
+            </summary>
+  </property>
+  <property name="ShortName" gametitle="Fallout4">
+    <signature>
+      <c>string</c> ShortName</signature>
+    <summary>
+            Gets or sets the short name (only used by some keywords).
+            </summary>
+  </property>
+  <property name="UnknownNumber" gametitle="Fallout4">
+    <signature>
+      <c>int</c> UnknownNumber</signature>
+    <summary>
+            Gets or sets an unknown number.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+  <remarks>
+            The meaning of property <code>UnknownNumber</code> is unknown so use it with caution. 
+            The property will be removed and replaced with the proper property as soon as more information is available.
+            </remarks>
+</type>

@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Wthr" fullname="Forms.Skyrim.Wthr" category="Forms (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a <b>Weather</b> form.
+            </summary>
+  <property name="AmbientColorsX1" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> AmbientColorsX1</signature>
+    <summary>
+            Gets the colors of the ambient light in the negative X-axis direction.
+            </summary>
+  </property>
+  <property name="AmbientColorsX2" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> AmbientColorsX2</signature>
+    <summary>
+            Gets the colors of the ambient light in the positive X-axis direction.
+            </summary>
+  </property>
+  <property name="AmbientColorsY1" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> AmbientColorsY1</signature>
+    <summary>
+            Gets the colors of the ambient light in the negative Y-axis direction.
+            </summary>
+  </property>
+  <property name="AmbientColorsY2" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> AmbientColorsY2</signature>
+    <summary>
+            Gets the colors of the ambient light in the positive Y-axis direction.
+            </summary>
+  </property>
+  <property name="AmbientColorsZ1" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> AmbientColorsZ1</signature>
+    <summary>
+            Gets the colors of the ambient light in the negative Z-axis direction.
+            </summary>
+  </property>
+  <property name="AmbientColorsZ2" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> AmbientColorsZ2</signature>
+    <summary>
+            Gets the colors of the ambient light in the positive Z-axis direction.
+            </summary>
+  </property>
+  <property name="AuroraFollowsSun" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> AuroraFollowsSun</signature>
+    <summary>
+            Gets or sets the value which determines whether the aurora follows the sun.
+            </summary>
+  </property>
+  <property name="CloudLayers" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.Skyrim.WeatherCloudLayer" />&gt; CloudLayers</signature>
+    <summary>
+            Retreives an enumerable collection of all cloud layers which can be iterated using a <code>foreach</code> construct.
+            </summary>
+  </property>
+  <property name="Colors" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.Skyrim.WeatherColorQuad" />&gt; Colors</signature>
+    <summary>
+            Retreives an enumerable collection of colors of all components which can be iterated using a <code>foreach</code> construct.
+            </summary>
+  </property>
+  <property name="DayImageSpace" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Imgs" /> DayImageSpace</signature>
+    <summary>
+            Gets or sets the <b>Image Space</b> used during the day.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="EffectsAlwaysVisible" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> EffectsAlwaysVisible</signature>
+    <summary>
+            Gets or sets the value which determines whether the <b>Weather</b> effects are always visible.
+            </summary>
+  </property>
+  <property name="FogDayFar" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogDayFar</signature>
+    <summary>
+            Gets or sets the far fog distance during the day.
+            </summary>
+  </property>
+  <property name="FogDayMax" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogDayMax</signature>
+    <summary>
+            Gets or sets the maximum fog distance during the night.
+            </summary>
+  </property>
+  <property name="FogDayNear" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogDayNear</signature>
+    <summary>
+            Gets or sets the near fog distance during the day.
+            </summary>
+  </property>
+  <property name="FogDayPow" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogDayPow</signature>
+    <summary>
+            Gets or sets the power of fog distance during the day.
+            </summary>
+  </property>
+  <property name="FogNightFar" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogNightFar</signature>
+    <summary>
+            Gets or sets the far fog distance during the night.
+            </summary>
+  </property>
+  <property name="FogNightMax" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogNightMax</signature>
+    <summary>
+            Gets or sets the maximum fog distance during the night.
+            </summary>
+  </property>
+  <property name="FogNightNear" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogNightNear</signature>
+    <summary>
+            Gets or sets the near fog distance during the night.
+            </summary>
+  </property>
+  <property name="FogNightPow" gametitle="Skyrim">
+    <signature>
+      <c>float</c> FogNightPow</signature>
+    <summary>
+            Gets or sets the power of fog distance during the night.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="FresnelPowers" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherFresnelQuad" /> FresnelPowers</signature>
+    <summary>
+            Gets the Fresnel powers.
+            </summary>
+  </property>
+  <property name="IsCloudy" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsCloudy</signature>
+    <summary>
+            Gets or sets the value which determines whether this weather is cloudy.
+            </summary>
+  </property>
+  <property name="IsPleasant" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsPleasant</signature>
+    <summary>
+            Gets or sets the value which determines whether this weather is pleasant.
+            </summary>
+  </property>
+  <property name="IsRainy" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsRainy</signature>
+    <summary>
+            Gets or sets the value which determines whether this weather is rainy.
+            </summary>
+  </property>
+  <property name="IsSnowy" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsSnowy</signature>
+    <summary>
+            Gets or sets the value which determines whether this weather is snowy.
+            </summary>
+  </property>
+  <property name="LightningColor" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Color" /> LightningColor</signature>
+    <summary>
+            Gets or sets the color of the lightning during this <b>Weather</b>.
+            </summary>
+  </property>
+  <property name="NightImageSpace" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Imgs" /> NightImageSpace</signature>
+    <summary>
+            Gets or sets the <b>Image Space</b> used during the night.
+            </summary>
+  </property>
+  <property name="PrecipitationBeginFadeIn" gametitle="Skyrim">
+    <signature>
+      <c>float</c> PrecipitationBeginFadeIn</signature>
+    <summary>
+            Gets or sets the point of transition into this <b>Weather</b> when the precipitation begins.
+            </summary>
+  </property>
+  <property name="PrecipitationEndFadeOut" gametitle="Skyrim">
+    <signature>
+      <c>float</c> PrecipitationEndFadeOut</signature>
+    <summary>
+            Gets or sets the point of transition from this <b>Weather</b> when the precipitation ends.
+            </summary>
+  </property>
+  <property name="PrecipitationParticle" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Spgd" /> PrecipitationParticle</signature>
+    <summary>
+            Gets or sets the <b>Shader Particle Geometry</b> used to render rain or snow.
+            </summary>
+  </property>
+  <property name="SkyStatics" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Stat" />&gt; SkyStatics</signature>
+    <summary>
+            Gets or sets the collection of <b>Static</b> objects which make up the sky dome of this <b>Weather</b>.
+            </summary>
+  </property>
+  <property name="Sounds" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherSoundCollection" /> Sounds</signature>
+    <summary>
+            Gets or sets the collection of sounds associated with this <b>Weather</b>.
+            </summary>
+  </property>
+  <property name="SpecularColors" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> SpecularColors</signature>
+    <summary>
+            Gets the specular lighting colors.
+            </summary>
+  </property>
+  <property name="SunDamage" gametitle="Skyrim">
+    <signature>
+      <c>float</c> SunDamage</signature>
+    <summary>
+            Gets or sets the multiplier of the damage caused by the sun to vampires.
+            </summary>
+  </property>
+  <property name="SunGlare" gametitle="Skyrim">
+    <signature>
+      <c>float</c> SunGlare</signature>
+    <summary>
+            Gets or sets the sun glare intensity for this <b>Weather</b>.
+            </summary>
+  </property>
+  <property name="SunriseImageSpace" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Imgs" /> SunriseImageSpace</signature>
+    <summary>
+            Gets or sets the <b>Image Space</b> used during the sunrise.
+            </summary>
+  </property>
+  <property name="SunsetImageSpace" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Imgs" /> SunsetImageSpace</signature>
+    <summary>
+            Gets or sets the <b>Image Space</b> used during the sunset.
+            </summary>
+  </property>
+  <property name="ThunderBeginFadeIn" gametitle="Skyrim">
+    <signature>
+      <c>float</c> ThunderBeginFadeIn</signature>
+    <summary>
+            Gets or sets the point of transition into this <b>Weather</b> when the lightnings begins.
+            </summary>
+  </property>
+  <property name="ThunderEndFadeOut" gametitle="Skyrim">
+    <signature>
+      <c>float</c> ThunderEndFadeOut</signature>
+    <summary>
+            Gets or sets the point of transition from this <b>Weather</b> when the lightnings ends.
+            </summary>
+  </property>
+  <property name="ThunderFrequency" gametitle="Skyrim">
+    <signature>
+      <c>float</c> ThunderFrequency</signature>
+    <summary>
+            Gets or sets the frequency of lightnings. The lesser value the more often lightnings occur.
+            </summary>
+  </property>
+  <property name="TransDelta" gametitle="Skyrim">
+    <signature>
+      <c>float</c> TransDelta</signature>
+    <summary>
+            Gets or sets the transition delta of this <b>Weather</b>.
+            </summary>
+  </property>
+  <property name="VisualEffect" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Rfct" /> VisualEffect</signature>
+    <summary>
+            Gets or sets the <b>Visual Effect</b> for this <b>Weather</b>.
+            </summary>
+  </property>
+  <property name="WindDirection" gametitle="Skyrim">
+    <signature>
+      <c>float</c> WindDirection</signature>
+    <summary>
+            Gets or sets the angle that specified the wind direction.
+            </summary>
+  </property>
+  <property name="WindDirectionRange" gametitle="Skyrim">
+    <signature>
+      <c>float</c> WindDirectionRange</signature>
+    <summary>
+            Gets or sets the angle that specifies the allowed deviation of wind direction.
+            </summary>
+  </property>
+  <property name="WindSpeed" gametitle="Skyrim">
+    <signature>
+      <c>float</c> WindSpeed</signature>
+    <summary>
+            Gets or sets the speed of wind for this <b>Weather</b>.
+            </summary>
+  </property>
+  <method name="GetCloudLayer" extension="false" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherCloudLayer" /> GetCloudLayer(<c>int</c>)</signature>
+    <summary>
+            Retrieves the specified cloud layer (0-28).
+            </summary>
+  </method>
+  <method name="GetColors" extension="false" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.WeatherColorQuad" /> GetColors(<c>int</c>)</signature>
+    <summary>
+            Retrieves the colors which define thespecified component of this <b>Weather</b> (0-16).
+            </summary>
+  </method>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+</type>

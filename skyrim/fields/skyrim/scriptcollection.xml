@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="ScriptCollection" fullname="Fields.Skyrim.ScriptCollection" category="Fields (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Script">Scripts</see> attached to an object.
+            </summary>
+  <property name="Count" gametitle="Skyrim">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>
+            Gets the number of <see cref="Fields.Skyrim.Script">Scripts</see> in this collection.
+            </summary>
+  </property>
+  <property name="Item" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.Script" />
+      <c>this</c>[<c>string</c>]</signature>
+    <summary>
+            Gets the <see cref="Fields.Skyrim.Script" /> which has the specified name from this collection or returns <c>null</c> if no such script could be found.
+            </summary>
+  </property>
+  <method name="Add" extension="false" gametitle="Skyrim">
+    <signature>
+      <c>void</c> Add(<see cref="Fields.Skyrim.Script" />)</signature>
+    <summary>
+            Adds an existing <see cref="Fields.Skyrim.Script" /> to this collection.
+            </summary>
+  </method>
+  <method name="Add" extension="false" gametitle="Skyrim">
+    <signature>
+      <c>void</c> Add(<c>string</c>)</signature>
+    <summary>
+            Adds a new <see cref="Fields.Skyrim.Script" /> with specified name to this collection.
+            </summary>
+  </method>
+  <method name="Clear" extension="false" gametitle="Skyrim">
+    <signature>
+      <c>void</c> Clear()</signature>
+    <summary>
+            Removes all <see cref="Fields.Skyrim.Script">Scripts</see> from this collection.
+            </summary>
+  </method>
+  <method name="Contains" extension="false" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> Contains(<c>string</c>)</signature>
+    <summary>
+            Determines whether a <see cref="Fields.Skyrim.Script" /> with specified name exists in this collection.
+            </summary>
+  </method>
+  <method name="Remove" extension="false" gametitle="Skyrim">
+    <signature>
+      <c>void</c> Remove(<c>string</c>)</signature>
+    <summary>
+            Removes the <see cref="Fields.Skyrim.Script" /> with the specified name from this collection.
+            </summary>
+  </method>
+  <remarks>
+    <p>
+            A script cannot appear twice in a single script collection.
+            </p>
+    <p>
+            Property <code>this[string]</code> represents an <code>indexer</code> that can be used to retrieve a <see cref="Fields.Skyrim.Script" /> with a specific name. 
+            </p>
+  </remarks>
+</type>

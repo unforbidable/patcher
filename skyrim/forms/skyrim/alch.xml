@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Alch" fullname="Forms.Skyrim.Alch" category="Forms (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a <b>Potion</b> form.
+            </summary>
+  <property name="Description" gametitle="Skyrim">
+    <signature>
+      <c>string</c> Description</signature>
+    <summary>
+            Gets or sets the description of this <b>Potion</b> that will override the enchantment description if provided.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="Effects" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.EffectCollection" /> Effects</signature>
+    <summary>
+            Gets or sets the <see cref="Fields.Skyrim.EffectCollection" /> contaning <see cref="Fields.Skyrim.Effect">Effects</see> of this <b>Potion</b>.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="FullName" gametitle="Skyrim">
+    <signature>
+      <c>string</c> FullName</signature>
+    <summary>
+            Gets or sets the in-game name of this <b>Potion</b>.
+            </summary>
+  </property>
+  <property name="Keywords" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Kywd" />&gt; Keywords</signature>
+    <summary>
+            Gets or sets the <see cref="Forms.FormCollection" /> containing <b>Keywords</b> associated with this <b>Potion</b>.
+            </summary>
+  </property>
+  <property name="ObjectBounds" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.ObjectBounds" /> ObjectBounds</signature>
+    <summary>
+            Gets or sets the <see cref="Fields.Skyrim.ObjectBounds" /> of this <b>Potion</b>.
+            </summary>
+  </property>
+  <property name="PickUpSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> PickUpSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is picked up.
+            </summary>
+  </property>
+  <property name="PutDownSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> PutDownSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is put down.
+            </summary>
+  </property>
+  <property name="Type" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.PotionTypes" /> Type</signature>
+    <summary>
+            Gets or sets the type of this <b>Potion</b>.
+            </summary>
+  </property>
+  <property name="UseSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> UseSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Potion</b> is used.
+            </summary>
+  </property>
+  <property name="Value" gametitle="Skyrim">
+    <signature>
+      <c>int</c> Value</signature>
+    <summary>
+            Gets or sets the value of this <b>Potion</b>.
+            </summary>
+  </property>
+  <property name="Weight" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Weight</signature>
+    <summary>
+            Gets or sets the weight of this <b>Potion</b>.
+            </summary>
+  </property>
+  <property name="WorldModel" gametitle="Skyrim">
+    <signature>
+      <c>string</c> WorldModel</signature>
+    <summary>
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Potion</b>.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+  <remarks>
+    <b>Potion</b> forms include drinks and food as well.
+            </remarks>
+</type>

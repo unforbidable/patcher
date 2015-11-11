@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherSoundTypes" fullname="Constants.Skyrim.WeatherSoundTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines the types of weather sounds.
+            </summary>
+  <field name="Default" gametitle="Skyrim">
+    <summary>
+            Represents the default weather sound.
+            </summary>
+  </field>
+  <field name="Precipitation" gametitle="Skyrim">
+    <summary>
+            Represents the sound of the rain.
+            </summary>
+  </field>
+  <field name="Thunder" gametitle="Skyrim">
+    <summary>
+            Represents the sound of a thunder.
+            </summary>
+  </field>
+  <field name="Wind" gametitle="Skyrim">
+    <summary>
+            Represents the sound of the wind.
+            </summary>
+  </field>
+</type>

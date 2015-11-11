@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Weap" fullname="Forms.Skyrim.Weap" category="Forms (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents a <b>Weapon</b> form.
+            </summary>
+  <property name="AlternateBlockMaterial" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Matt" /> AlternateBlockMaterial</signature>
+    <summary>
+            Gets or sets the alternate <b>Material</b> used when bashing or blocking with this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="AttackAnimation" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.Animations" /> AttackAnimation</signature>
+    <summary>
+            Gets or sets the attack animation of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="AttackAnimationMultiplier" gametitle="Skyrim">
+    <signature>
+      <c>float</c> AttackAnimationMultiplier</signature>
+    <summary>
+            Gets or sets the increase or decrease of the speed of the attack animations used by this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="AttackFailSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> AttackFailSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> misses or runs out of ammo.
+            </summary>
+  </property>
+  <property name="AttackLoopSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> AttackLoopSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> loop that plays when this <b>Weapon</b> is used.
+            </summary>
+  </property>
+  <property name="AttackSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> AttackSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is used.
+            </summary>
+  </property>
+  <property name="BlockImpactDataSet" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ipds" /> BlockImpactDataSet</signature>
+    <summary>
+            Gets or sets the <b>Impact Data Set</b> used when bashing or blocking with this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="CanCauseDismemberment" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> CanCauseDismemberment</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Weapon</b> can cause a limb dismemberment.
+            </summary>
+  </property>
+  <property name="CanCauseLimbExplosion" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> CanCauseLimbExplosion</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Weapon</b> can cause a limb to explode.
+            </summary>
+  </property>
+  <property name="CanDrop" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> CanDrop</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Weapon</b> can be put down.
+            </summary>
+  </property>
+  <property name="CanUseInNormalCombat" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> CanUseInNormalCombat</signature>
+    <summary>
+            Gets or sets the value that indicates whether NPCs can use this <b>Weapon</b> during normal combat.
+            </summary>
+  </property>
+  <property name="CriticalDamage" gametitle="Skyrim">
+    <signature>
+      <c>int</c> CriticalDamage</signature>
+    <summary>
+            Gets or sets the additional damage caused by this <b>Weapon</b> on a critical hit.
+            </summary>
+  </property>
+  <property name="CriticalEffect" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Spel" /> CriticalEffect</signature>
+    <summary>
+            Gets or sets the critical effect e.i. <b>Spell</b> caused by this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="CriticalChanceMultiplier" gametitle="Skyrim">
+    <signature>
+      <c>float</c> CriticalChanceMultiplier</signature>
+    <summary>
+            Gets or sets the critical chance multiplier of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Damage" gametitle="Skyrim">
+    <signature>
+      <c>int</c> Damage</signature>
+    <summary>
+            Gets or sets the damage caused by this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Description" gametitle="Skyrim">
+    <signature>
+      <c>string</c> Description</signature>
+    <summary>
+            Gets or sets the description of this <b>Weapon</b> that will override the enchantment description if provided.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="Enchantment" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ench" /> Enchantment</signature>
+    <summary>
+            Gets or sets the <b>Enchantment</b> of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="EnchantmentCharge" gametitle="Skyrim">
+    <signature>
+      <c>int</c> EnchantmentCharge</signature>
+    <summary>
+            Gets or sets the charge of the enchantment of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="EquipSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> EquipSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is equipped.
+            </summary>
+  </property>
+  <property name="EquipType" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Equp" /> EquipType</signature>
+    <summary>
+            Gets or sets the <b>Equip Type</b> of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="FirstPersonAttackSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> FirstPersonAttackSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is used in first person.
+            </summary>
+  </property>
+  <property name="FirstPersonModel" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Stat" /> FirstPersonModel</signature>
+    <summary>
+            Gets or sets the <b>Static</b> object that will be shown when this <b>Weapon</b> is used in first person.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="FullName" gametitle="Skyrim">
+    <signature>
+      <c>string</c> FullName</signature>
+    <summary>
+            Gets or sets the in-game name of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="IdleSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> IdleSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is idle.
+            </summary>
+  </property>
+  <property name="ImpactDataSet" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Ipds" /> ImpactDataSet</signature>
+    <summary>
+            Gets or sets the <b>Impact Data Set</b> used when attacking with this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="InventoryImage" gametitle="Skyrim">
+    <signature>
+      <c>string</c> InventoryImage</signature>
+    <summary>
+            Gets or sets the path to the inventory image (.dds file) that will be used for this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="IsAmmoUsed" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsAmmoUsed</signature>
+    <summary>
+            Gets or sets the value that indicates whether NPCs need ammo while using this <b>Weapon</b> (bows only).
+            </summary>
+  </property>
+  <property name="IsBackpackHidden" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsBackpackHidden</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Weapon</b> is hidden when sheathed.
+            </summary>
+  </property>
+  <property name="IsBoundWeapon" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsBoundWeapon</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Weapon</b> has been conjured.
+            </summary>
+  </property>
+  <property name="IsCriticalEffectTriggeredOnDeath" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsCriticalEffectTriggeredOnDeath</signature>
+    <summary>
+            Gets or sets the value that indicates whether the critical effect of this <b>Weapon</b> is always applied on death.
+            </summary>
+  </property>
+  <property name="IsMinorCrime" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsMinorCrime</signature>
+    <summary>
+            Gets or sets the value that indicates whether attacking someone with this <b>Weapon</b> is considered a minor crime only (i.e. not an assault).
+            </summary>
+  </property>
+  <property name="IsNonHostile" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsNonHostile</signature>
+    <summary>
+            Gets or sets the value that indicates whether attacking someone with this <b>Weapon</b> does not cause the target become hostile.
+            </summary>
+  </property>
+  <property name="IsPlayable" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsPlayable</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Weapon</b> can be used by the player character.
+            </summary>
+  </property>
+  <property name="IsPlayerOnly" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsPlayerOnly</signature>
+    <summary>
+            Gets or sets the value that indicates whether this <b>Weapon</b> can be used and picked up by the player character only.
+            </summary>
+  </property>
+  <property name="IsRangeFixed" gametitle="Skyrim">
+    <signature>
+      <c>bool</c> IsRangeFixed</signature>
+    <summary>
+            Gets or sets the value that indicates whether the AI is to ignore combat style multipliers for this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Keywords" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Kywd" />&gt; Keywords</signature>
+    <summary>
+            Gets or sets the <see cref="Forms.FormCollection" /> containing <b>Keywords</b> associated with this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="MaxRange" gametitle="Skyrim">
+    <signature>
+      <c>float</c> MaxRange</signature>
+    <summary>
+            Gets or sets the maximal effective range of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="MessageIcon" gametitle="Skyrim">
+    <signature>
+      <c>string</c> MessageIcon</signature>
+    <summary>
+            Gets or sets the path to the message icon (.dds file) that will be used for this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="MinRange" gametitle="Skyrim">
+    <signature>
+      <c>float</c> MinRange</signature>
+    <summary>
+            Gets or sets the minimal effective range of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="NumberOfProjectiles" gametitle="Skyrim">
+    <signature>
+      <c>int</c> NumberOfProjectiles</signature>
+    <summary>
+            Gets or sets the number of projectiles launched when a single <b>Ammo</b> object is fired with this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="ObjectBounds" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.ObjectBounds" /> ObjectBounds</signature>
+    <summary>
+            Gets or sets the <see cref="Fields.Skyrim.ObjectBounds" /> of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="PickUpSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> PickUpSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is picked up.
+            </summary>
+  </property>
+  <property name="PutDownSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> PutDownSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is put down.
+            </summary>
+  </property>
+  <property name="Reach" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Reach</signature>
+    <summary>
+            Gets or sets the reach of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Resistence" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.Resistances" /> Resistence</signature>
+    <summary>
+            Gets or sets the kind of resistence that can resist the damage caused by this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Scripts" gametitle="Skyrim">
+    <signature>
+      <see cref="Fields.Skyrim.ScriptCollection" /> Scripts</signature>
+    <summary>
+            Gets or sets the <see cref="Fields.Skyrim.ScriptCollection" /> containing <see cref="Fields.Skyrim.Script">Scripts</see> attached to this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Skill" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.Skills" /> Skill</signature>
+    <summary>
+            Gets or sets the <see cref="Constants.Skyrim.Skills">Skill</see> that will be used when this <b>Weapon</b> is wielded.
+            </summary>
+  </property>
+  <property name="SoundLevel" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.SoundLevels" /> SoundLevel</signature>
+    <summary>
+            Gets or sets the sound level of this <b>Weapon</b> in regards to detection.
+            </summary>
+  </property>
+  <property name="Speed" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Speed</signature>
+    <summary>
+            Gets or sets the speed of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Stagger" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Stagger</signature>
+    <summary>
+            Gets or sets the amount of stagger applied on a hit by this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="TemplateWeapon" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Weap" /> TemplateWeapon</signature>
+    <summary>
+            Gets or sets the <b>Weapon</b> that will be used as the template.
+            </summary>
+  </property>
+  <property name="Type" gametitle="Skyrim">
+    <signature>
+      <see cref="Constants.Skyrim.WeaponTypes" /> Type</signature>
+    <summary>
+            Gets or sets the type of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="UnequipSound" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Sndr" /> UnequipSound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> that plays when this <b>Weapon</b> is unequipped.
+            </summary>
+  </property>
+  <property name="Value" gametitle="Skyrim">
+    <signature>
+      <c>int</c> Value</signature>
+    <summary>
+            Gets or sets the value of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="Weight" gametitle="Skyrim">
+    <signature>
+      <c>float</c> Weight</signature>
+    <summary>
+            Gets or sets the weight of this <b>Weapon</b>.
+            </summary>
+  </property>
+  <property name="WorldModel" gametitle="Skyrim">
+    <signature>
+      <c>string</c> WorldModel</signature>
+    <summary>
+            Gets or sets the path to the world model (.nif file) that will be used for this <b>Weapon</b>.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+</type>

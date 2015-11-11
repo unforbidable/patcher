@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<index>
+  <category name="Constants">
+    <type name="Types" fullname="Constants.Types" category="Constants" gametitle="">
+      <summary>
+            Defines types that may be used in several contexts, e.g. when declaring <b>Script</b> properties and when specifying the type of a <b>Global Variable</b>.
+            </summary>
+    </type>
+  </category>
+  <category name="Constants (Skyrim)">
+    <type name="Animations" fullname="Constants.Skyrim.Animations" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines types of animations.
+            </summary>
+    </type>
+    <type name="BodyNodes" fullname="Constants.Skyrim.BodyNodes" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines body nodes.
+            </summary>
+    </type>
+    <type name="PotionTypes" fullname="Constants.Skyrim.PotionTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines <b>Potion</b> types.
+            </summary>
+    </type>
+    <type name="ProjectileTypes" fullname="Constants.Skyrim.ProjectileTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines <b>Projectile</b> types.
+            </summary>
+    </type>
+    <type name="Resistances" fullname="Constants.Skyrim.Resistances" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines resistances.
+            </summary>
+    </type>
+    <type name="Skills" fullname="Constants.Skyrim.Skills" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines skills.
+            </summary>
+    </type>
+    <type name="SoundLevels" fullname="Constants.Skyrim.SoundLevels" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines the sound levels in regard to detection.
+            </summary>
+    </type>
+    <type name="WeaponTypes" fullname="Constants.Skyrim.WeaponTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines <b>Weapon</b> types.
+            </summary>
+    </type>
+    <type name="WeatherSoundTypes" fullname="Constants.Skyrim.WeatherSoundTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Defines the types of weather sounds.
+            </summary>
+    </type>
+  </category>
+  <category name="Fields">
+    <type name="Color" fullname="Fields.Color" category="Fields" gametitle="">
+      <summary>
+            Represents a color definition.
+            </summary>
+    </type>
+  </category>
+  <category name="Fields (Skyrim)">
+    <type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a function with parameters, operand, operator used to compare the result of the function with the specified operand 
+            and information on which object the function will be run.
+            </summary>
+    </type>
+    <type name="ConditionCollection" fullname="Fields.Skyrim.ConditionCollection" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Condition">Conditions</see>.
+            </summary>
+    </type>
+    <type name="Effect" fullname="Fields.Skyrim.Effect" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a custom effect based on a <b>Magic Effect</b>.
+            </summary>
+    </type>
+    <type name="EffectCollection" fullname="Fields.Skyrim.EffectCollection" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Effect">Effects</see> that can be used to specify effects of items such as <b>Potions</b> or <b>Scrolls</b>.
+            </summary>
+    </type>
+    <type name="Material" fullname="Fields.Skyrim.Material" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a material used by a <b>Constructible Object</b> form.
+            </summary>
+    </type>
+    <type name="MaterialCollection" fullname="Fields.Skyrim.MaterialCollection" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Material">Materials</see>.
+            </summary>
+    </type>
+    <type name="ObjectBounds" fullname="Fields.Skyrim.ObjectBounds" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Specifies the dimensions of an object.
+            </summary>
+    </type>
+    <type name="Script" fullname="Fields.Skyrim.Script" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a Papyrus script with parameters.
+            </summary>
+    </type>
+    <type name="ScriptCollection" fullname="Fields.Skyrim.ScriptCollection" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a collection of <see cref="Fields.Skyrim.Script">Scripts</see> attached to an object.
+            </summary>
+    </type>
+    <type name="WeatherAlphaQuad" fullname="Fields.Skyrim.WeatherAlphaQuad" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a set of alpha channel for each of the four parts of the day: sunrise, day, sunset and night.
+            </summary>
+    </type>
+    <type name="WeatherCloudLayer" fullname="Fields.Skyrim.WeatherCloudLayer" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents one of the 32 layers of clouds.
+            </summary>
+    </type>
+    <type name="WeatherColorQuad" fullname="Fields.Skyrim.WeatherColorQuad" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a set of weather colors for each of the four parts of the day: sunrise, day, sunset and night.
+            </summary>
+    </type>
+    <type name="WeatherFresnelQuad" fullname="Fields.Skyrim.WeatherFresnelQuad" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a set of weather fresnel power for each of the four parts of the day: sunrise, day, sunset and night.
+            </summary>
+    </type>
+    <type name="WeatherSound" fullname="Fields.Skyrim.WeatherSound" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a weather sound of certain type.
+            </summary>
+    </type>
+    <type name="WeatherSoundCollection" fullname="Fields.Skyrim.WeatherSoundCollection" category="Fields (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a collection of <see cref="Fields.Skyrim.WeatherSound">WeatherSounds</see>.
+            </summary>
+    </type>
+  </category>
+  <category name="Forms">
+    <type name="Form" fullname="Forms.Form" category="Forms" gametitle="">
+      <summary>
+            Represents a form the type of which is either unknown, unsupported or unresolved.
+            To convert an unknown form to a specific form use the appropriate extension method.
+            Properties and methods provided by this class are available to all forms.
+            </summary>
+    </type>
+    <type name="FormCollection" fullname="Forms.FormCollection" category="Forms" gametitle="">
+      <summary>
+            Represents a collection of forms.
+            A collection may contain mixed form types or only forms of a specific type.
+            To filter and convert a mixed collection to a specific form collection use the appropriate extension method. 
+            </summary>
+    </type>
+  </category>
+  <category name="Forms (Skyrim)">
+    <type name="Alch" fullname="Forms.Skyrim.Alch" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Potion</b> form.
+            </summary>
+    </type>
+    <type name="Ammo" fullname="Forms.Skyrim.Ammo" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Ammo</b> form.
+            </summary>
+    </type>
+    <type name="Armo" fullname="Forms.Skyrim.Armo" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Armor</b> form.
+            </summary>
+    </type>
+    <type name="Cobj" fullname="Forms.Skyrim.Cobj" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Constructible Object</b> form.
+            </summary>
+    </type>
+    <type name="Coll" fullname="Forms.Skyrim.Coll" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Collision Layer</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Ench" fullname="Forms.Skyrim.Ench" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Enchantment</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Equp" fullname="Forms.Skyrim.Equp" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents am <b>Equip Type</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Expl" fullname="Forms.Skyrim.Expl" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Explosion</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Flst" fullname="Forms.Skyrim.Flst" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Form List</b> form.
+            </summary>
+    </type>
+    <type name="Glob" fullname="Forms.Skyrim.Glob" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Global Variable</b> form.
+            </summary>
+    </type>
+    <type name="Gmst" fullname="Forms.Skyrim.Gmst" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Game Setting</b> form.
+            </summary>
+    </type>
+    <type name="Imgs" fullname="Forms.Skyrim.Imgs" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Image Space</b> form.
+            </summary>
+    </type>
+    <type name="Ipds" fullname="Forms.Skyrim.Ipds" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Impact Data Set</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Kywd" fullname="Forms.Skyrim.Kywd" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Keyword</b> form.
+            </summary>
+    </type>
+    <type name="Ligh" fullname="Forms.Skyrim.Ligh" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Light</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Matt" fullname="Forms.Skyrim.Matt" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Material</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Mgef" fullname="Forms.Skyrim.Mgef" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Magic Effect</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Proj" fullname="Forms.Skyrim.Proj" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Projectile</b> form.
+            </summary>
+    </type>
+    <type name="Race" fullname="Forms.Skyrim.Race" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Race</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Rfct" fullname="Forms.Skyrim.Rfct" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Visual Effect</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Sndr" fullname="Forms.Skyrim.Sndr" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Spel" fullname="Forms.Skyrim.Spel" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Spell</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Spgd" fullname="Forms.Skyrim.Spgd" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Shader Particle Geometry</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Stat" fullname="Forms.Skyrim.Stat" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Static</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Txst" fullname="Forms.Skyrim.Txst" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Texture Set</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Weap" fullname="Forms.Skyrim.Weap" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Weapon</b> form.
+            </summary>
+    </type>
+    <type name="Wthr" fullname="Forms.Skyrim.Wthr" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents a <b>Weather</b> form.
+            </summary>
+    </type>
+  </category>
+  <category name="Helpers">
+    <type name="Debug" fullname="Helpers.Debug" category="Helpers" gametitle="">
+      <summary>
+            Provides methods that may assist during development and troubleshooting.
+            </summary>
+    </type>
+    <type name="Forms" fullname="Helpers.Forms" category="Helpers" gametitle="">
+      <summary>
+            Provides methods that can be used to look up and retrieve any available forms.
+            </summary>
+    </type>
+    <type name="Math" fullname="Helpers.Math" category="Helpers" gametitle="">
+      <summary>
+            Provides useful mathematical functions.
+            </summary>
+    </type>
+  </category>
+  <category name="Helpers (Skyrim)">
+    <type name="Engine" fullname="Helpers.Skyrim.Engine" category="Helpers (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Provides methods that allow new objects be created.
+            </summary>
+    </type>
+    <type name="Functions" fullname="Helpers.Skyrim.Functions" category="Helpers (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Provides methods that can be used to create new <see cref="Fields.Skyrim.Condition" /> based on Papyrus functions. 
+            <see cref="Fields.Skyrim.Condition">Conditions</see> created with these methods can be added to a <see cref="Fields.Skyrim.ConditionCollection" />.
+            </summary>
+    </type>
+  </category>
+</index>

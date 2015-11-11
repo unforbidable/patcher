@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Types" fullname="Constants.Types" category="Constants" gametitle="">
+  <summary>
+            Defines types that may be used in several contexts, e.g. when declaring <b>Script</b> properties and when specifying the type of a <b>Global Variable</b>.
+            </summary>
+  <field name="ArrayOfBool" gametitle="">
+    <summary>
+            Represents a sequence of boolean values, i.e. <c>true</c> or <c>false</c>.
+            </summary>
+  </field>
+  <field name="ArrayOfFloat" gametitle="">
+    <summary>
+            Represents a sequence of floating point numbers.
+            </summary>
+  </field>
+  <field name="ArrayOfInt" gametitle="">
+    <summary>
+            Represents a sequence of integer numbers.
+            </summary>
+  </field>
+  <field name="ArrayOfObject" gametitle="">
+    <summary>
+            Represents a sequence of arbitrary objects the specific kind of which depends on the context.
+            </summary>
+  </field>
+  <field name="ArrayOfShort" gametitle="">
+    <summary>
+            Represents an array of short integer numbers.
+            </summary>
+  </field>
+  <field name="ArrayOfString" gametitle="">
+    <summary>
+            Represents a sequence of strings of characters, i.e. a sequence of texts.
+            </summary>
+  </field>
+  <field name="Bool" gametitle="">
+    <summary>
+            Represents a boolean value, i.e, <c>true</c> or <c>false</c>.
+            </summary>
+  </field>
+  <field name="Float" gametitle="">
+    <summary>
+            Represents a floating point number.
+            </summary>
+  </field>
+  <field name="Int" gametitle="">
+    <summary>
+            Represents an integer number.
+            </summary>
+  </field>
+  <field name="None" gametitle="">
+    <summary>
+            Indicates that the type is undefined.
+            </summary>
+  </field>
+  <field name="Object" gametitle="">
+    <summary>
+            Represents an arbitrary object the specific kind of which depends on the context.
+            </summary>
+  </field>
+  <field name="Short" gametitle="">
+    <summary>
+            Represents a short integer number.
+            </summary>
+  </field>
+  <field name="String" gametitle="">
+    <summary>
+            Represents a string of characters, i.e. a text.
+            </summary>
+  </field>
+  <field name="UnsignedInt" gametitle="">
+    <summary>
+            Represents an unsigned integer number.
+            </summary>
+  </field>
+</type>

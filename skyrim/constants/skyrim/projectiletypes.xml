@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="ProjectileTypes" fullname="Constants.Skyrim.ProjectileTypes" category="Constants (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Defines <b>Projectile</b> types.
+            </summary>
+  <field name="Arrow" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Projectile</b> is an arrow.
+            </summary>
+  </field>
+  <field name="Barrier" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Projectile</b> is a barrier.
+            </summary>
+  </field>
+  <field name="Beam" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Projectile</b> is a beam.
+            </summary>
+  </field>
+  <field name="Cone" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Projectile</b> has the form of a cone.
+            </summary>
+  </field>
+  <field name="Flame" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Projectile</b> is a flame.
+            </summary>
+  </field>
+  <field name="Lobber" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Projectile</b> is a thrown object with a high arc.
+            </summary>
+  </field>
+  <field name="Missile" gametitle="Skyrim">
+    <summary>
+            Indicates the <b>Projectile</b> is a missile going in a straigt line.
+            </summary>
+  </field>
+</type>
