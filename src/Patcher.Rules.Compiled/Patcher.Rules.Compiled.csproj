@@ -70,6 +70,7 @@
     <Compile Include="Fields\Skyrim\IWeatherAlphaQuad.cs" />
     <Compile Include="Fields\Skyrim\IWeatherColorQuad.cs" />
     <Compile Include="Fields\Skyrim\IWeatherSound.cs" />
+    <Compile Include="Forms\Fallout4\IAoru.cs" />
     <Compile Include="Forms\Fallout4\IFlst.cs" />
     <Compile Include="Forms\Fallout4\IGlob.cs" />
     <Compile Include="Forms\Fallout4\IGmst.cs" />

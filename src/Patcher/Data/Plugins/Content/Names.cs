@@ -31,6 +31,7 @@ namespace Patcher.Data.Plugins.Content
         public const string ACTI = "ACTI";
         public const string ALCH = "ALCH";
         public const string AMMO = "AMMO";
+        public const string AORU = "AORU";
         public const string ARMA = "ARMA";
         public const string ARMO = "ARMO";
         public const string ASPC = "ASPC";

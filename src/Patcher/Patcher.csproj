@@ -109,6 +109,7 @@
     <Compile Include="Data\Plugins\Content\IFeaturingObjectBounds.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\GameAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Fallout4\Aoru.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Imgs.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherAlphaQuadProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherSoundCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\WeatherSoundProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\AoruProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\FlstProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\GlobProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\GmstProxy.cs" />
@@ -333,7 +335,6 @@
   <ItemGroup>
     <Folder Include="Data\Plugins\Content\Constants\Fallout4\" />
     <Folder Include="Data\Plugins\Content\Fields\Fallout4\" />
-    <Folder Include="Data\Plugins\Content\Records\Fallout4\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Patcher.Rules.Compiled\Patcher.Rules.Compiled.csproj">
