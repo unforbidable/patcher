@@ -55,6 +55,7 @@
     <Compile Include="Constants\Skyrim\WeaponTypes.cs" />
     <Compile Include="Constants\Skyrim\WeatherSoundType.cs" />
     <Compile Include="Constants\Types.cs" />
+    <Compile Include="Extensions\Fallout4\SkyrimExtensions.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
     <Compile Include="Fields\IColor.cs" />
     <Compile Include="Fields\Skyrim\ICondition.cs" />
