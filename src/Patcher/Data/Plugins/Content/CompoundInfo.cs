@@ -73,7 +73,7 @@ namespace Patcher.Data.Plugins.Content
 
         public void Copy(object from, object to)
         {
-            foreach (var meminfo in members.Values.Distinct())
+            foreach (var meminfo in members.Values.Distinct().OrderBy(m => m.Order))
             {
                 object value = meminfo.CopyValue(from);
                 if (meminfo.IsListType)
