@@ -1,0 +1,15 @@
+<rules>
+	<rule>
+		<name>Dump</name>
+		<from>GLOB</from>
+		<where>
+			Source.EditorId.StartsWith("XP")
+		</where>
+		<update>
+			// Increase cost of XP rewards
+			Target.Value *= 2;
+			Debug.Message("Original value: " + Source.Value);
+			Debug.Message("New value: " + Target.Value);
+		</update>
+	</rule>
+</rules>

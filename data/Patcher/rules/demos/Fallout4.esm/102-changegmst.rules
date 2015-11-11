@@ -1,0 +1,13 @@
+<rules>
+	<rule>
+		<name>Change fCombatSneak* setting</name>
+		<from>GMST</from>
+		<where>Source.EditorId.StartsWith("fCombatSneak")
+			</where>
+		<update>
+			Target.Value += 5;
+			Debug.Message("Original value: " + Source.Value);
+			Debug.Message("New value: " + Target.Value);
+		</update>
+	</rule>
+</rules>
