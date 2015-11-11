@@ -24,6 +24,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.STAT)]
+    [Game(Games.Skyrim)]
     public sealed class Stat : GenericFormRecord
     {
         [Member(Names.OBND)]

@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.ARMO)]
+    [Game(Games.Skyrim)]
     public sealed class Armo : GenericFormRecord, IFeaturingScripts, IFeaturingObjectBounds
     {
         [Member(Names.VMAD)]

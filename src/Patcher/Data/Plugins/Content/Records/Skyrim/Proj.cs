@@ -24,6 +24,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.PROJ)]
+    [Game(Games.Skyrim)]
     public sealed class Proj : GenericFormRecord, IFeaturingObjectBounds
     {
         [Member(Names.OBND)]

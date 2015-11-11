@@ -24,6 +24,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.WEAP)]
+    [Game(Games.Skyrim)]
     public sealed class Weap : GenericFormRecord, IFeaturingObjectBounds, IFeaturingScripts
     {
         [Member(Names.VMAD)]

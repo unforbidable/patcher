@@ -25,6 +25,7 @@ using System.Text;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.WTHR)]
+    [Game(Games.Skyrim)]
     public sealed class Wthr : GenericFormRecord
     {
         [Member(".0TX")]

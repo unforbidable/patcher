@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
     [Record(Names.ALCH)]
+    [Game(Games.Skyrim)]
     public sealed class Alch : GenericFormRecord, IFeaturingObjectBounds, IFeaturingEffects
     {
         [Member(Names.OBND)]
