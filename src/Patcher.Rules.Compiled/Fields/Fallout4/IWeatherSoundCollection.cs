@@ -15,7 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Rules.Compiled.Constants.Fallout4;
-using Patcher.Rules.Compiled.Forms;
+using Patcher.Rules.Compiled.Forms.Fallout4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace Patcher.Rules.Compiled.Fields.Fallout4
         /// </summary>
         /// <param name="sound">Sound form.</param>
         /// <param name="type">Weather type.</param>
-        void Add(IForm sound, WeatherSoundTypes type);
+        void Add(ISndr sound, WeatherSoundTypes type);
 
         /// <summary>
         /// Adds an existing <see cref="IWeatherSound">WeatherSound</see> to this collection.
