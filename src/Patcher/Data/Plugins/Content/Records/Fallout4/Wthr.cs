@@ -135,7 +135,6 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
                     }
-                    Log.Warning("Atypical color data:" + reader.CurrentRecord);
                 }
                 else
                 {
