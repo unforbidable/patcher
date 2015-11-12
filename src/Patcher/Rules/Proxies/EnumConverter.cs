@@ -36,114 +36,7 @@ namespace Patcher.Rules.Proxies
             return ConvertByName<Types>(value);
         }
 
-        public static Skills ToSkill(this ArmorSkillUsage value)
-        {
-            return ConvertByName<Skills>(value);
-        }
-
-        public static ArmorSkillUsage ToArmorSkillUsage(this Skills value)
-        {
-            return ConvertByName<ArmorSkillUsage>(value);
-        }
-
-        public static ActorValue ToActorValue(this Skills value)
-        {
-            return ConvertByName<ActorValue>(value);
-        }
-
-        public static Skills ToSkill(this ActorValue value)
-        {
-            return ConvertByName<Skills>(value);
-        }
-
-        public static ActorValue ToActorValue(this Resistances value)
-        {
-            return ConvertByName<ActorValue>(value);
-        }
-
-        public static Resistances ToResistance(this ActorValue value)
-        {
-            return ConvertByName<Resistances>(value);
-        }
-
-        public static BodyNodes ToBodyNodes(this BodyParts value)
-        {
-            // Body node and body part are 1:1
-            return (BodyNodes)value;
-        }
-
-        public static BodyParts ToBodyParts(this BodyNodes value)
-        {
-            // Body node and body part are 1:1
-            return (BodyParts)value;
-        }
-
-        public static WeaponType ToType(this WeaponTypes value)
-        {
-            return ConvertByName<WeaponType>(value);
-        }
-
-        public static WeaponTypes ToTypes(this WeaponType value)
-        {
-            return ConvertByName<WeaponTypes>(value);
-        }
-
-        public static ScriptPropertyType ToScriptPropertType(this Types value)
-        {
-            return ConvertByName<ScriptPropertyType>(value);
-        }
-
-        public static PotionFlags ToPotionFlags(this PotionTypes value)
-        {
-            return ConvertByName<PotionFlags>(value);
-        }
-
-        public static PotionTypes ToPotionType(this PotionFlags value)
-        {
-            return ConvertByName<PotionTypes>(value);
-        }
-
-        public static ProjectileType ToProjectileType(this ProjectileTypes value)
-        {
-            return ConvertByName<ProjectileType>(value);
-        }
-
-        public static ProjectileTypes ToProjectileTypes(this ProjectileType value)
-        {
-            return ConvertByName<ProjectileTypes>(value);
-        }
-
-        public static SoundLevel ToSoundLevel(this SoundLevels value)
-        {
-            return ConvertByName<SoundLevel>(value);
-        }
-
-        public static SoundLevels ToSoundLevels(this SoundLevel value)
-        {
-            return ConvertByName<SoundLevels>(value);
-        }
-
-        public static AttackAnimation ToAttackAnimation(this Animations value)
-        {
-            return ConvertByName<AttackAnimation>(value);
-        }
-
-        public static Animations ToAnimations(this AttackAnimation value)
-        {
-            return ConvertByName<Animations>(value);
-        }
-
-        public static WeatherSoundType ToWeatherSoundType(this WeatherSoundTypes value)
-        {
-            return ConvertByName<WeatherSoundType>(value);
-        }
-
-        public static WeatherSoundTypes ToWeatherSoundTypes(this WeatherSoundType value)
-        {
-            return ConvertByName<WeatherSoundTypes>(value);
-        }
-
-        private static T ConvertByName<T>(Enum value)
+        internal static T ConvertByName<T>(Enum value)
         {
             // TODO: Possibly cache conversion results or at least names and values
             Type target = typeof(T);
@@ -158,7 +51,7 @@ namespace Patcher.Rules.Proxies
             throw new ArgumentException(value.GetType().Name + "." + value + " is not a valid value in this context.");
         }
 
-        private static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)
+        internal static Enum ConvertUsing(IDictionary<Enum, Enum> map, Enum value)
         {
             if (!map.ContainsKey(value))
                 throw new ArgumentException(value.GetType().Name + "." + value + " is not a valid value in this context.");
