@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Fallout4\WeatherSoundType.cs" />
     <Compile Include="Constants\Skyrim\Animations.cs" />
     <Compile Include="Constants\Skyrim\BodyNodes.cs" />
     <Compile Include="Constants\Skyrim\PotionTypes.cs" />
@@ -57,6 +58,12 @@
     <Compile Include="Constants\Types.cs" />
     <Compile Include="Extensions\Fallout4\SkyrimExtensions.cs" />
     <Compile Include="Extensions\Skyrim\SkyrimExtensions.cs" />
+    <Compile Include="Fields\Fallout4\IWeatherAlphaSet.cs" />
+    <Compile Include="Fields\Fallout4\IWeatherCloudLayer.cs" />
+    <Compile Include="Fields\Fallout4\IWeatherColorSet.cs" />
+    <Compile Include="Fields\Fallout4\IWeatherFresnelSet.cs" />
+    <Compile Include="Fields\Fallout4\IWeatherSound.cs" />
+    <Compile Include="Fields\Fallout4\IWeatherSoundCollection.cs" />
     <Compile Include="Fields\IColor.cs" />
     <Compile Include="Fields\Skyrim\ICondition.cs" />
     <Compile Include="Fields\Skyrim\IConditionCollection.cs" />
@@ -75,7 +82,13 @@
     <Compile Include="Forms\Fallout4\IFlst.cs" />
     <Compile Include="Forms\Fallout4\IGlob.cs" />
     <Compile Include="Forms\Fallout4\IGmst.cs" />
+    <Compile Include="Forms\Fallout4\IImgs.cs" />
     <Compile Include="Forms\Fallout4\IKywd.cs" />
+    <Compile Include="Forms\Fallout4\IRfct.cs" />
+    <Compile Include="Forms\Fallout4\ISndr.cs" />
+    <Compile Include="Forms\Fallout4\ISpgd.cs" />
+    <Compile Include="Forms\Fallout4\IStat.cs" />
+    <Compile Include="Forms\Fallout4\IWthr.cs" />
     <Compile Include="Forms\Skyrim\IAmmo.cs" />
     <Compile Include="Forms\Skyrim\ICobj.cs" />
     <Compile Include="Forms\Skyrim\IColl.cs" />
