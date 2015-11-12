@@ -187,7 +187,7 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// <returns></returns>
         IWeatherCloudLayer GetCloudLayer(int layer);
         /// <summary>
-        /// Retrieves the colors which define thespecified component of this <b>Weather</b> (0-16).
+        /// Retrieves the colors which define thespecified component of this <b>Weather</b> (0-18).
         /// </summary>
         /// <param name="component">The number of the component.</param>
         /// <returns></returns>
