@@ -16,11 +16,15 @@
 
 using Patcher.Data.Plugins.Content;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
+using Patcher.Data.Plugins.Content.Fields.Fallout4;
 using Patcher.Data.Plugins.Content.Records.Skyrim;
+using Patcher.Data.Plugins.Content.Records.Fallout4;
 using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Rules.Compiled.Fields.Fallout4;
 using Patcher.Rules.Compiled.Forms;
 using Patcher.Rules.Proxies.Fields;
 using Patcher.Rules.Proxies.Fields.Skyrim;
+using Patcher.Rules.Proxies.Fields.Fallout4;
 using Patcher.Rules.Proxies.Forms;
 using System;
 using System.Collections.Generic;
@@ -107,9 +111,19 @@ namespace Patcher.Rules.Proxies
         /// </summary>
         /// <param name="proxy"></param>
         /// <returns></returns>
-        public static WeatherSoundItem ToField(this IWeatherSound proxy)
+        public static Data.Plugins.Content.Fields.Skyrim.WeatherSoundItem ToField(this Compiled.Fields.Skyrim.IWeatherSound proxy)
         {
-            return ProxyToField((WeatherSoundProxy)proxy);
+            return ProxyToField((Fields.Skyrim.WeatherSoundProxy)proxy);
+        }
+
+        /// <summary>
+        /// Retreives the Weather Sound field exposed by this proxy, or null if the proxy is null.
+        /// </summary>
+        /// <param name="proxy"></param>
+        /// <returns></returns>
+        public static Data.Plugins.Content.Fields.Fallout4.WeatherSoundItem ToField(this Compiled.Fields.Fallout4.IWeatherSound proxy)
+        {
+            return ProxyToField((Fields.Fallout4.WeatherSoundProxy)proxy);
         }
     }
 }
