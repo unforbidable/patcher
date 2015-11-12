@@ -96,6 +96,7 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\WeatherSoundType.cs" />
     <Compile Include="Data\Plugins\Content\DummyAttribute.cs" />
     <Compile Include="Data\Plugins\Content\DynamicArrayCompound.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\ReferenceArray.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\DestructionData.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\MuzzleFlashModel.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\WeatherSoundItem.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Data\Plugins\Content\IFeaturingScripts.cs" />
     <Compile Include="Data\GameAttribute.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Aoru.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Fallout4\Wthr.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Imgs.cs" />
