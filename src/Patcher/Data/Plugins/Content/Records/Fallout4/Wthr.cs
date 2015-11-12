@@ -108,20 +108,94 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
         private byte[] allLightData = new byte[256];
 
-        bool readOnly = false;
-
         protected override void AfterRead(RecordReader reader)
         {
             // Ensure ComponentColors are full size
             if (Colors.Bytes.Length < 608)
             {
-                readOnly = true;
+                byte[] temp = new byte[608];
+
+                if (Colors.Bytes.Length == 544)
+                {
+                    // Contains extended data, but only 17 components
+                    // Simply copy data at the beginning of the buffer
+                    Colors.Bytes.CopyTo(temp, 0);
+                }
+                else if (Colors.Bytes.Length == 272)
+                {
+                    // Contains old data and only 17 components
+                    //Data should be copied in an interleaved fashion
+                    for (int i = 0; i < Colors.Bytes.Length / 16; i++)
+                    {
+                        Array.Copy(Colors.Bytes, i * 16, temp, i * 32, 16);
+
+                        // Propagate dawn and dusk values to extended data
+                        Array.Copy(temp, i * 32, temp, i * 32 + 16, 4);
+                        Array.Copy(temp, i * 32, temp, i * 32 + 20, 4);
+                        Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
+                        Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unexpected Weather Component Color data size: " + Colors.Bytes.Length);
+                }
+
+                Colors.Bytes = temp;
             }
 
             // Ensure Cloud Colors are full size
             if (CloudColors != null && CloudColors.Bytes.Length < 1024)
             {
-                readOnly = true;
+
+                byte[] temp = new byte[1024];
+                if (CloudColors.Bytes.Length == 512)
+                {
+                    //Data should be copied in an interleaved fashion
+                    for (int i = 0; i < 32; i++)
+                    {
+                        Array.Copy(CloudColors.Bytes, i * 16, temp, i * 32, 16);
+
+                        // Propagate dawn and dusk values to extended data
+                        Array.Copy(temp, i * 32, temp, i * 32 + 16, 4);
+                        Array.Copy(temp, i * 32, temp, i * 32 + 20, 4);
+                        Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
+                        Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unexpected Cloud Color data size: " + CloudColors.Bytes.Length);
+                }
+
+                CloudColors.Bytes = temp;
+            }
+
+            // Ensure Cloud Alphas are full size
+            if (CloudAlphas != null && CloudAlphas.Bytes.Length < 1024)
+            {
+                byte[] temp = new byte[1024];
+
+                if (CloudAlphas.Bytes.Length == 512)
+                {
+                    //Data should be copied in an interleaved fashion
+                    for (int i = 0; i < 32; i++)
+                    {
+                        Array.Copy(CloudAlphas.Bytes, i * 16, temp, i * 32, 16);
+
+                        // Propagate dawn and dusk values to extended data
+                        Array.Copy(temp, i * 32, temp, i * 32 + 16, 4);
+                        Array.Copy(temp, i * 32, temp, i * 32 + 20, 4);
+                        Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
+                        Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
+                    }
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unexpected Cloud Alpha data size: " + CloudAlphas.Bytes.Length);
+                }
+
+                CloudAlphas.Bytes = temp;
             }
 
             // Copy LightData into a single array
@@ -130,17 +204,25 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 for (int i = 0; i < 8; i++)
                     LightDataParts[i].Bytes.CopyTo(allLightData, i * 32);
             }
+            else if (LightDataParts.Capacity == 4)
+            {
+                for (int i = 0; i < 4; i++)
+                    LightDataParts[i].Bytes.CopyTo(allLightData, i * 32);
+
+                // Also copy light data from dawn and dusk to the extended buffer
+                LightDataParts[0].Bytes.CopyTo(allLightData, 4 * 32);
+                LightDataParts[0].Bytes.CopyTo(allLightData, 5 * 32);
+                LightDataParts[2].Bytes.CopyTo(allLightData, 6 * 32);
+                LightDataParts[2].Bytes.CopyTo(allLightData, 7 * 32);
+            }
             else
             {
-                readOnly = true;
+                throw new InvalidOperationException("Unexpected Light Data item count: " + LightDataParts.Count);
             }
         }
 
         protected override void BeforeWrite(RecordWriter writer)
         {
-            if (readOnly)
-                throw new InvalidOperationException("Non-standard form is read only.");
-
             // Copy single array back into LightData
             for (int i = 0; i < 8; i++)
             {
@@ -193,16 +275,32 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             {
                 ImageSpaces = new ReferenceArray();
             }
+            ImageSpaces.SetLength(8);
         }
 
-        public uint DawnImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[0]; } set { EnsureImageSpaceCreated(); ImageSpaces[0] = value; } }
-        public uint DayImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[1]; } set { EnsureImageSpaceCreated(); ImageSpaces[1] = value; } }
-        public uint DuskImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[2]; } set { EnsureImageSpaceCreated(); ImageSpaces[2] = value; } }
-        public uint NightImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[3]; } set { EnsureImageSpaceCreated(); ImageSpaces[3] = value; } }
-        public uint EarlyDawnImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[4]; } set { EnsureImageSpaceCreated(); ImageSpaces[4] = value; } }
-        public uint LateDawnImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[5]; } set { EnsureImageSpaceCreated(); ImageSpaces[5] = value; } }
-        public uint EarlyDuskImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[6]; } set { EnsureImageSpaceCreated(); ImageSpaces[6] = value; } }
-        public uint LateDuskImageSpace { get { return ImageSpaces == null ? 0 : ImageSpaces[7]; } set { EnsureImageSpaceCreated(); ImageSpaces[7] = value; } }
+        private uint GetImageSpace(int index)
+        {
+            if (ImageSpaces == null)
+                return 0;
+
+            EnsureImageSpaceCreated();
+            return ImageSpaces[index];
+        }
+
+        private void SetImageSpace(int index, uint value)
+        {
+            EnsureImageSpaceCreated();
+            ImageSpaces[index] = value;
+        }
+
+        public uint DawnImageSpace { get { return GetImageSpace(0); } set { SetImageSpace(0, value); } }
+        public uint DayImageSpace { get { return GetImageSpace(1); } set { SetImageSpace(1, value); } }
+        public uint DuskImageSpace { get { return GetImageSpace(2); } set { SetImageSpace(2, value); } }
+        public uint NightImageSpace { get { return GetImageSpace(3); } set { SetImageSpace(3, value); } }
+        public uint EarlyDawnImageSpace { get { return GetImageSpace(4); } set { SetImageSpace(4, value); } }
+        public uint LateDawnImageSpace { get { return GetImageSpace(5); } set { SetImageSpace(5, value); } }
+        public uint EarlyDuskImageSpace { get { return GetImageSpace(6); } set { SetImageSpace(6, value); } }
+        public uint LateDuskImageSpace { get { return GetImageSpace(7); } set { SetImageSpace(7, value); } }
 
         ColorAdapter lightningColor = null;
 
@@ -476,10 +574,10 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             public ColorAdapter Day { get; private set; }
             public ColorAdapter Dusk { get; private set; }
             public ColorAdapter Night { get; private set; }
-            public ColorAdapter DawnE { get; private set; }
-            public ColorAdapter DawnL { get; private set; }
-            public ColorAdapter DuskE { get; private set; }
-            public ColorAdapter DuskL { get; private set; }
+            public ColorAdapter EarlyDawn { get; private set; }
+            public ColorAdapter LateDawn { get; private set; }
+            public ColorAdapter EarlyDusk { get; private set; }
+            public ColorAdapter LateDusk { get; private set; }
 
             public ColorOctave(byte[] buffer, int offset)
                 : this(buffer, offset, 4)
@@ -492,10 +590,10 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 Day = new ColorAdapter(buffer, offset + stride);
                 Dusk = new ColorAdapter(buffer, offset + stride * 2);
                 Night = new ColorAdapter(buffer, offset + stride * 3);
-                DawnE = new ColorAdapter(buffer, offset + stride * 4);
-                DawnL = new ColorAdapter(buffer, offset + stride * 5);
-                DuskE = new ColorAdapter(buffer, offset + stride * 6);
-                DuskL = new ColorAdapter(buffer, offset + stride * 7);
+                EarlyDawn = new ColorAdapter(buffer, offset + stride * 4);
+                LateDawn = new ColorAdapter(buffer, offset + stride * 5);
+                EarlyDusk = new ColorAdapter(buffer, offset + stride * 6);
+                LateDusk = new ColorAdapter(buffer, offset + stride * 7);
             }
         }
 
@@ -505,20 +603,20 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             public float Day { get { return GetAlpha(day); } set { SetAlpha(day, value); } }
             public float Dusk { get { return GetAlpha(dusk); } set { SetAlpha(dusk, value); } }
             public float Night { get { return GetAlpha(night); } set { SetAlpha(night, value); } }
-            public float DawnE { get { return GetAlpha(dawnE); } set { SetAlpha(dawnE, value); } }
-            public float DawnL { get { return GetAlpha(dawnL); } set { SetAlpha(dawnL, value); } }
-            public float DuskE { get { return GetAlpha(duskE); } set { SetAlpha(duskE, value); } }
-            public float DuskL { get { return GetAlpha(duskL); } set { SetAlpha(duskL, value); } }
+            public float EarlyDawn { get { return GetAlpha(earlyDawn); } set { SetAlpha(earlyDawn, value); } }
+            public float LateDawn { get { return GetAlpha(lateDawn); } set { SetAlpha(lateDawn, value); } }
+            public float EarlyDusk { get { return GetAlpha(earlyDusk); } set { SetAlpha(earlyDusk, value); } }
+            public float LateDusk { get { return GetAlpha(lateDusk); } set { SetAlpha(lateDusk, value); } }
 
             readonly byte[] buffer;
             readonly int dawn;
             readonly int day;
             readonly int dusk;
             readonly int night;
-            readonly int dawnE;
-            readonly int dawnL;
-            readonly int duskE;
-            readonly int duskL;
+            readonly int earlyDawn;
+            readonly int lateDawn;
+            readonly int earlyDusk;
+            readonly int lateDusk;
 
             public FloatOctave(byte[] buffer, int offset)
                 : this(buffer, offset, 4)
@@ -532,10 +630,10 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 day = offset + stride;
                 dusk = offset + stride * 2;
                 night = offset + stride * 3;
-                dawnE = offset + stride * 4;
-                dawnL = offset + stride * 5;
-                duskE = offset + stride * 6;
-                duskL = offset + stride * 7;
+                earlyDawn = offset + stride * 4;
+                lateDawn = offset + stride * 5;
+                earlyDusk = offset + stride * 6;
+                lateDusk = offset + stride * 7;
             }
 
             private float GetAlpha(int offset)
