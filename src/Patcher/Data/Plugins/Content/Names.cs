@@ -137,6 +137,7 @@ namespace Patcher.Data.Plugins.Content
         public const string FLTV = "FLTV";
         public const string FNAM = "FNAM";
         public const string FULL = "FULL";
+        public const string GNAM = "GNAM";
         public const string HEDR = "HEDR";
         public const string HNAM = "HNAM";
         public const string ICON = "ICON";
@@ -183,6 +184,7 @@ namespace Patcher.Data.Plugins.Content
         public const string UNAM = "UNAM";
         public const string VMAD = "VMAD";
         public const string VNAM = "VNAM";
+        public const string WGDR = "WGDR";
         public const string WNAM = "WNAM";
         public const string XNAM = "XNAM";
         public const string YNAM = "YNAM";
