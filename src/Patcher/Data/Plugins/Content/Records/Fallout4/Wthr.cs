@@ -129,12 +129,13 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                     {
                         Array.Copy(Colors.Bytes, i * 16, temp, i * 32, 16);
 
-                        // Propagate dawn and dusk values to extended data
+                        // Copy dawn and dusk values to extended data
                         Array.Copy(temp, i * 32, temp, i * 32 + 16, 4);
                         Array.Copy(temp, i * 32, temp, i * 32 + 20, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
                     }
+                    Log.Warning("Atypical color data:" + reader.CurrentRecord);
                 }
                 else
                 {
@@ -156,7 +157,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                     {
                         Array.Copy(CloudColors.Bytes, i * 16, temp, i * 32, 16);
 
-                        // Propagate dawn and dusk values to extended data
+                        // Copy dawn and dusk values to extended data
                         Array.Copy(temp, i * 32, temp, i * 32 + 16, 4);
                         Array.Copy(temp, i * 32, temp, i * 32 + 20, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
@@ -183,7 +184,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                     {
                         Array.Copy(CloudAlphas.Bytes, i * 16, temp, i * 32, 16);
 
-                        // Propagate dawn and dusk values to extended data
+                        // Copy dawn and dusk values to extended data
                         Array.Copy(temp, i * 32, temp, i * 32 + 16, 4);
                         Array.Copy(temp, i * 32, temp, i * 32 + 20, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
@@ -252,12 +253,12 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
         public ColorOctave GetColor(int component)
         {
-            return new ColorOctave(Colors.Bytes, component * 16);
+            return new ColorOctave(Colors.Bytes, component * 32);
         }
 
         public IEnumerable<ColorOctave> GetColors()
         {
-            return Enumerable.Range(0, 17).Select(i => GetColor(i));
+            return Enumerable.Range(0, 19).Select(i => GetColor(i));
         }
 
         public ColorOctave GetAmbientColorX2() { return new ColorOctave(allLightData, 0, 32); } 
