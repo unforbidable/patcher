@@ -73,14 +73,42 @@ namespace Patcher.Rules.Proxies.Fields
             }
         }
 
-        void IDumpabled.Dump(string name, ObjectDumper dumper)
+        public void SetValues(float value)
         {
-            dumper.DumpText(name, ToString());
+            adapter.Red = value;
+            adapter.Green = value;
+            adapter.Blue = value;
+        }
+
+        public void MultiplyValues(float value)
+        {
+            adapter.Red *= value;
+            adapter.Green *= value;
+            adapter.Blue *= value;
+        }
+
+        public void SetValues(float red, float green, float blue)
+        {
+            adapter.Red = red;
+            adapter.Green = green;
+            adapter.Blue = blue;
+        }
+
+        public void MultiplyValues(float red, float green, float blue)
+        {
+            adapter.Red *= red;
+            adapter.Green *= green;
+            adapter.Blue *= blue;
         }
 
         public override string ToString()
         {
             return string.Format("({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
+        }
+
+        void IDumpabled.Dump(string name, ObjectDumper dumper)
+        {
+            dumper.DumpText(name, ToString());
         }
     }
 }

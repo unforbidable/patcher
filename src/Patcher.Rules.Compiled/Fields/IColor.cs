@@ -41,5 +41,30 @@ namespace Patcher.Rules.Compiled.Fields
         /// Gets or sets the blue component value.
         /// </summary>
         float Blue { get; set; }
+
+        /// <summary>
+        /// Sets each color component to the specified value.
+        /// </summary>
+        /// <param name="value">Value</param>
+        void SetValues(float value);
+        /// <summary>
+        /// Multiplies each color component with the specified value.
+        /// </summary>
+        /// <param name="value">Multiplier</param>
+        void MultiplyValues(float value);
+        /// <summary>
+        /// Sets each color component to the respetive specified value. 
+        /// </summary>
+        /// <param name="red">Red value</param>
+        /// <param name="green">Green value</param>
+        /// <param name="blue">Blue value</param>
+        void SetValues(float red, float green, float blue);
+        /// <summary>
+        /// Multiplies each color component with the respective specified value.
+        /// </summary>
+        /// <param name="red">Red multiplier.</param>
+        /// <param name="green">Green multiplier</param>
+        /// <param name="blue">Blue multiplier</param>
+        void MultiplyValues(float red, float green, float blue);
     }
 }
