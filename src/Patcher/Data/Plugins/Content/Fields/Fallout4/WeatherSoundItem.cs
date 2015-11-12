@@ -29,13 +29,13 @@ namespace Patcher.Data.Plugins.Content.Fields.Fallout4
 
         internal override void ReadField(RecordReader reader)
         {
-            Sound = reader.ReadReference(FormKindSet.SndrOrSoun);
+            Sound = reader.ReadReference(FormKindSet.SndrOnly);
             Type = (WeatherSoundType)reader.ReadInt32();
         }
 
         internal override void WriteField(RecordWriter writer)
         {
-            writer.WriteReference(Sound, FormKindSet.SndrOrSoun);
+            writer.WriteReference(Sound, FormKindSet.SndrOnly);
             writer.Write((int)Type);
         }
 

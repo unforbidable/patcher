@@ -66,6 +66,8 @@
     <Compile Include="Data\DefaultDataFileProvider.cs" />
     <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
     <Compile Include="Data\Plugins\Content\ColorAdapter.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Fallout4\Model.cs" />
+    <Compile Include="Data\Plugins\Content\Constants\Fallout4\WeatherSoundType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ActorValue.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\Alignment.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ArmorSkillUsage.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\WeatherSoundType.cs" />
     <Compile Include="Data\Plugins\Content\DummyAttribute.cs" />
     <Compile Include="Data\Plugins\Content\DynamicArrayCompound.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Fallout4\WeatherSoundItem.cs" />
     <Compile Include="Data\Plugins\Content\Fields\ReferenceArray.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\DestructionData.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\MuzzleFlashModel.cs" />
@@ -334,10 +337,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Plugins\Content\Constants\Fallout4\" />
-    <Folder Include="Data\Plugins\Content\Fields\Fallout4\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Patcher.Rules.Compiled\Patcher.Rules.Compiled.csproj">
       <Project>{a46bc13d-b396-4433-9888-41a0bcf4f605}</Project>
