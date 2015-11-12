@@ -293,6 +293,14 @@ namespace Patcher.Data.Plugins.Content
                 var listOne = (IList)GetValue(one);
                 var listOther = (IList)GetValue(other);
 
+                // Both null means equal
+                if (listOne == null && listOther == null)
+                    return true;
+
+                // Only one of them null means not equal
+                if (listOne == null || listOther == null)
+                    return false;
+
                 // Different lengths means different lists
                 if (listOne.Count != listOther.Count)
                     return false;
