@@ -22,8 +22,8 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
     /// Represents a <b>Keyword</b> form.
     /// </summary>
     /// <remarks>
-    /// The meaning of property <code>UnknownNumber</code> is unknown so use it with caution. 
-    /// The property will be removed and replaced with the proper property as soon as more information is available.
+    /// The meaning of unknown properties is not known so use them with caution. 
+    /// Unknown properties will be removed and replaced with proper properties as soon as more information is available.
     /// </remarks>
     public interface IKywd : IForm
     {
