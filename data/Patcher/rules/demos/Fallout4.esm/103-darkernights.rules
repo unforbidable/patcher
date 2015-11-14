@@ -1,0 +1,104 @@
+<rules>
+  <rule>
+    <name>Darker nights</name>
+    <from>WTHR</from>
+    <where>
+      Source.EditorId.StartsWith("Commonwealth") || Source.EditorId.StartsWith("Diamond") || Source.EditorId.StartsWith("Goodneighbor")
+    </where>
+    <update>
+      Debug.Message("Updating weather: " + Source);
+
+      // General multiplier affects all except sky, moon and stars
+      float generalMult = 0.65f; // more dark
+      //float generalMult = 1.0f; // normal dark
+      //float generalMult = 1.4f; // less dark
+
+      // Weather colors are simply darkened using the following multiplier
+      // This affects the distant scenery
+      float normalMult = 0.3f * generalMult;
+
+      // Ambient colors are darkened using another multiplier
+      // This affects the area close to the player
+      float ambientMult = 0.5f * generalMult;
+
+      // Distant terrain darkening multiplier
+      float distMult = 0.1f * generalMult;
+
+      // This affects the sky and clouds
+      //float skyMult = 0.3f; // Dark skies
+      float skyMult = 1.0f; // Vanilla skies
+
+      // This affects the moon and stars
+      //float starsMult = 0.8f;
+      float starsMult = 1.0f; // Vanilla stars
+
+      // Change only the Late Dusk, Night, and Early Dawn colors of each of the weather colors
+      for (int i = 0; i != 19; i++)
+      {
+        var colors = Target.GetColors(i);
+
+        if (i == 9)
+        {
+          // effetcs
+          // no changes
+        }
+        else if (i == 6 || i == 16)
+        {
+          // Stars and moon
+          colors.LateDusk.MultiplyValues(starsMult);
+          colors.Night.MultiplyValues(starsMult);
+          colors.EarlyDawn.MultiplyValues(starsMult);
+        }
+        else if (i == 17 || i == 18)
+        {
+          colors.LateDusk.MultiplyValues(distMult);
+          colors.Night.MultiplyValues(distMult);
+          colors.EarlyDawn.MultiplyValues(distMult);
+        }
+        else if (i == 7 || i == 8)
+        {
+          // Lower sky and horizon
+          colors.LateDusk.MultiplyValues(skyMult);
+          colors.Night.MultiplyValues(skyMult);
+          colors.EarlyDawn.MultiplyValues(skyMult);
+        }
+        else
+        {
+          // Everything else
+          colors.LateDusk.MultiplyValues(normalMult);
+          colors.Night.MultiplyValues(normalMult);
+          colors.EarlyDawn.MultiplyValues(normalMult);
+        }
+      }
+
+      foreach (var layer in Target.CloudLayers)
+      {
+        // Change only the Late Dusk, Night, and Early Dawn colors of each of the cloud layer
+        layer.Colors.LateDusk.MultiplyValues(skyMult);
+        layer.Colors.Night.MultiplyValues(skyMult);
+        layer.Colors.EarlyDawn.MultiplyValues(skyMult);
+      }
+
+      // Change the ambient colors during the night
+      Target.AmbientColorsX1.LateDusk.MultiplyValues(ambientMult);
+      Target.AmbientColorsX2.LateDusk.MultiplyValues(ambientMult);
+      Target.AmbientColorsY1.LateDusk.MultiplyValues(ambientMult);
+      Target.AmbientColorsY2.LateDusk.MultiplyValues(ambientMult);
+      Target.AmbientColorsZ1.LateDusk.MultiplyValues(ambientMult);
+      Target.AmbientColorsZ2.LateDusk.MultiplyValues(ambientMult);
+      Target.AmbientColorsX1.Night.MultiplyValues(ambientMult);
+      Target.AmbientColorsX2.Night.MultiplyValues(ambientMult);
+      Target.AmbientColorsY1.Night.MultiplyValues(ambientMult);
+      Target.AmbientColorsY2.Night.MultiplyValues(ambientMult);
+      Target.AmbientColorsZ1.Night.MultiplyValues(ambientMult);
+      Target.AmbientColorsZ2.Night.MultiplyValues(ambientMult);
+      Target.AmbientColorsX1.EarlyDawn.MultiplyValues(ambientMult);
+      Target.AmbientColorsX2.EarlyDawn.MultiplyValues(ambientMult);
+      Target.AmbientColorsY1.EarlyDawn.MultiplyValues(ambientMult);
+      Target.AmbientColorsY2.EarlyDawn.MultiplyValues(ambientMult);
+      Target.AmbientColorsZ1.EarlyDawn.MultiplyValues(ambientMult);
+      Target.AmbientColorsZ2.EarlyDawn.MultiplyValues(ambientMult);
+
+    </update>
+  </rule>
+</rules>
