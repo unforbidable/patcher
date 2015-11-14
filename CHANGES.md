@@ -1,3 +1,7 @@
+##### v1.8.0 (2015/11/14)
+* New Fallout 4 forms: WTHR,IMGS
+* New Color functions MultiplyValues() and SetValues()
+
 ##### v1.7.0 (2015/11/11)
 * New Fallout 4 forms: FLST,GLOB,GMST,KYWD
 * Ability to generate plugins for Fallout 4.
