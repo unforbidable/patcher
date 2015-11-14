@@ -50,6 +50,7 @@ namespace Patcher.Data.Plugins.Content
         public const string FACT = "FACT";
         public const string FLST = "FLST";
         public const string FURN = "FURN";
+        public const string GDRY = "GDRY";
         public const string GLOB = "GLOB";
         public const string GMST = "GMST";
         public const string GRAS = "GRAS";
@@ -181,6 +182,7 @@ namespace Patcher.Data.Plugins.Content
         public const string SCRN = "SCRN";
         public const string SNAM = "SNAM";
         public const string TNAM = "TNAM";
+        public const string TX00 = "TX00";
         public const string UNAM = "UNAM";
         public const string VMAD = "VMAD";
         public const string VNAM = "VNAM";
