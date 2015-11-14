@@ -115,6 +115,7 @@
     <Compile Include="Data\GameAttribute.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Aoru.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Imgs.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Fallout4\Gdry.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Rfct.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Sndr.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Spgd.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherSoundCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherSoundProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\ImgsProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\GdryProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\RfctProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\SndrProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\SpgdProxy.cs" />
