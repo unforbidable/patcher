@@ -164,6 +164,118 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
             }
         }
 
+        public float FogDayFar
+        {
+            get
+            {
+                return record.FogDayFar;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogDayFar = value;
+            }
+        }
+
+        public float FogDayMax
+        {
+            get
+            {
+                return record.FogDayMax;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogDayMax = value;
+            }
+        }
+
+        public float FogDayNear
+        {
+            get
+            {
+                return record.FogDayNear;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogDayNear = value;
+            }
+        }
+
+        public float FogDayPow
+        {
+            get
+            {
+                return record.FogDayPow;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogDayPow = value;
+            }
+        }
+
+        public float FogNightFar
+        {
+            get
+            {
+                return record.FogNightFar;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogNightFar = value;
+            }
+        }
+
+        public float FogNightMax
+        {
+            get
+            {
+                return record.FogNightMax;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogNightMax = value;
+            }
+        }
+
+        public float FogNightNear
+        {
+            get
+            {
+                return record.FogNightNear;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogNightNear = value;
+            }
+        }
+
+        public float FogNightPow
+        {
+            get
+            {
+                return record.FogNightPow;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogNightPow = value;
+            }
+        }
+
         public IWeatherFresnelSet FresnelPowers
         {
             get
@@ -600,6 +712,272 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
             {
                 EnsureWritable();
                 record.LateDuskImageSpace = value.ToFormId();
+            }
+        }
+
+        public float Unknown1
+        {
+            get
+            {
+                return record.Unknown1;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.Unknown1 = value;
+            }
+        }
+
+        public float FogUnknown1
+        {
+            get
+            {
+                return record.FogUnknown1;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown1 = value;
+            }
+        }
+
+        public float FogUnknown2
+        {
+            get
+            {
+                return record.FogUnknown2;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown2 = value;
+            }
+        }
+
+        public float FogUnknown3
+        {
+            get
+            {
+                return record.FogUnknown3;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown3 = value;
+            }
+        }
+
+        public float FogUnknown4
+        {
+            get
+            {
+                return record.FogUnknown4;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown4 = value;
+            }
+        }
+
+        public float FogUnknown5
+        {
+            get
+            {
+                return record.FogUnknown5;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown5 = value;
+            }
+        }
+
+        public float FogUnknown6
+        {
+            get
+            {
+                return record.FogUnknown6;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown6 = value;
+            }
+        }
+
+        public float FogUnknown7
+        {
+            get
+            {
+                return record.FogUnknown7;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown7 = value;
+            }
+        }
+
+        public float FogUnknown8
+        {
+            get
+            {
+                return record.FogUnknown8;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown8 = value;
+            }
+        }
+
+        public float FogUnknown9
+        {
+            get
+            {
+                return record.FogUnknown9;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown9 = value;
+            }
+        }
+
+        public float FogUnknown10
+        {
+            get
+            {
+                return record.FogUnknown10;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.FogUnknown10 = value;
+            }
+        }
+
+        public IGdry EarlyDawnGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.EarlyDawnGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.EarlyDawnGodRays = value.ToFormId();
+            }
+        }
+
+        public IGdry DawnGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.DawnGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.DawnGodRays = value.ToFormId();
+            }
+        }
+
+        public IGdry LateDawnGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.LateDawnGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.LateDawnGodRays = value.ToFormId();
+            }
+        }
+
+        public IGdry DayGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.DayGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.DayGodRays = value.ToFormId();
+            }
+        }
+
+        public IGdry EarlyDuskGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.EarlyDuskGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.EarlyDuskGodRays = value.ToFormId();
+            }
+        }
+
+        public IGdry DuskGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.DuskGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.DuskGodRays = value.ToFormId();
+            }
+        }
+
+        public IGdry LateDuskGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.LateDuskGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.LateDuskGodRays = value.ToFormId();
+            }
+        }
+
+        public IGdry NightGodRays
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IGdry>(record.NightGodRays);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.NightGodRays = value.ToFormId();
             }
         }
 

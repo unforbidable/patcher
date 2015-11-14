@@ -26,6 +26,10 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
     /// <summary>
     /// Represents a <b>Weather</b> form.
     /// </summary>
+    /// <remarks>
+    /// The meaning of unknown properties is not known so use them with caution. 
+    /// Unknown properties will be removed and replaced with proper properties as soon as more information is available.
+    /// </remarks>
     public interface IWthr : IForm
     {
         /// <summary>
@@ -44,6 +48,78 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// Gets or sets the collection of <b>Static</b> objects which make up the sky dome of this <b>Weather</b>.
         /// </summary>
         IFormCollection<IStat> SkyStatics { get; set; }
+        /// <summary>
+        /// Gets or sets the near fog distance during the day.
+        /// </summary>
+        float FogDayNear { get; set; }
+        /// <summary>
+        /// Gets or sets the far fog distance during the day.
+        /// </summary>
+        float FogDayFar { get; set; }
+        /// <summary>
+        /// Gets or sets the near fog distance during the night.
+        /// </summary>
+        float FogNightNear { get; set; }
+        /// <summary>
+        /// Gets or sets the far fog distance during the night.
+        /// </summary>
+        float FogNightFar { get; set; }
+        /// <summary>
+        /// Gets or sets the power of fog distance during the day.
+        /// </summary>
+        float FogDayPow { get; set; }
+        /// <summary>
+        /// Gets or sets the power of fog distance during the night.
+        /// </summary>
+        float FogNightPow { get; set; }
+        /// <summary>
+        /// Gets or sets the maximum fog distance during the night.
+        /// </summary>
+        float FogDayMax { get; set; }
+        /// <summary>
+        /// Gets or sets the maximum fog distance during the night.
+        /// </summary>
+        float FogNightMax { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown1 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown2 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown3 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown4 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown5 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown6 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown7 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown8 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown9 { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown fog parameter.
+        /// </summary>
+        float FogUnknown10 { get; set; }
         /// <summary>
         /// Gets or sets the <b>Image Space</b> used during the early dawn.
         /// </summary>
@@ -76,6 +152,38 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// Gets or sets the <b>Image Space</b> used during the night.
         /// </summary>
         IImgs NightImageSpace { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the early dawn.
+        /// </summary>
+        IGdry EarlyDawnGodRays { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the dawn.
+        /// </summary>
+        IGdry DawnGodRays { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the late dawn.
+        /// </summary>
+        IGdry LateDawnGodRays { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the day.
+        /// </summary>
+        IGdry DayGodRays { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the early dusk.
+        /// </summary>
+        IGdry EarlyDuskGodRays { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the dusk.
+        /// </summary>
+        IGdry DuskGodRays { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the late dusk.
+        /// </summary>
+        IGdry LateDuskGodRays { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>God Rays</b> used during the night.
+        /// </summary>
+        IGdry NightGodRays { get; set; }
         /// <summary>
         /// Gets or sets the speed of wind for this <b>Weather</b>.
         /// </summary>
@@ -124,6 +232,10 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// Gets or sets the angle that specifies the allowed deviation of wind direction.
         /// </summary>
         float WindDirectionRange { get; set; }
+        /// <summary>
+        /// Gets or sets an unknown value in the DATA segment.
+        /// </summary>
+        float Unknown1 { get; set; }
         /// <summary>
         /// Gets or sets the value which determines whether this weather is pleasant.
         /// </summary>

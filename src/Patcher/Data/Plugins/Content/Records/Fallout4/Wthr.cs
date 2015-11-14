@@ -64,7 +64,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         private ByteArray Unknown { get; set; }
 
         [Member(Names.FNAM)]
-        private ByteArray NewFog { get; set; }
+        private FogData Fog { get; set; }
 
         [Member(Names.DATA)]
         [Initialize]
@@ -85,7 +85,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         private ReferenceArray ImageSpaces { get; set; }
 
         [Member(Names.WGDR)]
-        private ReferenceArray Unknown1 { get; set; }
+        private ReferenceArray GodRays { get; set; }
 
         [Member(Names.DALC)]
         [Initialize]
@@ -95,16 +95,16 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         private Model Aurora { get; set; }
 
         [Member(Names.GNAM)]
-        private ByteArray Unknown2 { get; set; }
+        private ByteArray UnknownData2 { get; set; }
 
         [Member(Names.UNAM)]
-        private ByteArray Unknown3 { get; set; }
+        private ByteArray UnknownData3 { get; set; }
 
         [Member(Names.VNAM)]
-        private ByteArray Unknown4 { get; set; }
+        private ByteArray UnknownData4 { get; set; }
 
         [Member(Names.WNAM)]
-        private ByteArray Unknown5 { get; set; }
+        private ByteArray UnknownData5 { get; set; }
 
         private byte[] allLightData = new byte[256];
 
@@ -269,6 +269,137 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         public ColorOctave GetSpecularColor() { return new ColorOctave(allLightData, 24, 32); } 
         public FloatOctave GetFresnelPower() { return new FloatOctave(allLightData, 28, 32); } 
 
+                void EnsureFogDataCreated()
+        {
+            if (Fog == null)
+                Fog = new FogData();
+        }
+
+        public float FogDayNear { get { return Fog == null ? 0f : Fog.DayNear; } set { EnsureFogDataCreated(); Fog.DayNear = value; } }
+        public float FogDayFar { get { return Fog == null ? 0f : Fog.DayFar; } set { EnsureFogDataCreated(); Fog.DayFar = value; } }
+        public float FogNightNear { get { return Fog == null ? 0f : Fog.NightNear; } set { EnsureFogDataCreated(); Fog.NightNear = value; } }
+        public float FogNightFar { get { return Fog == null ? 0f : Fog.NightFar; } set { EnsureFogDataCreated(); Fog.NightFar = value; } }
+        public float FogDayPow { get { return Fog == null ? 0f : Fog.DayPow; } set { EnsureFogDataCreated(); Fog.DayPow = value; } }
+        public float FogNightPow { get { return Fog == null ? 0f : Fog.NightPow; } set { EnsureFogDataCreated(); Fog.NightPow = value; } }
+        public float FogDayMax { get { return Fog == null ? 0f : Fog.DayMax; } set { EnsureFogDataCreated(); Fog.DayMax = value; } }
+        public float FogNightMax { get { return Fog == null ? 0f : Fog.NightMax; } set { EnsureFogDataCreated(); Fog.NightMax = value; } }
+        public float FogUnknown1 { get { return Fog == null ? 0f : Fog.Unknown1; } set { EnsureFogDataCreated(); Fog.Unknown1 = value; } }
+        public float FogUnknown2 { get { return Fog == null ? 0f : Fog.Unknown2; } set { EnsureFogDataCreated(); Fog.Unknown2 = value; } }
+        public float FogUnknown3 { get { return Fog == null ? 0f : Fog.Unknown3; } set { EnsureFogDataCreated(); Fog.Unknown3 = value; } }
+        public float FogUnknown4 { get { return Fog == null ? 0f : Fog.Unknown4; } set { EnsureFogDataCreated(); Fog.Unknown4 = value; } }
+        public float FogUnknown5 { get { return Fog == null ? 0f : Fog.Unknown5; } set { EnsureFogDataCreated(); Fog.Unknown5 = value; } }
+        public float FogUnknown6 { get { return Fog == null ? 0f : Fog.Unknown6; } set { EnsureFogDataCreated(); Fog.Unknown6 = value; } }
+        public float FogUnknown7 { get { return Fog == null ? 0f : Fog.Unknown7; } set { EnsureFogDataCreated(); Fog.Unknown7 = value; } }
+        public float FogUnknown8 { get { return Fog == null ? 0f : Fog.Unknown8; } set { EnsureFogDataCreated(); Fog.Unknown8 = value; } }
+        public float FogUnknown9 { get { return Fog == null ? 0f : Fog.Unknown9; } set { EnsureFogDataCreated(); Fog.Unknown9 = value; } }
+        public float FogUnknown10 { get { return Fog == null ? 0f : Fog.Unknown10; } set { EnsureFogDataCreated(); Fog.Unknown10 = value; } }
+
+        sealed class FogData : Field
+        {
+            public float DayNear { get; set; }
+            public float DayFar { get; set; }
+            public float NightNear { get; set; }
+            public float NightFar { get; set; }
+            public float DayPow { get; set; }
+            public float NightPow { get; set; }
+            public float DayMax { get; set; }
+            public float NightMax { get; set; }
+            public float Unknown1 { get; set; }
+            public float Unknown2 { get; set; }
+            public float Unknown3 { get; set; }
+            public float Unknown4 { get; set; }
+            public float Unknown5 { get; set; }
+            public float Unknown6 { get; set; }
+            public float Unknown7 { get; set; }
+            public float Unknown8 { get; set; }
+            public float Unknown9 { get; set; }
+            public float Unknown10 { get; set; }
+
+            internal override void ReadField(RecordReader reader)
+            {
+                DayNear = reader.ReadSingle();
+                DayFar = reader.ReadSingle();
+                NightNear = reader.ReadSingle();
+                NightFar = reader.ReadSingle();
+                DayPow = reader.ReadSingle();
+                NightPow = reader.ReadSingle();
+                DayMax = reader.ReadSingle();
+                NightMax = reader.ReadSingle();
+
+                if (!reader.IsEndOfSegment)
+                {
+                    Unknown1 = reader.ReadSingle();
+                    Unknown2 = reader.ReadSingle();
+                    Unknown3 = reader.ReadSingle();
+                    Unknown4 = reader.ReadSingle();
+                    Unknown5 = reader.ReadSingle();
+                    Unknown6 = reader.ReadSingle();
+
+                    if (!reader.IsEndOfSegment)
+                    {
+                        Unknown7 = reader.ReadSingle();
+                        Unknown8 = reader.ReadSingle();
+                        Unknown9 = reader.ReadSingle();
+                        Unknown10 = reader.ReadSingle();
+                    }
+                }
+            }
+
+            internal override void WriteField(RecordWriter writer)
+            {
+                writer.Write(DayNear);
+                writer.Write(DayFar);
+                writer.Write(NightNear);
+                writer.Write(NightFar);
+                writer.Write(DayPow);
+                writer.Write(NightPow);
+                writer.Write(DayMax);
+                writer.Write(NightMax);
+                writer.Write(Unknown1);
+                writer.Write(Unknown2);
+                writer.Write(Unknown3);
+                writer.Write(Unknown4);
+                writer.Write(Unknown5);
+                writer.Write(Unknown6);
+                writer.Write(Unknown7);
+                writer.Write(Unknown8);
+                writer.Write(Unknown9);
+                writer.Write(Unknown10);
+            }
+
+            public override Field CopyField()
+            {
+                return new FogData()
+                {
+                    DayNear = DayNear,
+                    DayFar = DayFar,
+                    NightNear = NightNear,
+                    NightFar = NightFar,
+                    DayPow = DayPow,
+                    NightPow = NightPow,
+                    DayMax = DayMax,
+                    NightMax = NightMax,
+                };
+            }
+
+            public override string ToString()
+            {
+                return string.Format("Fog Data");
+            }
+
+            public override bool Equals(Field other)
+            {
+                var cast = (FogData)other;
+                return DayNear == cast.DayNear && DayFar == cast.DayFar && NightNear == cast.NightNear && NightFar == cast.NightFar &&
+                    DayPow == cast.DayPow && NightPow == cast.NightPow && DayMax == cast.DayMax && NightMax == cast.NightMax;
+            }
+
+            public override IEnumerable<uint> GetReferencedFormIds()
+            {
+                yield break;
+            }
+        }
+
         void EnsureImageSpaceCreated()
         {
             if (ImageSpaces == null)
@@ -302,6 +433,39 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         public uint EarlyDuskImageSpace { get { return GetImageSpace(6); } set { SetImageSpace(6, value); } }
         public uint LateDuskImageSpace { get { return GetImageSpace(7); } set { SetImageSpace(7, value); } }
 
+        void EnsureGodRaysCreated()
+        {
+            if (ImageSpaces == null)
+            {
+                GodRays = new ReferenceArray();
+            }
+            GodRays.SetLength(8);
+        }
+
+        private uint GetGodRay(int index)
+        {
+            if (GodRays == null)
+                return 0;
+
+            EnsureGodRaysCreated();
+            return GodRays[index];
+        }
+
+        private void SetGodRay(int index, uint value)
+        {
+            EnsureImageSpaceCreated();
+            GodRays[index] = value;
+        }
+
+        public uint DawnGodRays { get { return GetGodRay(0); } set { SetGodRay(0, value); } }
+        public uint DayGodRays { get { return GetGodRay(1); } set { SetGodRay(1, value); } }
+        public uint DuskGodRays { get { return GetGodRay(2); } set { SetGodRay(2, value); } }
+        public uint NightGodRays { get { return GetGodRay(3); } set { SetGodRay(3, value); } }
+        public uint EarlyDawnGodRays { get { return GetGodRay(4); } set { SetGodRay(4, value); } }
+        public uint LateDawnGodRays { get { return GetGodRay(5); } set { SetGodRay(5, value); } }
+        public uint EarlyDuskGodRays { get { return GetGodRay(6); } set { SetGodRay(6, value); } }
+        public uint LateDuskGodRays { get { return GetGodRay(7); } set { SetGodRay(7, value); } }
+
         ColorAdapter lightningColor = null;
 
         public float WindSpeed { get { return Data.WindSpeed; } set { Data.WindSpeed = value; } }
@@ -316,6 +480,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         public ColorAdapter LightningColor { get { if (lightningColor == null) lightningColor = new ColorAdapter(Data.LightningColor); return lightningColor; } }
         public float WindDirection { get { return Data.WindDirection; } set { Data.WindDirection = value; } }
         public float WindDirectionRange { get { return Data.WindDirectionRange; } set { Data.WindDirectionRange = value; } }
+        public float Unknown1 { get { return Data.Unknown4.HasValue ? Data.Unknown4.Value : 0f; } set { Data.Unknown4 = value; } }
 
         public bool IsPleasant { get { return HasWeatherFlag(WeatherFlags.Pleasant); } set { SetWeatherFlag(WeatherFlags.Pleasant, value); } }
         public bool IsCloudy { get { return HasWeatherFlag(WeatherFlags.Cloudy); } set { SetWeatherFlag(WeatherFlags.Cloudy, value); } }
@@ -363,7 +528,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             private byte Unknown3 { get; set; }
             public float WindDirection { get; set; }
             public float WindDirectionRange { get; set; }
-            private byte? Unknown4 { get; set; }
+            public float? Unknown4 { get; set; }
 
             internal override void ReadField(RecordReader reader)
             {
@@ -386,7 +551,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
                 // 20th byte not always present in Fallout 4
                 if (!reader.IsEndOfSegment)
-                    Unknown4 = reader.ReadByte();
+                    Unknown4 = reader.ReadByte() / 255f;
             }
 
             internal override void WriteField(RecordWriter writer)
@@ -409,7 +574,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 writer.Write((byte)(WindDirectionRange * 255f / 180f));
 
                 if (Unknown4.HasValue)
-                    writer.Write(Unknown4.Value);
+                    writer.Write((byte)(Unknown4.Value * 255f));
             }
 
             public override Field CopyField()
