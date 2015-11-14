@@ -53,9 +53,9 @@ namespace Patcher.Data.Plugins.Content
             GetRed = () => { return buffer[offset + 0] / 255f; };
             GetGreen = () => { return buffer[offset + 1] / 255f; };
             GetBlue = () => { return buffer[offset + 2] / 255f; };
-            SetRed = (value) => { buffer[offset + 0] = (byte)(value * 256); };
-            SetGreen = (value) => { buffer[offset + 1] = (byte)(value * 256); };
-            SetBlue = (value) => { buffer[offset + 2] = (byte)(value * 256); };
+            SetRed = (value) => { buffer[offset + 0] = (byte)(value * 255); };
+            SetGreen = (value) => { buffer[offset + 1] = (byte)(value * 255); };
+            SetBlue = (value) => { buffer[offset + 2] = (byte)(value * 255); };
         }
 
         private float LimitRange(float value)
