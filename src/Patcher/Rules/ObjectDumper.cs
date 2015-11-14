@@ -113,7 +113,7 @@ namespace Patcher.Rules
                             bool anyOutput = false;
 
                             // Get all public instance properties (skip inherited and indexers)
-                            foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => p.DeclaringType == type && p.GetIndexParameters().Length == 0))
+                            foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => p.DeclaringType == type && p.GetIndexParameters().Length == 0).OrderBy(p => p.Name))
                             {
                                 object val = property.GetValue(value, null);
                                 DumpObject(property.Name, val);
