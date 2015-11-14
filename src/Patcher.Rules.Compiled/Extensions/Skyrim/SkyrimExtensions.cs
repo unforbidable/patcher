@@ -262,6 +262,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
+        /// Converts this form to a <b>Image Space</b> form or returns <c>null</c> if this form is not an <b>Image Space</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IImgs AsImgs(this IForm form)
+        {
+            return As<IImgs>(form);
+        }
+
+        /// <summary>
+        /// Convers and filters this mixed form collection to a collection of <b>Image Space</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IImgs> OfImgs(this IFormCollection<IForm> collection)
+        {
+            return Of<IImgs>(collection);
+        }
+
+        /// <summary>
         /// Converts this form to a <b>Impact Data Set</b> form or returns <c>null</c> if this form is not an <b>Impact Data Set</b> form.
         /// </summary>
         /// <param name="form"></param>
@@ -402,6 +422,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         }
 
         /// <summary>
+        /// Converts this form to a <b>Visual Effect</b> form or returns <c>null</c> if this form is not a <b>Visual Effect</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IRfct AsRfct(this IForm form)
+        {
+            return As<IRfct>(form);
+        }
+
+        /// <summary>
+        /// Convers and filters this mixed form collection to a collection of <b>Visual Effect</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IRfct> OfRfct(this IFormCollection<IForm> collection)
+        {
+            return Of<IRfct>(collection);
+        }
+
+        /// <summary>
         /// Converts this form to a <b>Spell</b> form or returns <c>null</c> if this form is not a <b>Spell</b> form.
         /// </summary>
         /// <param name="form"></param>
@@ -419,6 +459,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         public static IFormCollection<ISpel> OfSpel(this IFormCollection<IForm> collection)
         {
             return Of<ISpel>(collection);
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Shader Particle Geometry</b> form or returns <c>null</c> if this form is not a <b>Shader Particle Geometry</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static ISpgd AsSpgd(this IForm form)
+        {
+            return As<ISpgd>(form);
+        }
+
+        /// <summary>
+        /// Convers and filters this mixed form collection to a collection of <b>Shader Particle Geometry</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<ISpgd> OfSpgd(this IFormCollection<IForm> collection)
+        {
+            return Of<ISpgd>(collection);
         }
 
         /// <summary>
@@ -499,6 +559,26 @@ namespace Patcher.Rules.Compiled.Extensions.Skyrim
         public static IFormCollection<IWeap> OfWeap(this IFormCollection<IForm> collection)
         {
             return Of<IWeap>(collection);
+        }
+
+        /// <summary>
+        /// Converts this form to a <b>Weather</b> form or returns <c>null</c> if this form is not a <b>Weather</b> form.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public static IWthr AsWthr(this IForm form)
+        {
+            return As<IWthr>(form);
+        }
+
+        /// <summary>
+        /// Convers and filters this mixed form collection to a collection of <b>Weather</b> forms.
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static IFormCollection<IWthr> OfWthr(this IFormCollection<IForm> collection)
+        {
+            return Of<IWthr>(collection);
         }
     }
 }
