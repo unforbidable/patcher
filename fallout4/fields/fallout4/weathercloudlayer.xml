@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherCloudLayer" fullname="Fields.Fallout4.WeatherCloudLayer" category="Fields (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Represents one of the 32 layers of clouds.
+            </summary>
+  <property name="Alphas" gametitle="Fallout4">
+    <signature>
+      <see cref="Fields.Fallout4.WeatherAlphaSet" /> Alphas</signature>
+    <summary>
+            Gets or sets the alpha channels of this cloud layer.
+            </summary>
+  </property>
+  <property name="Colors" gametitle="Fallout4">
+    <signature>
+      <see cref="Fields.Fallout4.WeatherColorSet" /> Colors</signature>
+    <summary>
+            Gets or sets the colors of this could layer.
+            </summary>
+  </property>
+  <property name="IsEnabled" gametitle="Fallout4">
+    <signature>
+      <c>bool</c> IsEnabled</signature>
+    <summary>
+            Gets or sets the value that indicates whether this cloud layer is enabled.
+            </summary>
+  </property>
+  <property name="SpeedX" gametitle="Fallout4">
+    <signature>
+      <c>float</c> SpeedX</signature>
+    <summary>
+            Gets or sets the X-axis speed of this could layer.
+            </summary>
+  </property>
+  <property name="SpeedY" gametitle="Fallout4">
+    <signature>
+      <c>float</c> SpeedY</signature>
+    <summary>
+            Gets or sets the Y-axis speed of this could layer.
+            </summary>
+  </property>
+  <property name="Texture" gametitle="Fallout4">
+    <signature>
+      <c>string</c> Texture</signature>
+    <summary>
+            Gets or sets the texture of this cloud layer.
+            </summary>
+  </property>
+</type>

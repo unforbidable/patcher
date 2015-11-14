@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Imgs" fullname="Forms.Fallout4.Imgs" category="Forms (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Represents an <b>Image Space</b> form.
+            </summary>
+  <property name="BloomBlurRadius" gametitle="Fallout4">
+    <signature>
+      <c>float</c> BloomBlurRadius</signature>
+    <summary>
+            Gets or sets the HDR bloom blur radius.
+            </summary>
+  </property>
+  <property name="BloomScale" gametitle="Fallout4">
+    <signature>
+      <c>float</c> BloomScale</signature>
+    <summary>
+            Gets or sets the HDR bloom scale.
+            </summary>
+  </property>
+  <property name="BloomThreshold" gametitle="Fallout4">
+    <signature>
+      <c>float</c> BloomThreshold</signature>
+    <summary>
+            Gets or sets the HDR bloom threshold.
+            </summary>
+  </property>
+  <property name="Brightness" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Brightness</signature>
+    <summary>
+            Gets or sets the cinematic brightness.
+            </summary>
+  </property>
+  <property name="Contrast" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Contrast</signature>
+    <summary>
+            Gets or sets the conematic contrast.
+            </summary>
+  </property>
+  <property name="DepthOfFieldBlurRadius" gametitle="Fallout4">
+    <signature>
+      <c>float</c> DepthOfFieldBlurRadius</signature>
+    <summary>
+            Gets or sets the Depth of Field blur radius.
+            </summary>
+  </property>
+  <property name="DepthOfFieldDistance" gametitle="Fallout4">
+    <signature>
+      <c>float</c> DepthOfFieldDistance</signature>
+    <summary>
+            Gets or sets the Depth of Field distance.
+            </summary>
+  </property>
+  <property name="DepthOfFieldRange" gametitle="Fallout4">
+    <signature>
+      <c>float</c> DepthOfFieldRange</signature>
+    <summary>
+            Gets or sets the Depth of Field range.
+            </summary>
+  </property>
+  <property name="DepthOfFieldStrength" gametitle="Fallout4">
+    <signature>
+      <c>float</c> DepthOfFieldStrength</signature>
+    <summary>
+            Gets or sets the Depth of Field strength.
+            </summary>
+  </property>
+  <property name="DepthOfFieldUnknown1" gametitle="Fallout4">
+    <signature>
+      <c>float</c> DepthOfFieldUnknown1</signature>
+    <summary>
+            Gets or sets an unknown value.
+            </summary>
+  </property>
+  <property name="DepthOfFieldUnknown2" gametitle="Fallout4">
+    <signature>
+      <c>float</c> DepthOfFieldUnknown2</signature>
+    <summary>
+            Gets or sets an unknown value.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="EyeAdaptSpeed" gametitle="Fallout4">
+    <signature>
+      <c>float</c> EyeAdaptSpeed</signature>
+    <summary>
+            Gets or sets the HDR eye adaptation speed.
+            </summary>
+  </property>
+  <property name="EyeAdaptStrength" gametitle="Fallout4">
+    <signature>
+      <c>float</c> EyeAdaptStrength</signature>
+    <summary>
+            Gets or sets the HDR eye adaptation strength.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="IsDepthOfFieldSkyDisabled" gametitle="Fallout4">
+    <signature>
+      <c>bool</c> IsDepthOfFieldSkyDisabled</signature>
+    <summary>
+            Gets or sets the value that indicates whether the sky is affected by the Depth of Field effect.
+            </summary>
+  </property>
+  <property name="LookupTexture" gametitle="Fallout4">
+    <signature>
+      <c>string</c> LookupTexture</signature>
+    <summary>
+            Gets or sets the LUT texture.
+            </summary>
+  </property>
+  <property name="ReceiveBloomThreshold" gametitle="Fallout4">
+    <signature>
+      <c>float</c> ReceiveBloomThreshold</signature>
+    <summary>
+            Gets or sets the HDR reveive bloom threshold.
+            </summary>
+  </property>
+  <property name="Saturation" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Saturation</signature>
+    <summary>
+            Gets or sets the cinematic saturation.
+            </summary>
+  </property>
+  <property name="SkyScale" gametitle="Fallout4">
+    <signature>
+      <c>float</c> SkyScale</signature>
+    <summary>
+            Gets or sets the HDR sky scale.
+            </summary>
+  </property>
+  <property name="SunlightScale" gametitle="Fallout4">
+    <signature>
+      <c>float</c> SunlightScale</signature>
+    <summary>
+            Gets or sets the HDR sunlight scale.
+            </summary>
+  </property>
+  <property name="TintAmount" gametitle="Fallout4">
+    <signature>
+      <c>float</c> TintAmount</signature>
+    <summary>
+            Gets or sets the tint amount.
+            </summary>
+  </property>
+  <property name="TintColor" gametitle="Fallout4">
+    <signature>
+      <see cref="Fields.Color" /> TintColor</signature>
+    <summary>
+            Gets or sets the tint color.
+            </summary>
+  </property>
+  <property name="White" gametitle="Fallout4">
+    <signature>
+      <c>float</c> White</signature>
+    <summary>
+            Gets or sets the HDR white value.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+  <remarks>
+            The meaning of unknown properties is not known so use them with caution. 
+            Unknown properties will be removed and replaced with proper properties as soon as more information is available.
+            </remarks>
+</type>

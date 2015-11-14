@@ -47,6 +47,13 @@
             Converts this form to a <b>Form List</b> form or returns <c>null</c> if this form is not a <b>Form List</b> form.
             </summary>
   </method>
+  <method name="AsGdry" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Gdry" /> AsGdry()</signature>
+    <summary>
+            Converts this form to a <b>God Reys</b> form or returns <c>null</c> if this form is not a <b>God Reys</b> form.
+            </summary>
+  </method>
   <method name="AsGlob" extension="true" gametitle="Fallout4">
     <signature>
       <see cref="Forms.Fallout4.Glob" /> AsGlob()</signature>
@@ -61,11 +68,53 @@
             Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b> form.
             </summary>
   </method>
+  <method name="AsImgs" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Imgs" /> AsImgs()</signature>
+    <summary>
+            Converts this form to a <b>Image Space</b> form or returns <c>null</c> if this form is not an <b>Image Space</b> form.
+            </summary>
+  </method>
   <method name="AsKywd" extension="true" gametitle="Fallout4">
     <signature>
       <see cref="Forms.Fallout4.Kywd" /> AsKywd()</signature>
     <summary>
             Converts this form to a <b>Keyword</b> form or returns <c>null</c> if this form is not a <b>Keyword</b> form.
+            </summary>
+  </method>
+  <method name="AsRfct" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Rfct" /> AsRfct()</signature>
+    <summary>
+            Converts this form to a <b>Visual Effect</b> form or returns <c>null</c> if this form is not a <b>Visual Effect</b> form.
+            </summary>
+  </method>
+  <method name="AsSndr" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Sndr" /> AsSndr()</signature>
+    <summary>
+            Converts this form to a <b>Sound</b> form or returns <c>null</c> if this form is not a <b>Sound</b> form.
+            </summary>
+  </method>
+  <method name="AsSpgd" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Spgd" /> AsSpgd()</signature>
+    <summary>
+            Converts this form to a <b>Shader Particle Geometry</b> form or returns <c>null</c> if this form is not a <b>Shader Particle Geometry</b> form.
+            </summary>
+  </method>
+  <method name="AsStat" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Stat" /> AsStat()</signature>
+    <summary>
+            Converts this form to a <b>Static</b> form or returns <c>null</c> if this form is not a <b>Static</b> form.
+            </summary>
+  </method>
+  <method name="AsWthr" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Wthr" /> AsWthr()</signature>
+    <summary>
+            Converts this form to a <b>Weather</b> form or returns <c>null</c> if this form is not a <b>Weather</b> form.
             </summary>
   </method>
   <remarks>

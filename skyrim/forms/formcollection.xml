@@ -152,6 +152,13 @@
             Convers and filters this mixed form collection to a collection of <b>Game Setting</b> forms.
             </summary>
   </method>
+  <method name="OfImgs" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Imgs" />&gt; OfImgs()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Image Space</b> forms.
+            </summary>
+  </method>
   <method name="OfIpds" extension="true" gametitle="Skyrim">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Ipds" />&gt; OfIpds()</signature>
@@ -201,6 +208,13 @@
             Convers and filters this mixed form collection to a collection of <b>Race</b> forms.
             </summary>
   </method>
+  <method name="OfRfct" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Rfct" />&gt; OfRfct()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Visual Effect</b> forms.
+            </summary>
+  </method>
   <method name="OfSndr" extension="true" gametitle="Skyrim">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Sndr" />&gt; OfSndr()</signature>
@@ -213,6 +227,13 @@
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Spel" />&gt; OfSpel()</signature>
     <summary>
             Convers and filters this mixed form collection to a collection of <b>Spell</b> forms.
+            </summary>
+  </method>
+  <method name="OfSpgd" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Spgd" />&gt; OfSpgd()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Shader Particle Geometry</b> forms.
             </summary>
   </method>
   <method name="OfStat" extension="true" gametitle="Skyrim">
@@ -234,6 +255,13 @@
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Weap" />&gt; OfWeap()</signature>
     <summary>
             Convers and filters this mixed form collection to a collection of <b>Weapon</b> forms.
+            </summary>
+  </method>
+  <method name="OfWthr" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Skyrim.Wthr" />&gt; OfWthr()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Weather</b> forms.
             </summary>
   </method>
 </type>

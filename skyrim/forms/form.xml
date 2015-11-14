@@ -110,6 +110,13 @@
             Converts this form to a <b>Game Setting</b> form or returns <c>null</c> if this form is not a <b>Game Setting</b> form.
             </summary>
   </method>
+  <method name="AsImgs" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Imgs" /> AsImgs()</signature>
+    <summary>
+            Converts this form to a <b>Image Space</b> form or returns <c>null</c> if this form is not an <b>Image Space</b> form.
+            </summary>
+  </method>
   <method name="AsIpds" extension="true" gametitle="Skyrim">
     <signature>
       <see cref="Forms.Skyrim.Ipds" /> AsIpds()</signature>
@@ -159,6 +166,13 @@
             Converts this form to a <b>Race</b> form or returns <c>null</c> if this form is not a <b>Race</b> form.
             </summary>
   </method>
+  <method name="AsRfct" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Rfct" /> AsRfct()</signature>
+    <summary>
+            Converts this form to a <b>Visual Effect</b> form or returns <c>null</c> if this form is not a <b>Visual Effect</b> form.
+            </summary>
+  </method>
   <method name="AsSndr" extension="true" gametitle="Skyrim">
     <signature>
       <see cref="Forms.Skyrim.Sndr" /> AsSndr()</signature>
@@ -171,6 +185,13 @@
       <see cref="Forms.Skyrim.Spel" /> AsSpel()</signature>
     <summary>
             Converts this form to a <b>Spell</b> form or returns <c>null</c> if this form is not a <b>Spell</b> form.
+            </summary>
+  </method>
+  <method name="AsSpgd" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Spgd" /> AsSpgd()</signature>
+    <summary>
+            Converts this form to a <b>Shader Particle Geometry</b> form or returns <c>null</c> if this form is not a <b>Shader Particle Geometry</b> form.
             </summary>
   </method>
   <method name="AsStat" extension="true" gametitle="Skyrim">
@@ -192,6 +213,13 @@
       <see cref="Forms.Skyrim.Weap" /> AsWeap()</signature>
     <summary>
             Converts this form to a <b>Weapon</b> form or returns <c>null</c> if this form is not a <b>Weapon</b> form.
+            </summary>
+  </method>
+  <method name="AsWthr" extension="true" gametitle="Skyrim">
+    <signature>
+      <see cref="Forms.Skyrim.Wthr" /> AsWthr()</signature>
+    <summary>
+            Converts this form to a <b>Weather</b> form or returns <c>null</c> if this form is not a <b>Weather</b> form.
             </summary>
   </method>
   <remarks>

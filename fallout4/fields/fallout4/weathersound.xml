@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherSound" fullname="Fields.Fallout4.WeatherSound" category="Fields (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Represents a weather sound of certain type.
+            </summary>
+  <property name="Sound" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.Fallout4.Sndr" /> Sound</signature>
+    <summary>
+            Gets or sets the <b>Sound</b> or <b>Sound Reference</b>.
+            </summary>
+  </property>
+  <property name="Type" gametitle="Fallout4">
+    <signature>
+      <see cref="Constants.Fallout4.WeatherSoundTypes" /> Type</signature>
+    <summary>
+            Gets or sets the type.
+            </summary>
+  </property>
+</type>

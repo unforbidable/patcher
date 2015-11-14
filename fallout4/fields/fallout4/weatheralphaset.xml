@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherAlphaSet" fullname="Fields.Fallout4.WeatherAlphaSet" category="Fields (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Represents a set of alpha channel for each of the eight parts of the day: early dawn, dawn, late dawn, day, early dusk, late dusk and night.
+            </summary>
+  <property name="Dawn" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Dawn</signature>
+    <summary>
+            Gets or sets the alpha channel during the dawn.
+            </summary>
+  </property>
+  <property name="Day" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Day</signature>
+    <summary>
+            Gets or sets the alpha channel during the day.
+            </summary>
+  </property>
+  <property name="Dusk" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Dusk</signature>
+    <summary>
+            Gets or sets the alpha channel during the dusk.
+            </summary>
+  </property>
+  <property name="EarlyDawn" gametitle="Fallout4">
+    <signature>
+      <c>float</c> EarlyDawn</signature>
+    <summary>
+            Gets or sets the alpha channel during the early dawn.
+            </summary>
+  </property>
+  <property name="EarlyDusk" gametitle="Fallout4">
+    <signature>
+      <c>float</c> EarlyDusk</signature>
+    <summary>
+            Gets or sets the alpha channel during the early dusk.
+            </summary>
+  </property>
+  <property name="LateDawn" gametitle="Fallout4">
+    <signature>
+      <c>float</c> LateDawn</signature>
+    <summary>
+            Gets or sets the alpha channel during the late dawn.
+            </summary>
+  </property>
+  <property name="LateDusk" gametitle="Fallout4">
+    <signature>
+      <c>float</c> LateDusk</signature>
+    <summary>
+            Gets or sets the alpha channel during the late dusk.
+            </summary>
+  </property>
+  <property name="Night" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Night</signature>
+    <summary>
+            Gets or sets the alpha channel during the night.
+            </summary>
+  </property>
+</type>

@@ -89,6 +89,13 @@
             Convers and filters this mixed form collection to a collection of <b>Form List</b> forms.
             </summary>
   </method>
+  <method name="OfGdry" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Gdry" />&gt; OfGdry()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>God Reys</b> forms.
+            </summary>
+  </method>
   <method name="OfGlob" extension="true" gametitle="Fallout4">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Glob" />&gt; OfGlob()</signature>
@@ -103,11 +110,53 @@
             Convers and filters this mixed form collection to a collection of <b>Game Setting</b> forms.
             </summary>
   </method>
+  <method name="OfImgs" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Imgs" />&gt; OfImgs()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Image Space</b> forms.
+            </summary>
+  </method>
   <method name="OfKywd" extension="true" gametitle="Fallout4">
     <signature>
       <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Kywd" />&gt; OfKywd()</signature>
     <summary>
             Convers and filters this mixed form collection to a collection of <b>Keyword</b> forms.
+            </summary>
+  </method>
+  <method name="OfRfct" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Rfct" />&gt; OfRfct()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Visual Effect</b> forms.
+            </summary>
+  </method>
+  <method name="OfSndr" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Sndr" />&gt; OfSndr()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Sound</b> forms.
+            </summary>
+  </method>
+  <method name="OfSpgd" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Spgd" />&gt; OfSpgd()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Shader Particle Geometry</b> forms.
+            </summary>
+  </method>
+  <method name="OfStat" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Stat" />&gt; OfStat()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Static</b> forms.
+            </summary>
+  </method>
+  <method name="OfWthr" extension="true" gametitle="Fallout4">
+    <signature>
+      <see cref="Forms.FormCollection" />&lt;<see cref="Forms.Fallout4.Wthr" />&gt; OfWthr()</signature>
+    <summary>
+            Convers and filters this mixed form collection to a collection of <b>Weather</b> forms.
             </summary>
   </method>
 </type>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherSoundCollection" fullname="Fields.Fallout4.WeatherSoundCollection" category="Fields (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Represents a collection of <see cref="Fields.Fallout4.WeatherSound">WeatherSounds</see>.
+            </summary>
+  <property name="Count" gametitle="Fallout4">
+    <signature>
+      <c>int</c> Count</signature>
+    <summary>
+            Gets the number of <see cref="Fields.Fallout4.WeatherSound">WeatherSounds</see> in this collection.
+            </summary>
+  </property>
+  <method name="Add" extension="false" gametitle="Fallout4">
+    <signature>
+      <c>void</c> Add(<see cref="Forms.Fallout4.Sndr" />,<see cref="Constants.Fallout4.WeatherSoundTypes" />)</signature>
+    <summary>
+            Creates a new <see cref="Fields.Fallout4.WeatherSound">WeatherSound</see> based on the specified <b>Sound</b> and type and adds it to this collection.
+            </summary>
+  </method>
+  <method name="Add" extension="false" gametitle="Fallout4">
+    <signature>
+      <c>void</c> Add(<see cref="Fields.Fallout4.WeatherSound" />)</signature>
+    <summary>
+            Adds an existing <see cref="Fields.Fallout4.WeatherSound">WeatherSound</see> to this collection.
+            </summary>
+  </method>
+  <method name="Clear" extension="false" gametitle="Fallout4">
+    <signature>
+      <c>void</c> Clear()</signature>
+    <summary>
+            Removes all <see cref="Fields.Fallout4.WeatherSound">WeatherSounds</see> from this collection.
+            </summary>
+  </method>
+  <method name="Remove" extension="false" gametitle="Fallout4">
+    <signature>
+      <c>void</c> Remove(<see cref="Fields.Fallout4.WeatherSound" />)</signature>
+    <summary>
+            Removes a <see cref="Fields.Fallout4.WeatherSound">WeatherSound</see> from this collection.
+            </summary>
+  </method>
+  <remarks>
+            Weather sounds in a collection can be edited or removed within a <c>foreach</c> iteration.
+            </remarks>
+</type>

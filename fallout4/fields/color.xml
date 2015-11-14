@@ -24,6 +24,34 @@
             Gets or sets the red component value.
             </summary>
   </property>
+  <method name="MultiplyValues" extension="false" gametitle="">
+    <signature>
+      <c>void</c> MultiplyValues(<c>float</c>)</signature>
+    <summary>
+            Multiplies each color component with the specified value.
+            </summary>
+  </method>
+  <method name="MultiplyValues" extension="false" gametitle="">
+    <signature>
+      <c>void</c> MultiplyValues(<c>float</c>,<c>float</c>,<c>float</c>)</signature>
+    <summary>
+            Multiplies each color component with the respective specified value.
+            </summary>
+  </method>
+  <method name="SetValues" extension="false" gametitle="">
+    <signature>
+      <c>void</c> SetValues(<c>float</c>)</signature>
+    <summary>
+            Sets each color component to the specified value.
+            </summary>
+  </method>
+  <method name="SetValues" extension="false" gametitle="">
+    <signature>
+      <c>void</c> SetValues(<c>float</c>,<c>float</c>,<c>float</c>)</signature>
+    <summary>
+            Sets each color component to the respetive specified value. 
+            </summary>
+  </method>
   <remarks>
             The valid value range of color components is <code>0.0f</code> through <code>1.0f</code>.
             </remarks>

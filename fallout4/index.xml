@@ -7,10 +7,49 @@
             </summary>
     </type>
   </category>
+  <category name="Constants (Fallout4)">
+    <type name="WeatherSoundTypes" fullname="Constants.Fallout4.WeatherSoundTypes" category="Constants (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Defines the types of weather sounds.
+            </summary>
+    </type>
+  </category>
   <category name="Fields">
     <type name="Color" fullname="Fields.Color" category="Fields" gametitle="">
       <summary>
             Represents a color definition.
+            </summary>
+    </type>
+  </category>
+  <category name="Fields (Fallout4)">
+    <type name="WeatherAlphaSet" fullname="Fields.Fallout4.WeatherAlphaSet" category="Fields (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a set of alpha channel for each of the eight parts of the day: early dawn, dawn, late dawn, day, early dusk, late dusk and night.
+            </summary>
+    </type>
+    <type name="WeatherCloudLayer" fullname="Fields.Fallout4.WeatherCloudLayer" category="Fields (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents one of the 32 layers of clouds.
+            </summary>
+    </type>
+    <type name="WeatherColorSet" fullname="Fields.Fallout4.WeatherColorSet" category="Fields (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a set of weather colors for each of the eight parts of the day: early dawn, dawn, late dawn, day, early dusk, late dusk and night.
+            </summary>
+    </type>
+    <type name="WeatherFresnelSet" fullname="Fields.Fallout4.WeatherFresnelSet" category="Fields (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a set of weather fresnel power for each of the eight parts of the day: early dawn, dawn, late dawn, day, early dusk, late dusk and night.
+            </summary>
+    </type>
+    <type name="WeatherSound" fullname="Fields.Fallout4.WeatherSound" category="Fields (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a weather sound of certain type.
+            </summary>
+    </type>
+    <type name="WeatherSoundCollection" fullname="Fields.Fallout4.WeatherSoundCollection" category="Fields (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a collection of <see cref="Fields.Fallout4.WeatherSound">WeatherSounds</see>.
             </summary>
     </type>
   </category>
@@ -40,6 +79,10 @@
             Represents a <b>Form List</b> form.
             </summary>
     </type>
+    <type name="Gdry" fullname="Forms.Fallout4.Gdry" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>God Rays</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
     <type name="Glob" fullname="Forms.Fallout4.Glob" category="Forms (Fallout4)" gametitle="Fallout4">
       <summary>
             Represents a <b>Global Variable</b> form.
@@ -50,9 +93,35 @@
             Represents a <b>Game Setting</b> form.
             </summary>
     </type>
+    <type name="Imgs" fullname="Forms.Fallout4.Imgs" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents an <b>Image Space</b> form.
+            </summary>
+    </type>
     <type name="Kywd" fullname="Forms.Fallout4.Kywd" category="Forms (Fallout4)" gametitle="Fallout4">
       <summary>
             Represents a <b>Keyword</b> form.
+            </summary>
+    </type>
+    <type name="Rfct" fullname="Forms.Fallout4.Rfct" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Visual Effect</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Sndr" fullname="Forms.Fallout4.Sndr" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Sound Reference</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Spgd" fullname="Forms.Fallout4.Spgd" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Shader Particle Geometry</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Stat" fullname="Forms.Fallout4.Stat" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Static</b> form. <i>This form is a work in progress.</i></summary>
+    </type>
+    <type name="Wthr" fullname="Forms.Fallout4.Wthr" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents a <b>Weather</b> form.
             </summary>
     </type>
   </category>

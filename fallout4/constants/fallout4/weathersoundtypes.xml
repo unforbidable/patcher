@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="WeatherSoundTypes" fullname="Constants.Fallout4.WeatherSoundTypes" category="Constants (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Defines the types of weather sounds.
+            </summary>
+  <field name="Default" gametitle="Fallout4">
+    <summary>
+            Represents the default weather sound.
+            </summary>
+  </field>
+  <field name="Precipitation" gametitle="Fallout4">
+    <summary>
+            Represents the sound of the rain.
+            </summary>
+  </field>
+  <field name="Thunder" gametitle="Fallout4">
+    <summary>
+            Represents the sound of a thunder.
+            </summary>
+  </field>
+  <field name="Wind" gametitle="Fallout4">
+    <summary>
+            Represents the sound of the wind.
+            </summary>
+  </field>
+</type>
