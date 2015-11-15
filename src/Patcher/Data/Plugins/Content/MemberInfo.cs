@@ -46,7 +46,7 @@ namespace Patcher.Data.Plugins.Content
         public bool IsNullableType { get; private set; }
         public bool IsReference { get; private set; }
         public bool IsRequired { get; private set; }
-        public bool IsDynamicArray { get; set; }
+        public bool IsDynamic { get; set; }
         public FormKindSet ReferencedFormKinds { get; private set; }
 
         public Regex DynamicArrayRegex { get; set; }
@@ -106,28 +106,15 @@ namespace Patcher.Data.Plugins.Content
                 IsListType = false;
             }
 
-            if (fieldNames.First() == ".0TX")
-            {
-
-            }
-
             IsPrimitiveType = !typeof(Field).IsAssignableFrom(fieldType);
-            IsDynamicArray = false;
 
-            Type checkType = property.PropertyType;
-            while (checkType != null)
-            {
-                if (checkType.IsGenericType && checkType.GetGenericTypeDefinition() == typeof(DynamicArrayCompound<>))
-                {
-                    IsDynamicArray = true;
-                    break;
-                }
-                checkType = checkType.BaseType;
-            }
+            // Field is dynamic if any of its field names contains a .
+            IsDynamic = fieldNames.Where(n => n.Contains('.')).Any();
 
-            if (IsDynamicArray)
+            if (IsDynamic)
             {
-                var pattern = string.Join("|", fieldNames);
+                // Replace . with (.|\n) to cover also new line
+                var pattern = string.Join("|", fieldNames).Replace(".", "(.|\n)");
                 DynamicArrayRegex = new Regex(pattern);
             }
 

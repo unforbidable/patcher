@@ -69,7 +69,7 @@ namespace Patcher.Data.Plugins.Content
 
                     if (remainingPropertiesToLoad != null)
                     {
-                        if (!meminf.IsListType && !meminf.IsDynamicArray)
+                        if (!meminf.IsListType && !meminf.IsDynamic)
                             remainingPropertiesToLoad.Remove(propertyName);
 
                         if (!remainingPropertiesToLoad.Any())

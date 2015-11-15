@@ -62,7 +62,7 @@ namespace Patcher.Data.Plugins.Content
                 {
                     return currentMemberInfo;
                 }
-                else if (currentMemberInfo.IsDynamicArray && currentMemberInfo.DynamicArrayRegex.IsMatch(propertyName))
+                else if (currentMemberInfo.IsDynamic && currentMemberInfo.DynamicArrayRegex.IsMatch(propertyName))
                 {
                     return currentMemberInfo;
                 }
