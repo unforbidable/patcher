@@ -33,7 +33,7 @@ namespace Patcher.Data.Plugins.Content.Records
 
         [Member(Names.BNAM)]
         [Initialize]
-        private ByteArray Blur { get; set; }
+        private ByteArray BlurRadius { get; set; }
 
         [Member(Names.VNAM)]
         [Initialize]
@@ -49,23 +49,23 @@ namespace Patcher.Data.Plugins.Content.Records
 
         [Member(Names.RNAM)]
         [Initialize]
-        private ByteArray BlurStrength { get; set; }
+        private ByteArray RadialBlurStrength { get; set; }
 
         [Member(Names.SNAM)]
         [Initialize]
-        private ByteArray BlurRampup { get; set; }
+        private ByteArray RadialBlurRampup { get; set; }
 
         [Member(Names.UNAM)]
         [Initialize]
-        private ByteArray BlurStart { get; set; }
+        private ByteArray RadialBlurStart { get; set; }
 
         [Member(Names.NAM1)]
         [Initialize]
-        private ByteArray BlurRampdown { get; set; }
+        private ByteArray RadialBlurRampdown { get; set; }
 
         [Member(Names.NAM2)]
         [Initialize]
-        private ByteArray BlurDownStart { get; set; }
+        private ByteArray RadialBlurDownStart { get; set; }
 
         [Member(Names.WNAM)]
         [Initialize]
@@ -103,6 +103,86 @@ namespace Patcher.Data.Plugins.Content.Records
         private IEnumerable<TimeColor> GetTimeColors(byte[] buffer)
         {
             return Enumerable.Range(0, buffer.Length / 8).Select(i => new TimeColor(buffer, i * 8));
+        }
+
+        public IEnumerable<TimeFloat> GetBlurRadius()
+        {
+            return GetTimeFloats(BlurRadius.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetRadialBlurRampup()
+        {
+            return GetTimeFloats(RadialBlurRampup.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetRadialBlurStrength()
+        {
+            return GetTimeFloats(RadialBlurStrength.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetRadialBlurStart()
+        {
+            return GetTimeFloats(RadialBlurStart.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetRadialBlurRampdown()
+        {
+            return GetTimeFloats(RadialBlurRampdown.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetRadialBlurDownStart()
+        {
+            return GetTimeFloats(RadialBlurDownStart.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetBloomBlurRadiusMult()
+        {
+            return GetTimeFloats(Couples.GetElement(1));
+        }
+
+        public IEnumerable<TimeFloat> GetBloomBlurRadiusAdd()
+        {
+            return GetTimeFloats(Couples.GetElement(1 + 64));
+        }
+
+        public IEnumerable<TimeFloat> GetBloomTresholdMult()
+        {
+            return GetTimeFloats(Couples.GetElement(2));
+        }
+
+        public IEnumerable<TimeFloat> GetBloomTresholdAdd()
+        {
+            return GetTimeFloats(Couples.GetElement(2 + 64));
+        }
+
+        public IEnumerable<TimeFloat> GetBloomScaleMult()
+        {
+            return GetTimeFloats(Couples.GetElement(3));
+        }
+
+        public IEnumerable<TimeFloat> GetBloomScaleAdd()
+        {
+            return GetTimeFloats(Couples.GetElement(3 + 64));
+        }
+
+        public IEnumerable<TimeFloat> GetTargetLumMinMult()
+        {
+            return GetTimeFloats(Couples.GetElement(4));
+        }
+
+        public IEnumerable<TimeFloat> GetTargetLumMinAdd()
+        {
+            return GetTimeFloats(Couples.GetElement(4 + 64));
+        }
+
+        public IEnumerable<TimeFloat> GetTargetLumMaxMult()
+        {
+            return GetTimeFloats(Couples.GetElement(5));
+        }
+
+        public IEnumerable<TimeFloat> GetTargetLumMaxAdd()
+        {
+            return GetTimeFloats(Couples.GetElement(5 + 64));
         }
 
         public IEnumerable<TimeFloat> GetSaturationMult()
@@ -239,9 +319,18 @@ namespace Patcher.Data.Plugins.Content.Records
             public override Field CopyField()
             {
                 // Deep copy the all byte arrays
+                var elementsCopy = new List<ByteArray>(64);
+                foreach (var element in elements)
+                {
+                    if (element == null)
+                        elementsCopy.Add(null);
+                    else
+                        elementsCopy.Add((ByteArray)element.CopyField());
+                }
+
                 return new TimeFloatCoupleArray()
                 {
-                    elements = new List<ByteArray>(elements.Select(e => e.CopyField()).Cast<ByteArray>())
+                    elements = elementsCopy
                 };
             }
 
@@ -367,7 +456,7 @@ namespace Patcher.Data.Plugins.Content.Records
                 var cast = (MainData)other;
                 return Flags == cast.Flags && Duration == cast.Duration && Sizes1.SequenceEqual(cast.Sizes1) && BlurFlags == cast.BlurFlags &&
                     BlurCenterX == cast.BlurCenterX && BlurCenterY == cast.BlurCenterY && Sizes2.SequenceEqual(cast.Sizes2) &&
-                    DepthOfFieldFlags == cast.DepthOfFieldFlags && Sizes3.SequenceEqual(cast.Sizes3) && Sizes4.SequenceEqual(cast.Sizes4);
+                    DepthOfFieldFlags == cast.DepthOfFieldFlags && Sizes3.SequenceEqual(cast.Sizes3) && (Sizes4 == null || Sizes4.SequenceEqual(cast.Sizes4));
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
