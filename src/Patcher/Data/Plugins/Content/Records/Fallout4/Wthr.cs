@@ -379,6 +379,16 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                     NightPow = NightPow,
                     DayMax = DayMax,
                     NightMax = NightMax,
+                    Unknown1 = Unknown1,
+                    Unknown2 = Unknown2,
+                    Unknown3 = Unknown3,
+                    Unknown4 = Unknown4,
+                    Unknown5 = Unknown5,
+                    Unknown6 = Unknown6,
+                    Unknown7 = Unknown7,
+                    Unknown8 = Unknown8,
+                    Unknown9 = Unknown9,
+                    Unknown10 = Unknown10
                 };
             }
 
@@ -391,7 +401,9 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             {
                 var cast = (FogData)other;
                 return DayNear == cast.DayNear && DayFar == cast.DayFar && NightNear == cast.NightNear && NightFar == cast.NightFar &&
-                    DayPow == cast.DayPow && NightPow == cast.NightPow && DayMax == cast.DayMax && NightMax == cast.NightMax;
+                    DayPow == cast.DayPow && NightPow == cast.NightPow && DayMax == cast.DayMax && NightMax == cast.NightMax &&
+                    Unknown1 == cast.Unknown1 && Unknown2 == cast.Unknown2 && Unknown3 == cast.Unknown3 && Unknown4 == cast.Unknown4 && Unknown5 == cast.Unknown5 &&
+                    Unknown6 == cast.Unknown6 && Unknown7 == cast.Unknown7 && Unknown8 == cast.Unknown8 && Unknown9 == cast.Unknown9 && Unknown10 == cast.Unknown10;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
