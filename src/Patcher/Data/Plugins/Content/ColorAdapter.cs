@@ -25,12 +25,12 @@ namespace Patcher.Data.Plugins.Content
 {
     public class ColorAdapter
     {
-        internal Func<float> GetRed { get; set; }
-        internal Func<float> GetGreen { get; set; }
-        internal Func<float> GetBlue { get; set; }
-        internal Action<float> SetRed { get; set; }
-        internal Action<float> SetGreen { get; set; }
-        internal Action<float> SetBlue { get; set; }
+        private Func<float> GetRed { get; set; }
+        private Func<float> GetGreen { get; set; }
+        private Func<float> GetBlue { get; set; }
+        private Action<float> SetRed { get; set; }
+        private Action<float> SetGreen { get; set; }
+        private Action<float> SetBlue { get; set; }
 
         public ColorAdapter(IColorFloatAdaptable target)
         {
@@ -58,7 +58,7 @@ namespace Patcher.Data.Plugins.Content
             SetBlue = (value) => { buffer[offset + 2] = (byte)(value * 255); };
         }
 
-        private float LimitRange(float value)
+        protected float LimitRange(float value)
         {
             return Math.Min(Math.Max(value, 0.0f), 1.0f);
         }
