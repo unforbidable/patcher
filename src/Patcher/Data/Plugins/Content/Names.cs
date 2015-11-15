@@ -56,6 +56,7 @@ namespace Patcher.Data.Plugins.Content
         public const string GRAS = "GRAS";
         public const string IDLE = "IDLE";
         public const string IDLM = "IDLM";
+        public const string IMAD = "IMAD";
         public const string IMGS = "IMGS";
         public const string INGR = "INGR";
         public const string IPDS = "IPDS";
