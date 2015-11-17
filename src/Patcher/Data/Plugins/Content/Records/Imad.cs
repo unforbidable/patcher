@@ -95,6 +95,11 @@ namespace Patcher.Data.Plugins.Content.Records
         [Initialize]
         private TimeFloatCoupleArray Couples { get; set; }
 
+        protected override void AfterRead(RecordReader reader)
+        {
+            base.AfterRead(reader);
+        }
+
         public float Duration { get { return Data.Duration; } set { Data.Duration = value; } }
         public float BlurCenterX { get { return Data.BlurCenterX; } set { Data.BlurCenterX = value; } }
         public float BlurCenterY { get { return Data.BlurCenterY; } set { Data.BlurCenterY = value; } }
@@ -109,7 +114,7 @@ namespace Patcher.Data.Plugins.Content.Records
 
         private IEnumerable<TimeColor> GetTimeColors(byte[] buffer)
         {
-            return Enumerable.Range(0, buffer.Length / 8).Select(i => new TimeColor(buffer, i * 8));
+            return Enumerable.Range(0, buffer.Length / 20).Select(i => new TimeColor(buffer, i * 20));
         }
 
         public IEnumerable<TimeColor> GetTint()
