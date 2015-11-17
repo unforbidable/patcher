@@ -25,7 +25,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 {
     [Record(Names.LIGH)]
     [Game(Games.Fallout4)]
-    public sealed class Ligh : GenericFormRecord
+    public sealed class Ligh : GenericFormRecord, IFeaturingObjectBounds
     {
         [Member(Names.VMAD)]
         public ByteArray VirtualMachineAdapter { get; set; }
@@ -65,28 +65,36 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
         [Member(Names.LNAM)]
         [Reference(Names.LENS)]
-        public uint LensEffect { get; set; }
+        public uint LensFlare { get; set; }
 
         [Member(Names.WGDR)]
-        [Reference(Names.WTHR)]
-        public uint Weather { get; set; }
+        [Reference(Names.GDRY)]
+        public uint GodRays { get; set; }
 
-        protected override void AfterRead(RecordReader reader)
-        {
-            if (Unknown != null)
-            {
-                uint a = BitConverter.ToUInt32(Unknown.Bytes, 0);
-                float b = BitConverter.ToSingle(Unknown.Bytes, 4);
-            }
+        public string WorldModel { get { return ModelData.Path; } set { ModelData.Path = value; } }
 
-            base.AfterRead(reader);
-        }
+        public int Duration { get { return Data.Duration; } set { Data.Duration = value; } }
+        public uint Radius { get { return Data.Radius; } set { Data.Radius = value; } }
+        public float FallOffExponent { get { return Data.FallOffExponent; } set { Data.FallOffExponent = value; } }
+        public float Angle { get { return Data.Angle; } set { Data.Angle = value; } }
+        public float NearClip { get { return Data.NearClip; } set { Data.NearClip = value; } }
+        public float FlickerPeriod { get { return Data.FlickerPeriod; } set { Data.FlickerPeriod = value; } }
+        public float FlickerIntensity { get { return Data.FlickerIntensity; } set { Data.FlickerIntensity = value; } }
+        public float FlickerMovement { get { return Data.FlickerMovement; } set { Data.FlickerMovement = value; } }
+        public uint Value { get { return Data.Value; } set { Data.Value = value; } }
+        public float Weight { get { return Data.Weight; } set { Data.Weight = value; } }
+        public float Unknown1 { get { return Data.Unknown1; } set { Data.Unknown1 = value; } }
+        public float Unknown2 { get { return Data.Unknown2; } set { Data.Unknown2 = value; } }
+        public float Unknown3 { get { return Data.Unknown3; } set { Data.Unknown3 = value; } }
+        public float Unknown4 { get { return Data.Unknown4; } set { Data.Unknown4 = value; } }
+
+        public ColorAdapter Color { get { return new ColorAdapter(Data.ColorData); } }
 
         sealed class LightData : Field
         {
-            public int Time { get; set; }
+            public int Duration { get; set; }
             public uint Radius { get; set; }
-            private byte[] ColorData { get; set; }
+            public byte[] ColorData { get; set; }
             public Flags Flags { get; set; }
             public float FallOffExponent { get; set; }
             public float Angle { get; set; }
@@ -100,13 +108,10 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             public float Unknown2 { get; set; }
             public float Unknown3 { get; set; }
             public float Unknown4 { get; set; }
-            public float Unknown5 { get; set; }
-            public float Unknown6 { get; set; }
-            public float Unknown7 { get; set; }
 
             internal override void ReadField(RecordReader reader)
             {
-                Time = reader.ReadInt32();
+                Duration = reader.ReadInt32();
                 Radius = reader.ReadUInt32();
                 ColorData = reader.ReadBytes(4);
                 Flags = (Flags)reader.ReadUInt32();
@@ -130,27 +135,64 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
             internal override void WriteField(RecordWriter writer)
             {
-                throw new NotImplementedException();
+                writer.Write(Duration);
+                writer.Write(Radius);
+                writer.Write(ColorData);
+                writer.Write((uint)Flags);
+                writer.Write(FallOffExponent);
+                writer.Write(Angle);
+                writer.Write(NearClip);
+                writer.Write(FlickerPeriod);
+                writer.Write(FlickerIntensity);
+                writer.Write(FlickerMovement);
+                writer.Write(Value);
+                writer.Write(Weight);
+                writer.Write(Unknown1);
+                writer.Write(Unknown2);
+                writer.Write(Unknown3);
+                writer.Write(Unknown4);
             }
 
             public override Field CopyField()
             {
-                throw new NotImplementedException();
+                return new LightData()
+                {
+                    Duration = Duration,
+                    Radius = Radius,
+                    ColorData = new List<byte>(ColorData).ToArray(),
+                    Flags = Flags,
+                    FallOffExponent = FallOffExponent,
+                    Angle = Angle,
+                    NearClip = NearClip,
+                    FlickerPeriod = FlickerPeriod,
+                    FlickerIntensity = FlickerIntensity,
+                    FlickerMovement = FlickerMovement,
+                    Value = Value,
+                    Weight = Weight,
+                    Unknown1 = Unknown1,
+                    Unknown2 = Unknown2,
+                    Unknown3 = Unknown3,
+                    Unknown4 = Unknown4,
+                };
             }
 
             public override string ToString()
             {
-                throw new NotImplementedException();
+                return string.Format("Flags={0} Radius={1}", Flags, Radius);
             }
 
             public override bool Equals(Field other)
             {
-                throw new NotImplementedException();
+                var cast = (LightData)other;
+                return Duration == cast.Duration && Radius == cast.Radius && ColorData.SequenceEqual(cast.ColorData) && Flags == cast.Flags &&
+                    FallOffExponent == cast.FallOffExponent && Angle == cast.Angle && NearClip == cast.NearClip && FlickerPeriod == cast.FlickerPeriod &&
+                    FlickerIntensity == cast.FlickerIntensity && FlickerMovement == cast.FlickerMovement && Value == cast.Value && Weight == cast.Weight &&
+                    Unknown1 == cast.Unknown1 && Unknown2 == cast.Unknown2 && Unknown3 == cast.Unknown3 && Unknown4 == cast.Unknown4;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()
             {
-                throw new NotImplementedException();
+                yield break;
             }
         }
 
