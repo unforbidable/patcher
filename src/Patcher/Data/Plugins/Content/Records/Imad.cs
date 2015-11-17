@@ -37,7 +37,7 @@ namespace Patcher.Data.Plugins.Content.Records
 
         [Member(Names.VNAM)]
         [Initialize]
-        private ByteArray DoubleVision { get; set; }
+        private ByteArray DoubleVisionStrength { get; set; }
 
         [Member(Names.TNAM)]
         [Initialize]
@@ -95,6 +95,13 @@ namespace Patcher.Data.Plugins.Content.Records
         [Initialize]
         private TimeFloatCoupleArray Couples { get; set; }
 
+        public float Duration { get { return Data.Duration; } set { Data.Duration = value; } }
+        public float BlurCenterX { get { return Data.BlurCenterX; } set { Data.BlurCenterX = value; } }
+        public float BlurCenterY { get { return Data.BlurCenterY; } set { Data.BlurCenterY = value; } }
+
+        public bool IsAnimatable { get { return Data.Flags.HasFlag(Flags.Animatable); } set { if (value) Data.Flags |= Flags.Animatable; else Data.Flags &= ~Flags.Animatable; } }
+        public bool IsBlurTargetted { get { return Data.BlurFlags.HasFlag(BlurFlags.UseTarget); } set { if (value) Data.BlurFlags |= BlurFlags.UseTarget; else Data.BlurFlags &= ~BlurFlags.UseTarget; } }
+
         private IEnumerable<TimeFloat> GetTimeFloats(byte[] buffer)
         {
             return Enumerable.Range(0, buffer.Length / 8).Select(i => new TimeFloat(buffer, i * 8));
@@ -105,9 +112,24 @@ namespace Patcher.Data.Plugins.Content.Records
             return Enumerable.Range(0, buffer.Length / 8).Select(i => new TimeColor(buffer, i * 8));
         }
 
+        public IEnumerable<TimeColor> GetTint()
+        {
+            return GetTimeColors(Tint.Bytes);
+        }
+
+        public IEnumerable<TimeColor> GetFade()
+        {
+            return GetTimeColors(Fade.Bytes);
+        }
+
         public IEnumerable<TimeFloat> GetBlurRadius()
         {
             return GetTimeFloats(BlurRadius.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetDoubleVisionStrength()
+        {
+            return GetTimeFloats(DoubleVisionStrength.Bytes);
         }
 
         public IEnumerable<TimeFloat> GetRadialBlurRampup()
@@ -133,6 +155,36 @@ namespace Patcher.Data.Plugins.Content.Records
         public IEnumerable<TimeFloat> GetRadialBlurDownStart()
         {
             return GetTimeFloats(RadialBlurDownStart.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetDepthOfFieldStrength()
+        {
+            return GetTimeFloats(DepthOfFieldStrength.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetDepthOfFieldDistance()
+        {
+            return GetTimeFloats(DepthOfFieldDistance.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetDepthOfFieldRange()
+        {
+            return GetTimeFloats(DepthOfFieldRange.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetMotionBlur()
+        {
+            return GetTimeFloats(MotionBlur.Bytes);
+        }
+
+        public IEnumerable<TimeFloat> GetEyeAdaptMult()
+        {
+            return GetTimeFloats(Couples.GetElement(0));
+        }
+
+        public IEnumerable<TimeFloat> GetEyeAdaptAdd()
+        {
+            return GetTimeFloats(Couples.GetElement(0 + 64));
         }
 
         public IEnumerable<TimeFloat> GetBloomBlurRadiusMult()

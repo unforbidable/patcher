@@ -76,6 +76,34 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
             }
         }
 
+        public float BlurCenterX
+        {
+            get
+            {
+                return record.BlurCenterX;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.BlurCenterX = value;
+            }
+        }
+
+        public float BlurCenterY
+        {
+            get
+            {
+                return record.BlurCenterY;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.BlurCenterY = value;
+            }
+        }
+
         public IEnumerable<ITimeFloat> BlurRadiusValues
         {
             get
@@ -113,6 +141,112 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
             get
             {
                 return record.GetContrastMult().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public IEnumerable<ITimeFloat> DepthOfFieldDistanceValues
+        {
+            get
+            {
+                return record.GetDepthOfFieldDistance().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public IEnumerable<ITimeFloat> DepthOfFieldRangeValues
+        {
+            get
+            {
+                return record.GetDepthOfFieldRange().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public IEnumerable<ITimeFloat> DepthOfFieldStrengthValues
+        {
+            get
+            {
+                return record.GetDepthOfFieldStrength().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public IEnumerable<ITimeFloat> DoubleVisionStrengthValues
+        {
+            get
+            {
+                return record.GetDoubleVisionStrength().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public float Duration
+        {
+            get
+            {
+                return record.Duration;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.Duration = value;
+            }
+        }
+
+        public IEnumerable<ITimeFloat> EyeAdaptSpeedAdditives
+        {
+            get
+            {
+                return record.GetEyeAdaptAdd().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public IEnumerable<ITimeFloat> EyeAdaptSpeedMultipliers
+        {
+            get
+            {
+                return record.GetEyeAdaptMult().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public IEnumerable<ITimeColor> FadeColors
+        {
+            get
+            {
+                return record.GetFade().Select(i => Provider.CreateProxy<TimeColorProxy>(Mode).With(i));
+            }
+        }
+
+        public bool IsAnimatable
+        {
+            get
+            {
+                return record.IsAnimatable;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.IsAnimatable = value;
+            }
+        }
+
+        public bool IsBlurTargetted
+        {
+            get
+            {
+                return record.IsBlurTargetted;
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.IsBlurTargetted = value;
+            }
+        }
+
+        public IEnumerable<ITimeFloat> MotionBlurValues
+        {
+            get
+            {
+                return record.GetMotionBlur().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
             }
         }
 
@@ -201,6 +335,14 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
             get
             {
                 return record.GetTargetLumMinMult().Select(i => Provider.CreateProxy<TimeFloatProxy>(Mode).With(i));
+            }
+        }
+
+        public IEnumerable<ITimeColor> TintColors
+        {
+            get
+            {
+                return record.GetTint().Select(i => Provider.CreateProxy<TimeColorProxy>(Mode).With(i));
             }
         }
     }

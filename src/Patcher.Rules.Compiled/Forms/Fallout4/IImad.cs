@@ -28,6 +28,41 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
     public interface IImad : IForm
     {
         /// <summary>
+        /// Gets or sets the duration of effect.
+        /// </summary>
+        float Duration { get; set; }
+        /// <summary>
+        /// Gets or sets the X-axis offset of the center of the blur effect.
+        /// </summary>
+        float BlurCenterX { get; set; }
+        /// <summary>
+        /// Gets or sets the Y-axis offset of the center of the blur effect.
+        /// </summary>
+        float BlurCenterY { get; set; }
+        /// <summary>
+        /// Gets or sets the value which determines whether the effect is animated.
+        /// </summary>
+        bool IsAnimatable { get; set; }
+        /// <summary>
+        /// Gets or sets the value which determines whether the blur effect uses a target.
+        /// </summary>
+        bool IsBlurTargetted { get; set; }
+
+        /// <summary>
+        /// Retreives an enumerable collection of colors for Tint.
+        /// </summary>
+        IEnumerable<ITimeColor> TintColors { get; }
+
+        /// <summary>
+        /// Retreives an enumerable collection of colors for Fade.
+        /// </summary>
+        IEnumerable<ITimeColor> FadeColors { get; }
+
+        /// <summary>
+        /// Retreives an enumerable collection of values for Double Vision Strength.
+        /// </summary>
+        IEnumerable<ITimeFloat> DoubleVisionStrengthValues { get; }
+        /// <summary>
         /// Retreives an enumerable collection of values for Blur Radius.
         /// </summary>
         IEnumerable<ITimeFloat> BlurRadiusValues { get; }
@@ -51,7 +86,31 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// Retreives an enumerable collection of values for Radial Blur DownStart Radius.
         /// </summary>
         IEnumerable<ITimeFloat> RadialBlurDownStartValues { get; }
+        /// <summary>
+        /// Retreives an enumerable collection of values for Depth Of Field Strength.
+        /// </summary>
+        IEnumerable<ITimeFloat> DepthOfFieldStrengthValues { get; }
+        /// <summary>
+        /// Retreives an enumerable collection of values for Depth Of Field Distance.
+        /// </summary>
+        IEnumerable<ITimeFloat> DepthOfFieldDistanceValues { get; }
+        /// <summary>
+        /// Retreives an enumerable collection of values for Depth Of Field Range.
+        /// </summary>
+        IEnumerable<ITimeFloat> DepthOfFieldRangeValues { get; }
+        /// <summary>
+        /// Retreives an enumerable collection of values for Motion Blur.
+        /// </summary>
+        IEnumerable<ITimeFloat> MotionBlurValues { get; }
 
+        /// <summary>
+        /// Retreives an enumerable collection of Eye Adapt multipliers.
+        /// </summary>
+        IEnumerable<ITimeFloat> EyeAdaptSpeedMultipliers { get; }
+        /// <summary>
+        /// Retreives an enumerable collection of Eye Adapt additives.
+        /// </summary>
+        IEnumerable<ITimeFloat> EyeAdaptSpeedAdditives { get; }
         /// <summary>
         /// Retreives an enumerable collection of Bloom Blur Radius multipliers.
         /// </summary>
@@ -92,7 +151,6 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// Retreives an enumerable collection of Saturation additives.
         /// </summary>
         IEnumerable<ITimeFloat> TargetLumMaxAdditives { get; }
-
         /// <summary>
         /// Retreives an enumerable collection of Saturation multipliers.
         /// </summary>
