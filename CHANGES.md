@@ -1,3 +1,6 @@
+##### v1.9.0 (2015/11/17)
+* New Fallout 4 forms: IMAD
+
 ##### v1.8.0 (2015/11/14)
 * New Fallout 4 forms: WTHR,IMGS
 * New Color functions MultiplyValues() and SetValues()
