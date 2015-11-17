@@ -25,6 +25,7 @@ using Patcher.Rules.Compiled.Fields.Skyrim;
 using Patcher.Rules.Compiled.Forms;
 using Patcher.Rules.Compiled.Constants.Skyrim;
 using Patcher.Data.Plugins.Content.Constants.Skyrim;
+using Patcher.Rules.Compiled.Fields;
 
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {

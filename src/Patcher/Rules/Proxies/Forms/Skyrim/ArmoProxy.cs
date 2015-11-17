@@ -24,6 +24,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Patcher.Rules.Compiled.Constants.Skyrim;
 using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Rules.Compiled.Fields;
 
 namespace Patcher.Rules.Proxies.Forms.Skyrim
 {

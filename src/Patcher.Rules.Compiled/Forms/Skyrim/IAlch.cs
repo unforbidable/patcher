@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Rules.Compiled.Constants.Skyrim;
+using Patcher.Rules.Compiled.Fields;
 using Patcher.Rules.Compiled.Fields.Skyrim;
 
 namespace Patcher.Rules.Compiled.Forms.Skyrim
