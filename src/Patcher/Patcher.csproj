@@ -67,7 +67,7 @@
     <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
     <Compile Include="Data\Plugins\Content\ColorAlphaAdapter.cs" />
     <Compile Include="Data\Plugins\Content\ColorAdapter.cs" />
-    <Compile Include="Data\Plugins\Content\Constants\Fallout4\Model.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Fallout4\Model.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Fallout4\WeatherSoundType.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\ActorValue.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Skyrim\Alignment.cs" />
@@ -355,7 +355,7 @@
     <Compile Include="Data\Plugins\Content\Records\Tes4.cs" />
     <Compile Include="Data\Plugins\Content\RecordMetadata.cs" />
     <Compile Include="Data\Plugins\Content\Record.cs" />
-    <Compile Include="Data\Plugins\Content\Fields\Skyrim\Keywords.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\Keywords.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\RuleEngine.cs" />
