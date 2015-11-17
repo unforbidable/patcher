@@ -20,6 +20,16 @@
             Represents a color definition.
             </summary>
     </type>
+    <type name="TimeColor" fullname="Fields.TimeColor" category="Fields" gametitle="">
+      <summary>
+            Represents a color at a certain point in time.
+            </summary>
+    </type>
+    <type name="TimeFloat" fullname="Fields.TimeFloat" category="Fields" gametitle="">
+      <summary>
+            Represents a floating point value at a certain point in time.
+            </summary>
+    </type>
   </category>
   <category name="Fields (Fallout4)">
     <type name="WeatherAlphaSet" fullname="Fields.Fallout4.WeatherAlphaSet" category="Fields (Fallout4)" gametitle="Fallout4">
@@ -91,6 +101,11 @@
     <type name="Gmst" fullname="Forms.Fallout4.Gmst" category="Forms (Fallout4)" gametitle="Fallout4">
       <summary>
             Represents a <b>Game Setting</b> form.
+            </summary>
+    </type>
+    <type name="Imad" fullname="Forms.Fallout4.Imad" category="Forms (Fallout4)" gametitle="Fallout4">
+      <summary>
+            Represents an <b>Image Space Adapter</b> form.
             </summary>
     </type>
     <type name="Imgs" fullname="Forms.Fallout4.Imgs" category="Forms (Fallout4)" gametitle="Fallout4">

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="TimeFloat" fullname="Fields.TimeFloat" category="Fields" gametitle="">
+  <summary>
+            Represents a floating point value at a certain point in time.
+            </summary>
+  <property name="Time" gametitle="">
+    <signature>
+      <c>float</c> Time</signature>
+    <summary>
+            Gets or sets the which indicates when the value is valid represented as a value between 0.0f and 1.0f.
+            </summary>
+  </property>
+  <property name="Value" gametitle="">
+    <signature>
+      <c>float</c> Value</signature>
+    <summary>
+            Gets or sets the floating point value.
+            </summary>
+  </property>
+</type>

@@ -60,6 +60,16 @@
             Represents a color definition.
             </summary>
     </type>
+    <type name="TimeColor" fullname="Fields.TimeColor" category="Fields" gametitle="">
+      <summary>
+            Represents a color at a certain point in time.
+            </summary>
+    </type>
+    <type name="TimeFloat" fullname="Fields.TimeFloat" category="Fields" gametitle="">
+      <summary>
+            Represents a floating point value at a certain point in time.
+            </summary>
+    </type>
   </category>
   <category name="Fields (Skyrim)">
     <type name="Condition" fullname="Fields.Skyrim.Condition" category="Fields (Skyrim)" gametitle="Skyrim">
@@ -205,6 +215,11 @@
     <type name="Gmst" fullname="Forms.Skyrim.Gmst" category="Forms (Skyrim)" gametitle="Skyrim">
       <summary>
             Represents a <b>Game Setting</b> form.
+            </summary>
+    </type>
+    <type name="Imad" fullname="Forms.Skyrim.Imad" category="Forms (Skyrim)" gametitle="Skyrim">
+      <summary>
+            Represents an <b>Image Space Adapter</b> form.
             </summary>
     </type>
     <type name="Imgs" fullname="Forms.Skyrim.Imgs" category="Forms (Skyrim)" gametitle="Skyrim">

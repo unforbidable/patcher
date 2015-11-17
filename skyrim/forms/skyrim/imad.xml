@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Imad" fullname="Forms.Skyrim.Imad" category="Forms (Skyrim)" gametitle="Skyrim">
+  <summary>
+            Represents an <b>Image Space Adapter</b> form.
+            </summary>
+  <property name="BrightnessAdditives" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BrightnessAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Brightness additives.
+            </summary>
+  </property>
+  <property name="BrightnessMultipliers" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BrightnessMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Brightness multipliers.
+            </summary>
+  </property>
+  <property name="ContrastAdditives" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; ContrastAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Contrast additives.
+            </summary>
+  </property>
+  <property name="ContrastMultipliers" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; ContrastMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Contrast multipliers.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="SaturationAdditives" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; SaturationAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation additives.
+            </summary>
+  </property>
+  <property name="SaturationMultipliers" gametitle="Skyrim">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; SaturationMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation multipliers.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+</type>

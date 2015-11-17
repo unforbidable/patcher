@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="Imad" fullname="Forms.Fallout4.Imad" category="Forms (Fallout4)" gametitle="Fallout4">
+  <summary>
+            Represents an <b>Image Space Adapter</b> form.
+            </summary>
+  <property name="BloomBlurRadiusAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BloomBlurRadiusAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Bloom Blur Radius additives.
+            </summary>
+  </property>
+  <property name="BloomBlurRadiusMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BloomBlurRadiusMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Bloom Blur Radius multipliers.
+            </summary>
+  </property>
+  <property name="BloomScaleAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BloomScaleAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation additives.
+            </summary>
+  </property>
+  <property name="BloomScaleMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BloomScaleMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation multipliers.
+            </summary>
+  </property>
+  <property name="BloomTresholdAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BloomTresholdAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation additives.
+            </summary>
+  </property>
+  <property name="BloomTresholdMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BloomTresholdMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation multipliers.
+            </summary>
+  </property>
+  <property name="BlurCenterX" gametitle="Fallout4">
+    <signature>
+      <c>float</c> BlurCenterX</signature>
+    <summary>
+            Gets or sets the X-axis offset of the center of the blur effect.
+            </summary>
+  </property>
+  <property name="BlurCenterY" gametitle="Fallout4">
+    <signature>
+      <c>float</c> BlurCenterY</signature>
+    <summary>
+            Gets or sets the Y-axis offset of the center of the blur effect.
+            </summary>
+  </property>
+  <property name="BlurRadiusValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BlurRadiusValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Blur Radius.
+            </summary>
+  </property>
+  <property name="BrightnessAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BrightnessAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Brightness additives.
+            </summary>
+  </property>
+  <property name="BrightnessMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; BrightnessMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Brightness multipliers.
+            </summary>
+  </property>
+  <property name="ContrastAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; ContrastAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Contrast additives.
+            </summary>
+  </property>
+  <property name="ContrastMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; ContrastMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Contrast multipliers.
+            </summary>
+  </property>
+  <property name="DepthOfFieldDistanceValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; DepthOfFieldDistanceValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Depth Of Field Distance.
+            </summary>
+  </property>
+  <property name="DepthOfFieldRangeValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; DepthOfFieldRangeValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Depth Of Field Range.
+            </summary>
+  </property>
+  <property name="DepthOfFieldStrengthValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; DepthOfFieldStrengthValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Depth Of Field Strength.
+            </summary>
+  </property>
+  <property name="DoubleVisionStrengthValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; DoubleVisionStrengthValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Double Vision Strength.
+            </summary>
+  </property>
+  <property name="Duration" gametitle="Fallout4">
+    <signature>
+      <c>float</c> Duration</signature>
+    <summary>
+            Gets or sets the duration of effect.
+            </summary>
+  </property>
+  <property name="EditorId" gametitle="">
+    <signature>
+      <c>string</c> EditorId</signature>
+    <summary>
+            Gets or sets the Editor ID associated with this form.
+            </summary>
+  </property>
+  <property name="EyeAdaptSpeedAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; EyeAdaptSpeedAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Eye Adapt additives.
+            </summary>
+  </property>
+  <property name="EyeAdaptSpeedMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; EyeAdaptSpeedMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Eye Adapt multipliers.
+            </summary>
+  </property>
+  <property name="FadeColors" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeColor" />&gt; FadeColors</signature>
+    <summary>
+            Retreives an enumerable collection of colors for Fade.
+            </summary>
+  </property>
+  <property name="FormId" gametitle="">
+    <signature>
+      <c>uint</c> FormId</signature>
+    <summary>
+            Gets the Form ID associated with this form.
+            </summary>
+  </property>
+  <property name="IsAnimatable" gametitle="Fallout4">
+    <signature>
+      <c>bool</c> IsAnimatable</signature>
+    <summary>
+            Gets or sets the value which determines whether the effect is animated.
+            </summary>
+  </property>
+  <property name="IsBlurTargetted" gametitle="Fallout4">
+    <signature>
+      <c>bool</c> IsBlurTargetted</signature>
+    <summary>
+            Gets or sets the value which determines whether the blur effect uses a target.
+            </summary>
+  </property>
+  <property name="MotionBlurValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; MotionBlurValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Motion Blur.
+            </summary>
+  </property>
+  <property name="RadialBlurDownStartValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; RadialBlurDownStartValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Radial Blur DownStart Radius.
+            </summary>
+  </property>
+  <property name="RadialBlurRampdownValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; RadialBlurRampdownValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Radial Blur Rampdown Radius.
+            </summary>
+  </property>
+  <property name="RadialBlurRampupValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; RadialBlurRampupValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Radial Blur Rampup Radius.
+            </summary>
+  </property>
+  <property name="RadialBlurStartValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; RadialBlurStartValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Radial Blur Start Radius.
+            </summary>
+  </property>
+  <property name="RadialBlurStrengthValues" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; RadialBlurStrengthValues</signature>
+    <summary>
+            Retreives an enumerable collection of values for Radial Blur Strength.
+            </summary>
+  </property>
+  <property name="SaturationAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; SaturationAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation additives.
+            </summary>
+  </property>
+  <property name="SaturationMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; SaturationMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation multipliers.
+            </summary>
+  </property>
+  <property name="TargetLumMaxAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; TargetLumMaxAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation additives.
+            </summary>
+  </property>
+  <property name="TargetLumMaxMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; TargetLumMaxMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation multipliers.
+            </summary>
+  </property>
+  <property name="TargetLumMinAdditives" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; TargetLumMinAdditives</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation additives.
+            </summary>
+  </property>
+  <property name="TargetLumMinMultipliers" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeFloat" />&gt; TargetLumMinMultipliers</signature>
+    <summary>
+            Retreives an enumerable collection of Saturation multipliers.
+            </summary>
+  </property>
+  <property name="TintColors" gametitle="Fallout4">
+    <signature>
+      <c>IEnumerable</c>&lt;<see cref="Fields.TimeColor" />&gt; TintColors</signature>
+    <summary>
+            Retreives an enumerable collection of colors for Tint.
+            </summary>
+  </property>
+  <method name="HasTag" extension="false" gametitle="">
+    <signature>
+      <c>bool</c> HasTag(<c>string</c>)</signature>
+    <summary>
+            Determines whether this form has been tagged with the specified text.
+            </summary>
+  </method>
+  <method name="Tag" extension="false" gametitle="">
+    <signature>
+      <c>void</c> Tag(<c>string</c>)</signature>
+    <summary>
+            Tags this form with the specified text.
+            </summary>
+  </method>
+</type>

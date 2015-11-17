@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<type name="TimeColor" fullname="Fields.TimeColor" category="Fields" gametitle="">
+  <summary>
+            Represents a color at a certain point in time.
+            </summary>
+  <property name="Color" gametitle="">
+    <signature>
+      <see cref="Fields.Color" /> Color</signature>
+    <summary>
+            Gets or sets the color.
+            </summary>
+  </property>
+  <property name="Time" gametitle="">
+    <signature>
+      <c>float</c> Time</signature>
+    <summary>
+            Gets or sets the which indicates when the color is used represented as a value between 0.0f and 1.0f.
+            </summary>
+  </property>
+</type>
