@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Plugins.Content;
+using Patcher.Data.Plugins.Content.Fields;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Rules.Compiled.Fields.Skyrim;
 using Patcher.Rules.Proxies.Fields.Skyrim;

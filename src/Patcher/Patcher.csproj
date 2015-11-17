@@ -178,7 +178,7 @@
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Armo.cs" />
     <Compile Include="Data\Plugins\Content\DummyRecord.cs" />
     <Compile Include="Data\Plugins\Content\Fields\ByteArray.cs" />
-    <Compile Include="Data\Plugins\Content\Fields\Skyrim\ObjectBounds.cs" />
+    <Compile Include="Data\Plugins\Content\Fields\ObjectBounds.cs" />
     <Compile Include="Data\Plugins\Content\Fields\Skyrim\VirtualMachineAdapter.cs" />
     <Compile Include="Data\Plugins\Content\Names.cs" />
     <Compile Include="Data\Plugins\Content\GenericFormRecord.cs" />

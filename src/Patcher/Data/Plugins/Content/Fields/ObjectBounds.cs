@@ -20,7 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Patcher.Data.Plugins.Content.Fields.Skyrim
+namespace Patcher.Data.Plugins.Content.Fields
 {
     public sealed class ObjectBounds : Field
     {
