@@ -105,7 +105,17 @@ namespace Patcher.Data.Plugins.Content
             if (value != null)
             {
                 BeginPropertySegment(fieldName);
-                WritePrimitiveField(value);
+
+                var field = value as Field;
+                if (field != null)
+                {
+                    field.WriteField(this);
+                }
+                else
+                {
+                    WritePrimitiveField(value);
+                }
+
                 EndSegment();
             }
         }

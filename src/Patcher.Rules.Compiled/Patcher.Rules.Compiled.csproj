@@ -65,6 +65,8 @@
     <Compile Include="Fields\Fallout4\IWeatherSound.cs" />
     <Compile Include="Fields\Fallout4\IWeatherSoundCollection.cs" />
     <Compile Include="Fields\IColor.cs" />
+    <Compile Include="Fields\ITimeColor.cs" />
+    <Compile Include="Fields\ITimeFloat.cs" />
     <Compile Include="Fields\Skyrim\ICondition.cs" />
     <Compile Include="Fields\Skyrim\IConditionCollection.cs" />
     <Compile Include="Fields\Skyrim\IEffect.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Forms\Fallout4\IFlst.cs" />
     <Compile Include="Forms\Fallout4\IGlob.cs" />
     <Compile Include="Forms\Fallout4\IGmst.cs" />
+    <Compile Include="Forms\Fallout4\IImad.cs" />
     <Compile Include="Forms\Fallout4\IImgs.cs" />
     <Compile Include="Forms\Fallout4\IKywd.cs" />
     <Compile Include="Forms\Fallout4\IGdry.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Forms\Skyrim\IExpl.cs" />
     <Compile Include="Forms\Skyrim\IEnch.cs" />
     <Compile Include="Forms\Skyrim\IEqup.cs" />
+    <Compile Include="Forms\Skyrim\IImad.cs" />
     <Compile Include="Forms\Skyrim\IImgs.cs" />
     <Compile Include="Forms\Skyrim\IIpds.cs" />
     <Compile Include="Forms\Skyrim\ILigh.cs" />

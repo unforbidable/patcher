@@ -1,0 +1,56 @@
+<rules>
+  <rule>
+    <name>Night Vision</name>
+    <from>IMAD</from>
+    <where>
+      Source.EditorId == "zd_ScopeNightVision"
+      || Source.EditorId == "NightPersonperkImod"
+      || Source.EditorId == "NightPersonperkImodOff"
+    </where>
+    <update>
+      // Condition f.Time != 1 ensures the last step is not changed
+      // Time 1 marks the end of the effect
+
+      foreach (var f in Target.BrightnessAdditives)
+      {
+        if (f.Time != 1)
+          f.Value = 0.8f;
+      }
+
+      foreach (var f in Target.BloomBlurRadiusAdditives)
+      {
+        if (f.Time != 1)
+          f.Value = -0.05f;
+      }
+
+      //Debug.Dump(Source);
+      //Debug.Dump(Target);
+    </update>
+  </rule>
+    <rule>
+    <name>Night Vision On only</name>
+    <from>IMAD</from>
+    <where>
+      Source.EditorId == "NightPersonperkImodOn"
+    </where>
+    <update>
+      // Condition f.Time != 0 ensures the first step is not changed
+      // Time 0 marks the beginning of the effect
+
+      foreach (var f in Target.BrightnessAdditives)
+      {
+        if (f.Time != 0)
+          f.Value = 0.8f;
+      }
+
+      foreach (var f in Target.BloomBlurRadiusAdditives)
+      {
+        if (f.Time != 0)
+          f.Value = -0.05f;
+      }
+
+      //Debug.Dump(Source);
+      //Debug.Dump(Target);
+    </update>
+  </rule>
+</rules>

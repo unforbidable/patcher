@@ -65,6 +65,7 @@
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
     <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
+    <Compile Include="Data\Plugins\Content\ColorAlphaAdapter.cs" />
     <Compile Include="Data\Plugins\Content\ColorAdapter.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Fallout4\Model.cs" />
     <Compile Include="Data\Plugins\Content\Constants\Fallout4\WeatherSoundType.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\Signature.cs" />
     <Compile Include="Data\Plugins\Content\Functions\Skyrim\SignatureProvider.cs" />
     <Compile Include="Data\Games.cs" />
+    <Compile Include="Data\Plugins\Content\IColorAlphaFloatAdaptable.cs" />
     <Compile Include="Data\Plugins\Content\IColorFloatAdaptable.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingConditions.cs" />
     <Compile Include="Data\Plugins\Content\IFeaturingEffects.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Wthr.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Ammo.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Cobj.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Imad.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Imgs.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Mgef.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Rfct.cs" />
@@ -221,12 +224,15 @@
     <Compile Include="Rules\IDumpabled.cs" />
     <Compile Include="Rules\IllegalTokenException.cs" />
     <Compile Include="Rules\ObjectDumper.cs" />
+    <Compile Include="Rules\Proxies\Fields\TimeFloatProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\TimeColorProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherAlphaSetProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherCloudLayerProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherColorSetProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherFresnelSetProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherSoundCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherSoundProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\ImadProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\ImgsProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\GdryProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\RfctProxy.cs" />
@@ -234,6 +240,7 @@
     <Compile Include="Rules\Proxies\Forms\Fallout4\SpgdProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\StatProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\WthrProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Skyrim\ImadProxy.cs" />
     <Compile Include="Rules\Proxies\SkyrimEnumConverter.cs" />
     <Compile Include="Rules\Proxies\Fallout4EnumConverter.cs" />
     <Compile Include="Rules\Proxies\EnumConverter.cs" />
