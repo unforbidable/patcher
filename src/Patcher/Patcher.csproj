@@ -235,6 +235,9 @@
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherFresnelSetProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherSoundCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Fallout4\WeatherSoundProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\LighProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\LensProxy.cs" />
+    <Compile Include="Rules\Proxies\Forms\Fallout4\TrnsProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\ImadProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\ImgsProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Fallout4\GdryProxy.cs" />
@@ -295,7 +298,7 @@
     <Compile Include="Rules\Proxies\Forms\DummyFormProxy.cs" />
     <Compile Include="Rules\Proxies\ProxyAttribute.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\FlstProxy.cs" />
-    <Compile Include="Rules\Proxies\Fields\Skyrim\ObjectBoundsProxy.cs" />
+    <Compile Include="Rules\Proxies\Fields\ObjectBoundsProxy.cs" />
     <Compile Include="Rules\Proxies\Fields\Skyrim\ScriptCollectionProxy.cs" />
     <Compile Include="Rules\Proxies\Forms\Skyrim\StatProxy.cs" />
     <Compile Include="Rules\CodeBuilder.cs" />

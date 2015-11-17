@@ -19,6 +19,7 @@ using Patcher.Data.Plugins.Content.Fields;
 using Patcher.Data.Plugins.Content.Fields.Skyrim;
 using Patcher.Rules.Compiled.Fields;
 using Patcher.Rules.Compiled.Fields.Skyrim;
+using Patcher.Rules.Proxies.Fields;
 using Patcher.Rules.Proxies.Fields.Skyrim;
 using System;
 using System.Collections.Generic;
