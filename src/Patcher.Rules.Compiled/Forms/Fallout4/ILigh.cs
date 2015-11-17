@@ -79,7 +79,7 @@ namespace Patcher.Rules.Compiled.Forms.Fallout4
         /// <summary>
         /// Gets or sets the radius of this <b>Light</b>.
         /// </summary>
-        uint Radius { get; set; }
+        int Radius { get; set; }
         /// <summary>
         /// Gets or sets the color of this <b>Light</b>.
         /// </summary>

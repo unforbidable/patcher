@@ -209,17 +209,17 @@ namespace Patcher.Rules.Proxies.Forms.Fallout4
             }
         }
 
-        public uint Radius
+        public int Radius
         {
             get
             {
-                return record.Radius;
+                return (int)record.Radius;
             }
 
             set
             {
                 EnsureWritable();
-                record.Radius = value;
+                record.Radius = (uint)value;
             }
         }
 
