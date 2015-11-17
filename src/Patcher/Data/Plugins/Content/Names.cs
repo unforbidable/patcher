@@ -64,6 +64,7 @@ namespace Patcher.Data.Plugins.Content
         public const string KYWD = "KYWD";
         public const string LCRT = "LCRT";
         public const string LCTN = "LCTN";
+        public const string LENS = "LENS";
         public const string LIGH = "LIGH";
         public const string LVLI = "LVLI";
         public const string LVSP = "LVSP";
@@ -100,6 +101,7 @@ namespace Patcher.Data.Plugins.Content
         public const string TACT = "TACT";
         public const string TES4 = "TES4";
         public const string TREE = "TREE";
+        public const string TRNS = "TRNS";
         public const string TXST = "TXST";
         public const string VTYP = "VTYP";
         public const string WEAP = "WEAP";
@@ -178,6 +180,8 @@ namespace Patcher.Data.Plugins.Content
         public const string OFST = "OFST";
         public const string ONAM = "ONAM";
         public const string PNAM = "PNAM";
+        public const string PRPS = "PRPS";
+        public const string PTRN = "PTRN";
         public const string QNAM = "QNAM";
         public const string RNAM = "RNAM";
         public const string SCRN = "SCRN";

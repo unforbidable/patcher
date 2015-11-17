@@ -118,6 +118,9 @@
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Aoru.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Imgs.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Gdry.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Fallout4\Ligh.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Fallout4\Lens.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Fallout4\Trns.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Rfct.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Sndr.cs" />
     <Compile Include="Data\Plugins\Content\Records\Fallout4\Spgd.cs" />
