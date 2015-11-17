@@ -224,7 +224,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         protected override void BeforeWrite(RecordWriter writer)
         {
             // Copy single array back into LightData
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < LightDataParts.Count; i++)
             {
                 // Ensure byte array is big enough
                 if (LightDataParts[i].Bytes.Length < 32)
@@ -269,7 +269,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         public ColorOctave GetSpecularColor() { return new ColorOctave(allLightData, 24, 32); } 
         public FloatOctave GetFresnelPower() { return new FloatOctave(allLightData, 28, 32); } 
 
-                void EnsureFogDataCreated()
+        void EnsureFogDataCreated()
         {
             if (Fog == null)
                 Fog = new FogData();
