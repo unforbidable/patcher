@@ -88,10 +88,13 @@
     <Compile Include="Forms\Fallout4\IImgs.cs" />
     <Compile Include="Forms\Fallout4\IKywd.cs" />
     <Compile Include="Forms\Fallout4\IGdry.cs" />
+    <Compile Include="Forms\Fallout4\ILens.cs" />
+    <Compile Include="Forms\Fallout4\ILigh.cs" />
     <Compile Include="Forms\Fallout4\IRfct.cs" />
     <Compile Include="Forms\Fallout4\ISndr.cs" />
     <Compile Include="Forms\Fallout4\ISpgd.cs" />
     <Compile Include="Forms\Fallout4\IStat.cs" />
+    <Compile Include="Forms\Fallout4\ITrns.cs" />
     <Compile Include="Forms\Fallout4\IWthr.cs" />
     <Compile Include="Forms\Skyrim\IAmmo.cs" />
     <Compile Include="Forms\Skyrim\ICobj.cs" />
