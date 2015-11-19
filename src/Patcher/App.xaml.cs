@@ -66,14 +66,14 @@ namespace Patcher
             catch (Exception ex)
             {
                 Display.WriteText("Bad options: {0}\n\n{1}", ex.Message, options.GetOptions());
-                window.Terminate();
+                window.Terminate(true);
                 return;
             }
 
             if (options.ShowHelp)
             {
                 Display.WriteText("{0}", options.GetOptions());
-                window.Terminate();
+                window.Terminate(true);
                 return;
             }
 
@@ -87,7 +87,7 @@ namespace Patcher
             new Task(() =>
             {
                 Main(options);
-                window.Terminate();
+                window.Terminate(!options.QuitWhenDone);
             }).Start();
         }
 
@@ -189,6 +189,16 @@ namespace Patcher
                                     if (parts.Length > 1)
                                         engine.DebugRuleFileName = parts[1];
                                 }
+                            }
+
+                            foreach (var param in options.Parameters)
+                            {
+                                var split = param.Split('=');
+                                if (split.Length != 2 || !split[0].Contains(':'))
+                                {
+                                    Log.Warning("Ignored malformatted parameter: '{0}' Expected format is 'plugin:param=value'", param);
+                                }
+                                engine.Params.Add(split[0], split[1]);
                             }
 
                             // Load rules

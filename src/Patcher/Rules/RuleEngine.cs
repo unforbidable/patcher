@@ -23,6 +23,7 @@ using Patcher.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -58,6 +59,9 @@ namespace Patcher.Rules
 
         public readonly static string CompiledRulesAssemblyPath = Path.Combine(Program.ProgramFolder, Program.ProgramCacheFolder, "Patcher.Rules.Compiled.dll");
 
+        IDictionary<string, string> parameters = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        public IDictionary<string, string> Params { get { return parameters; } }
+
         public RuleEngine(DataContext context)
         {
             this.context = context;
@@ -67,6 +71,40 @@ namespace Patcher.Rules
             helperProvider = new HelperProvider(this);
 
             ExtractCompiledAssemblyFile();
+        }
+
+        public string GetParam(string name, string defaultValue)
+        {
+            if (parameters.ContainsKey(name))
+                return parameters[name];
+
+            return defaultValue;
+        }
+
+        public int GetParam(string name, int defaultValue)
+        {
+            if (parameters.ContainsKey(name))
+            {
+                string value = parameters[name];
+                int parsed;
+                if (int.TryParse(value, out parsed))
+                    return parsed;
+            }
+
+            return defaultValue;
+        }
+
+        public float GetParam(string name, float defaultValue)
+        {
+            if (parameters.ContainsKey(name))
+            {
+                string value = parameters[name];
+                float parsed;
+                if (float.TryParse(value.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out parsed))
+                    return parsed;
+            }
+
+            return defaultValue;
         }
 
         private void ExtractCompiledAssemblyFile()

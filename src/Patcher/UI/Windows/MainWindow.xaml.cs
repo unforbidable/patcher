@@ -74,15 +74,25 @@ namespace Patcher.UI.Windows
             logItems.CollectionChanged += LogItems_CollectionChanged;
         }
 
-        internal void Terminate()
+        internal void Terminate(bool pause)
         {
-            terminating = true;
-            WriteMessage(Brushes.Gold, "");
-            WriteMessage(Brushes.Gold, "Press ESC to quit.");
-            Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            if (pause)
             {
-                StatusPanel.Visibility = Visibility.Collapsed;
-            }));
+                terminating = true;
+                WriteMessage(Brushes.Gold, "");
+                WriteMessage(Brushes.Gold, "Press ESC to quit.");
+                Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    StatusPanel.Visibility = Visibility.Collapsed;
+                }));
+            }
+            else
+            {
+                Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                {
+                    Close();
+                }));
+            }
         }
 
         private void HandlePause()
