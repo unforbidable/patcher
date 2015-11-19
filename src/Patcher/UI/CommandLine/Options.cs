@@ -83,6 +83,12 @@ namespace Patcher.UI.CommandLine
                 {
                     opt.PropertyInfo.SetValue(this, opt.DefaultValue, null);
                 }
+
+                // Create string list
+                if (opt.Type == typeof(List<string>))
+                {
+                    opt.PropertyInfo.SetValue(this, new List<string>(), null);
+                }
             }
         }
 
@@ -195,6 +201,11 @@ namespace Patcher.UI.CommandLine
                     {
                         option.PropertyInfo.SetValue(this, Convert.ToBoolean(value), null);
                     }
+                    else if (option.Type == typeof(List<string>))
+                    {
+                        var list = (List<string>)option.PropertyInfo.GetValue(this, null);
+                        list.Add(value);
+                    }
                     else
                     {
                         throw new ArgumentException("Unsupported option type '" + option.Type.FullName + "'");
@@ -205,7 +216,24 @@ namespace Patcher.UI.CommandLine
 
         public override string ToString()
         {
-            return string.Join(" ", options.Where(o => !o.IsObsolete).Select(o => string.Format("--{0}={1}", o.LongName, o.PropertyInfo.GetValue(this, null))));
+            return string.Join(" ", options.Where(o => !o.IsObsolete).Select(o => GetOptionString(o)).Where(v => v.Length > 0));
+        }
+
+        private string GetOptionString(Option option)
+        {
+            if (option.Type == typeof(List<string>))
+            {
+                var list = (List<string>)option.PropertyInfo.GetValue(this, null);
+                return string.Join(" ", list.Select(item => string.Format("--{0}={1}", option.LongName, item)));
+            }
+            else
+            {
+                object value = option.PropertyInfo.GetValue(this, null);
+                if (value == null || value.ToString().Length == 0 || option.DefaultValue != null && value.ToString() == option.DefaultValue.ToString())
+                    return string.Empty;
+                else
+                    return string.Format("--{0}={1}", option.LongName, value);
+            }
         }
 
         class Option
