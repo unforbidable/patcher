@@ -214,6 +214,7 @@
     <Compile Include="ProgramOptions.cs" />
     <Compile Include="Rules\Compiled\CompiledRuleAssertException.cs" />
     <Compile Include="Rules\Compiled\Helpers\DebugHelper.cs" />
+    <Compile Include="Rules\Compiled\Helpers\Fallout4\EngineHelper.cs" />
     <Compile Include="Rules\Compiled\Helpers\FormsHelper.cs" />
     <Compile Include="Rules\Compiled\Helpers\Skyrim\FunctionsHelper.cs" />
     <Compile Include="Rules\Compiled\Helpers\Skyrim\EngineHelper.cs" />
