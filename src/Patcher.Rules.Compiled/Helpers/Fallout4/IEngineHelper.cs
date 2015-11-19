@@ -25,7 +25,7 @@ using System.Text;
 namespace Patcher.Rules.Compiled.Helpers.Fallout4
 {
     /// <summary>
-    /// Provides methods that allow new objects be created.
+    /// Provides access to the Engine such as the parameters.
     /// </summary>
     public interface IEngineHelper
     {
