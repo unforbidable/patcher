@@ -114,6 +114,7 @@
     <Compile Include="Forms\Skyrim\ISndr.cs" />
     <Compile Include="Forms\Skyrim\IWeap.cs" />
     <Compile Include="Forms\Skyrim\IWthr.cs" />
+    <Compile Include="Helpers\Fallout4\IEngineHelper.cs" />
     <Compile Include="Helpers\Skyrim\IFunctionsHelper.cs" />
     <Compile Include="Helpers\IDebugHelper.cs" />
     <Compile Include="Helpers\IFormsHelper.cs" />
