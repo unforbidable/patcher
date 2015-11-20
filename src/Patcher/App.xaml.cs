@@ -81,7 +81,10 @@ namespace Patcher
             window.MaxLogLevel = options.ConsoleLogLevel >= 0 && options.ConsoleLogLevel <= 4 ? (LogLevel)options.ConsoleLogLevel : LogLevel.Info;
 
             // Set initial window state
-            window.WindowState = options.StartWindowMaximized ? WindowState.Maximized : WindowState.Normal;
+            if (options.StartWindowMaximized)
+                window.WindowState = WindowState.Maximized;
+            else if (options.StartWindowMinimized)
+                window.WindowState = WindowState.Minimized;
 
             // Run in the background
             new Task(() =>

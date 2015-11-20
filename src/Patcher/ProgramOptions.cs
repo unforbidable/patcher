@@ -105,6 +105,11 @@ namespace Patcher
         [DefaultValue(false)]
         public bool StartWindowMaximized { get; set; }
 
+        [Option("minimize")]
+        [Description("Open the main window minimized.\nDefault: false")]
+        [DefaultValue(false)]
+        public bool StartWindowMinimized { get; set; }
+
         [Option("version")]
         [Description("Print the program version information.")]
         [DefaultValue(false)]
