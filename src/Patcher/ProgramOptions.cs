@@ -52,10 +52,10 @@ namespace Patcher
         [Description("Define a parameter name and value - plugin_name/name:value")]
         public List<string> Parameters { get; set; }
 
-        [Option("quitwhendone")]
-        [Description("Close the window automatically when everything is done.")]
+        [Option("exitwhendone")]
+        [Description("Close the window automatically when everything is sucessfully done.")]
         [DefaultValue(false)]
-        public bool QuitWhenDone { get; set; }
+        public bool ExitWhenDone { get; set; }
 
         [Option("plugins")]
         [Description("Path to plugins.txt file to load.\nDefault: The game default location")]

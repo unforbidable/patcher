@@ -87,7 +87,7 @@ namespace Patcher
             new Task(() =>
             {
                 Main(options);
-                window.Terminate(!options.QuitWhenDone);
+                window.Terminate(!options.ExitWhenDone);
             }).Start();
         }
 
