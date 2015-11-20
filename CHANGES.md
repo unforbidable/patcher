@@ -1,3 +1,7 @@
+##### v1.9.1 (2015/11/20)
+* Ability to access command line parameters in a rule method code
+* Ability to start minimzed and to exit without prompting
+
 ##### v1.9.0 (2015/11/17)
 * New Fallout 4 forms: IMAD
 
