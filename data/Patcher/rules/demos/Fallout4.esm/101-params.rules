@@ -1,0 +1,13 @@
+<rules>
+  <rule>
+    <name>Params</name>
+    <select>
+	  // run with --param="Fallout4.esm:fparam=3.14" --param="Fallout4.esm:iparam=12345" --param="Fallout4.esm:sparam=test" to see the values here
+      Debug.Message("sparam=" + Engine.GetParam("sparam", "not set"));
+      Debug.Message("iparam=" + Engine.GetParam("iparam", -1));
+      Debug.Message("fparam=" + Engine.GetParam("fparam", -1f));
+      //Debug.Pause();
+    </select>
+  </rule>
+
+</rules>
