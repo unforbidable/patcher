@@ -147,6 +147,7 @@
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Weap.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Wthr.cs" />
     <Compile Include="Data\Plugins\Content\RequiredAttribute.cs" />
+    <Compile Include="Data\Plugins\Content\SegmentFaultException.cs" />
     <Compile Include="Data\Plugins\Content\VersionAttribute.cs" />
     <Compile Include="Data\Plugins\Content\ReferenceAttribute.cs" />
     <Compile Include="Data\Plugins\Content\FakeFloatAttribute.cs" />
