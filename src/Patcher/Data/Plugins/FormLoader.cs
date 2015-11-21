@@ -32,13 +32,16 @@ namespace Patcher.Data.Plugins
         readonly bool asyncLoading;
 
         readonly SharedData sharedData;
-        readonly List<Worker> workers = new List<Worker>();
+        readonly List<WorkerInfo> workers = new List<WorkerInfo>();
+
+        CancellationTokenSource cancelAddForm = new CancellationTokenSource();
 
         public long Loaded { get { return sharedData.Loaded; } }
         public long Skipped { get { return sharedData.Skipped; } }
         public long Unsupported { get { return sharedData.Unsupported; } }
         public long Supported { get { return sharedData.Loaded - sharedData.Unsupported; } }
         public Form LastFormLoaded { get { return sharedData.LastFormLoaded; } }
+
 
         public FormLoader(Plugin plugin, RecordReader stockReader, bool lazyLoading, int backgroundJobs)
         {
@@ -61,11 +64,28 @@ namespace Patcher.Data.Plugins
             while (backgroundJobs-- > 0)
             {
                 Worker worker = new Worker(sharedData, useStockReader);
+                worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
                 worker.RunWorkerAsync();
-                workers.Add(worker);
+                workers.Add(new WorkerInfo()
+                {
+                    Worker = worker
+                });
 
                 // Only the first worker can use the stock reader
                 useStockReader = false;
+            }
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            var worker = workers.Where(w => w.Worker == sender).Single();
+            worker.IsBusy = false;
+            if (e.Error != null)
+            {
+                worker.Error = e.Error;
+                
+                // Cancel adding new forms on error
+                cancelAddForm.Cancel();
             }
         }
 
@@ -73,7 +93,17 @@ namespace Patcher.Data.Plugins
         {
             if (asyncLoading)
             {
-                sharedData.FormsToLoad.Add(form);
+                try
+                {
+                    sharedData.FormsToLoad.Add(form, cancelAddForm.Token);
+                }
+                catch (OperationCanceledException)
+                {
+                    // Calcelled because of a worker crashed
+                    // Rethrow the worker exception
+                    var ex = workers.Select(w => w.Error).Where(e => e != null).FirstOrDefault();
+                    throw ex;
+                }
             }
             else
             {
@@ -117,7 +147,7 @@ namespace Patcher.Data.Plugins
         {
             if (!asyncLoading)
             {
-                throw new InvalidOperationException("Cannot wait for completion during synchronous form loading");
+                throw new InvalidOperationException("Invalid operation during synchronous form loading");
             }
 
             sharedData.FormsToLoad.CompleteAdding();
@@ -127,6 +157,16 @@ namespace Patcher.Data.Plugins
         {
             get
             {
+                if (!asyncLoading)
+                {
+                    throw new InvalidOperationException("Invalid operation during synchronous form loading");
+                }
+
+                // Rethrow first background worker exception
+                var ex = workers.Select(w => w.Error).Where(e => e != null).FirstOrDefault();
+                if (ex != null)
+                    throw ex;
+
                 return workers.Any(w => w.IsBusy);
             }
         }
@@ -154,9 +194,9 @@ namespace Patcher.Data.Plugins
                 WaitForCompleted();
             }
 
-            foreach (Worker w in workers)
+            foreach (var w in workers)
             {
-                w.Dispose();
+                w.Worker.Dispose();
             }
         }
 
@@ -172,6 +212,13 @@ namespace Patcher.Data.Plugins
             public long Loaded;
             public long Skipped;
             public long Unsupported;
+        }
+
+        class WorkerInfo
+        {
+            public Worker Worker { get; set; }
+            public Exception Error { get; set; }
+            public bool IsBusy { get; set; }
         }
 
         class Worker : BackgroundWorker
@@ -219,6 +266,8 @@ namespace Patcher.Data.Plugins
                 {
                     reader.Dispose();
                 }
+
+                base.OnRunWorkerCompleted(e);
             }
 
             protected override void Dispose(bool disposing)
