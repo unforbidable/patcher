@@ -162,8 +162,7 @@ namespace Patcher
 
                         // Context tweaks
                         context.AsyncFormIndexing = true;
-                        context.AsyncFormLoading = true;
-                        context.AsyncFormLoading = true;
+                        context.AsyncFormLoading = options.MaxLoadingThreads > 0;
                         context.AsyncFormLoadingWorkerThreshold = 100;
                         context.AsyncFromLoadingMaxWorkers = Math.Max(1, options.MaxLoadingThreads);
 
@@ -258,7 +257,7 @@ namespace Patcher
                 catch (Exception ex)
                 {
                     Log.Error("Program error: " + ex.Message);
-                    Log.Fine(ex.ToString());
+                    Log.Error(ex.ToString());
                 }
 #endif
             }

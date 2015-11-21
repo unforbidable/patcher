@@ -75,7 +75,7 @@ namespace Patcher
         public bool KeepDirtyEdits { get; private set; }
 
         [Option("maxloadingthreads")]
-        [Description("Specifies the maximum background workers\nused during the loading of form data.\nDefault: 2")]
+        [Description("Specifies the maximum background workers\nused during the loading of form data. Set to zero to disable assynchronous loading.\nDefault: 2")]
         [DefaultValue(2)]
         public int MaxLoadingThreads { get; set; }
 
