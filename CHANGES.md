@@ -1,3 +1,6 @@
+##### v1.9.2 (2015/11/20)
+* Improve exception handling during asyncronous record loading
+
 ##### v1.9.1 (2015/11/20)
 * Ability to access command line parameters in a rule method code
 * Ability to start minimzed and to exit without prompting
