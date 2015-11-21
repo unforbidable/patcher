@@ -338,28 +338,19 @@ namespace Patcher.Data.Plugins.Content
 
             if (BaseStream.Position > segment.End)
             {
-                Log.Error("Too much data read from last segment");
-                PrintSegmentStackTrace();
-                throw new InvalidProgramException("Too much data read from last segment");
+                throw new SegmentFaultException("Too much data read from last segment", GetSegmentStackTrace());
             }
             else if (BaseStream.Position < segment.End)
             {
-                Log.Error("Not enough data read from last segment");
-                PrintSegmentStackTrace();
-                throw new InvalidProgramException("Not enough data read in last segment");
+                throw new SegmentFaultException("Not enough data read from last segment", GetSegmentStackTrace());
             }
 
             segmentStack.Pop();
         }
 
-        private void PrintSegmentStackTrace()
+        private string GetSegmentStackTrace()
         {
-            Log.Error("    --- SEGMENT STACK ---");
-            foreach (var segment in segmentStack)
-            {
-                Log.Error("    {0}", segment);
-            }
-            Log.Error("    --- SEGMENT STACK ---");
+            return string.Join("\n", segmentStack.Select(s => string.Format("    {0}", s)));
         }
 
         private bool NextSegment(Metadata metaData)
