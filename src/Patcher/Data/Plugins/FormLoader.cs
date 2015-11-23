@@ -42,7 +42,6 @@ namespace Patcher.Data.Plugins
         public long Supported { get { return sharedData.Loaded - sharedData.Unsupported; } }
         public Form LastFormLoaded { get { return sharedData.LastFormLoaded; } }
 
-
         public FormLoader(Plugin plugin, RecordReader stockReader, bool lazyLoading, int backgroundJobs)
         {
             if (backgroundJobs < 0)
@@ -79,7 +78,6 @@ namespace Patcher.Data.Plugins
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             var worker = workers.Where(w => w.Worker == sender).Single();
-            worker.IsBusy = false;
             if (e.Error != null)
             {
                 worker.Error = e.Error;
@@ -167,7 +165,7 @@ namespace Patcher.Data.Plugins
                 if (ex != null)
                     throw ex;
 
-                return workers.Any(w => w.IsBusy);
+                return workers.Any(w => w.Worker.IsBusy);
             }
         }
 
@@ -218,7 +216,6 @@ namespace Patcher.Data.Plugins
         {
             public Worker Worker { get; set; }
             public Exception Error { get; set; }
-            public bool IsBusy { get; set; }
         }
 
         class Worker : BackgroundWorker
@@ -261,12 +258,6 @@ namespace Patcher.Data.Plugins
             protected override void OnRunWorkerCompleted(RunWorkerCompletedEventArgs e)
             {
                 sharedData.WorkerCompleteEvent.Set();
-
-                if (!usingStockReader)
-                {
-                    reader.Dispose();
-                }
-
                 base.OnRunWorkerCompleted(e);
             }
 
