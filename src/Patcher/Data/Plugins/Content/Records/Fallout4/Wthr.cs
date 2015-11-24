@@ -41,6 +41,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
         [Member(Names.NNAM)]
         [Reference(Names.RFCT)]
+        [Required]
         public uint VisualEffect { get; set; }
 
         [Member(Names.RNAM)]
@@ -124,7 +125,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 else if (Colors.Bytes.Length == 272)
                 {
                     // Contains old data and only 17 components
-                    //Data should be copied in an interleaved fashion
+                    // Data should be copied in an interleaved fashion
                     for (int i = 0; i < Colors.Bytes.Length / 16; i++)
                     {
                         Array.Copy(Colors.Bytes, i * 16, temp, i * 32, 16);
@@ -315,6 +316,9 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             public float Unknown9 { get; set; }
             public float Unknown10 { get; set; }
 
+            bool extendedData14 = true;
+            bool extendedData19 = true;
+
             internal override void ReadField(RecordReader reader)
             {
                 DayNear = reader.ReadSingle();
@@ -342,6 +346,14 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                         Unknown9 = reader.ReadSingle();
                         Unknown10 = reader.ReadSingle();
                     }
+                    else
+                    {
+                        extendedData19 = false;
+                    }
+                }
+                else
+                {
+                    extendedData14 = false;
                 }
             }
 
@@ -355,16 +367,22 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 writer.Write(NightPow);
                 writer.Write(DayMax);
                 writer.Write(NightMax);
-                writer.Write(Unknown1);
-                writer.Write(Unknown2);
-                writer.Write(Unknown3);
-                writer.Write(Unknown4);
-                writer.Write(Unknown5);
-                writer.Write(Unknown6);
-                writer.Write(Unknown7);
-                writer.Write(Unknown8);
-                writer.Write(Unknown9);
-                writer.Write(Unknown10);
+                if (extendedData14)
+                {
+                    writer.Write(Unknown1);
+                    writer.Write(Unknown2);
+                    writer.Write(Unknown3);
+                    writer.Write(Unknown4);
+                    writer.Write(Unknown5);
+                    writer.Write(Unknown6);
+                    if (extendedData19)
+                    {
+                        writer.Write(Unknown7);
+                        writer.Write(Unknown8);
+                        writer.Write(Unknown9);
+                        writer.Write(Unknown10);
+                    }
+                }
             }
 
             public override Field CopyField()
