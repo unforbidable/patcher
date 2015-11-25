@@ -354,6 +354,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 else
                 {
                     extendedData14 = false;
+                    extendedData19 = false;
                 }
             }
 
@@ -367,6 +368,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 writer.Write(NightPow);
                 writer.Write(DayMax);
                 writer.Write(NightMax);
+
                 if (extendedData14)
                 {
                     writer.Write(Unknown1);
@@ -375,6 +377,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                     writer.Write(Unknown4);
                     writer.Write(Unknown5);
                     writer.Write(Unknown6);
+
                     if (extendedData19)
                     {
                         writer.Write(Unknown7);
@@ -406,7 +409,9 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                     Unknown7 = Unknown7,
                     Unknown8 = Unknown8,
                     Unknown9 = Unknown9,
-                    Unknown10 = Unknown10
+                    Unknown10 = Unknown10,
+                    extendedData14 = extendedData14,
+                    extendedData19 = extendedData19
                 };
             }
 
