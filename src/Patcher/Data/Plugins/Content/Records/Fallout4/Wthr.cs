@@ -109,6 +109,8 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
         private byte[] allLightData = new byte[256];
 
+        bool requiresUpgrade = false;
+
         protected override void AfterRead(RecordReader reader)
         {
             // Ensure ComponentColors are full size
@@ -121,6 +123,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                     // Contains extended data, but only 17 components
                     // Simply copy data at the beginning of the buffer
                     Colors.Bytes.CopyTo(temp, 0);
+                    requiresUpgrade = true;
                 }
                 else if (Colors.Bytes.Length == 272)
                 {
@@ -136,6 +139,8 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
                     }
+
+                    requiresUpgrade = true;
                 }
                 else
                 {
@@ -163,6 +168,8 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
                     }
+
+                    requiresUpgrade = true;
                 }
                 else
                 {
@@ -190,6 +197,8 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 24, 4);
                         Array.Copy(temp, i * 32 + 8, temp, i * 32 + 28, 4);
                     }
+
+                    requiresUpgrade = true;
                 }
                 else
                 {
@@ -215,6 +224,8 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
                 LightDataParts[0].Bytes.CopyTo(allLightData, 5 * 32);
                 LightDataParts[2].Bytes.CopyTo(allLightData, 6 * 32);
                 LightDataParts[2].Bytes.CopyTo(allLightData, 7 * 32);
+
+                requiresUpgrade = true;
             }
             else
             {
@@ -224,6 +235,11 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
         protected override void BeforeWrite(RecordWriter writer)
         {
+            if (requiresUpgrade)
+            {
+                throw new InvalidOperationException("Cannot save edited record with the newest layout lacking information required to upgrade it: " + EditorId);
+            }
+
             // Copy single array back into LightData
             for (int i = 0; i < LightDataParts.Count; i++)
             {
