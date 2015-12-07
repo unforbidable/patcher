@@ -473,7 +473,7 @@ namespace Patcher.Data.Plugins
             return referencedFormIds;
         }
 
-        public void Save()
+        public void Save(IEnumerable<string> removeMasters)
         {
             Log.Info("Saving plugin " + fileName);
 
@@ -522,10 +522,15 @@ namespace Patcher.Data.Plugins
                 }
             }
 
-            // Add headers (will be sorted by pluginNumber)
+            // Add masters (will be sorted by pluginNumber)
             foreach (var number in collectedMasters.OrderBy(i => i))
             {
                 var masterFileName = context.Plugins[number].FileName;
+
+                // Force remove masters
+                if (removeMasters != null && removeMasters.Contains(masterFileName))
+                    continue;
+
                 header.AddMasterFile(masterFileName);
                 Log.Fine("Added master: {0}", masterFileName);
             }

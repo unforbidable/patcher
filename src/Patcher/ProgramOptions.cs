@@ -74,6 +74,11 @@ namespace Patcher
         [DefaultValue(false)]
         public bool KeepDirtyEdits { get; private set; }
 
+        [Option("removemasters")]
+        [Description("List of plugins which will be removed from the list of masters.\nWill cause an error if a mandatory plugin is removed.\nDefault: none")]
+        [DefaultValue("")]
+        public string RemovedMasters { get; private set; }
+
         [Option("maxloadingthreads")]
         [Description("Specifies the maximum background workers\nused during the loading of form data. Set to zero to disable assynchronous loading.\nDefault: 2")]
         [DefaultValue(2)]

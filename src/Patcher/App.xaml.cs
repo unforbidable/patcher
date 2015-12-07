@@ -244,8 +244,11 @@ namespace Patcher
                             if (!options.KeepDirtyEdits)
                                 engine.ActivePlugin.PurgeDirtyEdits();
 
+                            // Prepare list of master to be removed by force
+                            IEnumerable<string> removeMasters = options.RemovedMasters != null ? options.RemovedMasters.Split(',') : null;
+
                             // Save target plugin
-                            engine.ActivePlugin.Save();
+                            engine.ActivePlugin.Save(removeMasters);
                         }
                     }
                 }
