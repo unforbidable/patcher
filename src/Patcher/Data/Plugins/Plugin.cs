@@ -479,15 +479,13 @@ namespace Patcher.Data.Plugins
 
             byte thisPluginNumber = context.Plugins.GetPluginNumber(this);
 
+            // Collect all masters (Always add the main plugin as master)
+            HashSet<byte> collectedMasters = new HashSet<byte>() { 0 };
+
             // Collect all referenced form IDs
             HashSet<uint> referencedFormIds = GetReferencedFormIds();
 
-            // Union with form IDs this plugin is overriding
-            var allFormIds = referencedFormIds.Union(Forms.Where(f => f.IsOverriding).Select(f => f.FormId));
-
-            // Collect all masters (Always add the main plugin as master)
-            HashSet<byte> collectedMasters = new HashSet<byte>() { 0 };
-            foreach (var id in allFormIds)
+            foreach (var id in referencedFormIds)
             {
                 if (!context.Forms.Contains(id))
                 {
@@ -501,15 +499,27 @@ namespace Patcher.Data.Plugins
                             collectedMasters.Add(assumedPluginNumber);
 
                     Log.Warning("Assumed unresolved form {0:X8} plugin {1}.", id, context.Plugins[assumedPluginNumber].FileName);
-                    continue;
                 }
-                var form = context.Forms[id];
+                else
+                {
+                    var form = context.Forms[id];
 
-                // Add itself of not of the current plugin
-                if (form.PluginNumber != thisPluginNumber)
-                    if (!collectedMasters.Contains(form.PluginNumber))
-                        collectedMasters.Add(form.PluginNumber);
+                    // Find the original form
+                    // to add the original plugin which adds it as the master and not the last plugin which edits the referenced form
+                    while (form.OverridesForm != null)
+                        form = form.OverridesForm;
 
+                    // Add if not of the current plugin
+                    if (form.PluginNumber != thisPluginNumber)
+                        if (!collectedMasters.Contains(form.PluginNumber))
+                            collectedMasters.Add(form.PluginNumber);
+                }
+            }
+
+            // Form IDs this plugin is overriding
+            var overridenForms = Forms.Where(f => f.IsOverriding);
+            foreach (var form in overridenForms)
+            {
                 // Go through all overriden forms until the original form
                 var overridenForm = form.OverridesForm;
                 while (overridenForm != null)
