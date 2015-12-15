@@ -1,3 +1,9 @@
+##### v1.9.3 (2015/12/15)
+* New option to suppress adding masters
+* Update WTHR records manipulation for compliance with FO4Edit
+* Prevent adding false master
+* Add safeguards to prevent expanding records without proper upgrade
+
 ##### v1.9.2 (2015/11/20)
 * Improve exception handling during asyncronous record loading
 
