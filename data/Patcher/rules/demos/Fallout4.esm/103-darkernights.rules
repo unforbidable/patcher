@@ -3,7 +3,7 @@
     <name>Darker nights</name>
     <from>WTHR</from>
     <where>
-      Source.EditorId.StartsWith("Commonwealth") || Source.EditorId.StartsWith("Diamond") || Source.EditorId.StartsWith("Goodneighbor")
+      Source.EditorId == "CommonwealthClear"
     </where>
     <update>
       Debug.Message("Updating weather: " + Source);
