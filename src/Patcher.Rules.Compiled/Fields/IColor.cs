@@ -41,6 +41,10 @@ namespace Patcher.Rules.Compiled.Fields
         /// Gets or sets the blue component value.
         /// </summary>
         float Blue { get; set; }
+        /// <summary>
+        /// Gets or sets the alpha channel value.
+        /// </summary>
+        float Alpha { get; set; }
 
         /// <summary>
         /// Sets each color component to the specified value.

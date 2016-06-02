@@ -73,6 +73,27 @@ namespace Patcher.Rules.Proxies.Fields
             }
         }
 
+        public float Alpha
+        {
+            get
+            {
+                var a = adapter as ColorAlphaAdapter;
+                if (a != null)
+                    return a.Alpha;
+                else
+                    return 0;
+            }
+            set
+            {
+                EnsureWritable();
+                var a = adapter as ColorAlphaAdapter;
+                if (a != null)
+                    a.Alpha = value;
+                else
+                    Log.Warning("New alpha value ignored because the color definition does not support aplha channel.");
+            }
+        }
+
         public void SetValues(float value)
         {
             adapter.Red = value;
@@ -103,7 +124,10 @@ namespace Patcher.Rules.Proxies.Fields
 
         public override string ToString()
         {
-            return string.Format("({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
+            if (adapter is ColorAlphaAdapter)
+                return string.Format("({0},{1},{2},{3})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255), (byte)(Alpha * 255));
+            else
+                return string.Format("({0},{1},{2})", (byte)(Red * 255), (byte)(Green * 255), (byte)(Blue * 255));
         }
 
         void IDumpabled.Dump(string name, ObjectDumper dumper)
