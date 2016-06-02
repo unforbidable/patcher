@@ -1,3 +1,9 @@
+##### v1.9.4 (2016/06/02)
+* Add property Plugin to all forms
+* Expose property Alpha for Color fields when available
+* New option to append to existing plugins
+* Support for new archives (ba2)
+
 ##### v1.9.3 (2015/12/15)
 * New option to suppress adding masters
 * Update WTHR records manipulation for compliance with FO4Edit
