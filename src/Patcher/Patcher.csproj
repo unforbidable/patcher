@@ -59,7 +59,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Archives\ArchiveManager.cs" />
-    <Compile Include="Data\Archives\ArchiveFlags.cs" />
+    <Compile Include="Data\Archives\Fallout4ArchiveReader.cs" />
+    <Compile Include="Data\Archives\SkyrimArchiveReader.cs" />
     <Compile Include="Data\Archives\ArchiveReader.cs" />
     <Compile Include="Data\Archives\ArchiveSubstream.cs" />
     <Compile Include="Data\DataContextAttribute.cs" />

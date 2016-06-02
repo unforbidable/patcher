@@ -58,6 +58,11 @@ namespace Patcher.Data
             return "Fallout4";
         }
 
+        protected override string GetArchiveExtension()
+        {
+            return "ba2";
+        }
+
         protected override IEnumerable<Form> GetHardcodedForms(byte pluginNumber)
         {
             if (pluginNumber > 0)

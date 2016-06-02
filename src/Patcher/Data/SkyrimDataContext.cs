@@ -63,6 +63,11 @@ namespace Patcher.Data
             return "Skyrim";
         }
 
+        protected override string GetArchiveExtension()
+        {
+            return "bsa";
+        }
+
         protected override IEnumerable<Form> GetHardcodedForms(byte pluginNumber)
         {
             if (pluginNumber > 0)

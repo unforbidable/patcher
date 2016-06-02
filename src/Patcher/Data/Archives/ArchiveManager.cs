@@ -25,7 +25,7 @@ namespace Patcher.Data.Archives
     public sealed class ArchiveManager : IDisposable
     {
         readonly DataContext context;
-        List<ArchiveEntry> archives = new List<ArchiveEntry>();
+        List<ArchiveFile> archives = new List<ArchiveFile>();
 
         // Created by DataContext
         internal ArchiveManager(DataContext context)
@@ -35,12 +35,31 @@ namespace Patcher.Data.Archives
 
         internal void AddArchive(string filename)
         {
+            var reader = CreateArchiveReader(filename);
+            reader.Open();
+
             // Insert at the beginning because last added will be searched first (has the highest priority)
-            archives.Insert(0, new ArchiveEntry()
+            archives.Insert(0, new ArchiveFile()
             {
                 Filename = filename,
-                Reader = new ArchiveReader(context.DataFileProvider.GetDataFile(FileMode.Open, filename).Open())
+                Reader = reader
             });
+        }
+
+        private ArchiveReader CreateArchiveReader(string filename)
+        {
+            string extension = Path.GetExtension(filename).ToLower();
+            switch (extension)
+            {
+                case ".bsa":
+                    return new SkyrimArchiveReader(filename);
+
+                case ".ba2":
+                    return new Fallout4ArchiveReader(filename);
+
+                default:
+                    throw new InvalidDataException("Unsupported archive extension: " + extension);
+            }
         }
 
         public bool FileExists(string path)
@@ -80,7 +99,7 @@ namespace Patcher.Data.Archives
             archives.Clear();
         }
 
-        class ArchiveEntry
+        class ArchiveFile
         {
             public string Filename { get; set; }
             public ArchiveReader Reader { get; set; }

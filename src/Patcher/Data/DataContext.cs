@@ -107,6 +107,7 @@ namespace Patcher.Data
         protected abstract string GetGameTitle();
         protected abstract IEnumerable<Form> GetHardcodedForms(byte plugin);
         protected abstract string GetDefaultLanguage();
+        protected abstract string GetArchiveExtension();
 
         private void QuerySupportedTypes()
         {
@@ -226,11 +227,20 @@ namespace Patcher.Data
         private void LoadPluginArchive(string pluginFilename)
         {
             // Try to load archive related to this plugin
-            string archiveFilename = Path.GetFileNameWithoutExtension(pluginFilename) + ".bsa";
-            if (DataFileProvider.GetDataFile(FileMode.Open, archiveFilename).Exists())
+            string archiveFilenameWithoutExtension = Path.GetFileNameWithoutExtension(pluginFilename);
+
+            string defaultArchiveFilename = string.Format("{0}.{1}", archiveFilenameWithoutExtension, GetArchiveExtension());
+            if (DataFileProvider.GetDataFile(FileMode.Open, defaultArchiveFilename).Exists())
             {
-                Log.Fine("Indexing files in archive: " + archiveFilename);
-                archives.AddArchive(archiveFilename);
+                Log.Fine("Indexing files in archive: " + defaultArchiveFilename);
+                archives.AddArchive(defaultArchiveFilename);
+            }
+
+            string searchPattern = string.Format("{0} - *.{1}", archiveFilenameWithoutExtension, GetArchiveExtension());
+            foreach (var archiveDataFile in DataFileProvider.FindDataFiles(string.Empty, searchPattern))
+            {
+                Log.Fine("Indexing files in archive: " + archiveDataFile.Name);
+                archives.AddArchive(archiveDataFile.FullPath);
             }
         }
 
