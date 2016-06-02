@@ -99,7 +99,7 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
         private ByteArray UnknownData2 { get; set; }
 
         [Member(Names.UNAM)]
-        private ByteArray UnknownData3 { get; set; }
+        private SpellsData Spells { get; set; }
 
         [Member(Names.VNAM)]
         private ByteArray UnknownData4 { get; set; }
@@ -113,6 +113,9 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
 
         protected override void AfterRead(RecordReader reader)
         {
+            var spells = Spells;
+
+
             // Ensure ComponentColors are full size
             if (Colors.Bytes.Length < 608)
             {
@@ -670,6 +673,79 @@ namespace Patcher.Data.Plugins.Content.Records.Fallout4
             public override IEnumerable<uint> GetReferencedFormIds()
             {
                 yield break;
+            }
+        }
+
+        sealed class SpellsData : Field
+        {
+            public uint Spell1 { get; set; }
+            public uint Unknown1 { get; set; }
+            public uint Spell2 { get; set; }
+            public uint Unknown2 { get; set; }
+            public uint Unknown3 { get; set; }
+            public uint Unknown4 { get; set; }
+
+            bool extended = false;
+
+            internal override void ReadField(RecordReader reader)
+            {
+                Spell1 = reader.ReadReference(FormKindSet.SpelOnly);
+                Unknown1 = reader.ReadUInt32();
+                Spell2 = reader.ReadReference(FormKindSet.SpelOnly);
+
+                if (!reader.IsEndOfSegment)
+                {
+                    extended = true;
+                    Unknown2 = reader.ReadUInt32();
+                    Unknown3 = reader.ReadUInt32();
+                    Unknown4 = reader.ReadUInt32();
+                }
+            }
+
+            internal override void WriteField(RecordWriter writer)
+            {
+                writer.WriteReference(Spell1, FormKindSet.SpelOnly);
+                writer.Write(Unknown1);
+                writer.WriteReference(Spell2, FormKindSet.SpelOnly);
+
+                // TODO: properly upgrade form an write extended data always
+                if (extended)
+                {
+                    writer.Write(Unknown2);
+                    writer.Write(Unknown3);
+                    writer.Write(Unknown4);
+                }
+            }
+
+            public override Field CopyField()
+            {
+                return new SpellsData()
+                {
+                    Spell1 = Spell1,
+                    Unknown1 = Unknown1,
+                    Spell2 = Spell2,
+                    Unknown2 = Unknown2,
+                    Unknown3 = Unknown3,
+                    Unknown4 = Unknown4,
+                    extended = extended // Copy extended subrecord inficator
+                };
+            }
+
+            public override string ToString()
+            {
+                return string.Format("Spell1={0,X8},Spell2={0,X8}");
+            }
+
+            public override bool Equals(Field other)
+            {
+                var cast = (SpellsData)other;
+                return Spell1 == cast.Spell1 && Unknown1 == cast.Unknown1 && Spell2 == cast.Spell2 && Unknown2 == cast.Unknown2 && Unknown3 == cast.Unknown3 && Unknown4 == cast.Unknown4;
+            }
+
+            public override IEnumerable<uint> GetReferencedFormIds()
+            {
+                yield return Spell1;
+                yield return Spell2;
             }
         }
 
