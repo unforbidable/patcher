@@ -541,6 +541,10 @@ namespace Patcher.Data.Plugins
                 if (removeMasters != null && removeMasters.Contains(masterFileName))
                     continue;
 
+                // Already added (when appending)
+                if (header.GetMasterFiles().Contains(masterFileName))
+                    continue;
+
                 header.AddMasterFile(masterFileName);
                 Log.Fine("Added master: {0}", masterFileName);
             }

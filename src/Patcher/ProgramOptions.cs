@@ -40,6 +40,10 @@ namespace Patcher
         [Description("Name of the created plugin file. The file\nwill be created in the game data folder.\nDefault: Patcher-default.esp")]
         public string OutputFilename { get; private set; }
 
+        [Option("append")]
+        [Description("Append changes to existing output file if it exists.\nDefault: false")]
+        public bool Append { get; private set; }
+
         [Option("author")]
         [Description("Author name written to the generated plugin.\nDefault: Patcher 1.x.x")]
         public string Author { get; private set; }
