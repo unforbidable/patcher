@@ -117,6 +117,8 @@ namespace Patcher.Rules.Proxies.Forms
             }
         }
 
+        public string Plugin { get { return form == null ? string.Empty : Provider.Engine.Context.Plugins[form.PluginNumber].FileName; } }
+
         public T As<T>() where T : class, IForm
         {
             var target = this as T;

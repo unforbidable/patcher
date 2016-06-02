@@ -73,6 +73,11 @@ namespace Patcher.Rules.Compiled.Forms
         bool HasTag(string text);
 
         /// <summary>
+        /// Gets the file name of the plugin from which this form was loaded from.
+        /// </summary>
+        string Plugin { get; }
+
+        /// <summary>
         /// Converts a unknown form to a specific form kind.
         /// </summary>
         /// <typeparam name="T"></typeparam>
