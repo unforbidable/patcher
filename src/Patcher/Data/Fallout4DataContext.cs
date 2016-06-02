@@ -49,7 +49,7 @@ namespace Patcher.Data
         {
             // Create plugin list provider that will use this context specific path to plugins.txt
             // unless DataFileProvider overrides the path
-            return new DefaultPluginListProvider(DataFileProvider, 
+            return new Fallout4PluginListProvider(DataFileProvider, 
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Fallout4\plugins.txt"));
         }
 

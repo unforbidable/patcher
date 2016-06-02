@@ -64,6 +64,7 @@
     <Compile Include="Data\Archives\ArchiveSubstream.cs" />
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
+    <Compile Include="Data\Fallout4PluginListProvider.cs" />
     <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
     <Compile Include="Data\Plugins\Content\ColorAlphaAdapter.cs" />
     <Compile Include="Data\Plugins\Content\ColorAdapter.cs" />
