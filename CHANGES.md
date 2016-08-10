@@ -1,3 +1,6 @@
+##### v1.9.5 (TBA)
+* Permit type None of Global Variables
+
 ##### v1.9.4 (2016/06/02)
 * Add property Plugin to all forms
 * Expose property Alpha for Color fields when available

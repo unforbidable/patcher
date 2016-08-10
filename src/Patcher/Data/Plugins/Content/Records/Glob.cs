@@ -56,10 +56,11 @@ namespace Patcher.Data.Plugins.Content.Records
                         return Convert.ToInt32(InternalValue);
 
                     case GlobalVariableType.Float:
+                    case GlobalVariableType.None:
                         return InternalValue;
 
                     default:
-                        throw new InvalidOperationException("Global type must be set before its value can be accessed");
+                        throw new InvalidOperationException("Illegal Global Variable type: " + Type);
                 }
             }
 
@@ -76,11 +77,12 @@ namespace Patcher.Data.Plugins.Content.Records
                         break;
 
                     case GlobalVariableType.Float:
+                    case GlobalVariableType.None:
                         InternalValue = (float)value;
                         break;
 
                     default:
-                        throw new InvalidOperationException("Global type must be set before its value can be set");
+                        throw new InvalidOperationException("Illegal Global Variable type: " + Type);
                 }
             }
         }
@@ -93,6 +95,7 @@ namespace Patcher.Data.Plugins.Content.Records
                 // Initialize value
                 switch (Type)
                 {
+                    case GlobalVariableType.None:
                     case GlobalVariableType.Short:
                     case GlobalVariableType.Int:
                     case GlobalVariableType.Float:
@@ -109,9 +112,9 @@ namespace Patcher.Data.Plugins.Content.Records
         public override string ToString()
         {
             if (Type != GlobalVariableType.None)
-                return string.Format("{0}:{1}", Value);
+                return string.Format("{0}{1}", Value, Type);
             else
-                return "(uninitialized)";
+                return InternalValue.ToString();
         }
 
         enum GlobalVariableRecordFlags : uint
