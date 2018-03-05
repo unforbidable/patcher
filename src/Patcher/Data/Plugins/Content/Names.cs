@@ -101,6 +101,7 @@ namespace Patcher.Data.Plugins.Content
         public const string TES4 = "TES4";
         public const string TREE = "TREE";
         public const string TXST = "TXST";
+        public const string VOLI = "VOLI";
         public const string VTYP = "VTYP";
         public const string WEAP = "WEAP";
         public const string WRLD = "WRLD";

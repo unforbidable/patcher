@@ -14,17 +14,17 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using System.Text;
 
-namespace Patcher.Data
+namespace Patcher.Data.Plugins.Content.Records.Skyrim
 {
-    public interface IDataFileProvider
+    [Record(Names.VOLI)]
+    [Game(Games.Skyrim)]
+    [Dummy]
+    public sealed class Voli : GenericFormRecord
     {
-        string DataFolderPath { get; }
-
-        DataFile GetDataFile(FileMode mode, string path);
-        IEnumerable<DataFile> FindDataFiles(string path, string searchPattern);
-        DataFile GetPluginListFile(string defaultPluginFilePath);
     }
 }

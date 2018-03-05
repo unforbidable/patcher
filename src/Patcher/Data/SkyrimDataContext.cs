@@ -35,7 +35,7 @@ namespace Patcher.Data
         readonly static string[] hiddenFormTypes = new string[] { "CELL", "WRLD" };
 
         // Skyrim - Interface.bsa should be always loaded because it contains localized text files
-        readonly static string[] defaultArchives = new string[] { "Skyrim - Interface.bsa" };
+        readonly static string[] defaultArchives = new string[] { };
         //readonly static string[] defaultArchives = new string[] { "Skyrim - Misc.bsa" , "Skyrim - Shaders.bsa", "Skyrim - Textures.bsa", "Skyrim - Interface.bsa",
         //   "Skyrim - Animations.bsa", "Skyrim - Meshes.bsa", "Skyrim - Sounds.bsa", "Skyrim - Voices.bsa", "Skyrim - VoicesExtra.bsa" };
 
@@ -59,6 +59,11 @@ namespace Patcher.Data
         }
 
         protected override string GetGameTitle()
+        {
+            return "Skyrim";
+        }
+
+        protected override string GetGameInstallPath()
         {
             return "Skyrim";
         }
@@ -89,5 +94,11 @@ namespace Patcher.Data
         {
             return "english";
         }
+
+        public override ushort GetLatestFormVersion()
+        {
+            return 0x2C;
+        }
+
     }
 }

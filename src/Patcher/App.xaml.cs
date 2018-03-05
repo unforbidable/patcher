@@ -128,7 +128,7 @@ namespace Patcher
                 {
                     // After verifying data folder with DefaultDataFolderProvider
                     // replace it with MO data file provider
-                    fileProvider = new ModOrganizerDataFileProvider(options.DataFolder, options.ModOrganizerProfile, options.ModOrganizerModsPath);
+                    fileProvider = new ModOrganizerDataFileProvider(options.DataFolder, options.PluginListFile, options.ModOrganizerProfile, options.ModOrganizerModsPath);
                 }
                 catch (Exception ex)
                 {

@@ -489,7 +489,9 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             public float Multiplier { get; set; }
             public CriticalFlags Flags { get; set; }
             public uint SpellEffect { get; set; }
-            
+            public uint Unknown1 { get; set; } // Added in Skyrim SE
+            public uint Unknown2 { get; set; }
+
             internal override void ReadField(RecordReader reader)
             {
                 Damage = reader.ReadUInt16();
@@ -497,6 +499,9 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 Multiplier = reader.ReadSingle();
                 Flags = (CriticalFlags)reader.ReadUInt32();
                 SpellEffect = reader.ReadReference(FormKindSet.SpelOnly);
+
+                Unknown1 = reader.ReadUInt32();
+                Unknown2 = reader.ReadUInt32();
             }
 
             internal override void WriteField(RecordWriter writer)

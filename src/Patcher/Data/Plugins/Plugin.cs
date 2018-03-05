@@ -59,6 +59,7 @@ namespace Patcher.Data.Plugins
             {
                 header = context.CreateHeader();
                 header.NextFormId = 0x800;
+                header.Version = context.GetLatestFormVersion();
             }
             else if (mode == PluginMode.Open)
             {

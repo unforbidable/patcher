@@ -64,5 +64,26 @@ namespace Patcher.Rules.Compiled.Helpers.Skyrim
                 Name = name
             }, ProxyMode.Target);
         }
+
+        public float GetParam(string name, float defaultValue)
+        {
+            return context.Rule.Engine.GetParam(GetParamName(name), defaultValue);
+        }
+
+        public int GetParam(string name, int defaultValue)
+        {
+            return context.Rule.Engine.GetParam(GetParamName(name), defaultValue);
+        }
+
+        public string GetParam(string name, string defaultValue)
+        {
+            return context.Rule.Engine.GetParam(GetParamName(name), defaultValue);
+        }
+
+        private string GetParamName(string name)
+        {
+            return string.Format("{0}:{1}", context.Rule.Metadata.PluginFileName, name);
+        }
+
     }
 }

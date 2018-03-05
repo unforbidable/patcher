@@ -77,11 +77,11 @@ namespace Patcher.Data
                 var dataContextAttribute = (DataContextAttribute)type.GetCustomAttributes(typeof(DataContextAttribute), false).FirstOrDefault();
                 if (dataContextAttribute != null)
                 {
-                    // Look for plugin specified by the attribute
-                    if (dataFileProvider.GetDataFile(FileMode.Open, dataContextAttribute.PluginFileName).Exists())
-                    {
-                        DataContext context = (DataContext)Activator.CreateInstance(type);
+                    DataContext context = (DataContext)Activator.CreateInstance(type);
 
+                    // Look for plugin specified by the attribute
+                    if (dataFileProvider.GetDataFile(FileMode.Open, dataContextAttribute.PluginFileName).Exists() && dataFileProvider.DataFolderPath.Contains(context.GetGameInstallPath()))
+                    {
                         // Pass data provider to the context
                         context.DataFileProvider = dataFileProvider;
                         return context;
@@ -105,6 +105,7 @@ namespace Patcher.Data
         protected abstract IEnumerable<string> GetDefaultArchives();
         protected abstract IPluginListProvider GetPluginListProvider();
         protected abstract string GetGameTitle();
+        protected abstract string GetGameInstallPath();
         protected abstract IEnumerable<Form> GetHardcodedForms(byte plugin);
         protected abstract string GetDefaultLanguage();
         protected abstract string GetArchiveExtension();
@@ -230,10 +231,11 @@ namespace Patcher.Data
             string archiveFilenameWithoutExtension = Path.GetFileNameWithoutExtension(pluginFilename);
 
             string defaultArchiveFilename = string.Format("{0}.{1}", archiveFilenameWithoutExtension, GetArchiveExtension());
-            if (DataFileProvider.GetDataFile(FileMode.Open, defaultArchiveFilename).Exists())
+            var defaultArchiveFile = DataFileProvider.GetDataFile(FileMode.Open, defaultArchiveFilename);
+            if (defaultArchiveFile.Exists())
             {
-                Log.Fine("Indexing files in archive: " + defaultArchiveFilename);
-                archives.AddArchive(defaultArchiveFilename);
+                Log.Fine("Indexing files in archive: " + defaultArchiveFile.Name);
+                archives.AddArchive(defaultArchiveFile.FullPath);
             }
 
             string searchPattern = string.Format("{0} - *.{1}", archiveFilenameWithoutExtension, GetArchiveExtension());

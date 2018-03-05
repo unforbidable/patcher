@@ -65,6 +65,7 @@
     <Compile Include="Data\Archives\ArchiveSubstream.cs" />
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
+    <Compile Include="Data\SkyrimSpecialEditionPluginListProvider.cs" />
     <Compile Include="Data\Fallout4PluginListProvider.cs" />
     <Compile Include="Data\ModOrganizerDataFileProvider.cs" />
     <Compile Include="Data\Plugins\Content\ColorAlphaAdapter.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Mgef.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Rfct.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Spgd.cs" />
+    <Compile Include="Data\Plugins\Content\Records\Skyrim\Voli.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Txst.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Spel.cs" />
     <Compile Include="Data\Plugins\Content\Records\Skyrim\Sndr.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Data\Plugins\PluginInspector.cs" />
     <Compile Include="Data\QueryableFormRepository.cs" />
     <Compile Include="Data\Fallout4DataContext.cs" />
+    <Compile Include="Data\SkyrimSpecialEditionDataContext.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="IO\CustomBinaryReader.cs" />
     <Compile Include="IO\CustomBinaryWriter.cs" />

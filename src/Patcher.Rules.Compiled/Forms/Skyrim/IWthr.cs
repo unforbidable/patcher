@@ -93,6 +93,22 @@ namespace Patcher.Rules.Compiled.Forms.Skyrim
         /// </summary>
         IImgs NightImageSpace { get; set; }
         /// <summary>
+        /// Gets or sets the <b>Volumetric Light</b> used during the sunrise.
+        /// </summary>
+        IVoli SunriseVolumetricLight { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>Volumetric Light</b> used during the day.
+        /// </summary>
+        IVoli DayVolumetricLight { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>Volumetric Light</b> used during the sunset.
+        /// </summary>
+        IVoli SunsetVolumetricLight { get; set; }
+        /// <summary>
+        /// Gets or sets the <b>Volumetric Light</b> used during the night.
+        /// </summary>
+        IVoli NightVolumetricLight { get; set; }
+        /// <summary>
         /// Gets or sets the speed of wind for this <b>Weather</b>.
         /// </summary>
         float WindSpeed { get; set; }

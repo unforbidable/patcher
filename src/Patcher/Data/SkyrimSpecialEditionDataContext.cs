@@ -16,6 +16,7 @@
 
 using Patcher.Data.Plugins;
 using Patcher.Data.Plugins.Content;
+using Patcher.Data.Plugins.Content.Records.Skyrim;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,13 +27,17 @@ using System.Text;
 namespace Patcher.Data
 {
     /// <summary>
-    /// Represents an implementation of DataContext specific to game Fallout 4.
+    /// Represents an implementation of DataContext specific to game The Elder Scrolls: Skyrim.
     /// </summary>
-    [DataContext("Fallout4.esm")]
-    public sealed class Fallout4DataContext : DataContext
+    [DataContext("Skyrim.esm")]
+    public sealed class SkyrimSpecialEditionDataContext : DataContext
     {
         readonly static string[] hiddenFormTypes = new string[] { "CELL", "WRLD" };
+
+        // Skyrim - Interface.bsa should be always loaded because it contains localized text files
         readonly static string[] defaultArchives = new string[] { };
+        //readonly static string[] defaultArchives = new string[] { "Skyrim - Misc.bsa" , "Skyrim - Shaders.bsa", "Skyrim - Textures.bsa", "Skyrim - Interface.bsa",
+        //   "Skyrim - Animations.bsa", "Skyrim - Meshes.bsa", "Skyrim - Sounds.bsa", "Skyrim - Voices.bsa", "Skyrim - VoicesExtra.bsa" };
 
         protected override IEnumerable<string> GetDefaultArchives()
         {
@@ -49,23 +54,24 @@ namespace Patcher.Data
         {
             // Create plugin list provider that will use this context specific path to plugins.txt
             // unless DataFileProvider overrides the path
-            return new Fallout4PluginListProvider(DataFileProvider, 
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Fallout4\plugins.txt"));
+            return new SkyrimSpecialEditionPluginListProvider(DataFileProvider, 
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Skyrim Special Edition\plugins.txt"));
         }
 
         protected override string GetGameTitle()
         {
-            return "Fallout4";
+            return "Skyrim";
         }
 
         protected override string GetGameInstallPath()
         {
-            return "Fallout 4";
+            // This is to distinguish SEE when detecting current game context 
+            return "Skyrim Special Edition";
         }
 
         protected override string GetArchiveExtension()
         {
-            return "ba2";
+            return "bsa";
         }
 
         protected override IEnumerable<Form> GetHardcodedForms(byte pluginNumber)
@@ -87,17 +93,13 @@ namespace Patcher.Data
 
         protected override string GetDefaultLanguage()
         {
-            return "en";
-        }
-
-        public override float GetLatestPluginVersion()
-        {
-            return 0.95f;
+            return "english";
         }
 
         public override ushort GetLatestFormVersion()
         {
-            return 0x83;
+            return 0x2C;
         }
+
     }
 }

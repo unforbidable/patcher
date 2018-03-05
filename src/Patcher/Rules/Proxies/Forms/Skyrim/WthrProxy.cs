@@ -659,6 +659,62 @@ namespace Patcher.Rules.Proxies.Forms.Skyrim
             }
         }
 
+        public IVoli SunriseVolumetricLight
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IVoli>(record.SunriseHnam);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.SunriseHnam = value.ToFormId();
+            }
+        }
+
+        public IVoli DayVolumetricLight
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IVoli>(record.DayHnam);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.DayHnam = value.ToFormId();
+            }
+        }
+
+        public IVoli SunsetVolumetricLight
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IVoli>(record.SunsetHnam);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.SunsetHnam = value.ToFormId();
+            }
+        }
+
+        public IVoli NightVolumetricLight
+        {
+            get
+            {
+                return Provider.CreateReferenceProxy<IVoli>(record.NightHnam);
+            }
+
+            set
+            {
+                EnsureWritable();
+                record.NightHnam = value.ToFormId();
+            }
+        }
+
         public IWeatherCloudLayer GetCloudLayer(int layer)
         {
             return Provider.CreateProxy<WeatherCloudLayerProxy>(Mode).With(record.GetCloudLayer(layer));

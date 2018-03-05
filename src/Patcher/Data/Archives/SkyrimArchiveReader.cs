@@ -61,7 +61,8 @@ namespace Patcher.Data.Archives
                 {
                     ulong hash = reader.ReadUInt64();
                     uint count = reader.ReadUInt32();
-                    uint offset = reader.ReadUInt32() - totalFileNameLength;
+                    uint unknown = reader.ReadUInt32();
+                    ulong offset = reader.ReadUInt64() - totalFileNameLength;
                     folders[i] = new FolderInfo()
                     {
                         FileCount = count,
@@ -77,7 +78,7 @@ namespace Patcher.Data.Archives
                     byte zero = reader.ReadByte();
 
                     folder.Files = new FileInfo[folder.FileCount];
-                    for (int i = 0; i < folder.FileCount; i++)
+                    for (ulong i = 0; i < folder.FileCount; i++)
                     {
                         ulong hash = reader.ReadUInt64();
                         uint size = reader.ReadUInt32();
@@ -117,7 +118,7 @@ namespace Patcher.Data.Archives
                 for (int i = 0; i < folderCount; i++)
                 {
                     var files = new SortedDictionary<string, FileInfo>();
-                    for (int j = 0; j < folders[i].FileCount; j++)
+                    for (ulong j = 0; j < folders[i].FileCount; j++)
                     {
                         files.Add(folders[i].Files[j].Filename, folders[i].Files[j]);
                     }
@@ -189,14 +190,15 @@ namespace Patcher.Data.Archives
 
         class FolderInfo
         {
-            public uint FileCount { get; set; }
-            public uint ContentOffset { get; set; }
+            public ulong FileCount { get; set; }
+            public ulong ContentOffset { get; set; }
             public string Path { get; set; }
             public FileInfo[] Files { get; set; }
 
             public override string ToString()
             {
-                return Path;
+                return string.Format("Files={0}, Offset={1}, Path={2}", FileCount, ContentOffset, Path);
+
             }
         }
 

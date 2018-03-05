@@ -117,6 +117,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             public AmmoFlags Flags { get; set; }
             public float Damage { get; set; }
             public int Value { get; set; }
+            public float Weight { get; set; }
 
             internal override void ReadField(RecordReader reader)
             {
@@ -124,6 +125,9 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 Flags = (AmmoFlags)reader.ReadUInt32();
                 Damage = reader.ReadSingle();
                 Value = reader.ReadInt32();
+
+                if (reader.CurrentSegment.Length >= 20)
+                    Weight = reader.ReadSingle();
             }
 
             internal override void WriteField(RecordWriter writer)
@@ -132,6 +136,7 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 writer.Write((uint)Flags);
                 writer.Write(Damage);
                 writer.Write(Value);
+                writer.Write(Weight);
             }
 
             public override Field CopyField()
@@ -141,14 +146,15 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                     Projectile = Projectile,
                     Flags = Flags,
                     Damage = Damage,
-                    Value = Value
+                    Value = Value,
+                    Weight = Weight
                 };
             }
 
             public override bool Equals(Field other)
             {
                 var cast = (AmmoData)other;
-                return Projectile == cast.Projectile && Flags == cast.Flags && Damage == cast.Damage && Value == cast.Value;
+                return Projectile == cast.Projectile && Flags == cast.Flags && Damage == cast.Damage && Value == cast.Value && Weight == cast.Weight;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()

@@ -81,6 +81,9 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
         [Member(Names.IMSP)]
         private ImageSpaceData ImageSpace { get; set; }
 
+        [Member(Names.HNAM)]
+        private VolumetricLightData VolumetricLight { get; set; }
+
         [Member(Names.DALC)]
         [Initialize]
         private List<ByteArray> LightDataParts { get; set; }
@@ -108,6 +111,10 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
 
         [Member(Names.ONAM)]
         private ByteArray AltCloudSpeedsX { get; set; }
+
+        [Member(Names.GNAM)]
+        [Reference]
+        public uint Unknown { get; set; }
 
         private byte[] allLightData = new byte[128];
 
@@ -380,6 +387,71 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             }
         }
 
+        void EnsureVolimetricLightCreated()
+        {
+            if (VolumetricLight == null)
+                VolumetricLight = new VolumetricLightData();
+        }
+
+        public uint SunriseHnam { get { return VolumetricLight == null ? 0 : VolumetricLight.Sunrise; } set { EnsureVolimetricLightCreated(); VolumetricLight.Sunrise = value; } }
+        public uint DayHnam { get { return VolumetricLight == null ? 0 : VolumetricLight.Day; } set { EnsureVolimetricLightCreated(); VolumetricLight.Day = value; } }
+        public uint SunsetHnam { get { return VolumetricLight == null ? 0 : VolumetricLight.Sunset; } set { EnsureVolimetricLightCreated(); VolumetricLight.Sunset = value; } }
+        public uint NightHnam { get { return VolumetricLight == null ? 0 : VolumetricLight.Night; } set { EnsureVolimetricLightCreated(); VolumetricLight.Night = value; } }
+
+        sealed class VolumetricLightData : Field
+        {
+            public uint Sunrise { get; set; }
+            public uint Day { get; set; }
+            public uint Sunset { get; set; }
+            public uint Night { get; set; }
+
+            internal override void ReadField(RecordReader reader)
+            {
+                Sunrise = reader.ReadReference(FormKindSet.VoliOnly);
+                Day = reader.ReadReference(FormKindSet.VoliOnly);
+                Sunset = reader.ReadReference(FormKindSet.VoliOnly);
+                Night = reader.ReadReference(FormKindSet.VoliOnly);
+            }
+
+            internal override void WriteField(RecordWriter writer)
+            {
+                writer.WriteReference(Sunrise, FormKindSet.VoliOnly);
+                writer.WriteReference(Day, FormKindSet.VoliOnly);
+                writer.WriteReference(Sunset, FormKindSet.VoliOnly);
+                writer.WriteReference(Night, FormKindSet.VoliOnly);
+            }
+
+            public override Field CopyField()
+            {
+                return new VolumetricLightData()
+                {
+                    Sunrise = Sunrise,
+                    Day = Day,
+                    Sunset = Sunset,
+                    Night = Night
+                };
+            }
+
+            public override string ToString()
+            {
+                return string.Format("Sunrise={0:X8} Day={1:X8} Sunset={2:X8} Night={3:X8}", Sunrise, Day, Sunset, Night);
+            }
+
+            public override bool Equals(Field other)
+            {
+                var cast = (VolumetricLightData)other;
+                return Sunrise == cast.Sunrise && Day == cast.Day && Sunset == cast.Sunset && Night == cast.Night;
+            }
+
+            public override IEnumerable<uint> GetReferencedFormIds()
+            {
+                yield return Sunrise;
+                yield return Day;
+                yield return Sunset;
+                yield return Night;
+            }
+        }
+
         sealed class WeatherData : Field
         {
             public float WindSpeed { get; set; }
@@ -393,6 +465,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
             public float ThunderFrequency { get; set; }
             public WeatherFlags Flags { get; set; }
             public byte[] LightningColor { get; set; }
+            public float VisualEffectBegin { get; set; }
+            public float VisualEffectEnd { get; set; }
             public float WindDirection { get; set; }
             public float WindDirectionRange { get; set; }
 
@@ -409,8 +483,9 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 ThunderEndFadeOut = reader.ReadByte() / 255f;
                 ThunderFrequency = reader.ReadByte() / 255f;
                 Flags = (WeatherFlags)reader.ReadByte();
-                LightningColor = reader.ReadBytes(4);
-                reader.ReadByte(); // Skip 1 byte
+                LightningColor = reader.ReadBytes(3);
+                VisualEffectBegin = reader.ReadByte();
+                VisualEffectEnd = reader.ReadByte();
                 WindDirection = reader.ReadByte() * 360f / 255f;
                 WindDirectionRange = reader.ReadByte() * 180f / 255f;
             }
@@ -429,7 +504,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 writer.Write((byte)(ThunderFrequency * 255f));
                 writer.Write((byte)Flags);
                 writer.Write(LightningColor);
-                writer.Write((byte)0);
+                writer.Write((byte)VisualEffectBegin);
+                writer.Write((byte)VisualEffectEnd);
                 writer.Write((byte)(WindDirection * 255f / 360f));
                 writer.Write((byte)(WindDirectionRange * 255f / 180f));
             }
@@ -449,6 +525,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                     ThunderFrequency = ThunderFrequency,
                     Flags = Flags,
                     LightningColor = LightningColor,
+                    VisualEffectBegin = VisualEffectBegin,
+                    VisualEffectEnd = VisualEffectEnd,
                     WindDirection = WindDirection,
                     WindDirectionRange = WindDirectionRange,
                 };
@@ -465,7 +543,8 @@ namespace Patcher.Data.Plugins.Content.Records.Skyrim
                 return WindSpeed == cast.WindSpeed && TransDelta == cast.TransDelta && SunGlare == cast.SunGlare && SunDamage == cast.SunDamage &&
                     PrecipitationBeginFadeIn == cast.PrecipitationBeginFadeIn && PrecipitationEndFadeOut == cast.PrecipitationEndFadeOut &&
                     ThunderBeginFadeIn == cast.ThunderBeginFadeIn && ThunderEndFadeOut == cast.ThunderEndFadeOut && ThunderFrequency == cast.ThunderFrequency &&
-                    Flags == cast.Flags && LightningColor.SequenceEqual(cast.LightningColor) && WindDirection == cast.WindDirection && WindDirectionRange == cast.WindDirectionRange;
+                    Flags == cast.Flags && LightningColor.SequenceEqual(cast.LightningColor) && VisualEffectBegin == cast.VisualEffectBegin && VisualEffectEnd == cast.VisualEffectEnd &&
+                    WindDirection == cast.WindDirection && WindDirectionRange == cast.WindDirectionRange;
             }
 
             public override IEnumerable<uint> GetReferencedFormIds()

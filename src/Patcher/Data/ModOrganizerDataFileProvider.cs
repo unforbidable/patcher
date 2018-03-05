@@ -28,9 +28,11 @@ namespace Patcher.Data
         readonly string moOverwritePath;
         readonly string pluginListFilePath;
 
+        public string DataFolderPath { get { return dataFolder; } }
+
         List<string> searchPaths = new List<string>();
 
-        public ModOrganizerDataFileProvider(string dataFolder, string moProfilePath, string moModPath)
+        public ModOrganizerDataFileProvider(string dataFolder, string customPluginListFile, string moProfilePath, string moModPath)
         {
             this.dataFolder = Path.GetFullPath(dataFolder);
 
@@ -41,6 +43,12 @@ namespace Patcher.Data
             if (!File.Exists(pluginListFilePath))
                 throw new InvalidDataException("File plugins.txt not found in Mod Organizer profile folder.");
             //Log.Fine("Plugin list file from Mod Organize will be used: {0}", pluginListFilePath);
+
+            if (!string.IsNullOrEmpty(customPluginListFile))
+            {
+                // Override if provided
+                pluginListFilePath = customPluginListFile;
+            }
 
             // Validate or assume modpath
             if (string.IsNullOrEmpty(moModPath))

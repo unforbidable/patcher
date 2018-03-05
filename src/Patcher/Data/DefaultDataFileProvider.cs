@@ -25,7 +25,7 @@ namespace Patcher.Data
     public sealed class DefaultDataFileProvider : IDataFileProvider
     {
         readonly string dataFolder;
-        public string DataFolder { get { return dataFolder; } }
+        public string DataFolderPath { get { return dataFolder; } }
 
         readonly string pluginListFile;
 
@@ -43,7 +43,7 @@ namespace Patcher.Data
 
         public DataFile GetDataFile(FileMode mode, string path)
         {
-            string fullPath = Path.Combine(DataFolder, path);
+            string fullPath = Path.Combine(DataFolderPath, path);
             return new DataFile(this, mode, fullPath, path);
         }
 

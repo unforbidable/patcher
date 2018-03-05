@@ -53,5 +53,28 @@ namespace Patcher.Rules.Compiled.Helpers.Skyrim
         /// <param name="name">Name of the new script.</param>
         /// <returns>Returns new script.</returns>
         IScript CreateScript(string name);
+
+        /// <summary>
+        /// Gets the specified string parameter value from command line, or returns the default value if parameter is not defined.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        string GetParam(string name, string defaultValue);
+        /// <summary>
+        /// Gets the specified integer parameter value from command line, or returns the default value if parameter is not defined.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        int GetParam(string name, int defaultValue);
+        /// <summary>
+        /// Gets the specified floating point parameter value from command line, or returns the default value if parameter is not defined.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        float GetParam(string name, float defaultValue);
+
     }
 }

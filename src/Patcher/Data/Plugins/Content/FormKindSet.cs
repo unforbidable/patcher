@@ -118,6 +118,7 @@ namespace Patcher.Data.Plugins.Content
         public static readonly FormKindSet ScenOnly = FromNames(Names.SCEN);
         public static readonly FormKindSet ShouOnly = FromNames(Names.SHOU);
         public static readonly FormKindSet SpelOnly = FromNames(Names.SPEL);
+        public static readonly FormKindSet VoliOnly = FromNames(Names.VOLI);
         public static readonly FormKindSet WrldOnly = FromNames(Names.WRLD);
         public static readonly FormKindSet WthrOnly = FromNames(Names.WTHR);
 
