@@ -1,27 +1,27 @@
 <enum>
-	<name>ConditionFlags</name>
-	<type>byte</type>
-	<flags>true</flags>
-	<members>
-		<member>
-			<name>Or</name>
-			<value>0x01</value>
-		</member>
+  <name>ConditionFlags</name>
+  <type>byte</type>
+  <flags>true</flags>
+  <members>
     <member>
-			<name>UseAliases</name>
-			<value>0x02</value>
-		</member>
+      <name>Or</name>
+      <value>0x01</value>
+    </member>
     <member>
-			<name>UseGlobal</name>
-			<value>0x04</value>
-		</member>
+      <name>UseAliases</name>
+      <value>0x02</value>
+    </member>
     <member>
-			<name>UsePackData</name>
-			<value>0x08</value>
-		</member>
-		<member>
-			<name>SwapSubjectAndTarget</name>
-			<value>0x10</value>
-		</member>
-	</members>
+      <name>UseGlobal</name>
+      <value>0x04</value>
+    </member>
+    <member>
+      <name>UsePackData</name>
+      <value>0x08</value>
+    </member>
+    <member>
+      <name>SwapSubjectAndTarget</name>
+      <value>0x10</value>
+    </member>
+  </members>
 </enum>

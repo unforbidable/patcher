@@ -1,11 +1,11 @@
 <struct>
-	<name>Color</name>
-	<members>
-		<!-- although the member types are float, the stored value precision depends on the type of underlying field(s), usually bytes -->
-		<float name="Red" />
-		<float name="Green" />
-		<float name="Blue" />
-		<!-- although aplha member exists, the underlying type of the field might not support it -->
-		<float name="Alpha" />
-	</members>
+  <name>Color</name>
+  <members>
+    <!-- although the member types are float, the stored value precision depends on the type of underlying field(s), usually bytes -->
+    <float name="Red" />
+    <float name="Green" />
+    <float name="Blue" />
+    <!-- although aplha member exists, the underlying type of the field might not support it -->
+    <float name="Alpha" />
+  </members>
 </struct>

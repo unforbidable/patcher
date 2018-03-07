@@ -1,27 +1,27 @@
 <field>
-	<!-- default field name of the field group when included (i.e. in most forms) -->
-	<name>Keywords</name>
-	<type>group</type>
-	<group>
-		<fields>
-			<field>
-				<private />
-				<name>Size</name>
-				<key>KSIZ</key>
-				<type>uint</type>
-			</field>
-			<field>
-				<private />
-				<name>Data</name>
-				<key>KWDA</key>
-				<type>uint[]</type>
-			</field>
-		</fields>
-	</group>
-	<as>
-		<!-- will be used instead of the whole field group via adapter for field group keyword-list and ref[] of KYWD -->
-		<!-- anonymous field (without name) is accessed directly via parent scope (field named Keywords by default) -->
-		<type>ref[]</type>
-		<ref-type>KYWD</ref-type>
-	</as>
+  <!-- default field name of the field group when included (i.e. in most forms) -->
+  <name>Keywords</name>
+  <type>group</type>
+  <group>
+    <fields>
+      <field>
+        <private />
+        <name>Size</name>
+        <key>KSIZ</key>
+        <type>uint</type>
+      </field>
+      <field>
+        <private />
+        <name>Data</name>
+        <key>KWDA</key>
+        <type>uint[]</type>
+      </field>
+    </fields>
+  </group>
+  <as>
+    <!-- will be used instead of the whole field group via adapter for field group keyword-list and ref[] of KYWD -->
+    <!-- anonymous field (without name) is accessed directly via parent scope (field named Keywords by default) -->
+    <type>ref[]</type>
+    <ref-type>KYWD</ref-type>
+  </as>
 </field>

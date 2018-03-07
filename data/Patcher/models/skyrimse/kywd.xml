@@ -1,15 +1,15 @@
 <form>
-	<name>Keyword</name>
-	<fields>
-		<editor-id />
-		<!-- appropriate adapter must be available when a field is mapped to a property of different type (i.e. byte[4] to struct 'color') -->
-		<field>
-			<name>Color</name>
-			<key>CNAM</key>
-			<type>byte[4]</type>
-			<as>
+  <name>Keyword</name>
+  <fields>
+    <editor-id />
+    <!-- appropriate adapter must be available when a field is mapped to a property of different type (i.e. byte[4] to struct 'color') -->
+    <field>
+      <name>Color</name>
+      <key>CNAM</key>
+      <type>byte[4]</type>
+      <as>
         <type>color</type>
       </as>
-		</field>
-	</fields>
+    </field>
+  </fields>
 </form>
