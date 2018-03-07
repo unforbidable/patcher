@@ -1,0 +1,5 @@
+<field>
+  <key>EDID</key>
+  <name>EditorId</name>
+  <type>zstring</type>
+</field>

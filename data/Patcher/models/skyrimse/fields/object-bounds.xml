@@ -1,0 +1,16 @@
+<field>
+	<key>OBND</key>
+	<type>struct</type>
+	<struct>
+		<name>ObjectBounds</name>
+		<fields>
+			<short name="X1" />
+			<short name="Y1" />
+			<short name="Z1" />
+			<short name="X2" />
+			<short name="Y2" />
+			<short name="Z2" />
+		</fields>
+	</struct>
+	<default-property-name>ObjectBounds</default-property-name>
+</field>

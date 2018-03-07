@@ -1,0 +1,5 @@
+<field>
+  <key>DESC</key>
+  <name>Description</name>
+  <type>dlstring</type>
+</field>

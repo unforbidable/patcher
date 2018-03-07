@@ -1,0 +1,22 @@
+<game>
+	<name>Fallout4</name>
+	<base-plugin>Fallout4.esm</base-plugin>
+	<latest-form-version>1</latest-form-version>
+	<plugins>
+		<location>{LOCALAPPDATA}\{NAME}\plugins.txt</location>
+		<match-line>\*(*.)</match-line>
+	</plugins>
+	<archives>
+		<extension>ba2</extension>
+	</archives>
+	<strings>
+    <default-language>en</default-language>
+	</strings>
+	<hardcoded>
+		<form>
+			<id>0x14</id>
+			<type>REFR</type>
+			<editor-id>PlayerRef</editor-id>
+		</form>
+	</hardcoded>
+</game>

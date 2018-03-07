@@ -1,0 +1,7 @@
+<field>
+  <type>uint</type>
+  <as>
+    <type>ref</type>
+    <ref-type>SNDR</ref-type>
+  </as>
+</field>

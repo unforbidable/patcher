@@ -1,0 +1,15 @@
+<field>
+	<field-group>
+		<fields>
+			<zstring key="MODL" name="WorldModel" />
+			<field>
+				<key>MODT</key>
+				<type>byte[]</type>
+			</field>
+			<field>
+				<key>MODS</key>
+				<type>byte[]</type>
+			</field>
+		</fields>
+	</field-group>
+</field>

@@ -1,0 +1,61 @@
+<form>
+	<name>Potion</name>
+	<fields>
+		<editor-id />
+		<object-bounds />
+		<full-name />
+		<keyword-list />
+		<description />
+		<models />
+		<pickup-sound />
+		<drop-sound />
+		<equipment-type />
+		<field>
+			<key>DATA</key>
+			<type>struct</type>
+			<struct>
+				<members>
+					<float name="Weight" />
+				</members>
+			</struct>
+		</field>
+		<field>
+			<key>ENIT</key>
+			<type>struct</type>
+			<struct>
+				<members>
+					<uint name="Value" />
+					<potion-flags name="Flags" />
+					<uint />
+					<float name="AddictionChance" />
+					<sound name="UseSound" />
+				</members>
+			</struct>
+		</field>
+		<field>
+			<!-- name of the field -->
+			<name>Effects</name>
+			<list>true</list>
+			<type>group</type>
+			<group>
+				<!-- name of the structure -->
+				<name>PotionEffect</name>
+				<fields>
+					<magic-effect key="EFID" name="BaseEffect" />
+					<field>
+						<key>EFIT</key>
+						<type>struct</type>
+						<struct>
+							<members>
+								<float name="Magnitude" />
+								<uint name="Area" />
+								<uint name="Duration" />
+							</members>
+						</struct>
+					</field>
+					<condition-list />
+				</fields>
+			</group>
+		</field>
+	</fields>
+</form>

@@ -1,0 +1,84 @@
+<field>
+	<name>Conditions</name>
+	<type>group</type>
+	<list>true</list>
+	<group>
+		<name>Condition</name>
+		<fields>
+			<field>
+				<key>CTDA</key>
+				<type>struct</type>
+				<struct>
+					<members>
+						<uint name="RawFlags" hidden="true" />
+						<condition-flags name="Flags" virtual="true" />
+						<condition-operand name="Operand" virtual="true" />
+						<field>
+							<name>ComparisonValue</name>
+							<type>uint</type>
+							<as>
+								<type>struct</type>
+								<struct>
+									<name>ComparisonValue</name>
+									<members>
+										<float name="Value" />
+										<uint as-ref-type="GLOB" name="GlobalVariable" />
+									</members>
+								</struct>
+							</as>
+						</field>
+						<field>
+							<name>Function</name>
+							<type>ushort</type>
+							<as>
+								<type>fn</type>
+							</as>
+						</field>
+						<ushort name="Padding" hidden="true" />
+						<field>
+							<name>FunctionParam1</name>
+							<type>uint</type>
+							<as>
+								<type>struct</type>
+								<struct>
+									<name>FunctionParam1</name>
+									<members>
+										<int name="Value" />
+										<ref name="FormReference" />
+										<ushort name="EventFunction" />
+										<string name="EventMember" />
+									</members>
+								</struct>
+							</as>
+						</field>
+						<field>
+							<name>FunctionParam2</name>
+							<type>uint</type>
+							<as>
+								<type>struct</type>
+								<struct>
+									<name>FunctionParam2</name>
+									<members>
+										<int name="Value" />
+										<ref name="FormReference" />
+									</members>
+								</struct>
+							</as>
+						</field>
+						<function-target name="FunctionTarget" />
+						<field>
+							<name>TargetReference</name>
+							<type>uint</type>
+							<as>
+								<type>ref</type>
+							</as>
+						</field>
+						<int name="Unused" hidden="true" />
+					</members>
+				</struct>
+			</field>
+			<zstring key="CIS1" name="FunctionStringParam1" />
+			<zstring key="CIS2" name="FunctionStringParam2" />
+		</fields>
+	</group>
+</field>

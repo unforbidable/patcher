@@ -1,0 +1,27 @@
+<enum>
+	<name>PotionFlags</name>
+	<type>uint</type>
+	<flags>true</flags>
+  <members>
+    <member>
+			<name>None</name>
+			<value>0</value>
+		</member>
+    <member>
+			<name>ManualCalc</name>
+			<value>0x00001</value>
+		</member>
+    <member>
+			<name>Food</name>
+			<value>0x00002</value>
+		</member>
+    <member>
+			<name>Medicine</name>
+			<value>0x10000</value>
+		</member>
+    <member>
+      <name>Poison</name>
+      <value>0x20000</value>
+    </member>
+	</members>
+</enum>

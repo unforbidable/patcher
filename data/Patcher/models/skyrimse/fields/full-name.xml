@@ -1,0 +1,5 @@
+<field>
+  <key>FULL</key>
+  <name>FullName</name>
+  <type>lstring</type>
+</field>

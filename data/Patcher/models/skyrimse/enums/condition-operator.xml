@@ -1,0 +1,30 @@
+<enum>
+	<name>ConditionOperator</name>
+	<type>byte</type>
+	<members>
+		<member>
+			<name>Equal</name>
+			<value>0</value>
+		</member>
+    <member>
+			<name>NotEqual</name>
+			<value>1</value>
+		</member>
+    <member>
+			<name>GreaterThan</name>
+			<value>2</value>
+		</member>
+		<member>
+			<name>GreaterThanOrEqual</name>
+			<value>3</value>
+		</member>
+    <member>
+			<name>LesserThan</name>
+			<value>4</value>
+		</member>
+    <member>
+			<name>LesserThanOrEqual</name>
+			<value>5</value>
+		</member>
+	</members>
+</enum>
