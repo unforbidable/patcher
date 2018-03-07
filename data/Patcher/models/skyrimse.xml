@@ -1,22 +1,22 @@
 <game>
-	<name>Skyrim Special Edition</name>
-	<base-plugin>Skyrim.esm</base-plugin>
-	<latest-form-version>44</latest-form-version>
-	<plugins>
-		<file-location>{LOCALAPPDATA}\{NAME}\plugins.txt</file-location>
-		<match-line>(*.)</match-line>
-	</plugins>
-	<archives>
-		<extension>bsa</extension>
-	</archives>
-	<strings>
+  <name>Skyrim Special Edition</name>
+  <base-plugin>Skyrim.esm</base-plugin>
+  <latest-form-version>44</latest-form-version>
+  <plugins>
+    <file-location>{LOCALAPPDATA}\{NAME}\plugins.txt</file-location>
+    <match-line>(*.)</match-line>
+  </plugins>
+  <archives>
+    <extension>bsa</extension>
+  </archives>
+  <strings>
     <default-language>english</default-language>
-	</strings>
-	<hardcoded>
-		<form>
-			<id>0x14</id>
-			<type>REFR</type>
-			<editor-id>PlayerRef</editor-id>
-		</form>
-	</hardcoded>
+  </strings>
+  <hardcoded>
+    <form>
+      <id>0x14</id>
+      <type>REFR</type>
+      <editor-id>PlayerRef</editor-id>
+    </form>
+  </hardcoded>
 </game>
