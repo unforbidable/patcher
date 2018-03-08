@@ -1,5 +1,5 @@
 <field>
-  <field-group>
+  <group>
     <fields>
       <zstring key="MODL" name="WorldModel" />
       <field>
@@ -11,5 +11,5 @@
         <type>byte[]</type>
       </field>
     </fields>
-  </field-group>
+  </group>
 </field>

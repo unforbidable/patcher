@@ -1,17 +1,16 @@
 <field>
   <!-- default field name of the field group when included (i.e. in most forms) -->
   <name>Keywords</name>
-  <type>group</type>
   <group>
     <fields>
       <field>
-        <private />
+        <hidden>true</hidden>
         <name>Size</name>
         <key>KSIZ</key>
         <type>uint</type>
       </field>
       <field>
-        <private />
+        <hidden>true</hidden>
         <name>Data</name>
         <key>KWDA</key>
         <type>uint[]</type>

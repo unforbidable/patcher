@@ -1,23 +1,20 @@
 <field>
   <name>Conditions</name>
-  <type>group</type>
   <list>true</list>
   <group>
     <name>Condition</name>
     <fields>
       <field>
         <key>CTDA</key>
-        <type>struct</type>
         <struct>
           <members>
             <uint name="RawFlags" hidden="true" />
             <condition-flags name="Flags" virtual="true" />
-            <condition-operand name="Operand" virtual="true" />
-            <field>
+            <condition-operator name="Operator" virtual="true" />
+            <member>
               <name>ComparisonValue</name>
               <type>uint</type>
               <as>
-                <type>struct</type>
                 <struct>
                   <name>ComparisonValue</name>
                   <members>
@@ -26,20 +23,19 @@
                   </members>
                 </struct>
               </as>
-            </field>
-            <field>
+            </member>
+            <member>
               <name>Function</name>
               <type>ushort</type>
               <as>
                 <type>fn</type>
               </as>
-            </field>
+            </member>
             <ushort name="Padding" hidden="true" />
-            <field>
+            <member>
               <name>FunctionParam1</name>
               <type>uint</type>
               <as>
-                <type>struct</type>
                 <struct>
                   <name>FunctionParam1</name>
                   <members>
@@ -50,8 +46,8 @@
                   </members>
                 </struct>
               </as>
-            </field>
-            <field>
+            </member>
+            <member>
               <name>FunctionParam2</name>
               <type>uint</type>
               <as>
@@ -64,21 +60,29 @@
                   </members>
                 </struct>
               </as>
-            </field>
+            </member>
             <function-target name="FunctionTarget" />
-            <field>
+            <member>
               <name>TargetReference</name>
               <type>uint</type>
               <as>
                 <type>ref</type>
               </as>
-            </field>
+            </member>
             <int name="Unused" hidden="true" />
           </members>
         </struct>
       </field>
-      <zstring key="CIS1" name="FunctionStringParam1" />
+      <field>
+        <key>CIS1</key>
+        <name>FunctionStringParam1</name>
+        <type>zstring</type>
+      </field>
+      <!-- short form member field definition possible, equivalent to above -->
       <zstring key="CIS2" name="FunctionStringParam2" />
+      <!-- following is for testing and demonstration purposes only -->
+      <sound key="TEST" name="TestSound" />
+      <editor-id />
     </fields>
   </group>
 </field>
