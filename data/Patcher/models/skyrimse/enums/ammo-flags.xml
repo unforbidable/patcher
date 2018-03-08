@@ -1,0 +1,23 @@
+<enum>
+  <name>AmmoFlags</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Ignores Normal Weapon Resistance</name>
+      <value>0x00000001</value>
+    </member>
+    <member>
+      <name>Non-Playable</name>
+      <value>0x00000002</value>
+    </member>
+    <member>
+      <name>Non-Bolt</name>
+      <value>0x00000004</value>
+    </member>
+  </members>
+</enum>

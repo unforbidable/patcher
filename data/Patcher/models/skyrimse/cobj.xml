@@ -1,0 +1,29 @@
+<form>
+  <name>Constructible Object</name>
+  <fields>
+    <editor-id />
+    <uint key="COCT" name="Object Count" />
+    <!-- I'm not sure if this item list field is used in any other record types, but I put it in it's own XML for readability :) -->
+    <item-list />
+    <condition-list />
+    <field>
+      <key>CNAM</key>
+      <name>Created Object</name>
+      <type>uint</type>
+      <as>
+        <type>ref</type>
+        <ref-type>WEAP || ARMO</ref-type>
+      </as>
+    </field>
+    <field>
+      <key>BNAM</key>
+      <name>Workbench Keyword</name>
+      <type>uint</type>
+      <as>
+        <type>ref</type>
+        <ref-type>KYWD</ref-type>
+      </as>
+    </field>
+    <uint key="NAM1" name="Created Object Count" />
+  </fields>
+</form>

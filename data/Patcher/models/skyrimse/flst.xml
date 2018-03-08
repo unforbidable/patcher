@@ -1,0 +1,26 @@
+<form>
+  <name>Form List</name>
+  <fields>
+    <editor-id />
+    <field>
+      <name>FormIDs</name>
+      <type>group</type>
+      <list>true</list>
+      <!-- I'm a bit unsure of how you are using the "group" element here. I'm guessing maybe as an array of fields? Sorry if I used it wrong! -->
+      <group>
+        <field>
+          <key>LNAM</key>
+          <name>FormID</name>
+          <type>uint</type>
+        </field>
+        <!-- Do we also need to specify somehow that any kind of formID can be in a Form List?-->
+        <!--
+        <as>
+          <type>ref</type>
+          <ref-type>All</ref-type>
+        </as>
+        -->
+      </group>
+    </field>
+  </fields>
+</form>

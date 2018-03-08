@@ -1,0 +1,49 @@
+<field>
+	<name>Items</name>
+	<type>group</type>
+  <list>true</list>
+  <group>
+    <name>Input Item</name>
+    <fields>
+      <field>
+        <key>CNTO</key>
+        <name>Item</name>
+        <type>struct</type>
+        <struct>
+          <members>
+            <field>
+              <name>Item ID</name>
+              <type>uint</type>
+              <as>
+                <type>ref</type>
+                <!-- I know this is probably not the proper way to do this, but the form ID for an "ingredient" can be one of these four types. Maybe an enum?-->
+                <ref-type>ALCH || INGR || WEAP || MISC</ref-type>
+              </as>
+            </field>
+            <uint name="Input Count" />
+          </members>
+        </struct>
+      </field>
+      <!-- Not really sure what COED is :) Can probably be its own XML, but wasn't sure about it. -->
+      <field>
+        <key>COED</key>
+        <name>Extra Data</name>
+        <type>struct</type>
+        <struct>
+          <members>
+            <field>
+              <name>Owner</name>
+              <type>uint</type>
+              <as>
+                <type>ref</type>
+                <ref-type>FACT || NPC_</ref-type>
+              </as>
+            </field>
+            <uint name="Value" />
+            <float name="Item Condition" />
+          </members>
+        </struct>
+      </field>
+    </fields>
+  </group>
+</field>
