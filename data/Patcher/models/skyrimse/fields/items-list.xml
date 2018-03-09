@@ -1,6 +1,5 @@
 <field>
 	<name>Items</name>
-	<type>group</type>
   <list>true</list>
   <group>
     <name>Item</name>

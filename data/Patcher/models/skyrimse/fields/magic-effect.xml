@@ -1,8 +1,8 @@
 <field>
-  <name>Sound</name>
+  <name>MagicEffect</name>
   <type>uint</type>
   <as>
     <type>ref</type>
-    <ref-type>SNDR</ref-type>
+    <ref-type>MGEF</ref-type>
   </as>
 </field>

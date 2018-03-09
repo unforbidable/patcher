@@ -1,4 +1,4 @@
-<form>
+<record>
   <name>Ammunition</name>
   <fields>
     <editor-id />
@@ -29,4 +29,4 @@
     </field>
     <string key="ONAM" name="ShortName" hidden="true" />
   </fields>
-</form>
+</record>

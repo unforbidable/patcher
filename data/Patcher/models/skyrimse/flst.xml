@@ -1,18 +1,15 @@
-<form>
+<record>
   <name>FormList</name>
   <fields>
     <editor-id />
     <field>
-      <name>FormIDs</name>
+      <name>Forms</name>
       <list>true</list>
-      <field>
-        <key>LNAM</key>
-        <name>FormID</name>
-        <type>uint</type>
-        <as>
-          <type>ref</type>
-        </as>
-      </field>
+      <key>LNAM</key>
+      <type>uint</type>
+      <as>
+        <type>ref</type>
+      </as>
     </field>
   </fields>
-</form>
+</record>

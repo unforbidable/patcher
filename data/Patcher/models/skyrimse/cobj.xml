@@ -1,9 +1,9 @@
-<form>
+<record>
   <name>ConstructibleObject</name>
   <fields>
     <editor-id />
     <uint key="COCT" name="ObjectCount" hidden="true"/>
-    <item-list />
+    <items-list />
     <condition-list />
     <field>
       <key>CNAM</key>
@@ -16,7 +16,7 @@
     </field>
     <field>
       <key>BNAM</key>
-      <name>Workbench Keyword</name>
+      <name>WorkbenchKeyword</name>
       <type>uint</type>
       <as>
         <type>ref</type>
@@ -29,4 +29,4 @@
       <type>uint</type>
     </field>
   </fields>
-</form>
+</record>

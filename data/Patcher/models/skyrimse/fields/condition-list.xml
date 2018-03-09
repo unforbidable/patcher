@@ -19,7 +19,7 @@
                   <name>ComparisonValue</name>
                   <members>
                     <float name="Value" />
-                    <uint as-ref-type="GLOB" name="GlobalVariable" />
+                    <uint name="GlobalVariable" as-type="ref" as-ref-type="GLOB"  />
                   </members>
                 </struct>
               </as>
@@ -40,7 +40,7 @@
                   <name>FunctionParam1</name>
                   <members>
                     <int name="Value" />
-                    <ref name="FormReference" />
+                    <uint name="FormReference" as-type="ref" />
                     <ushort name="EventFunction" />
                     <string name="EventMember" />
                   </members>
@@ -51,12 +51,11 @@
               <name>FunctionParam2</name>
               <type>uint</type>
               <as>
-                <type>struct</type>
                 <struct>
                   <name>FunctionParam2</name>
                   <members>
                     <int name="Value" />
-                    <ref name="FormReference" />
+                    <uint name="FormReference" as-type="ref" />
                   </members>
                 </struct>
               </as>
@@ -85,4 +84,7 @@
       <editor-id />
     </fields>
   </group>
+  <as>
+    <type>color[]</type>
+  </as>
 </field>
