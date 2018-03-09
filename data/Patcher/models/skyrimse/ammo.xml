@@ -1,0 +1,32 @@
+<form>
+  <name>Ammunition</name>
+  <fields>
+    <editor-id />
+    <object-bounds />
+    <full-name />
+    <models />
+    <pickup-sound />
+    <drop-sound />
+    <description />
+    <keyword-list />
+    <field>
+      <key>DATA</key>
+      <struct>
+        <members>
+          <member>
+            <name>Projectile</name>
+            <type>uint</type>
+            <as>
+              <type>ref</type>
+              <ref-type>PROJ</ref-type>
+            </as>
+          </member>
+          <ammo-flags />
+          <float name="Damage" />
+          <uint name="GoldValue" />
+        </members>
+      </struct>
+    </field>
+    <string key="ONAM" name="ShortName" hidden="true" />
+  </fields>
+</form>

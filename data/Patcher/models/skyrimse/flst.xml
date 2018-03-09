@@ -1,0 +1,18 @@
+<form>
+  <name>FormList</name>
+  <fields>
+    <editor-id />
+    <field>
+      <name>FormIDs</name>
+      <list>true</list>
+      <field>
+        <key>LNAM</key>
+        <name>FormID</name>
+        <type>uint</type>
+        <as>
+          <type>ref</type>
+        </as>
+      </field>
+    </field>
+  </fields>
+</form>

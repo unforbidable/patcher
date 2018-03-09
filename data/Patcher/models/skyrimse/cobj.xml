@@ -1,0 +1,32 @@
+<form>
+  <name>ConstructibleObject</name>
+  <fields>
+    <editor-id />
+    <uint key="COCT" name="ObjectCount" hidden="true"/>
+    <item-list />
+    <condition-list />
+    <field>
+      <key>CNAM</key>
+      <name>CreatedObject</name>
+      <type>uint</type>
+      <as>
+        <type>ref</type>
+        <ref-type>WEAP || ARMO</ref-type>
+      </as>
+    </field>
+    <field>
+      <key>BNAM</key>
+      <name>Workbench Keyword</name>
+      <type>uint</type>
+      <as>
+        <type>ref</type>
+        <ref-type>KYWD</ref-type>
+      </as>
+    </field>
+    <field>
+      <key>NAM1</key>
+      <name>CreatedObjectCount</name>
+      <type>uint</type>
+    </field>
+  </fields>
+</form>

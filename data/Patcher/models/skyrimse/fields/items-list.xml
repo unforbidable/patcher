@@ -1,0 +1,46 @@
+<field>
+	<name>Items</name>
+	<type>group</type>
+  <list>true</list>
+  <group>
+    <name>Item</name>
+    <fields>
+      <field>
+        <key>CNTO</key>
+        <name>Item</name>
+        <struct>
+          <members>
+            <member>
+              <name>ItemID</name>
+              <type>uint</type>
+              <as>
+                <type>ref</type>
+                <!-- This is not the way to show this, but the form ID for an "input item" can be one of these four types.-->
+                <ref-type>ALCH || INGR || WEAP || MISC</ref-type>
+              </as>
+            </member>
+            <uint name="InputCount" />
+          </members>
+        </struct>
+      </field>
+      <field>
+        <key>COED</key>
+        <name>ExtraData</name>
+        <struct>
+          <members>
+            <member>
+              <name>Owner</name>
+              <type>uint</type>
+              <as>
+                <type>ref</type>
+                <ref-type>FACT || NPC_</ref-type>
+              </as>
+            </member>
+            <uint name="Value" />
+            <float name="ItemCondition" />
+          </members>
+        </struct>
+      </field>
+    </fields>
+  </group>
+</field>
