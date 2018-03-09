@@ -8,7 +8,7 @@
       <value>0</value>
     </member>
     <member>
-      <name>Ignores Normal Weapon Resistance</name>
+      <name>IgnoresNormalWeaponResistance</name>
       <value>0x00000001</value>
     </member>
     <member>

@@ -11,23 +11,22 @@
     <keyword-list />
     <field>
       <key>DATA</key>
-      <type>struct</type>
       <struct>
         <members>
-          <field>
+          <member>
             <name>Projectile</name>
             <type>uint</type>
             <as>
               <type>ref</type>
               <ref-type>PROJ</ref-type>
             </as>
-          </field>
+          </member>
           <ammo-flags />
           <float name="Damage" />
-          <uint name="Gold Value" />
+          <uint name="GoldValue" />
         </members>
       </struct>
     </field>
-    <string key="ONAM" name="Short Name" />
+    <string key="ONAM" name="ShortName" hidden="true" />
   </fields>
 </form>

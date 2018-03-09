@@ -1,14 +1,13 @@
 <form>
-  <name>Constructible Object</name>
+  <name>ConstructibleObject</name>
   <fields>
     <editor-id />
-    <uint key="COCT" name="Object Count" />
-    <!-- I'm not sure if this item list field is used in any other record types, but I put it in it's own XML for readability :) -->
+    <uint key="COCT" name="ObjectCount" hidden="true"/>
     <item-list />
     <condition-list />
     <field>
       <key>CNAM</key>
-      <name>Created Object</name>
+      <name>CreatedObject</name>
       <type>uint</type>
       <as>
         <type>ref</type>
@@ -24,6 +23,10 @@
         <ref-type>KYWD</ref-type>
       </as>
     </field>
-    <uint key="NAM1" name="Created Object Count" />
+    <field>
+      <key>NAM1</key>
+      <name>CreatedObjectCount</name>
+      <type>uint</type>
+    </field>
   </fields>
 </form>
