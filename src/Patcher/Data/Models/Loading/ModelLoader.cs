@@ -24,6 +24,9 @@ using System.Xml.Linq;
 
 namespace Patcher.Data.Models.Loading
 {
+    /// <summary>
+    /// Handles the loading of model files into the object model tree.
+    /// </summary>
     public class ModelLoader
     {
         public GameModel Game { get; private set; }

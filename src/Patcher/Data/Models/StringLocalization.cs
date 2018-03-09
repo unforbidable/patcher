@@ -21,6 +21,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Specifies the string table that is used to localize a string.
+    /// </summary>
     public enum StringLocalization
     {
         None,

@@ -18,37 +18,39 @@ using Patcher.Data.Models.Loading;
 using Patcher.Data.Models.Presentation;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Model object that represents an enum.
+    /// </summary>
     public class EnumModel : IPresentable, ITargetable
     {
         /// <summary>
-        /// Name of the generated enumeration
+        /// Name of the generated enum.
         /// </summary>
         public string Name { get; private set; }
 
         /// <summary>
-        /// Name of the generated enumeration
+        /// Description of the generated enum.
         /// </summary>
         public string Description { get; private set; }
 
         /// <summary>
-        /// The underlying type of members
+        /// The underlying type of the constants.
         /// </summary>
         public Type BaseType { get; private set; }
 
         /// <summary>
-        /// True when this enumeration is used as flags
+        /// True when this enumeration is used as flags.
         /// </summary>
         public bool IsFlags { get; private set; }
 
         /// <summary>
-        /// Map of member names and values.
+        /// The array of the members of the enum.
         /// </summary>
         public EnumMemberModel[] Members { get; private set; }
 

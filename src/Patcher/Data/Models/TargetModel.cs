@@ -22,6 +22,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Model object that represents the type of property as which a field is presented.
+    /// </summary>
     public class TargetModel : IModel, IResolvableFrom<EnumModel>, IResolvableFrom<StructModel>
     {
         public ITargetable Target { get; private set; }

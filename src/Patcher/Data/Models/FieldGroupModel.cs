@@ -24,7 +24,7 @@ using System.Text;
 namespace Patcher.Data.Models
 {
     /// <summary>
-    /// Contains fields that are logically grouped together
+    /// Model object that represent a group of fields that are grouped together.
     /// </summary>
     public class FieldGroupModel : IPresentable, ICanRepresentField
     {
@@ -39,7 +39,7 @@ namespace Patcher.Data.Models
         public string Description { get; private set; }
 
         /// <summary>
-        /// List of fields, fields can be of any type
+        /// List of fields.
         /// </summary>
         public FieldModel[] Fields { get; private set; }
 

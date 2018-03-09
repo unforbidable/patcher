@@ -21,6 +21,9 @@ using System.Text;
 
 namespace Patcher.Data.Models.Loading
 {
+    /// <summary>
+    /// Indicates a model object that can be initially only partially defined and may need to be resolved when all model objects have been loaded.
+    /// </summary>
     public interface IResolvable : IModel
     {
     }

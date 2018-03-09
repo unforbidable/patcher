@@ -22,6 +22,9 @@ using System.Xml.Linq;
 
 namespace Patcher.Data.Models.Loading
 {
+    /// <summary>
+    /// Handles the reading of parts of model files into model objects.
+    /// </summary>
     public class ModelReader
     {
         public string File { get; private set; }

@@ -22,10 +22,24 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Model object that represents a member of an enum.
+    /// </summary>
     public class EnumMemberModel : IPresentable
     {
+        /// <summary>
+        /// The name of the member.
+        /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// The description of the member.
+        /// </summary>
         public string Description { get; private set; }
+
+        /// <summary>
+        /// The value of the member.
+        /// </summary>
         public string Value { get; private set; }
 
         public EnumMemberModel(string name, string description, string value)

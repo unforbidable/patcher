@@ -22,6 +22,9 @@ using System.Xml.Linq;
 
 namespace Patcher.Data.Models.Loading
 {
+    /// <summary>
+    /// Handles the resolution of partially specified object models.
+    /// </summary>
     public class ModelResolver
     {
         public ModelLoader Loader { get; private set; }

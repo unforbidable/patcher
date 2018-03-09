@@ -23,6 +23,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Model object that represents a form record.
+    /// </summary>
     public class RecordModel : IPresentable
     {
         public string Key { get; private set; }

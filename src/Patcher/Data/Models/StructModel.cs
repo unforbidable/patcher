@@ -23,6 +23,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Model object that represents a data structure.
+    /// </summary>
     public class StructModel : IPresentable, ITargetable, ICanRepresentField
     {
         /// <summary>

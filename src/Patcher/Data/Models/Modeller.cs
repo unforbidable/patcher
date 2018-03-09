@@ -23,6 +23,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Provides methods to load, compile and query the data model. 
+    /// </summary>
     public class Modeller
     {
         public GameModel[] Models { get; private set; }

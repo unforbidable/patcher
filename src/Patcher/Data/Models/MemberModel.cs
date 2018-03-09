@@ -23,6 +23,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Model object that represents a member of a structure.
+    /// </summary>
     public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>
     {
         /// <summary>

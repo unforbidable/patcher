@@ -23,6 +23,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
+    /// <summary>
+    /// Object model that represents a record field.
+    /// </summary>
     public class FieldModel : IPresentable, IResolvableFrom<FieldModel>
     {
         /// <summary>

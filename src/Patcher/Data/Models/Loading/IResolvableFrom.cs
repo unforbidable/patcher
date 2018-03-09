@@ -21,8 +21,16 @@ using System.Text;
 
 namespace Patcher.Data.Models.Loading
 {
+    /// <summary>
+    /// Indicates which model objects can be used to resolve a model object.
+    /// </summary>
+    /// <typeparam name="TModel"></typeparam>
     public interface IResolvableFrom<TModel> : IModel, IResolvable where TModel: IModel
     {
+        /// <summary>
+        /// Resolve model object from another model object.
+        /// </summary>
+        /// <param name="model"></param>
         void ResolveFrom(TModel model);
     }
 }

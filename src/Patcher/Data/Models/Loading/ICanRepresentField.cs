@@ -21,6 +21,9 @@ using System.Text;
 
 namespace Patcher.Data.Models.Loading
 {
+    /// <summary>
+    /// Indicates model objects that can represent fields, that is MemberType, StructModel and FieldGroupModel.
+    /// </summary>
     public interface ICanRepresentField
     {
     }

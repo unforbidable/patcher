@@ -21,11 +21,23 @@ using System.Text;
 
 namespace Patcher.Data.Models.Loading
 {
+    /// <summary>
+    /// Specifies the format in which a numeric constant is presented.
+    /// </summary>
     [Flags]
     public enum ReparseOptions
     {
+        /// <summary>
+        /// Default format.
+        /// </summary>
         None,
+        /// <summary>
+        /// Present in hexadecimal form prefixed with 0x.
+        /// </summary>
         Hexadecimal,
+        /// <summary>
+        /// Prepend leading zeros up to the maximum number of digits for the given number.
+        /// </summary>
         LeadingZeros
     }
 }
