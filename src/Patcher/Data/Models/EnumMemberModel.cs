@@ -1,4 +1,4 @@
-/// Copyright(C) 2018 Unforbidable Works
+﻿/// Copyright(C) 2018 Unforbidable Works
 ///
 /// This program is free software; you can redistribute it and/or
 /// modify it under the terms of the GNU General Public License
@@ -13,3 +13,31 @@
 /// You should have received a copy of the GNU General Public License
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+using Patcher.Data.Models.Presentation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Patcher.Data.Models
+{
+    public class EnumMemberModel : IPresentable
+    {
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public string Value { get; private set; }
+
+        public EnumMemberModel(string name, string description, string value)
+        {
+            Name = name;
+            Description = description;
+            Value = value;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}={1}", Name, Value);
+        }
+    }
+}

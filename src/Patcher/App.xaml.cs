@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data;
+using Patcher.Data.Models;
 using Patcher.Data.Plugins;
 using Patcher.Logging;
 using Patcher.Rules;
@@ -155,6 +156,15 @@ namespace Patcher
 
                 try
                 {
+                    // initialize data model
+                    Modeller modeller = new Modeller();
+                    modeller.LoadAllModels(fileProvider);
+
+                    if (options.ModelOnly)
+                    {
+                        return;
+                    }
+
                     // Create suitable data context according to the data folder content
                     using (DataContext context = DataContext.CreateContext(fileProvider))
                     {

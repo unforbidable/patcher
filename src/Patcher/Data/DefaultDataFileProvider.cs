@@ -47,14 +47,35 @@ namespace Patcher.Data
             return new DataFile(this, mode, fullPath, path);
         }
 
-        public IEnumerable<DataFile> FindDataFiles(string directory, string searchPattern)
+        public IEnumerable<DataFile> FindDataFiles(string directory, string searchPattern, bool recursive)
         {
             string fullPath = Path.Combine(dataFolder, directory);
             if (Directory.Exists(fullPath))
             {
-                foreach (string file in Directory.EnumerateFiles(fullPath, searchPattern))
+                return FindDataFilesInternal(fullPath, searchPattern, recursive);
+            }
+            else
+            {
+                return new DataFile[0];
+            }
+        }
+
+        private IEnumerable<DataFile> FindDataFilesInternal(string path, string searchPattern, bool recursive)
+        {
+            string directory = path.Substring(dataFolder.Length + 1);
+            foreach (string file in Directory.EnumerateFiles(path, searchPattern))
+            {
+                yield return new DataFile(this, FileMode.Open, file, Path.Combine(directory, Path.GetFileName(file)));
+            }
+
+            if (recursive)
+            {
+                foreach (string dir in Directory.EnumerateDirectories(path))
                 {
-                    yield return new DataFile(this, FileMode.Open, file, Path.Combine(directory, Path.GetFileName(file)));
+                    foreach (var file in FindDataFilesInternal(dir, searchPattern, recursive))
+                    {
+                        yield return file;
+                    };
                 }
             }
         }

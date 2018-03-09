@@ -239,7 +239,7 @@ namespace Patcher.Data
             }
 
             string searchPattern = string.Format("{0} - *.{1}", archiveFilenameWithoutExtension, GetArchiveExtension());
-            foreach (var archiveDataFile in DataFileProvider.FindDataFiles(string.Empty, searchPattern))
+            foreach (var archiveDataFile in DataFileProvider.FindDataFiles(string.Empty, searchPattern, false))
             {
                 Log.Fine("Indexing files in archive: " + archiveDataFile.Name);
                 archives.AddArchive(archiveDataFile.FullPath);

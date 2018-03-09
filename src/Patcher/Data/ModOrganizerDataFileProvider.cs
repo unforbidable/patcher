@@ -95,7 +95,7 @@ namespace Patcher.Data
             searchPaths.Add(dataFolder);
         }
 
-        public IEnumerable<DataFile> FindDataFiles(string path, string searchPattern)
+        public IEnumerable<DataFile> FindDataFiles(string path, string searchPattern, bool recursive)
         {
             // Search all paths when opening existing files
             foreach (var searchPath in searchPaths)
@@ -109,6 +109,8 @@ namespace Patcher.Data
                     }
                 }
             }
+
+            //TODO: implement recursion, might not be needed if MO support is abandoned
         }
 
         public DataFile GetDataFile(FileMode mode, string path)

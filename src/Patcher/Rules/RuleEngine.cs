@@ -137,7 +137,7 @@ namespace Patcher.Rules
                             var compiler = new RuleCompiler(this, pluginFileName);
 
                             string path = Path.Combine(Program.ProgramFolder, Program.ProgramRulesFolder, RulesFolder, pluginFileName);
-                            var files = Context.DataFileProvider.FindDataFiles(path, "*.rules").ToArray();
+                            var files = Context.DataFileProvider.FindDataFiles(path, "*.rules", false).ToArray();
 
                             total += files.Length;
 

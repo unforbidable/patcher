@@ -24,7 +24,7 @@ namespace Patcher.Data
         string DataFolderPath { get; }
 
         DataFile GetDataFile(FileMode mode, string path);
-        IEnumerable<DataFile> FindDataFiles(string path, string searchPattern);
+        IEnumerable<DataFile> FindDataFiles(string path, string searchPattern, bool recursive);
         DataFile GetPluginListFile(string defaultPluginFilePath);
     }
 }

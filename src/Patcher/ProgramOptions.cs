@@ -40,6 +40,10 @@ namespace Patcher
         [Description("Name of the created plugin file. The file\nwill be created in the game data folder.\nDefault: Patcher-default.esp")]
         public string OutputFilename { get; private set; }
 
+        [Option("modelonly")]
+        [Description("Only load and generate data models")]
+        public bool ModelOnly { get; private set; }
+
         [Option("append")]
         [Description("Append changes to existing output file if it exists.\nDefault: false")]
         public bool Append { get; private set; }

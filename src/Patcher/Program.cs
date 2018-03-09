@@ -26,7 +26,8 @@ namespace Patcher
         public readonly static string ProgramRulesFolder = "rules";
         public readonly static string ProgramCacheFolder = "cache";
         public readonly static string ProgramLogsFolder = "logs";
-        
+        public readonly static string ProgramModelsFolder = "models";
+
         public static string GetProgramVersionInfo()
         {
             Assembly assembly = Assembly.GetEntryAssembly();
