@@ -107,6 +107,62 @@ namespace Patcher.Data.Models.Loading
             return new RecordModel(formType, name, description, fields);
         }
 
+        public IEnumerable<FunctionModel> ReadFunctions()
+        {
+            List<FunctionModel> functions = new List<FunctionModel>();
+            foreach (var functionElement in Element.Elements("function"))
+            {
+                functions.Add(EnterElement(functionElement).ReadFunction());
+            }
+            return functions;
+        }
+
+        private FunctionModel ReadFunction()
+        {
+            short index = ReadShort("index");
+            string name = ReadValue("name");
+            string description = ReadValue("description");
+
+            List<FunctionParamModel> parameters = new List<FunctionParamModel>();
+            foreach (var paramElement in GetGrandChildren("params"))
+            {
+                parameters.Add(EnterElement(paramElement).ReadFunctionParam());
+            }
+
+            return new FunctionModel(index, name, description, parameters);
+        }
+
+        private FunctionParamModel ReadFunctionParam()
+        {
+            string type = ReadValue("type");
+            if (!string.IsNullOrEmpty(type))
+            {
+                FunctionParamType functionMemberType;
+                if (FunctionParamType.TryFindKnownTargetType(type, out functionMemberType))
+                {
+                    // Param is a primitive type
+                    return new FunctionParamModel(functionMemberType);
+                }
+
+                FormReference formReference;
+                if (FormReference.TryParse(type, out formReference))
+                {
+                    // Param is a form reference
+                    return new FunctionParamModel(formReference);
+                }
+
+                // Param needs to be resolved (as an enum)
+                var model = new FunctionParamModel(null);
+                Resolver.MarkModelForResolution(model, type, File, Element);
+                return model;
+            }
+            else
+            {
+                return new FunctionParamModel(null);
+                //throw new ModelLoadingException("Function parameter specification is incomplete, 'type' expected.", Element);
+            }
+        }
+
         private TargetModel ReadTarget()
         {
             var targetElement = Element.Element("as");
@@ -114,23 +170,29 @@ namespace Patcher.Data.Models.Loading
             var targetElementReader = targetElement != null ? EnterElement(targetElement) : null;
             var targetStructElement = targetElement != null ? targetElement.Element("struct") : null;
 
-            // TODO: Read any target attributes (such as 'ref-type')
+            // TODO: Read any target attributes
 
             string type = targetElementReader != null ? targetElementReader.ReadChildValue("type") : targetTypeAttribute != null ? targetTypeAttribute.Value : null; 
-            if (type != null)
+            if (!string.IsNullOrEmpty(type))
             {
                 var id = TypeIdentifier.FromString(type);
 
                 // Try to find and set appropriate member type
                 TargetType targetType;
-                bool found = TargetType.TryFindKnownTargetType(id.Identifier, out targetType);
-
-                var targetModel = new TargetModel(targetType, id.IsArray, id.ArrayLength);
-                if (!found)
+                if (TargetType.TryFindKnownTargetType(id.Identifier, out targetType))
                 {
-                    Log.Fine("Member type '{0}' is not recornized and needs to be resolved.", id.Identifier);
-                    Resolver.MarkModelForResolution(targetModel, id.Identifier, File, Element);
+                    return new TargetModel(targetType, id.IsArray, id.ArrayLength);
                 }
+
+                FormReference formReference;
+                if (FormReference.TryParse(id.Identifier, out formReference))
+                {
+                    return new TargetModel(formReference, id.IsArray, id.ArrayLength);
+                }
+
+                Log.Fine("Member type '{0}' is not recornized and needs to be resolved.", id.Identifier);
+                var targetModel = new TargetModel(null, id.IsArray, id.ArrayLength);
+                Resolver.MarkModelForResolution(targetModel, id.Identifier, File, Element);
                 return targetModel;
             }
             else if (targetStructElement != null)
@@ -243,6 +305,18 @@ namespace Patcher.Data.Models.Loading
         private IEnumerable<XElement> GetGrandChildren(string name)
         {
             return Element.Elements(name).SelectMany(e => e.Elements());
+        }
+
+        private int ReadInt(string name)
+        {
+            string value = ReadValue(name);
+            return int.Parse(value);
+        }
+
+        private short ReadShort(string name)
+        {
+            string value = ReadValue(name);
+            return short.Parse(value);
         }
 
         private string ReadValue(string name)

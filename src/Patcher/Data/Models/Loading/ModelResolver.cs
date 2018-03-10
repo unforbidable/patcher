@@ -129,7 +129,8 @@ namespace Patcher.Data.Models.Loading
             {
                 { typeof(MemberModel), "Member" },
                 { typeof(FieldModel), "Field" },
-                { typeof(TargetModel), "Target" }
+                { typeof(TargetModel), "Target" },
+                { typeof(FunctionParamModel), "Function Parameter" }
             };
 
             public UnresolvedModel(IResolvable model, string id, string file, XElement element)

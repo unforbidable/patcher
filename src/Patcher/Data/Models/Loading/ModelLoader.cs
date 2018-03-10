@@ -31,7 +31,11 @@ namespace Patcher.Data.Models.Loading
     {
         public GameModel Game { get; private set; }
 
+        // Holds the map of all loaded models (except functions) and their id
         Dictionary<string, IModel> loadedModels = new Dictionary<string, IModel>();
+
+        // List of loaded functions (functions do not have an id)
+        List<FunctionModel> loadedFunctions = new List<FunctionModel>();
 
         public ModelLoader(GameModel game)
         {
@@ -53,6 +57,20 @@ namespace Patcher.Data.Models.Loading
             return gameModel;
         }
 
+        /// <summary>
+        /// Gets all models loaded by this ModelLoader.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<IModel> GetModels()
+        {
+            return loadedModels.Values.Union(loadedFunctions);
+        }
+
+        /// <summary>
+        /// Gets the model loaded by this ModelLoader that has a specific id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IModel GetModel(string id)
         {
             return loadedModels.ContainsKey(id) ? loadedModels[id] : null;
@@ -97,7 +115,8 @@ namespace Patcher.Data.Models.Loading
                             break;
 
                         case "functions":
-                            // TODO: Read functions
+                            Log.Fine("Loading function models");
+                            loadedFunctions.AddRange(reader.ReadFunctions());
                             break;
 
                         default:
@@ -117,15 +136,17 @@ namespace Patcher.Data.Models.Loading
             // Make sure all model object relations are resolved
             resolver.EnsureModelResolved();
 
-            // TODO: Extract inline structures and field groups
-
             // TODO: Make sure the model is valid
 
             foreach (var pair in loadedModels.Where(p => p.Value.GetType() != typeof(FieldModel)))
             {
-                Log.Fine("Loaded record model {0} as \n{1}", pair.Key, pair.Value);
+                Log.Fine("Loaded model {0} as \n{1}", pair.Key, pair.Value);
             }
 
+            foreach (var fn in loadedFunctions)
+            {
+                //Log.Fine("Loaded function {0}", fn);
+            }
         }
     }
 }

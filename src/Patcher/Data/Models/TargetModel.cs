@@ -27,7 +27,7 @@ namespace Patcher.Data.Models
     /// </summary>
     public class TargetModel : IModel, IResolvableFrom<EnumModel>, IResolvableFrom<StructModel>
     {
-        public ITargetable Target { get; private set; }
+        public ICanRepresentTarget Target { get; private set; }
 
         /// <summary>
         /// When true, target is an array
@@ -39,7 +39,7 @@ namespace Patcher.Data.Models
         /// </summary>
         public int ArrayLength { get; private set; }
 
-        public TargetModel(ITargetable target, bool isArray, int arrayLength)
+        public TargetModel(ICanRepresentTarget target, bool isArray, int arrayLength)
         {
             Target = target;
             IsArray = isArray;

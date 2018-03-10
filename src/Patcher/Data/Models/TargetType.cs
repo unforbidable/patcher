@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
-    public class TargetType : ITargetable
+    public class TargetType : ICanRepresentTarget
     {
         public string Name { get; private set; }
         public Type Type { get; private set; }
@@ -37,7 +37,6 @@ namespace Patcher.Data.Models
             { "uint", new TargetType() { Name = "uint", Type = typeof(uint) } },
             { "float", new TargetType() { Name = "float", Type = typeof(float) } },
             { "string", new TargetType() { Name = "string", Type = typeof(string) } },
-            { "ref", new TargetType() { Name = "FormReference", Type = typeof(object) } },
             { "fn", new TargetType() { Name = "Function", Type = typeof(object) } },
         };
 

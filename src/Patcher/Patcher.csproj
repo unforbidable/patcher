@@ -68,10 +68,15 @@
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
     <Compile Include="Data\Models\EnumMemberModel.cs" />
+    <Compile Include="Data\Models\FormReference.cs" />
+    <Compile Include="Data\Models\FunctionModel.cs" />
+    <Compile Include="Data\Models\FunctionParamModel.cs" />
+    <Compile Include="Data\Models\FunctionParamType.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentField.cs" />
+    <Compile Include="Data\Models\Loading\ICanRepresentFunctionParam.cs" />
     <Compile Include="Data\Models\Loading\IResolvable.cs" />
     <Compile Include="Data\Models\Loading\IResolvableFrom.cs" />
-    <Compile Include="Data\Models\Loading\ITargetable.cs" />
+    <Compile Include="Data\Models\Loading\ICanRepresentTarget.cs" />
     <Compile Include="Data\Models\IModel.cs" />
     <Compile Include="Data\Models\Presentation\IPresentable.cs" />
     <Compile Include="Data\Models\Loading\ModelReader.cs" />

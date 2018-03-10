@@ -24,7 +24,7 @@ namespace Patcher.Data.Models.Loading
     /// <summary>
     /// Indicates a model object that can be used as property target.
     /// </summary>
-    public interface ITargetable : IModel
+    public interface ICanRepresentTarget : IModel
     {
         /// <summary>
         /// Gets the name of the type that represents the model object.
