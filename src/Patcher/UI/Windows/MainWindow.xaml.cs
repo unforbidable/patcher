@@ -112,11 +112,19 @@ namespace Patcher.UI.Windows
                 if (logItems.Count > 800)
                     logItems.RemoveAt(0);
 
-                logItems.Add(new LogItem()
+                string[] lines = message.Split(
+                    new[] { "\r\n", "\r", "\n" },
+                    StringSplitOptions.None
+                );
+
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    Brush = brush,
-                    Text = message
-                });
+                    logItems.Add(new LogItem()
+                    {
+                        Brush = brush,
+                        Text = lines[i]
+                    });
+                }
             }));
         }
 
