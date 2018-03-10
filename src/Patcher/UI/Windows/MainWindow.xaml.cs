@@ -109,14 +109,22 @@ namespace Patcher.UI.Windows
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => 
             {
-                if (logItems.Count > 800)
-                    logItems.RemoveAt(0);
+                string[] lines = message.Split(
+                    new[] { "\r\n", "\r", "\n" },
+                    StringSplitOptions.None
+                );
 
-                logItems.Add(new LogItem()
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    Brush = brush,
-                    Text = message
-                });
+                    logItems.Add(new LogItem()
+                    {
+                        Brush = brush,
+                        Text = lines[i]
+                    });
+                }
+
+                while (logItems.Count > 800)
+                    logItems.RemoveAt(0);
             }));
         }
 
