@@ -3,7 +3,6 @@
   <key>ETYP</key>
   <type>uint</type>
   <as>
-    <type>ref</type>
-    <ref-type>EQUP</ref-type>
+    <type>ref(EQUP)</type>
   </as>
 </field>

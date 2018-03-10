@@ -79,12 +79,6 @@
       </field>
       <!-- short form member field definition possible, equivalent to above -->
       <zstring key="CIS2" name="FunctionStringParam2" />
-      <!-- following is for testing and demonstration purposes only -->
-      <sound key="TEST" name="TestSound" />
-      <editor-id />
     </fields>
   </group>
-  <as>
-    <type>color[]</type>
-  </as>
 </field>

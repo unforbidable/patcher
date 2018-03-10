@@ -3,7 +3,6 @@
   <name>DropSound</name>
   <type>uint</type>
   <as>
-    <type>ref</type>
-    <ref-type>SNDR</ref-type>
+    <type>ref(SNDR)</type>
   </as>
 </field>

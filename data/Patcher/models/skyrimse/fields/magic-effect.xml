@@ -2,7 +2,6 @@
   <name>MagicEffect</name>
   <type>uint</type>
   <as>
-    <type>ref</type>
-    <ref-type>MGEF</ref-type>
+    <type>ref(MGEF)</type>
   </as>
 </field>

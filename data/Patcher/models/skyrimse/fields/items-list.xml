@@ -13,9 +13,8 @@
               <name>ItemID</name>
               <type>uint</type>
               <as>
-                <type>ref</type>
-                <!-- This is not the way to show this, but the form ID for an "input item" can be one of these four types.-->
-                <ref-type>ALCH || INGR || WEAP || MISC</ref-type>
+                <!-- ... the form ID for an "input item" can be one of these four types.-->
+                <type>ref(ALCH|INGR|WEAP|MISC)</type>
               </as>
             </member>
             <uint name="InputCount" />
@@ -31,8 +30,7 @@
               <name>Owner</name>
               <type>uint</type>
               <as>
-                <type>ref</type>
-                <ref-type>FACT || NPC_</ref-type>
+                <type>ref(FACT|NPC_)</type>
               </as>
             </member>
             <uint name="Value" />

@@ -17,8 +17,7 @@
             <name>Projectile</name>
             <type>uint</type>
             <as>
-              <type>ref</type>
-              <ref-type>PROJ</ref-type>
+              <type>ref(PROJ)</type>
             </as>
           </member>
           <ammo-flags />

@@ -10,8 +10,7 @@
       <name>CreatedObject</name>
       <type>uint</type>
       <as>
-        <type>ref</type>
-        <ref-type>WEAP || ARMO</ref-type>
+        <type>ref(WEAP|ARMO)</type>
       </as>
     </field>
     <field>
@@ -19,8 +18,7 @@
       <name>WorkbenchKeyword</name>
       <type>uint</type>
       <as>
-        <type>ref</type>
-        <ref-type>KYWD</ref-type>
+        <type>ref(KYWD)</type>
       </as>
     </field>
     <field>

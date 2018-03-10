@@ -20,7 +20,6 @@
   <as>
     <!-- will be used instead of the whole field group via adapter for field group keyword-list and ref[] of KYWD -->
     <!-- anonymous field (without name) is accessed directly via parent scope (field named Keywords by default) -->
-    <type>ref[]</type>
-    <ref-type>KYWD</ref-type>
+    <type>ref(KYWD)[]</type>
   </as>
 </field>
