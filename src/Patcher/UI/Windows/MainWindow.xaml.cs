@@ -109,9 +109,6 @@ namespace Patcher.UI.Windows
         {
             Dispatcher.Invoke(DispatcherPriority.Background, new Action(() => 
             {
-                if (logItems.Count > 800)
-                    logItems.RemoveAt(0);
-
                 string[] lines = message.Split(
                     new[] { "\r\n", "\r", "\n" },
                     StringSplitOptions.None
@@ -125,6 +122,9 @@ namespace Patcher.UI.Windows
                         Text = lines[i]
                     });
                 }
+
+                while (logItems.Count > 800)
+                    logItems.RemoveAt(0);
             }));
         }
 
