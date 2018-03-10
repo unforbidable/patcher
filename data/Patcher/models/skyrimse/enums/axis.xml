@@ -1,0 +1,17 @@
+﻿<enum>
+  <name>Axis</name>
+  <members>
+    <member>
+      <name>X</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Y</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Z</name>
+      <value>2</value>
+    </member>
+  </members>
+</enum>

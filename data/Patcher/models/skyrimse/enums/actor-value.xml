@@ -1,0 +1,10 @@
+﻿<enum>
+  <name>ActorValue</name>
+  <members>
+    <member>
+      <name>Aggresion</name>
+      <value>0</value>
+    </member>
+    <!-- TODO: Incomplete -->  
+  </members>
+</enum>
