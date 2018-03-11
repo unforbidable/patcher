@@ -47,14 +47,8 @@ namespace Patcher.Data.Models.Loading
             Log.Info("Loading game model from file {0}", path);
 
             var document = XDocument.Load(path);
-            if (document.Root.Name != "game")
-            {
-                throw new ModelLoadingException("Expected element 'game' in file " + path);
-            }
-
-            var gameModel = new GameModel();
-            gameModel.ReadFromXml(document.Root);
-            return gameModel;
+            var reader = new ModelReader(path, document.Root, null);
+            return reader.ReadGame();
         }
 
         /// <summary>

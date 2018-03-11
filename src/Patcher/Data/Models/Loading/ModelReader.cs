@@ -27,8 +27,19 @@ namespace Patcher.Data.Models.Loading
     /// </summary>
     public class ModelReader
     {
+        /// <summary>
+        /// Gets the file this ModelReader instance is reading.
+        /// </summary>
         public string File { get; private set; }
+
+        /// <summary>
+        /// Gets the XML element this ModelReader instance is currently at.
+        /// </summary>
         public XElement Element { get; private set; }
+
+        /// <summary>
+        /// Gets the ModelResolvel that is used to resolve model objects.
+        /// </summary>
         public ModelResolver Resolver { get; private set; }
 
         public ModelReader(string path, XElement element, ModelResolver resolver)
@@ -37,7 +48,12 @@ namespace Patcher.Data.Models.Loading
             Element = element;
             Resolver = resolver;
         }
-
+        
+        /// <summary>
+        /// Creates a copy of the ModelReader that is targeted at another element.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         private ModelReader EnterElement(XElement element)
         {
             return new ModelReader(File, element, Resolver);
@@ -46,6 +62,30 @@ namespace Patcher.Data.Models.Loading
         public override string ToString()
         {
             return string.Format("{0}:{1}", File, Element.GetAbsoluteXPath());
+        }
+
+        public GameModel ReadGame()
+        {
+            // TODO: Ensure element name 'game'
+
+            string name = ReadValue("name");
+            string basePlugin = ReadValue("base-plugin");
+            int latestFormVersion = ReadInt("latest-form-version");
+            string pluginsFileLocation = ReadGrandChildValue("plugins", "file-location");
+            string pluginsMatchLine = ReadGrandChildValue("plugins", "match-line");
+            string archivesExtension = ReadGrandChildValue("archives", "extension");
+            string stringsDefaultLanguage = ReadGrandChildValue("strings", "default-language");
+
+            if (pluginsFileLocation != null)
+            {
+                // Replace placeholders in the path to the plugin file
+                pluginsFileLocation = pluginsFileLocation.Replace("{LOCALAPPDATA}", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+                pluginsFileLocation = pluginsFileLocation.Replace("{APPDATA}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+                pluginsFileLocation = pluginsFileLocation.Replace("{MYDOCUMENTS}", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+                pluginsFileLocation = pluginsFileLocation.Replace("{NAME}", name ?? string.Empty);
+            }
+
+            return new GameModel(name, basePlugin, latestFormVersion, pluginsFileLocation, pluginsMatchLine, archivesExtension, stringsDefaultLanguage);
         }
 
         public EnumModel ReadEnum()
@@ -328,6 +368,11 @@ namespace Patcher.Data.Models.Loading
         private string ReadChildValue(string name)
         {
             return Element.Elements(name).Select(e => e.Value).SingleOrDefault();
+        }
+
+        private string ReadGrandChildValue(string childName, string grandChildName)
+        {
+            return Element.Elements(childName).SelectMany(e => e.Elements(grandChildName).Select(f => f.Value)).SingleOrDefault();
         }
 
         private string ReadAttributeValue(string name)

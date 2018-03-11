@@ -33,82 +33,29 @@ namespace Patcher.Data.Models
         public string ArchivesExtension { get; private set; }
         public string StringsDefaultLanguage { get; private set; }
 
-        public RecordModel[] Records { get; private set; }
-        public StructModel[] Structures { get; private set; }
-        public FieldGroupModel[] FieldGroups { get; private set; }
-        public EnumModel[] Enumerations { get; private set; }
+        public IModel[] Models { get; private set; }
 
-        public void ReadFromXml(XElement element)
+        public GameModel(string name, string basePlugin, int lastFormVersion, string pluginsFileLocation, string pluginsMatchLine, string archivesExtension, string stringsDefaultLanguage)
         {
-            var name = element.Element("name");
-            if (name != null)
-            {
-                Name = name.Value;
-            }
-
-            var basePlugin = element.Element("base-plugin");
-            if (basePlugin != null)
-            {
-                BasePlugin = basePlugin.Value;
-            }
-
-            var latestFormVersion = element.Element("latest-form-version");
-            if (latestFormVersion != null)
-            {
-                int parsed;
-                if (int.TryParse(latestFormVersion.Value, out parsed))
-                {
-                    LatestFormVersion = parsed;
-                }
-                else
-                {
-                    throw new ModelLoadingException("Expected integer value in <latest-form-version>");
-                }
-            }
-
-            var plugins = element.Element("plugins");
-            if (plugins != null)
-            {
-                var fileLocation = plugins.Element("file-location");
-                if (fileLocation != null)
-                {
-                    PluginsFileLocation = fileLocation.Value;
-                }
-
-                var matchLine = plugins.Element("match-line");
-                if (matchLine != null)
-                {
-                    PluginsMatchLine = matchLine.Value;
-                }
-            }
-
-            var archives = element.Element("archives");
-            if (archives != null)
-            {
-                var extension = archives.Element("extension");
-                if (extension != null)
-                {
-                    ArchivesExtension = extension.Value;
-                }
-            }
-
-            var strings = element.Element("strings");
-            if (strings != null)
-            {
-                var defaultLanguage = strings.Element("default-language");
-                if (defaultLanguage != null)
-                {
-                    StringsDefaultLanguage = defaultLanguage.Value;
-                }
-            }
+            Name = name;
+            BasePlugin = basePlugin;
+            LatestFormVersion = lastFormVersion;
+            PluginsFileLocation = pluginsFileLocation;
+            PluginsMatchLine = pluginsMatchLine;
+            ArchivesExtension = archivesExtension;
+            StringsDefaultLanguage = stringsDefaultLanguage;
         }
 
         public void LoadModelFiles(IEnumerable<string> files)
         { 
             var loader = new ModelLoader(this);
             loader.LoadFiles(files);
+            Models = loader.GetModels().ToArray();
+        }
 
-            // TODO: Add model objects from loader to Game model
+        public override string ToString()
+        {
+            return string.Format("Name={0}", Name);
         }
     }
 }
