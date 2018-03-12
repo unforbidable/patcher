@@ -46,18 +46,15 @@ namespace Patcher.Data.Models
             {
                 string id = Path.GetFileNameWithoutExtension(file.FullPath);
                 string gameFolderPath = Path.Combine(Program.ProgramFolder, Program.ProgramModelsFolder, id);
-
                 var files = fileProvider.FindDataFiles(gameFolderPath, "*.xml", true).Select(x => x.FullPath).ToArray();
 
-                var game = ModelLoader.LoadGameModel(file.FullPath);
-                game.LoadModelFiles(files);
-
-                games.Add(game);
+                games.Add(ModelLoader.LoadGameModel(file.FullPath, files));
             }
 
             Log.Info("Loaded {0} game models", games.Count);
 
             Models = games.ToArray();
         }
+
     }
 }

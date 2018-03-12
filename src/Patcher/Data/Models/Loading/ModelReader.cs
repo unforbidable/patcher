@@ -64,7 +64,7 @@ namespace Patcher.Data.Models.Loading
             return string.Format("{0}:{1}", File, Element.GetAbsoluteXPath());
         }
 
-        public GameModel ReadGame()
+        public GameModel ReadGameModel(IEnumerable<string> files)
         {
             // TODO: Ensure element name 'game'
 
@@ -85,7 +85,34 @@ namespace Patcher.Data.Models.Loading
                 pluginsFileLocation = pluginsFileLocation.Replace("{NAME}", name ?? string.Empty);
             }
 
-            return new GameModel(name, basePlugin, latestFormVersion, pluginsFileLocation, pluginsMatchLine, archivesExtension, stringsDefaultLanguage);
+            var loader = new ModelLoader();
+
+            return new GameModel(name, basePlugin, latestFormVersion, pluginsFileLocation, pluginsMatchLine, archivesExtension, stringsDefaultLanguage, loader.LoadFiles(files));
+        }
+
+        public IModel ReadDocumentRootModel(string id)
+        {
+            switch (Element.Name.LocalName)
+            {
+                case "record":
+                    Log.Fine("Loading record model {0}", id);
+                    return ReadRecord(id);
+
+                case "enum":
+                    Log.Fine("Loading enum model {0}", id);
+                    return ReadEnum();
+
+                case "struct":
+                    Log.Fine("Loading struct model {0}", id);
+                    return ReadStruct();
+
+                case "field":
+                    Log.Fine("Loading field model {0}", id);
+                    return ReadField();
+
+                default:
+                    throw new ModelLoadingException(string.Format("Unexpected document root element '{0}'", Element.Name), Element);
+            }
         }
 
         public EnumModel ReadEnum()

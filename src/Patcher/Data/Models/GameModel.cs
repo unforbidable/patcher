@@ -35,7 +35,7 @@ namespace Patcher.Data.Models
 
         public IModel[] Models { get; private set; }
 
-        public GameModel(string name, string basePlugin, int lastFormVersion, string pluginsFileLocation, string pluginsMatchLine, string archivesExtension, string stringsDefaultLanguage)
+        public GameModel(string name, string basePlugin, int lastFormVersion, string pluginsFileLocation, string pluginsMatchLine, string archivesExtension, string stringsDefaultLanguage, IEnumerable<IModel> models)
         {
             Name = name;
             BasePlugin = basePlugin;
@@ -44,13 +44,7 @@ namespace Patcher.Data.Models
             PluginsMatchLine = pluginsMatchLine;
             ArchivesExtension = archivesExtension;
             StringsDefaultLanguage = stringsDefaultLanguage;
-        }
-
-        public void LoadModelFiles(IEnumerable<string> files)
-        { 
-            var loader = new ModelLoader(this);
-            loader.LoadFiles(files);
-            Models = loader.GetModels().ToArray();
+            Models = models.ToArray();
         }
 
         public override string ToString()

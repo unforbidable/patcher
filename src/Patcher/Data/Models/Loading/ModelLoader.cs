@@ -14,6 +14,7 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Models.Presentation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,50 +30,25 @@ namespace Patcher.Data.Models.Loading
     /// </summary>
     public class ModelLoader
     {
-        public GameModel Game { get; private set; }
-
-        // Holds the map of all loaded models (except functions) and their id
-        Dictionary<string, IModel> loadedModels = new Dictionary<string, IModel>();
-
-        // List of loaded functions (functions do not have an id)
-        List<FunctionModel> loadedFunctions = new List<FunctionModel>();
-
-        public ModelLoader(GameModel game)
+        public ModelLoader()
         {
-            Game = game;
         }
 
-        public static GameModel LoadGameModel(string path)
+        public static GameModel LoadGameModel(string path, IEnumerable<string> files)
         {
             Log.Info("Loading game model from file {0}", path);
 
             var document = XDocument.Load(path);
             var reader = new ModelReader(path, document.Root, null);
-            return reader.ReadGame();
+
+            return reader.ReadGameModel(files);
         }
 
-        /// <summary>
-        /// Gets all models loaded by this ModelLoader.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<IModel> GetModels()
+        public IEnumerable<IModel> LoadFiles(IEnumerable<string> files)
         {
-            return loadedModels.Values.Union(loadedFunctions);
-        }
-
-        /// <summary>
-        /// Gets the model loaded by this ModelLoader that has a specific id.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IModel GetModel(string id)
-        {
-            return loadedModels.ContainsKey(id) ? loadedModels[id] : null;
-        }
-
-        public void LoadFiles(IEnumerable<string> files)
-        {
-            var resolver = new ModelResolver(this);
+            var models = new List<IModel>();
+            var functions = new List<FunctionModel>();
+            var resolver = new ModelResolver();
 
             // Scan all files
             foreach (string path in files)
@@ -86,35 +62,15 @@ namespace Patcher.Data.Models.Loading
                     // Create reader and enter the root element
                     var reader = new ModelReader(path, element, resolver);
 
-                    switch (element.Name.LocalName)
+                    if (element.Name == "functions")
                     {
-                        case "record":
-                            Log.Fine("Loading record model {0}", id);
-                            loadedModels.Add(id, reader.ReadRecord(id));
-                            break;
-
-                        case "enum":
-                            Log.Fine("Loading enum model {0}", id);
-                            loadedModels.Add(id, reader.ReadEnum());
-                            break;
-
-                        case "struct":
-                            Log.Fine("Loading struct model {0}", id);
-                            loadedModels.Add(id, reader.ReadStruct());
-                            break;
-
-                        case "field":
-                            Log.Fine("Loading field model {0}", id);
-                            loadedModels.Add(id, reader.ReadField());
-                            break;
-
-                        case "functions":
-                            Log.Fine("Loading function models");
-                            loadedFunctions.AddRange(reader.ReadFunctions());
-                            break;
-
-                        default:
-                            throw new ModelLoadingException(string.Format("Unexpected root element '{0}'", element.Name));
+                        functions.AddRange(reader.ReadFunctions());
+                    }
+                    else
+                    {
+                        var model = reader.ReadDocumentRootModel(id);
+                        resolver.AddLoadedModel(id, model);
+                        models.Add(model);
                     }
                 }
                 catch (XmlException e)
@@ -128,18 +84,143 @@ namespace Patcher.Data.Models.Loading
             }
 
             // Make sure all model object relations are resolved
-            resolver.EnsureModelResolved();
+            resolver.ResolveModels();
 
-            // TODO: Make sure the model is valid
-
-            foreach (var pair in loadedModels.Where(p => p.Value.GetType() != typeof(FieldModel)))
+            // Remove member fields
+            foreach (var model in models.OfType<FieldModel>().ToArray())
             {
-                Log.Fine("Loaded model {0} as \n{1}", pair.Key, pair.Value);
+                models.Remove(model);
             }
 
-            foreach (var fn in loadedFunctions)
+            // Extract field groups and structures
+            var inlineModels = ExtractInlineModels(models).ToArray();
+            models.AddRange(inlineModels.Where(m => !models.Contains(m)));
+
+            // Sort groups separatedly according to hierarchy
+            var sortByNameComparer = new ModelNameComparer();
+            var groups = models.OfType<FieldGroupModel>().ToList();
+            groups.Sort(sortByNameComparer);
+            groups.Sort(new ModelGroupDescendancyComparer());
+
+            // Sort other models 
+            var enums = models.OfType<EnumModel>().ToList();
+            var structs = models.OfType<StructModel>().ToList();
+            var records = models.OfType<RecordModel>().ToList();
+            enums.Sort(sortByNameComparer);
+            structs.Sort(sortByNameComparer);
+            records.Sort(sortByNameComparer);
+
+            // Put models back into one list, in order
+            models = new List<IModel>(enums).Union(structs).Union(groups).Union(records).Union(functions).ToList();
+
+            // Print out everything except function models
+            foreach (var m in models.Where(m => !(m is FunctionModel)))
             {
-                //Log.Fine("Loaded function {0}", fn);
+                Log.Fine(m.ToString());
+            }
+
+            return models.ToArray();
+        }
+
+        private IEnumerable<IModel> ExtractInlineModels(List<IModel> models)
+        {
+            return models.OfType<RecordModel>().SelectMany(r => r.Fields).SelectMany(f => ExtractInlineModels(f));
+        }
+
+        private IEnumerable<IModel> ExtractInlineModels(FieldModel field)
+        {
+            var models = new List<IModel>();
+            if (field.TargetModel != null && field.TargetModel.Target is StructModel)
+            {
+                models.Add(field.TargetModel.Target);
+                models.AddRange(((StructModel)field.TargetModel.Target).Members.SelectMany(m => ExtractInlineModels(m)));
+            }
+
+            if (field.IsFieldGroup)
+            {
+                models.Add(field.FieldGroup);
+                models.AddRange(field.FieldGroup.Fields.SelectMany(f => ExtractInlineModels(f)));
+            }
+            else if (field.IsStruct)
+            {
+                models.Add(field.Struct);
+                models.AddRange(field.Struct.Members.SelectMany(m => ExtractInlineModels(m)));
+            }
+
+            return models;
+        }
+
+        private IEnumerable<IModel> ExtractInlineModels(MemberModel member)
+        {
+            var models = new List<IModel>();
+            if (member.TargetModel != null && member.TargetModel.Target is StructModel)
+            {
+                models.Add(member.TargetModel.Target);
+                models.AddRange(((StructModel)member.TargetModel.Target).Members.SelectMany(m => ExtractInlineModels(m)));
+            }
+            return models;
+        }
+
+        private class ModelNameComparer : IComparer<IModel>
+        {
+            public int Compare(IModel x, IModel y)
+            {
+                var xp = x as IPresentable;
+                var yp = y as IPresentable;
+
+                if (xp == null && yp == null)
+                {
+                    return 0;
+                }
+                if (xp == null)
+                {
+                    return -1;
+                }
+                else if (yp == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return string.Compare(xp.Name, yp.Name);
+                }
+            }
+        }
+
+        private class ModelGroupDescendancyComparer : IComparer<FieldGroupModel>
+        {
+            public int Compare(FieldGroupModel x, FieldGroupModel y)
+            {
+                // Field group referenced from other field group need to go first
+                if (IsDescendantOf(x, y))
+                {
+                    return -1;
+                }
+                else if (IsDescendantOf(y, x))
+                {
+                    return 1;
+                }
+                else
+                {
+                    return string.Compare(x.Name, y.Name);
+                }
+            }
+
+            private bool IsDescendantOf(FieldGroupModel x, FieldGroupModel y)
+            {
+                foreach (var child in y.Fields.Where(f => f.IsFieldGroup).Select(f => f.FieldGroup))
+                {
+                    if (child == x)
+                    {
+                        return true;
+                    }
+                    else if (IsDescendantOf(x, child))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
     }

@@ -51,7 +51,7 @@ namespace Patcher.Data.Models
             builder.Append(!string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
             builder.Append(" \n{ \n");
             builder.Append(ModelLoadingHelper.IndentLines(string.Join(", \n", Fields.Select(f => f.ToString()))));
-            builder.Append(" \n}}");
+            builder.Append(" \n}");
 
             return builder.ToString();
         }

@@ -27,13 +27,15 @@ namespace Patcher.Data.Models.Loading
     /// </summary>
     public class ModelResolver
     {
-        public ModelLoader Loader { get; private set; }
+        // Holds the map of all loaded models (except functions) and their id
+        Dictionary<string, IModel> loadedModelMap = new Dictionary<string, IModel>();
 
         List<UnresolvedModel> unresolvedModels = new List<UnresolvedModel>();
 
-        public ModelResolver(ModelLoader loader)
+        public void AddLoadedModel(string id, IModel model)
         {
-            Loader = loader;
+            // Add known model object to be used to resolve other model objects
+            loadedModelMap.Add(id, model);
         }
 
         public void MarkModelForResolution(IResolvable model, string id, string file, XElement element)
@@ -42,7 +44,7 @@ namespace Patcher.Data.Models.Loading
             unresolvedModels.Add(new UnresolvedModel(model, id, file, element));
         }
 
-        public void EnsureModelResolved()
+        public void ResolveModels()
         {
             Log.Info("Resolving model");
 
@@ -51,7 +53,9 @@ namespace Patcher.Data.Models.Loading
 
             foreach (var unresolved in unresolvedModels)
             {
-                var model = Loader.GetModel(unresolved.Id);
+                IModel model;
+                loadedModelMap.TryGetValue(unresolved.Id, out model);
+
                 if (model is EnumModel)
                 {
                     // Resolve to enum
