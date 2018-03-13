@@ -15,6 +15,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Code;
+using Patcher.Data.Models.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,19 +59,19 @@ namespace Patcher.Data.Models.Code
                 IsStatic = true
             });
 
-            //string serialized = new ModelSerializer().SerializeModel(models);
-            string serialized = "[]";
-
-            cls.Members.Add(new CodeField("string", "ModelHash")
-            {
-                Value = ModelHelper.GetModelHash(serialized),
-                IsPublic = true,
-                IsStatic = true
-            });
+            string serialized = new ModelSerializer().SerializeModel(models);
+            string serializedHash = ModelHelper.GetModelHash(serialized);
 
             cls.Members.Add(new CodeField("string", "ModelData")
             {
                 Value = serialized,
+                IsPublic = true,
+                IsStatic = true
+            });
+
+            cls.Members.Add(new CodeField("string", "ModelHash")
+            {
+                Value = serializedHash,
                 IsPublic = true,
                 IsStatic = true
             });

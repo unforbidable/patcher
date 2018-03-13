@@ -106,6 +106,8 @@
     <Compile Include="Data\Models\Loading\ModelResolver.cs" />
     <Compile Include="Data\Models\Loading\XmlExtensions.cs" />
     <Compile Include="Data\Models\MemberModel.cs" />
+    <Compile Include="Data\Models\Serialization\ModelSerializationWriter.cs" />
+    <Compile Include="Data\Models\Serialization\ModelSerializer.cs" />
     <Compile Include="Data\Models\TargetType.cs" />
     <Compile Include="Data\Models\TargetModel.cs" />
     <Compile Include="Data\Models\MemberType.cs" />
