@@ -13,10 +13,12 @@
             <condition-operator name="Operator" virtual="true" />
             <member>
               <name>ComparisonValue</name>
+              <display-name>Comparison Value</display-name>
               <type>uint</type>
               <as>
                 <struct>
                   <name>ComparisonValue</name>
+                  <display-name>Comparison Value</display-name>
                   <members>
                     <float name="Value" />
                     <uint name="GlobalVariable" as-type="ref" as-ref-type="GLOB"  />
@@ -40,9 +42,9 @@
                   <name>FunctionParam1</name>
                   <members>
                     <int name="Value" />
-                    <uint name="FormReference" as-type="ref" />
-                    <ushort name="EventFunction" />
-                    <string name="EventMember" />
+                    <uint name="FormReference" display-name="Form Reference" as-type="ref" />
+                    <ushort name="EventFunction" display-name="Event Function" />
+                    <string name="EventMember" display-name="Event Member" />
                   </members>
                 </struct>
               </as>
@@ -55,14 +57,15 @@
                   <name>FunctionParam2</name>
                   <members>
                     <int name="Value" />
-                    <uint name="FormReference" as-type="ref" />
+                    <uint name="FormReference" display-name="Form Reference" as-type="ref" />
                   </members>
                 </struct>
               </as>
             </member>
-            <function-target name="FunctionTarget" />
+            <function-target name="FunctionTarget" display-name="Function Target" />
             <member>
               <name>TargetReference</name>
+              <display-name>Target Reference</display-name>
               <type>uint</type>
               <as>
                 <type>ref</type>

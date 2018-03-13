@@ -1,0 +1,5 @@
+<field>
+  <name>AlternateTextures</name>
+  <display-name>Alternate Textures</display-name>
+  <type>byte[]</type>
+</field>

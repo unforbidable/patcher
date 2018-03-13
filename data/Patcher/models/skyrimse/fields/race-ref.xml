@@ -1,0 +1,8 @@
+<field>
+  <key>RNAM</key>
+	<name>Race</name>
+	<type>uint</type>
+  <as>
+    <type>ref(RACE)</type>
+  </as>
+</field>

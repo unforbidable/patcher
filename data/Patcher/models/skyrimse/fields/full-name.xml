@@ -1,5 +1,6 @@
 <field>
   <key>FULL</key>
   <name>FullName</name>
+  <display-name>Full Name</display-name>
   <type>lstring</type>
 </field>

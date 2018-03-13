@@ -9,18 +9,22 @@
     </member>
     <member>
       <name>UseAliases</name>
+      <display-name>Use Aliases</display-name>
       <value>0x02</value>
     </member>
     <member>
       <name>UseGlobal</name>
+      <display-name>Use Global</display-name>
       <value>0x04</value>
     </member>
     <member>
       <name>UsePackData</name>
+      <display-name>Use Pack Data</display-name>
       <value>0x08</value>
     </member>
     <member>
       <name>SwapSubjectAndTarget</name>
+      <display-data>Swap Subject And target</display-data>
       <value>0x10</value>
     </member>
   </members>

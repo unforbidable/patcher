@@ -1,5 +1,6 @@
 <field>
   <name>MagicEffect</name>
+  <display-name>Magic Effect</display-name>
   <type>uint</type>
   <as>
     <type>ref(MGEF)</type>

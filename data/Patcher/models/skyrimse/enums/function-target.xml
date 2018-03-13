@@ -1,5 +1,6 @@
 <enum>
   <name>FunctionTarget</name>
+  <display-name>Function Target</display-name>
   <type>uint</type>
   <members>
     <member>
@@ -16,22 +17,27 @@
     </member>
     <member>
       <name>CombatTarget</name>
+      <display-name>Combat Target</display-name>
       <value>3</value>
     </member>
     <member>
       <name>LinkedReference</name>
+      <display-name>Linked Reference</display-name>
       <value>4</value>
     </member>
     <member>
-      <name>QuastAlias</name>
+      <name>QuestAlias</name>
+      <display-name>Quest Alias</display-name>
       <value>5</value>
     </member>
     <member>
       <name>PackageData</name>
+      <display-name>Package Data</display-name>
       <value>6</value>
     </member>
     <member>
       <name>EventData</name>
+      <display-name>Event Data</display-name>
       <value>7</value>
     </member>
   </members>

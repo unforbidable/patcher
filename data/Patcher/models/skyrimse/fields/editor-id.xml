@@ -1,5 +1,6 @@
 <field>
   <key>EDID</key>
   <name>EditorId</name>
+  <display-name>Editor ID</display-name>
   <type>zstring</type>
 </field>

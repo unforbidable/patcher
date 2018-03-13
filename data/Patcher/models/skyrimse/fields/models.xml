@@ -1,7 +1,7 @@
 <field>
   <group>
     <fields>
-      <zstring key="MODL" name="WorldModel" />
+      <zstring key="MODL" name="WorldModel" display-name="Model Filename" />
       <field>
         <key>MODT</key>
         <type>byte[]</type>

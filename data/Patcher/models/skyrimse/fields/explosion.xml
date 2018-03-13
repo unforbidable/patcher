@@ -1,0 +1,7 @@
+<field>
+	<name>Explosion</name>
+	<type>uint</type>
+  <as>
+    <type>ref(EXPL)</type>
+  </as>
+</field>

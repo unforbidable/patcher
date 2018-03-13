@@ -7,23 +7,26 @@
       <field>
         <key>CNTO</key>
         <name>Item</name>
+        <display-name>Input Item</display-name>
         <struct>
           <members>
             <member>
-              <name>ItemID</name>
+              <name>Item</name>
+              <display-name>Item ID</display-name>
               <type>uint</type>
               <as>
                 <!-- ... the form ID for an "input item" can be one of these four types.-->
-                <type>ref(ALCH|INGR|WEAP|MISC)</type>
+                <type>ref(ALCH|INGR|WEAP|MISC|ARMO)</type>
               </as>
             </member>
-            <uint name="InputCount" />
+            <uint name="Count" display-name="Input Count" />
           </members>
         </struct>
       </field>
       <field>
         <key>COED</key>
         <name>ExtraData</name>
+        <display-name>Extra Data</display-name>
         <struct>
           <members>
             <member>
@@ -34,7 +37,7 @@
               </as>
             </member>
             <uint name="Value" />
-            <float name="ItemCondition" />
+            <float name="ItemCondition" display-name="Item Condition" />
           </members>
         </struct>
       </field>

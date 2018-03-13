@@ -1,6 +1,7 @@
 <field>
   <key>YNAM</key>
   <name>PickUpSound</name>
+  <display-name>Pick-Up Sound</display-name>
   <type>uint</type>
   <as>
     <type>ref(SNDR)</type>

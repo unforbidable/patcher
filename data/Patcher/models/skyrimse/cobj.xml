@@ -1,5 +1,6 @@
 <record>
   <name>ConstructibleObject</name>
+  <display-name>Constructible Object (Recipes)</display-name>
   <fields>
     <editor-id />
     <uint key="COCT" name="ObjectCount" hidden="true"/>
@@ -8,6 +9,7 @@
     <field>
       <key>CNAM</key>
       <name>CreatedObject</name>
+      <display-name>Created Object</display-name>
       <type>uint</type>
       <as>
         <type>ref(WEAP|ARMO)</type>
@@ -16,6 +18,7 @@
     <field>
       <key>BNAM</key>
       <name>WorkbenchKeyword</name>
+      <display-name>Workbench Keyword</display-name>
       <type>uint</type>
       <as>
         <type>ref(KYWD)</type>
@@ -24,6 +27,7 @@
     <field>
       <key>NAM1</key>
       <name>CreatedObjectCount</name>
+      <display-name>Created Object Count</display-name>
       <type>uint</type>
     </field>
   </fields>

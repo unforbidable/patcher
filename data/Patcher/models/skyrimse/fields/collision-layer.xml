@@ -1,0 +1,7 @@
+<field>
+	<name>CollisionLayer</name>
+	<type>uint</type>
+  <as>
+    <type>ref(COLL)</type>
+  </as>
+</field>

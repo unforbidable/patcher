@@ -1,5 +1,6 @@
 <enum>
   <name>ConditionOperator</name>
+  <display-name>Condition Operator</display-name>
   <type>byte</type>
   <members>
     <member>
@@ -8,22 +9,27 @@
     </member>
     <member>
       <name>NotEqual</name>
+      <display-name>Not Equal</display-name>
       <value>1</value>
     </member>
     <member>
       <name>GreaterThan</name>
+      <display-name>Greater Than</display-name>
       <value>2</value>
     </member>
     <member>
       <name>GreaterThanOrEqual</name>
+      <display-name>Greater Than Or Equal</display-name>
       <value>3</value>
     </member>
     <member>
       <name>LesserThan</name>
+      <display-name>Less Than</display-name>
       <value>4</value>
     </member>
     <member>
       <name>LesserThanOrEqual</name>
+      <display-name>Less Than Or Equal</display-name>
       <value>5</value>
     </member>
   </members>

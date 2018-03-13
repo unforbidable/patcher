@@ -1,0 +1,23 @@
+<enum>
+  <name>SoundDetectionLevel</name>
+  <display-name>Sound Detection Level</display-name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Loud</name>
+      <value>0x00</value>
+    </member>
+    <member>
+      <name>Normal</name>
+      <value>0x01</value>
+    </member>
+    <member>
+      <name>Silent</name>
+      <value>0x02</value>
+    </member>
+    <member>
+      <name>VeryLoud</name>
+      <value>0x03</value>
+    </member>
+  </members>
+</enum>

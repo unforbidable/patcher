@@ -1,0 +1,91 @@
+<record>
+  <name>Armor</name>
+  <fields>
+    <editor-id />
+    <!-- TODO: Incomplete
+    <virtual-machine /> -->
+    <object-bounds />
+    <full-name />
+    <object-enchantment />
+    <enchant-amount />
+    <field>
+      <name>MaleWorldModel</name>
+      <display-name>Male Model</display-name>
+      <group>
+        <fields>
+          <zstring key="MOD2" name="WorldModel" display-name="Model Filename" />
+          <model-texture-data key="MO2T" />
+          <model-alt-textures key="MO2S" />
+        </fields>
+      </group>
+    </field>
+    <field>
+      <name>FemaleWorldModel</name>
+      <display-name>Female Model</display-name>
+      <group>
+        <fields>
+          <zstring key="MOD4" name="WorldModel" display-name="Model Filename" />
+          <model-texture-data key="MO4T" />
+          <model-alt-textures key="MO4S" />
+        </fields>
+      </group>
+    </field>
+    <!-- TODO: Incomplete 
+    There are two versions, BOD2 and BODT, not sure if both could be loaded from the same file.
+    <body-template /> -->
+    <pickup-sound />
+    <drop-sound />
+    <string key="BMCT" name="Ragdoll" />
+    <equipment-type />
+    <field>
+      <key>BIDS</key>
+      <name>BashImpactDataSet</name>
+      <display-name>Bash Impact Data</display-name>
+      <type>uint</type>
+      <as>
+        <type>ref(IPDS)</type>
+      </as>
+    </field>
+    <field>
+      <key>BAMT</key>
+      <name>BashMaterial</name>
+      <display-name>Alternate Bash Material</display-name>
+      <type>uint</type>
+      <as>
+        <type>ref(MATT)</type>
+      </as>
+    </field>
+    <race-ref />
+    <keyword-list />
+    <description />
+    <field>
+      <name>Armature</name>
+      <list>true</list>
+      <key>MODL</key>
+      <type>uint</type>
+      <as>
+        <type>ref(ARMA)</type>
+      </as>
+    </field>
+    <field>
+      <name>DATA</name>
+      <display-name>Data</display-name>
+      <struct>
+        <members>
+          <uint name="Value" display-name="Gold Value" />
+          <float name="Weight" />
+        </members>
+      </struct>
+    </field>
+    <uint key="DNAM" name="ArmorRating" display-name="Armor Rating" />
+    <field>
+      <key>TNAM</key>
+      <name>Template</name>
+      <display-name>Armor Template</display-name>
+      <type>uint</type>
+      <as>
+        <type>ref(ARMO)</type>
+      </as>
+    </field>
+  </fields>
+</record>

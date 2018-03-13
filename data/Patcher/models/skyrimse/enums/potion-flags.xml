@@ -5,6 +5,7 @@
   <members>
     <member>
       <name>None</name>
+      <display-name>--</display-name>
       <value>0</value>
     </member>
     <member>

@@ -1,0 +1,6 @@
+<field>
+  <key>EAMT</key>
+  <name>EnchantmentAmount</name>
+  <display-name>Enchantment Amount</display-name>
+  <type>uint</type>
+</field>

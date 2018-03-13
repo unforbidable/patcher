@@ -1,0 +1,8 @@
+<field>
+  <key>EITM</key>
+  <name>Enchantment</name>
+  <type>uint</type>
+  <as>
+    <type>ref(ENCH)</type>
+  </as>
+</field>

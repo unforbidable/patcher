@@ -2,7 +2,7 @@
   <name>ActorValue</name>
   <members>
     <member>
-      <name>Aggresion</name>
+      <name>Aggression</name>
       <value>0</value>
     </member>
     <!-- TODO: Incomplete -->  

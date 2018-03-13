@@ -1,5 +1,6 @@
 <field>
   <name>EquipmentType</name>
+  <display-name>Equipment Type</display-name>
   <key>ETYP</key>
   <type>uint</type>
   <as>

@@ -11,6 +11,7 @@
     <keyword-list />
     <field>
       <key>DATA</key>
+      <display-name>Data</display-name>
       <struct>
         <members>
           <member>
@@ -22,7 +23,7 @@
           </member>
           <ammo-flags />
           <float name="Damage" />
-          <uint name="GoldValue" />
+          <uint name="Value" display-name="Gold Value" />
         </members>
       </struct>
     </field>

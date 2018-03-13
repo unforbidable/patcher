@@ -1,0 +1,7 @@
+<field>
+	<name>Light</name>
+	<type>uint</type>
+  <as>
+    <type>ref(LIGH)</type>
+  </as>
+</field>

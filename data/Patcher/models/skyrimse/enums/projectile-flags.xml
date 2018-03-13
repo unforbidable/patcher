@@ -1,0 +1,64 @@
+<enum>
+  <name>ProjectileFlags</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <member>
+      <name>None</name>
+      <display-name>--</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Hitscan</name>
+      <display-name>Hitscan (Visible only in VATS)</display-name>
+      <value>0x0001</value>
+    </member>
+    <member>
+      <name>Explosion</name>
+      <value>0x0002</value>
+    </member>
+    <member>
+      <name>AltTrigger</name>
+      <display-name>Alt. Trigger</display-name>
+      <value>0x0004</value>
+    </member>
+    <member>
+      <name>MuzzleFlash</name>
+      <display-name>Muzzle Flash</display-name>
+      <value>0x0008</value>
+    </member>
+    <member>
+      <name>Unknown</name>
+      <value>0x0010</value>
+    </member>
+    <member>
+      <name>CanBeDisabled</name>
+      <display-name>Can Be Disabled</display-name>
+      <value>0x0020</value>
+    </member>
+    <member>
+      <name>CanBePickedUp</name>
+      <display-name>Can Be Picked Up</display-name>
+      <value>0x0040</value>
+    </member>
+    <member>
+      <name>Supersonic</name>
+      <value>0x0080</value>
+    </member>
+    <member>
+      <name>PinsLimbs</name>
+      <display-name>Crit Effect: Pins Limbs</display-name>
+      <value>0x0100</value>
+    </member>
+    <member>
+      <name>PassThroughTransparent</name>
+      <display-name>Pass Through Small Transparent</display-name>
+      <value>0x0200</value>
+    </member>
+    <member>
+      <name>DisableAimCorrection</name>
+      <display-name>Disable Combat Aim Correction</display-name>
+      <value>0x0400</value>
+    </member>
+  </members>
+</enum>

@@ -1,0 +1,61 @@
+<record>
+  <name>Projectile</name>
+  <fields>
+    <editor-id />
+    <object-bounds />
+    <full-name />
+    <models />
+    <!-- TODO: Incomplete
+    <destructible /> -->
+    <field>
+      <name>DATA</name>
+      <display-name>Data</display-name>
+      <struct>
+        <members>
+          <projectile-flags name="Flags" />
+          <projectile-type />
+          <float name="Gravity" />
+          <float name="Speed" />
+          <float name="Range" />
+          <light />
+          <light name="MuzzleFlash" display-name="Muzzle Flash" />
+          <float name="TracerChance" display-name="Tracer Chance" />
+          <float name="ExplosionProximity" display-name="Explosion Proximity" />
+          <float name="ExplosionTimer" display-name="Explosion Timer" />
+          <explosion name="ExplosionType" display-name="Explosion Type" />
+          <sound name="Sound" />
+          <float name="MuzzleDuration" display-name="Muzzle Duration" />
+          <float name="FadeDuration" display-name="Fade Duration" />
+          <float name="ImpactForce" display-name="Impact Force" />
+          <sound name="CountdownSound" display-name="Sound - Countdown" />
+          <sound name="DisableSound" display-name="Sound - Disable" />
+          <weapon name="DefaultWeapon" display-name="Default Weapon Source" />
+          <float name="ConeSpread" display-name="Cone Spread" />
+          <float name="CollisionRadius" display-name="Collision Radius" />
+          <float name="Lifetime" />
+          <float name="RelaunchInterval" display-name="Relaunch Interval" />
+          <texture-set name="DecalData" display-name="Decal Data" />
+          <collision-layer name="CollisionLayer" display-name="Collision Layer" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <name>EffectModel</name>
+      <display-name>Muzzle Flash Model</display-name>
+      <group>
+        <fields>
+          <zstring key="NAM1" name="WorldModel" display-name="Model Filename" />
+          <!-- Might need to include another possible option for NAM2-->
+        </fields>
+      </group>
+    </field>
+    <field>
+      <key>VNAM</key>
+      <struct>
+        <members>
+          <sound-detection-level />
+        </members>
+      </struct>
+    </field>
+  </fields>
+</record>

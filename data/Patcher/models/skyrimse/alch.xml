@@ -1,5 +1,6 @@
 <record>
   <name>Potion</name>
+  <display-name>Potions and Food Items</display-name>
   <fields>
     <editor-id />
     <object-bounds />
@@ -12,6 +13,7 @@
     <equipment-type />
     <field>
       <key>DATA</key>
+      <display-name>Data</display-name>
       <struct>
         <members>
           <float name="Weight" />
@@ -25,8 +27,8 @@
           <uint name="Value" />
           <potion-flags name="Flags" />
           <uint name="Addiction" hidden="true" />
-          <float name="AddictionChance" />
-          <sound name="UseSound" />
+          <float name="AddictionChance" display-name="Addiction Chance" />
+          <sound name="UseSound" display-name="Use Sound" />
         </members>
       </struct>
     </field>
@@ -37,8 +39,9 @@
       <group>
         <!-- name of the structure -->
         <name>PotionEffect</name>
+        <display-name>Potion Effects</display-name>
         <fields>
-          <magic-effect key="EFID" name="BaseEffect" />
+          <magic-effect key="EFID" name="BaseEffect" display-name="Base Effect"/>
           <field>
             <key>EFIT</key>
             <struct>

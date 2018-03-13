@@ -1,5 +1,6 @@
 <record>
   <name>FormList</name>
+  <display-name>Form List</display-name>
   <fields>
     <editor-id />
     <field>

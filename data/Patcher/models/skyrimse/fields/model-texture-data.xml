@@ -1,0 +1,5 @@
+<field>
+  <name>ModelTextureData</name>
+  <display-name>Model Texture Data</display-name>
+  <type>byte[]</type>
+</field>

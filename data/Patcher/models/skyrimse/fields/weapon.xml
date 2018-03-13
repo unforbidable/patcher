@@ -1,0 +1,7 @@
+<field>
+	<name>Weapon</name>
+	<type>uint</type>
+  <as>
+    <type>ref(WEAP)</type>
+  </as>
+</field>

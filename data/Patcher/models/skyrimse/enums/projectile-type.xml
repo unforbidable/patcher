@@ -1,0 +1,35 @@
+<enum>
+  <name>ProjectileType</name>
+  <display-name>Projectile Type</display-name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Missile</name>
+      <value>0x01</value>
+    </member>
+    <member>
+      <name>Lobber</name>
+      <value>0x02</value>
+    </member>
+    <member>
+      <name>Beam</name>
+      <value>0x04</value>
+    </member>
+    <member>
+      <name>Flame</name>
+      <value>0x08</value>
+    </member>
+    <member>
+      <name>Cone</name>
+      <value>0x10</value>
+    </member>
+    <member>
+      <name>Barrier</name>
+      <value>0x20</value>
+    </member>
+    <member>
+      <name>Arrow</name>
+      <value>0x40</value>
+    </member>
+  </members>
+</enum>
