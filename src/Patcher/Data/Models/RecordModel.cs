@@ -49,6 +49,14 @@ namespace Patcher.Data.Models
             var builder = new StringBuilder();
 
             builder.AppendFormat("[Key({0})] ", Key);
+            if (!string.IsNullOrEmpty(Description))
+            {
+                builder.AppendFormat("[Description(\"{0}\")] ", Description);
+            }
+            if (!string.IsNullOrEmpty(DisplayName))
+            {
+                builder.AppendFormat("[DisplayName(\"{0}\")] ", DisplayName);
+            }
 
             builder.Append(!string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
             builder.Append(" \n{ \n");
