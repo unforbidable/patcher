@@ -168,10 +168,11 @@ namespace Patcher.Data.Models.Loading
 
             string formType = id.ToUpper();
             string name = ReadValue("name");
+            string displayName = ReadValue("display-name");
             string description = ReadValue("description");
             var fields = GetGrandChildren("fields").Select(e => EnterElement(e).ReadField());
 
-            return new RecordModel(formType, name, description, fields);
+            return new RecordModel(formType, displayName, name, description, fields);
         }
 
         public IEnumerable<FunctionModel> ReadFunctions()

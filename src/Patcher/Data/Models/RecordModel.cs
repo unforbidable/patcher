@@ -30,14 +30,16 @@ namespace Patcher.Data.Models
     {
         public string Key { get; private set; }
         public string Name { get; private set; }
+        public string DisplayName { get; private set; }
         public string Description { get; private set; }
 
         public FieldModel[] Fields { get; private set; }
 
-        public RecordModel(string key, string name, string description, IEnumerable<FieldModel> fields)
+        public RecordModel(string key, string displayName, string name, string description, IEnumerable<FieldModel> fields)
         {
             Key = key;
             Name = name;
+            DisplayName = displayName;
             Description = description;
             Fields = fields.ToArray();
         }
