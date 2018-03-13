@@ -26,7 +26,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents a function protorype.
     /// </summary>
-    public class FunctionModel : IModel, IPresentable
+    public class FunctionModel : IModel, IPresentable, INamed
     {
         /// <summary>
         /// Index of the function.

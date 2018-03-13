@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Models.Loading;
+using Patcher.Data.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ using System.Xml.Linq;
 
 namespace Patcher.Data.Models
 {
-    public class GameModel : IModel
+    public class GameModel : IModel, IValidable, INamed
     {
         public string Name { get; private set; }
         public string BasePlugin { get; private set; }
@@ -50,6 +51,11 @@ namespace Patcher.Data.Models
         public override string ToString()
         {
             return string.Format("Name={0}", Name);
+        }
+
+        public void ValidateModel(ModelValidator validator)
+        {
+            validator.AssertWithError(!string.IsNullOrEmpty(BasePlugin), "BasePlugin property is required.");
         }
     }
 }

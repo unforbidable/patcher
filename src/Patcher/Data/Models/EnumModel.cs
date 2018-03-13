@@ -27,7 +27,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents an enum.
     /// </summary>
-    public class EnumModel : IPresentable, ICanRepresentTarget, ICanRepresentFunctionParam
+    public class EnumModel : IPresentable, ICanRepresentTarget, ICanRepresentFunctionParam, INamed
     {
         /// <summary>
         /// Name of the generated enum.

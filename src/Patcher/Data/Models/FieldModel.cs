@@ -16,6 +16,7 @@
 
 using Patcher.Data.Models.Loading;
 using Patcher.Data.Models.Presentation;
+using Patcher.Data.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Object model that represents a record field.
     /// </summary>
-    public class FieldModel : IPresentable, IResolvableFrom<FieldModel>
+    public class FieldModel : IPresentable, IResolvableFrom<FieldModel>, INamed, IValidable
     {
         /// <summary>
         /// Field key, four characters long.
@@ -158,5 +159,9 @@ namespace Patcher.Data.Models
             return builder.ToString();
         }
 
+        public void ValidateModel(ModelValidator validator)
+        {
+            validator.AssertWithError(IsFieldGroup || !string.IsNullOrEmpty(Key), "Key is a required property of a field model that isn't a field group.");
+        }
     }
 }

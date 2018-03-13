@@ -14,6 +14,7 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Models.Loading;
 using Patcher.Data.Models.Presentation;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents a member of an enum.
     /// </summary>
-    public class EnumMemberModel : IPresentable
+    public class EnumMemberModel : IPresentable, INamed
     {
         /// <summary>
         /// The name of the member.

@@ -26,7 +26,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents a form record.
     /// </summary>
-    public class RecordModel : IPresentable
+    public class RecordModel : IPresentable, INamed
     {
         public string Key { get; private set; }
         public string Name { get; private set; }

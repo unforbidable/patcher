@@ -26,7 +26,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents a data structure.
     /// </summary>
-    public class StructModel : IPresentable, ICanRepresentTarget, ICanRepresentField
+    public class StructModel : IPresentable, ICanRepresentTarget, ICanRepresentField, INamed
     {
         /// <summary>
         /// Name of the generated class that represents this structure

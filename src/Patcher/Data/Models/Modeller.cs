@@ -16,6 +16,7 @@
 
 using Patcher.Data.Models.Code;
 using Patcher.Data.Models.Loading;
+using Patcher.Data.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,7 +36,7 @@ namespace Patcher.Data.Models
         {
         }
 
-        public void LoadAllModels(IDataFileProvider fileProvider)
+        public void LoadModels(IDataFileProvider fileProvider)
         {
             var games = new List<GameModel>();
 
@@ -55,6 +56,46 @@ namespace Patcher.Data.Models
             Log.Info("Loaded {0} game models", games.Count);
 
             Models = games.ToArray();
+        }
+
+        public bool ValidateModels()
+        {
+            bool valid = true;
+
+            Log.Info("Validating game model");
+            foreach (var model in Models)
+            {
+                var issues = ModelValidator.ValidateGameModel(model);
+                Log.Info("Model {0} validated with {1} errors, {2} warnings and {3} notices.", model.Name, issues.Errors.Count(), issues.Warnings.Count(), issues.Notices.Count());
+
+                // Print issues
+                foreach (var i in issues)
+                {
+                    switch (i.Type)
+                    {
+                        case ModelValidatorIssueType.Error:
+                            Log.Error("{0}: {1}", i.Location, i.Text);
+                            break;
+
+                        case ModelValidatorIssueType.Warning:
+                            Log.Warning("{0}: {1}", i.Location, i.Text);
+                            break;
+
+                        case ModelValidatorIssueType.Notice:
+                            Log.Info("{0}: {1}", i.Location, i.Text);
+                            break;
+                    }
+                }
+
+                valid &= !issues.Errors.Any();
+            }
+
+            if (!valid)
+            {
+                Log.Error("Data model is not valid due to error(s).");
+            }
+
+            return valid;
         }
 
         public void CompileModels()

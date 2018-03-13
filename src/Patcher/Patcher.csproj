@@ -91,10 +91,16 @@
     <Compile Include="Data\Models\FunctionParamType.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentField.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentFunctionParam.cs" />
+    <Compile Include="Data\Models\Loading\INamed.cs" />
     <Compile Include="Data\Models\Loading\IResolvable.cs" />
     <Compile Include="Data\Models\Loading\IResolvableFrom.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentTarget.cs" />
     <Compile Include="Data\Models\IModel.cs" />
+    <Compile Include="Data\Models\Validation\IValidable.cs" />
+    <Compile Include="Data\Models\Validation\ModelValidator.cs" />
+    <Compile Include="Data\Models\Validation\ModelValidatorIssue.cs" />
+    <Compile Include="Data\Models\Validation\ModelValidatorIssueCollection.cs" />
+    <Compile Include="Data\Models\Validation\ModelValidatorIssueType.cs" />
     <Compile Include="Data\Models\ModelHelper.cs" />
     <Compile Include="Data\Models\Presentation\IPresentable.cs" />
     <Compile Include="Data\Models\Loading\ModelReader.cs" />

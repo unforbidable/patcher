@@ -26,7 +26,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents a member of a structure.
     /// </summary>
-    public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>
+    public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>, INamed
     {
         /// <summary>
         /// Name of the field or member, used as the name of for the generated field, property etc.

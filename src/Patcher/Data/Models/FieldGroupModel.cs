@@ -26,7 +26,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represent a group of fields that are grouped together.
     /// </summary>
-    public class FieldGroupModel : IPresentable, ICanRepresentField
+    public class FieldGroupModel : IPresentable, ICanRepresentField, INamed
     {
         /// <summary>
         /// Name of the generated class that represents this field group
