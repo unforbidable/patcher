@@ -159,6 +159,7 @@ namespace Patcher
                     // initialize data model
                     Modeller modeller = new Modeller();
                     modeller.LoadAllModels(fileProvider);
+                    modeller.CompileModels();
 
                     if (options.ModelOnly)
                     {

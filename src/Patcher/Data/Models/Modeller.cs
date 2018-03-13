@@ -14,6 +14,7 @@
 /// along with this program; if not, write to the Free Software
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Models.Code;
 using Patcher.Data.Models.Loading;
 using System;
 using System.Collections.Generic;
@@ -56,5 +57,12 @@ namespace Patcher.Data.Models
             Models = games.ToArray();
         }
 
+        public void CompileModels()
+        {
+            var compiler = new ModelCodeBuilder();
+            var code = compiler.BuildModels(Models);
+
+            Log.Fine("Models compiled as\n{0}", code.BuildCode(true));
+        }
     }
 }

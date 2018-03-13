@@ -60,6 +60,22 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Code\Building\CodeBuilder.cs" />
+    <Compile Include="Code\Building\CodeBuilderOptions.cs" />
+    <Compile Include="Code\CodeBase.cs" />
+    <Compile Include="Code\CodeProperty.cs" />
+    <Compile Include="Code\CodeClass.cs" />
+    <Compile Include="Code\CodeField.cs" />
+    <Compile Include="Code\CodeMember.cs" />
+    <Compile Include="Code\Building\CodeBuilderHelper.cs" />
+    <Compile Include="Code\CodeInterface.cs" />
+    <Compile Include="Code\CodeMemberCollection.cs" />
+    <Compile Include="Code\CodeMethod.cs" />
+    <Compile Include="Code\CodeNamespace.cs" />
+    <Compile Include="Code\CodeItem.cs" />
+    <Compile Include="Code\CodeType.cs" />
+    <Compile Include="Code\CodeNamespaceCollection.cs" />
+    <Compile Include="Code\CodeTypeCollection.cs" />
     <Compile Include="Data\Archives\ArchiveManager.cs" />
     <Compile Include="Data\Archives\Fallout4ArchiveReader.cs" />
     <Compile Include="Data\Archives\SkyrimArchiveReader.cs" />
@@ -67,6 +83,7 @@
     <Compile Include="Data\Archives\ArchiveSubstream.cs" />
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
+    <Compile Include="Data\Models\Code\ModelCodeBuilder.cs" />
     <Compile Include="Data\Models\EnumMemberModel.cs" />
     <Compile Include="Data\Models\FormReference.cs" />
     <Compile Include="Data\Models\FunctionModel.cs" />
@@ -78,6 +95,7 @@
     <Compile Include="Data\Models\Loading\IResolvableFrom.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentTarget.cs" />
     <Compile Include="Data\Models\IModel.cs" />
+    <Compile Include="Data\Models\ModelHelper.cs" />
     <Compile Include="Data\Models\Presentation\IPresentable.cs" />
     <Compile Include="Data\Models\Loading\ModelReader.cs" />
     <Compile Include="Data\Models\Loading\ModelLoadingHelper.cs" />
@@ -406,7 +424,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Code\Compiling\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Patcher.Rules.Compiled\Patcher.Rules.Compiled.csproj">
       <Project>{a46bc13d-b396-4433-9888-41a0bcf4f605}</Project>
