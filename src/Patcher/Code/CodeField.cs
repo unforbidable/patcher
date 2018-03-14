@@ -32,6 +32,8 @@ namespace Patcher.Code
         /// </summary>
         public string Value { get; set; }
 
+        public bool IsConst { get; set; }
+
         public CodeField(string type, string name) : base(type, name)
         {
         }
@@ -45,6 +47,10 @@ namespace Patcher.Code
             if (IsStatic)
             {
                 builder.Append("static ");
+            }
+            if (IsConst)
+            {
+                builder.Append("const ");
             }
             builder.Append("{0} {1}", Type, Name);
 
