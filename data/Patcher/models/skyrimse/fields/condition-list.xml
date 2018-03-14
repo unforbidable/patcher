@@ -18,7 +18,7 @@
               <as>
                 <struct>
                   <name>ComparisonValue</name>
-                  <display-name>Comparison Value</display-name>
+                  <union>true</union>
                   <members>
                     <float name="Value" />
                     <uint name="GlobalVariable" as-type="ref" as-ref-type="GLOB"  />
@@ -40,6 +40,7 @@
               <as>
                 <struct>
                   <name>FunctionParam1</name>
+                  <union>true</union>
                   <members>
                     <int name="Value" />
                     <uint name="FormReference" display-name="Form Reference" as-type="ref" />
@@ -55,6 +56,7 @@
               <as>
                 <struct>
                   <name>FunctionParam2</name>
+                  <union>true</union>
                   <members>
                     <int name="Value" />
                     <uint name="FormReference" display-name="Form Reference" as-type="ref" />

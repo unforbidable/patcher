@@ -1,0 +1,25 @@
+<record>
+  <name>Global</name>
+  <display-name>Global Variable</display-name>
+  <fields>
+    <editor-id />
+    <field>
+      <key>FNAM</key>
+      <name>Type</name>
+      <type>byte</type>
+      <as>
+        <!-- This structure indicates that this value can be on of several different primitive types, int, long, or float. -->
+        <struct>
+          <name>Type</name>
+          <union>true</union>
+          <members>
+            <int />
+            <long />
+            <float />
+          </members>
+        </struct>
+      </as>
+    </field>
+    <float key="FLTV" name="Value" />
+  </fields>
+</record>
