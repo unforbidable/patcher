@@ -43,11 +43,14 @@ namespace Patcher.Code
         public override void BuildCode(CodeBuilder builder)
         {
             builder.AppendComment(Comment);
-            builder.AppendLine(Name);
+            builder.AppendLine("namespace {0}", Name);
             builder.AppendLine("{");
             builder.EnterBlock();
 
-            // TODO: Build types of this namespace
+            foreach (var cls in Types.OfType<CodeClass>())
+            {
+                cls.BuildCode(builder);
+            }
 
             builder.LeaveBlock();
             builder.AppendLine("}");

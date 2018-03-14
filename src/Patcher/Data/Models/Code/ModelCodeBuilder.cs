@@ -34,9 +34,6 @@ namespace Patcher.Data.Models.Code
             var ns = new CodeNamespace("Patcher.Data.Models");
             code.Namespaces.Add(ns);
 
-            // Meta data class
-            ns.Types.Add(GetMetaDataClass(models));
-
             // Prepare a namespace for each game model
             foreach (var model in models)
             {
@@ -46,42 +43,9 @@ namespace Patcher.Data.Models.Code
             return code;
         }
 
-        private CodeClass GetMetaDataClass(IEnumerable<GameModel> models)
-        {
-            var cls = new CodeClass("ModelMetaData");
-            cls.IsStatic = true;
-            cls.Comment = "Model meta data";
-
-            cls.Members.Add(new CodeField("string", "ProgramVersion")
-            {
-                Value = Program.GetProgramFullVersionInfo(),
-                IsPublic = true,
-                IsStatic = true
-            });
-
-            string serialized = new ModelSerializer().SerializeModel(models);
-            string serializedHash = ModelHelper.GetModelHash(serialized);
-
-            cls.Members.Add(new CodeField("string", "ModelData")
-            {
-                Value = serialized,
-                IsPublic = true,
-                IsStatic = true
-            });
-
-            cls.Members.Add(new CodeField("string", "ModelHash")
-            {
-                Value = serializedHash,
-                IsPublic = true,
-                IsStatic = true
-            });
-
-            return cls;
-        }
-
         private CodeNamespace GetModelNamespace(GameModel model)
         {
-            string nsName = string.Format("Patcher.Data.Models.{0}", model.Name.Replace(" ", string.Empty));
+            string nsName = string.Format("Patcher.Data.Models.{0}", model.Name);
             var ns = new CodeNamespace(nsName);
             ns.Comment = string.Format("Data model for {0}", model.Name);
 

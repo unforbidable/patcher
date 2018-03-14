@@ -24,9 +24,9 @@ namespace Patcher.Data.Models
 {
     public static class ModelHelper
     {
-        public static string GetModelHash(string model)
+        public static string GetModelHash(byte[] model)
         {
-            var hashBytes = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(model));
+            var hashBytes = MD5.Create().ComputeHash(model);
             return ByteToHexBitFiddle(hashBytes);
         }
 

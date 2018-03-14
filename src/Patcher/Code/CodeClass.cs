@@ -60,6 +60,11 @@ namespace Patcher.Code
             builder.AppendLine("{");
             builder.EnterBlock();
 
+            foreach (var field in Members.OfType<CodeField>())
+            {
+                field.BuildCode(builder);
+            }
+
             // TODO: build class sub-types and members
 
             builder.LeaveBlock();

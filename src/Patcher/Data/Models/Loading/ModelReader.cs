@@ -222,13 +222,13 @@ namespace Patcher.Data.Models.Loading
                 }
 
                 // Param needs to be resolved (as an enum)
-                var model = new FunctionParamModel(null);
+                var model = new FunctionParamModel(null, displayName);
                 Resolver.MarkModelForResolution(model, type, File, Element);
                 return model;
             }
             else
             {
-                return new FunctionParamModel(null);
+                return new FunctionParamModel(null, displayName);
                 //throw new ModelLoadingException("Function parameter specification is incomplete, 'type' expected.", Element);
             }
         }

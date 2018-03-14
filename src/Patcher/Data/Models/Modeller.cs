@@ -16,6 +16,7 @@
 
 using Patcher.Data.Models.Code;
 using Patcher.Data.Models.Loading;
+using Patcher.Data.Models.Serialization;
 using Patcher.Data.Models.Validation;
 using System;
 using System.Collections.Generic;
@@ -100,8 +101,14 @@ namespace Patcher.Data.Models
 
         public void CompileModels()
         {
-            var compiler = new ModelCodeBuilder();
-            var code = compiler.BuildModels(Models);
+            var builder = new ModelCodeBuilder();
+            var code = builder.BuildModels(Models);
+
+            var serializer = new ModelSerializer();
+            var serializedModel = serializer.SerializeModel(Models, true);
+
+            var compiler = new ModelCodeCompiler();
+            compiler.CompileCode(code, serializedModel);
 
             Log.Fine("Models compiled as\n{0}", code.BuildCode(true));
         }

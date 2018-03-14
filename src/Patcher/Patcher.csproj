@@ -76,6 +76,7 @@
     <Compile Include="Code\CodeType.cs" />
     <Compile Include="Code\CodeNamespaceCollection.cs" />
     <Compile Include="Code\CodeTypeCollection.cs" />
+    <Compile Include="Code\Compiling\CodeCompiler.cs" />
     <Compile Include="Data\Archives\ArchiveManager.cs" />
     <Compile Include="Data\Archives\Fallout4ArchiveReader.cs" />
     <Compile Include="Data\Archives\SkyrimArchiveReader.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
     <Compile Include="Data\Models\Code\ModelCodeBuilder.cs" />
+    <Compile Include="Data\Models\Code\ModelCodeCompiler.cs" />
     <Compile Include="Data\Models\EnumMemberModel.cs" />
     <Compile Include="Data\Models\FormReference.cs" />
     <Compile Include="Data\Models\FunctionModel.cs" />
@@ -431,9 +433,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Code\Compiling\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Patcher.Rules.Compiled\Patcher.Rules.Compiled.csproj">

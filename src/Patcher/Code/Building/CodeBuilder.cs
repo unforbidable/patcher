@@ -32,12 +32,12 @@ namespace Patcher.Code.Building
 
         public void EnterBlock()
         {
-            indent += 4;
+            indent++;
         }
 
         public void LeaveBlock()
         {
-            indent -= 4;
+            indent--;
         }
 
         public void AppendComment(string text)
