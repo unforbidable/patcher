@@ -133,11 +133,12 @@ namespace Patcher.Data.Models.Loading
             // TODO: Ensure element name 'member'
 
             string name = ReadValue("name");
+            string displayName = ReadValue("display-name");
             string description = ReadValue("description");
             string value = ReadValue("value");
             value = ModelLoadingHelper.ReparseValue(value, type, isFlags ? ReparseOptions.Hexadecimal | ReparseOptions.LeadingZeros : ReparseOptions.None);
 
-            return new EnumMemberModel(name, description, value);
+            return new EnumMemberModel(name, displayName, description, value);
         }
 
         public StructModel ReadStruct()
@@ -202,6 +203,7 @@ namespace Patcher.Data.Models.Loading
 
         private FunctionParamModel ReadFunctionParam()
         {
+            string displayName = ReadValue("display-name");
             string type = ReadValue("type");
             if (!string.IsNullOrEmpty(type))
             {
@@ -209,14 +211,14 @@ namespace Patcher.Data.Models.Loading
                 if (FunctionParamType.TryFindKnownTargetType(type, out functionMemberType))
                 {
                     // Param is a primitive type
-                    return new FunctionParamModel(functionMemberType);
+                    return new FunctionParamModel(functionMemberType, displayName);
                 }
 
                 FormReference formReference;
                 if (FormReference.TryParse(type, out formReference))
                 {
                     // Param is a form reference
-                    return new FunctionParamModel(formReference);
+                    return new FunctionParamModel(formReference, displayName);
                 }
 
                 // Param needs to be resolved (as an enum)
@@ -278,6 +280,7 @@ namespace Patcher.Data.Models.Loading
         public MemberModel ReadMember()
         {
             string name = ReadValue("name");
+            string displayName = ReadValue("display-name");
             string description = ReadValue("description");
             bool isVirtual = HasValueTrue("virtual");
             bool isHidden = HasValueTrue("hidden");
@@ -300,7 +303,7 @@ namespace Patcher.Data.Models.Loading
                 if (!MemberType.TryFindKnownMemberType(id.Identifier, out memberType))
                 {
                     Log.Fine("Member type '{0}' is not recornized and needs to be resolved.", id.Identifier);
-                    var memberModel = new MemberModel(name, description, null, targetModel, isHidden, isVirtual, isArray, arrayLength);
+                    var memberModel = new MemberModel(name, displayName, description, null, targetModel, isHidden, isVirtual, isArray, arrayLength);
                     Resolver.MarkModelForResolution(memberModel, id.Identifier, File, Element);
                     return memberModel;
                 }
@@ -310,13 +313,14 @@ namespace Patcher.Data.Models.Loading
                 // member type is unspecified
             }
 
-            return new MemberModel(name, description, memberType, targetModel, isHidden, isVirtual, isArray, arrayLength);
+            return new MemberModel(name, displayName, description, memberType, targetModel, isHidden, isVirtual, isArray, arrayLength);
         }
 
         public FieldModel ReadField()
         {
             string key = ReadValue("key");
             string name = ReadValue("name");
+            string displayName = ReadValue("display-name");
             string description = ReadValue("description");
             bool isHidden = HasValueTrue("hidden");
             bool isVirtual = HasValueTrue("virtual");
@@ -342,7 +346,7 @@ namespace Patcher.Data.Models.Loading
                 MemberType memberType;
                 bool found = MemberType.TryFindKnownMemberType(id.Identifier, out memberType);
 
-                var fieldModel = new FieldModel(key, name, description, memberType, targetModel, isHidden, isVirtual, isList, isArray, arrayLength);
+                var fieldModel = new FieldModel(key, name, displayName, description, memberType, targetModel, isHidden, isVirtual, isList, isArray, arrayLength);
 
                 if (!found)
                 {
@@ -356,13 +360,13 @@ namespace Patcher.Data.Models.Loading
             {
                 // Field is a structure
                 var structModel = EnterElement(structElement).ReadStruct();
-                return new FieldModel(key, name, description, structModel, targetModel, isHidden, isVirtual, isList, isArray, arrayLength);                                
+                return new FieldModel(key, name, displayName, description, structModel, targetModel, isHidden, isVirtual, isList, isArray, arrayLength);                                
             }
             else if (groupElement != null)
             {
                 // Field is a field group 
                 var groupModel = EnterElement(groupElement).ReadFieldGroup();
-                return new FieldModel(key, name, description, groupModel, targetModel, isHidden, isVirtual, isList, isArray, arrayLength);
+                return new FieldModel(key, name, displayName, description, groupModel, targetModel, isHidden, isVirtual, isList, isArray, arrayLength);
             }
             else
             {

@@ -40,6 +40,11 @@ namespace Patcher.Data.Models
         public string Name { get; private set; }
 
         /// <summary>
+        /// Name of the field as it will be displayed in the GUI.
+        /// </summary>
+        public string DisplayName { get; private set; }
+
+        /// <summary>
         /// Description of the field.
         /// </summary>
         public string Description { get; private set; }
@@ -95,10 +100,11 @@ namespace Patcher.Data.Models
         public bool IsFieldGroup { get { return InnerModel is FieldGroupModel; } }
         public bool IsStruct { get { return InnerModel is StructModel; } }
 
-        public FieldModel(string key, string name, string description, ICanRepresentField innerModel, TargetModel targetModel, bool isHidden, bool isVirtual, bool isList, bool isArray, int arrayLength)
+        public FieldModel(string key, string name, string displayName, string description, ICanRepresentField innerModel, TargetModel targetModel, bool isHidden, bool isVirtual, bool isList, bool isArray, int arrayLength)
         {
             Key = key;
             Name = name;
+            DisplayName = displayName;
             Description = description;
             InnerModel = innerModel;
             TargetModel = targetModel;

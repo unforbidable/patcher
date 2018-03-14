@@ -30,6 +30,11 @@ namespace Patcher.Data.Models
         ICanRepresentFunctionParam ParamInternal { get; set; }
 
         /// <summary>
+        /// The name of the parameter, as displayed by the GUI.
+        /// </summary>
+        public string DisplayName { get; private set; }
+
+        /// <summary>
         /// Gets the primitive type representing this parameter.
         /// </summary>
         public FunctionParamType FunctionParamType { get { return ParamInternal as FunctionParamType; } }
@@ -44,9 +49,10 @@ namespace Patcher.Data.Models
         /// </summary>
         public FormReference FormReference { get { return ParamInternal as FormReference; } }
 
-        public FunctionParamModel(ICanRepresentFunctionParam model)
+        public FunctionParamModel(ICanRepresentFunctionParam model, string displayName)
         {
             ParamInternal = model;
+            DisplayName = displayName;
         }
 
         public void ResolveFrom(EnumModel model)

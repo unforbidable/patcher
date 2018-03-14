@@ -34,6 +34,11 @@ namespace Patcher.Data.Models
         public string Name { get; private set; }
 
         /// <summary>
+        /// The name of the member, as displayed by the GUI.
+        /// </summary>
+        public string DisplayName { get; private set; }
+
+        /// <summary>
         /// The description of the member.
         /// </summary>
         public string Description { get; private set; }
@@ -43,9 +48,10 @@ namespace Patcher.Data.Models
         /// </summary>
         public string Value { get; private set; }
 
-        public EnumMemberModel(string name, string description, string value)
+        public EnumMemberModel(string name, string displayName, string description, string value)
         {
             Name = name;
+            DisplayName = displayName;
             Description = description;
             Value = value;
         }

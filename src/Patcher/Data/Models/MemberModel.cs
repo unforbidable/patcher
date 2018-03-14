@@ -29,12 +29,17 @@ namespace Patcher.Data.Models
     public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>, INamed
     {
         /// <summary>
-        /// Name of the field or member, used as the name of for the generated field, property etc.
+        /// Name of the field or member, used as the name for the generated field, property etc.
         /// </summary>
         public string Name { get; private set; }
 
         /// <summary>
-        /// Description of the field or member, used as the name of for the generated field, property etc.
+        /// Name of the field or member, as will be displayed by the GUI
+        /// </summary>
+        public string DisplayName { get; private set; }
+
+        /// <summary>
+        /// Description of the field or member, used as the name for the generated field, property etc.
         /// </summary>
         public string Description { get; private set; }
 
@@ -68,9 +73,10 @@ namespace Patcher.Data.Models
         /// </summary>
         public int ArrayLength { get; private set; }
 
-        public MemberModel(string name, string description, MemberType memberType, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength)
+        public MemberModel(string name, string displayName, string description, MemberType memberType, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength)
         {
             Name = name;
+            DisplayName = displayName;
             Description = description;
             MemberType = memberType;
             TargetModel = targetModel;
