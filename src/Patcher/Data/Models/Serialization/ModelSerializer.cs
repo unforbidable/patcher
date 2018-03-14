@@ -24,18 +24,18 @@ namespace Patcher.Data.Models.Serialization
 {
     public class ModelSerializer
     {
-        public string SerializeModel(IEnumerable<GameModel> models)
+        public byte[] SerializeModel(IEnumerable<GameModel> models, bool pretty)
         {
             using (var ms = new MemoryStream())
             {
                 var writer = new ModelSerializationWriter(ms);
-                writer.Pretty = false;
+                writer.Pretty = pretty;
                 writer.WriteModels(models);
-                return Encoding.UTF8.GetString(ms.ToArray());
+                return ms.ToArray();
             }
         }
 
-        public IEnumerable<GameModel> DeserializeModel(string modelData)
+        public IEnumerable<GameModel> DeserializeModel(byte[] modelData)
         {
             // TODO: Deserialize model
             return Enumerable.Empty<GameModel>();

@@ -112,7 +112,7 @@ namespace Patcher.Data.Models.Serialization
         private void WritePropertyName(string name)
         {
             stack.Name = name;
-            if (stack.Index++ > 0)
+            if (stack.Index > 0)
             {
                 WriteLine(", ");
             }
@@ -121,6 +121,7 @@ namespace Patcher.Data.Models.Serialization
                 WriteLine(" ");
             }
             Write("{0}: ", name);
+            stack.Index++;
         }
 
         private void WriteArray<TModel>(IEnumerable<TModel> models, Action<TModel> writeObjectAction) where TModel : IModel
@@ -129,7 +130,7 @@ namespace Patcher.Data.Models.Serialization
             stack.Enter();
             foreach (var model in models)
             {
-                if (stack.Index++ > 0)
+                if (stack.Index > 0)
                 {
                     Write(", ");
                 }
@@ -138,6 +139,7 @@ namespace Patcher.Data.Models.Serialization
                     WriteLine(" ");
                 }
                 WriteObject(model, writeObjectAction);
+                stack.Index++;
             }
             stack.Leave();
             WriteLine(" ");
