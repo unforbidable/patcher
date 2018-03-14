@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Patcher.Data.Models.Validation
 {
@@ -123,6 +124,12 @@ namespace Patcher.Data.Models.Validation
             // Retrieve model name via INamed interface
             string name = model is INamed ? (model as INamed).Name : null;
             Enter(name ?? "<annonymous-object>");
+
+            // Make sure name is a legal C# indentifier
+            if (model is INamed && !string.IsNullOrEmpty(name))
+            {
+                AssertWithError(Regex.IsMatch(name, "^[a-zA-Z_][a-zA-Z0-9_]*$"), "Model name '{0}' is not allowed. Only letters, digits and underscores are allowed and also they cannot begin with a digit.", name);
+            }
 
             if (model is IValidable)
             {

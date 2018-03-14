@@ -1,5 +1,5 @@
 <game>
-  <name>Skyrim Special Edition</name>
+  <name>SkyrimSE</name>
   <base-plugin>Skyrim.esm</base-plugin>
   <latest-form-version>44</latest-form-version>
   <plugins>
