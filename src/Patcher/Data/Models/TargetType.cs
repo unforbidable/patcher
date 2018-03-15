@@ -26,6 +26,7 @@ namespace Patcher.Data.Models
     {
         public string Name { get; private set; }
         public Type Type { get; private set; }
+        public StringLocalization StringLocalization { get; private set; }
 
         static Dictionary<string, TargetType> knownTypes = new Dictionary<string, TargetType>()
         {
@@ -40,7 +41,9 @@ namespace Patcher.Data.Models
             { "ulong", new TargetType() { Name = "ulong", Type = typeof(ulong) } },
             { "float", new TargetType() { Name = "float", Type = typeof(float) } },
             { "string", new TargetType() { Name = "string", Type = typeof(string) } },
-            { "lstring", new TargetType() { Name = "string", Type = typeof(string), IsZeroTerminatedString = true, StringLocalization = StringLocalization.LStrings } },
+            { "lstring", new TargetType() { Name = "string", Type = typeof(string), StringLocalization = StringLocalization.LStrings } },
+            { "dlstring", new TargetType() { Name = "string", Type = typeof(string), StringLocalization = StringLocalization.DLStrings } },
+            { "ilstring", new TargetType() { Name = "string", Type = typeof(string), StringLocalization = StringLocalization.ILStrings } },
             { "fn", new TargetType() { Name = "Function", Type = typeof(object) } },
         };
 
