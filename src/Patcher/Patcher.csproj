@@ -63,6 +63,9 @@
     <Compile Include="Code\Building\CodeBuilder.cs" />
     <Compile Include="Code\Building\CodeBuilderOptions.cs" />
     <Compile Include="Code\CodeBase.cs" />
+    <Compile Include="Code\CodeEnum.cs" />
+    <Compile Include="Code\CodeEnumMemberCollection.cs" />
+    <Compile Include="Code\CodeEnumMember.cs" />
     <Compile Include="Code\CodeProperty.cs" />
     <Compile Include="Code\CodeClass.cs" />
     <Compile Include="Code\CodeField.cs" />

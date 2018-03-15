@@ -35,6 +35,11 @@ namespace Patcher.Data.Models.Loading
             { "sbyte", typeof(sbyte) }
         };
 
+        public static string GetEnumTypeName(Type type)
+        {
+            return enumTypes.Where(t => t.Value == type).Select(t => t.Key).FirstOrDefault();
+        }
+
         public static Type ParseEnumType(string value)
         {
             if (enumTypes.ContainsKey(value))
