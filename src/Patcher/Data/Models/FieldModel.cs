@@ -104,7 +104,7 @@ namespace Patcher.Data.Models
         {
             Key = key;
             Name = name;
-            DisplayName = displayName;
+            DisplayName = displayName ?? name;
             Description = description;
             InnerModel = innerModel;
             TargetModel = targetModel;
@@ -119,6 +119,7 @@ namespace Patcher.Data.Models
         {
             Key = Key ?? model.Key;
             Name = Name ?? model.Name;
+            DisplayName = DisplayName ?? model.DisplayName;
             Description = Description ?? model.Description;
             InnerModel = InnerModel ?? model.InnerModel;
             TargetModel = TargetModel ?? model.TargetModel;
@@ -160,6 +161,14 @@ namespace Patcher.Data.Models
                 builder.AppendFormat("[Group] {0}", FieldGroup);
             }
 
+            if (!string.IsNullOrEmpty(Description))
+            {
+                builder.AppendFormat("[Description(\"{0}\")] ", Description);
+            }
+            if (!string.IsNullOrEmpty(DisplayName))
+            {
+                builder.AppendFormat("[DisplayName(\"{0}\")] ", DisplayName);
+            }
             builder.AppendFormat(" {0}", !string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
 
             return builder.ToString();

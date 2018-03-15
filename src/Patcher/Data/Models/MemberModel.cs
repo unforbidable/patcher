@@ -76,7 +76,7 @@ namespace Patcher.Data.Models
         public MemberModel(string name, string displayName, string description, MemberType memberType, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength)
         {
             Name = name;
-            DisplayName = displayName;
+            DisplayName = displayName ?? name;
             Description = description;
             MemberType = memberType;
             TargetModel = targetModel;
@@ -95,6 +95,7 @@ namespace Patcher.Data.Models
         public void ResolveFrom(FieldModel model)
         {
             Name = Name ?? model.Name;
+            DisplayName = DisplayName ?? model.DisplayName;
             Description = Description ?? model.Description;
             MemberType = MemberType ?? model.MemberType;
             TargetModel = TargetModel ?? model.TargetModel;
@@ -129,6 +130,14 @@ namespace Patcher.Data.Models
                 builder.AppendFormat("[{0}]", ArrayLength > 0 ? ArrayLength.ToString() : string.Empty);
             }
 
+            if (!string.IsNullOrEmpty(Description))
+            {
+                builder.AppendFormat("[Description(\"{0}\")] ", Description);
+            }
+            if (!string.IsNullOrEmpty(DisplayName))
+            {
+                builder.AppendFormat("[DisplayName(\"{0}\")] ", DisplayName);
+            }
             builder.AppendFormat(" {0}", !string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
 
             return builder.ToString();

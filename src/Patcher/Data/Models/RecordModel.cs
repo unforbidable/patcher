@@ -39,7 +39,7 @@ namespace Patcher.Data.Models
         {
             Key = key;
             Name = name;
-            DisplayName = displayName;
+            DisplayName = displayName ?? name;
             Description = description;
             Fields = fields.ToArray();
         }

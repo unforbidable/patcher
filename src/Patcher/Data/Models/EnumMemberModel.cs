@@ -51,7 +51,7 @@ namespace Patcher.Data.Models
         public EnumMemberModel(string name, string displayName, string description, string value)
         {
             Name = name;
-            DisplayName = displayName;
+            DisplayName = displayName ?? name;
             Description = description;
             Value = value;
         }
