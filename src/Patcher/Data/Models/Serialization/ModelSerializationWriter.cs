@@ -120,7 +120,7 @@ namespace Patcher.Data.Models.Serialization
             {
                 WriteLine(" ");
             }
-            Write("{0}: ", name);
+            Write("\"{0}\": ", name);
             stack.Index++;
         }
 
