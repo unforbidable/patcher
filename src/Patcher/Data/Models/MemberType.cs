@@ -38,6 +38,8 @@ namespace Patcher.Data.Models
             { "ushort", new MemberType() { Name = "ushort", Type = typeof(ushort) } },
             { "int", new MemberType() { Name = "int", Type = typeof(int) } },
             { "uint", new MemberType() { Name = "uint", Type = typeof(uint) } },
+            { "long", new MemberType() { Name = "long", Type = typeof(long) } },
+            { "ulong", new MemberType() { Name = "ulong", Type = typeof(ulong) } },
             { "float", new MemberType() { Name = "float", Type = typeof(float) } },
             { "bstring", new MemberType() { Name = "string", Type = typeof(string), StringPrefixSize = 1 } },
             { "bzstring", new MemberType() { Name = "string", Type = typeof(string), StringPrefixSize = 1, IsZeroTerminatedString = true } },

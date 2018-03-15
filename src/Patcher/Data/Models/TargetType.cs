@@ -35,6 +35,8 @@ namespace Patcher.Data.Models
             { "ushort", new TargetType() { Name = "ushort", Type = typeof(ushort) } },
             { "int", new TargetType() { Name = "int", Type = typeof(int) } },
             { "uint", new TargetType() { Name = "uint", Type = typeof(uint) } },
+            { "long", new TargetType() { Name = "long", Type = typeof(long) } },
+            { "ulong", new TargetType() { Name = "ulong", Type = typeof(ulong) } },
             { "float", new TargetType() { Name = "float", Type = typeof(float) } },
             { "string", new TargetType() { Name = "string", Type = typeof(string) } },
             { "fn", new TargetType() { Name = "Function", Type = typeof(object) } },
