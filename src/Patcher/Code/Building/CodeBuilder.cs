@@ -43,7 +43,12 @@ namespace Patcher.Code.Building
         public void AppendComment(string text)
         {
             if (!string.IsNullOrEmpty(text))
-                AppendLine(string.Join("\n", text.Split('\n').Select(l => string.Format("// {0}", l))));
+            {
+                foreach (string line in text.Trim().Split( new string[] { "\r\n", "\n" }, StringSplitOptions.None))
+                {
+                    AppendLine(string.Format("// {0}", line));
+                }
+            }
         }
 
         public void AppendLine()
