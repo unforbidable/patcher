@@ -1,0 +1,18 @@
+<enum>
+  <name>GlobalType</name>
+  <type>byte</type>
+  <members>
+    <member>
+      <name>Short</name>
+      <value>115</value>
+    </member>
+    <member>
+      <name>Long</name>
+      <value>108</value>
+    </member>
+    <member>
+      <name>Float</name>
+      <value>102</value>
+    </member>
+  </members>
+</enum>

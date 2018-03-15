@@ -8,7 +8,7 @@
     <!-- TODO: Incomplete
     <destructible /> -->
     <field>
-      <name>DATA</name>
+      <key>DATA</key>
       <display-name>Data</display-name>
       <struct>
         <members>

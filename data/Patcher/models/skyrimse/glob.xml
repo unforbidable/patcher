@@ -1,16 +1,25 @@
 <record>
-  <name>Global</name>
+  <name>GlobalVariable</name>
   <display-name>Global Variable</display-name>
   <fields>
     <editor-id />
     <field>
       <key>FNAM</key>
       <name>Type</name>
-      <type>byte</type>
+      <struct>
+        <members>
+          <global-type-enum />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>FLTV</key>
+      <name>Value</name>
+      <type>float</type>
       <as>
-        <!-- This structure indicates that this value can be on of several different primitive types, int, long, or float. -->
+        <!-- This structure indicates that this value can be one of several different primitive types, int, long, or float. -->
         <struct>
-          <name>Type</name>
+          <name>Value</name>
           <union>true</union>
           <members>
             <int />
@@ -20,6 +29,5 @@
         </struct>
       </as>
     </field>
-    <float key="FLTV" name="Value" />
   </fields>
 </record>
