@@ -37,19 +37,70 @@ namespace Patcher.Data.Models.Code
             // Prepare a namespace for each game model
             foreach (var model in models)
             {
-                code.Namespaces.Add(GetModelNamespace(model));
+                code.Namespaces.Add(GetGameNamespace(model));
             }
 
             return code;
         }
 
-        private CodeNamespace GetModelNamespace(GameModel model)
+        private CodeNamespace GetGameNamespace(GameModel model)
         {
             string nsName = string.Format("Patcher.Data.Models.{0}", model.Name);
-            var ns = new CodeNamespace(nsName);
-            ns.Comment = string.Format("Data model for {0}", model.Name);
+            var ns = new CodeNamespace(nsName)
+            {
+                Comment = string.Format("Data model for {0}", model.Name)
+            };
+
+            foreach (var e in model.Models.OfType<EnumModel>())
+            {
+                ns.Types.Add(GetEnum(e));
+            }
 
             return ns;
+        }
+
+        private CodeEnum GetEnum(EnumModel model)
+        {
+            var comment = new StringBuilder();
+            if (model.IsFlags)
+            {
+                comment.AppendLine("[Flags]");
+            }
+            if (!string.IsNullOrEmpty(model.Description))
+            {
+                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
+            }
+
+            var e = new CodeEnum(model.Name)
+            {
+                Comment = comment.ToString(),
+                Type = model.BaseType
+            };
+
+            foreach (var m in model.Members)
+            {
+                e.Members.Add(GetEnumMember(m));
+            }
+
+            return e;
+        }
+
+        private CodeEnumMember GetEnumMember(EnumMemberModel model)
+        {
+            var comment = new StringBuilder();
+            if (!string.IsNullOrEmpty(model.DisplayName))
+            {
+                comment.AppendLine(string.Format("[DisplayName(\"{0}\")]", model.DisplayName));
+            }
+            if (!string.IsNullOrEmpty(model.Description))
+            {
+                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
+            }
+
+            return new CodeEnumMember(model.Name, model.Value)
+            {
+                Comment = comment.ToString()
+            };
         }
     }
 }

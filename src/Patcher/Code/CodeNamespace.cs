@@ -47,6 +47,11 @@ namespace Patcher.Code
             builder.AppendLine("{");
             builder.EnterBlock();
 
+            foreach (var e in Types.OfType<CodeEnum>())
+            {
+                e.BuildCode(builder);
+            }
+
             foreach (var cls in Types.OfType<CodeClass>())
             {
                 cls.BuildCode(builder);

@@ -110,7 +110,7 @@ namespace Patcher.Data.Models
             var compiler = new ModelCodeCompiler();
             compiler.CompileCode(code, serializedModel);
 
-            Log.Fine("Models compiled as\n{0}", code.BuildCode(true));
+            //Log.Fine("Models compiled as\n{0}", code.BuildCode(true));
         }
     }
 }
