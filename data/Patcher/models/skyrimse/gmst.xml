@@ -1,0 +1,31 @@
+<record>
+  <name>GameSetting</name>
+  <display-name>Game Setting</display-name>
+  <fields>
+    <editor-id />
+    <field>
+      <key>DATA</key>
+      <name>Value</name>
+      <struct>
+        <members>
+          <member>
+            <!-- Name is dependant on the first letter of the editor ID -->
+            <type>uint</type>
+            <as>
+              <!-- This structure indicates that this value can be one of several different primitive types -->
+              <struct>
+                <union>true</union>
+                <members>
+                  <uint name="boolean" />
+                  <uint name="int" />
+                  <float name="float" />
+                  <lstring name="string" />
+                </members>
+              </struct>
+            </as>
+          </member>
+        </members>
+      </struct>
+    </field>
+  </fields>
+</record>
