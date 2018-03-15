@@ -16,7 +16,7 @@
               <struct>
                 <union>true</union>
                 <members>
-                  <uint name="boolean" />
+                  <bool name="boolean" />
                   <uint name="int" />
                   <float name="float" />
                   <lstring name="string" />

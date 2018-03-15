@@ -29,6 +29,7 @@ namespace Patcher.Data.Models
 
         static Dictionary<string, TargetType> knownTypes = new Dictionary<string, TargetType>()
         {
+            { "bool", new TargetType() { Name = "boolean", Type = typeof(bool) } },
             { "byte", new TargetType() { Name = "byte", Type = typeof(byte) } },
             { "sbyte", new TargetType() { Name = "sbyte", Type = typeof(sbyte) } },
             { "short", new TargetType() { Name = "short", Type = typeof(short) } },
@@ -39,6 +40,7 @@ namespace Patcher.Data.Models
             { "ulong", new TargetType() { Name = "ulong", Type = typeof(ulong) } },
             { "float", new TargetType() { Name = "float", Type = typeof(float) } },
             { "string", new TargetType() { Name = "string", Type = typeof(string) } },
+            { "lstring", new TargetType() { Name = "string", Type = typeof(string), IsZeroTerminatedString = true, StringLocalization = StringLocalization.LStrings } },
             { "fn", new TargetType() { Name = "Function", Type = typeof(object) } },
         };
 

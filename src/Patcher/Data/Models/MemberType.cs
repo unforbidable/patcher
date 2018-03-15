@@ -32,6 +32,7 @@ namespace Patcher.Data.Models
 
         static Dictionary<string, MemberType> knownTypes = new Dictionary<string, MemberType>()
         {
+            { "bool", new MemberType() { Name = "boolean", Type = typeof(bool) } },
             { "byte", new MemberType() { Name = "byte", Type = typeof(byte) } },
             { "sbyte", new MemberType() { Name = "sbyte", Type = typeof(sbyte) } },
             { "short", new MemberType() { Name = "short", Type = typeof(short) } },
