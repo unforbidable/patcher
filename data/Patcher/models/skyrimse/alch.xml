@@ -11,15 +11,7 @@
     <pickup-sound />
     <drop-sound />
     <equipment-type />
-    <field>
-      <key>DATA</key>
-      <display-name>Data</display-name>
-      <struct>
-        <members>
-          <float name="Weight" />
-        </members>
-      </struct>
-    </field>
+    <float key="DATA" name="Weight" />
     <field>
       <key>ENIT</key>
       <struct>
