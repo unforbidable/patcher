@@ -2,8 +2,7 @@
   <name>Armor</name>
   <fields>
     <editor-id />
-    <!-- TODO: Incomplete
-    <virtual-machine /> -->
+    <virtual-machine-adapter />
     <object-bounds />
     <full-name />
     <object-enchantment />

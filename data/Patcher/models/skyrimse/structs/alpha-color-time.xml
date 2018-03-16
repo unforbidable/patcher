@@ -1,8 +1,10 @@
 <struct>
-  <name>Color</name>
+  <name>AlphaColorTime</name>
   <members>
+    <float name="Timestamp" />
     <float name="Red" />
     <float name="Green" />
     <float name="Blue" />
+    <float name="Alpha" />
   </members>
 </struct>

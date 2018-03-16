@@ -1,0 +1,65 @@
+<record>
+  <name>ImageSpace</name>
+  <display-name>Image Space</display-name>
+  <fields>
+    <editor-id />
+    <field>
+      <key>ENAM</key>
+      <name>Unknown</name>
+      <type>float[14]</type>
+    </field>
+    <field>
+      <key>HNAM</key>
+      <name>HDR</name>
+      <struct>
+        <members>
+          <float name="EyeAdaptSpeed" display-name="Eye Adapt Speed" />
+          <float name="BloomBlurRadius" display-name="Bloom Blur Radius" />
+          <float name="BloomThreshold" display-name="Bloom Threshold" />
+          <float name="BloomScale" display-name="Bloom Scale" />
+          <float name="ReceiveBloomThreshold" display-name="Receive Bloom Threshold" />
+          <float name="White" />
+          <float name="SunlightScale" display-name="Sunlight Scale" />
+          <float name="SkyScale" display-name="Sky Scale" />
+          <float name="EyeAdaptStrength" display-name="Eye Adapt Strength" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>CNAM</key>
+      <name>Cinematic</name>
+      <struct>
+        <members>
+          <float name="Saturation" />
+          <float name="Brightness" />
+          <float name="Contrast" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>TNAM</key>
+      <name>Tint</name>
+      <struct>
+        <members>
+          <float name="Amount" />
+          <color />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>DNAM</key>
+      <name>DOF</name>
+      <display-name>Depth Of Field</display-name>
+      <struct>
+        <members>
+          <float name="Strength" />
+          <float name="Distance" />
+          <float name="Range" />
+          <float name="Unknown" hidden="true" />
+          <bool name="NoSky" display-name="No Sky Blur" />
+          <blur-radius />
+        </members>
+      </struct>
+    </field>
+  </fields>
+</record>

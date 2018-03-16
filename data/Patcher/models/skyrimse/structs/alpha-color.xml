@@ -1,8 +1,9 @@
 <struct>
-  <name>Color</name>
+  <name>AlphaColor</name>
   <members>
     <float name="Red" />
     <float name="Green" />
     <float name="Blue" />
+    <float name="Alpha" />
   </members>
 </struct>
