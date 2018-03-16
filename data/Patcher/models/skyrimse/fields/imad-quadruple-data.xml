@@ -1,0 +1,48 @@
+<field>
+  <name>ImadQuadrupleData</name>
+  <struct>
+    <members>
+      <member>
+        <struct>
+          <name>Data0</name>
+          <display-name>Data #0</display-name>
+          <members>
+            <float name="Time" />
+            <float name="Value" />
+          </members>
+        </struct>
+      </member>
+      <member>
+        <struct>
+          <name>Data1</name>
+          <display-name>Data #1</display-name>
+          <members>
+            <float name="Time" />
+            <float name="Value" />
+          </members>
+        </struct>
+      </member>
+      <member>
+        <struct>
+          <name>Data2</name>
+          <display-name>Data #2</display-name>
+          <members>
+            <float name="Time" />
+            <float name="Value" />
+          </members>
+        </struct>
+      </member>
+      <member>
+        <struct>
+          <name>Data3</name>
+          <display-name>Data #3</display-name>
+          <members>
+            <float name="Time" />
+            <float name="Value" />
+          </members>
+        </struct>
+      </member>
+    </members>
+  </struct>
+</field>
+

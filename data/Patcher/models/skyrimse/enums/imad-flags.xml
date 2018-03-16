@@ -1,0 +1,17 @@
+<enum>
+  <name>ImadFlags</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <!-- There are 25 extra unknown enum values that might need to be added in
+    as hidden values... -->
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Animatable</name>
+      <value>0x1</value>
+    </member>
+  </members>
+</enum>

@@ -1,0 +1,330 @@
+<record>
+  <name>ImageSpaceAdapter</name>
+  <display-name>Image Space Adapter</display-name>
+  <fields>
+    <editor-id />
+    <field>
+      <key>DNAM</key>
+      <name>DataCount</name>
+      <display-name>Data Count</display-name>
+      <struct>
+        <members>
+          <imad-flags />
+          <float name="Duration" />
+          <member>
+            <struct>
+              <name>HDR</name>
+              <members>
+                <uint name="EyeAdaptSpeedMult" display-name="Eye Adapt Speed Multiplier" />
+                <uint name="EyeAdaptSpeedAdd" display-name="Eye Adapt Speed Add" />
+                <uint name="BloomBlurRadiusMult" display-name="Bloom Blur Radius Multiplier" />
+                <uint name="BloomBlurRadiusAdd" display-name="Bloom Blur Radius Add" />
+                <uint name="BloomThresholdMult" display-name="Bloom Threshold Multiplier" />
+                <uint name="BloomThresholdAdd" display-name="Bloom Threshold Add" />
+                <uint name="BloomScaleMult" display-name="Bloom Scale Multiplier" />
+                <uint name="BloomScaleAdd" display-name="Bloom Scale Add" />
+                <uint name="TargetLumMinMult" display-name="Target Lum Min Multiplier" />
+                <uint name="TargetLumMinAdd" display-name="Target Lum Min Add" />
+                <uint name="TargetLumMaxMult" display-name="Target Lum Max Multiplier" />
+                <uint name="TargetLumMaxAdd" display-name="Target Lum Max Add" />
+                <uint name="SunlightScaleMult" display-name="Sunlight Scale Multiplier" />
+                <uint name="SunlightScaleAdd" display-name="Sunlight Scale Add" />
+                <uint name="SkyScaleMult" display-name="Sky Scale Multiplier" />
+                <uint name="SkyScaleAdd" display-name="Sky Scale Add" />
+              </members>
+            </struct>
+          </member>
+          <uint name="Unknown08Mult" hidden="true" />
+          <uint name="Unknown48Add" hidden="true" />
+          <uint name="Unknown09Mult" hidden="true" />
+          <uint name="Unknown49Add" hidden="true" />
+          <uint name="Unknown0AMult" hidden="true" />
+          <uint name="Unknown4AAdd" hidden="true" />
+          <uint name="Unknown0BMult" hidden="true" />
+          <uint name="Unknown4BAdd" hidden="true" />
+          <uint name="Unknown0CMult" hidden="true" />
+          <uint name="Unknown4CAdd" hidden="true" />
+          <uint name="Unknown0DMult" hidden="true" />
+          <uint name="Unknown4DAdd" hidden="true" />
+          <uint name="Unknown0EMult" hidden="true" />
+          <uint name="Unknown4EAdd" hidden="true" />
+          <uint name="Unknown0FMult" hidden="true" />
+          <uint name="Unknown4FAdd" hidden="true" />
+          <uint name="Unknown10Mult" hidden="true" />
+          <uint name="Unknown50Add" hidden="true" />
+          <member>
+            <struct>
+              <name>Cinematic</name>
+              <members>
+                <uint name="SaturationMult" display-name="Saturation Multiplier" />
+                <uint name="SaturationAdd" display-name="Saturation Add" />
+                <uint name="BrightnessMult" display-name="Brightness Multiplier" />
+                <uint name="BrightnessAdd" display-name="Brightness Add" />
+                <uint name="ContrastMult" display-name="Contrast Multiplier" />
+                <uint name="ContrastAdd" display-name="Contrast Add" />
+              </members>
+            </struct>
+          </member>
+          <uint name="Unknown14Mult" hidden="true" />
+          <uint name="Unknown54Add" hidden="true" />
+          <uint name="TintColor" display-name="Tint Color" />
+          <uint name="BlurRadius" display-name="Blur Radius" />
+          <uint name="DoubleVisionStrength" display-name="Double Vision Strength" />
+          <uint name="RadialBlurStrength" display-name="Radial Blur Strength" />
+          <uint name="RadialBlurRampUp" display-name="Radial Blur Ramp Up" />
+          <uint name="RadialBlurStart" display-name="Radial Blur Start" />
+          <!-- TODO: Unfinished
+          <radial-blur-flags /> -->
+          <float name="RadialBlurCenterX" display-name="Radial Blur Center X" />
+          <float name="RadialBlurCenterY" display-name="Radial Blur Center Y" />
+          <uint name="DoFStrength" display-name="DoF Strength" />
+          <uint name="DoFDistance" display-name="DoF Distance" />
+          <uint name="DoFRange" display-name="DoF Range" />
+          <!-- TODO: Unfinished
+          <dof-flags /> -->
+          <uint name="RadialBlurRampDown" display-name="Radial Blur Ramp Down" />
+          <uint name="RadialBlurDownStart" display-name="Radial Blur Down Start" />
+          <uint name="FadeColor" display-name="Fade Color" />
+          <uint name="MotionBlurStrength" display-name="Motion Blur Strength" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>BNAM</key>
+      <name>BlurRadius</name>
+      <display-name>Blur Radius</display-name>
+      <struct>
+        <members>
+          <member>
+            <imad-single-data name="Data0" display-name="Data #0" />
+          </member>
+          <member>
+            <imad-single-data name="Data1" display-name="Data #1" />
+          </member>
+          <member>
+            <imad-single-data name="Data2" display-name="Data #2" />
+          </member>
+          <member>
+            <imad-single-data name="Data3" display-name="Data #3" />
+          </member>
+          <member>
+            <imad-single-data name="Data4" display-name="Data #4" />
+          </member>
+          <member>
+            <imad-single-data name="Data5" display-name="Data #5" />
+          </member>
+          <member>
+            <imad-single-data name="Data6" display-name="Data #6" />
+          </member>
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>VNAM</key>
+      <name>DoubleVisionStrength</name>
+      <display-name>Double Vision Strength</display-name>
+      <struct>
+        <members>
+          <member>
+            <imad-single-data name="Data0" display-name="Data #0" />
+          </member>
+          <member>
+            <imad-single-data name="Data1" display-name="Data #1" />
+          </member>
+          <member>
+            <imad-single-data name="Data2" display-name="Data #2" />
+          </member>
+          <member>
+            <imad-single-data name="Data3" display-name="Data #3" />
+          </member>
+          <member>
+            <imad-single-data name="Data4" display-name="Data #4" />
+          </member>
+          <member>
+            <imad-single-data name="Data5" display-name="Data #5" />
+          </member>
+          <member>
+            <imad-single-data name="Data6" display-name="Data #6" />
+          </member>
+          <member>
+            <imad-single-data name="Data7" display-name="Data #7" />
+          </member>
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>TNAM</key>
+      <name>TintColor</name>
+      <display-name>Tint Color</display-name>
+      <struct>
+        <members>
+          <alpha-color-time name="Data0" display-name="Data #0" />
+          <alpha-color-time name="Data1" display-name="Data #1" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>NAM3</key>
+      <name>FadeColor</name>
+      <display-name>Fade Color</display-name>
+      <struct>
+        <members>
+          <alpha-color-time name="Data0" display-name="Data #0" />
+          <alpha-color-time name="Data1" display-name="Data #1" />
+        </members>
+      </struct>
+    </field>
+    <imad-double-data key="RNAM" name="RadialBlurStrength" display-name="Radial Blur Strength" />
+    <imad-double-data key="SNAM" name="RadialBlurRampUp" display-name="Radial Blur Ramp Up" />
+    <imad-double-data key="UNAM" name="RadialBlurStart" display-name="Radial Blur Start" />
+    <imad-double-data key="NAM1" name="RadialBlurRampDown" display-name="Radial Blur Ramp Down" />
+    <imad-double-data key="NAM2" name="RadialBlurDownStart" display-name="Radial Blur Down Start" />
+    <imad-double-data key="WNAM" name="DoFStrength" display-name="DoF Strength" />
+    <imad-double-data key="XNAM" name="DoFDistance" display-name="DoF Distance" />
+    <imad-double-data key="YNAM" name="DoFRange" display-name="DoF Range" />
+    <imad-double-data key="NAM4" name="MotionBlurStrength" display-name="Motion Blur Strength" />
+    <field>
+      <name>HDR</name>
+      <group>
+        <fields>
+          <!-- Unsure of what to do about the special characters in the keys. -->
+          <imad-double-data key="aIAD" name="EyeAdaptSpeedMult" display-name="Eye Adapt Speed Multiplier" />
+          <imad-double-data key="@IAD" name="EyeAdaptSpeedAdd" display-name="Eye Adapt Speed Add" />
+          <imad-double-data key="bIAD" name="BloomBlurRadiusMult" display-name="Bloom Blur Radius Multiplier" />
+          <imad-double-data key="AIAD" name="BloomBlurRadiusAdd" display-name="Bloom Blur Radius Add" />
+          <imad-double-data key="cIAD" name="BloomThresholdMult" display-name="Bloom Threshold Multiplier" />
+          <imad-double-data key="BIAD" name="BloomThresholdAdd" display-name="Bloom Threshold Add" />
+          <field>
+            <key>dIAD</key>
+            <name>BloomScaleMult</name>
+            <display-name>Bloom Scale Multiplier</display-name>
+            <struct>
+              <members>
+                <member>
+                  <imad-single-data name="Data0" display-name="Data #0" />
+                </member>
+                <member>
+                  <imad-single-data name="Data1" display-name="Data #1" />
+                </member>
+                <member>
+                  <imad-single-data name="Data2" display-name="Data #2" />
+                </member>
+                <member>
+                  <imad-single-data name="Data3" display-name="Data #3" />
+                </member>
+                <member>
+                  <imad-single-data name="Data4" display-name="Data #4" />
+                </member>
+              </members>
+            </struct>
+          </field>
+          <imad-double-data key="CIAD" name="BloomScaleAdd" display-name="Bloom Scale Add" />
+          <imad-quadruple-data key="eIAD" name="TargetLumMinMult" display-name="Target Lum Min Multiplier" />
+          <imad-double-data key="DIAD" name="TargetLumMinAdd" display-name="Target Lum Min Add" />
+          <imad-double-data key="fIAD" name="TargetLumMaxMult" display-name="Target Lum Max Multiplier" />
+          <imad-double-data key="EIAD" name="TargetLumMaxAdd" display-name="Target Lum Max Add" />
+          <imad-quadruple-data key="gIAD" name="SunlightScaleMult" display-name="Sunlight Scale Multiplier" />
+          <imad-double-data key="FIAD" name="SunlightScaleAdd" display-name="Sunlight Scale Add" />
+          <imad-quadruple-data key="hIAD" name="SkyScaleMult" display-name="Sky Scale Multiplier" />
+          <imad-double-data key="GIAD" name="SkyScaleAdd" display-name="Sky Scale Add" />
+        </fields>
+      </group>
+    </field>
+    <imad-unknown key="iIAD" />
+    <imad-unknown key="HIAD" />
+    <imad-unknown key="jIAD" />
+    <imad-unknown key="lIAD" />
+    <imad-unknown key="kIAD" />
+    <imad-unknown key="JIAD" />
+    <imad-unknown key="IIAD" />
+    <imad-unknown key="KIAD" />
+    <imad-unknown key="mIAD" />
+    <imad-unknown key="LIAD" />
+    <imad-unknown key="nIAD" />
+    <imad-unknown key="MIAD" />
+    <imad-unknown key="oIAD" />
+    <imad-unknown key="NIAD" />
+    <imad-unknown key="pIAD" />
+    <imad-unknown key="OIAD" />
+    <imad-unknown key="qIAD" />
+    <imad-unknown key="PIAD" />
+    <field>
+      <name>Cinematic</name>
+      <group>
+        <fields>
+          <field>
+            <key>rIAD</key>
+            <name>SaturationMult</name>
+            <display-name>Saturation Multiplier</display-name>
+            <struct>
+              <members>
+                <member>
+                  <imad-single-data name="Data0" display-name="Data #0" />
+                </member>
+                <member>
+                  <imad-single-data name="Data1" display-name="Data #1" />
+                </member>
+                <member>
+                  <imad-single-data name="Data2" display-name="Data #2" />
+                </member>
+              </members>
+            </struct>
+          </field>
+          <imad-double-data key="QIAD" name="SaturationAdd" display-name="Saturation Add" />
+          <field>
+            <key>sIAD</key>
+            <name>BrightnessMult</name>
+            <display-name>Brightness Multiplier</display-name>
+            <struct>
+              <members>
+                <member>
+                  <imad-single-data name="Data0" display-name="Data #0" />
+                </member>
+                <member>
+                  <imad-single-data name="Data1" display-name="Data #1" />
+                </member>
+                <member>
+                  <imad-single-data name="Data2" display-name="Data #2" />
+                </member>
+                <member>
+                  <imad-single-data name="Data3" display-name="Data #3" />
+                </member>
+                <member>
+                  <imad-single-data name="Data4" display-name="Data #4" />
+                </member>
+                <member>
+                  <imad-single-data name="Data5" display-name="Data #5" />
+                </member>
+                <member>
+                  <imad-single-data name="Data6" display-name="Data #6" />
+                </member>
+              </members>
+            </struct>
+          </field>
+          <imad-double-data key="RIAD" name="BrightnessAdd" display-name="Brightness Add" />
+          <field>
+            <key>tIAD</key>
+            <name>ContrastMult</name>
+            <display-name>Contrast Multiplier</display-name>
+            <struct>
+              <members>
+                <member>
+                  <imad-single-data name="Data0" display-name="Data #0" />
+                </member>
+                <member>
+                  <imad-single-data name="Data1" display-name="Data #1" />
+                </member>
+                <member>
+                  <imad-single-data name="Data2" display-name="Data #2" />
+                </member>
+              </members>
+            </struct>
+          </field>
+          <imad-double-data key="SIAD" name="ContrastAdd" display-name="Contrast Add" />
+        </fields>
+      </group>
+    </field>
+    <imad-unknown key="uIAD" />
+    <imad-unknown key="TIAD" />
+  </fields>
+</record>
