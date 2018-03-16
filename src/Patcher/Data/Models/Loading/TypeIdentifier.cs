@@ -27,18 +27,35 @@ namespace Patcher.Data.Models.Loading
         public string Identifier { get; private set; }
         public int ArrayLength { get; private set; }
         public bool IsArray { get { return ArrayLength >= 0; } }
+        public int ArrayPrefixSize { get; private set; }
 
         public static TypeIdentifier FromString(string id)
         {
             // See if identifier contains squeare brackets, indicating that it is array
-            var match = Regex.Match(id, @"([^[]*)\[([0-9]*)\]");
+            var match = Regex.Match(id, @"([^[]*)\[(b|w|l|[0-9]*)\]");
             if (match.Groups.Count > 1)
             {
-                return new TypeIdentifier()
+                string lengthValue = match.Groups[2].Value;
+
+                int length = 0;
+                if (lengthValue.Length == 0 || int.TryParse(lengthValue, out length))
                 {
-                    Identifier = match.Groups[1].Value,
-                    ArrayLength = match.Groups[2].Value.Length == 0 ? 0 : int.Parse(match.Groups[2].Value)
-                };
+                    // number or empty
+                    return new TypeIdentifier()
+                    {
+                        Identifier = match.Groups[1].Value,
+                        ArrayLength = lengthValue.Length == 0 ? 0 : int.Parse(lengthValue)
+                    };
+                }
+                else
+                {
+                    // b, w or l
+                    return new TypeIdentifier()
+                    {
+                        Identifier = match.Groups[1].Value,
+                        ArrayPrefixSize = lengthValue == "b" ? 1 : lengthValue == "w" ? 2 : 4
+                    };
+                }
             }
             else
             {

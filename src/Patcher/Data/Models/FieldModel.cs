@@ -150,26 +150,28 @@ namespace Patcher.Data.Models
 
             if (IsMember)
             {
-                builder.AppendFormat("[Field] {0}", MemberType);
+                builder.AppendFormat("[Field] {0} ", MemberType);
             }
             else if (IsStruct)
             {
-                builder.AppendFormat("[Struct] {0}", Struct);
+                builder.AppendFormat("[Struct] {0} ", Struct);
             }
             else if (IsFieldGroup)
             {
-                builder.AppendFormat("[Group] {0}", FieldGroup);
+                builder.AppendFormat("[Group] {0} ", FieldGroup);
             }
 
             if (!string.IsNullOrEmpty(Description))
             {
                 builder.AppendFormat("[Description(\"{0}\")] ", Description);
             }
+
             if (!string.IsNullOrEmpty(DisplayName))
             {
                 builder.AppendFormat("[DisplayName(\"{0}\")] ", DisplayName);
             }
-            builder.AppendFormat(" {0}", !string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
+
+            builder.AppendFormat("{0}", !string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
 
             return builder.ToString();
         }

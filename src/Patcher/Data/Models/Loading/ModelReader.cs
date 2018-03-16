@@ -286,24 +286,26 @@ namespace Patcher.Data.Models.Loading
             bool isHidden = HasValueTrue("hidden");
             bool isArray = false;
             int arrayLength = 0;
+            int arrayPrefixSize = 0;
             MemberType memberType = null;
 
             // Read target model (as)
             TargetModel targetModel = ReadTarget();
 
-            // Read type ID element name if nor 'member' else child element 'type'
-            string type = Element.Name != "member" ? Element.Name.LocalName : ReadChildValue("type");
+            // Read type ID element name if nor 'member' else child element or property 'type'
+            string type = Element.Name != "member" ? Element.Name.LocalName : ReadValue("type");
             if (type != null)
             {
                 var id = TypeIdentifier.FromString(type);
                 isArray = id.IsArray;
                 arrayLength = id.ArrayLength;
+                arrayPrefixSize = id.ArrayPrefixSize;
 
                 // Try to find and set appropriate member type
                 if (!MemberType.TryFindKnownMemberType(id.Identifier, out memberType))
                 {
                     Log.Fine("Member type '{0}' is not recornized and needs to be resolved.", id.Identifier);
-                    var memberModel = new MemberModel(name, displayName, description, null, targetModel, isHidden, isVirtual, isArray, arrayLength);
+                    var memberModel = new MemberModel(name, displayName, description, null, targetModel, isHidden, isVirtual, isArray, arrayLength, arrayPrefixSize);
                     Resolver.MarkModelForResolution(memberModel, id.Identifier, File, Element);
                     return memberModel;
                 }
@@ -313,7 +315,7 @@ namespace Patcher.Data.Models.Loading
                 // member type is unspecified
             }
 
-            return new MemberModel(name, displayName, description, memberType, targetModel, isHidden, isVirtual, isArray, arrayLength);
+            return new MemberModel(name, displayName, description, memberType, targetModel, isHidden, isVirtual, isArray, arrayLength, arrayPrefixSize);
         }
 
         public FieldModel ReadField()

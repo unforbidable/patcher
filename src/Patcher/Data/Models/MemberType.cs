@@ -72,7 +72,7 @@ namespace Patcher.Data.Models
             }
             if (StringPrefixSize > 0)
             {
-                builder.AppendFormat("[PrefixSize({0})] ", StringPrefixSize);
+                builder.AppendFormat("[StringPrefix({0})] ", StringPrefixSize);
             }
             if (StringLocalization !=  StringLocalization.None)
             {

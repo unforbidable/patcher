@@ -26,28 +26,33 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents a member of a structure.
     /// </summary>
-    public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>, INamed
+    public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>, IResolvableFrom<StructModel>, INamed
     {
         /// <summary>
-        /// Name of the field or member, used as the name for the generated field, property etc.
+        /// Name of the member, used as the name for the generated field, property etc.
         /// </summary>
         public string Name { get; private set; }
 
         /// <summary>
-        /// Name of the field or member, as will be displayed by the GUI
+        /// Name of the member, as will be displayed by the GUI
         /// </summary>
         public string DisplayName { get; private set; }
 
         /// <summary>
-        /// Description of the field or member, used as the name for the generated field, property etc.
+        /// Description of the member, used as the name for the generated field, property etc.
         /// </summary>
         public string Description { get; private set; }
 
         /// <summary>
-        /// Type of the field or member, describing the way the field is stored in plugins.
+        /// Type of the member, describing the way the field is stored in plugins.
         /// </summary>
         public MemberType MemberType { get; private set; }
-        
+
+        /// <summary>
+        /// Struct model that represents this memner.
+        /// </summary>
+        public StructModel Struct { get; private set; }
+
         /// <summary>
         /// Type of the property generated for this field or member, can be any crt type or generated structure or enumeration
         /// </summary>
@@ -73,7 +78,14 @@ namespace Patcher.Data.Models
         /// </summary>
         public int ArrayLength { get; private set; }
 
-        public MemberModel(string name, string displayName, string description, MemberType memberType, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength)
+        /// <summary>
+        /// Size of the array length prefix, only used when member is an array
+        /// </summary>
+        public int ArrayPrefixSize { get; private set; }
+
+        public bool IsStruct { get { return Struct != null; } }
+
+        public MemberModel(string name, string displayName, string description, MemberType memberType, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength, int arrayPrefixSize)
         {
             Name = name;
             DisplayName = displayName ?? name;
@@ -84,6 +96,7 @@ namespace Patcher.Data.Models
             IsVirtual = isVirtual;
             IsArray = isArray;
             ArrayLength = arrayLength;
+            ArrayPrefixSize = arrayPrefixSize;
         }
 
         public void ResolveFrom(EnumModel model)
@@ -105,6 +118,11 @@ namespace Patcher.Data.Models
             ArrayLength = model.ArrayLength;
         }
 
+        public void ResolveFrom(StructModel model)
+        {
+            Struct = model;
+        }
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -124,20 +142,29 @@ namespace Patcher.Data.Models
                 builder.AppendFormat("[As({0})] ", TargetModel);
             }
 
-            builder.AppendFormat("{0}", MemberType != null ? MemberType.ToString() : "<unspecified-type>");
+            if (!string.IsNullOrEmpty(Description))
+            {
+                builder.AppendFormat("[Description(\"{0}\")] ", Description);
+            }
+
+            if (!string.IsNullOrEmpty(DisplayName))
+            {
+                builder.AppendFormat("[DisplayName(\"{0}\")] ", DisplayName);
+            }
+
+            if (ArrayPrefixSize > 0)
+            {
+                builder.AppendFormat("[ArrayPrefix({0})] ", ArrayPrefixSize);
+            }
+
+
+            builder.AppendFormat("{0}", MemberType != null ? MemberType.ToString() : Struct != null ? Struct.Name : "<unspecified-type>");
+
             if (IsArray)
             {
                 builder.AppendFormat("[{0}]", ArrayLength > 0 ? ArrayLength.ToString() : string.Empty);
             }
 
-            if (!string.IsNullOrEmpty(Description))
-            {
-                builder.AppendFormat("[Description(\"{0}\")] ", Description);
-            }
-            if (!string.IsNullOrEmpty(DisplayName))
-            {
-                builder.AppendFormat("[DisplayName(\"{0}\")] ", DisplayName);
-            }
             builder.AppendFormat(" {0}", !string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
 
             return builder.ToString();

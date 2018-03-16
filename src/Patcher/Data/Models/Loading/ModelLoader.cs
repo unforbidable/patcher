@@ -96,19 +96,20 @@ namespace Patcher.Data.Models.Loading
             var inlineModels = ExtractInlineModels(models).ToArray();
             models.AddRange(inlineModels.Where(m => !models.Contains(m)));
 
-            // Sort groups separatedly according to hierarchy
+            // Sort models 
             var sortByNameComparer = new ModelNameComparer();
-            var groups = models.OfType<FieldGroupModel>().ToList();
-            groups.Sort(sortByNameComparer);
-            groups.Sort(new ModelGroupDescendancyComparer());
-
-            // Sort other models 
             var enums = models.OfType<EnumModel>().ToList();
             var structs = models.OfType<StructModel>().ToList();
             var records = models.OfType<RecordModel>().ToList();
+            var groups = models.OfType<FieldGroupModel>().ToList();
             enums.Sort(sortByNameComparer);
             structs.Sort(sortByNameComparer);
             records.Sort(sortByNameComparer);
+            groups.Sort(sortByNameComparer);
+
+            // Sort groups and structs separatedly according to hierarchy
+            groups.Sort(new ModelGroupDescendancyComparer());
+            structs.Sort(new ModelStructDescendancyComparer());
 
             // Put models back into one list, in order
             models = new List<IModel>(enums).Union(structs).Union(groups).Union(records).Union(functions).ToList();
@@ -124,7 +125,9 @@ namespace Patcher.Data.Models.Loading
 
         private IEnumerable<IModel> ExtractInlineModels(List<IModel> models)
         {
-            return models.OfType<RecordModel>().SelectMany(r => r.Fields).SelectMany(f => ExtractInlineModels(f));
+            // Root all field groups and stuctures from all records and structures
+            return models.OfType<RecordModel>().SelectMany(r => r.Fields).SelectMany(f => ExtractInlineModels(f))
+                .Union(models.OfType<StructModel>().SelectMany(r => r.Members).SelectMany(f => ExtractInlineModels(f)));
         }
 
         private IEnumerable<IModel> ExtractInlineModels(FieldModel field)
@@ -153,6 +156,11 @@ namespace Patcher.Data.Models.Loading
         private IEnumerable<IModel> ExtractInlineModels(MemberModel member)
         {
             var models = new List<IModel>();
+            if (member.IsStruct)
+            {
+                models.Add(member.Struct);
+                models.AddRange(member.Struct.Members.SelectMany(m => ExtractInlineModels(m)));
+            }
             if (member.TargetModel != null && member.TargetModel.Target is StructModel)
             {
                 models.Add(member.TargetModel.Target);
@@ -208,7 +216,46 @@ namespace Patcher.Data.Models.Loading
 
             private bool IsDescendantOf(FieldGroupModel x, FieldGroupModel y)
             {
+                // Iterate through all fields of this field group that are field groups as well
                 foreach (var child in y.Fields.Where(f => f.IsFieldGroup).Select(f => f.FieldGroup))
+                {
+                    if (child == x)
+                    {
+                        return true;
+                    }
+                    else if (IsDescendantOf(x, child))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        private class ModelStructDescendancyComparer : IComparer<StructModel>
+        {
+            public int Compare(StructModel x, StructModel y)
+            {
+                // Struct referenced from other struct need to go first
+                if (IsDescendantOf(x, y))
+                {
+                    return -1;
+                }
+                else if (IsDescendantOf(y, x))
+                {
+                    return 1;
+                }
+                else
+                {
+                    return string.Compare(x.Name, y.Name);
+                }
+            }
+
+            private bool IsDescendantOf(StructModel x, StructModel y)
+            {
+                // Iterate through all members that are structs and also targets that are structs
+                foreach (var child in y.Members.Where(m => m.IsStruct).Select(m => m.Struct).Union(y.Members.Where(m => m.TargetModel != null && m.TargetModel.Target is StructModel).Select(m => m.TargetModel.Target as StructModel)))
                 {
                     if (child == x)
                     {

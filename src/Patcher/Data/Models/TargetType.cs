@@ -60,6 +60,10 @@ namespace Patcher.Data.Models
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
+            if (StringLocalization != StringLocalization.None)
+            {
+                builder.AppendFormat("[Localized(\"{0}\")] ", StringLocalization.ToString().ToLower());
+            }
             builder.AppendFormat("{0}", Name);
             return builder.ToString();
         }
