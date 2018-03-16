@@ -1,0 +1,16 @@
+﻿<struct>
+  <name>ScriptPropertObject</name>
+  <members>
+    <!-- conditional read/write according to the ObjectFormat in VirtualMachineAdapter -->
+    <!-- object format is 1 -->
+    <uint name="FormV1" if="$record.VirtualMachineAdapter.ObjectFormat==1" hidden="true" />
+    <ushort name="AliasV1" if="$record.VirtualMachineAdapter.ObjectFormat==1" hidden="true" />
+    <ushort name="UnusedV1" if="$record.VirtualMachineAdapter.ObjectFormat==1" hidden="true" />
+    <!-- object format is 2 -->
+    <ushort name="UnusedV2" if="$record.VirtualMachineAdapter.ObjectFormat==2" hidden="true" />
+    <ushort name="AliasV2" if="$record.VirtualMachineAdapter.ObjectFormat==2" hidden="true" />
+    <uint name="FormV2" if="$record.VirtualMachineAdapter.ObjectFormat==2" hidden="true" />
+    <member virtual="true" name="Form" as-type="ref" />
+    <member virtual="true" name="Alias" as-type="ushort" />
+  </members>
+</struct>

@@ -1,0 +1,14 @@
+﻿<enum>
+  <name>ScriptPropertyStatus</name>
+  <type>byte</type>
+  <members>
+    <member>
+      <name>Edited</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Removed</name>
+      <value>3</value>
+    </member>
+  </members>
+</enum>

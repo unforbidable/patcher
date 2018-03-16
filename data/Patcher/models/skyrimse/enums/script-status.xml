@@ -1,0 +1,20 @@
+﻿<enum>
+  <name>ScriptStatus</name>
+  <type>byte</type>
+  <members>
+    <member>
+      <name>LocalScript</name>
+      <display-name>Local Script</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Inherited</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>InheritedAndRemoved</name>
+      <display-name>Inherited And Removed</display-name>
+      <value>3</value>
+    </member>
+  </members>
+</enum>

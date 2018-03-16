@@ -1,0 +1,51 @@
+﻿<enum>
+  <name>ScriptPropertyType</name>
+  <type>byte</type>
+  <members>
+    <member>
+      <name>Object</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>String</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>Int</name>
+      <value>3</value>
+    </member>
+    <member>
+      <name>Float</name>
+      <value>4</value>
+    </member>
+    <member>
+      <name>Bool</name>
+      <value>5</value>
+    </member>
+    <member>
+      <name>ArrayOfObject</name>
+      <display-name>Array Of Object</display-name>
+      <value>11</value>
+    </member>
+    <member>
+      <name>ArrayOfString</name>
+      <display-name>Array Of String</display-name>
+      <value>12</value>
+    </member>
+    <member>
+      <name>ArrayOfInt</name>
+      <display-name>Array Of Int</display-name>
+      <value>13</value>
+    </member>
+    <member>
+      <name>ArrayOfFloat</name>
+      <display-name>Array Of Float</display-name>
+      <value>14</value>
+    </member>
+    <member>
+      <name>ArrayOfBool</name>
+      <display-name>Array Of Bool</display-name>
+      <value>15</value>
+    </member>
+  </members>
+</enum>

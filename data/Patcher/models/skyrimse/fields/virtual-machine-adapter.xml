@@ -1,0 +1,14 @@
+﻿<field>
+  <name>VirtualMachineAdapter</name>
+  <key>VMAD</key>
+  <struct>
+    <name>VirtualMachineAdapter</name>
+    <members>
+      <short name="Version" hidden="true" />
+      <short name="ObjectFormat" hidden="true" />
+      <!-- 'w' means array size is specified as a ushort before the actual array data -->
+      <member type="script[w]" name="Scripts" />
+      <!-- TODO: fragments, alliases may follow here, depending on form type, will be handled with conditional read/write 'if' -->
+    </members>
+  </struct>
+</field>

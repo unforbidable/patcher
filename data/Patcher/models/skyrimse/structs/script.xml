@@ -1,0 +1,9 @@
+﻿<struct>
+  <name>Script</name>
+  <members>
+    <wstring name="ScriptName" display-name="Script Name" />
+    <script-status name="ScriptStatus" display-name="Script Status" />
+    <!-- 'w' means array size is specified as a ushort before the actual array data -->
+    <member type="script-property[w]" name="Properties" />
+  </members>
+</struct>
