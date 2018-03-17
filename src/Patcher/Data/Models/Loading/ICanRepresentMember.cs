@@ -26,5 +26,9 @@ namespace Patcher.Data.Models.Loading
     /// </summary>
     public interface ICanRepresentMember : IModel
     {
+        /// <summary>
+        /// Gets the name of the model that represents the member.
+        /// </summary>
+        string Name { get; }
     }
 }

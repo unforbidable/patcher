@@ -27,7 +27,10 @@ namespace Patcher.Data.Models
     /// </summary>
     public class FunctionParamModel : IModel, IResolvable, IResolvableFrom<EnumModel>
     {
-        ICanRepresentFunctionParam ParamInternal { get; set; }
+        /// <summary>
+        /// Gets the model representing the type of this function parameter.
+        /// </summary>
+        public ICanRepresentFunctionParam Type { get; private set; }
 
         /// <summary>
         /// The name of the parameter, as displayed by the GUI.
@@ -35,34 +38,38 @@ namespace Patcher.Data.Models
         public string DisplayName { get; private set; }
 
         /// <summary>
-        /// Gets the primitive type representing this parameter.
+        /// Gets the primitive type representing this parameter, or null.
         /// </summary>
-        public FunctionParamType FunctionParamType { get { return ParamInternal as FunctionParamType; } }
+        public FunctionParamType FunctionParamType { get { return Type as FunctionParamType; } }
 
         /// <summary>
-        /// Gets the enumeration representing this parameter. 
+        /// Gets the enumeration representing this parameter, or null. 
         /// </summary>
-        public EnumModel Enumeration { get { return ParamInternal as EnumModel; } }
+        public EnumModel Enumeration { get { return Type as EnumModel; } }
 
         /// <summary>
-        /// Gets the form reference represeting this parameter.
+        /// Gets the form reference represeting this parameter, or null.
         /// </summary>
-        public FormReference FormReference { get { return ParamInternal as FormReference; } }
+        public FormReference FormReference { get { return Type as FormReference; } }
+
+        public bool IsFunctionParamType { get { return Type is FunctionParamType; } }
+        public bool IsEnumeration { get { return Type is EnumModel; } }
+        public bool IsFormReference { get { return Type is FormReference; } }
 
         public FunctionParamModel(ICanRepresentFunctionParam model, string displayName)
         {
-            ParamInternal = model;
+            Type = model;
             DisplayName = displayName;
         }
 
         public void ResolveFrom(EnumModel model)
         {
-            ParamInternal = model;
+            Type = model;
         }
 
         public override string ToString()
         {
-            return ParamInternal != null ? ParamInternal.Name : "<undefined-type>";
+            return Type != null ? Type.Name : "<undefined-type>";
         }
     }
 }

@@ -49,22 +49,25 @@ namespace Patcher.Data.Models
         /// </summary>
         public string Description { get; private set; }
 
-        private ICanRepresentField InnerModel { get; set; }
+        /// <summary>
+        /// Gets the model represented by this field.
+        /// </summary>
+        public ICanRepresentField Type { get; private set; }
 
         /// <summary>
         /// Member represented by this field
         /// </summary>
-        public MemberType MemberType { get { return InnerModel as MemberType; } }
+        public MemberType MemberType { get { return Type as MemberType; } }
 
         /// <summary>
         /// Group represeted by this field
         /// </summary>
-        public FieldGroupModel FieldGroup { get { return InnerModel as FieldGroupModel; } }
+        public FieldGroupModel FieldGroup { get { return Type as FieldGroupModel; } }
 
         /// <summary>
         /// Struct represented by this field
         /// </summary>
-        public StructModel Struct { get { return InnerModel as StructModel; } }
+        public StructModel Struct { get { return Type as StructModel; } }
 
         /// <summary>
         /// Type of the property generated for this field, can be any crt type or generated structure or enumeration
@@ -96,17 +99,17 @@ namespace Patcher.Data.Models
         /// </summary>
         public int ArrayLength { get; set; }
 
-        public bool IsMember { get { return InnerModel is MemberType; } }
-        public bool IsFieldGroup { get { return InnerModel is FieldGroupModel; } }
-        public bool IsStruct { get { return InnerModel is StructModel; } }
+        public bool IsMember { get { return Type is MemberType; } }
+        public bool IsFieldGroup { get { return Type is FieldGroupModel; } }
+        public bool IsStruct { get { return Type is StructModel; } }
 
-        public FieldModel(string key, string name, string displayName, string description, ICanRepresentField innerModel, TargetModel targetModel, bool isHidden, bool isVirtual, bool isList, bool isArray, int arrayLength)
+        public FieldModel(string key, string name, string displayName, string description, ICanRepresentField type, TargetModel targetModel, bool isHidden, bool isVirtual, bool isList, bool isArray, int arrayLength)
         {
             Key = key;
             Name = name;
             DisplayName = displayName ?? name;
             Description = description;
-            InnerModel = innerModel;
+            Type = type;
             TargetModel = targetModel;
             IsHidden = isHidden;
             IsVirtual = isVirtual;
@@ -121,7 +124,7 @@ namespace Patcher.Data.Models
             Name = Name ?? model.Name;
             DisplayName = DisplayName ?? model.DisplayName;
             Description = Description ?? model.Description;
-            InnerModel = InnerModel ?? model.InnerModel;
+            Type = Type ?? model.Type;
             TargetModel = TargetModel ?? model.TargetModel;
             IsHidden = IsHidden || model.IsHidden;
             IsVirtual = IsVirtual || model.IsVirtual;
@@ -132,7 +135,7 @@ namespace Patcher.Data.Models
 
         public void ResolveFrom(EnumModel model)
         {
-            InnerModel = MemberType.GetKnownMemberType(model.BaseType);
+            Type = MemberType.GetKnownMemberType(model.BaseType);
             TargetModel = new TargetModel(model, IsArray, ArrayLength);
         }
 

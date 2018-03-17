@@ -27,7 +27,10 @@ namespace Patcher.Data.Models
     /// </summary>
     public class TargetModel : IModel, IResolvableFrom<EnumModel>, IResolvableFrom<StructModel>
     {
-        public ICanRepresentTarget Target { get; private set; }
+        /// <summary>
+        /// Gets the model that represents this target.
+        /// </summary>
+        public ICanRepresentTarget Type { get; private set; }
 
         /// <summary>
         /// When true, target is an array
@@ -39,30 +42,30 @@ namespace Patcher.Data.Models
         /// </summary>
         public int ArrayLength { get; private set; }
 
-        public TargetModel(ICanRepresentTarget target, bool isArray, int arrayLength)
+        public TargetModel(ICanRepresentTarget type, bool isArray, int arrayLength)
         {
-            Target = target;
+            Type = type;
             IsArray = isArray;
             ArrayLength = arrayLength;
         }
 
         public void ResolveFrom(EnumModel model)
         {
-            Target = model;
+            Type = model;
         }
 
         public void ResolveFrom(StructModel model)
         {
-            Target = model;
+            Type = model;
         }
 
         public override string ToString()
         {
             var builder = new StringBuilder();
 
-            if (Target != null)
+            if (Type != null)
             {
-                builder.AppendFormat("{0}", Target.Name);
+                builder.AppendFormat("{0}", Type.Name);
                 if (IsArray)
                 {
                     builder.AppendFormat("[{0}]", ArrayLength > 0 ? ArrayLength.ToString() : string.Empty);

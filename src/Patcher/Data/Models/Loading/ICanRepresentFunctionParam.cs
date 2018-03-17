@@ -26,6 +26,9 @@ namespace Patcher.Data.Models.Loading
     /// </summary>
     public interface ICanRepresentFunctionParam
     {
+        /// <summary>
+        /// Gets the name of the model that represents the function parameter.
+        /// </summary>
         string Name { get; }
     }
 }

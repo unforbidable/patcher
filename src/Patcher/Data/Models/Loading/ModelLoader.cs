@@ -133,10 +133,10 @@ namespace Patcher.Data.Models.Loading
         private IEnumerable<IModel> ExtractInlineModels(FieldModel field)
         {
             var models = new List<IModel>();
-            if (field.TargetModel != null && field.TargetModel.Target is StructModel)
+            if (field.TargetModel != null && field.TargetModel.Type is StructModel)
             {
-                models.Add(field.TargetModel.Target);
-                models.AddRange(((StructModel)field.TargetModel.Target).Members.SelectMany(m => ExtractInlineModels(m)));
+                models.Add(field.TargetModel.Type);
+                models.AddRange(((StructModel)field.TargetModel.Type).Members.SelectMany(m => ExtractInlineModels(m)));
             }
 
             if (field.IsFieldGroup)
@@ -161,10 +161,10 @@ namespace Patcher.Data.Models.Loading
                 models.Add(member.Struct);
                 models.AddRange(member.Struct.Members.SelectMany(m => ExtractInlineModels(m)));
             }
-            if (member.TargetModel != null && member.TargetModel.Target is StructModel)
+            if (member.TargetModel != null && member.TargetModel.Type is StructModel)
             {
-                models.Add(member.TargetModel.Target);
-                models.AddRange(((StructModel)member.TargetModel.Target).Members.SelectMany(m => ExtractInlineModels(m)));
+                models.Add(member.TargetModel.Type);
+                models.AddRange(((StructModel)member.TargetModel.Type).Members.SelectMany(m => ExtractInlineModels(m)));
             }
             return models;
         }
@@ -255,7 +255,7 @@ namespace Patcher.Data.Models.Loading
             private bool IsDescendantOf(StructModel x, StructModel y)
             {
                 // Iterate through all members that are structs and also targets that are structs
-                foreach (var child in y.Members.Where(m => m.IsStruct).Select(m => m.Struct).Union(y.Members.Where(m => m.TargetModel != null && m.TargetModel.Target is StructModel).Select(m => m.TargetModel.Target as StructModel)))
+                foreach (var child in y.Members.Where(m => m.IsStruct).Select(m => m.Struct).Union(y.Members.Where(m => m.TargetModel != null && m.TargetModel.Type is StructModel).Select(m => m.TargetModel.Type as StructModel)))
                 {
                     if (child == x)
                     {

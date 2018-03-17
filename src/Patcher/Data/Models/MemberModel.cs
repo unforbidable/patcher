@@ -46,7 +46,7 @@ namespace Patcher.Data.Models
         /// <summary>
         /// Type of the member or struct, describing the way the field is stored in plugins.
         /// </summary>
-        private ICanRepresentMember InnerModel { get; set; }
+        public ICanRepresentMember Type { get; private set; }
 
         /// <summary>
         /// Type of the property generated for this field or member, can be any crt type or generated structure or enumeration
@@ -78,18 +78,18 @@ namespace Patcher.Data.Models
         /// </summary>
         public int ArrayPrefixSize { get; private set; }
 
-        public bool IsStruct { get { return InnerModel is StructModel; } }
-        public bool IsMemberType { get { return InnerModel is MemberType; } }
+        public bool IsStruct { get { return Type is StructModel; } }
+        public bool IsMemberType { get { return Type is MemberType; } }
 
-        public MemberType MemberType { get { return InnerModel as MemberType; } }
-        public StructModel Struct { get { return InnerModel as StructModel; } }
+        public MemberType MemberType { get { return Type as MemberType; } }
+        public StructModel Struct { get { return Type as StructModel; } }
 
-        public MemberModel(string name, string displayName, string description, ICanRepresentMember innerModel, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength, int arrayPrefixSize)
+        public MemberModel(string name, string displayName, string description, ICanRepresentMember type, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength, int arrayPrefixSize)
         {
             Name = name;
             DisplayName = displayName ?? name;
             Description = description;
-            InnerModel = innerModel;
+            Type = type;
             TargetModel = targetModel;
             IsHidden = isHidden;
             IsVirtual = isVirtual;
@@ -100,16 +100,18 @@ namespace Patcher.Data.Models
 
         public void ResolveFrom(EnumModel model)
         {
-            InnerModel = MemberType.GetKnownMemberType(model.BaseType);
+            Type = MemberType.GetKnownMemberType(model.BaseType);
             TargetModel = new TargetModel(model, IsArray, ArrayLength);
         }
 
         public void ResolveFrom(FieldModel model)
         {
+            // TODO: Do not allow member be resolved from a field that is a field group
+
             Name = Name ?? model.Name;
             DisplayName = DisplayName ?? model.DisplayName;
             Description = Description ?? model.Description;
-            InnerModel = InnerModel ?? (ICanRepresentMember)model.MemberType ?? model.Struct;
+            Type = Type ?? (ICanRepresentMember)model.MemberType ?? model.Struct;
             TargetModel = TargetModel ?? model.TargetModel;
             IsHidden = IsHidden || model.IsHidden;
             IsVirtual = IsVirtual || model.IsVirtual;
@@ -119,7 +121,7 @@ namespace Patcher.Data.Models
 
         public void ResolveFrom(StructModel model)
         {
-            InnerModel = model;
+            Type = model;
         }
 
         public override string ToString()

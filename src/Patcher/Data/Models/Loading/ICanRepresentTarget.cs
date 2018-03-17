@@ -27,7 +27,7 @@ namespace Patcher.Data.Models.Loading
     public interface ICanRepresentTarget : IModel
     {
         /// <summary>
-        /// Gets the name of the type that represents the model object.
+        /// Gets the name of the model that represents the target.
         /// </summary>
         string Name { get; }
     }
