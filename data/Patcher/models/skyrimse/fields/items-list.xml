@@ -2,13 +2,14 @@
 	<name>Items</name>
   <list>true</list>
   <group>
-    <name>Item</name>
+    <name>Ingredient</name>
     <fields>
       <field>
         <key>CNTO</key>
         <name>Item</name>
         <display-name>Input Item</display-name>
         <struct>
+          <name>IngredientItem</name>
           <members>
             <member>
               <name>Item</name>
@@ -28,6 +29,7 @@
         <name>ExtraData</name>
         <display-name>Extra Data</display-name>
         <struct>
+          <name>IngredientExtraData</name>
           <members>
             <member>
               <name>Owner</name>

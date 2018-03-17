@@ -2,6 +2,7 @@
   <!-- default field name of the field group when included (i.e. in most forms) -->
   <name>Keywords</name>
   <group>
+    <name>KeywordList</name>
     <fields>
       <field>
         <hidden>true</hidden>

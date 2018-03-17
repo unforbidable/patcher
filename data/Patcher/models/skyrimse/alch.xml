@@ -15,6 +15,7 @@
     <field>
       <key>ENIT</key>
       <struct>
+        <name>PotionMisc</name>
         <members>
           <uint name="Value" />
           <potion-flags name="Flags" />
@@ -27,16 +28,17 @@
     <field>
       <!-- name of the field -->
       <name>Effects</name>
+      <display-name>Potion Effects</display-name>
       <list>true</list>
       <group>
         <!-- name of the structure -->
         <name>PotionEffect</name>
-        <display-name>Potion Effects</display-name>
         <fields>
           <magic-effect key="EFID" name="BaseEffect" display-name="Base Effect"/>
           <field>
             <key>EFIT</key>
             <struct>
+              <name>PotionEffectData</name>
               <members>
                 <float name="Magnitude" />
                 <uint name="Area" />

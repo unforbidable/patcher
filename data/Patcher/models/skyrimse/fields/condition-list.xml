@@ -7,6 +7,7 @@
       <field>
         <key>CTDA</key>
         <struct>
+          <name>ConditionData</name>
           <members>
             <uint name="RawFlags" hidden="true" />
             <condition-flags name="Flags" virtual="true" />

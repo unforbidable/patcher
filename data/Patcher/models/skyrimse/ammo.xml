@@ -13,6 +13,7 @@
       <key>DATA</key>
       <display-name>Data</display-name>
       <struct>
+        <name>AmmunitionData</name>
         <members>
           <member>
             <name>Projectile</name>

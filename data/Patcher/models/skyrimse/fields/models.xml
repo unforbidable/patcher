@@ -1,5 +1,6 @@
 <field>
   <group>
+    <name>GenericModelData</name>
     <fields>
       <zstring key="MODL" name="WorldModel" display-name="Model Filename" />
       <field>
