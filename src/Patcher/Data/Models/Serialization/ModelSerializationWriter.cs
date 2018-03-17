@@ -51,8 +51,11 @@ namespace Patcher.Data.Models.Serialization
         {
             WriteProperty("Name", model.Name);
             WriteProperty("BasePlugin", model.BasePlugin);
-            // TODO: More properties to write
-
+            WriteProperty("LatestFormVersion", model.LatestFormVersion);
+            WriteProperty("PluginsFileLocation". model.PluginsFileLocation);
+            WriteProperty("PluginsMatchLine", model.PluginsMatchLine);
+            WriteProperty("ArchivesExtension", model.ArchivesExtension);
+            WriteProperty("StringsDefaultLanguage", model.StringsDefaultLanguage);
             WriteProperty("Models", model.Models, WriteRootModel);
         }
 
@@ -90,7 +93,7 @@ namespace Patcher.Data.Models.Serialization
             WriteProperty("Description", model.Description);
             WriteProperty("BaseType", model.BaseType.Name); // Write only .Name for types
             WriteProperty("IsFlags", model.IsFlags);
-            WriteProperty("Members", model.Members, WriteModel); // Array property - pass in the mentod used to write the model in the array
+            WriteProperty("Members", model.Members, WriteModel); // Array property - pass in the method used to write the model in the array
         }
 
         private void WriteModel(EnumMemberModel model)
@@ -101,29 +104,64 @@ namespace Patcher.Data.Models.Serialization
 
         private void WriteModel(MemberModel model)
         {
-            // TODO: Properties to write
+            WriteProperty("Name", model.Name);
+            WriteProperty("DisplayName", model.DisplayName);
+            WriteProperty("Description", model.Description);
+            WriteProperty("MemberType", model.MemberType.Name);
+            WritePropertyAsReference("TargetModel", model.TargetModel);
+            // Does something more need to be done with IsHidden and IsVirtual?
+            WriteProperty("IsHidden", model.IsHidden);
+            WriteProperty("IsVirtual", model.IsVirtual);
+            WriteProperty("IsArray", model.IsArray);
+            if (model.IsArray)
+            {
+                WriteProperty("ArrayLength", model.ArrayLength);
+                WriteProperty("ArrayPrefixSize", model.ArrayPrefixSize);
+            }
+            if (model.IsStruct)
+            {
+                WritePropertyAsReference("Struct", model.Struct);
+            }
         }
 
         private void WriteModel(FunctionModel model)
         {
-            // TODO: Properties to write
+            WriteProperty("Index", model.Index);
+            WriteProperty("Name", model.Name);
+            WriteProperty("Description", model.Description);
+            WriteProperty("Params", model.Params, WriteModel);
         }
 
         private void WriteModel(FunctionParamModel model)
         {
-            // TODO: Properties to write
+            WriteProperty("DisplayName", model.DisplayName);
+            WriteProperty("FunctionParamType", model.FunctionParamType.Name);
+            WritePropertyAsReference("Enumeration", model.Enumeration);
+            WriteProperty("FormReference", model.FormReference, WriteModel);
         }
 
         private void WriteModel(StructModel model)
         {
-            // TODO: Properties to write
+            WriteProperty("Name", model.Name);
+            WriteProperty("Description", model.Description);
+            WriteProperty("Members", model.Members, WriteModel);
         }
 
         private void WriteModel(FieldModel model)
         {
-            // TODO: Properties to write
-
-
+            WriteProperty("Key", model.Key);
+            WriteProperty("Name", model.Name);
+            WriteProperty("DisplayName", model.DisplayName);
+            WriteProperty("Description", model.Description);
+            WritePropertyAsReference("TargetModel", model.TargetModel);
+            WriteProperty("IsHidden", model.IsHidden);
+            WriteProperty("IsVirtual", model.IsVirtual);
+            WriteProperty("IsList", model.IsList);
+            WriteProperty("IsArray", model.IsArray);
+            if (model.IsArray)
+            {
+                WriteProperty("ArrayLength", model.ArrayLength);
+            }
             if (model.IsStruct)
             {
                 // Write struct as reference
@@ -142,20 +180,28 @@ namespace Patcher.Data.Models.Serialization
 
         private void WriteModel(FieldGroupModel model)
         {
-            // TODO: Properties to write
+            WriteProperty("Name", model.Name);
+            WriteProperty("Description", model.Description);
+            WriteProperty("Fields", model.Fields, WriteModel);
         }
 
         private void WriteModel(RecordModel model)
         {
-            // TODO: Properties to write
-
-
-            WriteProperty("Fields", model.Fields, WriteModel); // Array property - pass in the mentod used to write the model in the array
+            WriteProperty("Key", model.Key);
+            WriteProperty("Name", model.Name);
+            WriteProperty("DisplayName", model.DisplayName);
+            WriteProperty("Description", model.Description);
+            WriteProperty("Fields", model.Fields, WriteModel); // Array property - pass in the method used to write the model in the array
         }
 
         private void WriteModel(TargetModel model)
         {
-            // TODO: Properties to write
+            // Does Target property have to be included here too?
+            WriteProperty("IsArray", model.IsArray);
+            if (model.IsArray)
+            {
+                WriteProperty("ArrayLength", model.ArrayLength);
+            }
         }
 
         // Write IModel property as reference (structs, enums, field groups, targets)
@@ -181,6 +227,13 @@ namespace Patcher.Data.Models.Serialization
 
         // Write int property
         private void WriteProperty(string name, int value)
+        {
+            WritePropertyName(name);
+            Write(string.Format("{0}", value));
+        }
+
+        // Write short property
+        private void WriteProperty(string name, short value)
         {
             WritePropertyName(name);
             Write(string.Format("{0}", value));
