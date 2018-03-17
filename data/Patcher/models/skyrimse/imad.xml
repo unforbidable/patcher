@@ -95,27 +95,13 @@
       <display-name>Blur Radius</display-name>
       <struct>
         <members>
-          <member>
-            <imad-single-data name="Data0" display-name="Data #0" />
-          </member>
-          <member>
-            <imad-single-data name="Data1" display-name="Data #1" />
-          </member>
-          <member>
-            <imad-single-data name="Data2" display-name="Data #2" />
-          </member>
-          <member>
-            <imad-single-data name="Data3" display-name="Data #3" />
-          </member>
-          <member>
-            <imad-single-data name="Data4" display-name="Data #4" />
-          </member>
-          <member>
-            <imad-single-data name="Data5" display-name="Data #5" />
-          </member>
-          <member>
-            <imad-single-data name="Data6" display-name="Data #6" />
-          </member>
+          <imad-single-data name="Data0" display-name="Data #0" />
+          <imad-single-data name="Data1" display-name="Data #1" />
+          <imad-single-data name="Data2" display-name="Data #2" />
+          <imad-single-data name="Data3" display-name="Data #3" />
+          <imad-single-data name="Data4" display-name="Data #4" />
+          <imad-single-data name="Data5" display-name="Data #5" />
+          <imad-single-data name="Data6" display-name="Data #6" />
         </members>
       </struct>
     </field>
@@ -125,30 +111,14 @@
       <display-name>Double Vision Strength</display-name>
       <struct>
         <members>
-          <member>
-            <imad-single-data name="Data0" display-name="Data #0" />
-          </member>
-          <member>
-            <imad-single-data name="Data1" display-name="Data #1" />
-          </member>
-          <member>
-            <imad-single-data name="Data2" display-name="Data #2" />
-          </member>
-          <member>
-            <imad-single-data name="Data3" display-name="Data #3" />
-          </member>
-          <member>
-            <imad-single-data name="Data4" display-name="Data #4" />
-          </member>
-          <member>
-            <imad-single-data name="Data5" display-name="Data #5" />
-          </member>
-          <member>
-            <imad-single-data name="Data6" display-name="Data #6" />
-          </member>
-          <member>
-            <imad-single-data name="Data7" display-name="Data #7" />
-          </member>
+          <imad-single-data name="Data0" display-name="Data #0" />
+          <imad-single-data name="Data1" display-name="Data #1" />
+          <imad-single-data name="Data2" display-name="Data #2" />
+          <imad-single-data name="Data3" display-name="Data #3" />
+          <imad-single-data name="Data4" display-name="Data #4" />
+          <imad-single-data name="Data5" display-name="Data #5" />
+          <imad-single-data name="Data6" display-name="Data #6" />
+          <imad-single-data name="Data7" display-name="Data #7" />
         </members>
       </struct>
     </field>
@@ -200,21 +170,11 @@
             <display-name>Bloom Scale Multiplier</display-name>
             <struct>
               <members>
-                <member>
-                  <imad-single-data name="Data0" display-name="Data #0" />
-                </member>
-                <member>
-                  <imad-single-data name="Data1" display-name="Data #1" />
-                </member>
-                <member>
-                  <imad-single-data name="Data2" display-name="Data #2" />
-                </member>
-                <member>
-                  <imad-single-data name="Data3" display-name="Data #3" />
-                </member>
-                <member>
-                  <imad-single-data name="Data4" display-name="Data #4" />
-                </member>
+                <imad-single-data name="Data0" display-name="Data #0" />
+                <imad-single-data name="Data1" display-name="Data #1" />
+                <imad-single-data name="Data2" display-name="Data #2" />
+                <imad-single-data name="Data3" display-name="Data #3" />
+                <imad-single-data name="Data4" display-name="Data #4" />
               </members>
             </struct>
           </field>
@@ -258,15 +218,9 @@
             <display-name>Saturation Multiplier</display-name>
             <struct>
               <members>
-                <member>
-                  <imad-single-data name="Data0" display-name="Data #0" />
-                </member>
-                <member>
-                  <imad-single-data name="Data1" display-name="Data #1" />
-                </member>
-                <member>
-                  <imad-single-data name="Data2" display-name="Data #2" />
-                </member>
+                <imad-single-data name="Data0" display-name="Data #0" />
+                <imad-single-data name="Data1" display-name="Data #1" />
+                <imad-single-data name="Data2" display-name="Data #2" />
               </members>
             </struct>
           </field>
@@ -277,27 +231,13 @@
             <display-name>Brightness Multiplier</display-name>
             <struct>
               <members>
-                <member>
-                  <imad-single-data name="Data0" display-name="Data #0" />
-                </member>
-                <member>
-                  <imad-single-data name="Data1" display-name="Data #1" />
-                </member>
-                <member>
-                  <imad-single-data name="Data2" display-name="Data #2" />
-                </member>
-                <member>
-                  <imad-single-data name="Data3" display-name="Data #3" />
-                </member>
-                <member>
-                  <imad-single-data name="Data4" display-name="Data #4" />
-                </member>
-                <member>
-                  <imad-single-data name="Data5" display-name="Data #5" />
-                </member>
-                <member>
-                  <imad-single-data name="Data6" display-name="Data #6" />
-                </member>
+                <imad-single-data name="Data0" display-name="Data #0" />
+                <imad-single-data name="Data1" display-name="Data #1" />
+                <imad-single-data name="Data2" display-name="Data #2" />
+                <imad-single-data name="Data3" display-name="Data #3" />
+                <imad-single-data name="Data4" display-name="Data #4" />
+                <imad-single-data name="Data5" display-name="Data #5" />
+                <imad-single-data name="Data6" display-name="Data #6" />
               </members>
             </struct>
           </field>
@@ -308,15 +248,9 @@
             <display-name>Contrast Multiplier</display-name>
             <struct>
               <members>
-                <member>
-                  <imad-single-data name="Data0" display-name="Data #0" />
-                </member>
-                <member>
-                  <imad-single-data name="Data1" display-name="Data #1" />
-                </member>
-                <member>
-                  <imad-single-data name="Data2" display-name="Data #2" />
-                </member>
+                <imad-single-data name="Data0" display-name="Data #0" />
+                <imad-single-data name="Data1" display-name="Data #1" />
+                <imad-single-data name="Data2" display-name="Data #2" />
               </members>
             </struct>
           </field>

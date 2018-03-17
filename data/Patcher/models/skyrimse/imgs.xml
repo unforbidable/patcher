@@ -42,9 +42,7 @@
       <struct>
         <members>
           <float name="Amount" />
-          <member>
-            <color />
-          </member>
+          <color />
         </members>
       </struct>
     </field>
