@@ -131,6 +131,8 @@ namespace Patcher.Data.Models.Validation
                 AssertWithError(Regex.IsMatch(name, "^[a-zA-Z_][a-zA-Z0-9_]*$"), "Model name '{0}' is not allowed. Only letters, digits and underscores are allowed and also they cannot begin with a digit.", name);
             }
 
+            AssertWithError(model is FieldModel || model is MemberModel || !(model is INamed) || !string.IsNullOrEmpty(name), "Structs, Field Groups, Records, Enums must be named.");
+
             if (model is IValidable)
             {
                 // Validate model itself if it implements IValidable
@@ -216,7 +218,7 @@ namespace Patcher.Data.Models.Validation
 
         private string GetStackPath()
         {
-            return string.Join("/", modelStack.Reverse().Select(s => !string.IsNullOrEmpty(s.Text) ? s.Text : string.Format("[{0}]", s.Index)));
+            return string.Join("", modelStack.Reverse().Select(s => !string.IsNullOrEmpty(s.Text) ? "." + s.Text : string.Format("[{0}]", s.Index)));
         }
 
         class StackItem
