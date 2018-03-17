@@ -44,14 +44,9 @@ namespace Patcher.Data.Models
         public string Description { get; private set; }
 
         /// <summary>
-        /// Type of the member, describing the way the field is stored in plugins.
+        /// Type of the member or struct, describing the way the field is stored in plugins.
         /// </summary>
-        public MemberType MemberType { get; private set; }
-
-        /// <summary>
-        /// Struct model that represents this memner.
-        /// </summary>
-        public StructModel Struct { get; private set; }
+        private ICanRepresentMember InnerModel { get; set; }
 
         /// <summary>
         /// Type of the property generated for this field or member, can be any crt type or generated structure or enumeration
@@ -83,14 +78,18 @@ namespace Patcher.Data.Models
         /// </summary>
         public int ArrayPrefixSize { get; private set; }
 
-        public bool IsStruct { get { return Struct != null; } }
+        public bool IsStruct { get { return InnerModel is StructModel; } }
+        public bool IsMemberType { get { return InnerModel is MemberType; } }
 
-        public MemberModel(string name, string displayName, string description, MemberType memberType, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength, int arrayPrefixSize)
+        public MemberType MemberType { get { return InnerModel as MemberType; } }
+        public StructModel Struct { get { return InnerModel as StructModel; } }
+
+        public MemberModel(string name, string displayName, string description, ICanRepresentMember innerModel, TargetModel targetModel, bool isHidden, bool isVirtual, bool isArray, int arrayLength, int arrayPrefixSize)
         {
             Name = name;
             DisplayName = displayName ?? name;
             Description = description;
-            MemberType = memberType;
+            InnerModel = innerModel;
             TargetModel = targetModel;
             IsHidden = isHidden;
             IsVirtual = isVirtual;
@@ -101,7 +100,7 @@ namespace Patcher.Data.Models
 
         public void ResolveFrom(EnumModel model)
         {
-            MemberType = MemberType.GetKnownMemberType(model.BaseType);
+            InnerModel = MemberType.GetKnownMemberType(model.BaseType);
             TargetModel = new TargetModel(model, IsArray, ArrayLength);
         }
 
@@ -110,7 +109,7 @@ namespace Patcher.Data.Models
             Name = Name ?? model.Name;
             DisplayName = DisplayName ?? model.DisplayName;
             Description = Description ?? model.Description;
-            MemberType = MemberType ?? model.MemberType;
+            InnerModel = InnerModel ?? (ICanRepresentMember)model.MemberType ?? model.Struct;
             TargetModel = TargetModel ?? model.TargetModel;
             IsHidden = IsHidden || model.IsHidden;
             IsVirtual = IsVirtual || model.IsVirtual;
@@ -120,7 +119,7 @@ namespace Patcher.Data.Models
 
         public void ResolveFrom(StructModel model)
         {
-            Struct = model;
+            InnerModel = model;
         }
 
         public override string ToString()
@@ -157,8 +156,7 @@ namespace Patcher.Data.Models
                 builder.AppendFormat("[ArrayPrefix({0})] ", ArrayPrefixSize);
             }
 
-
-            builder.AppendFormat("{0}", MemberType != null ? MemberType.ToString() : Struct != null ? Struct.Name : "<unspecified-type>");
+            builder.AppendFormat("{0}", IsStruct ? Struct.Name : IsMemberType ? MemberType.Name : "<unspecified-type>");
 
             if (IsArray)
             {

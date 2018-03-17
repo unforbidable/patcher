@@ -62,6 +62,7 @@ namespace Patcher.Data.Models
         public bool ValidateModels()
         {
             bool valid = true;
+            int errors = 0;
 
             Log.Info("Validating game model");
             foreach (var model in Models)
@@ -89,11 +90,12 @@ namespace Patcher.Data.Models
                 }
 
                 valid &= !issues.Errors.Any();
+                errors += issues.Errors.Count();
             }
 
-            if (!valid)
+            if (errors > 0)
             {
-                Log.Error("Data model is not valid due to error(s).");
+                Log.Error("Data model is not valid due to {0} error(s).", errors);
             }
 
             return valid;

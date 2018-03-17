@@ -94,6 +94,7 @@
     <Compile Include="Data\Models\FunctionModel.cs" />
     <Compile Include="Data\Models\FunctionParamModel.cs" />
     <Compile Include="Data\Models\FunctionParamType.cs" />
+    <Compile Include="Data\Models\Loading\ICanRepresentMember.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentField.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentFunctionParam.cs" />
     <Compile Include="Data\Models\Loading\INamed.cs" />
@@ -464,6 +465,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -292,6 +292,9 @@ namespace Patcher.Data.Models.Loading
             // Read target model (as)
             TargetModel targetModel = ReadTarget();
 
+            // Member can contain a structure definition
+            var structElement = Element.Element("struct");
+
             // Read type ID element name if nor 'member' else child element or property 'type'
             string type = Element.Name != "member" ? Element.Name.LocalName : ReadValue("type");
             if (type != null)
@@ -309,6 +312,12 @@ namespace Patcher.Data.Models.Loading
                     Resolver.MarkModelForResolution(memberModel, id.Identifier, File, Element);
                     return memberModel;
                 }
+            }
+            else if (structElement != null)
+            {
+                // Member is a structure
+                var structModel = EnterElement(structElement).ReadStruct();
+                return new MemberModel(name, displayName, description, structModel, targetModel, isHidden, isVirtual, isArray, arrayLength, arrayPrefixSize);
             }
             else
             {

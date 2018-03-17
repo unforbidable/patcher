@@ -27,7 +27,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Object model that represents a record field.
     /// </summary>
-    public class FieldModel : IPresentable, IResolvableFrom<FieldModel>, INamed, IValidable
+    public class FieldModel : IPresentable, IResolvableFrom<FieldModel>, IResolvableFrom<EnumModel>, INamed, IValidable
     {
         /// <summary>
         /// Field key, four characters long.
@@ -128,6 +128,12 @@ namespace Patcher.Data.Models
             IsList = model.IsList;
             IsArray = model.IsArray;
             ArrayLength = model.ArrayLength;
+        }
+
+        public void ResolveFrom(EnumModel model)
+        {
+            InnerModel = MemberType.GetKnownMemberType(model.BaseType);
+            TargetModel = new TargetModel(model, IsArray, ArrayLength);
         }
 
         public override string ToString()

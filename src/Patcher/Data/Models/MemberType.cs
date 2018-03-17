@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
-    public class MemberType : ICanRepresentField
+    public class MemberType : ICanRepresentField, ICanRepresentMember
     {
         public string Name { get; private set; }
         public Type Type { get; private set; }
