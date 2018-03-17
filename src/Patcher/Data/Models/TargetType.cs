@@ -15,6 +15,7 @@
 /// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Models.Loading;
+using Patcher.Data.Models.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,9 @@ using System.Text;
 
 namespace Patcher.Data.Models
 {
-    public class TargetType : ICanRepresentTarget
+    public class TargetType : ICanRepresentTarget, ISerializableAsId
     {
+        public string Id { get { return knownTypes.Where(t => t.Value == this).Select(t => t.Key).Single(); } }
         public string Name { get; private set; }
         public Type Type { get; private set; }
         public StringLocalization StringLocalization { get; private set; }

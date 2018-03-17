@@ -102,6 +102,7 @@
     <Compile Include="Data\Models\Loading\IResolvableFrom.cs" />
     <Compile Include="Data\Models\Loading\ICanRepresentTarget.cs" />
     <Compile Include="Data\Models\IModel.cs" />
+    <Compile Include="Data\Models\Serialization\ISerializableAsId.cs" />
     <Compile Include="Data\Models\Validation\IValidable.cs" />
     <Compile Include="Data\Models\Validation\ModelValidator.cs" />
     <Compile Include="Data\Models\Validation\ModelValidatorIssue.cs" />

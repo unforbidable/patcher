@@ -15,6 +15,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Patcher.Data.Models.Loading;
+using Patcher.Data.Models.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,11 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Represents a reference to a form of any, one or more specific types
     /// </summary>
-    public class FormReference : IModel, ICanRepresentTarget, ICanRepresentFunctionParam
+    public class FormReference : IModel, ICanRepresentTarget, ICanRepresentFunctionParam, ISerializableAsId
     {
+        public string Id { get { return ToString(); } }
         public string Name { get { return ToString(); } }
-
         public string[] FormTypes { get; private set; }
-
         public bool IsAny { get { return FormTypes.Length == 0; } }
 
         static FormReference AnyFormReference = new FormReference(Enumerable.Empty<string>());
