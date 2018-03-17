@@ -14,6 +14,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using Patcher.Data.Models.Loading;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,8 @@ namespace Patcher.Data.Models.Serialization
     {
         readonly TextWriter writer;
         readonly StackManager stack = new StackManager();
+
+        Dictionary<IModel, string> references = new Dictionary<IModel, string>();
 
         public bool Pretty { get; set; }
 
@@ -49,16 +52,45 @@ namespace Patcher.Data.Models.Serialization
             WriteProperty("Name", model.Name);
             WriteProperty("BasePlugin", model.BasePlugin);
             // TODO: More properties to write
-            WriteProperty("Models", model.Models.Where(t => t is EnumModel), WriteModel);
+
+            WriteProperty("Models", model.Models, WriteRootModel);
+        }
+
+        private void WriteRootModel(IModel model)
+        {
+            if (model is EnumModel)
+            {
+                WriteModel(model as EnumModel);
+            }
+            else if (model is StructModel)
+            {
+                WriteModel(model as StructModel);
+            }
+            else if (model is RecordModel)
+            {
+                WriteModel(model as RecordModel);
+            }
+            else if (model is FieldGroupModel)
+            {
+                WriteModel(model as FieldGroupModel);
+            }
+            else if (model is FunctionModel)
+            {
+                WriteModel(model as FunctionModel);
+            }
+            else
+            {
+                throw new InvalidOperationException(string.Format("Unexpected root model {0}", model.GetType().Name));
+            }
         }
 
         private void WriteModel(EnumModel model)
         {
             WriteProperty("Name", model.Name);
             WriteProperty("Description", model.Description);
-            WriteProperty("BaseType", model.BaseType.Name);
+            WriteProperty("BaseType", model.BaseType.Name); // Write only .Name for types
             WriteProperty("IsFlags", model.IsFlags);
-            WriteProperty("Members", model.Members, WriteModel);
+            WriteProperty("Members", model.Members, WriteModel); // Array property - pass in the mentod used to write the model in the array
         }
 
         private void WriteModel(EnumMemberModel model)
@@ -67,18 +99,77 @@ namespace Patcher.Data.Models.Serialization
             WriteProperty("Value", model.Value);
         }
 
-        // TODO: More models to write
-
-        private void WriteModel(IModel model)
+        private void WriteModel(MemberModel model)
         {
-            if (model is EnumModel)
+            // TODO: Properties to write
+        }
+
+        private void WriteModel(FunctionModel model)
+        {
+            // TODO: Properties to write
+        }
+
+        private void WriteModel(FunctionParamModel model)
+        {
+            // TODO: Properties to write
+        }
+
+        private void WriteModel(StructModel model)
+        {
+            // TODO: Properties to write
+        }
+
+        private void WriteModel(FieldModel model)
+        {
+            // TODO: Properties to write
+
+
+            if (model.IsStruct)
             {
-                WriteModel(model as EnumModel);
+                // Write struct as reference
+                WritePropertyAsReference("Struct", model.Struct);
             }
-            else
+            else if (model.IsFieldGroup)
             {
-                throw new NotImplementedException(string.Format("Serialization of model object {0} not implemented.", model.GetType().Name));
+                // Write field group as reference
+                WritePropertyAsReference("FieldGroup", model.FieldGroup);
             }
+            else if (model.IsMember)
+            {
+                WriteProperty("MemberType", model.MemberType.Name);
+            }
+        }
+
+        private void WriteModel(FieldGroupModel model)
+        {
+            // TODO: Properties to write
+        }
+
+        private void WriteModel(RecordModel model)
+        {
+            // TODO: Properties to write
+
+
+            WriteProperty("Fields", model.Fields, WriteModel); // Array property - pass in the mentod used to write the model in the array
+        }
+
+        private void WriteModel(TargetModel model)
+        {
+            // TODO: Properties to write
+        }
+
+        // Write IModel property as reference (structs, enums, field groups, targets)
+        private void WritePropertyAsReference<TModel>(string name, TModel model) where TModel : IModel
+        {
+            WritePropertyName(name);
+            WriteObjectReference(model);
+        }
+
+        // Write IModel property as object (field, member)
+        private void WriteProperty<TModel>(string name, TModel model, Action<TModel> writeObjectAction) where TModel : IModel
+        {
+            WritePropertyName(name);
+            WriteObject(model, writeObjectAction);
         }
 
         // Write string property
@@ -146,11 +237,36 @@ namespace Patcher.Data.Models.Serialization
             Write("]");
         }
 
-        private void WriteObject<TModel>(TModel model, Action<TModel> writeObjectAction) where TModel : IModel
+        private void WriteObjectReference<TModel>(TModel model) where TModel : IModel
         {
+            // Find object reference path
+            string path;
+            if (!references.TryGetValue(model, out path))
+            {
+                path = string.Format("ERROR - reference to model object not {0} found", model is INamed ? (model as INamed).Name : model.GetType().Name);
+            }
+
             Write("{");
             stack.Enter(true);
-            WriteProperty("path", stack.Path);
+            WriteProperty("ref", path);
+            stack.Leave();
+            Write("}");
+        }
+
+        private void WriteObject<TModel>(TModel model, Action<TModel> writeObjectAction) where TModel : IModel
+        {
+            // Add only root models path to reference map
+            if (stack.Depth == 4)
+            {
+                references.Add(model, stack.Path);
+            }
+
+            Write("{");
+            stack.Enter(true);
+            if (stack.Depth == 5)
+            {
+                WriteProperty("path", stack.Path);
+            }
             WriteProperty("type", model.GetType().Name);
             WritePropertyName("value");
             Write("{");
