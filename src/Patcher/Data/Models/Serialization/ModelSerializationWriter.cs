@@ -14,7 +14,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using Patcher.Data.Models.Loading;
+using Patcher.Data.Models.Serialization.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,38 +25,28 @@ namespace Patcher.Data.Models.Serialization
 {
     public class ModelSerializationWriter
     {
-        readonly TextWriter writer;
-        readonly StackManager stack = new StackManager();
+        readonly JsonSerializationWriter writer;
 
-        Dictionary<IModel, string> references = new Dictionary<IModel, string>();
-
-        public bool Pretty { get; set; }
-
-        public ModelSerializationWriter(Stream stream) : this(new StreamWriter(stream))
+        public ModelSerializationWriter(Stream stream, bool pretty)
         {
-        }
-
-        public ModelSerializationWriter(StreamWriter writer)
-        {
-            this.writer = writer;
+            writer = new JsonSerializationWriter(stream, pretty);
         }
 
         public void WriteModels(IEnumerable<GameModel> models)
         {
-            WriteArray(models, WriteModel);
-            writer.Flush();
+            writer.WriteModels(models, WriteModel);
         }
 
         private void WriteModel(GameModel model)
         {
-            WriteProperty("Name", model.Name);
-            WriteProperty("BasePlugin", model.BasePlugin);
-            WriteProperty("LatestFormVersion", model.LatestFormVersion);
-            WriteProperty("PluginsFileLocation". model.PluginsFileLocation);
-            WriteProperty("PluginsMatchLine", model.PluginsMatchLine);
-            WriteProperty("ArchivesExtension", model.ArchivesExtension);
-            WriteProperty("StringsDefaultLanguage", model.StringsDefaultLanguage);
-            WriteProperty("Models", model.Models, WriteRootModel);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("BasePlugin", model.BasePlugin);
+            writer.WriteProperty("LatestFormVersion", model.LatestFormVersion);
+            writer.WriteProperty("PluginsFileLocation", model.PluginsFileLocation);
+            writer.WriteProperty("PluginsMatchLine", model.PluginsMatchLine);
+            writer.WriteProperty("ArchivesExtension", model.ArchivesExtension);
+            writer.WriteProperty("StringsDefaultLanguage", model.StringsDefaultLanguage);
+            writer.WriteProperty("Models", model.Models, WriteRootModel);
         }
 
         private void WriteRootModel(IModel model)
@@ -89,381 +79,138 @@ namespace Patcher.Data.Models.Serialization
 
         private void WriteModel(EnumModel model)
         {
-            WriteProperty("Name", model.Name);
-            WriteProperty("Description", model.Description);
-            WriteProperty("BaseType", model.BaseType.Name); // Write only .Name for types
-            WriteProperty("IsFlags", model.IsFlags);
-            WriteProperty("Members", model.Members, WriteModel); // Array property - pass in the method used to write the model in the array
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("BaseType", model.BaseType.Name); // Write only .Name for types
+            writer.WriteProperty("IsFlags", model.IsFlags);
+            writer.WriteProperty("Members", model.Members, WriteModel); // Array property - pass in the method used to write the model in the array
         }
 
         private void WriteModel(EnumMemberModel model)
         {
-            WriteProperty("Name", model.Name);
-            WriteProperty("Value", model.Value);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("Value", model.Value);
         }
 
         private void WriteModel(MemberModel model)
         {
-            WriteProperty("Name", model.Name);
-            WriteProperty("DisplayName", model.DisplayName);
-            WriteProperty("Description", model.Description);
-            WritePropertyAsReference("TargetModel", model.TargetModel);
-            WriteProperty("IsHidden", model.IsHidden);
-            WriteProperty("IsVirtual", model.IsVirtual);
-            WriteProperty("IsArray", model.IsArray);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("DisplayName", model.DisplayName);
+            writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("TargetModel", model.TargetModel, WriteModel);
+            writer.WriteProperty("IsHidden", model.IsHidden);
+            writer.WriteProperty("IsVirtual", model.IsVirtual);
+            writer.WriteProperty("IsArray", model.IsArray);
             if (model.IsArray)
             {
-                WriteProperty("ArrayLength", model.ArrayLength);
-                WriteProperty("ArrayPrefixSize", model.ArrayPrefixSize);
+                writer.WriteProperty("ArrayLength", model.ArrayLength);
+                writer.WriteProperty("ArrayPrefixSize", model.ArrayPrefixSize);
             }
 
-            WriteProperty("Type", model.Type.Name);
             if (model.IsStruct)
             {
-                WriteProperty("Type", model.Struct, WriteModel);
+                writer.WriteProperty("Type", model.Struct, WriteModel);
             }
             else if (model.IsMemberType)
             {
-                WriteProperty("Type", model.MemberType, WriteModel);
+                writer.WriteProperty("Type", model.MemberType, WriteModel);
             }
         }
 
         private void WriteModel(FunctionModel model)
         {
-            WriteProperty("Index", model.Index);
-            WriteProperty("Name", model.Name);
-            WriteProperty("Description", model.Description);
-            WriteProperty("Params", model.Params, WriteModel);
+            writer.WriteProperty("Index", model.Index);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("Params", model.Params, WriteModel);
         }
 
         private void WriteModel(FunctionParamModel model)
         {
-            WriteProperty("DisplayName", model.DisplayName);
-            WriteProperty("Type", model.Type.Name);
+            writer.WriteProperty("DisplayName", model.DisplayName);
             if (model.IsFunctionParamType)
             {
-                WriteProperty("Type", model.FunctionParamType, WriteModel);
+                writer.WriteProperty("Type", model.FunctionParamType, WriteModel);
             }
             else if (model.IsEnumeration)
             {
-                WriteProperty("Type", model.Emumeration, WriteModel);
+                writer.WriteProperty("Type", model.Enumeration);
             }
             else if (model.IsFormReference)
             {
-                WriteProperty("Type", model.FormReference, WriteModel);
+                writer.WriteProperty("Type", model.FormReference, WriteModel);
             }
         }
 
         private void WriteModel(StructModel model)
         {
-            WriteProperty("Name", model.Name);
-            WriteProperty("Description", model.Description);
-            WriteProperty("Members", model.Members, WriteModel);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("Members", model.Members, WriteModel);
         }
 
         private void WriteModel(FieldModel model)
         {
-            WriteProperty("Key", model.Key);
-            WriteProperty("Name", model.Name);
-            WriteProperty("DisplayName", model.DisplayName);
-            WriteProperty("Description", model.Description);
-            WritePropertyAsReference("TargetModel", model.TargetModel);
-            WriteProperty("IsHidden", model.IsHidden);
-            WriteProperty("IsVirtual", model.IsVirtual);
-            WriteProperty("IsList", model.IsList);
-            WriteProperty("IsArray", model.IsArray);
+            writer.WriteProperty("Key", model.Key);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("DisplayName", model.DisplayName);
+            writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("TargetModel", model.TargetModel, WriteModel);
+            writer.WriteProperty("IsHidden", model.IsHidden);
+            writer.WriteProperty("IsVirtual", model.IsVirtual);
+            writer.WriteProperty("IsList", model.IsList);
+            writer.WriteProperty("IsArray", model.IsArray);
             if (model.IsArray)
             {
-                WriteProperty("ArrayLength", model.ArrayLength);
+                writer.WriteProperty("ArrayLength", model.ArrayLength);
             }
 
-            WriteProperty("Type", model.Type.Name);
             if (model.IsStruct)
             {
-                WriteProperty("Type", model.Struct, WriteModel);
+                writer.WriteProperty("Type", model.Struct);
             }
             else if (model.IsFieldGroup)
             {
-                WriteProperty("Type", model.FieldGroup, WriteModel);
+                writer.WriteProperty("Type", model.FieldGroup);
             }
             else if (model.IsMember)
             {
-                WriteProperty("Type", model.MemberType, WriteModel);
+                writer.WriteProperty("Type", model.MemberType, WriteModel);
             }
         }
 
         private void WriteModel(FieldGroupModel model)
         {
-            WriteProperty("Name", model.Name);
-            WriteProperty("Description", model.Description);
-            WriteProperty("Fields", model.Fields, WriteModel);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("Fields", model.Fields, WriteModel);
         }
 
         private void WriteModel(RecordModel model)
         {
-            WriteProperty("Key", model.Key);
-            WriteProperty("Name", model.Name);
-            WriteProperty("DisplayName", model.DisplayName);
-            WriteProperty("Description", model.Description);
-            WriteProperty("Fields", model.Fields, WriteModel); // Array property - pass in the method used to write the model in the array
+            writer.WriteProperty("Key", model.Key);
+            writer.WriteProperty("Name", model.Name);
+            writer.WriteProperty("DisplayName", model.DisplayName);
+            writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("Fields", model.Fields, WriteModel); // Array property - pass in the method used to write the model in the array
         }
 
         private void WriteModel(TargetModel model)
         {
-            WriteProperty("Type", model.Type.Name);
-            WriteProperty("IsArray", model.IsArray);
+            // At most one of those will not be null - so at most one Type property will be written
+            writer.WriteProperty("Type", model.Type as TargetType, WriteModel);
+            writer.WriteProperty("Type", model.Type as FormReference, WriteModel);
+            writer.WriteProperty("Type", model.Type as StructModel);
+            writer.WriteProperty("IsArray", model.IsArray);
             if (model.IsArray)
             {
-                WriteProperty("ArrayLength", model.ArrayLength);
+                writer.WriteProperty("ArrayLength", model.ArrayLength);
             }
         }
 
         private void WriteModel(ISerializableAsId model)
         {
-            WriteProperty("Id", model.Id);
-        }
-
-        // Write IModel property as reference (structs, enums, field groups, targets)
-        private void WritePropertyAsReference<TModel>(string name, TModel model) where TModel : IModel
-        {
-            if (model != null)
-            {
-                WritePropertyName(name);
-                WriteObjectReference(model);
-            }
-        }
-
-        // Write IModel property as object (field, member)
-        private void WriteProperty<TModel>(string name, TModel model, Action<TModel> writeObjectAction) where TModel : IModel
-        {
-            if (model != null)
-            {
-                WritePropertyName(name);
-                WriteObject(model, writeObjectAction);
-            }
-        }
-
-        // Write string property
-        private void WriteProperty(string name, string value)
-        {
-            if (!string.IsNullOrEmpty(value))
-            {
-                WritePropertyName(name);
-                Write(string.Format("\"{0}\"", value));
-            }
-        }
-
-        // Write int property
-        private void WriteProperty(string name, int value)
-        {
-            if (value != null)
-            {
-                WritePropertyName(name);
-                Write(string.Format("{0}", value));
-            }
-        }
-
-        // Write short property
-        private void WriteProperty(string name, short value)
-        {
-            if (value != null)
-            {
-                WritePropertyName(name);
-                Write(string.Format("{0}", value));
-            }
-        }
-
-        // Write bool propery
-        private void WriteProperty(string name, bool value)
-        {
-            if (value)
-            {
-                WritePropertyName(name);
-                Write(string.Format("{0}", value.ToString().ToLower()));
-            }
-        }
-
-        // Write property that is an array of model objects, specifying the method used to write each model object
-        private void WriteProperty<TModel>(string name, IEnumerable<TModel> models, Action<TModel> writeObjectAction) where TModel : IModel
-        {
-            if (models != null)
-            {
-                WritePropertyName(name);
-                WriteArray(models, writeObjectAction);
-            }
-        }
-
-        private void WritePropertyName(string name)
-        {
-            stack.Name = name;
-            if (stack.Index > 0)
-            {
-                WriteLine(", ");
-            }
-            else
-            {
-                WriteLine(" ");
-            }
-            Write("\"{0}\": ", name);
-            stack.Index++;
-        }
-
-        private void WriteArray<TModel>(IEnumerable<TModel> models, Action<TModel> writeObjectAction) where TModel : IModel
-        {
-            Write("[");
-            stack.Enter();
-            foreach (var model in models)
-            {
-                if (stack.Index > 0)
-                {
-                    Write(", ");
-                }
-                else
-                {
-                    WriteLine(" ");
-                }
-                WriteObject(model, writeObjectAction);
-                stack.Index++;
-            }
-            stack.Leave();
-            WriteLine(" ");
-            Write("]");
-        }
-
-        private void WriteObjectReference<TModel>(TModel model) where TModel : IModel
-        {
-            // Find object reference path
-            string path;
-            if (!references.TryGetValue(model, out path))
-            {
-                path = string.Format("ERROR - reference to model object not {0} found", model is INamed ? (model as INamed).Name : model.GetType().Name);
-            }
-
-            Write("{");
-            stack.Enter(true);
-            WriteProperty("ref", path);
-            stack.Leave();
-            Write("}");
-        }
-
-        private void WriteObject<TModel>(TModel model, Action<TModel> writeObjectAction) where TModel : IModel
-        {
-            // Add only root models path to reference map
-            if (stack.Depth == 4)
-            {
-                references.Add(model, stack.Path);
-            }
-
-            Write("{");
-            stack.Enter(true);
-            if (stack.Depth == 5)
-            {
-                WriteProperty("path", stack.Path);
-            }
-            WriteProperty("type", model.GetType().Name);
-            WritePropertyName("value");
-            Write("{");
-            stack.Enter();
-            writeObjectAction(model);
-            stack.Leave();
-            WriteLine(" ");
-            WriteLine("} ");
-            stack.Leave();
-            Write("}");
-        }
-
-        bool newLine = true;
-
-        private void Write(string format, params string[] args)
-        {
-            Write(string.Format(format, args));
-        }
-
-        private void Write(string text)
-        {
-            if (newLine && Pretty)
-                writer.Write(new string(' ', stack.Depth * 2));
-
-            writer.Write(text);
-            newLine = false;
-        }
-
-        private void WriteLine()
-        {
-            WriteLine(string.Empty);
-        }
-
-        private void WriteLine(string format, params string[] args)
-        {
-            WriteLine(string.Format(format, args));
-        }
-
-        private void WriteLine(string text)
-        {
-            Write(text);
-            newLine = true;
-
-            if (Pretty)
-                writer.WriteLine();
-        }
-
-        class StackManager
-        {
-            Stack<StackItem> stack = new Stack<StackItem>();
-
-            public string Name { get { return stack.Peek().Name; } set { stack.Peek().Name = value; } }
-            public int Index { get { return stack.Peek().Index; } set { stack.Peek().Index = value; } }
-            public string Path { get { return GetStackPath(); } }
-            public int Depth { get { return stack.Count; } }
-
-            public void Enter()
-            {
-                Enter(false);
-            }
-
-            public void Enter(bool skipFromPath)
-            {
-                stack.Push(new StackItem(skipFromPath));
-            }
-
-            public void Leave()
-            {
-                stack.Pop();
-            }
-
-            private string GetStackPath()
-            {
-                return string.Join("/", stack.Reverse().Where(i => !i.SkipFromPath).Select(i => i.ToString()));
-            }
-
-            public override string ToString()
-            {
-                return GetStackPath();
-            }
-        }
-
-        class StackItem
-        {
-            public string Name { get; set; }
-            public int Index { get; set; }
-            public bool SkipFromPath { get; set; }
-
-            public StackItem(bool skipFromPath)
-            {
-                SkipFromPath = skipFromPath;
-            }
-
-            public override string ToString()
-            {
-                if (!string.IsNullOrEmpty(Name))
-                {
-                    return Name;
-                }
-                else
-                {
-                    return string.Format("[{0}]", Index);
-                }
-            }
+            writer.WriteProperty("Id", model.Id);
         }
     }
 }
