@@ -1,6 +1,5 @@
 <enum>
   <name>BlurRadius</name>
-  <display-name>Blur Radius</display-name>
   <type>uint</type>
   <members>
     <member>

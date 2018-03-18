@@ -107,7 +107,6 @@ namespace Patcher.Data.Models.Serialization
             WriteProperty("Name", model.Name);
             WriteProperty("DisplayName", model.DisplayName);
             WriteProperty("Description", model.Description);
-            WriteProperty("Type", model.Type.Name);
             WritePropertyAsReference("TargetModel", model.TargetModel);
             WriteProperty("IsHidden", model.IsHidden);
             WriteProperty("IsVirtual", model.IsVirtual);

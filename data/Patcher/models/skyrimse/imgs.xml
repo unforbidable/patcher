@@ -57,7 +57,7 @@
           <float name="Range" />
           <float name="Unknown" hidden="true" />
           <bool name="NoSky" display-name="No Sky Blur" />
-          <blur-radius name="BlurRadius" display-name="Blur Radius" />
+          <blur-radius name="BlurRadius" />
         </members>
       </struct>
     </field>
