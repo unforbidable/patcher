@@ -42,7 +42,7 @@
       <struct>
         <members>
           <float name="Amount" />
-          <color />
+          <color name="Color" />
         </members>
       </struct>
     </field>
@@ -57,7 +57,7 @@
           <float name="Range" />
           <float name="Unknown" hidden="true" />
           <bool name="NoSky" display-name="No Sky Blur" />
-          <blur-radius />
+          <blur-radius name="BlurRadius" display-name="Blur Radius" />
         </members>
       </struct>
     </field>

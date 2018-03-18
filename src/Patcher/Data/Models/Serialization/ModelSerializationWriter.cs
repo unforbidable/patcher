@@ -107,9 +107,8 @@ namespace Patcher.Data.Models.Serialization
             WriteProperty("Name", model.Name);
             WriteProperty("DisplayName", model.DisplayName);
             WriteProperty("Description", model.Description);
-            WriteProperty("MemberType", model.MemberType.Name);
+            WriteProperty("Type", model.Type.Name);
             WritePropertyAsReference("TargetModel", model.TargetModel);
-            // Does something more need to be done with IsHidden and IsVirtual?
             WriteProperty("IsHidden", model.IsHidden);
             WriteProperty("IsVirtual", model.IsVirtual);
             WriteProperty("IsArray", model.IsArray);
@@ -118,9 +117,15 @@ namespace Patcher.Data.Models.Serialization
                 WriteProperty("ArrayLength", model.ArrayLength);
                 WriteProperty("ArrayPrefixSize", model.ArrayPrefixSize);
             }
+
+            WriteProperty("Type", model.Type.Name);
             if (model.IsStruct)
             {
-                WritePropertyAsReference("Struct", model.Struct);
+                WriteProperty("Type", model.Struct, WriteModel);
+            }
+            else if (model.IsMemberType)
+            {
+                WriteProperty("Type", model.MemberType, WriteModel);
             }
         }
 
@@ -135,9 +140,19 @@ namespace Patcher.Data.Models.Serialization
         private void WriteModel(FunctionParamModel model)
         {
             WriteProperty("DisplayName", model.DisplayName);
-            WriteProperty("FunctionParamType", model.FunctionParamType.Name);
-            WritePropertyAsReference("Enumeration", model.Enumeration);
-            WriteProperty("FormReference", model.FormReference, WriteModel);
+            WriteProperty("Type", model.Type.Name);
+            if (model.IsFunctionParamType)
+            {
+                WriteProperty("Type", model.FunctionParamType, WriteModel);
+            }
+            else if (model.IsEnumeration)
+            {
+                WriteProperty("Type", model.Emumeration, WriteModel);
+            }
+            else if (model.IsFormReference)
+            {
+                WriteProperty("Type", model.FormReference, WriteModel);
+            }
         }
 
         private void WriteModel(StructModel model)
@@ -162,19 +177,19 @@ namespace Patcher.Data.Models.Serialization
             {
                 WriteProperty("ArrayLength", model.ArrayLength);
             }
+
+            WriteProperty("Type", model.Type.Name);
             if (model.IsStruct)
             {
-                // Write struct as reference
-                WritePropertyAsReference("Struct", model.Struct);
+                WriteProperty("Type", model.Struct, WriteModel);
             }
             else if (model.IsFieldGroup)
             {
-                // Write field group as reference
-                WritePropertyAsReference("FieldGroup", model.FieldGroup);
+                WriteProperty("Type", model.FieldGroup, WriteModel);
             }
             else if (model.IsMember)
             {
-                WriteProperty("MemberType", model.MemberType.Name);
+                WriteProperty("Type", model.MemberType, WriteModel);
             }
         }
 
@@ -196,7 +211,7 @@ namespace Patcher.Data.Models.Serialization
 
         private void WriteModel(TargetModel model)
         {
-            // Does Target property have to be included here too?
+            WriteProperty("Type", model.Type.Name);
             WriteProperty("IsArray", model.IsArray);
             if (model.IsArray)
             {
@@ -204,53 +219,79 @@ namespace Patcher.Data.Models.Serialization
             }
         }
 
+        private void WriteModel(ISerializableAsId model)
+        {
+            WriteProperty("Id", model.Id);
+        }
+
         // Write IModel property as reference (structs, enums, field groups, targets)
         private void WritePropertyAsReference<TModel>(string name, TModel model) where TModel : IModel
         {
-            WritePropertyName(name);
-            WriteObjectReference(model);
+            if (model != null)
+            {
+                WritePropertyName(name);
+                WriteObjectReference(model);
+            }
         }
 
         // Write IModel property as object (field, member)
         private void WriteProperty<TModel>(string name, TModel model, Action<TModel> writeObjectAction) where TModel : IModel
         {
-            WritePropertyName(name);
-            WriteObject(model, writeObjectAction);
+            if (model != null)
+            {
+                WritePropertyName(name);
+                WriteObject(model, writeObjectAction);
+            }
         }
 
         // Write string property
         private void WriteProperty(string name, string value)
         {
-            WritePropertyName(name);
-            Write(string.Format("\"{0}\"", value));
+            if (!string.IsNullOrEmpty(value))
+            {
+                WritePropertyName(name);
+                Write(string.Format("\"{0}\"", value));
+            }
         }
 
         // Write int property
         private void WriteProperty(string name, int value)
         {
-            WritePropertyName(name);
-            Write(string.Format("{0}", value));
+            if (value != null)
+            {
+                WritePropertyName(name);
+                Write(string.Format("{0}", value));
+            }
         }
 
         // Write short property
         private void WriteProperty(string name, short value)
         {
-            WritePropertyName(name);
-            Write(string.Format("{0}", value));
+            if (value != null)
+            {
+                WritePropertyName(name);
+                Write(string.Format("{0}", value));
+            }
         }
 
         // Write bool propery
         private void WriteProperty(string name, bool value)
         {
-            WritePropertyName(name);
-            Write(string.Format("{0}", value.ToString().ToLower()));
+            if (value)
+            {
+                WritePropertyName(name);
+                Write(string.Format("{0}", value.ToString().ToLower()));
+            }
         }
 
         // Write property that is an array of model objects, specifying the method used to write each model object
         private void WriteProperty<TModel>(string name, IEnumerable<TModel> models, Action<TModel> writeObjectAction) where TModel : IModel
         {
-            WritePropertyName(name);
-            WriteArray(models, writeObjectAction);
+            if (models != null)
+            {
+                WritePropertyName(name);
+                WriteArray(models, writeObjectAction);
+            }
         }
 
         private void WritePropertyName(string name)
