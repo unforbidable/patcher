@@ -54,6 +54,11 @@ namespace Patcher.Data.Models
             return knownTypes.Where(p => p.Value.Type == type).Select(p => p.Value).Single();
         }
 
+        public static TargetType GetKnownType(string id)
+        {
+            return knownTypes.Where(p => p.Key == id).Select(p => p.Value).Single();
+        }
+
         public static bool TryFindKnownTargetType(string id, out TargetType type)
         {
             return knownTypes.TryGetValue(id, out type);

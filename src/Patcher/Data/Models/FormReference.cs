@@ -41,6 +41,18 @@ namespace Patcher.Data.Models
             FormTypes = formTypes.ToArray();
         }
 
+        public static FormReference Parse(string id)
+        {
+            if (TryParse(id, out FormReference reference))
+            {
+                return reference;
+            }
+            else
+            {
+                throw new FormatException("Invalid format of form reference ID.");
+            }
+        }
+
         public static bool TryParse(string id, out FormReference formReference)
         {
             if (id == "ref")
