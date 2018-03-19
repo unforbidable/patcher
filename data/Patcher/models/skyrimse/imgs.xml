@@ -12,6 +12,7 @@
       <key>HNAM</key>
       <name>HDR</name>
       <struct>
+        <name>HDRValues</name>
         <members>
           <float name="EyeAdaptSpeed" display-name="Eye Adapt Speed" />
           <float name="BloomBlurRadius" display-name="Bloom Blur Radius" />
@@ -29,6 +30,7 @@
       <key>CNAM</key>
       <name>Cinematic</name>
       <struct>
+        <name>CinematicValues</name>
         <members>
           <float name="Saturation" />
           <float name="Brightness" />
@@ -40,6 +42,7 @@
       <key>TNAM</key>
       <name>Tint</name>
       <struct>
+        <name>TintValues</name>
         <members>
           <float name="Amount" />
           <color name="Color" />
@@ -51,6 +54,7 @@
       <name>DOF</name>
       <display-name>Depth Of Field</display-name>
       <struct>
+        <name>DoFValues</name>
         <members>
           <float name="Strength" />
           <float name="Distance" />

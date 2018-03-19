@@ -9,7 +9,7 @@
     <destructible /> -->
     <field>
       <key>DATA</key>
-      <display-name>Data</display-name>
+      <name>Data</name>
       <struct>
         <name>ProjectileData</name>
         <members>
@@ -51,6 +51,16 @@
         </fields>
       </group>
     </field>
-    <sound-detection-level key="VNAM" name="SoundDetectionLevel" display-name="Sound Detection Level" />
+    <field>
+      <key>VNAM</key>
+      <name>SoundDetectionLevel</name>
+      <display-name>Sound Detection Level</display-name>
+      <struct>
+        <name>SoundDetectionEnum</name>
+        <members>
+          <sound-detection-level />
+        </members>
+      </struct>
+    </field>
   </fields>
 </record>

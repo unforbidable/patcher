@@ -1,6 +1,7 @@
 <field>
   <name>ImadOctupleData</name>
   <struct>
+    <name>ImadOctupleData</name>
     <members>
       <imad-single-data name="Data0" display-name="Data #0" />
       <imad-single-data name="Data1" display-name="Data #1" />

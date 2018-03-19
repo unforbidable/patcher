@@ -22,7 +22,7 @@
               <type>ref(PROJ)</type>
             </as>
           </member>
-          <ammo-flags />
+          <ammo-flags name="Flags" />
           <float name="Damage" />
           <uint name="Value" display-name="Gold Value" />
         </members>

@@ -1,13 +1,12 @@
 <field>
-	<name>Items</name>
+	<name>Ingredients</name>
   <list>true</list>
   <group>
-    <name>Ingredient</name>
+    <name>Ingredients</name>
     <fields>
       <field>
         <key>CNTO</key>
-        <name>Item</name>
-        <display-name>Input Item</display-name>
+        <name>Ingredient</name>
         <struct>
           <name>IngredientItem</name>
           <members>
@@ -16,11 +15,10 @@
               <display-name>Item ID</display-name>
               <type>uint</type>
               <as>
-                <!-- ... the form ID for an "input item" can be one of these four types.-->
                 <type>ref(ALCH|INGR|WEAP|MISC|ARMO)</type>
               </as>
             </member>
-            <uint name="Count" display-name="Input Count" />
+            <uint name="Count" display-name="Ingredient Count" />
           </members>
         </struct>
       </field>

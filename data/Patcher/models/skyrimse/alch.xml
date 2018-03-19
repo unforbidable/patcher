@@ -26,12 +26,10 @@
       </struct>
     </field>
     <field>
-      <!-- name of the field -->
       <name>Effects</name>
       <display-name>Potion Effects</display-name>
       <list>true</list>
       <group>
-        <!-- name of the structure -->
         <name>PotionEffect</name>
         <fields>
           <magic-effect key="EFID" name="BaseEffect" display-name="Base Effect"/>

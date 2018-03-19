@@ -22,7 +22,7 @@
                   <union>true</union>
                   <members>
                     <float name="Value" />
-                    <uint name="GlobalVariable" as-type="ref" as-ref-type="GLOB"  />
+                    <uint name="GlobalVariable" display-name="Global Variable" as-type="ref" as-ref-type="GLOB"  />
                   </members>
                 </struct>
               </as>
@@ -65,7 +65,7 @@
                 </struct>
               </as>
             </member>
-            <function-target name="FunctionTarget" display-name="Function Target" />
+            <function-target name="FunctionTarget" />
             <member>
               <name>TargetReference</name>
               <display-name>Target Reference</display-name>

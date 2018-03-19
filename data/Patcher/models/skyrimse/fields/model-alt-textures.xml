@@ -1,5 +1,5 @@
 <field>
-  <name>AlternateTextures</name>
+  <name>ModelAlternateTextures</name>
   <display-name>Alternate Textures</display-name>
   <type>byte[]</type>
 </field>

@@ -4,7 +4,6 @@
   <display-name>Object Bounds</display-name>
   <struct>
     <name>ObjectBounds</name>
-    <display-name>Object Bounds</display-name>
     <members>
       <short name="X1" />
       <short name="Y1" />

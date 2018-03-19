@@ -10,6 +10,7 @@
       <as>
         <!-- This structure indicates that this value can be one of several different primitive types -->
         <struct>
+          <name>GameSettingValue</name>
           <union>true</union>
           <members>
             <bool name="boolean" display-name="True/False" />

@@ -1,6 +1,5 @@
 <enum>
   <name>SoundDetectionLevel</name>
-  <display-name>Sound Detection Level</display-name>
   <type>uint</type>
   <members>
     <member>

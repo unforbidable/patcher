@@ -11,6 +11,7 @@
       <name>MaleWorldModel</name>
       <display-name>Male Model</display-name>
       <group>
+        <name>MaleModelData</name>
         <fields>
           <zstring key="MOD2" name="WorldModel" display-name="Model Filename" />
           <model-texture-data key="MO2T" />
@@ -22,6 +23,7 @@
       <name>FemaleWorldModel</name>
       <display-name>Female Model</display-name>
       <group>
+        <name>FemaleModelData</name>
         <fields>
           <zstring key="MOD4" name="WorldModel" display-name="Model Filename" />
           <model-texture-data key="MO4T" />
@@ -58,6 +60,7 @@
     <keyword-list />
     <description />
     <field>
+      <!-- A list of armature form references. -->
       <name>Armature</name>
       <list>true</list>
       <key>MODL</key>
@@ -68,8 +71,8 @@
     </field>
     <field>
       <key>DATA</key>
-      <display-name>Data</display-name>
       <struct>
+        <name>Data</name>
         <members>
           <uint name="Value" display-name="Gold Value" />
           <float name="Weight" />
