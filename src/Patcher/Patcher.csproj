@@ -103,7 +103,17 @@
     <Compile Include="Data\Models\Loading\ICanRepresentTarget.cs" />
     <Compile Include="Data\Models\IModel.cs" />
     <Compile Include="Data\Models\Serialization\ISerializableAsId.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonArray.cs" />
+    <Compile Include="Data\Models\Serialization\Json\IJsonPropertyValue.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonTreeBuilder.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonSerializationReader.cs" />
     <Compile Include="Data\Models\Serialization\Json\JsonSerializationWriter.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonString.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonToken.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonObject.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonTokenPropertyCollection.cs" />
+    <Compile Include="Data\Models\Serialization\Json\JsonTokenReader.cs" />
+    <Compile Include="Data\Models\Serialization\ModelSerializationReader.cs" />
     <Compile Include="Data\Models\Validation\IValidable.cs" />
     <Compile Include="Data\Models\Validation\ModelValidator.cs" />
     <Compile Include="Data\Models\Validation\ModelValidatorIssue.cs" />

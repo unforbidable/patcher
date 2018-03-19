@@ -1,4 +1,4 @@
-﻿// Copyright(C) 2018 Unforbidable Works
+﻿// Copyright(C) 2015,2016,2017,2018 Unforbidable Works
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,31 +16,20 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Models.Serialization
+namespace Patcher.Data.Models.Serialization.Json
 {
-    public class ModelSerializer
+    public class JsonString : IJsonPropertyValue
     {
-        public byte[] SerializeModel(IEnumerable<GameModel> models, bool pretty)
-        {
-            using (var ms = new MemoryStream())
-            {
-                var writer = new ModelSerializationWriter(ms, pretty);
-                writer.WriteModels(models);
-                return ms.ToArray();
-            }
-        }
+        public bool Quoted { get; private set; }
+        public string Text { get; private set; }
 
-        public IEnumerable<GameModel> DeserializeModel(byte[] modelData)
+        public JsonString(string text, bool quoted)
         {
-            using (var ms = new MemoryStream(modelData))
-            {
-                var reader = new ModelSerializationReader(ms);
-                return reader.ReadGameModels();
-            }
+            Text = text;
+            Quoted = quoted;
         }
     }
 }

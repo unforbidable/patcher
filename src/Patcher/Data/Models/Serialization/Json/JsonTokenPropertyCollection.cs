@@ -1,4 +1,4 @@
-﻿// Copyright(C) 2018 Unforbidable Works
+﻿// Copyright(C) 2015,2016,2017,2018 Unforbidable Works
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,30 +16,39 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Patcher.Data.Models.Serialization
+namespace Patcher.Data.Models.Serialization.Json
 {
-    public class ModelSerializer
+    public class JsonTokenPropertyCollection
     {
-        public byte[] SerializeModel(IEnumerable<GameModel> models, bool pretty)
+        Dictionary<string, IEnumerable<JsonToken>> map = new Dictionary<string, IEnumerable<JsonToken>>();
+
+        public void Add(string name, IEnumerable<JsonToken> tokens)
         {
-            using (var ms = new MemoryStream())
-            {
-                var writer = new ModelSerializationWriter(ms, pretty);
-                writer.WriteModels(models);
-                return ms.ToArray();
-            }
+            map.Add(name, tokens);
         }
 
-        public IEnumerable<GameModel> DeserializeModel(byte[] modelData)
+        public bool HasProperty(string name)
         {
-            using (var ms = new MemoryStream(modelData))
+            return map.ContainsKey(name);
+        }
+
+        public string GetPropertyString(string name)
+        {
+            return GetPropertyTokens(name).Select(t => t.Text).FirstOrDefault();
+        }
+
+        public IEnumerable<JsonToken> GetPropertyTokens(string name)
+        {
+            if (!HasProperty(name))
             {
-                var reader = new ModelSerializationReader(ms);
-                return reader.ReadGameModels();
+                return Enumerable.Empty<JsonToken>();
+            }
+            else
+            {
+                return map[name];
             }
         }
     }
