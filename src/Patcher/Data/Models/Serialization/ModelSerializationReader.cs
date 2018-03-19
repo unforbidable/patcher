@@ -47,11 +47,12 @@ namespace Patcher.Data.Models.Serialization
             string pluginsMatchLine = reader.ReadPropertyString("PluginsMatchLine");
             string archivesExtension = reader.ReadPropertyString("ArchivesExtension");
             string stringsDefaultLanguage = reader.ReadPropertyString("StringsDefaultLanguage");
-            var models = reader.ReadPropertyArray("Models", ReadRootModel);
+            IEnumerable<IModel> models = reader.ReadPropertyArray("Models", ReadRootModel);
 
             return new GameModel(name, basePlugin, latestFormVersion, pluginsFileLocation, pluginsMatchLine, archivesExtension, stringsDefaultLanguage, models);
         }
 
+        // Reads EnumModel, StructModel, RecordModel, FucntionModel, FieldGroupModel
         private IModel ReadRootModel()
         {
             switch (reader.CurrentObjectTypeName)
@@ -62,7 +63,7 @@ namespace Patcher.Data.Models.Serialization
                 case "StructModel":
                     return ReadStructModel();
 
-                    // TODO: Add all root models: RecordModel, FunctionModel, FieldGroup
+                    // TODO: Add all root models: RecordModel, FunctionModel, FieldGroupModel - uncomment throw below to make see what has not been implementned
 
                 default:
                     //throw new NotImplementedException(string.Format("Reading model objects of type '{0}' has not been implemented.", reader.CurrentObjectTypeName));
@@ -74,7 +75,7 @@ namespace Patcher.Data.Models.Serialization
         {
             string name = reader.ReadPropertyString("Name");
             string description = reader.ReadPropertyString("Description");
-            var members = reader.ReadPropertyArray("Members", ReadMemberModel);
+            IEnumerable<MemberModel> members = reader.ReadPropertyArray("Members", ReadMemberModel);
 
             return new StructModel(name, description, members);
         }
@@ -84,8 +85,8 @@ namespace Patcher.Data.Models.Serialization
             string name = reader.ReadPropertyString("Name");
             string displayName = reader.ReadPropertyString("DisplayName");
             string description = reader.ReadPropertyString("Description");
-            var type = reader.ReadPropertyObject("Type", ReadMemberType);
-            var targetModel = reader.ReadPropertyObject("TargetModel", ReadTargetModel);
+            ICanRepresentMember type = reader.ReadPropertyObject("Type", ReadMemberTypeModel);
+            TargetModel targetModel = reader.ReadPropertyObject("TargetModel", ReadTargetModel);
             bool isHidden = reader.ReadPropertyBoolean("IsHidden");
             bool isVirtual = reader.ReadPropertyBoolean("IsVirtual");
             bool isArray = reader.ReadPropertyBoolean("IsArray");
@@ -95,7 +96,8 @@ namespace Patcher.Data.Models.Serialization
             return new MemberModel(name, displayName, description, type, targetModel, isHidden, isVirtual, isArray, arrayLength, arrayPrefixSize);
         }
 
-        private ICanRepresentMember ReadMemberType()
+        // Reads StructModel, EnumModel, MemberType
+        private ICanRepresentMember ReadMemberTypeModel()
         {
             switch (reader.CurrentObjectTypeName)
             {
@@ -113,14 +115,15 @@ namespace Patcher.Data.Models.Serialization
 
         private TargetModel ReadTargetModel()
         {
-            var type = reader.ReadPropertyObject("Type", ReadTargetType);
+            ICanRepresentTarget type = reader.ReadPropertyObject("Type", ReadTargetTypeModel);
             bool isArray = reader.ReadPropertyBoolean("IsArray");
             int arrayLength = reader.ReadPropertyInt32("ArrayLength");
 
             return new TargetModel(type, isArray, arrayLength);
         }
 
-        private ICanRepresentTarget ReadTargetType()
+        // Reads StructModel, EnumModel, TargetType, FormReference
+        private ICanRepresentTarget ReadTargetTypeModel()
         {
             switch (reader.CurrentObjectTypeName)
             {
@@ -144,7 +147,7 @@ namespace Patcher.Data.Models.Serialization
             string baseType = reader.ReadPropertyString("BaseType");
             Type resolvedBaseType = GetType().Assembly.GetType(baseType);
             bool isFlags = reader.ReadPropertyBoolean("IsFlags");
-            var members = reader.ReadPropertyArray("Members", ReadEnumMemberModel);
+            IEnumerable<EnumMemberModel> members = reader.ReadPropertyArray("Members", ReadEnumMemberModel);
 
             return new EnumModel(name, description, resolvedBaseType, isFlags, members);
         }

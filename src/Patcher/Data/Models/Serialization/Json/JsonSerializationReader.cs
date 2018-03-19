@@ -36,6 +36,7 @@ namespace Patcher.Data.Models.Serialization.Json
 
         public IEnumerable<GameModel> ReadModels(Func<GameModel> method)
         {
+            // Build dom tree from tokens
             var tree = JsonTreeBuilder.BuildJsonTree(reader.ReadTokens());
 
             // Read array using all tokens in the source stream
@@ -52,9 +53,9 @@ namespace Patcher.Data.Models.Serialization.Json
         }
 
         /// <summary>
-        /// Reads string property from the current object.
+        /// Reads string value from a property.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Name of the property.</param>
         /// <returns></returns>
         public string ReadPropertyString(string name)
         {
@@ -63,9 +64,9 @@ namespace Patcher.Data.Models.Serialization.Json
         }
 
         /// <summary>
-        /// Reads int property from the current object.
+        /// Reads int value from a property.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Name of the property.</param>
         /// <returns></returns>
         public int ReadPropertyInt32(string name)
         {
@@ -81,9 +82,9 @@ namespace Patcher.Data.Models.Serialization.Json
         }
 
         /// <summary>
-        /// Reads short property from the current object.
+        /// Reads short value from a property.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Name of the property.</param>
         /// <returns></returns>
         public short ReadPropertyInt16(string name)
         {
@@ -99,9 +100,9 @@ namespace Patcher.Data.Models.Serialization.Json
         }
 
         /// <summary>
-        /// Reads bool property from the current object.
+        /// Reads bool value from a property.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Name of the property.</param>
         /// <returns></returns>
         public bool ReadPropertyBoolean(string name)
         {
@@ -116,6 +117,13 @@ namespace Patcher.Data.Models.Serialization.Json
             }
         }
 
+        /// <summary>
+        /// Reads object from a property using the provided method.
+        /// </summary>
+        /// <typeparam name="TModel">Type of the model object to read.</typeparam>
+        /// <param name="name">Name of the property.</param>
+        /// <param name="method">Method to read the model object from the property.</param>
+        /// <returns></returns>
         public TModel ReadPropertyObject<TModel>(string name, Func<TModel> method) where TModel : IModel
         {
             var obj = stack.Object.GetPropertyObject(name);
@@ -129,6 +137,13 @@ namespace Patcher.Data.Models.Serialization.Json
             }
         }
 
+        /// <summary>
+        /// Reads objects from the array from a property using the provided method to read each model object.
+        /// </summary>
+        /// <typeparam name="TModel">Type of the model objects to read.</typeparam>
+        /// <param name="name">Name of the property.</param>
+        /// <param name="method">Method to read the model objects from the array from the property.</param>
+        /// <returns></returns>
         public IEnumerable<TModel> ReadPropertyArray<TModel>(string name, Func<TModel> method) where TModel : IModel
         {
             var array = stack.Object.GetPropertyArray(name);
