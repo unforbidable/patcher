@@ -1,0 +1,50 @@
+<enum>
+  <name>DoFFlags</name>
+  <display-name>DoF Flags</display-name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <!-- There are 31 extra unknown enum values that might need to be added in
+    as hidden values... -->
+    <member>
+      <name>None</name>
+      <display-name>--</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>UseTarget</name>
+      <display-name>Use Target</display-name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>ModeFront</name>
+      <display-name>Mode - Front</display-name>
+      <value>9</value>
+    </member>
+    <member>
+      <name>ModeBack</name>
+      <display-name>Mode - Back</display-name>
+      <value>10</value>
+    </member>
+    <member>
+      <name>NoSky</name>
+      <display-name>No Sky</display-name>
+      <value>11</value>
+    </member>
+    <member>
+      <name>BlurRadiusBit2</name>
+      <display-name>Blur Radius Bit 2</display-name>
+      <value>12</value>
+    </member>
+    <member>
+      <name>BlurRadiusBit1</name>
+      <display-name>Blur Radius Bit 1</display-name>
+      <value>13</value>
+    </member>
+    <member>
+      <name>BlurRadiusBit0</name>
+      <display-name>Blur Radius Bit 0</display-name>
+      <value>14</value>
+    </member>
+  </members>
+</enum>

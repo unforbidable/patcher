@@ -1,0 +1,20 @@
+<enum>
+  <name>RadialBlurFlags</name>
+  <display-name>Radial Blur Flags</display-name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <!-- There are 31 extra unknown enum values that might need to be added in
+    as hidden values... -->
+    <member>
+      <name>None</name>
+      <display-name>--</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>UseTarget</name>
+      <display-name>Use Target</display-name>
+      <value>0x1</value>
+    </member>
+  </members>
+</enum>

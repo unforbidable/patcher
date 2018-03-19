@@ -8,8 +8,9 @@
       <name>DataCount</name>
       <display-name>Data Count</display-name>
       <struct>
+        <name>DataCount</name>
         <members>
-          <imad-flags />
+          <imad-flags name="Flags" />
           <float name="Duration" />
           <member>
             <struct>
@@ -73,15 +74,13 @@
           <uint name="RadialBlurStrength" display-name="Radial Blur Strength" />
           <uint name="RadialBlurRampUp" display-name="Radial Blur Ramp Up" />
           <uint name="RadialBlurStart" display-name="Radial Blur Start" />
-          <!-- TODO: Unfinished
-          <radial-blur-flags /> -->
+          <radial-blur-flags />
           <float name="RadialBlurCenterX" display-name="Radial Blur Center X" />
           <float name="RadialBlurCenterY" display-name="Radial Blur Center Y" />
           <uint name="DoFStrength" display-name="DoF Strength" />
           <uint name="DoFDistance" display-name="DoF Distance" />
           <uint name="DoFRange" display-name="DoF Range" />
-          <!-- TODO: Unfinished
-          <dof-flags /> -->
+          <dof-flags />
           <uint name="RadialBlurRampDown" display-name="Radial Blur Ramp Down" />
           <uint name="RadialBlurDownStart" display-name="Radial Blur Down Start" />
           <uint name="FadeColor" display-name="Fade Color" />
@@ -96,6 +95,7 @@
       <name>TintColor</name>
       <display-name>Tint Color</display-name>
       <struct>
+        <name>TintData</name>
         <members>
           <alpha-color-time name="Data0" display-name="Data #0" />
           <alpha-color-time name="Data1" display-name="Data #1" />
@@ -107,6 +107,7 @@
       <name>FadeColor</name>
       <display-name>Fade Color</display-name>
       <struct>
+        <name>FadeData</name>
         <members>
           <alpha-color-time name="Data0" display-name="Data #0" />
           <alpha-color-time name="Data1" display-name="Data #1" />
@@ -125,6 +126,7 @@
     <field>
       <name>HDR</name>
       <group>
+        <name>HDRData</name>
         <fields>
           <!-- Unsure of what to do about the special characters in the keys. -->
           <imad-double-data key="aIAD" name="EyeAdaptSpeedMult" display-name="Eye Adapt Speed Multiplier" />
@@ -146,27 +148,28 @@
         </fields>
       </group>
     </field>
-    <imad-unknown key="iIAD" />
-    <imad-unknown key="HIAD" />
-    <imad-unknown key="jIAD" />
-    <imad-unknown key="lIAD" />
-    <imad-unknown key="kIAD" />
-    <imad-unknown key="JIAD" />
-    <imad-unknown key="IIAD" />
-    <imad-unknown key="KIAD" />
-    <imad-unknown key="mIAD" />
-    <imad-unknown key="LIAD" />
-    <imad-unknown key="nIAD" />
-    <imad-unknown key="MIAD" />
-    <imad-unknown key="oIAD" />
-    <imad-unknown key="NIAD" />
-    <imad-unknown key="pIAD" />
-    <imad-unknown key="OIAD" />
-    <imad-unknown key="qIAD" />
-    <imad-unknown key="PIAD" />
+    <imad-unknown key="iIAD" name="Unknown1" />
+    <imad-unknown key="HIAD" name="Unknown2" />
+    <imad-unknown key="jIAD" name="Unknown3" />
+    <imad-unknown key="lIAD" name="Unknown4" />
+    <imad-unknown key="kIAD" name="Unknown5" />
+    <imad-unknown key="JIAD" name="Unknown6" />
+    <imad-unknown key="IIAD" name="Unknown7" />
+    <imad-unknown key="KIAD" name="Unknown8" />
+    <imad-unknown key="mIAD" name="Unknown9" />
+    <imad-unknown key="LIAD" name="Unknown10" />
+    <imad-unknown key="nIAD" name="Unknown11" />
+    <imad-unknown key="MIAD" name="Unknown12" />
+    <imad-unknown key="oIAD" name="Unknown13" />
+    <imad-unknown key="NIAD" name="Unknown14" />
+    <imad-unknown key="pIAD" name="Unknown15" />
+    <imad-unknown key="OIAD" name="Unknown16" />
+    <imad-unknown key="qIAD" name="Unknown17" />
+    <imad-unknown key="PIAD" name="Unknown18" />
     <field>
       <name>Cinematic</name>
       <group>
+        <name>CinematicData</name>
         <fields>
           <imad-triple-data key="rIAD" name="SaturationMult" display-name="Saturation Multiplier" />
           <imad-double-data key="QIAD" name="SaturationAdd" display-name="Saturation Add" />
@@ -177,7 +180,7 @@
         </fields>
       </group>
     </field>
-    <imad-unknown key="uIAD" />
-    <imad-unknown key="TIAD" />
+    <imad-unknown key="uIAD" name="Unknown19" />
+    <imad-unknown key="TIAD" name="Unknown20" />
   </fields>
 </record>
