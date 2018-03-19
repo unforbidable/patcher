@@ -35,6 +35,11 @@ namespace Patcher.Data.Models
         public string Name { get; private set; }
 
         /// <summary>
+        /// Name of the enum as will appear in the GUI.
+        /// </summary>
+        public string DisplayName { get; private set; }
+
+        /// <summary>
         /// Description of the generated enum.
         /// </summary>
         public string Description { get; private set; }
@@ -54,9 +59,10 @@ namespace Patcher.Data.Models
         /// </summary>
         public EnumMemberModel[] Members { get; private set; }
 
-        public EnumModel(string name, string description, Type baseType, bool isFlags, IEnumerable<EnumMemberModel> members)
+        public EnumModel(string name, string displayName, string description, Type baseType, bool isFlags, IEnumerable<EnumMemberModel> members)
         {
             Name = name;
+            DisplayName = displayName ?? name;
             Description = description;
             BaseType = baseType;
             IsFlags = isFlags;
@@ -73,6 +79,12 @@ namespace Patcher.Data.Models
             }
 
             builder.Append(Name);
+
+            if (!string.IsNullOrEmpty(DisplayName))
+            {
+                builder.AppendFormat("[DisplayName(\"{0}\")] ", DisplayName);
+            }
+
             builder.Append(" { ");
             builder.Append(string.Join(", ", Members.Select(m => m.ToString())));
             builder.Append(" }");

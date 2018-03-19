@@ -143,13 +143,14 @@ namespace Patcher.Data.Models.Serialization
         private EnumModel ReadEnumModel()
         {
             string name = reader.ReadPropertyString("Name");
+            string displayName = reader.ReadPropertyString("DisplayName");
             string description = reader.ReadPropertyString("Description");
             string baseType = reader.ReadPropertyString("BaseType");
             Type resolvedBaseType = GetType().Assembly.GetType(baseType);
             bool isFlags = reader.ReadPropertyBoolean("IsFlags");
             IEnumerable<EnumMemberModel> members = reader.ReadPropertyArray("Members", ReadEnumMemberModel);
 
-            return new EnumModel(name, description, resolvedBaseType, isFlags, members);
+            return new EnumModel(name, displayName, description, resolvedBaseType, isFlags, members);
         }
 
         private EnumMemberModel ReadEnumMemberModel()

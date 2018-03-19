@@ -120,12 +120,13 @@ namespace Patcher.Data.Models.Loading
             // TODO: Ensure element name 'enum'
 
             string name = ReadValue("name");
+            string displayName = ReadValue("display-name");
             string description = ReadValue("description");
             Type baseType = ReadEnumType("type") ?? typeof(int);
             bool isFlags = HasValueTrue("flags");
             var members = GetGrandChildren("members").Select(e => EnterElement(e).ReadEnumMember(baseType, isFlags));
 
-            return new EnumModel(name, description, baseType, isFlags, members);
+            return new EnumModel(name, displayName, description, baseType, isFlags, members);
         }
 
         public EnumMemberModel ReadEnumMember(Type type, bool isFlags)
