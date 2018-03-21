@@ -1,0 +1,66 @@
+<field>
+	<name>Destructable</name>
+  <group>
+    <name>DestructionData</name>
+    <fields>
+      <field>
+        <key>DEST</key>
+        <name>Header</name>
+        <struct>
+          <name>HeaderData</name>
+          <members>
+            <uint name="Health" />
+            <uint name="Count" hidden="true" />
+            <bool name="Targetable" display-name="VATS Targetable" />
+            <uint name="Unknown" />
+          </members>
+        </struct>
+      </field>
+      <field>
+        <name>Stages</name>
+        <list>true</list>
+        <group>
+          <name>Stage</name>
+          <fields>
+            <field>
+              <key>DSTD</key>
+              <name>DestructionStage</name>
+              <display-name>Destruction Stage</display-name>
+              <struct>
+                <name>DestructionStageData</name>
+                <members>
+                  <uint name="HealthPercent" display-name="Health %" />
+                  <uint name="Index" />
+                  <!-- Can only be 0 through 8 -->
+                  <uint name="ModelDamageStage" display-name="Model Damage Stage" />
+                  <destruction-flags name="Flags" />
+                  <uint name="SelfDamageRate" display-name="Self Damage per Second" />
+                  <explosion name="ExplosionID" display-name="Explosion ID" />
+                  <debris name="DebrisID" display-name="Debris ID" />
+                  <uint name="DebrisCount" display-name="Debris Count" />
+                </members>
+              </struct>
+            </field>
+            <field>
+              <name>Models</name>
+              <group>
+                <name>Models</name>
+                <fields>
+                  <zstring key="DMDL" name="ReplacementModel" display-name="Replacement Model Filename" />
+                  <model-texture-data key="DMDT" />
+                  <model-alt-textures key="DMDS" />
+                </fields>
+              </group>
+            </field>
+            <field>
+              <key>DSTF</key>
+              <name>EndMarker</name>
+              <hidden>true</hidden>
+              <type>null</type>
+            </field>
+          </fields>
+        </group>
+      </field>
+    </fields>
+  </group>
+</field>

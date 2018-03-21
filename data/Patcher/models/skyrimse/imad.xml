@@ -74,13 +74,13 @@
           <uint name="RadialBlurStrength" display-name="Radial Blur Strength" />
           <uint name="RadialBlurRampUp" display-name="Radial Blur Ramp Up" />
           <uint name="RadialBlurStart" display-name="Radial Blur Start" />
-          <radial-blur-flags />
+          <radial-blur-flags name="RadialBlurFlags" display-name="Radial Blur Flags" />
           <float name="RadialBlurCenterX" display-name="Radial Blur Center X" />
           <float name="RadialBlurCenterY" display-name="Radial Blur Center Y" />
           <uint name="DoFStrength" display-name="DoF Strength" />
           <uint name="DoFDistance" display-name="DoF Distance" />
           <uint name="DoFRange" display-name="DoF Range" />
-          <dof-flags />
+          <dof-flags name="DoFFlags" display-name="DoF Flags" />
           <uint name="RadialBlurRampDown" display-name="Radial Blur Ramp Down" />
           <uint name="RadialBlurDownStart" display-name="Radial Blur Down Start" />
           <uint name="FadeColor" display-name="Fade Color" />

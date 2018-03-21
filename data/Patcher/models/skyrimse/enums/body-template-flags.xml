@@ -1,0 +1,51 @@
+<enum>
+  <name>BodyTemplateFlags</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>ModulatesVoice</name>
+      <display-name>Modulates Voice (ARMA only)</display-name>
+      <value>0x00000001</value>
+    </member>
+    <member>
+      <name>Unknown2</name>
+      <display-name>Unknown 2</display-name>
+      <value>0x00000002</value>
+    </member>
+    <member>
+      <name>Unknown3</name>
+      <display-name>Unknown 3</display-name>
+      <value>0x00000004</value>
+    </member>
+    <member>
+      <name>Unknown4</name>
+      <display-name>Unknown 4</display-name>
+      <value>0x00000008</value>
+    </member>
+    <member>
+      <name>NonPlayable</name>
+      <display-name>Non-Playable (ARMO only)</display-name>
+      <value>0x00000010</value>
+    </member>
+    <member>
+      <name>Unknown6</name>
+      <display-name>Unknown 6</display-name>
+      <value>0x00000020</value>
+    </member>
+    <member>
+      <name>Unknown7</name>
+      <display-name>Unknown 7</display-name>
+      <value>0x00000040</value>
+    </member>
+    <member>
+      <name>Unknown8</name>
+      <display-name>Unknown 8</display-name>
+      <value>0x00000080</value>
+    </member>
+  </members>
+</enum>

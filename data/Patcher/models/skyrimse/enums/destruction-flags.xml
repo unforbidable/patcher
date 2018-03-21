@@ -1,0 +1,32 @@
+<enum>
+  <name>DestructionFlags</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <!-- There are four more unknown values that might need to be included. -->
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>CapDamage</name>
+      <display-name>Cap Damage</display-name>
+      <value>0x01</value>
+    </member>
+    <member>
+      <name>DisableObject</name>
+      <display-name>Disable Object</display-name>
+      <value>0x02</value>
+    </member>
+    <member>
+      <name>DestroyObject</name>
+      <display-name>Destroy Object</display-name>
+      <value>0x04</value>
+    </member>
+    <member>
+      <name>IgnoreExternalDamage</name>
+      <display-name>Ignore External Damage</display-name>
+      <value>0x08</value>
+    </member>
+  </members>
+</enum>

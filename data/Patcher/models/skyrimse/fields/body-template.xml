@@ -1,0 +1,13 @@
+<field>
+  <key>BODT</key>
+	<name>BodyTemplate</name>
+  <display-name>Body Template</display-name>
+  <struct>
+    <name>BodyTemplateData</name>
+    <members>
+      <body-part-flags name="BodyPartFlags" display-name="Body Part Flags" />
+      <body-template-flags name="GeneralFlags" display-name="General Flags" />
+      <armor-skill-type name="ArmorSkill" display-name="Armor Skill" />
+    </members>
+  </struct>
+</field>

@@ -31,9 +31,8 @@
         </fields>
       </group>
     </field>
-    <!-- TODO: Incomplete 
-    There are two versions, BOD2 and BODT, not sure if both could be loaded from the same file.
-    <body-template /> -->
+    <body-template if="$record.$version&lt;44" />
+    <biped-body-template if="$record.$version>=44" />
     <pickup-sound />
     <drop-sound />
     <string key="BMCT" name="Ragdoll" />

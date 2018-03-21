@@ -1,0 +1,12 @@
+<field>
+  <key>BOD2</key>
+	<name>BipedBodyTemplate</name>
+  <display-name>Biped Body Template</display-name>
+  <struct>
+    <name>BipedBodyData</name>
+    <members>
+      <body-part-flags name="BodyPartFlags" display-name="Body Part Flags" />
+      <armor-skill-type name="ArmorSkill" display-name="Armor Skill" />
+    </members>
+  </struct>
+</field>

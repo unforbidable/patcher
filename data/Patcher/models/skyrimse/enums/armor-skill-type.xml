@@ -1,0 +1,18 @@
+<enum>
+  <name>ArmorSkill</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Light Armor</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Heavy Armor</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>None (No Armor Value)</name>
+      <value>2</value>
+    </member>
+  </members>
+</enum>

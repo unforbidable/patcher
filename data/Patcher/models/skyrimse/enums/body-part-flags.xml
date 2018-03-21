@@ -1,0 +1,156 @@
+<enum>
+  <name>BodyPartFlags</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Head</name>
+      <value>0x00000001</value>
+    </member>
+    <member>
+      <name>Hair</name>
+      <value>0x00000002</value>
+    </member>
+    <member>
+      <name>Body</name>
+      <value>0x00000004</value>
+    </member>
+    <member>
+      <name>Hands</name>
+      <value>0x00000008</value>
+    </member>
+    <member>
+      <name>Forearms</name>
+      <value>0x00000010</value>
+    </member>
+    <member>
+      <name>Amulet</name>
+      <value>0x00000020</value>
+    </member>
+    <member>
+      <name>Ring</name>
+      <value>0x00000040</value>
+    </member>
+    <member>
+      <name>Feet</name>
+      <value>0x00000080</value>
+    </member>
+    <member>
+      <name>Calves</name>
+      <value>0x00000100</value>
+    </member>
+    <member>
+      <name>Shield</name>
+      <value>0x00000200</value>
+    </member>
+    <member>
+      <name>Tail</name>
+      <value>0x00000400</value>
+    </member>
+    <member>
+      <name>LongHair</name>
+      <display-name>Long Hair</display-name>
+      <value>0x00000800</value>
+    </member>
+    <member>
+      <name>Circlet</name>
+      <value>0x00001000</value>
+    </member>
+    <member>
+      <name>Ears</name>
+      <value>0x00002000</value>
+    </member>
+    <member>
+      <name>BodyAddon3</name>
+      <display-name>Body AddOn 3</display-name>
+      <value>0x00004000</value>
+    </member>
+    <member>
+      <name>BodyAddon4</name>
+      <display-name>Body AddOn 4</display-name>
+      <value>0x00008000</value>
+    </member>
+    <member>
+      <name>BodyAddon5</name>
+      <display-name>Body AddOn 5</display-name>
+      <value>0x00010000</value>
+    </member>
+    <member>
+      <name>BodyAddon6</name>
+      <display-name>Body AddOn 6</display-name>
+      <value>0x00020000</value>
+    </member>
+    <member>
+      <name>BodyAddon7</name>
+      <display-name>Body AddOn 7</display-name>
+      <value>0x00040000</value>
+    </member>
+    <member>
+      <name>BodyAddon8</name>
+      <display-name>Body AddOn 8</display-name>
+      <value>0x00080000</value>
+    </member>
+    <member>
+      <name>DecapitateHead</name>
+      <display-name>Decapitate Head</display-name>
+      <value>0x00100000</value>
+    </member>
+    <member>
+      <name>Decapitate</name>
+      <value>0x00200000</value>
+    </member>
+    <member>
+      <name>BodyAddon9</name>
+      <display-name>Body AddOn 9</display-name>
+      <value>0x00400000</value>
+    </member>
+    <member>
+      <name>BodyAddon10</name>
+      <display-name>Body AddOn 10</display-name>
+      <value>0x00800000</value>
+    </member>
+    <member>
+      <name>BodyAddon11</name>
+      <display-name>Body AddOn 11</display-name>
+      <value>0x01000000</value>
+    </member>
+    <member>
+      <name>BodyAddon12</name>
+      <display-name>Body AddOn 12</display-name>
+      <value>0x02000000</value>
+    </member>
+    <member>
+      <name>BodyAddon13</name>
+      <display-name>Body AddOn 13</display-name>
+      <value>0x04000000</value>
+    </member>
+    <member>
+      <name>BodyAddon14</name>
+      <display-name>Body AddOn 14</display-name>
+      <value>0x08000000</value>
+    </member>
+    <member>
+      <name>BodyAddon15</name>
+      <display-name>Body AddOn 15</display-name>
+      <value>0x10000000</value>
+    </member>
+    <member>
+      <name>BodyAddon16</name>
+      <display-name>Body AddOn 16</display-name>
+      <value>0x20000000</value>
+    </member>
+    <member>
+      <name>BodyAddon17</name>
+      <display-name>Body AddOn 17</display-name>
+      <value>0x40000000</value>
+    </member>
+    <member>
+      <name>FX01</name>
+      <value>0x80000000</value>
+    </member>
+  </members>
+</enum>

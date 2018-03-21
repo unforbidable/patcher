@@ -1,0 +1,7 @@
+<field>
+	<name>Debris</name>
+	<type>uint</type>
+  <as>
+    <type>ref(DEBR)</type>
+  </as>
+</field>
