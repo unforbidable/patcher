@@ -43,7 +43,8 @@ namespace Patcher.Data.Models
 
         public static FormReference Parse(string id)
         {
-            if (TryParse(id, out FormReference reference))
+            FormReference reference;
+            if (TryParse(id, out reference))
             {
                 return reference;
             }
