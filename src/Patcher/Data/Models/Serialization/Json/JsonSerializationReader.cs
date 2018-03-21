@@ -71,7 +71,8 @@ namespace Patcher.Data.Models.Serialization.Json
         public int ReadPropertyInt32(string name)
         {
             string value = ReadPropertyString(name);
-            if (value != null && int.TryParse(value, out int parsed))
+            int parsed;
+            if (value != null && int.TryParse(value, out parsed))
             {
                 return parsed;
             }
@@ -89,7 +90,8 @@ namespace Patcher.Data.Models.Serialization.Json
         public short ReadPropertyInt16(string name)
         {
             string value = ReadPropertyString(name);
-            if (value != null && short.TryParse(value, out short parsed))
+            short parsed;
+            if (value != null && short.TryParse(value, out parsed))
             {
                 return parsed;
             }
