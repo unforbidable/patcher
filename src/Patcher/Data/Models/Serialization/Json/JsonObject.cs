@@ -23,7 +23,12 @@ namespace Patcher.Data.Models.Serialization.Json
 {
     public class JsonObject : IJsonPropertyValue
     {
-        public Dictionary<string, IJsonPropertyValue> Properties { get; private set; } = new Dictionary<string, IJsonPropertyValue>();
+        public Dictionary<string, IJsonPropertyValue> Properties { get; private set; }
+
+        public JsonObject()
+        {
+            Properties = new Dictionary<string, IJsonPropertyValue>();
+        }
 
         public bool HasProperty(string name)
         {
