@@ -3,15 +3,18 @@
   <type>uint</type>
   <members>
     <member>
-      <name>Light Armor</name>
+      <name>LightArmor</name>
+      <display-name>Light Armor</display-name>
       <value>0</value>
     </member>
     <member>
-      <name>Heavy Armor</name>
+      <name>HeavyArmor</name>
+      <display-name>Heavy Armor</display-name>
       <value>1</value>
     </member>
     <member>
-      <name>None (No Armor Value)</name>
+      <name>None</name>
+      <display-name>None (No Armor Value)</display-name>
       <value>2</value>
     </member>
   </members>
