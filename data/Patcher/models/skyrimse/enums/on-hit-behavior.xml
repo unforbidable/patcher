@@ -1,0 +1,26 @@
+<enum>
+  <name>OnHitBehavior</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>DismemberOnly</name>
+      <display-name>Dismember Only</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>ExplodeOnly</name>
+      <display-name>Explode Only</display-name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>NoDismemberOrExplode</name>
+      <display-name>No Dismember/Explode</display-name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>NoFormulaBehavior</name>
+      <display-name>No Formula Behavior</display-name>
+      <value>3</value>
+    </member>
+  </members>
+</enum>

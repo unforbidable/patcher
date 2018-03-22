@@ -56,7 +56,7 @@
               <key>DSTF</key>
               <name>EndMarker</name>
               <hidden>true</hidden>
-              <type>null</type>
+              <type>uint</type>
             </field>
           </fields>
         </group>

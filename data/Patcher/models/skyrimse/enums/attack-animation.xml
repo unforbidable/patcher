@@ -1,0 +1,94 @@
+<enum>
+  <name>AttackAnimation</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Default</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Attack3</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Attack4</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>Attack5</name>
+      <value>3</value>
+    </member>
+    <member>
+      <name>Attack6</name>
+      <value>4</value>
+    </member>
+    <member>
+      <name>Attack7</name>
+      <value>5</value>
+    </member>
+    <member>
+      <name>Attack8</name>
+      <value>6</value>
+    </member>
+    <member>
+      <name>AttackLeft</name>
+      <display-name>Attack Left</display-name>
+      <value>7</value>
+    </member>
+    <member>
+      <name>AttackLoop</name>
+      <display-name>Attack Loop</display-name>
+      <value>8</value>
+    </member>
+    <member>
+      <name>AttackRight</name>
+      <display-name>Attack Right</display-name>
+      <value>9</value>
+    </member>
+    <member>
+      <name>AttackSpin</name>
+      <display-name>Attack Spin</display-name>
+      <value>10</value>
+    </member>
+    <member>
+      <name>AttackSpin2</name>
+      <display-name>Attack Spin2</display-name>
+      <value>11</value>
+    </member>
+    <member>
+      <name>AttackThrow</name>
+      <display-name>Attack Throw</display-name>
+      <value>12</value>
+    </member>
+    <member>
+      <name>AttackThrow2</name>
+      <display-name>Attack Throw2</display-name>
+      <value>13</value>
+    </member>
+    <member>
+      <name>AttackThrow3</name>
+      <display-name>Attack Throw3</display-name>
+      <value>14</value>
+    </member>
+    <member>
+      <name>AttackThrow4</name>
+      <display-name>Attack Throw4</display-name>
+      <value>15</value>
+    </member>
+    <member>
+      <name>AttackThrow5</name>
+      <display-name>Attack Throw5</display-name>
+      <value>16</value>
+    </member>
+    <member>
+      <name>PlaceMine</name>
+      <display-name>Place Mine</display-name>
+      <value>17</value>
+    </member>
+    <member>
+      <name>PlaceMine2</name>
+      <display-name>Place Mine2</display-name>
+      <value>18</value>
+    </member>
+  </members>
+</enum>

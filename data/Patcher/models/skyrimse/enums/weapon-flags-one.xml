@@ -1,0 +1,49 @@
+<enum>
+  <name>WeaponFlagsOne</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>IgnoresNormalWeaponResistance</name>
+      <display-name>Ignores Normal Weapon Reistance</display-name>
+      <value>0x01</value>
+    </member>
+    <member>
+      <name>Automatic</name>
+      <value>0x02</value>
+    </member>
+    <member>
+      <name>HasScope</name>
+      <display-name>Has Scope</display-name>
+      <value>0x04</value>
+    </member>
+    <member>
+      <name>CantDrop</name>
+      <display-name>Can't Drop</display-name>
+      <value>0x08</value>
+    </member>
+    <member>
+      <name>HideBackpack</name>
+      <display-name>Hide Backpack</display-name>
+      <value>0x10</value>
+    </member>
+    <member>
+      <name>EmbeddedWeapon</name>
+      <display-name>Embedded Weapon</display-name>
+      <value>0x20</value>
+    </member>
+    <member>
+      <name>DontUseFirstPersonAnim</name>
+      <display-name>Don't Use 1st Person IS Animations</display-name>
+      <value>0x40</value>
+    </member>
+    <member>
+      <name>Unplayable</name>
+      <value>0x80</value>
+    </member>
+  </members>
+</enum>

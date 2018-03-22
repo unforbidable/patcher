@@ -1,5 +1,6 @@
 <enum>
   <name>GlobalType</name>
+  <display-name>Type</display-name>
   <type>byte</type>
   <members>
     <member>

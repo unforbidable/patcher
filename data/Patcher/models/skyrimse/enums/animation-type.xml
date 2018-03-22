@@ -1,0 +1,53 @@
+<enum>
+  <name>AnimationType</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>HandToHandMelee</name>
+      <display-name>Hand To Hand Melee</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>OneHandSword</name>
+      <display-name>One Hand Sword</display-name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>OneHandDagger</name>
+      <display-name>One Hand Dagger</display-name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>OneHandAxe</name>
+      <display-name>One Hand Axe</display-name>
+      <value>3</value>
+    </member>
+    <member>
+      <name>OneHandMace</name>
+      <display-name>One Hand Mace</display-name>
+      <value>4</value>
+    </member>
+    <member>
+      <name>TwoHandSword</name>
+      <display-name>Two Hand Sword</display-name>
+      <value>5</value>
+    </member>
+    <member>
+      <name>TwoHandAxe</name>
+      <display-name>Two Hand Axe</display-name>
+      <value>6</value>
+    </member>
+    <member>
+      <name>Bow</name>
+      <value>7</value>
+    </member>
+    <member>
+      <name>Staff</name>
+      <value>8</value>
+    </member>
+    <member>
+      <name>Crossbow</name>
+      <value>9</value>
+    </member>
+  </members>
+</enum>

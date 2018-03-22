@@ -1,0 +1,79 @@
+<enum>
+  <name>WeaponFlagsTwo</name>
+  <type>uint</type>
+  <flags>true</flags>
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>PlayerOnly</name>
+      <display-name>Player Only</display-name>
+      <value>0x01</value>
+    </member>
+    <member>
+      <name>NpcsUseAmmo</name>
+      <display-name>NPCs Use Ammo</display-name>
+      <value>0x02</value>
+    </member>
+    <member>
+      <name>NoJamAfterReload</name>
+      <display-name>No Jam After Reload</display-name>
+      <value>0x04</value>
+    </member>
+    <member>
+      <name>Unknown4</name>
+      <value>0x08</value>
+    </member>
+    <member>
+      <name>MinorCrime</name>
+      <display-name>Minor Crime</display-name>
+      <value>0x10</value>
+    </member>
+    <member>
+      <name>FixedRange</name>
+      <display-name>Fixed Range</display-name>
+      <value>0x20</value>
+    </member>
+    <member>
+      <name>NotUsedInCombat</name>
+      <display-name>Not Used In Normal Combat</display-name>
+      <value>0x40</value>
+    </member>
+    <member>
+      <name>Unknown8</name>
+      <value>0x80</value>
+    </member>
+    <member>
+      <name>DontUseThirdPersonAnim</name>
+      <display-name>Don't Use 3rd Person IS Animations</display-name>
+      <value>0x100</value>
+    </member>
+    <member>
+      <name>BurstShot</name>
+      <display-name>Burst Shot</display-name>
+      <value>0x200</value>
+    </member>
+    <member>
+      <name>AlternateRumble</name>
+      <display-name>Alternate Rumble</display-name>
+      <value>0x400</value>
+    </member>
+    <member>
+      <name>LongBursts</name>
+      <display-name>Long Bursts</display-name>
+      <value>0x800</value>
+    </member>
+    <member>
+      <name>NonHostile</name>
+      <display-name>Non-Hostile</display-name>
+      <value>0x1000</value>
+    </member>
+    <member>
+      <name>BoundWeapon</name>
+      <display-name>Bound Weapon</display-name>
+      <value>0x2000</value>
+    </member>
+  </members>
+</enum>

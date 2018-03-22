@@ -1,0 +1,132 @@
+<record>
+  <name>Weapon</name>
+  <fields>
+    <editor-id />
+    <virtual-machine-adapter />
+    <object-bounds />
+    <full-name />
+    <models />
+    <object-enchantment />
+    <enchantment-amount />
+    <destructable />
+    <equipment-type />
+    <bash-impact-data-set name="BlockImpactDataSet" display-name="Block Bash Impact Data Set" />
+    <bash-material name="AlternateBlockMaterial" display-name="Alternate Block Material" />
+    <pickup-sound />
+    <drop-sound />
+    <keyword-list />
+    <description />
+    <field>
+      <name>HasScope</name>
+      <display-name>Has Scope</display-name>
+      <group>
+        <name>ScopeModelData</name>
+        <fields>
+          <zstring key="MOD3" name="WorldModel" display-name="Model Filename" />
+          <model-alt-textures key="MO3S" name="AlternateTextures" display-name="Alternate Textures" />
+        </fields>
+      </group>
+    </field>
+    <field>
+      <key>INAM</key>
+      <name>ImpactDataSet</name>
+      <display-name>Impact Data Set</display-name>
+      <type>uint</type>
+      <as>
+        <type>ref(IPDS)</type>
+      </as>
+    </field>
+    <field>
+      <key>WNAM</key>
+      <name>FirstPersonModel</name>
+      <display-name>1st Person Model Object</display-name>
+      <type>uint</type>
+      <as>
+        <type>ref(STAT)</type>
+      </as>
+    </field>
+    <sound key="SNAM" name="AttackSound" display-name="Attack Sound" />
+    <sound key="XNAM" name="AttackSound2D" display-name="Attack Sound 2D" />
+    <sound key="NAM7" name="AttackLoopSound" display-name="Attack Loop Sound" />
+    <sound key="TNAM" name="AttackFailSound" display-name="Attack Fail Sound" />
+    <sound key="UNAM" name="IdleSound" display-name="Idle Sound" />
+    <sound key="NAM9" name="EquipSound" display-name="Equip Sound" />
+    <sound key="NAM8" name="UnequipSound" display-name="Unequip Sound" />
+    <field>
+      <key>DATA</key>
+      <name>GameData</name>
+      <display-name>Game Data</display-name>
+      <struct>
+        <name>GameData</name>
+        <members>
+          <uint name="Value" display-name="Gold Value" />
+          <float name="Weight" />
+          <uint name="Damage" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>DNAM</key>
+      <name>WeaponData</name>
+      <display-name>Weapon Data</display-name>
+      <struct>
+        <name>WeaponData</name>
+        <members>
+          <animation-type name="AnimationType" display-name="Animation Type" />
+          <float name="Speed" />
+          <float name="Reach" />
+          <weapon-flags-one name="FlagsOne" display-name="Flags One" />
+          <float name="SightFOV" display-name="Sight FOV" />
+          <uint name="Unused" hidden="true" />
+          <uint name="VatsHitChance" display-name="Base VATS To-Hit Chance" />
+          <attack-animation name="AttackAnimation" display-name="Attack Animation" />
+          <uint name="Projectiles" display-name="# Projectiles" />
+          <uint name="EmbeddedWeaponAV" display-name="Embedded Weapon: Actor Value" />
+          <float name="MinRange" display-name="Minimum Range" />
+          <float name="MaxRange" display-name="Maximum Range" />
+          <on-hit-behavior name="OnHit" display-name="On-Hit Behavior" />
+          <weapon-flags-two name="FlagsTwo" display-name="Flags Two" />
+          <float name="AnimAttackMult" display-name="Animation Attack Muliplier" />
+          <uint name="Unused2" hidden="true" />
+          <float name="RumbleLeft" display-name="Rumble - Left Motor Strength" />
+          <float name="RumbleRight" display-name="Rumble - Right Motor Strength" />
+          <float name="RumbleDuration" display-name="Rumble - Duration" />
+          <uint name="Unused3" hidden="true" />
+          <!-- TODO: Unfinished
+          <skill-enum name="Skill" /> -->
+          <uint name="Unused4" hidden="true" />
+          <!-- TODO: Unfinished
+          <resistance name="Resistance" /> -->
+          <uint name="Unused5" hidden="true" />
+          <float name="Stagger" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>CRDT</key>
+      <name>CritData</name>
+      <display-name>Critical Data</display-name>
+      <struct>
+        <name>CritStrikeData</name>
+        <members>
+          <uint name="Damage" display-name="Critical Damage" />
+          <uint name="Unknown1" />
+          <float name="PercentMult" display-name="Critical % Multiplier" />
+          <uint name="Unknown2" />
+          <spell-effect name="Effect" />
+          <uint name="Unknown3" />
+        </members>
+      </struct>
+    </field>
+    <sound-detection />
+    <field>
+      <key>CNAM</key>
+      <name>Template</name>
+      <display-name>Weapon Template</display-name>
+      <type>uint</type>
+      <as>
+        <type>ref(WEAP)</type>
+      </as>
+    </field>
+  </fields>
+</record>

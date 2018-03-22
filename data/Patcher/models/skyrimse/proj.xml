@@ -5,8 +5,7 @@
     <object-bounds />
     <full-name />
     <models />
-    <!-- TODO: Incomplete
-    <destructible /> -->
+    <destructable />
     <field>
       <key>DATA</key>
       <name>Data</name>
@@ -51,16 +50,6 @@
         </fields>
       </group>
     </field>
-    <field>
-      <key>VNAM</key>
-      <name>SoundDetectionLevel</name>
-      <display-name>Sound Detection Level</display-name>
-      <struct>
-        <name>SoundDetectionEnum</name>
-        <members>
-          <sound-detection-level />
-        </members>
-      </struct>
-    </field>
+    <sound-detection />
   </fields>
 </record>

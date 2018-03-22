@@ -1,0 +1,7 @@
+<field>
+	<name>SpellEffect</name>
+	<type>uint</type>
+  <as>
+    <type>ref(SPEL)</type>
+  </as>
+</field>

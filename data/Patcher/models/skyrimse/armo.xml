@@ -37,24 +37,8 @@
     <drop-sound />
     <string key="BMCT" name="Ragdoll" />
     <equipment-type />
-    <field>
-      <key>BIDS</key>
-      <name>BashImpactDataSet</name>
-      <display-name>Bash Impact Data</display-name>
-      <type>uint</type>
-      <as>
-        <type>ref(IPDS)</type>
-      </as>
-    </field>
-    <field>
-      <key>BAMT</key>
-      <name>BashMaterial</name>
-      <display-name>Alternate Bash Material</display-name>
-      <type>uint</type>
-      <as>
-        <type>ref(MATT)</type>
-      </as>
-    </field>
+    <bash-impact-data-set />
+    <bash-material />
     <race-ref />
     <keyword-list />
     <description />
