@@ -7,7 +7,7 @@
     <full-name />
     <models />
     <object-enchantment />
-    <enchantment-amount />
+    <enchant-amount />
     <destructable />
     <equipment-type />
     <bash-impact-data-set name="BlockImpactDataSet" display-name="Block Bash Impact Data Set" />
