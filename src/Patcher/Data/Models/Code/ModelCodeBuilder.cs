@@ -74,7 +74,7 @@ namespace Patcher.Data.Models.Code
             var e = new CodeEnum(model.Name)
             {
                 Comment = comment.ToString(),
-                Type = model.BaseType
+                Type = model.BaseType ?? typeof(int)
             };
 
             foreach (var m in model.Members)

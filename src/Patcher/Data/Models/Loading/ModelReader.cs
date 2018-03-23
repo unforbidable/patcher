@@ -122,7 +122,7 @@ namespace Patcher.Data.Models.Loading
             string name = ReadValue("name");
             string displayName = ReadValue("display-name");
             string description = ReadValue("description");
-            Type baseType = ReadEnumType("type") ?? typeof(int);
+            Type baseType = ReadEnumType("type");
             bool isFlags = HasValueTrue("flags");
             var members = GetGrandChildren("members").Select(e => EnterElement(e).ReadEnumMember(baseType, isFlags));
 

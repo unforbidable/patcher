@@ -82,7 +82,7 @@ namespace Patcher.Data.Models.Serialization
             writer.WriteProperty("Name", model.Name);
             writer.WriteProperty("DisplayName", model.DisplayName);
             writer.WriteProperty("Description", model.Description);
-            writer.WriteProperty("BaseType", model.BaseType.Name); // Write only .Name for types
+            writer.WriteProperty("BaseType", model.BaseType); // Write only .Name for types
             writer.WriteProperty("IsFlags", model.IsFlags);
             writer.WriteProperty("Members", model.Members, WriteModel); // Array property - pass in the method used to write the model in the array
         }

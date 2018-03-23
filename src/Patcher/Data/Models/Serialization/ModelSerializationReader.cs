@@ -47,7 +47,7 @@ namespace Patcher.Data.Models.Serialization
             string pluginsMatchLine = reader.ReadPropertyString("PluginsMatchLine");
             string archivesExtension = reader.ReadPropertyString("ArchivesExtension");
             string stringsDefaultLanguage = reader.ReadPropertyString("StringsDefaultLanguage");
-            IEnumerable<IModel> models = reader.ReadPropertyArray("Models", ReadRootModel);
+            IEnumerable<IModel> models = reader.ReadPropertyArray("Models", ReadRootModel).Where(m => m != null);
 
             return new GameModel(name, basePlugin, latestFormVersion, pluginsFileLocation, pluginsMatchLine, archivesExtension, stringsDefaultLanguage, models);
         }
@@ -145,12 +145,11 @@ namespace Patcher.Data.Models.Serialization
             string name = reader.ReadPropertyString("Name");
             string displayName = reader.ReadPropertyString("DisplayName");
             string description = reader.ReadPropertyString("Description");
-            string baseType = reader.ReadPropertyString("BaseType");
-            Type resolvedBaseType = GetType().Assembly.GetType(baseType);
+            Type baseType = reader.ReadPropertyType("BaseType");
             bool isFlags = reader.ReadPropertyBoolean("IsFlags");
             IEnumerable<EnumMemberModel> members = reader.ReadPropertyArray("Members", ReadEnumMemberModel);
 
-            return new EnumModel(name, displayName, description, resolvedBaseType, isFlags, members);
+            return new EnumModel(name, displayName, description, baseType, isFlags, members);
         }
 
         private EnumMemberModel ReadEnumMemberModel()

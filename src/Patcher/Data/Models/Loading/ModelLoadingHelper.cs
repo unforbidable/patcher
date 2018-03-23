@@ -131,7 +131,7 @@ namespace Patcher.Data.Models.Loading
                     throw new FormatException(string.Format("Value '{0}' is not valid for type {1}", value, type.Name));
                 }
             }
-            else if (type == typeof(uint))
+            else if (type == typeof(uint) || type == null)
             {
                 uint parsed;
                 if (valueHasHexadecimalPrefix && uint.TryParse(valueWithoutHexadecimalPrefix, System.Globalization.NumberStyles.HexNumber, null, out parsed) || uint.TryParse(value, out parsed))

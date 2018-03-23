@@ -120,6 +120,24 @@ namespace Patcher.Data.Models.Serialization.Json
         }
 
         /// <summary>
+        /// Reads Type value from a property.
+        /// </summary>
+        /// <param name="name">Name of the property.</param>
+        /// <returns></returns>
+        public Type ReadPropertyType(string name)
+        {
+            string value = ReadPropertyString(name);
+            if (value != null)
+            {
+                return Type.GetType(value, true);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Reads object from a property using the provided method.
         /// </summary>
         /// <typeparam name="TModel">Type of the model object to read.</typeparam>

@@ -137,6 +137,20 @@ namespace Patcher.Data.Models.Serialization.Json
             }
         }
 
+        /// <summary>
+        /// Write property as Type.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        public void WriteProperty(string name, Type value)
+        {
+            if (value != null)
+            {
+                WritePropertyName(name);
+                Write(string.Format("\"{0}\"", value.FullName));
+            }
+        }
+
         public void WriteProperty<TModel>(string name, IEnumerable<TModel> models, Action<TModel> method) where TModel : IModel
         {
             if (models != null)
