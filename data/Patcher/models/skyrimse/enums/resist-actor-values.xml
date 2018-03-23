@@ -1,0 +1,40 @@
+<enum>
+  <name>ResistActorValues</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>None</name>
+      <value>-1</value>
+    </member>
+    <member>
+      <name>DamageResist</name>
+      <display-name>Damage Resistance</display-name>
+      <value>39</value>
+    </member>
+    <member>
+      <name>PoisonResist</name>
+      <display-name>Poison Resistance</display-name>
+      <value>40</value>
+    </member>
+    <member>
+      <name>FireResist</name>
+      <display-name>Fire Resistance</display-name>
+      <value>41</value>
+    </member>
+    <member>
+      <name>ElectricResist</name>
+      <display-name>Electric Resistance</display-name>
+      <value>42</value>
+    </member>
+    <member>
+      <name>FrostResist</name>
+      <display-name>Frost Resistance</display-name>
+      <value>43</value>
+    </member>
+    <member>
+      <name>MagicResistance</name>
+      <display-name>Magic Resistance</display-name>
+      <value>44</value>
+    </member>
+  </members>
+</enum>

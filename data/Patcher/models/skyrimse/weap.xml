@@ -92,11 +92,9 @@
           <float name="RumbleRight" display-name="Rumble - Right Motor Strength" />
           <float name="RumbleDuration" display-name="Rumble - Duration" />
           <uint name="Unused3" hidden="true" />
-          <!-- TODO: Unfinished
-          <skill-enum name="Skill" /> -->
+          <skill-actor-values name="Skill" />
           <uint name="Unused4" hidden="true" />
-          <!-- TODO: Unfinished
-          <resistance name="Resistance" /> -->
+          <resist-actor-values name="Resistance" />
           <uint name="Unused5" hidden="true" />
           <float name="Stagger" />
         </members>
