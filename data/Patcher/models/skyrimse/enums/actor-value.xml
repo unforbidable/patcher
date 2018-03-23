@@ -101,7 +101,77 @@
       <name>Enchanting</name>
       <value>23</value>
     </member>
-    <!-- TODO: Incomplete -->
+    <member>
+      <name>Health</name>
+      <value>24</value>
+    </member>
+    <member>
+      <name>Magicka</name>
+      <value>25</value>
+    </member>
+    <member>
+      <name>Stamina</name>
+      <value>26</value>
+    </member>
+    <member>
+      <name>HealRate</name>
+      <display-name>Heal Rate</display-name>
+      <value>27</value>
+    </member>
+    <member>
+      <name>MagickaRate</name>
+      <display-name>Magicka Rate</display-name>
+      <value>28</value>
+    </member>
+    <member>
+      <name>StaminaRate</name>
+      <display-name>Stamina Rate</display-name>
+      <value>29</value>
+    </member>
+    <member>
+      <name>SpeedMult</name>
+      <display-name>Speed Multiplier</display-name>
+      <value>30</value>
+    </member>
+    <member>
+      <name>InventoryWeight</name>
+      <display-name>Inventory Weight</display-name>
+      <value>31</value>
+    </member>
+    <member>
+      <name>CarryWeight</name>
+      <display-name>Carry Weight</display-name>
+      <value>32</value>
+    </member>
+    <member>
+      <name>CritChance</name>
+      <display-name>Crit Chance</display-name>
+      <value>33</value>
+    </member>
+    <member>
+      <name>MeleeDamage</name>
+      <display-name>Melee Damage</display-name>
+      <value>34</value>
+    </member>
+    <member>
+      <name>UnarmedDamage</name>
+      <display-name>Unarmed Damage</display-name>
+      <value>35</value>
+    </member>
+    <member>
+      <name>Mass</name>
+      <value>36</value>
+    </member>
+    <member>
+      <name>VoicePoints</name>
+      <display-name>Voice Points</display-name>
+      <value>37</value>
+    </member>
+    <member>
+      <name>VoiceRate</name>
+      <display-name>Voice Rate</display-name>
+      <value>38</value>
+    </member>
     <member>
       <name>DamageResist</name>
       <display-name>Damage Resistance</display-name>
@@ -128,10 +198,595 @@
       <value>43</value>
     </member>
     <member>
-      <name>MagicResistance</name>
+      <name>MagicResist</name>
       <display-name>Magic Resistance</display-name>
       <value>44</value>
     </member>
-    <!-- TODO: Incomplete -->
+    <member>
+      <name>DiseaseResist</name>
+      <display-name>Disease Resistance</display-name>
+      <value>45</value>
+    </member>
+    <member>
+      <name>PerceptionCondition</name>
+      <display-name>Perception Condition</display-name>
+      <value>46</value>
+    </member>
+    <member>
+      <name>EnduranceCondition</name>
+      <display-name>Endurance Condition</display-name>
+      <value>47</value>
+    </member>
+    <member>
+      <name>LeftAttackCondition</name>
+      <display-name>Left Attack Condition</display-name>
+      <value>48</value>
+    </member>
+    <member>
+      <name>RightAttackCondition</name>
+      <display-name>Right Attack Condition</display-name>
+      <value>49</value>
+    </member>
+    <member>
+      <name>LeftMobilityCondition</name>
+      <display-name>Left Mobility Condition</display-name>
+      <value>50</value>
+    </member>
+    <member>
+      <name>RightMobilityCondition</name>
+      <display-name>Right Mobility Condition</display-name>
+      <value>51</value>
+    </member>
+    <member>
+      <name>BrainCondition</name>
+      <display-name>Brain Condition</display-name>
+      <value>52</value>
+    </member>
+    <member>
+      <name>Paralysis</name>
+      <value>53</value>
+    </member>
+    <member>
+      <name>Invisibility</name>
+      <value>54</value>
+    </member>
+    <member>
+      <name>NightEye</name>
+      <display-name>Night Eye</display-name>
+      <value>55</value>
+    </member>
+    <member>
+      <name>DetectLifeRange</name>
+      <display-name>Detect Life Range</display-name>
+      <value>56</value>
+    </member>
+    <member>
+      <name>WaterBreathing</name>
+      <value>57</value>
+    </member>
+    <member>
+      <name>WaterWalking</name>
+      <value>58</value>
+    </member>
+    <member>
+      <name>IgnoreCrippledLimbs</name>
+      <display-name>Ignore Crippled Limbs</display-name>
+      <value>59</value>
+    </member>
+    <member>
+      <name>Fame</name>
+      <value>60</value>
+    </member>
+    <member>
+      <name>Infamy</name>
+      <value>61</value>
+    </member>
+    <member>
+      <name>JumpingBonus</name>
+      <display-name>Jumping Bonus</display-name>
+      <value>62</value>
+    </member>
+    <member>
+      <name>WardPower</name>
+      <display-name>Ward Power</display-name>
+      <value>63</value>
+    </member>
+    <member>
+      <name>RightItemCharge</name>
+      <display-name>Right-Handed Equipped Item Charge</display-name>
+      <value>64</value>
+    </member>
+    <member>
+      <name>ArmorPerks</name>
+      <display-name>Armor Perks</display-name>
+      <value>65</value>
+    </member>
+    <member>
+      <name>ShieldPerks</name>
+      <display-name>Shield Perks</display-name>
+      <value>66</value>
+    </member>
+    <member>
+      <name>WardDeflection</name>
+      <display-name>Ward Deflection</display-name>
+      <value>67</value>
+    </member>
+    <member>
+      <name>Variable01</name>
+      <display-name>Variable 01</display-name>
+      <value>68</value>
+    </member>
+    <member>
+      <name>Variable02</name>
+      <display-name>Variable 02</display-name>
+      <value>69</value>
+    </member>
+    <member>
+      <name>Variable03</name>
+      <display-name>Variable 03</display-name>
+      <value>70</value>
+    </member>
+    <member>
+      <name>Variable04</name>
+      <display-name>Variable 04</display-name>
+      <value>71</value>
+    </member>
+    <member>
+      <name>Variable05</name>
+      <display-name>Variable 05</display-name>
+      <value>72</value>
+    </member>
+    <member>
+      <name>Variable06</name>
+      <display-name>Variable 06</display-name>
+      <value>73</value>
+    </member>
+    <member>
+      <name>Variable07</name>
+      <display-name>Variable 07</display-name>
+      <value>74</value>
+    </member>
+    <member>
+      <name>Variable08</name>
+      <display-name>Variable 08</display-name>
+      <value>75</value>
+    </member>
+    <member>
+      <name>Variable09</name>
+      <display-name>Variable 09</display-name>
+      <value>76</value>
+    </member>
+    <member>
+      <name>Variable10</name>
+      <display-name>Variable 10</display-name>
+      <value>77</value>
+    </member>
+    <member>
+      <name>BowSpeedBonus</name>
+      <display-name>Bow Speed Bonus</display-name>
+      <value>78</value>
+    </member>
+    <member>
+      <name>FavorActive</name>
+      <display-name>Favor Active</display-name>
+      <value>79</value>
+    </member>
+    <member>
+      <name>FavorsPerDay</name>
+      <display-name>Favors Per Day</display-name>
+      <value>80</value>
+    </member>
+    <member>
+      <name>FavorsPerDayTimer</name>
+      <display-name>Favors Per Day Timer</display-name>
+      <value>81</value>
+    </member>
+    <member>
+      <name>LeftItemCharge</name>
+      <display-name>Left-Hand Equipped Item Charge</display-name>
+      <value>82</value>
+    </member>
+    <member>
+      <name>AbsorbChance</name>
+      <display-name>Absorb Chance</display-name>
+      <value>83</value>
+    </member>
+    <member>
+      <name>Blindness</name>
+      <value>84</value>
+    </member>
+    <member>
+      <name>WeaponSpeedMult</name>
+      <display-name>Weapon Speed Mulitplier</display-name>
+      <value>85</value>
+    </member>
+    <member>
+      <name>ShoutRecoveryMult</name>
+      <display-name>Shout Recovery Mulitplier</display-name>
+      <value>86</value>
+    </member>
+    <member>
+      <name>BowStaggerBonus</name>
+      <display-name>Bow Stagger Bonus</display-name>
+      <value>87</value>
+    </member>
+    <member>
+      <name>Telekinesis</name>
+      <value>88</value>
+    </member>
+    <member>
+      <name>FavorPointsBonus</name>
+      <display-name>Favor Points Bonus</display-name>
+      <value>89</value>
+    </member>
+    <member>
+      <name>LastBribedIntimidated</name>
+      <display-name>Last Bribed/Intimidated</display-name>
+      <value>90</value>
+    </member>
+    <member>
+      <name>LastFlattered</name>
+      <display-name>Last Flattered</display-name>
+      <value>91</value>
+    </member>
+    <member>
+      <name>MovementNoiseMult</name>
+      <display-name>Movement Noise Multiplier</display-name>
+      <value>92</value>
+    </member>
+    <member>
+      <name>BypassVendorStolenCheck</name>
+      <display-name>Bypass Vendor Stolen Check</display-name>
+      <value>93</value>
+    </member>
+    <member>
+      <name>BypassVendorKeywordCheck</name>
+      <display-name>Bypass Vendor Keyword Check</display-name>
+      <value>94</value>
+    </member>
+    <member>
+      <name>WaitingForPlayer</name>
+      <display-name>Waiting For Player</display-name>
+      <value>95</value>
+    </member>
+    <member>
+      <name>OneHandedMod</name>
+      <display-name>One Handed Modifier</display-name>
+      <value>96</value>
+    </member>
+    <member>
+      <name>TwoHandedMod</name>
+      <display-name>Two Handed Modifier</display-name>
+      <value>97</value>
+    </member>
+    <member>
+      <name>ArcheryMod</name>
+      <display-name>Archery Modifier</display-name>
+      <value>98</value>
+    </member>
+    <member>
+      <name>BlockMod</name>
+      <display-name>Block Modifier</display-name>
+      <value>99</value>
+    </member>
+    <member>
+      <name>SmithingMod</name>
+      <display-name>Smithing Modifier</display-name>
+      <value>100</value>
+    </member>
+    <member>
+      <name>HeavyArmorMod</name>
+      <display-name>Heavy Armor Modifier</display-name>
+      <value>101</value>
+    </member>
+    <member>
+      <name>LightArmorMod</name>
+      <display-name>Light Armor Modifier</display-name>
+      <value>102</value>
+    </member>
+    <member>
+      <name>PickPocketMod</name>
+      <display-name>Pickpocket Modifier</display-name>
+      <value>103</value>
+    </member>
+    <member>
+      <name>LickpickingMod</name>
+      <display-name>Lockpicking Modifier</display-name>
+      <value>104</value>
+    </member>
+    <member>
+      <name>SneakMod</name>
+      <display-name>Sneak Modifier</display-name>
+      <value>105</value>
+    </member>
+    <member>
+      <name>AlchemyMod</name>
+      <display-name>Alchemy Modifier</display-name>
+      <value>106</value>
+    </member>
+    <member>
+      <name>SpeechcraftMod</name>
+      <display-name>Speechcraft Modifier</display-name>
+      <value>107</value>
+    </member>
+    <member>
+      <name>AlterationMod</name>
+      <display-name>Alteration Modifier</display-name>
+      <value>108</value>
+    </member>
+    <member>
+      <name>ConjurationMod</name>
+      <display-name>Conjuration Modifier</display-name>
+      <value>109</value>
+    </member>
+    <member>
+      <name>DestructionMod</name>
+      <display-name>Destruction Modifier</display-name>
+      <value>110</value>
+    </member>
+    <member>
+      <name>IllusionMod</name>
+      <display-name>Illusion Modifier</display-name>
+      <value>111</value>
+    </member>
+    <member>
+      <name>RestorationMod</name>
+      <display-name>Restoration Modifier</display-name>
+      <value>112</value>
+    </member>
+    <member>
+      <name>EnchantingMod</name>
+      <display-name>Enchanting Modifier</display-name>
+      <value>113</value>
+    </member>
+    <member>
+      <name>OneHandedSkillAdvance</name>
+      <display-name>One Handed Skill Advance</display-name>
+      <value>114</value>
+    </member>
+    <member>
+      <name>TwoHandedSkillAdvance</name>
+      <display-name>Two Handed Skill Advance</display-name>
+      <value>115</value>
+    </member>
+    <member>
+      <name>ArcherySkillAdvance</name>
+      <display-name>Archery Skill Advance</display-name>
+      <value>116</value>
+    </member>
+    <member>
+      <name>BlockSkillAdvance</name>
+      <display-name>Block Skill Advance</display-name>
+      <value>117</value>
+    </member>
+    <member>
+      <name>SmithingSkillAdvance</name>
+      <display-name>Smithing Skill Advance</display-name>
+      <value>118</value>
+    </member>
+    <member>
+      <name>HeavyArmorSkillAdvance</name>
+      <display-name>Heavy Armor Skill Advance</display-name>
+      <value>119</value>
+    </member>
+    <member>
+      <name>LightArmorSkillAdvance</name>
+      <display-name>Light Armor Skill Advance</display-name>
+      <value>120</value>
+    </member>
+    <member>
+      <name>PickPocketSkillAdvance</name>
+      <display-name>Pickpocket Skill Advance</display-name>
+      <value>121</value>
+    </member>
+    <member>
+      <name>LickpickingSkillAdvance</name>
+      <display-name>Lockpicking Skill Advance</display-name>
+      <value>122</value>
+    </member>
+    <member>
+      <name>SneakSkillAdvance</name>
+      <display-name>Sneak Skill Advance</display-name>
+      <value>123</value>
+    </member>
+    <member>
+      <name>AlchemySkillAdvance</name>
+      <display-name>Alchemy Skill Advance</display-name>
+      <value>124</value>
+    </member>
+    <member>
+      <name>SpeechcraftSkillAdvance</name>
+      <display-name>Speechcraft Skill Advance</display-name>
+      <value>125</value>
+    </member>
+    <member>
+      <name>AlterationSkillAdvance</name>
+      <display-name>Alteration Skill Advance</display-name>
+      <value>126</value>
+    </member>
+    <member>
+      <name>ConjurationSkillAdvance</name>
+      <display-name>Conjuration Skill Advance</display-name>
+      <value>127</value>
+    </member>
+    <member>
+      <name>DestructionSkillAdvance</name>
+      <display-name>Destruction Skill Advance</display-name>
+      <value>128</value>
+    </member>
+    <member>
+      <name>IllusionSkillAdvance</name>
+      <display-name>Illusion Skill Advance</display-name>
+      <value>129</value>
+    </member>
+    <member>
+      <name>RestorationSkillAdvance</name>
+      <display-name>Restoration Skill Advance</display-name>
+      <value>130</value>
+    </member>
+    <member>
+      <name>EnchantingSkillAdvance</name>
+      <display-name>Enchanting Skill Advance</display-name>
+      <value>131</value>
+    </member>
+    <member>
+      <name>LeftWeaponSpeedMult</name>
+      <display-name>Left Weapon Speed Multiplier</display-name>
+      <value>132</value>
+    </member>
+    <member>
+      <name>DragonSouls</name>
+      <display-name>Dragon Souls</display-name>
+      <value>133</value>
+    </member>
+    <member>
+      <name>CombatHealthRegenMult</name>
+      <display-name>Combat Health Regen Multiplier</display-name>
+      <value>134</value>
+    </member>
+    <member>
+      <name>OneHandedPowerMod</name>
+      <display-name>One Handed Power Modifier</display-name>
+      <value>135</value>
+    </member>
+    <member>
+      <name>TwoHandedPowerMod</name>
+      <display-name>Two Handed PowerModifier</display-name>
+      <value>136</value>
+    </member>
+    <member>
+      <name>ArcheryPowerMod</name>
+      <display-name>Archery Power Modifier</display-name>
+      <value>137</value>
+    </member>
+    <member>
+      <name>BlockPowerMod</name>
+      <display-name>Block Power Modifier</display-name>
+      <value>138</value>
+    </member>
+    <member>
+      <name>SmithingPowerMod</name>
+      <display-name>Smithing Power Modifier</display-name>
+      <value>139</value>
+    </member>
+    <member>
+      <name>HeavyArmorPowerMod</name>
+      <display-name>Heavy Armor Power Modifier</display-name>
+      <value>140</value>
+    </member>
+    <member>
+      <name>LightArmorPowerMod</name>
+      <display-name>Light Armor Power Modifier</display-name>
+      <value>141</value>
+    </member>
+    <member>
+      <name>PickPocketPowerMod</name>
+      <display-name>Pickpocket Power Modifier</display-name>
+      <value>142</value>
+    </member>
+    <member>
+      <name>LickpickingPowerMod</name>
+      <display-name>Lockpicking Power Modifier</display-name>
+      <value>143</value>
+    </member>
+    <member>
+      <name>SneakPowerMod</name>
+      <display-name>Sneak Power Modifier</display-name>
+      <value>144</value>
+    </member>
+    <member>
+      <name>AlchemyPowerMod</name>
+      <display-name>Alchemy Power Modifier</display-name>
+      <value>145</value>
+    </member>
+    <member>
+      <name>SpeechcraftPowerMod</name>
+      <display-name>Speechcraft Power Modifier</display-name>
+      <value>146</value>
+    </member>
+    <member>
+      <name>AlterationPowerMod</name>
+      <display-name>Alteration Power Modifier</display-name>
+      <value>147</value>
+    </member>
+    <member>
+      <name>ConjurationPowerMod</name>
+      <display-name>Conjuration Power Modifier</display-name>
+      <value>148</value>
+    </member>
+    <member>
+      <name>DestructionPowerMod</name>
+      <display-name>Destruction Power Modifier</display-name>
+      <value>149</value>
+    </member>
+    <member>
+      <name>IllusionPowerMod</name>
+      <display-name>Illusion Power Modifier</display-name>
+      <value>150</value>
+    </member>
+    <member>
+      <name>RestorationPowerMod</name>
+      <display-name>Restoration Power Modifier</display-name>
+      <value>151</value>
+    </member>
+    <member>
+      <name>EnchantingPowerMod</name>
+      <display-name>Enchanting Power Modifier</display-name>
+      <value>152</value>
+    </member>
+    <member>
+      <name>DragonRend</name>
+      <display-name>Dragon Rend</display-name>
+      <value>153</value>
+    </member>
+    <member>
+      <name>AttackDamageMult</name>
+      <display-name>Attack Damage Multiplier</display-name>
+      <value>154</value>
+    </member>
+    <member>
+      <name>HealRateMult</name>
+      <display-name>Health Regen Multiplier</display-name>
+      <value>155</value>
+    </member>
+    <member>
+      <name>MagickaRateMult</name>
+      <display-name>Magicka Regen Multiplier</display-name>
+      <value>156</value>
+    </member>
+    <member>
+      <name>StaminaRateMult</name>
+      <display-name>Stamina Regen Multiplier</display-name>
+      <value>157</value>
+    </member>
+    <member>
+      <name>WerewolfPerks</name>
+      <display-name>Werewolf Perks</display-name>
+      <value>158</value>
+    </member>
+    <member>
+      <name>VampirePerks</name>
+      <display-name>Vampire Perks</display-name>
+      <value>159</value>
+    </member>
+    <member>
+      <name>GrabActorOffset</name>
+      <display-name>Grab Actor Offset</display-name>
+      <value>160</value>
+    </member>
+    <member>
+      <name>Grabbed</name>
+      <value>161</value>
+    </member>
+    <member>
+      <name>Deprecated</name>
+      <hidden>true</hidden>
+      <value>162</value>
+    </member>
+    <member>
+      <name>ReflectDamage</name>
+      <display-name>Reflect Damage</display-name>
+      <value>163</value>
+    </member>
   </members>
 </enum>
