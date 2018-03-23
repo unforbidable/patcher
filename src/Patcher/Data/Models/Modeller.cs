@@ -114,6 +114,17 @@ namespace Patcher.Data.Models
 
             var deserialzedModel = serializer.DeserializeModel(serializedModel);
 
+            // Serialze deserialized model again and compare
+            var reserializedModel = serializer.SerializeModel(deserialzedModel, true);
+            File.WriteAllBytes("model-serialized.json", serializedModel);
+            File.WriteAllBytes("model-reserialized.json", reserializedModel);
+            var serializedHash = ModelHelper.GetModelHash(serializedModel);
+            var reserializedHash = ModelHelper.GetModelHash(reserializedModel);
+            if (serializedHash != reserializedHash)
+            {
+                Log.Warning("Reserialized model is different from serialized model.");
+            }
+
             //Log.Fine("Models compiled as\n{0}", code.BuildCode(true));
         }
     }
