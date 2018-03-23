@@ -103,6 +103,9 @@ namespace Patcher.Data.Models.Serialization.Json
             }
             else
             {
+                // Append char that was already read
+                builder.Append(c);
+
                 // Read token that isn't in quotes
                 // Read until end of stream, a single char token or a while space
                 while (!reader.EndOfStream)
