@@ -27,7 +27,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Object model that represents a record field.
     /// </summary>
-    public class FieldModel : IPresentable, IResolvableFrom<FieldModel>, IResolvableFrom<EnumModel>, INamed, IValidable
+    public class FieldModel : IPresentable, IResolvableFrom<FieldModel>, IResolvableFrom<EnumModel>, IResolvableFrom<StructModel>, INamed, IValidable
     {
         /// <summary>
         /// Field key, four characters long.
@@ -139,9 +139,25 @@ namespace Patcher.Data.Models
             TargetModel = new TargetModel(model, IsArray, ArrayLength);
         }
 
+        public void ResolveFrom(StructModel model)
+        {
+            Type = model;
+        }
+
         public override string ToString()
         {
             var builder = new StringBuilder();
+
+            if (IsVirtual)
+            {
+                builder.Append("[Virtual] ");
+            }
+
+            if (IsHidden)
+            {
+                builder.Append("[Hidden] ");
+            }
+
             if (Key != null)
             {
                 builder.AppendFormat("[Key({0})] ", Key);
@@ -170,6 +186,11 @@ namespace Patcher.Data.Models
                 builder.AppendFormat("[Group] {0} ", FieldGroup);
             }
 
+            if (IsArray)
+            {
+                builder.Append("[Array] ");
+            }
+
             if (!string.IsNullOrEmpty(Description))
             {
                 builder.AppendFormat("[Description(\"{0}\")] ", Description);
@@ -187,7 +208,7 @@ namespace Patcher.Data.Models
 
         public void ValidateModel(ModelValidator validator)
         {
-            validator.AssertWithError(IsFieldGroup || !string.IsNullOrEmpty(Key), "Key is a required property of a field model that isn't a field group.");
+            validator.AssertWithError(IsFieldGroup || !string.IsNullOrEmpty(Key) || IsVirtual, "Key is a required property of a non-virtual field model that isn't a field group.");
         }
     }
 }
