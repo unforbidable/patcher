@@ -296,7 +296,7 @@ namespace Patcher.Data.Models.Loading
             // Member can contain a structure definition
             var structElement = Element.Element("struct");
 
-            // Read type ID element name if nor 'member' else child element or property 'type'
+            // Read type ID element name if nor 'member' else child element or attribute 'type'
             string type = Element.Name != "member" ? Element.Name.LocalName : ReadValue("type");
             if (type != null)
             {
@@ -346,8 +346,8 @@ namespace Patcher.Data.Models.Loading
             var structElement = Element.Element("struct");
             var groupElement = Element.Element("group");
 
-            // Read type ID element name if nor 'field' else child element 'type'
-            string type = Element.Name != "field" ? Element.Name.LocalName : ReadChildValue("type");
+            // Read type ID element name if nor 'field' else child element or attribute 'type'
+            string type = Element.Name != "field" ? Element.Name.LocalName : ReadValue("type");
             if (type != null)
             {
                 var id = TypeIdentifier.FromString(type);
@@ -382,7 +382,9 @@ namespace Patcher.Data.Models.Loading
             }
             else
             {
-                throw new ModelLoadingException("Field specification is incomplete, one of 'group', 'struct' or 'type' expected.", Element);
+                return new FieldModel(key, name, displayName, description, null, targetModel, isHidden, isVirtual, isList, isArray, arrayLength);
+
+                //throw new ModelLoadingException("Field specification is incomplete, one of 'group', 'struct' or 'type' expected.", Element);
             }
         }
 
