@@ -1,0 +1,18 @@
+﻿<enum>
+  <name>WeatherFlags</name>
+  <display-name>Weather Flags</display-name>
+  <type>byte</type>
+  <flags>true</flags>
+  <members>
+    <member>
+      <name>AlwaysVisible</name>
+      <display-name>Always Visible</display-name>
+      <value>0x10</value>
+    </member>
+    <member>
+      <name>FollowsSunPosition</name>
+      <display-name>Follows Sun Position</display-name>
+      <value>0x20</value>
+    </member>
+  </members>
+</enum>

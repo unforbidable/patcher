@@ -1,0 +1,7 @@
+﻿<struct>
+  <name>WeatherSound</name>
+  <members>
+    <uint name="Sound" as-type="ref(SNDR)" />
+    <weather-sound-type name="Type" />
+  </members>
+</struct>

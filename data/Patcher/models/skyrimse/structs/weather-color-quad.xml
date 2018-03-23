@@ -1,0 +1,9 @@
+﻿<struct>
+  <name>WeatherColorQuad</name>
+  <members>
+    <color name="Sunrise" />
+    <color name="Day" />
+    <color name="Sunset" />
+    <color name="Night" />
+  </members>
+</struct>

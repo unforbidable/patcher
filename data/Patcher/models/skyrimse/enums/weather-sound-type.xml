@@ -1,0 +1,23 @@
+﻿<enum>
+  <name>WeatherSoundType</name>
+  <display-name>Weather Sound Type</display-name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Default</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Precip</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Wind</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>Thunder</name>
+      <value>3</value>
+    </member>
+  </members>
+</enum>

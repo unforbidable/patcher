@@ -1,0 +1,23 @@
+﻿<enum>
+  <name>WeatherType</name>
+  <display-name>Weather Type</display-name>
+  <type>byte</type>
+  <members>
+    <member>
+      <name>Pleasant</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Cloudy</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>Rainy</name>
+      <value>4</value>
+    </member>
+    <member>
+      <name>Snow</name>
+      <value>8</value>
+    </member>
+  </members>
+</enum>

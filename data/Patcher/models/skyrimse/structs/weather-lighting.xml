@@ -1,0 +1,13 @@
+﻿<struct>
+  <name>WeatherLighting</name>
+  <members>
+    <uint name="DirectionalAmbientX1" display-name="Directional Ambient X+" as-type="color" />
+    <uint name="DirectionalAmbientX2" display-name="Directional Ambient X-" as-type="color" />
+    <uint name="DirectionalAmbientY1" display-name="Directional Ambient Y+" as-type="color" />
+    <uint name="DirectionalAmbientY2" display-name="Directional Ambient Y-" as-type="color" />
+    <uint name="DirectionalAmbientZ1" display-name="Directional Ambient Z+" as-type="color" />
+    <uint name="DirectionalAmbientZ2" display-name="Directional Ambient Z-" as-type="color" />
+    <uint name="SpecularColor" display-name="Specular Color" as-type="color" />
+    <float name="FresnelPower" display-name="Fresnel Power" />
+  </members>
+</struct>

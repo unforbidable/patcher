@@ -1,0 +1,9 @@
+﻿<struct>
+  <name>WeatherFloatQuad</name>
+  <members>
+    <float name="Sunrise" />
+    <float name="Day" />
+    <float name="Sunset" />
+    <float name="Night" />
+  </members>
+</struct>

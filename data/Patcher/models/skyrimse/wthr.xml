@@ -1,0 +1,92 @@
+﻿<record>
+  <name>Weather</name>
+  <fields>
+    <editor-id />
+    <zstring key="*0TX" list="true" name="CloudTextures" display-name="Cloud Textures" hidden="true" />
+    <uint key="LNAM" name="TextureLayerCount" hidden="true" />
+    <uint key="MNAM" name="Precipitation" as-type="ref(SPDG)" />
+    <uint key="NNAM" name="VisualEffect" as-type="ref(RFCT)" />
+    <field key="RNAM" type="byte[32]" name="CloudSpeedsY" hidden="true" />
+    <field key="QNAM" type="byte[32]" name="CloudSpeedsX" hidden="true" />
+    <field key="PNAM" type="byte[512]" name="CloudColors" hidden="true" />
+    <field key="JNAM" type="byte[512]" name="CouldAlphas" hidden="true" />
+    <!-- Cloud SpeedX, SpeedY, Colors, Alpahs and DisabledLayers are accessed via WeatherCloudLayer strcut -->
+    <field virtual="true" name="CloudLayers" display-name="Cloud Layers" as-type="weather-cloud-layer[32]" />
+    <field key="NAM0" type="byte[272]" name="Colors" hidden="true" as-type="weather-color-quad[17]" />
+    <field>
+      <key>FNAM</key>
+      <name>Fog</name>
+      <struct>
+        <name>WeatherFogData</name>
+        <members>
+          <float name="DayNear" display-name="Day Near" />
+          <float name="DayFar" display-name="Day Far" />
+          <float name="NightNear" display-name="Night Near" />
+          <float name="NightFar" display-name="Night Far" />
+          <float name="DayPow" display-name="Day Pow" />
+          <float name="NightPow" display-name="Night Pow" />
+          <float name="DayMax" display-name="Day Max" />
+          <float name="NightMin" display-name="Night Min" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>DATA</key>
+      <name>Misc</name>
+      <struct>
+        <name>WeatherMiscData</name>
+        <members>
+          <byte name="WindSpeed" display-name="Wind Speed" as-type="float" as-float-mult="1" />
+          <byte hidden="true" />
+          <byte hidden="true" />
+          <byte name="TransDelta" display-name="Trans Delta" as-type="float" as-float-mult="0.25" />
+          <byte name="SunGlare" display-name="Sun Glare" as-type="float" as-float-mult="1" />
+          <byte name="SunDamage" display-name="Sun Damage" as-type="float" as-float-mult="1" />
+          <byte name="PrecipitationBeginFadeIn" display-name="Precipitation Begin Fade In" as-type="float" as-float-mult="1" />
+          <byte name="PrecipitationEndFadeOut" display-name="Precipitation End Fade Out" as-type="float" as-float-mult="1" />
+          <byte name="ThunderBeginFadeIn" display-name="Thunder Begin Fade In" as-type="float" as-float-mult="1" />
+          <byte name="ThunderEndFadeOut" display-name="Thunder End Fade Out" as-type="float" as-float-mult="1" />
+          <byte name="ThunderFrequency" display-name="Thunder Frequency" as-type="float" as-float-mult="1" />
+          <!-- Flags separated into two properties, weahter type and actual flags. -->
+          <byte name="RawFlags" hidden="true" />
+          <weather-type name="WeatherType" display-name="Weather Type" virtual="true" />
+          <weather-flags name="Flags" virtual="true" />
+          <uint name="EffectColor" display-name="Precipitation/Lightning Color" as-type="color" />
+          <byte hidden="true" />
+          <byte name="WindDirection" display-name="Wind Direction" as-type="float" as-float-mult="360" />
+          <byte name="WindDirectionRange" display-name="Wind Direction Range" as-type="float" as-float-mult="180" />
+        </members>
+      </struct>
+    </field>
+    <uint key="NAM1" name="DisabledCloudLayers" hidden="true" />
+    <field key="SNAM" name="Sounds" type="weather-sound[]" />
+    <field key="TNAM" name="Statics" type="uint[]" as-type="ref(STAT)[]" />
+    <field>
+      <key>IMSP</key>
+      <name>ImageSpaces</name>
+      <struct>
+        <name>WeatherImageSpaces</name>
+        <members>
+          <uint name="Sunrise" as-type="ref(IMAD)" />
+          <uint name="Day" as-type="ref(IMAD)" />
+          <uint name="Sunset" as-type="ref(IMAD)" />
+          <uint name="Night" as-type="ref(IMAD)" />
+        </members>
+      </struct>
+    </field>
+    <field>
+      <key>DALC</key>
+      <name>Lighting</name>
+      <struct>
+        <name>WeatherLightingQuad</name>
+        <members>
+          <weather-lighting name="Sunrise" />
+          <weather-lighting name="Day" />
+          <weather-lighting name="Sunset" />
+          <weather-lighting name="Night" />
+        </members>
+      </struct>
+    </field>
+    <models name="AuroraModel" display-name="Aurora Model" />
+  </fields>
+</record>

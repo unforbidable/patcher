@@ -1,0 +1,11 @@
+﻿<struct>
+  <name>WeatherCloudLayer</name>
+  <members>
+    <bool name="Enabled" />
+    <string name="Texture" />
+    <float name="SpeedX" />
+    <float name="SpeedY" />
+    <weather-color-quad name="Colors" />
+    <weather-float-quad name="Alphas" />
+  </members>
+</struct>
