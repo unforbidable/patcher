@@ -1,6 +1,7 @@
 <enum>
   <name>ResistActorValues</name>
-  <type>uint</type>
+  <!-- Changed type to int to allow -1 -->
+  <type>int</type>
   <members>
     <member>
       <name>None</name>
