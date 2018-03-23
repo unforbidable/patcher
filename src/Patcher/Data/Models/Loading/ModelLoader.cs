@@ -108,8 +108,10 @@ namespace Patcher.Data.Models.Loading
             groups.Sort(sortByNameComparer);
 
             // Sort groups and structs separatedly according to hierarchy
-            groups.Sort(new ModelGroupDescendancyComparer());
-            structs.Sort(new ModelStructDescendancyComparer());
+            var groupAffinities = GetFieldGroupModelAffinities(groups);
+            groups.Sort(new ModelAffinityComparer<FieldGroupModel>(groupAffinities));
+            var structAffinities = GetStructModelAffinities(structs);
+            structs.Sort(new ModelAffinityComparer<StructModel>(structAffinities));
 
             // Put models back into one list, in order
             models = new List<IModel>(enums).Union(structs).Union(groups).Union(records).Union(functions).ToList();
@@ -169,6 +171,66 @@ namespace Patcher.Data.Models.Loading
             return models;
         }
 
+        private Dictionary<FieldGroupModel, int> GetFieldGroupModelAffinities(IEnumerable<FieldGroupModel> models)
+        {
+            var affinities = new Dictionary<FieldGroupModel, int>();
+
+            foreach (var m in models)
+            {
+                GatherFieldGroupModelAffinities(m, 1, affinities);
+            }
+
+            return affinities;
+        }
+
+        private void GatherFieldGroupModelAffinities(FieldGroupModel model, int depth, Dictionary<FieldGroupModel, int> affinities)
+        {
+            if (affinities.ContainsKey(model))
+            {
+                affinities[model] = Math.Max(affinities[model], depth);
+            }
+            else
+            {
+                affinities.Add(model, depth);
+            }
+
+            // Gather each descendant field group
+            foreach (var descendant in model.Fields.Select(m => m.Type).OfType<FieldGroupModel>())
+            {
+                GatherFieldGroupModelAffinities(descendant, depth + 1, affinities);
+            }
+        }
+
+        private Dictionary<StructModel, int> GetStructModelAffinities(IEnumerable<StructModel> models)
+        {
+            var affinities = new Dictionary<StructModel, int>();
+            
+            foreach (var m in models)
+            {
+                GatherStructModelAffinities(m, 1, affinities);
+            }
+
+            return affinities;
+        }
+
+        private void GatherStructModelAffinities(StructModel model, int depth, Dictionary<StructModel, int> affinities)
+        {
+            if (affinities.ContainsKey(model))
+            {
+                affinities[model] = Math.Max(affinities[model], depth);
+            }
+            else
+            {
+                affinities.Add(model, depth);
+            }
+
+            // Gather each descendant strcut and also struct as target if available
+            foreach (var child in model.Members.Select(m => m.Type).OfType<StructModel>().Union(model.Members.Where(m => m.TargetModel != null).Select(m => m.TargetModel.Type).OfType<StructModel>()))
+            {
+                GatherStructModelAffinities(child, depth + 1, affinities);
+            }
+        }
+
         private class ModelNameComparer : IComparer<IModel>
         {
             public int Compare(IModel x, IModel y)
@@ -195,79 +257,18 @@ namespace Patcher.Data.Models.Loading
             }
         }
 
-        private class ModelGroupDescendancyComparer : IComparer<FieldGroupModel>
+        private class ModelAffinityComparer<TModel> : IComparer<TModel>
         {
-            public int Compare(FieldGroupModel x, FieldGroupModel y)
+            readonly IDictionary<TModel, int> affinities;
+
+            public ModelAffinityComparer(IDictionary<TModel, int> affinities)
             {
-                // Field group referenced from other field group need to go first
-                if (IsDescendantOf(x, y))
-                {
-                    return -1;
-                }
-                else if (IsDescendantOf(y, x))
-                {
-                    return 1;
-                }
-                else
-                {
-                    return string.Compare(x.Name, y.Name);
-                }
+                this.affinities = affinities;
             }
 
-            private bool IsDescendantOf(FieldGroupModel x, FieldGroupModel y)
+            public int Compare(TModel x, TModel y)
             {
-                // Iterate through all fields of this field group that are field groups as well
-                foreach (var child in y.Fields.Where(f => f.IsFieldGroup).Select(f => f.FieldGroup))
-                {
-                    if (child == x)
-                    {
-                        return true;
-                    }
-                    else if (IsDescendantOf(x, child))
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-        }
-
-        private class ModelStructDescendancyComparer : IComparer<StructModel>
-        {
-            public int Compare(StructModel x, StructModel y)
-            {
-                // Struct referenced from other struct need to go first
-                if (IsDescendantOf(x, y))
-                {
-                    return -1;
-                }
-                else if (IsDescendantOf(y, x))
-                {
-                    return 1;
-                }
-                else
-                {
-                    return string.Compare(x.Name, y.Name);
-                }
-            }
-
-            private bool IsDescendantOf(StructModel x, StructModel y)
-            {
-                // Iterate through all members that are structs and also targets that are structs
-                foreach (var child in y.Members.Where(m => m.IsStruct).Select(m => m.Struct).Union(y.Members.Where(m => m.TargetModel != null && m.TargetModel.Type is StructModel).Select(m => m.TargetModel.Type as StructModel)))
-                {
-                    if (child == x)
-                    {
-                        return true;
-                    }
-                    else if (IsDescendantOf(x, child))
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
+                return affinities[y].CompareTo(affinities[x]);
             }
         }
     }
