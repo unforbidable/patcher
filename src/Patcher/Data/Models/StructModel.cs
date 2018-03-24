@@ -39,20 +39,31 @@ namespace Patcher.Data.Models
         public string Description { get; private set; }
 
         /// <summary>
+        /// Indicates whether this struct represents an union.
+        /// </summary>
+        public bool IsUnion { get; private set; }
+
+        /// <summary>
         /// Members of this structure
         /// </summary>
         public MemberModel[] Members { get; private set; }
 
-        public StructModel(string name, string description, IEnumerable<MemberModel> members)
+        public StructModel(string name, string description, bool isUnion, IEnumerable<MemberModel> members)
         {
             Name = name;
             Description = description;
+            IsUnion = isUnion;
             Members = members.ToArray();
         }
 
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
+
+            if (IsUnion)
+            {
+                builder.Append("[Union] ");
+            }
 
             builder.Append(!string.IsNullOrEmpty(Name) ? Name : "<anonymous>");
             builder.Append(" \n{ \n");

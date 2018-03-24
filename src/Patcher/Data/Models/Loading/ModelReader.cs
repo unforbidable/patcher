@@ -144,13 +144,14 @@ namespace Patcher.Data.Models.Loading
 
         public StructModel ReadStruct()
         {
-            // TODO: Ensure element name 'struct'
+            // TODO: Ensure element name 'struct' or 'union'
 
             string name = ReadValue("name");
             string description = ReadValue("description");
+            bool isUnion = Element.Name == "union";
             var members = GetGrandChildren("members").Select(e => EnterElement(e).ReadMember());
 
-            return new StructModel(name, description, members);
+            return new StructModel(name, description, isUnion, members);
         }
 
         public FieldGroupModel ReadFieldGroup()
@@ -239,8 +240,8 @@ namespace Patcher.Data.Models.Loading
             var targetElement = Element.Element("as");
             var targetTypeAttribute = Element.Attribute("as-type");
             var targetElementReader = targetElement != null ? EnterElement(targetElement) : null;
-            var targetStructElement = targetElement != null ? targetElement.Element("struct") : null;
-
+            var targetStructElement = targetElement != null ? (targetElement.Element("struct") ?? targetElement.Element("union")) : null;
+            
             // TODO: Read any target attributes
 
             string type = targetElementReader != null ? targetElementReader.ReadChildValue("type") : targetTypeAttribute != null ? targetTypeAttribute.Value : null; 

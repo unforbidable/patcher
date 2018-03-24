@@ -75,9 +75,10 @@ namespace Patcher.Data.Models.Serialization
         {
             string name = reader.ReadPropertyString("Name");
             string description = reader.ReadPropertyString("Description");
+            bool isUnion = reader.ReadPropertyBoolean("IsUnion");
             IEnumerable<MemberModel> members = reader.ReadPropertyArray("Members", ReadMemberModel);
 
-            return new StructModel(name, description, members);
+            return new StructModel(name, description, isUnion, members);
         }
 
         private MemberModel ReadMemberModel()

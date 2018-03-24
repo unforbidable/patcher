@@ -147,6 +147,7 @@ namespace Patcher.Data.Models.Serialization
         {
             writer.WriteProperty("Name", model.Name);
             writer.WriteProperty("Description", model.Description);
+            writer.WriteProperty("IsUnion", model.IsUnion);
             writer.WriteProperty("Members", model.Members, WriteModel);
         }
 
