@@ -19,15 +19,14 @@
       <type>float</type>
       <as>
         <!-- This structure indicates that this value can be one of several different primitive types, int, long, or float. -->
-        <struct>
-          <name>Value</name>
-          <union>true</union>
+        <union>
+          <name>GlobalVariableValue</name>
           <members>
-            <int />
-            <long />
-            <float />
+            <int name="Integer" />
+            <long name="LongInteger" />
+            <float name="Float" />
           </members>
-        </struct>
+        </union>
       </as>
     </field>
   </fields>

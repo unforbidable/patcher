@@ -19,9 +19,8 @@
     <!-- member Value is virtual meaning there is no data, the above will be accessed via adapter -->
     <member name="Value" virtual="true">
       <as>
-        <struct>
+        <union>
           <name>ScriptPropertyValue</name>
-          <union>true</union>
           <members>
             <!-- Value will be presented as one of the following types via an adapter -->
             <member type="script-property-object" name="ObjectValue" />
@@ -35,7 +34,7 @@
             <member type="float[]" name="ArrayOfFloatValue" />
             <member type="sbyte[]" name="ArrayOfBoolValue" />
           </members>
-        </struct>
+        </union>
       </as>
     </member>
   </members>

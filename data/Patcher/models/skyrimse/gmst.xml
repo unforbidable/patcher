@@ -9,16 +9,15 @@
       <type>uint</type>
       <as>
         <!-- This structure indicates that this value can be one of several different primitive types -->
-        <struct>
+        <union>
           <name>GameSettingValue</name>
-          <union>true</union>
           <members>
-            <bool name="boolean" display-name="True/False" />
-            <uint name="int" display-name="Integer" />
-            <float name="float" display-name="Float" />
-            <lstring name="string" display-name="Name" />
+            <bool name="Boolean" display-name="True/False" />
+            <uint name="Integer" display-name="Integer" />
+            <float name="Float" display-name="Float" />
+            <lstring name="String" display-name="Name" />
           </members>
-        </struct>
+        </union>
       </as>
     </field>
   </fields>

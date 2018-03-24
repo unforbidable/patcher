@@ -17,14 +17,13 @@
               <display-name>Comparison Value</display-name>
               <type>uint</type>
               <as>
-                <struct>
+                <union>
                   <name>ComparisonValue</name>
-                  <union>true</union>
                   <members>
                     <float name="Value" />
                     <uint name="GlobalVariable" display-name="Global Variable" as-type="ref" as-ref-type="GLOB"  />
                   </members>
-                </struct>
+                </union>
               </as>
             </member>
             <member>
@@ -39,30 +38,28 @@
               <name>FunctionParam1</name>
               <type>uint</type>
               <as>
-                <struct>
+                <union>
                   <name>FunctionParam1</name>
-                  <union>true</union>
                   <members>
                     <int name="Value" />
                     <uint name="FormReference" display-name="Form Reference" as-type="ref" />
                     <ushort name="EventFunction" display-name="Event Function" />
                     <string name="EventMember" display-name="Event Member" />
                   </members>
-                </struct>
+                </union>
               </as>
             </member>
             <member>
               <name>FunctionParam2</name>
               <type>uint</type>
               <as>
-                <struct>
+                <union>
                   <name>FunctionParam2</name>
-                  <union>true</union>
                   <members>
                     <int name="Value" />
                     <uint name="FormReference" display-name="Form Reference" as-type="ref" />
                   </members>
-                </struct>
+                </union>
               </as>
             </member>
             <function-target name="FunctionTarget" />
