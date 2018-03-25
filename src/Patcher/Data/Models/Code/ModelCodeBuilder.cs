@@ -29,37 +29,45 @@ namespace Patcher.Data.Models.Code
         {
             var code = new CodeBase();
             code.Using.Add("System");
+            code.Using.Add("System.Collections.Generic");
 
             // General namespace
             var ns = new CodeNamespace("Patcher.Data.Models");
             code.Namespaces.Add(ns);
 
+            var context = new Context(code);
+
             // Prepare a namespace for each game model
             foreach (var model in models)
             {
-                code.Namespaces.Add(GetGameNamespace(model));
+                CreateGameNamespace(context, model);
             }
 
             return code;
         }
 
-        private CodeNamespace GetGameNamespace(GameModel model)
+        private void CreateGameNamespace(Context context, GameModel model)
         {
             string nsName = string.Format("Patcher.Data.Models.{0}", model.Name);
             var ns = new CodeNamespace(nsName)
             {
                 Comment = string.Format("Data model for {0}", model.Name)
             };
+            context.Code.Namespaces.Add(ns);
+            context.EnterNamespace(ns);
 
             foreach (var e in model.Models.OfType<EnumModel>())
             {
-                ns.Types.Add(GetEnum(e));
+                CreateEnum(context, e);
             }
 
-            return ns;
+            foreach (var s in model.Models.OfType<StructModel>())
+            {
+                CreateStruct(context, s);
+            }
         }
 
-        private CodeEnum GetEnum(EnumModel model)
+        private void CreateEnum(Context context, EnumModel model)
         {
             var comment = new StringBuilder();
             if (model.IsFlags)
@@ -76,16 +84,18 @@ namespace Patcher.Data.Models.Code
                 Comment = comment.ToString(),
                 Type = model.BaseType ?? typeof(int)
             };
+            context.Namespace.Types.Add(e);
 
+            context.EnterType(e);
             foreach (var m in model.Members)
             {
-                e.Members.Add(GetEnumMember(m));
+                CreateEnumMember(context, m);
+                context.CurrentMemberIndex++;
             }
-
-            return e;
+            context.LeaveType();
         }
 
-        private CodeEnumMember GetEnumMember(EnumMemberModel model)
+        private void CreateEnumMember(Context context, EnumMemberModel model)
         {
             var comment = new StringBuilder();
             if (!string.IsNullOrEmpty(model.DisplayName))
@@ -97,10 +107,116 @@ namespace Patcher.Data.Models.Code
                 comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
             }
 
-            return new CodeEnumMember(model.Name, model.Value)
+            context.CurrentEnum.Members.Add(new CodeEnumMember(model.Name, model.Value)
             {
                 Comment = comment.ToString()
+            });
+        }
+
+        private void CreateStruct(Context context, StructModel model)
+        {
+            var comment = new StringBuilder();
+            if (!string.IsNullOrEmpty(model.Description))
+            {
+                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
+            }
+
+            var c = new CodeClass(model.Name)
+            {
+                Comment = comment.ToString(),
             };
+            context.Namespace.Types.Add(c);
+
+            context.EnterType(c);
+            foreach (var m in model.Members)
+            {
+                CreateStructMembers(context, m);
+                context.CurrentMemberIndex++;
+            }
+            context.LeaveType();
+        }
+
+        private void CreateStructMembers(Context context, MemberModel model)
+        {
+            var comment = new StringBuilder();
+            if (!string.IsNullOrEmpty(model.DisplayName))
+            {
+                comment.AppendLine(string.Format("[DisplayName(\"{0}\")]", model.DisplayName));
+            }
+            if (!string.IsNullOrEmpty(model.Description))
+            {
+                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
+            }
+            if (model.IsHidden)
+            {
+                comment.AppendLine("[Hidden]");
+            }
+
+            if (model.IsVirtual)
+            {
+            }
+            else
+            {
+                string type = model.Type.Name;
+                if (model.IsArray)
+                    type = "List<" + type + ">";
+
+                string name = !string.IsNullOrEmpty(model.Name) ? model.Name : string.Format("Unused{0}", context.CurrentMemberIndex);
+
+                context.CurrentClass.Members.Add(new CodeField(type, name)
+                {
+                    Comment = comment.ToString()
+                });
+            }
+        }
+
+        class Context
+        {
+            Stack<StackItem> stack = new Stack<StackItem>();
+
+            public CodeBase Code { get; private set; }
+            public CodeNamespace Namespace { get; private set; }
+
+            public CodeClass CurrentClass { get { return stack.Peek().Type as CodeClass; } }
+            public CodeClass TopLevelClass { get { return stack.LastOrDefault().Type as CodeClass; } }
+            public CodeEnum CurrentEnum { get { return stack.Peek().Type as CodeEnum; } }
+            public int CurrentMemberIndex { get { return stack.Peek().MemberIndex; } set { stack.Peek().MemberIndex = value; } }
+
+            public Context(CodeBase code)
+            {
+                Code = code;
+            }
+
+            public void EnterNamespace(CodeNamespace ns)
+            {
+                Namespace = ns;
+            }
+
+            public void LeaveNamespace()
+            {
+                Namespace = null;
+            }
+
+            public void EnterType(CodeType type)
+            {
+                stack.Push(new StackItem(type));
+            }
+
+            public void LeaveType()
+            {
+                stack.Pop();
+            }
+
+            class StackItem
+            {
+                public CodeType Type { get; private set; }
+                public int MemberIndex { get; set; }
+
+                public StackItem(CodeType type)
+                {
+                    Type = type;
+                }
+            }
         }
     }
 }
