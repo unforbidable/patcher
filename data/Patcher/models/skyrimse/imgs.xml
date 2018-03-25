@@ -4,9 +4,11 @@
   <fields>
     <editor-id />
     <field>
+      <!-- Possibly obsolete field -->
       <key>ENAM</key>
       <name>Unknown</name>
       <type>float[14]</type>
+      <hidden>true</hidden>
     </field>
     <field>
       <key>HNAM</key>
@@ -60,8 +62,9 @@
           <float name="Distance" />
           <float name="Range" />
           <float name="Unknown" hidden="true" />
-          <bool name="NoSky" display-name="No Sky Blur" />
-          <blur-radius name="BlurRadius" />
+          <!-- NoSky and BlurRadius are calculated from member Unknown using one adapter each -->
+          <bool name="NoSky" display-name="No Sky Blur" virtual="true" />
+          <blur-radius name="BlurRadius" virtual="true" />
         </members>
       </struct>
     </field>
