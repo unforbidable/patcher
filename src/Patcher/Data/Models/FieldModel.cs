@@ -209,6 +209,7 @@ namespace Patcher.Data.Models
         public void ValidateModel(ModelValidator validator)
         {
             validator.AssertWithError(IsFieldGroup || !string.IsNullOrEmpty(Key) || IsVirtual, "Key is a required property of a non-virtual field model that isn't a field group.");
+            validator.AssertWithError(IsHidden || !string.IsNullOrEmpty(Name), "Name is a required property of a field model that is not hidden.");
         }
     }
 }
