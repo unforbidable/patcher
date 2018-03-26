@@ -51,6 +51,7 @@ namespace Patcher.Code
 
         public override void BuildCode(CodeBuilder builder)
         {
+            builder.AppendComment(Comment);
             builder.Append("public ");
             if (IsStatic)
             {
@@ -63,6 +64,11 @@ namespace Patcher.Code
             foreach (var field in Members.OfType<CodeField>())
             {
                 field.BuildCode(builder);
+            }
+
+            foreach (var prop in Members.OfType<CodeProperty>())
+            {
+                prop.BuildCode(builder);
             }
 
             // TODO: build class sub-types and members

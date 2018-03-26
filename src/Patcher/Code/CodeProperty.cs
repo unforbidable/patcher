@@ -46,7 +46,22 @@ namespace Patcher.Code
 
         public override void BuildCode(CodeBuilder builder)
         {
-            // TODO: Build code for this property
+            builder.AppendComment(Comment);
+            if (IsPublic)
+            {
+                builder.Append("public ");
+            }
+            else
+            {
+                builder.Append("private ");
+            }
+            if (IsStatic)
+            {
+                builder.Append("static ");
+            }
+            builder.Append("{0} {1}", Type, Name);
+
+            builder.AppendLine(" { get" + (getterBuilder != null ? " { " + getterBuilder.ToString() + " }" : ";") + " set" + (setterBuilder != null ? " { " + setterBuilder.ToString() + " }" : ";") + " }");
         }
     }
 }
