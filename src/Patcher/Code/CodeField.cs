@@ -40,9 +40,14 @@ namespace Patcher.Code
 
         public override void BuildCode(CodeBuilder builder)
         {
+            builder.AppendComment(Comment);
             if (IsPublic)
             {
                 builder.Append("public ");
+            }
+            else
+            {
+                builder.Append("private ");
             }
             if (IsStatic)
             {
