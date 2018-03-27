@@ -21,7 +21,7 @@
                   <name>ComparisonValue</name>
                   <members>
                     <float name="Value" />
-                    <uint name="GlobalVariable" display-name="Global Variable" as-type="ref" as-ref-type="GLOB"  />
+                    <uint name="GlobalVariable" display-name="Global Variable" as-type="ref(GLOB)"  />
                   </members>
                 </union>
               </as>

@@ -10,12 +10,12 @@
     <member name="StringValue" type="wstring" if="PropertyType==2" hidden="true" />
     <member name="IntValue" type="int" if="PropertyType==3" hidden="true" />
     <member name="FloatValue" type="float" if="PropertyType==4" hidden="true" />
-    <member name="BoolValue" type="sbyte" if="PropertyType==5" hidden="true" />
+    <member name="BoolValue" type="sbyte" if="PropertyType==5" as-type="bool" hidden="true" />
     <member name="ArrayOfObjectValue" type="script-property-object[l]" if="PropertyType==11" hidden="true" />
     <member name="ArrayOfStringValue" type="wstring[l]" if="PropertyType==12" hidden="true" />
     <member name="ArrayOfIntValue" type="int[l]" if="PropertyType==13" hidden="true" />
     <member name="ArrayOfFloatValue" type="float[l]" if="PropertyType==14" hidden="true" />
-    <member name="ArrayOfBoolValue" type="sbyte[l]" if="PropertyType==15" hidden="true" />
+    <member name="ArrayOfBoolValue" type="sbyte[l]" if="PropertyType==15" as-type="bool[]" hidden="true" />
     <!-- member Value is virtual meaning there is no data, the above will be accessed via adapter -->
     <member name="Value" virtual="true">
       <as>
@@ -27,12 +27,12 @@
             <member type="wstring" name="StringValue" />
             <member type="int" name="IntValue" />
             <member type="float" name="FloatValue" />
-            <member type="sbyte" name="BoolValue" />
+            <member type="bool" name="BoolValue" />
             <member type="script-property-object[]" name="ArrayOfObjectValue" />
             <member type="wstring[]" name="ArrayOfStringValue" />
             <member type="int[]" name="ArrayOfIntValue" />
             <member type="float[]" name="ArrayOfFloatValue" />
-            <member type="sbyte[]" name="ArrayOfBoolValue" />
+            <member type="bool[]" name="ArrayOfBoolValue" />
           </members>
         </union>
       </as>
