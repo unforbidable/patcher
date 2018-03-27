@@ -32,7 +32,7 @@ namespace Patcher.Data.Models
 
         static Dictionary<string, TargetType> knownTypes = new Dictionary<string, TargetType>()
         {
-            { "bool", new TargetType() { Name = "boolean", Type = typeof(bool) } },
+            { "bool", new TargetType() { Name = "bool", Type = typeof(bool) } },
             { "byte", new TargetType() { Name = "byte", Type = typeof(byte) } },
             { "sbyte", new TargetType() { Name = "sbyte", Type = typeof(sbyte) } },
             { "short", new TargetType() { Name = "short", Type = typeof(short) } },
