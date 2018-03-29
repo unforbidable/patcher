@@ -51,10 +51,23 @@ namespace Patcher.Data.Models.Loading
             int succeeded = 0;
             int failed = 0;
 
-            foreach (var unresolved in unresolvedModels)
+            var modelsToResolve = new Queue<UnresolvedModel>(unresolvedModels);
+
+            while (modelsToResolve.Count > 0)
             {
+                var unresolved = modelsToResolve.Dequeue();
+
                 IModel model;
                 loadedModelMap.TryGetValue(unresolved.Id, out model);
+
+                // Make sure the model that is being used to resolve another model is also not unresolved
+                bool isUnresolved = modelsToResolve.Where(u => u.Model == model).Any();
+                if (isUnresolved)
+                {
+                    // This model is not yet resolved so it needs to be resolved before it can be used to resolved other models
+                    modelsToResolve.Enqueue(unresolved);
+                    continue;
+                }
 
                 if (model is EnumModel)
                 {
