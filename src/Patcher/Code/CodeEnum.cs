@@ -41,12 +41,14 @@ namespace Patcher.Code
         public CodeEnum(string name) : base(name)
         {
             Members = new CodeEnumMemberCollection(this);
+
+            Modifiers = CodeModifiers.Public;
         }
 
         public override void BuildCode(CodeBuilder builder)
         {
-            builder.AppendComment(Comment);
-            builder.Append("public ");
+            base.BuildCode(builder);
+
             builder.AppendLine("enum {0} : {1}", Name, ModelLoadingHelper.GetEnumTypeName(Type));
             builder.AppendLine("{");
             builder.EnterBlock();

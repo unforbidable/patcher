@@ -42,7 +42,8 @@ namespace Patcher.Code
 
         public override void BuildCode(CodeBuilder builder)
         {
-            builder.AppendComment(Comment);
+            base.BuildCode(builder);
+
             builder.AppendLine("namespace {0}", Name);
             builder.AppendLine("{");
             builder.EnterBlock();

@@ -32,16 +32,6 @@ namespace Patcher.Code
         /// </summary>
         public string Type { get; private set; }
 
-        /// <summary>
-        /// Gets or sets the value indicating whether this member is public.
-        /// </summary>
-        public bool IsPublic { get; set; }
-
-        /// <summary>
-        /// Gets or sets the value indicating whether this member is static.
-        /// </summary>
-        public bool IsStatic { get; set; }
-
         public CodeMember(string type, string name) : base(name)
         {
             CodeBuilderHelper.ValidateMemberName(name);
@@ -49,5 +39,9 @@ namespace Patcher.Code
             Type = type;
         }
 
+        public override void BuildCode(CodeBuilder builder)
+        {
+            base.BuildCode(builder);
+        }
     }
 }

@@ -33,6 +33,8 @@ namespace Patcher.Code
 
         public override void BuildCode(CodeBuilder builder)
         {
+            base.BuildCode(builder);
+
             // TODO: build interface code
         }
     }

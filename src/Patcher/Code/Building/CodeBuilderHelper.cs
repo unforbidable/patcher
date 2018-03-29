@@ -23,6 +23,11 @@ namespace Patcher.Code.Building
 {
     public static class CodeBuilderHelper
     {
+        public static string ModifiersToString(CodeModifiers modifiers)
+        {
+            return string.Join("", Enum.GetValues(modifiers.GetType()).Cast<Enum>().Where(v => modifiers.HasFlag(v) && Convert.ToInt64(v) != 0).Select(v => v.ToString().ToLower() + " "));
+        }
+
         public static void ValidateTypeName(string name)
         {
             // TODO: Ensure type name is valid

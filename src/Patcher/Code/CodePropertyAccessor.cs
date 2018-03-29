@@ -1,4 +1,4 @@
-﻿// Copyright(C) 2018 Unforbidable Works
+﻿// Copyright(C) 2015,2016,2017,2018 Unforbidable Works
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -22,16 +22,24 @@ using System.Text;
 
 namespace Patcher.Code
 {
-    public abstract class CodeType : CodeItem
+    public class CodePropertyAccessor
     {
-        public CodeType(string name) : base(name)
+        public CodeBuilder Body { get; private set; }
+        public CodeModifiers Modifiers { get; set; }
+
+        public CodePropertyAccessor()
         {
-            CodeBuilderHelper.ValidateTypeName(name);
+            Body = new CodeBuilder();
         }
 
-        public override void BuildCode(CodeBuilder builder)
+        public CodePropertyAccessor(string code)
         {
-            base.BuildCode(builder);
+            Body = new CodeBuilder(code);
+        }
+
+        public static implicit operator CodePropertyAccessor(string code)
+        {
+            return new CodePropertyAccessor(code);
         }
     }
 }

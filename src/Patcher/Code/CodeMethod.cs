@@ -27,27 +27,17 @@ namespace Patcher.Code
     /// </summary>
     public sealed class CodeMethod : CodeMember
     {
-        CodeBuilder bodyBuilder = null;
-
         /// <summary>
         /// Gets the CodeBuilder instance used to build the body of this method.
         /// </summary>
-        public CodeBuilder CodeBuilder { get { if (bodyBuilder == null) bodyBuilder = new CodeBuilder(); return bodyBuilder; } }
-
-        /// <summary>
-        /// Gets or sets the value indicating whether this method is virtual.
-        /// </summary>
-        public bool IsVirtual { get; set; }
-
-        /// <summary>
-        /// Gets or sets the value indicating whether this method is abstract.
-        /// </summary>
-        public bool IsAbstract { get; set; }
+        public CodeBuilder Body { get; set; }
 
         /// <summary>
         /// Gets or sets the parameters of this method.
         /// </summary>
         public string Parameters { get; set; }
+
+        public string ConstructorInvocation { get; set; }
 
         public CodeMethod(string type, string name) : base(type, name)
         {
@@ -55,7 +45,35 @@ namespace Patcher.Code
 
         public override void BuildCode(CodeBuilder builder)
         {
-            // TODO: Build method code
+            base.BuildCode(builder);
+
+            if (Type != null)
+            {
+                builder.Append(Type + " ");
+            }
+
+            if (Name != null)
+            {
+                builder.Append(Name);
+            }
+
+            builder.Append("({0})", Parameters);
+
+            if (ConstructorInvocation != null)
+            {
+                builder.Append(" : " + ConstructorInvocation);
+            }
+            builder.AppendLine();
+
+            builder.AppendLine("{");
+            builder.EnterBlock();
+
+            if (Body != null)
+            {
+                builder.Append(Body.ToString());
+            }
+            builder.LeaveBlock();
+            builder.AppendLine("}");
         }
     }
 }

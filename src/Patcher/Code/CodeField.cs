@@ -32,31 +32,15 @@ namespace Patcher.Code
         /// </summary>
         public string Value { get; set; }
 
-        public bool IsConst { get; set; }
-
         public CodeField(string type, string name) : base(type, name)
         {
+            Modifiers = CodeModifiers.Private;
         }
 
         public override void BuildCode(CodeBuilder builder)
         {
-            builder.AppendComment(Comment);
-            if (IsPublic)
-            {
-                builder.Append("public ");
-            }
-            else
-            {
-                builder.Append("private ");
-            }
-            if (IsStatic)
-            {
-                builder.Append("static ");
-            }
-            if (IsConst)
-            {
-                builder.Append("const ");
-            }
+            base.BuildCode(builder);
+
             builder.Append("{0} {1}", Type, Name);
 
             if (!string.IsNullOrEmpty(Value))

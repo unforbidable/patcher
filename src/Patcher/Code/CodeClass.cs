@@ -39,25 +39,31 @@ namespace Patcher.Code
         public CodeMemberCollection Members { get; private set; }
 
         /// <summary>
-        /// Gets or sets the value that specifies whether this class is static.
+        /// Gets the collection of type names this class implements or inherits.
         /// </summary>
-        public bool IsStatic { get; set; }
+        public ICollection<string> Extends { get; private set; }
 
         public CodeClass(string name) : base(name)
         {
+            Extends = new Collection<string>();
             Types = new CodeTypeCollection(this);
             Members = new CodeMemberCollection(this);
+
+            Modifiers = CodeModifiers.Public;
         }
 
         public override void BuildCode(CodeBuilder builder)
         {
-            builder.AppendComment(Comment);
-            builder.Append("public ");
-            if (IsStatic)
+            base.BuildCode(builder);
+
+            builder.Append("class {0}", Name);
+
+            if (Extends.Count > 0)
             {
-                builder.Append("static ");
+                builder.Append(" : " + string.Join(",", Extends) + " ");
             }
-            builder.AppendLine("class {0}", Name);
+            builder.AppendLine();
+
             builder.AppendLine("{");
             builder.EnterBlock();
 
@@ -71,7 +77,15 @@ namespace Patcher.Code
                 prop.BuildCode(builder);
             }
 
-            // TODO: build class sub-types and members
+            foreach (var method in Members.OfType<CodeMethod>())
+            {
+                method.BuildCode(builder);
+            }
+
+            foreach (var type in Types)
+            {
+                type.BuildCode(builder);
+            }
 
             builder.LeaveBlock();
             builder.AppendLine("}");

@@ -37,11 +37,20 @@ namespace Patcher.Code
         /// </summary>
         public string Comment { get; set; }
 
+        /// <summary>
+        /// Gets or sets the modifiers of this artefact.
+        /// </summary>
+        public CodeModifiers Modifiers { get; set; }
+
         public CodeItem(string name)
         {
             Name = name;
         }
 
-        public abstract void BuildCode(CodeBuilder builder);
+        public virtual void BuildCode(CodeBuilder builder)
+        {
+            builder.AppendComment(Comment);
+            builder.Append(CodeBuilderHelper.ModifiersToString(Modifiers));
+        }
     }
 }

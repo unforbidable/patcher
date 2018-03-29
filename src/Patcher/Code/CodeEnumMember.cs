@@ -38,7 +38,8 @@ namespace Patcher.Code
 
         public override void BuildCode(CodeBuilder builder)
         {
-            builder.AppendComment(Comment);
+            base.BuildCode(builder);
+
             builder.Append("{0} = {1}", Name, Value);
         }
     }

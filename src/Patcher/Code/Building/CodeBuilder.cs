@@ -23,12 +23,22 @@ namespace Patcher.Code.Building
 {
     public class CodeBuilder
     {
-        readonly StringBuilder builder = new StringBuilder();
+        readonly StringBuilder builder;
         readonly CodeBuilderOptions options = new CodeBuilderOptions();
 
         public CodeBuilderOptions Options { get { return options; } }
 
         int indent = 0;
+
+        public CodeBuilder()
+        {
+            builder = new StringBuilder();
+        }
+
+        public CodeBuilder(string code)
+        {
+            builder = new StringBuilder(code);
+        }
 
         public void EnterBlock()
         {

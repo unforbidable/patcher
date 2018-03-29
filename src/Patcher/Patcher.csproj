@@ -60,6 +60,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Code\CodeModifiers.cs" />
     <Compile Include="Code\Building\CodeBuilder.cs" />
     <Compile Include="Code\Building\CodeBuilderOptions.cs" />
     <Compile Include="Code\CodeBase.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Code\CodeMethod.cs" />
     <Compile Include="Code\CodeNamespace.cs" />
     <Compile Include="Code\CodeItem.cs" />
+    <Compile Include="Code\CodePropertyAccessor.cs" />
     <Compile Include="Code\CodeType.cs" />
     <Compile Include="Code\CodeNamespaceCollection.cs" />
     <Compile Include="Code\CodeTypeCollection.cs" />

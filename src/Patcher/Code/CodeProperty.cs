@@ -27,41 +27,57 @@ namespace Patcher.Code
     /// </summary>
     public sealed class CodeProperty : CodeMember
     {
-        CodeBuilder getterBuilder = null;
-        CodeBuilder setterBuilder = null;
-
         /// <summary>
         /// Gets the StringBuilder instance used to build the body of the getter of this method.
         /// </summary>
-        public CodeBuilder GetterBodyBuilder { get { if (getterBuilder == null) getterBuilder = new CodeBuilder(); return getterBuilder; } }
+        public CodePropertyAccessor Getter { get; set; }
 
         /// <summary>
         /// Gets the StringBuilder instance used to build the body of the setter of this method.
         /// </summary>
-        public CodeBuilder SetterBodyBuilder { get { if (setterBuilder == null) setterBuilder = new CodeBuilder(); return setterBuilder; } }
+        public CodePropertyAccessor Setter { get; set; }
 
         public CodeProperty(string type, string name) : base(type, name)
         {
+            Modifiers = CodeModifiers.Public;
         }
 
         public override void BuildCode(CodeBuilder builder)
         {
-            builder.AppendComment(Comment);
-            if (IsPublic)
-            {
-                builder.Append("public ");
-            }
-            else
-            {
-                builder.Append("private ");
-            }
-            if (IsStatic)
-            {
-                builder.Append("static ");
-            }
+            base.BuildCode(builder);
+
             builder.Append("{0} {1}", Type, Name);
 
-            builder.AppendLine(" { get" + (getterBuilder != null ? " { " + getterBuilder.ToString() + " }" : ";") + " set" + (setterBuilder != null ? " { " + setterBuilder.ToString() + " }" : ";") + " }");
+            builder.Append(" { ");
+            if (Getter != null)
+            {
+                builder.Append(CodeBuilderHelper.ModifiersToString(Getter.Modifiers));
+                builder.Append("get");
+                string body = Getter.Body.ToString();
+                if (body.Length == 0)
+                {
+                    builder.Append("; ");
+                }
+                else
+                {
+                    builder.Append(" {{ {0} }} ", body);
+                }
+            }
+            if (Setter != null)
+            {
+                builder.Append(CodeBuilderHelper.ModifiersToString(Setter.Modifiers));
+                builder.Append("set");
+                string body = Setter.Body.ToString();
+                if (body.Length == 0)
+                {
+                    builder.Append("; ");
+                }
+                else
+                {
+                    builder.Append(" {{ {0} }} ", body);
+                }
+            }
+            builder.AppendLine(" }");
         }
     }
 }
