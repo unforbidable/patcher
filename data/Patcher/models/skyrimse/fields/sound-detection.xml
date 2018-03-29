@@ -2,10 +2,5 @@
   <key>VNAM</key>
   <name>SoundDetectionLevel</name>
   <display-name>Sound Detection Level</display-name>
-  <struct>
-    <name>SoundDetectionEnum</name>
-    <members>
-      <sound-detection-level />
-    </members>
-  </struct>
+  <type>sound-detection-level</type>
 </field>

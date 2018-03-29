@@ -54,8 +54,9 @@
     </field>
     <field>
       <key>DATA</key>
+      <name>Data</name>
       <struct>
-        <name>Data</name>
+        <name>ArmorData</name>
         <members>
           <uint name="Value" display-name="Gold Value" />
           <float name="Weight" />

@@ -6,12 +6,7 @@
     <field>
       <key>FNAM</key>
       <name>Type</name>
-      <struct>
-        <name>Type</name>
-        <members>
-          <global-type-enum />
-        </members>
-      </struct>
+      <type>global-type-enum</type>
     </field>
     <field>
       <key>FLTV</key>

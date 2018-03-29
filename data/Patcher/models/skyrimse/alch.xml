@@ -14,6 +14,7 @@
     <float key="DATA" name="Weight" />
     <field>
       <key>ENIT</key>
+      <name>Misc</name>
       <struct>
         <name>PotionMisc</name>
         <members>
@@ -35,6 +36,7 @@
           <magic-effect key="EFID" name="BaseEffect" display-name="Base Effect"/>
           <field>
             <key>EFIT</key>
+            <name>EffectData</name>
             <struct>
               <name>PotionEffectData</name>
               <members>

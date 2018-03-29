@@ -1,8 +1,9 @@
 <field>
+  <name>Model</name>
   <group>
     <name>GenericModelData</name>
     <fields>
-      <zstring key="MODL" name="WorldModel" display-name="Model Filename" />
+      <zstring key="MODL" name="ModelPath" display-name="Model Filename" />
       <field>
         <key>MODT</key>
         <name>ModelTextureData</name>

@@ -13,11 +13,11 @@
         <name>ProjectileData</name>
         <members>
           <projectile-flags name="Flags" />
-          <projectile-type />
+          <projectile-type name="Type" />
           <float name="Gravity" />
           <float name="Speed" />
           <float name="Range" />
-          <light />
+          <light name="Light" />
           <light name="MuzzleFlash" display-name="Muzzle Flash" />
           <float name="TracerChance" display-name="Tracer Chance" />
           <float name="ExplosionProximity" display-name="Explosion Proximity" />

@@ -5,16 +5,17 @@
     <editor-id />
     <field>
       <key>DNAM</key>
-      <name>DataCount</name>
+      <name>Count</name>
       <display-name>Data Count</display-name>
       <struct>
-        <name>DataCount</name>
+        <name>CountData</name>
         <members>
           <imad-flags name="Flags" />
           <float name="Duration" />
           <member>
+            <name>HDRCound</name>
             <struct>
-              <name>HDR</name>
+              <name>HDRCountData</name>
               <members>
                 <uint name="EyeAdaptSpeedMult" display-name="Eye Adapt Speed Multiplier" />
                 <uint name="EyeAdaptSpeedAdd" display-name="Eye Adapt Speed Add" />
@@ -54,8 +55,9 @@
           <uint name="Unknown10Mult" hidden="true" />
           <uint name="Unknown50Add" hidden="true" />
           <member>
+            <name>CinematicCount</name>
             <struct>
-              <name>Cinematic</name>
+              <name>CinematicCountData</name>
               <members>
                 <uint name="SaturationMult" display-name="Saturation Multiplier" />
                 <uint name="SaturationAdd" display-name="Saturation Add" />

@@ -11,7 +11,7 @@
     <keyword-list />
     <field>
       <key>DATA</key>
-      <display-name>Data</display-name>
+      <name>Data</name>
       <struct>
         <name>AmmunitionData</name>
         <members>
