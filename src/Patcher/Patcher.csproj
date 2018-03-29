@@ -89,8 +89,10 @@
     <Compile Include="Data\Archives\ArchiveSubstream.cs" />
     <Compile Include="Data\DataContextAttribute.cs" />
     <Compile Include="Data\DefaultDataFileProvider.cs" />
+    <Compile Include="Data\Models\Code\Generated\Variable.cs" />
     <Compile Include="Data\Models\Code\ModelCodeBuilder.cs" />
     <Compile Include="Data\Models\Code\ModelCodeCompiler.cs" />
+    <Compile Include="Data\Models\Code\VariableCodeBuilder.cs" />
     <Compile Include="Data\Models\EnumMemberModel.cs" />
     <Compile Include="Data\Models\FormReference.cs" />
     <Compile Include="Data\Models\FunctionModel.cs" />

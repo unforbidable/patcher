@@ -31,7 +31,8 @@ namespace Patcher.Data.Models.Code
     {
         const string modelAssemblyFilename = "Patcher.Data.Models.dll";
         const string modelSourceFilename = "models.cs";
-        const string meraDataSourceFilename = "models.metadata.cs";
+        const string metaDataSourceFilename = "models.metadata.cs";
+        const string variableSourceFilename = "models.variable.cs";
         const string modelDeflatedFilename = "models.json.gzip";
 
         public void CompileCode(CodeBase code, byte[] serializedModel)
@@ -44,7 +45,11 @@ namespace Patcher.Data.Models.Code
             // Add meta data class code
             string serializedModelsHash = ModelHelper.GetModelHash(serializedModel);
             var metaDataCode = GetMetaDataCode(serializedModelsHash, modelDeflatedFilename);
-            compiler.AddCode(meraDataSourceFilename, metaDataCode);
+            compiler.AddCode(metaDataSourceFilename, metaDataCode);
+
+            // Add variable class code
+            var variableCode = new VariableCodeBuilder().BuildVariable();
+            compiler.AddCode(variableSourceFilename, variableCode);
 
             // Compress data model and add it as a resource
             using (var memoryStream = new MemoryStream())
