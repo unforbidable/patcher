@@ -40,13 +40,13 @@ namespace Patcher.Data.Models.Code
             // Prepare a namespace for each game model
             foreach (var model in models)
             {
-                CreateGameNamespace(context, model);
+                BuildGameNamespace(context, model);
             }
 
             return code;
         }
 
-        private void CreateGameNamespace(Context context, GameModel model)
+        private void BuildGameNamespace(Context context, GameModel model)
         {
             string nsName = string.Format("Patcher.Data.Models.{0}", model.Name);
             var ns = new CodeNamespace(nsName)
@@ -58,16 +58,237 @@ namespace Patcher.Data.Models.Code
 
             foreach (var e in model.Models.OfType<EnumModel>())
             {
-                CreateEnum(context, e);
+                BuildEnum(context, e);
+            }
+
+            foreach (var r in model.Models.OfType<RecordModel>())
+            {
+                BuildRecordClass(context, r);
             }
 
             foreach (var s in model.Models.OfType<StructModel>())
             {
-                CreateStruct(context, s);
+                BuildStructClass(context, s);
             }
         }
 
-        private void CreateEnum(Context context, EnumModel model)
+        private void BuildRecordClass(Context context, RecordModel model)
+        {
+            var comment = new StringBuilder();
+            comment.AppendLine(string.Format("[Key(\"{0}\")]", model.Key.ToUpper()));
+            if (!string.IsNullOrEmpty(model.DisplayName))
+            {
+                comment.AppendLine(string.Format("[DisplayName(\"{0}\")]", model.DisplayName));
+            }
+            if (!string.IsNullOrEmpty(model.Description))
+            {
+                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
+            }
+
+            var cls = new CodeClass(model.Name)
+            {
+                Comment = comment.ToString()
+            };
+
+            context.Namespace.Types.Add(cls);
+
+            context.EnterType(cls);
+            foreach (var field in model.Fields)
+            {
+                BuildFieldProperty(context, field);
+                context.CurrentMemberIndex++;
+            }
+            context.LeaveType();
+        }
+
+        private void BuildFieldGroupClass(Context context, FieldGroupModel model)
+        {
+            bool embedded = context.CurrentClass != null;
+
+            var comment = new StringBuilder();
+            if (!embedded && !string.IsNullOrEmpty(model.Description))
+            {
+                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
+            }
+
+            var cls = new CodeClass(model.Name);
+            cls.Comment = comment.ToString();
+
+            if (context.CurrentClass != null)
+            {
+                // Create private nested class
+                cls.Modifiers = CodeModifiers.Private;
+                context.CurrentClass.Types.Add(cls);
+            }
+            else
+            {
+                context.Namespace.Types.Add(cls);
+            }
+
+            context.EnterType(cls);
+            foreach (var field in model.Fields)
+            {
+                BuildFieldProperty(context, field);
+                context.CurrentMemberIndex++;
+            }
+            context.LeaveType();
+        }
+
+        private void BuildStructClass(Context context, StructModel model)
+        {
+            var comment = new StringBuilder();
+            if (!string.IsNullOrEmpty(model.Description))
+            {
+                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
+            }
+
+            var cls = new CodeClass(model.Name);
+            cls.Comment = comment.ToString();
+            context.Namespace.Types.Add(cls);
+
+            context.EnterType(cls);
+            if (model.IsUnion)
+            {
+                cls.Extends.Add(GetUnionType(model));
+                foreach (var m in model.Members)
+                {
+                    BuildUnionMemberProperty(context, m);
+                    context.CurrentMemberIndex++;
+                }
+            }
+            else
+            {
+                foreach (var m in model.Members)
+                {
+                    BuildMemberProperty(context, m);
+                    context.CurrentMemberIndex++;
+                }
+            }
+            context.LeaveType();
+        }
+
+        private void BuildUnionMemberProperty(Context context, MemberModel model)
+        {
+            // Create property for a member of union
+            var prop = new CodeProperty(GetMemberOuterTypeName(model), model.Name);
+            context.CurrentClass.Members.Add(prop);
+        }
+
+        private void BuildFieldProperty(Context context, FieldModel model)
+        {
+            if (!model.IsVirtual)
+            {
+                // Create field holding the data (non-virtual fields)
+                var field = new CodeField(GetFieldInnerTypeName(model), GetFieldName(model.Name));
+                context.CurrentClass.Members.Add(field);
+            }
+
+            // Create property - either as target type or same as field type
+            var prop = new CodeProperty(GetFieldOuterTypeName(model), model.Name);
+            context.CurrentClass.Members.Add(prop);
+        }
+
+        private void BuildMemberProperty(Context context, MemberModel model)
+        {
+            if (!model.IsVirtual)
+            {
+                // Create field holding the data (non-virtual fields)
+                var field = new CodeField(GetMemberInnerTypeName(model), GetFieldName(model.Name));
+                context.CurrentClass.Members.Add(field);
+            }
+
+            // Create property - either as target type or same as field type
+            var prop = new CodeProperty(GetMemberOuterTypeName(model), model.Name);
+            prop.Getter = new CodePropertyAccessor("return " + GetFieldName(model.Name) + ";");
+            if (!model.IsArray)
+            {
+                // List property does not have a setter
+                prop.Setter = new CodePropertyAccessor(GetFieldName(model.Name) + " = value;");
+            }
+            context.CurrentClass.Members.Add(prop);
+        }
+
+        private string GetUnionType(StructModel model)
+        {
+            var builder = new StringBuilder("Variable<");
+            builder.Append(string.Join(", ", model.Members.Select(m => m.TargetModel != null ? GetTargetTypeName(m.TargetModel) : GetTypeName(m.Type.Name, m.IsArray, m.ArrayLength))));
+            builder.Append(">");
+            return builder.ToString();
+        }
+
+        private string GetFieldInnerTypeName(FieldModel model)
+        {
+            return GetTypeName(model.Type.Name, model.IsArray || model.IsList, model.ArrayLength);
+        }
+
+        private string GetMemberInnerTypeName(MemberModel model)
+        {
+            return GetTypeName(model.Type.Name, model.IsArray, model.ArrayLength);
+        }
+
+        private string GetFieldOuterTypeName(FieldModel model)
+        {
+            return model.TargetModel != null ? GetTargetTypeName(model.TargetModel) : GetFieldInnerTypeName(model);
+        }
+
+        private string GetMemberOuterTypeName(MemberModel model)
+        {
+            return model.TargetModel != null ? GetTargetTypeName(model.TargetModel) : GetMemberInnerTypeName(model);
+        }
+
+        private string GetTargetTypeName(TargetModel target)
+        {
+            if (target.Type is FormReference)
+            {
+                return GetTypeName(GetFormReferenceTypeName(target.Type as FormReference), target.IsArray, target.ArrayLength);
+            }
+            else
+            {
+                return GetTypeName(target.Type.Name, target.IsArray, target.ArrayLength);
+            }
+        }
+
+        private string GetTypeName(string type, bool isList, int listSize)
+        {
+            if (isList)
+            {
+                // List of byte and list of fixed size is always an array
+                if (type == "byte" || listSize > 0)
+                {
+                    return type + "[]";
+                }
+                else
+                {
+                    return "List<" + type + ">";
+                }
+            }
+            else
+            {
+                return type;
+            }
+        }
+
+        private string GetFormReferenceTypeName(FormReference reference)
+        {
+            if (reference.FormTypes.Length == 1)
+            {
+                // One form type specified, use this one type
+                string oneFormType = reference.FormTypes[0];
+                return "I" + char.ToUpper(oneFormType[0]) + oneFormType.Substring(1).ToLower();
+            }
+            else
+            {
+                // Any or multiple types specified, use generic form type reference
+                return "IForm";
+            }
+        }
+
+        private string GetFieldName(string name)
+        {
+            return "field" + name;
+        }
+
+        private void BuildEnum(Context context, EnumModel model)
         {
             var comment = new StringBuilder();
             if (model.IsFlags)
@@ -79,23 +300,21 @@ namespace Patcher.Data.Models.Code
                 comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
             }
 
-            var e = new CodeEnum(model.Name)
-            {
-                Comment = comment.ToString(),
-                Type = model.BaseType ?? typeof(int)
-            };
+            var e = new CodeEnum(model.Name);
+            e.Comment = comment.ToString();
+            e.Type = model.BaseType ?? typeof(int);
             context.Namespace.Types.Add(e);
 
             context.EnterType(e);
             foreach (var m in model.Members)
             {
-                CreateEnumMember(context, m);
+                BuildEnumMember(context, m);
                 context.CurrentMemberIndex++;
             }
             context.LeaveType();
         }
 
-        private void CreateEnumMember(Context context, EnumMemberModel model)
+        private void BuildEnumMember(Context context, EnumMemberModel model)
         {
             var comment = new StringBuilder();
             if (!string.IsNullOrEmpty(model.DisplayName))
@@ -113,74 +332,20 @@ namespace Patcher.Data.Models.Code
             });
         }
 
-        private void CreateStruct(Context context, StructModel model)
-        {
-            var comment = new StringBuilder();
-            if (!string.IsNullOrEmpty(model.Description))
-            {
-                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
-            }
-
-            var c = new CodeClass(model.Name)
-            {
-                Comment = comment.ToString(),
-            };
-            context.Namespace.Types.Add(c);
-
-            context.EnterType(c);
-            foreach (var m in model.Members)
-            {
-                CreateStructMembers(context, m);
-                context.CurrentMemberIndex++;
-            }
-            context.LeaveType();
-        }
-
-        private void CreateStructMembers(Context context, MemberModel model)
-        {
-            var comment = new StringBuilder();
-            if (!string.IsNullOrEmpty(model.DisplayName))
-            {
-                comment.AppendLine(string.Format("[DisplayName(\"{0}\")]", model.DisplayName));
-            }
-            if (!string.IsNullOrEmpty(model.Description))
-            {
-                comment.AppendLine(string.Format("[Description(\"{0}\")]", model.Description));
-            }
-            if (model.IsHidden)
-            {
-                comment.AppendLine("[Hidden]");
-            }
-
-            if (model.IsVirtual)
-            {
-            }
-            else
-            {
-                string type = model.Type.Name;
-                if (model.IsArray)
-                    type = "List<" + type + ">";
-
-                string name = !string.IsNullOrEmpty(model.Name) ? model.Name : string.Format("Unused{0}", context.CurrentMemberIndex);
-
-                context.CurrentClass.Members.Add(new CodeField(type, name)
-                {
-                    Comment = comment.ToString()
-                });
-            }
-        }
-
         class Context
         {
+            List<IModel> embedded = new List<IModel>();
             Stack<StackItem> stack = new Stack<StackItem>();
 
             public CodeBase Code { get; private set; }
             public CodeNamespace Namespace { get; private set; }
 
-            public CodeClass CurrentClass { get { return stack.Peek().Type as CodeClass; } }
+            public CodeClass CurrentClass { get { return stack.Count > 0 ? stack.Peek().Type as CodeClass : null; } }
             public CodeClass TopLevelClass { get { return stack.LastOrDefault().Type as CodeClass; } }
-            public CodeEnum CurrentEnum { get { return stack.Peek().Type as CodeEnum; } }
-            public int CurrentMemberIndex { get { return stack.Peek().MemberIndex; } set { stack.Peek().MemberIndex = value; } }
+            public CodeEnum CurrentEnum { get { return stack.Count > 0 ? stack.Peek().Type as CodeEnum : null; } }
+            public int CurrentMemberIndex { get { return stack.Count > 0 ? stack.Peek().MemberIndex : 0; } set { stack.Peek().MemberIndex = value; } }
+
+            public List<IModel> Embedded { get { return embedded; } }
 
             public Context(CodeBase code)
             {

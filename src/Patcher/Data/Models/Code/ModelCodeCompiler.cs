@@ -89,26 +89,23 @@ namespace Patcher.Data.Models.Code
             code.Namespaces.Add(ns);
 
             var cls = new CodeClass("ModelMetaData");
-            cls.IsStatic = true;
+            cls.Modifiers |= CodeModifiers.Static;
             cls.Comment = "Model meta data";
 
             cls.Members.Add(new CodeField("string", "ProgramVersion")
             {
                 Value = Program.GetProgramFullVersionInfo(),
-                IsPublic = true,
-                IsConst = true
+                Modifiers = CodeModifiers.Public | CodeModifiers.Const
             });
             cls.Members.Add(new CodeField("string", "ModelHash")
             {
                 Value = serializedModelHash,
-                IsPublic = true,
-                IsConst = true
+                Modifiers = CodeModifiers.Public | CodeModifiers.Const
             });
             cls.Members.Add(new CodeField("string", "ModelResourceName")
             {
                 Value = modelResourceName,
-                IsPublic = true,
-                IsConst = true
+                Modifiers = CodeModifiers.Public | CodeModifiers.Const
             });
 
             ns.Types.Add(cls);
