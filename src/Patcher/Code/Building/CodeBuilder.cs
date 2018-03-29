@@ -87,14 +87,29 @@ namespace Patcher.Code.Building
 
         public void Append(string text)
         {
+            string spaces = new string(' ', indent * 4);
+
             if (newLine)
             {
-                string spaces = new string(' ', indent * 4);
                 builder.Append(spaces);
                 newLine = false;
             }
 
+            // Ensure multy line text is indented
+            string[] lines = text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.None);
+            bool endsWithNewLine = lines.Length > 1 && lines[lines.Length - 1].Length == 0;
+            if (lines.Length > 1)
+            {
+                text = string.Join(Environment.NewLine + spaces, lines).Trim();
+            }
+
             builder.Append(text);
+
+            if (endsWithNewLine)
+            {
+                builder.AppendLine();
+                newLine = true;
+            }
         }
 
         public override string ToString()
