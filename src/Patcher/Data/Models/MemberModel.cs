@@ -16,6 +16,7 @@
 
 using Patcher.Data.Models.Loading;
 using Patcher.Data.Models.Presentation;
+using Patcher.Data.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Patcher.Data.Models
     /// <summary>
     /// Model object that represents a member of a structure.
     /// </summary>
-    public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>, IResolvableFrom<StructModel>, INamed
+    public class MemberModel : IPresentable, IResolvableFrom<EnumModel>, IResolvableFrom<FieldModel>, IResolvableFrom<StructModel>, INamed, IValidable
     {
         /// <summary>
         /// Name of the member, used as the name for the generated field, property etc.
@@ -168,6 +169,11 @@ namespace Patcher.Data.Models
             builder.AppendFormat(" {0}", !string.IsNullOrEmpty(Name) ? Name : "<unspecified-name>");
 
             return builder.ToString();
+        }
+
+        public void ValidateModel(ModelValidator validator)
+        {
+            validator.AssertWithError(IsHidden || !string.IsNullOrEmpty(Name), "Name is a required property of a member model that is not hidden.");
         }
     }
 }
