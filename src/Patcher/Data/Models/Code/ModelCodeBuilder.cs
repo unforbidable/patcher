@@ -179,13 +179,17 @@ namespace Patcher.Data.Models.Code
             if (!model.IsVirtual)
             {
                 // Create field holding the data (non-virtual fields)
-                var field = new CodeField(GetFieldInnerTypeName(model), GetFieldName(model.Name));
+                string name = model.Name ?? "Unused" + context.CurrentMemberIndex;
+                var field = new CodeField(GetFieldInnerTypeName(model), GetFieldName(name));
                 context.CurrentClass.Members.Add(field);
             }
 
-            // Create property - either as target type or same as field type
-            var prop = new CodeProperty(GetFieldOuterTypeName(model), model.Name);
-            context.CurrentClass.Members.Add(prop);
+            if (!model.IsHidden)
+            {
+                // Create property - either as target type or same as field type
+                var prop = new CodeProperty(GetFieldOuterTypeName(model), model.Name);
+                context.CurrentClass.Members.Add(prop);
+            }
         }
 
         private void BuildMemberProperty(Context context, MemberModel model)
@@ -193,19 +197,23 @@ namespace Patcher.Data.Models.Code
             if (!model.IsVirtual)
             {
                 // Create field holding the data (non-virtual fields)
-                var field = new CodeField(GetMemberInnerTypeName(model), GetFieldName(model.Name));
+                string name = model.Name ?? "Unused" + context.CurrentMemberIndex;
+                var field = new CodeField(GetMemberInnerTypeName(model), GetFieldName(name));
                 context.CurrentClass.Members.Add(field);
             }
 
-            // Create property - either as target type or same as field type
-            var prop = new CodeProperty(GetMemberOuterTypeName(model), model.Name);
-            prop.Getter = new CodePropertyAccessor("return " + GetFieldName(model.Name) + ";");
-            if (!model.IsArray)
+            if (!model.IsHidden)
             {
-                // List property does not have a setter
-                prop.Setter = new CodePropertyAccessor(GetFieldName(model.Name) + " = value;");
+                // Create property - either as target type or same as field type
+                var prop = new CodeProperty(GetMemberOuterTypeName(model), model.Name);
+                prop.Getter = new CodePropertyAccessor("return " + GetFieldName(model.Name) + ";");
+                if (!model.IsArray)
+                {
+                    // List property does not have a setter
+                    prop.Setter = new CodePropertyAccessor(GetFieldName(model.Name) + " = value;");
+                }
+                context.CurrentClass.Members.Add(prop);
             }
-            context.CurrentClass.Members.Add(prop);
         }
 
         private string GetUnionType(StructModel model)
