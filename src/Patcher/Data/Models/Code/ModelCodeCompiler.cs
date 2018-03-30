@@ -90,7 +90,7 @@ namespace Patcher.Data.Models.Code
         private CodeBase GetMetaDataCode(string serializedModelHash, string modelResourceName)
         {
             var code = new CodeBase();
-            var ns = new CodeNamespace("Data.Patcher.Models");
+            var ns = new CodeNamespace("Patcher.Data.Models");
             code.Namespaces.Add(ns);
 
             var cls = new CodeClass("ModelMetaData");
