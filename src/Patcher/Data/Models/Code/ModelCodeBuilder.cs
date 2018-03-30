@@ -171,46 +171,55 @@ namespace Patcher.Data.Models.Code
         {
             // Create property for a member of union
             var prop = new CodeProperty(GetMemberOuterTypeName(model), model.Name);
+            prop.Getter = new CodePropertyAccessor("return value" + context.CurrentMemberIndex + ";");
             context.CurrentClass.Members.Add(prop);
         }
 
         private void BuildFieldProperty(Context context, FieldModel model)
         {
+            string fieldName = model.Name ?? "Unused" + context.CurrentMemberIndex;
+
             if (!model.IsVirtual)
             {
                 // Create field holding the data (non-virtual fields)
-                string name = model.Name ?? "Unused" + context.CurrentMemberIndex;
-                var field = new CodeField(GetFieldInnerTypeName(model), GetFieldName(name));
+                var field = new CodeField(GetFieldInnerTypeName(model), GetFieldName(fieldName));
                 context.CurrentClass.Members.Add(field);
             }
 
-            if (!model.IsHidden)
+            if (!string.IsNullOrEmpty(model.Name))
             {
-                // Create property - either as target type or same as field type
-                var prop = new CodeProperty(GetFieldOuterTypeName(model), model.Name);
+                // Create property - either as target type or same as field type (fields with name only)
+                var prop = new CodeProperty(GetFieldOuterTypeName(model), fieldName);
+                prop.Getter = new CodePropertyAccessor("return " + GetFieldName(fieldName) + ";");
+                if (!model.IsArray)
+                {
+                    // List property does not have a setter
+                    prop.Setter = new CodePropertyAccessor(GetFieldName(fieldName) + " = value;");
+                }
                 context.CurrentClass.Members.Add(prop);
             }
         }
 
         private void BuildMemberProperty(Context context, MemberModel model)
         {
+            string fieldName = model.Name ?? "Unused" + context.CurrentMemberIndex;
+
             if (!model.IsVirtual)
             {
                 // Create field holding the data (non-virtual fields)
-                string name = model.Name ?? "Unused" + context.CurrentMemberIndex;
-                var field = new CodeField(GetMemberInnerTypeName(model), GetFieldName(name));
+                var field = new CodeField(GetMemberInnerTypeName(model), GetFieldName(fieldName));
                 context.CurrentClass.Members.Add(field);
             }
 
-            if (!model.IsHidden)
+            if (!string.IsNullOrEmpty(model.Name))
             {
-                // Create property - either as target type or same as field type
-                var prop = new CodeProperty(GetMemberOuterTypeName(model), model.Name);
-                prop.Getter = new CodePropertyAccessor("return " + GetFieldName(model.Name) + ";");
+                // Create property - either as target type or same as field type (members with name only)
+                var prop = new CodeProperty(GetMemberOuterTypeName(model), fieldName);
+                prop.Getter = new CodePropertyAccessor("return " + GetFieldName(fieldName) + ";");
                 if (!model.IsArray)
                 {
                     // List property does not have a setter
-                    prop.Setter = new CodePropertyAccessor(GetFieldName(model.Name) + " = value;");
+                    prop.Setter = new CodePropertyAccessor(GetFieldName(fieldName) + " = value;");
                 }
                 context.CurrentClass.Members.Add(prop);
             }
