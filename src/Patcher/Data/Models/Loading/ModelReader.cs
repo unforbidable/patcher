@@ -286,7 +286,7 @@ namespace Patcher.Data.Models.Loading
             string description = ReadValue("description");
             bool isVirtual = HasValueTrue("virtual");
             bool isHidden = HasValueTrue("hidden");
-            bool isArray = false;
+            bool isArray = HasValueTrue("array");
             int arrayLength = 0;
             int arrayPrefixSize = 0;
             MemberType memberType = null;
@@ -338,7 +338,7 @@ namespace Patcher.Data.Models.Loading
             bool isHidden = HasValueTrue("hidden");
             bool isVirtual = HasValueTrue("virtual");
             bool isList = HasValueTrue("list");
-            bool isArray = false;
+            bool isArray = HasValueTrue("array");
             int arrayLength = 0;
 
             // Read target model (as)
