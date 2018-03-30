@@ -1,0 +1,10 @@
+﻿<field>
+  <array>true</array>
+  <struct>
+    <name>ImadFloat</name>
+    <members>
+      <float name="Time" />
+      <float name="Value" />
+    </members>
+  </struct>
+</field>

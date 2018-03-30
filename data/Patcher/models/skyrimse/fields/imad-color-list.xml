@@ -1,0 +1,10 @@
+﻿<field>
+  <array>true</array>
+  <struct>
+    <name>ImadColor</name>
+    <members>
+      <float name="Time" />
+      <alpha-color name="Color" />
+    </members>
+  </struct>
+</field>

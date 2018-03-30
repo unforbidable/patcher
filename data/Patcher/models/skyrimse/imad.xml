@@ -5,184 +5,129 @@
     <editor-id />
     <field>
       <key>DNAM</key>
-      <name>Count</name>
-      <display-name>Data Count</display-name>
+      <name>Main</name>
       <struct>
-        <name>CountData</name>
+        <name>MainData</name>
         <members>
           <imad-flags name="Flags" />
           <float name="Duration" />
-          <member>
-            <name>HDRCound</name>
-            <struct>
-              <name>HDRCountData</name>
-              <members>
-                <uint name="EyeAdaptSpeedMult" display-name="Eye Adapt Speed Multiplier" />
-                <uint name="EyeAdaptSpeedAdd" display-name="Eye Adapt Speed Add" />
-                <uint name="BloomBlurRadiusMult" display-name="Bloom Blur Radius Multiplier" />
-                <uint name="BloomBlurRadiusAdd" display-name="Bloom Blur Radius Add" />
-                <uint name="BloomThresholdMult" display-name="Bloom Threshold Multiplier" />
-                <uint name="BloomThresholdAdd" display-name="Bloom Threshold Add" />
-                <uint name="BloomScaleMult" display-name="Bloom Scale Multiplier" />
-                <uint name="BloomScaleAdd" display-name="Bloom Scale Add" />
-                <uint name="TargetLumMinMult" display-name="Target Lum Min Multiplier" />
-                <uint name="TargetLumMinAdd" display-name="Target Lum Min Add" />
-                <uint name="TargetLumMaxMult" display-name="Target Lum Max Multiplier" />
-                <uint name="TargetLumMaxAdd" display-name="Target Lum Max Add" />
-                <uint name="SunlightScaleMult" display-name="Sunlight Scale Multiplier" />
-                <uint name="SunlightScaleAdd" display-name="Sunlight Scale Add" />
-                <uint name="SkyScaleMult" display-name="Sky Scale Multiplier" />
-                <uint name="SkyScaleAdd" display-name="Sky Scale Add" />
-              </members>
-            </struct>
-          </member>
-          <uint name="Unknown08Mult" hidden="true" />
-          <uint name="Unknown48Add" hidden="true" />
-          <uint name="Unknown09Mult" hidden="true" />
-          <uint name="Unknown49Add" hidden="true" />
-          <uint name="Unknown0AMult" hidden="true" />
-          <uint name="Unknown4AAdd" hidden="true" />
-          <uint name="Unknown0BMult" hidden="true" />
-          <uint name="Unknown4BAdd" hidden="true" />
-          <uint name="Unknown0CMult" hidden="true" />
-          <uint name="Unknown4CAdd" hidden="true" />
-          <uint name="Unknown0DMult" hidden="true" />
-          <uint name="Unknown4DAdd" hidden="true" />
-          <uint name="Unknown0EMult" hidden="true" />
-          <uint name="Unknown4EAdd" hidden="true" />
-          <uint name="Unknown0FMult" hidden="true" />
-          <uint name="Unknown4FAdd" hidden="true" />
-          <uint name="Unknown10Mult" hidden="true" />
-          <uint name="Unknown50Add" hidden="true" />
-          <member>
-            <name>CinematicCount</name>
-            <struct>
-              <name>CinematicCountData</name>
-              <members>
-                <uint name="SaturationMult" display-name="Saturation Multiplier" />
-                <uint name="SaturationAdd" display-name="Saturation Add" />
-                <uint name="BrightnessMult" display-name="Brightness Multiplier" />
-                <uint name="BrightnessAdd" display-name="Brightness Add" />
-                <uint name="ContrastMult" display-name="Contrast Multiplier" />
-                <uint name="ContrastAdd" display-name="Contrast Add" />
-              </members>
-            </struct>
-          </member>
-          <uint name="Unknown14Mult" hidden="true" />
-          <uint name="Unknown54Add" hidden="true" />
-          <uint name="TintColor" display-name="Tint Color" />
-          <uint name="BlurRadius" display-name="Blur Radius" />
-          <uint name="DoubleVisionStrength" display-name="Double Vision Strength" />
-          <uint name="RadialBlurStrength" display-name="Radial Blur Strength" />
-          <uint name="RadialBlurRampUp" display-name="Radial Blur Ramp Up" />
-          <uint name="RadialBlurStart" display-name="Radial Blur Start" />
-          <radial-blur-flags name="RadialBlurFlags" display-name="Radial Blur Flags" />
+          <uint name="EyeAdaptSpeedMultCount" hidden="true" sizeof="EyeAdaptSpeedMult" />
+          <uint name="EyeAdaptSpeedAddCount" hidden="true" sizeof="EyeAdaptSpeedAdd" />
+          <uint name="BloomBlurRadiusMultCount" hidden="true" sizeof="BloomBlurRadiusMult" />
+          <uint name="BloomBlurRadiusAddCount" hidden="true" sizeof="BloomBlurRadiusAdd" />
+          <uint name="BloomThresholdMultCount" hidden="true" sizeof="BloomThresholdMult" />
+          <uint name="BloomThresholdAddCount" hidden="true" sizeof="BloomThresholdAdd" />
+          <uint name="BloomScaleMultCount" hidden="true" sizeof="BloomScaleMult" />
+          <uint name="BloomScaleAddCount" hidden="true" sizeof="BloomScaleAdd" />
+          <uint name="TargetLumMinMultCount" hidden="true" sizeof="TargetLumMinMult" />
+          <uint name="TargetLumMinAddCount" hidden="true" sizeof="TargetLumMinAdd" />
+          <uint name="TargetLumMaxMultCount" hidden="true" sizeof="TargetLumMaxMult" />
+          <uint name="TargetLumMaxAddCount" hidden="true" sizeof="TargetLumMaxAdd" />
+          <uint name="SunlightScaleMultCount" hidden="true" sizeof="SunlightScaleMult" />
+          <uint name="SunlightScaleAddCount" hidden="true" sizeof="SunlightScaleAdd" />
+          <uint name="SkyScaleMultCount" hidden="true" sizeof="SkyScaleMult" />
+          <uint name="SkyScaleAddCount" hidden="true" sizeof="SkyScaleAdd" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint name="SaturationMultCount" hidden="true" sizeof="SaturationMult" />
+          <uint name="SaturationAddCount" hidden="true" sizeof="SaturationAdd" />
+          <uint name="BrightnessMultCount" hidden="true" sizeof="BrightnessMult" />
+          <uint name="BrightnessAddCount" hidden="true" sizeof="BrightnessAdd" />
+          <uint name="ContrastMultCount" hidden="true" sizeof="ContrastMult" />
+          <uint name="ContrastAddCount" hidden="true" sizeof="ContrastAdd" />
+          <uint hidden="true" />
+          <uint hidden="true" />
+          <uint name="TintColorCount" hidden="true" sizeof="TintColor" />
+          <uint name="BlurRadiusCount" hidden="true" sizeof="BlurRadius" />
+          <uint name="DoubleVisionStrengthCount" hidden="true" sizeof="DoubleVisionStrength" />
+          <uint name="RadialBlurStrengthCount" hidden="true" sizeof="RadialBlurStrength" />
+          <uint name="RadialBlurRampUpCount" hidden="true" sizeof="RadialBlurRampUp" />
+          <uint name="RadialBlurStartCount" hidden="true" sizeof="RadialBlurStart" />
+          <radial-blur-flags name="RadialBlurFlags" />
           <float name="RadialBlurCenterX" display-name="Radial Blur Center X" />
           <float name="RadialBlurCenterY" display-name="Radial Blur Center Y" />
-          <uint name="DoFStrength" display-name="DoF Strength" />
-          <uint name="DoFDistance" display-name="DoF Distance" />
-          <uint name="DoFRange" display-name="DoF Range" />
-          <dof-flags name="DoFFlags" display-name="DoF Flags" />
-          <uint name="RadialBlurRampDown" display-name="Radial Blur Ramp Down" />
-          <uint name="RadialBlurDownStart" display-name="Radial Blur Down Start" />
-          <uint name="FadeColor" display-name="Fade Color" />
-          <uint name="MotionBlurStrength" display-name="Motion Blur Strength" />
+          <uint name="DoFStrengthCount" hidden="true" sizeof="DoFStrength" />
+          <uint name="DoFDistanceCount" hidden="true" sizeof="DoFDistance" />
+          <uint name="DoFRangeCount" hidden="true" sizeof="DoFRange" />
+          <dof-flags name="DoFFlags" />
+          <uint name="RadialBlurRampDownCount" hidden="true" sizeof="RadialBlurRampDown" />
+          <uint name="RadialBlurDownStartCount" hidden="true" sizeof="RadialBlurDownStart" />
+          <uint name="FadeColorCount" hidden="true" sizeof="FadeColor" />
+          <uint name="MotionBlurStrengthCount" hidden="true" sizeof="MotionBlurStrength" />
         </members>
       </struct>
     </field>
-    <imad-septuple-data key="BNAM" name="BlurRadius" display-name="Blur Radius" />
-    <imad-octuple-data key="VNAM" name="DoubleVisionStrength" display-name="Double Vision Strength" />
-    <field>
-      <key>TNAM</key>
-      <name>TintColor</name>
-      <display-name>Tint Color</display-name>
-      <struct>
-        <name>TintData</name>
-        <members>
-          <alpha-color-time name="Data0" display-name="Data #0" />
-          <alpha-color-time name="Data1" display-name="Data #1" />
-        </members>
-      </struct>
-    </field>
-    <field>
-      <key>NAM3</key>
-      <name>FadeColor</name>
-      <display-name>Fade Color</display-name>
-      <struct>
-        <name>FadeData</name>
-        <members>
-          <alpha-color-time name="Data0" display-name="Data #0" />
-          <alpha-color-time name="Data1" display-name="Data #1" />
-        </members>
-      </struct>
-    </field>
-    <imad-double-data key="RNAM" name="RadialBlurStrength" display-name="Radial Blur Strength" />
-    <imad-double-data key="SNAM" name="RadialBlurRampUp" display-name="Radial Blur Ramp Up" />
-    <imad-double-data key="UNAM" name="RadialBlurStart" display-name="Radial Blur Start" />
-    <imad-double-data key="NAM1" name="RadialBlurRampDown" display-name="Radial Blur Ramp Down" />
-    <imad-double-data key="NAM2" name="RadialBlurDownStart" display-name="Radial Blur Down Start" />
-    <imad-double-data key="WNAM" name="DoFStrength" display-name="DoF Strength" />
-    <imad-double-data key="XNAM" name="DoFDistance" display-name="DoF Distance" />
-    <imad-double-data key="YNAM" name="DoFRange" display-name="DoF Range" />
-    <imad-double-data key="NAM4" name="MotionBlurStrength" display-name="Motion Blur Strength" />
-    <field>
-      <name>HDR</name>
-      <group>
-        <name>HDRData</name>
-        <fields>
-          <!-- Unsure of what to do about the special characters in the keys. -->
-          <imad-double-data key="aIAD" name="EyeAdaptSpeedMult" display-name="Eye Adapt Speed Multiplier" />
-          <imad-double-data key="@IAD" name="EyeAdaptSpeedAdd" display-name="Eye Adapt Speed Add" />
-          <imad-double-data key="bIAD" name="BloomBlurRadiusMult" display-name="Bloom Blur Radius Multiplier" />
-          <imad-double-data key="AIAD" name="BloomBlurRadiusAdd" display-name="Bloom Blur Radius Add" />
-          <imad-double-data key="cIAD" name="BloomThresholdMult" display-name="Bloom Threshold Multiplier" />
-          <imad-double-data key="BIAD" name="BloomThresholdAdd" display-name="Bloom Threshold Add" />
-          <imad-quintuple-data key="dIAD" name="BloomScaleMult" display-name="Bloom Scale Multiplier" />
-          <imad-double-data key="CIAD" name="BloomScaleAdd" display-name="Bloom Scale Add" />
-          <imad-quadruple-data key="eIAD" name="TargetLumMinMult" display-name="Target Lum Min Multiplier" />
-          <imad-double-data key="DIAD" name="TargetLumMinAdd" display-name="Target Lum Min Add" />
-          <imad-double-data key="fIAD" name="TargetLumMaxMult" display-name="Target Lum Max Multiplier" />
-          <imad-double-data key="EIAD" name="TargetLumMaxAdd" display-name="Target Lum Max Add" />
-          <imad-quadruple-data key="gIAD" name="SunlightScaleMult" display-name="Sunlight Scale Multiplier" />
-          <imad-double-data key="FIAD" name="SunlightScaleAdd" display-name="Sunlight Scale Add" />
-          <imad-quadruple-data key="hIAD" name="SkyScaleMult" display-name="Sky Scale Multiplier" />
-          <imad-double-data key="GIAD" name="SkyScaleAdd" display-name="Sky Scale Add" />
-        </fields>
-      </group>
-    </field>
-    <imad-unknown key="iIAD" name="Unknown1" />
-    <imad-unknown key="HIAD" name="Unknown2" />
-    <imad-unknown key="jIAD" name="Unknown3" />
-    <imad-unknown key="lIAD" name="Unknown4" />
-    <imad-unknown key="kIAD" name="Unknown5" />
-    <imad-unknown key="JIAD" name="Unknown6" />
-    <imad-unknown key="IIAD" name="Unknown7" />
-    <imad-unknown key="KIAD" name="Unknown8" />
-    <imad-unknown key="mIAD" name="Unknown9" />
-    <imad-unknown key="LIAD" name="Unknown10" />
-    <imad-unknown key="nIAD" name="Unknown11" />
-    <imad-unknown key="MIAD" name="Unknown12" />
-    <imad-unknown key="oIAD" name="Unknown13" />
-    <imad-unknown key="NIAD" name="Unknown14" />
-    <imad-unknown key="pIAD" name="Unknown15" />
-    <imad-unknown key="OIAD" name="Unknown16" />
-    <imad-unknown key="qIAD" name="Unknown17" />
-    <imad-unknown key="PIAD" name="Unknown18" />
-    <field>
-      <name>Cinematic</name>
-      <group>
-        <name>CinematicData</name>
-        <fields>
-          <imad-triple-data key="rIAD" name="SaturationMult" display-name="Saturation Multiplier" />
-          <imad-double-data key="QIAD" name="SaturationAdd" display-name="Saturation Add" />
-          <imad-septuple-data key="sIAD" name="BrightnessMult" display-name="Brightness Multiplier" />
-          <imad-double-data key="RIAD" name="BrightnessAdd" display-name="Brightness Add" />
-          <imad-triple-data key="tIAD" name="ContrastMult" display-name="Contrast Multiplier" />
-          <imad-double-data key="SIAD" name="ContrastAdd" display-name="Contrast Add" />
-        </fields>
-      </group>
-    </field>
-    <imad-unknown key="uIAD" name="Unknown19" />
-    <imad-unknown key="TIAD" name="Unknown20" />
+    <imad-float-list key="BNAM" name="BlurRadius" display-name="Blur Radius" />
+    <imad-float-list key="VNAM" name="DoubleVisionStrength" display-name="Double Vision Strength" />
+    <imad-color-list key="TNAM" name="TintColor" display-name="Tint Color" />
+    <imad-color-list key="NAM3" name="FadeColor" display-name="Fade Color" />
+    <imad-float-list key="RNAM" name="RadialBlurStrength" display-name="Radial Blur Strength" />
+    <imad-float-list key="SNAM" name="RadialBlurRampUp" display-name="Radial Blur Ramp Up" />
+    <imad-float-list key="UNAM" name="RadialBlurStart" display-name="Radial Blur Start" />
+    <imad-float-list key="NAM1" name="RadialBlurRampDown" display-name="Radial Blur Ramp Down" />
+    <imad-float-list key="NAM2" name="RadialBlurDownStart" display-name="Radial Blur Down Start" />
+    <imad-float-list key="WNAM" name="DoFStrength" display-name="DoF Strength" />
+    <imad-float-list key="XNAM" name="DoFDistance" display-name="DoF Distance" />
+    <imad-float-list key="YNAM" name="DoFRange" display-name="DoF Range" />
+    <imad-float-list key="NAM4" name="MotionBlurStrength" display-name="Motion Blur Strength" />
+    <!-- We'll use unicode literals to represent non-printable characters -->
+    <imad-float-list key="\u0000IAD" name="EyeAdaptSpeedMult" display-name="Eye Adapt Speed Multiplier" />
+    <imad-float-list key="@IAD" name="EyeAdaptSpeedAdd" display-name="Eye Adapt Speed Add" />
+    <imad-float-list key="\u0001IAD" name="BloomBlurRadiusMult" display-name="Bloom Blur Radius Multiplier" />
+    <imad-float-list key="AIAD" name="BloomBlurRadiusAdd" display-name="Bloom Blur Radius Add" />
+    <imad-float-list key="\u0002IAD" name="BloomThresholdMult" display-name="Bloom Threshold Multiplier" />
+    <imad-float-list key="BIAD" name="BloomThresholdAdd" display-name="Bloom Threshold Add" />
+    <imad-float-list key="\u0003IAD" name="BloomScaleMult" display-name="Bloom Scale Multiplier" />
+    <imad-float-list key="CIAD" name="BloomScaleAdd" display-name="Bloom Scale Add" />
+    <imad-float-list key="\u0004IAD" name="TargetLumMinMult" display-name="Target Lum Min Multiplier" />
+    <imad-float-list key="DIAD" name="TargetLumMinAdd" display-name="Target Lum Min Add" />
+    <imad-float-list key="\u0005IAD" name="TargetLumMaxMult" display-name="Target Lum Max Multiplier" />
+    <imad-float-list key="EIAD" name="TargetLumMaxAdd" display-name="Target Lum Max Add" />
+    <imad-float-list key="\u0006IAD" name="SunlightScaleMult" display-name="Sunlight Scale Multiplier" />
+    <imad-float-list key="FIAD" name="SunlightScaleAdd" display-name="Sunlight Scale Add" />
+    <imad-float-list key="\u0007IAD" name="SkyScaleMult" display-name="Sky Scale Multiplier" />
+    <imad-float-list key="GIAD" name="SkyScaleAdd" display-name="Sky Scale Add" />
+    <imad-float-list key="\u0008IAD" hidden="true" />
+    <imad-float-list key="HIAD" hidden="true" />
+    <imad-float-list key="\u0009IAD" hidden="true" />
+    <imad-float-list key="IIAD" hidden="true" />
+    <imad-float-list key="\u000aIAD" hidden="true" />
+    <imad-float-list key="JIAD" hidden="true" />
+    <imad-float-list key="\u000bIAD" hidden="true" />
+    <imad-float-list key="KIAD" hidden="true" />
+    <imad-float-list key="\u000cIAD" hidden="true" />
+    <imad-float-list key="LIAD" hidden="true" />
+    <imad-float-list key="\u000dIAD" hidden="true" />
+    <imad-float-list key="MIAD" hidden="true" />
+    <imad-float-list key="\u000eIAD" hidden="true" />
+    <imad-float-list key="NIAD" hidden="true" />
+    <imad-float-list key="\u000fIAD" hidden="true" />
+    <imad-float-list key="OIAD" hidden="true" />
+    <imad-float-list key="\u0010IAD" hidden="true" />
+    <imad-float-list key="PIAD" hidden="true" />
+    <imad-float-list key="\u0011IAD" name="SaturationMult" display-name="Saturation Multiplier" />
+    <imad-float-list key="QIAD" name="SaturationAdd" display-name="Saturation Add" />
+    <imad-float-list key="\u0012IAD" name="BrightnessMult" display-name="Brightness Multiplier" />
+    <imad-float-list key="RIAD" name="BrightnessAdd" display-name="Brightness Add" />
+    <imad-float-list key="\u0013IAD" name="ContrastMult" display-name="Contrast Multiplier" />
+    <imad-float-list key="SIAD" name="ContrastAdd" display-name="Contrast Add" />
+    <imad-float-list key="\u0014IAD" hidden="true" />
+    <imad-float-list key="TIAD" hidden="true" />
   </fields>
 </record>
