@@ -1,0 +1,14 @@
+<enum>
+  <name>GenderType</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Male</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Female</name>
+      <value>1</value>
+    </member>
+  </members>
+</enum>

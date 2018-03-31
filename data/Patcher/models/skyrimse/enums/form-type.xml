@@ -1,0 +1,23 @@
+<enum>
+  <name>FormType</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Activator</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Armor</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Book</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>Container</name>
+      <value>3</value>
+    </member>
+    <!-- TODO: Incomplete-->
+  </members>
+</enum>

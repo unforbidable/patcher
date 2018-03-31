@@ -129,32 +129,15 @@
       </param>
     </params>
   </function>
-  <!-- TODO: only completed up to this point -->
   <function>
     <index>39</index>
     <name>GetDisease</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>41</index>
     <name>GetClothingValue</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>42</index>
@@ -162,10 +145,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -175,10 +155,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -188,10 +165,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -201,10 +175,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -212,14 +183,6 @@
     <index>46</index>
     <name>GetDead</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>47</index>
@@ -227,10 +190,9 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>
+          ref(ALCH|AMMO|ARMO|BOOK|COBJ|FLST|INGR|KEYM|LIGH|LVLI|MISC|SCRL|SLGM|WEAP)
+        </type>
       </param>
     </params>
   </function>
@@ -238,40 +200,16 @@
     <index>48</index>
     <name>GetGold</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>49</index>
     <name>GetSleeping</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>50</index>
     <name>GetTalkedToPC</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>53</index>
@@ -279,10 +217,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>string</type>
       </param>
     </params>
   </function>
@@ -292,10 +230,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(QUST)</type>
       </param>
     </params>
   </function>
@@ -305,10 +240,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(QUST)</type>
       </param>
     </params>
   </function>
@@ -318,10 +250,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(QUST)</type>
       </param>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -331,10 +263,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -342,66 +274,26 @@
     <index>61</index>
     <name>GetAlarmed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>62</index>
     <name>IsRaining</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>63</index>
     <name>GetAttacked</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>64</index>
     <name>GetIsCreature</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>65</index>
     <name>GetLockLevel</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>66</index>
@@ -409,10 +301,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -422,10 +311,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(CELL)</type>
       </param>
     </params>
   </function>
@@ -435,10 +321,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(CLAS)</type>
       </param>
     </params>
   </function>
@@ -448,10 +331,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(RACE)</type>
       </param>
     </params>
   </function>
@@ -461,10 +341,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>gender-type</type>
       </param>
     </params>
   </function>
@@ -474,10 +351,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -487,10 +361,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACTI|ALCH|AMMO|ARMA|ARMO|ASPC|BOOK|CONT|DOOR|ENCH|FLST|FURN|GRAS|IDLM|KEYM|LIGH|LVLI|LVSP|MISC|MSTT|NPC_|PROJ|SCRL|SHOU|SLGM|SOUN|SPEL|STAT|TACT|TREE|WEAP)</type>
       </param>
     </params>
   </function>
@@ -500,10 +371,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -513,10 +381,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(GLOB)</type>
       </param>
     </params>
   </function>
@@ -524,27 +389,11 @@
     <index>75</index>
     <name>IsSnowing</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>77</index>
     <name>GetRandomPercent</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>79</index>
@@ -552,10 +401,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(QUST)</type>
       </param>
       <param>
-        <type></type>
+        <type>string</type>
       </param>
     </params>
   </function>
@@ -563,53 +412,21 @@
     <index>80</index>
     <name>GetLevel</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>81</index>
     <name>IsRotating</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>84</index>
     <name>GetDeadCount</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>91</index>
     <name>GetIsAlerted</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>98</index>
@@ -617,10 +434,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -630,10 +447,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -641,79 +455,31 @@
     <index>101</index>
     <name>IsWeaponMagicOut</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>102</index>
     <name>IsTorchOut</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>103</index>
     <name>IsShieldOut</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>106</index>
     <name>IsFacingUp</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>107</index>
     <name>GetKnockedState</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>108</index>
     <name>GetWeaponAnimType</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>109</index>
@@ -721,10 +487,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>actor-value</type>
       </param>
     </params>
   </function>
@@ -732,53 +495,21 @@
     <index>110</index>
     <name>GetCurrentAIPackage</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>111</index>
     <name>IsWaiting</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>112</index>
     <name>IsIdlePlaying</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>116</index>
     <name>IsIntimidatedByPlayer</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>117</index>
@@ -786,10 +517,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(REGN)</type>
       </param>
     </params>
   </function>
@@ -797,14 +525,6 @@
     <index>118</index>
     <name>GetActorAggroRadiusViolated</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>122</index>
@@ -812,10 +532,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -823,53 +540,21 @@
     <index>123</index>
     <name>IsGreetingPlayer</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>125</index>
     <name>IsGuard</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>127</index>
     <name>HasBeenEaten</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>128</index>
     <name>GetStaminaPercentage</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>129</index>
@@ -877,10 +562,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(CLAS)</type>
       </param>
     </params>
   </function>
@@ -890,10 +572,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(RACE)</type>
       </param>
     </params>
   </function>
@@ -903,10 +582,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>gender-type</type>
       </param>
     </params>
   </function>
@@ -916,10 +592,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -927,40 +600,16 @@
     <index>133</index>
     <name>SameFactionAsPC</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>134</index>
     <name>SameRaceAsPC</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>135</index>
     <name>SameSexAsPC</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>136</index>
@@ -968,10 +617,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACTI|ALCH|AMMO|ARMA|ARMO|ASPC|BOOK|CONT|DOOR|ENCH|FLST|FURN|GRAS|IDLM|KEYM|LIGH|LVLI|LVSP|MISC|MSTT|NPC_|PROJ|SCRL|SHOU|SLGM|SOUN|SPEL|STAT|TACT|TREE|WEAP)</type>
       </param>
     </params>
   </function>
@@ -979,105 +625,41 @@
     <index>141</index>
     <name>IsTalking</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>142</index>
     <name>GetWalkSpeed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>143</index>
     <name>GetCurrentAIProcedure</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>144</index>
     <name>GetTrespassWarningLevel</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>145</index>
     <name>IsTrespassing</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>146</index>
     <name>IsInMyOwnedCell</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>147</index>
     <name>GetWindSpeed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>148</index>
     <name>GetCurrentWeatherPercent</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>149</index>
@@ -1085,10 +667,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(WTHR)</type>
       </param>
     </params>
   </function>
@@ -1096,14 +675,6 @@
     <index>150</index>
     <name>IsContinuingPackagePCNear</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>152</index>
@@ -1111,10 +682,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -1122,53 +690,21 @@
     <index>153</index>
     <name>CanHaveFlames</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>154</index>
     <name>HasFlames</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>157</index>
     <name>GetOpenState</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>159</index>
     <name>GetSitting</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>161</index>
@@ -1176,10 +712,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(PACK)</type>
       </param>
     </params>
   </function>
@@ -1189,10 +722,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -1202,10 +732,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FURN)</type>
       </param>
     </params>
   </function>
@@ -1213,14 +740,6 @@
     <index>170</index>
     <name>GetDayOfWeek</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>172</index>
@@ -1228,10 +747,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -1239,27 +755,11 @@
     <index>175</index>
     <name>IsPCSleeping</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>176</index>
     <name>IsPCAMurderer</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>180</index>
@@ -1267,10 +767,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -1280,10 +780,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -1293,10 +793,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ALCH|AMMO|ARMO|BOOK|COBJ|FLST|INGR|KEYM|LIGH|LVLI|MISC|SCRL|SLGM|WEAP)</type>
       </param>
     </params>
   </function>
@@ -1304,40 +801,16 @@
     <index>185</index>
     <name>IsSwimming</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>190</index>
     <name>GetAmountSoldStolen</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>192</index>
     <name>GetIgnoreCrime</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>193</index>
@@ -1345,10 +818,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -1358,10 +828,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -1371,10 +838,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -1384,10 +848,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -1395,14 +856,6 @@
     <index>203</index>
     <name>GetDestroyed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>214</index>
@@ -1410,10 +863,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(MGEF)</type>
       </param>
     </params>
   </function>
@@ -1421,27 +871,11 @@
     <index>215</index>
     <name>GetDefaultOpen</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>219</index>
     <name>GetAnimAction</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>223</index>
@@ -1449,10 +883,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ALCH|ENCH|INGR|SCRL|SPEL)</type>
       </param>
     </params>
   </function>
@@ -1460,53 +891,21 @@
     <index>224</index>
     <name>GetVATSMode</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>225</index>
     <name>GetPersuasionNumber</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>226</index>
     <name>GetVampireFeed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>227</index>
     <name>GetCannibal</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>228</index>
@@ -1514,10 +913,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(CLAS)</type>
       </param>
     </params>
   </function>
@@ -1525,14 +921,6 @@
     <index>229</index>
     <name>GetClassDefaultMatch</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>230</index>
@@ -1540,10 +928,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(CELL)</type>
       </param>
     </params>
   </function>
@@ -1551,53 +936,21 @@
     <index>235</index>
     <name>GetVatsTargetHeight</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>237</index>
     <name>GetIsGhost</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>242</index>
     <name>GetUnconscious</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>244</index>
     <name>GetRestrained</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>246</index>
@@ -1605,10 +958,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACTI|ALCH|AMMO|ARMA|ARMO|ASPC|BOOK|CONT|DOOR|ENCH|FLST|FURN|GRAS|IDLM|KEYM|LIGH|LVLI|LVSP|MISC|MSTT|NPC_|PROJ|SCRL|SHOU|SLGM|SOUN|SPEL|STAT|TACT|TREE|WEAP)</type>
       </param>
     </params>
   </function>
@@ -1618,10 +968,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>form-type</type>
       </param>
     </params>
   </function>
@@ -1631,10 +978,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(SCEN)</type>
       </param>
     </params>
   </function>
@@ -1642,14 +986,6 @@
     <index>249</index>
     <name>IsInDialogueWithPlayer</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>250</index>
@@ -1657,10 +993,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
     </params>
   </function>
@@ -1668,27 +1001,11 @@
     <index>254</index>
     <name>GetIsPlayableRace</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>255</index>
     <name>GetOffersServicesNow</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>258</index>
@@ -1696,10 +1013,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(ASTP)</type>
       </param>
     </params>
   </function>
@@ -1709,10 +1026,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -1722,10 +1036,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -1735,10 +1046,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FLST)</type>
       </param>
     </params>
   </function>
@@ -1746,14 +1054,6 @@
     <index>263</index>
     <name>IsWeaponOut</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>264</index>
@@ -1761,10 +1061,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ALCH|ENCH|INGR|SCRL|SPEL)</type>
       </param>
     </params>
   </function>
@@ -1772,53 +1069,21 @@
     <index>265</index>
     <name>IsTimePassing</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>266</index>
     <name>IsPleasant</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>267</index>
     <name>IsCloudy</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>274</index>
     <name>IsSmallBump</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>277</index>
@@ -1826,10 +1091,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>actor-value</type>
       </param>
     </params>
   </function>
@@ -1839,10 +1101,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT|NPC_)</type>
       </param>
     </params>
   </function>
@@ -1852,10 +1111,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(CELL)</type>
       </param>
     </params>
   </function>
@@ -1863,66 +1119,26 @@
     <index>282</index>
     <name>IsHorseStolen</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>285</index>
     <name>IsLeftUp</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>286</index>
     <name>IsSneaking</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>287</index>
     <name>IsRunning</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>288</index>
     <name>GetFriendHit</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>289</index>
@@ -1930,10 +1146,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -1941,66 +1154,26 @@
     <index>300</index>
     <name>IsInInterior</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>304</index>
     <name>IsWaterObject</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>305</index>
     <name>GetPlayerAction</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>306</index>
     <name>IsActorUsingATorch</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>309</index>
     <name>IsXBox</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>310</index>
@@ -2008,10 +1181,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(WRLD)</type>
       </param>
     </params>
   </function>
@@ -2021,10 +1191,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>misc-stats</type>
       </param>
     </params>
   </function>
@@ -2032,79 +1199,31 @@
     <index>313</index>
     <name>GetPairedAnimation</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>314</index>
     <name>IsActorAVictim</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>315</index>
     <name>GetTotalPersuasionNumber</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>318</index>
     <name>GetIdleDoneOnce</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>320</index>
     <name>GetNoRumors</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>323</index>
     <name>GetCombatState</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>325</index>
@@ -2112,10 +1231,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -2123,105 +1239,41 @@
     <index>327</index>
     <name>IsRidingMount</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>329</index>
     <name>IsFleeing</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>332</index>
     <name>IsInDangerousWater</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>338</index>
     <name>GetIgnoreFriendlyHits</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>339</index>
     <name>IsPlayersLastRiddenMount</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>353</index>
     <name>IsActor</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>354</index>
     <name>IsEssential</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>358</index>
     <name>IsPlayerMovingIntoNewSpace</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>359</index>
@@ -2229,10 +1281,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
     </params>
   </function>
@@ -2242,10 +1291,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -2253,14 +1299,6 @@
     <index>361</index>
     <name>GetTimeDead</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>362</index>
@@ -2268,10 +1306,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -2279,14 +1314,6 @@
     <index>365</index>
     <name>IsChild</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>366</index>
@@ -2294,10 +1321,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -2305,14 +1329,6 @@
     <index>367</index>
     <name>GetLastPlayerAction</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>368</index>
@@ -2320,10 +1336,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -2333,10 +1346,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -2346,10 +1356,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FLST)</type>
       </param>
     </params>
   </function>
@@ -2359,10 +1366,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -2370,27 +1374,11 @@
     <index>375</index>
     <name>GetCrimeGoldViolent</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>376</index>
     <name>GetCrimeGoldNonviolent</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>378</index>
@@ -2398,10 +1386,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(SHOU)</type>
       </param>
     </params>
   </function>
@@ -2411,10 +1396,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -2422,39 +1404,15 @@
     <index>390</index>
     <name>GetHitLocation</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>391</index>
     <name>IsPC1stPerson</name>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>396</index>
     <name>GetCauseofDeath</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>397</index>
@@ -2462,10 +1420,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -2475,10 +1430,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FLST)</type>
       </param>
     </params>
   </function>
@@ -2486,14 +1438,6 @@
     <index>402</index>
     <name>IsBribedbyPlayer</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>403</index>
@@ -2501,10 +1445,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -2514,10 +1455,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>vats-function</type>
       </param>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -2527,10 +1468,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -2540,10 +1478,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FLST)</type>
       </param>
     </params>
   </function>
@@ -2553,10 +1488,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(FACT)</type>
       </param>
     </params>
   </function>
@@ -2566,10 +1501,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -2577,27 +1509,11 @@
     <index>415</index>
     <name>GetGroupMemberCount</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>416</index>
     <name>GetGroupTargetCount</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>426</index>
@@ -2605,10 +1521,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FLST|VTYP) </type>
       </param>
     </params>
   </function>
@@ -2616,40 +1529,16 @@
     <index>427</index>
     <name>GetPlantedExplosive</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>429</index>
     <name>IsScenePackageRunning</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>430</index>
     <name>GetHealthPercentage</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>432</index>
@@ -2657,10 +1546,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>form-type</type>
       </param>
     </params>
   </function>
@@ -2668,27 +1554,11 @@
     <index>434</index>
     <name>GetDialogueEmotion</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>435</index>
     <name>GetDialogueEmotionValue</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>437</index>
@@ -2696,10 +1566,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -2709,10 +1576,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(FLST)</type>
       </param>
     </params>
   </function>
@@ -2722,10 +1586,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ECZN)</type>
       </param>
     </params>
   </function>
@@ -2735,10 +1596,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>axis</type>
       </param>
     </params>
   </function>
@@ -2748,10 +1606,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>string</type>
       </param>
     </params>
   </function>
@@ -2761,10 +1616,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(PERK)</type>
       </param>
     </params>
   </function>
@@ -2774,10 +1626,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -2787,10 +1636,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(IDLE)</type>
       </param>
     </params>
   </function>
@@ -2798,53 +1644,21 @@
     <index>453</index>
     <name>GetPlayerTeammate</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>454</index>
     <name>GetPlayerTeammateCount</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>458</index>
     <name>GetActorCrimePlayerEnemy</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>459</index>
     <name>GetCrimeGold</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>463</index>
@@ -2852,10 +1666,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -2865,10 +1676,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -2876,14 +1684,6 @@
     <index>470</index>
     <name>GetDestructionStage</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>473</index>
@@ -2891,10 +1691,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>alignment</type>
       </param>
     </params>
   </function>
@@ -2902,14 +1699,6 @@
     <index>476</index>
     <name>IsProtected</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>477</index>
@@ -2917,10 +1706,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -2930,10 +1716,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(EQUP)</type>
       </param>
     </params>
   </function>
@@ -2941,40 +1724,16 @@
     <index>487</index>
     <name>IsCarryable</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>488</index>
     <name>GetConcussed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>491</index>
     <name>GetMapMarkerVisible</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>493</index>
@@ -2982,10 +1741,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(MGEF)</type>
       </param>
     </params>
   </function>
@@ -2995,10 +1751,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>actor-value</type>
       </param>
     </params>
   </function>
@@ -3006,53 +1759,21 @@
     <index>495</index>
     <name>GetKillingBlowLimb</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>497</index>
     <name>CanPayCrimeGold</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>499</index>
     <name>GetDaysInJail</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>500</index>
     <name>EPAlchemyGetMakingPoison</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>501</index>
@@ -3060,10 +1781,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3071,27 +1789,11 @@
     <index>503</index>
     <name>GetAllowWorldInteractions</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>508</index>
     <name>GetLastHitCritical</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>513</index>
@@ -3099,10 +1801,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -3112,10 +1811,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3125,10 +1821,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3138,10 +1831,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3151,10 +1841,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3162,38 +1849,14 @@
     <index>519</index>
     <name>GetLockIsBroken</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>520</index>
     <name>IsPS3</name>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>521</index>
     <name>IsWin32</name>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>522</index>
@@ -3201,10 +1864,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3214,10 +1874,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3227,10 +1884,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3240,10 +1894,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3253,10 +1904,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>critical-stage</type>
       </param>
     </params>
   </function>
@@ -3264,53 +1912,21 @@
     <index>530</index>
     <name>GetXPForNextLevel</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>533</index>
     <name>GetInfamy</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>534</index>
     <name>GetInfamyViolent</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>535</index>
     <name>GetInfamyNonViolent</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>543</index>
@@ -3318,10 +1934,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(QUST)</type>
       </param>
     </params>
   </function>
@@ -3329,14 +1942,6 @@
     <index>547</index>
     <name>IsGoreDisabled</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>550</index>
@@ -3344,10 +1949,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(SCEN)</type>
       </param>
     </params>
   </function>
@@ -3357,10 +1959,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ALCH|ENCH|INGR|SCRL|SPEL)</type>
       </param>
     </params>
   </function>
@@ -3368,26 +1967,10 @@
     <index>554</index>
     <name>GetActorsInHigh</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>555</index>
     <name>IsLoaded3D</name>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>560</index>
@@ -3395,10 +1978,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3408,10 +1988,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(LCRT)</type>
       </param>
     </params>
   </function>
@@ -3421,10 +1998,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3434,10 +2008,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(LCRT)</type>
       </param>
     </params>
   </function>
@@ -3447,10 +2018,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
     </params>
   </function>
@@ -3460,10 +2028,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -3473,10 +2038,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -3484,27 +2046,11 @@
     <index>568</index>
     <name>IsSprinting</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>569</index>
     <name>IsBlocking</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>570</index>
@@ -3512,10 +2058,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
     </params>
   </function>
@@ -3525,10 +2068,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
     </params>
   </function>
@@ -3538,10 +2078,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
     </params>
   </function>
@@ -3549,14 +2086,6 @@
     <index>574</index>
     <name>GetAttackState</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>576</index>
@@ -3564,10 +2093,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref</type>
       </param>
     </params>
   </function>
@@ -3577,10 +2106,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -3590,10 +2119,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(SHOU)</type>
       </param>
     </params>
   </function>
@@ -3601,14 +2127,6 @@
     <index>580</index>
     <name>IsBleedingOut</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>584</index>
@@ -3616,10 +2134,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>axis</type>
       </param>
     </params>
   </function>
@@ -3627,27 +2145,11 @@
     <index>589</index>
     <name>GetMovementDirection</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>590</index>
     <name>IsInScene</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>591</index>
@@ -3655,10 +2157,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(LCRT)</type>
       </param>
     </params>
   </function>
@@ -3668,10 +2170,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(LCRT)</type>
       </param>
     </params>
   </function>
@@ -3679,14 +2181,6 @@
     <index>594</index>
     <name>GetIsFlying</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>595</index>
@@ -3694,10 +2188,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ALCH|ENCH|INGR|SCRL|SPEL)</type>
       </param>
       <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
     </params>
   </function>
@@ -3707,10 +2201,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3720,10 +2214,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
     </params>
   </function>
@@ -3733,10 +2224,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -3746,10 +2234,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(LCRT)</type>
       </param>
     </params>
   </function>
@@ -3759,10 +2247,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(LCRT)</type>
       </param>
     </params>
   </function>
@@ -3772,10 +2260,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ward-state</type>
       </param>
     </params>
   </function>
@@ -3785,10 +2270,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3798,10 +2283,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3811,10 +2296,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
     </params>
   </function>
@@ -3824,10 +2309,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3837,10 +2322,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3850,10 +2335,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>int</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -3863,10 +2348,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -3876,10 +2358,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -3889,10 +2368,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>furniture-anim</type>
       </param>
     </params>
   </function>
@@ -3902,10 +2378,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>furniture-entry</type>
       </param>
     </params>
   </function>
@@ -3913,27 +2386,11 @@
     <index>615</index>
     <name>GetHighestRelationshipRank</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>616</index>
     <name>GetLowestRelationshipRank</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>617</index>
@@ -3941,10 +2398,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ASTP)</type>
       </param>
     </params>
   </function>
@@ -3952,14 +2406,6 @@
     <index>618</index>
     <name>HasFamilyRelationshipAny</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>619</index>
@@ -3967,10 +2413,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>axis</type>
       </param>
     </params>
   </function>
@@ -3980,10 +2423,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>axis</type>
       </param>
     </params>
   </function>
@@ -3993,10 +2433,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>axis</type>
       </param>
     </params>
   </function>
@@ -4006,10 +2443,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>axis</type>
       </param>
     </params>
   </function>
@@ -4017,14 +2451,6 @@
     <index>623</index>
     <name>GetMovementSpeed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>624</index>
@@ -4032,10 +2458,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -4045,10 +2468,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(LCTN)</type>
       </param>
     </params>
   </function>
@@ -4058,10 +2478,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -4069,14 +2486,6 @@
     <index>627</index>
     <name>IsDualCasting</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>629</index>
@@ -4084,10 +2493,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(QUST)</type>
       </param>
       <param>
-        <type></type>
+        <type>string</type>
       </param>
     </params>
   </function>
@@ -4097,10 +2506,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>string</type>
       </param>
     </params>
   </function>
@@ -4108,53 +2517,21 @@
     <index>631</index>
     <name>IsEnteringInteractionQuick</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>632</index>
     <name>IsCasting</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>633</index>
     <name>GetFlyingState</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>635</index>
     <name>IsInFavorState</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>636</index>
@@ -4162,10 +2539,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>int</type>
       </param>
     </params>
   </function>
@@ -4173,27 +2547,11 @@
     <index>637</index>
     <name>IsExistingInstant</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>638</index>
     <name>IsInFriendStateWithPlayer</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>639</index>
@@ -4201,10 +2559,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>float</type>
       </param>
     </params>
   </function>
@@ -4214,10 +2572,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>actor-value</type>
       </param>
     </params>
   </function>
@@ -4225,27 +2580,11 @@
     <index>641</index>
     <name>IsUnique</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>642</index>
     <name>GetLastBumpDirection</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>644</index>
@@ -4253,10 +2592,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>furniture-anim</type>
       </param>
     </params>
   </function>
@@ -4264,40 +2600,16 @@
     <index>645</index>
     <name>GetIsInjured</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>646</index>
     <name>GetIsCrashLandRequest</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>647</index>
     <name>GetIsHastyLandRequest</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>650</index>
@@ -4305,10 +2617,10 @@
     <description></description>
     <params>
       <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
       <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4318,10 +2630,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4331,10 +2640,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -4342,27 +2648,11 @@
     <index>654</index>
     <name>GetBribeSuccess</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>655</index>
     <name>GetIntimidateSuccess</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>656</index>
@@ -4381,14 +2671,6 @@
     <index>657</index>
     <name>GetArrestingActor</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>659</index>
@@ -4409,10 +2691,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4422,10 +2701,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
     </params>
   </function>
@@ -4433,40 +2709,16 @@
     <index>672</index>
     <name>IsAttacking</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>673</index>
     <name>IsPowerAttacking</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>674</index>
     <name>IsLastHostileActor</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>675</index>
@@ -4474,10 +2726,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>string</type>
       </param>
     </params>
   </function>
@@ -4485,14 +2734,6 @@
     <index>676</index>
     <name>GetCurrentShoutVariation</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>678</index>
@@ -4500,10 +2741,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -4511,24 +2749,13 @@
     <index>680</index>
     <name>GetActivatorHeight</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>681</index>
     <name>EPMagic_IsAdvanceSkill</name>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>actor-value</type>
       </param>
     </params>
   </function>
@@ -4538,10 +2765,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4549,14 +2773,6 @@
     <index>683</index>
     <name>GetPathingCurrentSpeed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>684</index>
@@ -4564,10 +2780,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>axis</type>
       </param>
     </params>
   </function>
@@ -4576,10 +2789,7 @@
     <name>EPModSkillUsage_AdvanceObjectHasKeyword</name>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4588,10 +2798,7 @@
     <name>EPModSkillUsage_IsAdvanceAction</name>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>player-action</type>
       </param>
     </params>
   </function>
@@ -4600,10 +2807,7 @@
     <name>EPMagic_SpellHasKeyword</name>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4611,24 +2815,13 @@
     <index>694</index>
     <name>GetNoBleedoutRecovery</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>696</index>
     <name>EPMagic_SpellHasSkill</name>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>actor-value</type>
       </param>
     </params>
   </function>
@@ -4638,10 +2831,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4649,14 +2839,6 @@
     <index>698</index>
     <name>IsAllowedToFly</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>699</index>
@@ -4664,10 +2846,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4675,66 +2854,26 @@
     <index>700</index>
     <name>IsCommandedActor</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>701</index>
     <name>IsStaggered</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>702</index>
     <name>IsRecoiling</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>703</index>
     <name>IsExitingInteractionQuick</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>704</index>
     <name>IsPathing</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>705</index>
@@ -4742,10 +2881,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -4755,10 +2891,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>casting-type</type>
       </param>
     </params>
   </function>
@@ -4768,10 +2901,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4779,40 +2909,16 @@
     <index>709</index>
     <name>GetCombatGroupMemberCount</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>710</index>
     <name>IsIgnoringCombat</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>711</index>
     <name>GetLightLevel</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>713</index>
@@ -4820,10 +2926,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(PERK)</type>
       </param>
     </params>
   </function>
@@ -4831,53 +2934,21 @@
     <index>714</index>
     <name>IsBeingRidden</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>715</index>
     <name>IsUndead</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>716</index>
     <name>GetRealHoursPassed</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>718</index>
     <name>IsUnlockedDoor</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>719</index>
@@ -4885,10 +2956,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PLYR|REFR)</type>
       </param>
     </params>
   </function>
@@ -4898,10 +2966,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(ACHR|PARW|PBEA|PCON|PFLA|PGRE|PHZD|PLYR|PMIS|REFR)</type>
       </param>
     </params>
   </function>
@@ -4909,14 +2974,6 @@
     <index>721</index>
     <name>IsPoison</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>722</index>
@@ -4924,10 +2981,7 @@
     <description></description>
     <params>
       <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
+        <type>ref(KYWD)</type>
       </param>
     </params>
   </function>
@@ -4935,52 +2989,20 @@
     <index>723</index>
     <name>GetItemHealthPercent</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>724</index>
     <name>EffectHasDualCast</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>725</index>
     <name>GetKnockedStateEnum</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
   <function>
     <index>726</index>
     <name>DoesNotExist</name>
     <description></description>
-    <params>
-      <param>
-        <type></type>
-      </param>
-      <param>
-        <type></type>
-      </param>
-    </params>
   </function>
 </functions>

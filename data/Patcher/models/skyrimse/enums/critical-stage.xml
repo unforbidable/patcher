@@ -1,0 +1,28 @@
+<enum>
+  <name>CriticalStage</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>GooStart</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>GooEnd</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>DisintegrationStart</name>
+      <display-name>Disintegration Start</display-name>
+      <value>3</value>
+    </member>
+    <member>
+      <name>DisintegrationEnd</name>
+      <display-name>Disintegration End</display-name>
+      <value>4</value>
+    </member>
+  </members>
+</enum>

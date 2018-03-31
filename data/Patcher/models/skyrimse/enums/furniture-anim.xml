@@ -1,0 +1,18 @@
+<enum>
+  <name>FurnitureAnim</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Sit</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Lay</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>Lean</name>
+      <value>4</value>
+    </member>
+  </members>
+</enum>

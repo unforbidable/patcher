@@ -1,0 +1,28 @@
+<enum>
+  <name>Alignment</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Good</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Neutral</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Evil</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>VeryGood</name>
+      <display-name>Very Good</display-name>
+      <value>3</value>
+    </member>
+    <member>
+      <name>VeryEvil</name>
+      <display-name>Very Evil</display-name>
+      <value>4</value>
+    </member>
+  </members>
+</enum>

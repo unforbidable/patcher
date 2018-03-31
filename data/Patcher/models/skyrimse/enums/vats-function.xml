@@ -1,0 +1,111 @@
+<enum>
+  <name>VatsFunction</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>WeaponIs</name>
+      <display-name>Weapon Is</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>WeaponInList</name>
+      <display-name>Weapon In List</display-name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>TargetIs</name>
+      <display-name>Target Is</display-name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>TargetInList</name>
+      <display-name>Target In List</display-name>
+      <value>3</value>
+    </member>
+    <member>
+      <name>TargetDistance</name>
+      <display-name>Target Distance</display-name>
+      <value>4</value>
+    </member>
+    <member>
+      <name>TargetPart</name>
+      <display-name>Target Part</display-name>
+      <value>5</value>
+    </member>
+    <member>
+      <name>VatsAction</name>
+      <display-name>VATS Action</display-name>
+      <value>6</value>
+    </member>
+    <member>
+      <name>IsSuccess</name>
+      <display-name>Is Success</display-name>
+      <value>7</value>
+    </member>
+    <member>
+      <name>IsCritical</name>
+      <display-name>Is Critical</display-name>
+      <value>8</value>
+    </member>
+    <member>
+      <name>CriticalEffectIs</name>
+      <display-name>Critical Effect Is</display-name>
+      <value>9</value>
+    </member>
+    <member>
+      <name>CriticalEffectInList</name>
+      <display-name>Critical Effect In List</display-name>
+      <value>10</value>
+    </member>
+    <member>
+      <name>IsFatal</name>
+      <display-name>Is Fatal</display-name>
+      <value>11</value>
+    </member>
+    <member>
+      <name>ExplodePart</name>
+      <display-name>Explode Part</display-name>
+      <value>12</value>
+    </member>
+    <member>
+      <name>DismemberPart</name>
+      <display-name>Dismember Part</display-name>
+      <value>13</value>
+    </member>
+    <member>
+      <name>CripplePart</name>
+      <display-name>Cripple Part</display-name>
+      <value>14</value>
+    </member>
+    <member>
+      <name>WeaponTypeIs</name>
+      <display-name>Weapon Type Is</display-name>
+      <value>15</value>
+    </member>
+    <member>
+      <name>IsStranger</name>
+      <display-name>Is Stranger</display-name>
+      <value>16</value>
+    </member>
+    <member>
+      <name>IsParalyzingPalm</name>
+      <display-name>Is Paralyzing Palm</display-name>
+      <value>17</value>
+    </member>
+    <member>
+      <name>ProjectileTypeIs</name>
+      <display-name>Projectile Type Is</display-name>
+      <value>18</value>
+    </member>
+    <member>
+      <name>DeliveryTypeIs</name>
+      <display-name>Delivery Type Is</display-name>
+      <value>19</value>
+    </member>
+    <member>
+      <name>CastingTypeIs</name>
+      <display-name>Casting Type Is</display-name>
+      <value>20</value>
+    </member>
+  </members>
+</enum>

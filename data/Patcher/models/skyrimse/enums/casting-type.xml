@@ -1,0 +1,22 @@
+<enum>
+  <name>CastingType</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Left</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Right</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Voice</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>Instant</name>
+      <value>3</value>
+    </member>
+  </members>
+</enum>

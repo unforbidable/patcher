@@ -1,0 +1,18 @@
+<enum>
+  <name>WardState</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>None</name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>Absorb</name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Break</name>
+      <value>2</value>
+    </member>
+  </members>
+</enum>

@@ -1,0 +1,95 @@
+<enum>
+  <name>MiscellaneousStats</name>
+  <type>uint</type>
+  <members>
+    <!-- Misc stat values appear to be some kind of hash produced from the stat name -->
+    <member>
+      <name>AnimalsKilled</name>
+      <display-name>Animals Killed</display-name>
+      <value>0xFCDD5011</value>
+    </member>
+    <member>
+      <name>ArmorImproved</name>
+      <display-name>Armor Improved</display-name>
+      <value>0x366D84CF</value>
+    </member>
+    <member>
+      <name>ArmorMade</name>
+      <display-name>Armor Made</display-name>
+      <value>0x023497E6</value>
+    </member>
+    <!-- TODO: Fill In Values-->
+    <member>
+      <name>Assaults</name>
+      <value></value>
+    </member>
+    <member>
+      <name>AutomationsKilled</name>
+      <display-name>Automations Killed</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>Backstabs</name>
+      <value></value>
+    </member>
+    <member>
+      <name>Barters</name>
+      <value></value>
+    </member>
+    <member>
+      <name>BooksRead</name>
+      <display-name>Books Read</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>BrawlsWon</name>
+      <display-name>Brawls Won</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>Bribes</name>
+      <value></value>
+    </member>
+    <member>
+      <name>BunniesSlaughtered</name>
+      <display-name>Bunnies Slaughtered</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>ChestsLooted</name>
+      <display-name>Chests Looted</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>CivilWarQuestsCompleted</name>
+      <display-name>Civil War Quests Completed</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>CollegeOfWinterholdQuestsCompleted</name>
+      <display-name>College Of Winterhold Quests Completed</display-name>
+        <value></value>
+    </member>
+    <member>
+      <name>CreaturesKilled</name>
+      <display-name>Creatures Killed</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>CriticalStrikes</name>
+      <display-name>Critical Strikes</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>DaedraKilled</name>
+      <display-name>Daedra Killed</display-name>
+      <value></value>
+    </member>
+    <member>
+      <name>DaedricQuestsCompleted</name>
+      <display-name>Daedric Quests Completed</display-name>
+      <value></value>
+    </member>
+    <!-- TODO: Incomplete-->
+  </members>
+</enum>

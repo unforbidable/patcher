@@ -1,0 +1,30 @@
+<enum>
+  <name>PlayerAction</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>NormalUsage</name>
+      <display-name>Normal Usage</display-name>
+      <value>0</value>
+    </member>
+    <member>
+      <name>PowerAttack</name>
+      <display-name>Power Attack</display-name>
+      <value>1</value>
+    </member>
+    <member>
+      <name>Bash</name>
+      <value>2</value>
+    </member>
+    <member>
+      <name>LockpickSuccess</name>
+      <display-name>Lockpick Success</display-name>
+      <value>3</value>
+    </member>
+    <member>
+      <name>LockpickBroken</name>
+      <display-name>Lockpick Broken</display-name>
+      <value>4</value>
+    </member>
+  </members>
+</enum>

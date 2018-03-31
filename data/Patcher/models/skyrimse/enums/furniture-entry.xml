@@ -1,0 +1,26 @@
+<enum>
+  <name>FurnitureEntry</name>
+  <type>uint</type>
+  <members>
+    <member>
+      <name>Behind</name>
+      <value>0x20000</value>
+    </member>
+    <member>
+      <name>Front</name>
+      <value>0x10000</value>
+    </member>
+    <member>
+      <name>Left</name>
+      <value>0x80000</value>
+    </member>
+    <member>
+      <name>Right</name>
+      <value>0x40000</value>
+    </member>
+    <member>
+      <name>Up</name>
+      <value>0x100000</value>
+    </member>
+  </members>
+</enum>
