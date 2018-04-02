@@ -27,6 +27,11 @@ namespace Patcher.Code
     /// </summary>
     public sealed class CodeInterface : CodeType
     {
+        /// <summary>
+        /// Gets the collection of members of this interface.
+        /// </summary>
+        public CodeMemberCollection Members { get; private set; }
+
         public CodeInterface(string name) : base(name)
         {
         }
